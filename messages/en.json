@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "frameworks": "Frameworks",
+    "solutions": "Solutions",
+    "resources": "Resources",
+    "about": "About",
+    "login": "Log in",
+    "getStarted": "Get Started",
+    "ecovadis": "EcoVadis",
+    "iso14001": "ISO 14001",
+    "cdp": "CDP",
+    "csrd": "CSRD / VSME",
+    "managementSystem": "Management System",
+    "questionnaireAutomation": "Questionnaire Automation",
+    "aiIntelligence": "AI Intelligence",
+    "supplierEngagement": "Supplier Engagement",
+    "blog": "Blog",
+    "guides": "Guides",
+    "caseStudies": "Case Studies",
+    "manifesto": "Manifesto",
+    "careers": "Careers",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Get the CSR recognition you deserve",
+    "subtitle": "Prove your CSR work across major frameworks — EcoVadis, ISO 14001, CDP, CSRD — with the power of AI and expert guidance.",
+    "cta": "Get Started",
+    "trustpilot": "4.6/5 on Trustpilot"
+  },
+  "socialProof": {
+    "title": "Join 500+ companies already using Ditto"
+  },
+  "frameworks": {
+    "title": "One platform, every framework",
+    "subtitle": "Prepare for the assessments and certifications that matter most to your business.",
+    "csrd": {
+      "title": "CSRD / VSME",
+      "description": "Streamline your CSRD compliance and sustainability reporting with automated data collection and gap analysis."
+    },
+    "ecovadis": {
+      "title": "EcoVadis",
+      "description": "Maximize your EcoVadis score with AI-powered questionnaire preparation and continuous improvement tracking."
+    },
+    "iso": {
+      "title": "ISO 14001 / 45001 / 50001",
+      "description": "Build and maintain your ISO management systems with structured workflows and audit-ready documentation."
+    },
+    "cdp": {
+      "title": "CDP",
+      "description": "Improve your CDP environmental disclosure score with guided reporting and data quality checks."
+    }
+  },
+  "solutions": {
+    "title": "Everything you need to succeed",
+    "subtitle": "Our platform combines advanced AI technology with human expertise to accelerate your CSR journey.",
+    "management": {
+      "title": "Management System",
+      "description": "Centralize all your CSR knowledge, documents, and processes in one intelligent platform.",
+      "cta": "Learn More"
+    },
+    "questionnaire": {
+      "title": "Questionnaire Automation",
+      "description": "Let AI complete your assessment questionnaires with accurate, evidence-backed answers in minutes.",
+      "cta": "Learn More"
+    },
+    "ai": {
+      "title": "AI Intelligence",
+      "description": "Get actionable insights and recommendations powered by our proprietary CSR methodology.",
+      "cta": "Learn More"
+    },
+    "supplier": {
+      "title": "Supplier Engagement",
+      "description": "Engage and develop your supply chain partners with targeted sustainability assessments and coaching.",
+      "cta": "Learn More"
+    }
+  },
+  "expertise": {
+    "title": "Advanced technology meets human expertise",
+    "subtitle": "Ditto combines cutting-edge AI with deep CSR domain knowledge to deliver results you can trust.",
+    "methodology": {
+      "title": "Proprietary Methodology",
+      "description": "Built on years of CSR consulting experience and continuously refined with real-world data."
+    },
+    "coach": {
+      "title": "Dedicated Coach",
+      "description": "Every client gets a dedicated CSR expert to guide them through their sustainability journey."
+    },
+    "ecovadisPartner": {
+      "title": "EcoVadis Training Partner",
+      "description": "Official EcoVadis training partner with deep expertise in assessment preparation."
+    },
+    "efrag": {
+      "title": "EFRAG Partnership",
+      "description": "Working with EFRAG to ensure our CSRD tools align with the latest European sustainability standards."
+    },
+    "compliance": {
+      "title": "Compliance Monitoring",
+      "description": "Stay ahead of regulatory changes with real-time monitoring and proactive alerts."
+    }
+  },
+  "testimonials": {
+    "title": "Trusted by sustainability leaders",
+    "readMore": "Read the full story"
+  },
+  "blog": {
+    "title": "Latest resources",
+    "subtitle": "Stay informed with the latest insights on CSR, sustainability, and compliance.",
+    "viewAll": "View All Resources"
+  },
+  "newsletter": {
+    "title": "Stay in the loop",
+    "subtitle": "Get the latest CSR insights and product updates delivered to your inbox.",
+    "placeholder": "Enter your email",
+    "cta": "Subscribe",
+    "success": "Thanks for subscribing!",
+    "error": "Something went wrong. Please try again."
+  },
+  "footer": {
+    "tagline": "Your CSR copilot. More impact, less effort.",
+    "frameworks": "Frameworks",
+    "solutions": "Solutions",
+    "customers": "Customers",
+    "resources": "Resources",
+    "about": "About",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "legal": "Legal Notices",
+    "copyright": "© {year} Ditto. All rights reserved."
+  }
+}

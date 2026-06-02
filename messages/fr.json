@@ -1,0 +1,130 @@
+{
+  "nav": {
+    "frameworks": "Référentiels",
+    "solutions": "Solutions",
+    "resources": "Ressources",
+    "about": "À propos",
+    "login": "Connexion",
+    "getStarted": "Commencer",
+    "ecovadis": "EcoVadis",
+    "iso14001": "ISO 14001",
+    "cdp": "CDP",
+    "csrd": "CSRD / VSME",
+    "managementSystem": "Système de management",
+    "questionnaireAutomation": "Automatisation questionnaires",
+    "aiIntelligence": "Intelligence IA",
+    "supplierEngagement": "Engagement fournisseurs",
+    "blog": "Blog",
+    "guides": "Guides",
+    "caseStudies": "Études de cas",
+    "manifesto": "Manifeste",
+    "careers": "Carrières",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Obtenez la reconnaissance RSE que vous méritez",
+    "subtitle": "Prouvez votre engagement RSE sur les principaux référentiels — EcoVadis, ISO 14001, CDP, CSRD — grâce à l'IA et à l'accompagnement d'experts.",
+    "cta": "Commencer",
+    "trustpilot": "4.6/5 sur Trustpilot"
+  },
+  "socialProof": {
+    "title": "Rejoignez plus de 500 entreprises qui utilisent Ditto"
+  },
+  "frameworks": {
+    "title": "Une plateforme, tous les référentiels",
+    "subtitle": "Préparez les évaluations et certifications essentielles pour votre entreprise.",
+    "csrd": {
+      "title": "CSRD / VSME",
+      "description": "Simplifiez votre conformité CSRD et votre reporting de durabilité grâce à la collecte automatisée des données et l'analyse des écarts."
+    },
+    "ecovadis": {
+      "title": "EcoVadis",
+      "description": "Maximisez votre score EcoVadis grâce à la préparation de questionnaires par IA et au suivi d'amélioration continue."
+    },
+    "iso": {
+      "title": "ISO 14001 / 45001 / 50001",
+      "description": "Construisez et maintenez vos systèmes de management ISO avec des workflows structurés et une documentation prête pour l'audit."
+    },
+    "cdp": {
+      "title": "CDP",
+      "description": "Améliorez votre score de divulgation environnementale CDP grâce à un reporting guidé et des contrôles de qualité des données."
+    }
+  },
+  "solutions": {
+    "title": "Tout ce dont vous avez besoin pour réussir",
+    "subtitle": "Notre plateforme combine technologie IA avancée et expertise humaine pour accélérer votre parcours RSE.",
+    "management": {
+      "title": "Système de management",
+      "description": "Centralisez toutes vos connaissances, documents et processus RSE dans une plateforme intelligente.",
+      "cta": "En savoir plus"
+    },
+    "questionnaire": {
+      "title": "Automatisation des questionnaires",
+      "description": "Laissez l'IA compléter vos questionnaires d'évaluation avec des réponses précises et documentées en quelques minutes.",
+      "cta": "En savoir plus"
+    },
+    "ai": {
+      "title": "Intelligence IA",
+      "description": "Obtenez des recommandations actionnables basées sur notre méthodologie RSE propriétaire.",
+      "cta": "En savoir plus"
+    },
+    "supplier": {
+      "title": "Engagement fournisseurs",
+      "description": "Engagez et développez vos partenaires de la chaîne d'approvisionnement avec des évaluations et un coaching ciblés.",
+      "cta": "En savoir plus"
+    }
+  },
+  "expertise": {
+    "title": "Technologie avancée et expertise humaine",
+    "subtitle": "Ditto combine une IA de pointe avec une expertise RSE approfondie pour des résultats fiables.",
+    "methodology": {
+      "title": "Méthodologie propriétaire",
+      "description": "Construite sur des années d'expérience en conseil RSE et continuellement affinée avec des données réelles."
+    },
+    "coach": {
+      "title": "Coach dédié",
+      "description": "Chaque client bénéficie d'un expert RSE dédié pour le guider dans son parcours de durabilité."
+    },
+    "ecovadisPartner": {
+      "title": "Partenaire de formation EcoVadis",
+      "description": "Partenaire officiel de formation EcoVadis avec une expertise approfondie en préparation d'évaluations."
+    },
+    "efrag": {
+      "title": "Partenariat EFRAG",
+      "description": "Collaboration avec l'EFRAG pour garantir l'alignement de nos outils CSRD avec les dernières normes européennes."
+    },
+    "compliance": {
+      "title": "Veille réglementaire",
+      "description": "Anticipez les évolutions réglementaires grâce à une veille en temps réel et des alertes proactives."
+    }
+  },
+  "testimonials": {
+    "title": "La confiance des leaders de la durabilité",
+    "readMore": "Lire le témoignage complet"
+  },
+  "blog": {
+    "title": "Dernières ressources",
+    "subtitle": "Restez informé avec les dernières analyses sur la RSE, la durabilité et la conformité.",
+    "viewAll": "Voir toutes les ressources"
+  },
+  "newsletter": {
+    "title": "Restez informé",
+    "subtitle": "Recevez les dernières analyses RSE et les nouveautés produit directement dans votre boîte mail.",
+    "placeholder": "Entrez votre email",
+    "cta": "S'abonner",
+    "success": "Merci pour votre inscription !",
+    "error": "Une erreur est survenue. Veuillez réessayer."
+  },
+  "footer": {
+    "tagline": "Votre copilote RSE. Plus d'impact, moins d'effort.",
+    "frameworks": "Référentiels",
+    "solutions": "Solutions",
+    "customers": "Clients",
+    "resources": "Ressources",
+    "about": "À propos",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité",
+    "legal": "Mentions légales",
+    "copyright": "© {year} Ditto. Tous droits réservés."
+  }
+}
