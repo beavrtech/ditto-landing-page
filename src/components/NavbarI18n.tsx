@@ -24,7 +24,6 @@ import NavbarContainer from "../../webflow/webflow_modules/Navbar/components/Nav
 import NavbarLink from "../../webflow/webflow_modules/Navbar/components/NavbarLink";
 import NavbarMenu from "../../webflow/webflow_modules/Navbar/components/NavbarMenu";
 import NavbarWrapper from "../../webflow/webflow_modules/Navbar/components/NavbarWrapper";
-import NotSupported from "../../webflow/webflow_modules/Builtin/components/NotSupported";
 import Paragraph from "../../webflow/webflow_modules/Basic/components/Paragraph";
 import { Button } from "../../webflow/elements/Button";
 import { Label } from "../../webflow/elements/Label";
@@ -598,14 +597,7 @@ export function Navbar({}: NavbarProps) {
                               </Paragraph>
                             </Block>
                           </Block>
-                          <Block
-                            className={"dropdown1_grid_content"}
-                            tag={"div"}
-                          >
-                            <NotSupported _atom={"Collection List"} />
-                            <NotSupported _atom={"Collection List"} />
-                            <NotSupported _atom={"Collection List"} />
-                          </Block>
+                          {/* Preview cards removed - collection lists not yet supported */}
                         </Block>
                       </Block>
                     </Block>

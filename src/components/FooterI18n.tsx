@@ -8,7 +8,7 @@
  */
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
 import DOM from "../../webflow/webflow_modules/Builtin/components/DOM";
@@ -21,7 +21,7 @@ import FormWrapper from "../../webflow/webflow_modules/Form/components/FormWrapp
 import HtmlEmbed from "../../webflow/webflow_modules/Embed/components/HtmlEmbed";
 import Image from "../../webflow/webflow_modules/Basic/components/Image";
 import Link from "../../webflow/webflow_modules/Basic/components/Link";
-import NotSupported from "../../webflow/webflow_modules/Builtin/components/NotSupported";
+import { getBlogPosts, getNews } from "../lib/cms";
 import Paragraph from "../../webflow/webflow_modules/Basic/components/Paragraph";
 import Section from "../../webflow/webflow_modules/Layout/components/Section";
 import { Background } from "../../webflow/Background";
@@ -125,6 +125,18 @@ export type FooterProps = {};
  * @see {@link https://ditto-preprod.design.webflow.com | Source site in Webflow}
  */
 export function Footer({}: FooterProps) {
+  const [blogPosts, setBlogPosts] = useState<any[]>([]);
+  const [newsItems, setNewsItems] = useState<any[]>([]);
+
+  useEffect(() => {
+    getBlogPosts("en", 4)
+      .then((data) => setBlogPosts(data || []))
+      .catch(() => {});
+    getNews("en", 4)
+      .then((data) => setNewsItems(data || []))
+      .catch(() => {});
+  }, []);
+
   return (
     <div
       className={DEVLINK_SCOPE_CLASS}
@@ -460,7 +472,17 @@ export function Footer({}: FooterProps) {
                   <Paragraph className={"text-size-1rem text-weight-600"}>
                     {"Blog"}
                   </Paragraph>
-                  <NotSupported _atom={"Collection List"} />
+                  {blogPosts.map((post) => (
+                    <Link
+                      key={post.id}
+                      block={""}
+                      button={false}
+                      className={"link-size-1rem"}
+                      options={{ href: `/en/resources/blog/${post.slug}` }}
+                    >
+                      {post.name}
+                    </Link>
+                  ))}
                 </Block>
                 <Block
                   className={"footer_navigation_col width-20rem"}
@@ -469,7 +491,17 @@ export function Footer({}: FooterProps) {
                   <Paragraph className={"text-size-1rem text-weight-600"}>
                     {"News"}
                   </Paragraph>
-                  <NotSupported _atom={"Collection List"} />
+                  {newsItems.map((item) => (
+                    <Link
+                      key={item.id}
+                      block={""}
+                      button={false}
+                      className={"link-size-1rem"}
+                      options={{ href: `/en/resources/news/${item.slug}` }}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
                 </Block>
               </Block>
             </Block>

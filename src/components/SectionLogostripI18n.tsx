@@ -8,14 +8,15 @@
  */
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
+import { getCompanyLogos } from "../lib/cms";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
 import Heading from "../../webflow/webflow_modules/Basic/components/Heading";
 import HtmlEmbed from "../../webflow/webflow_modules/Embed/components/HtmlEmbed";
 import Image from "../../webflow/webflow_modules/Basic/components/Image";
 import Link from "../../webflow/webflow_modules/Basic/components/Link";
-import NotSupported from "../../webflow/webflow_modules/Builtin/components/NotSupported";
 import Paragraph from "../../webflow/webflow_modules/Basic/components/Paragraph";
 import Section from "../../webflow/webflow_modules/Layout/components/Section";
 import { Background } from "../../webflow/Background";
@@ -39,6 +40,12 @@ export type SectionLogostripProps = {
  */
 export function SectionLogostrip({ variant = "Base" }: SectionLogostripProps) {
   const t = useTranslations("socialProof");
+  const [logos, setLogos] = useState<any[]>([]);
+
+  useEffect(() => {
+    getCompanyLogos().then((data) => setLogos(data || []));
+  }, []);
+
   const _styleVariantMap = {
     Base: "",
     "Not clickable": "w-variant-4264a7db-e569-0907-b261-b783f2c8be66",
@@ -79,7 +86,69 @@ export function SectionLogostrip({ variant = "Base" }: SectionLogostripProps) {
               className={`spacer-2rem ${_activeStyleVariant}`}
               tag={"div"}
             />
-            <NotSupported _atom={"Collection List"} />
+            {logos.length > 0 ? (
+              <Block className={"logostrip_list_wrapper w-dyn-list"} tag={"div"}>
+                <Block
+                  className={"logostrip_list w-dyn-items"}
+                  tag={"div"}
+                  role={"list"}
+                >
+                  {logos.map((logo) => (
+                    <Block
+                      key={logo.id}
+                      className={"logostrip_item w-dyn-item"}
+                      tag={"div"}
+                      role={"listitem"}
+                    >
+                      {logo.case_study_url ? (
+                        <Link
+                          block={""}
+                          button={false}
+                          className={"logostrip_item_linkblock w-inline-block"}
+                          options={{ href: logo.case_study_url }}
+                        >
+                          <Block
+                            className={"logostrip_item_image_wrapper"}
+                            tag={"div"}
+                          >
+                            <Image
+                              alt={logo.name || ""}
+                              className={"logostrip_item_image"}
+                              loading={"lazy"}
+                              width={125}
+                              src={logo.logo_url}
+                            />
+                          </Block>
+                          <Block className={"button_tiny"} tag={"div"}>
+                            <Block tag={"div"}>{t("caseStudy")}</Block>
+                            <Block className={"icon-wrapper"} tag={"div"}>
+                              <HtmlEmbed
+                                tag={"div"}
+                                className={"icon"}
+                                value={`<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.14645 2.64645C4.34171 2.45118 4.65829 2.45118 4.85355 2.64645L7.85355 5.64645C8.04882 5.84171 8.04882 6.15829 7.85355 6.35355L4.85355 9.35355C4.65829 9.54882 4.34171 9.54882 4.14645 9.35355C3.95118 9.15829 3.95118 8.84171 4.14645 8.64645L6.79289 6L4.14645 3.35355C3.95118 3.15829 3.95118 2.84171 4.14645 2.64645Z" fill="currentColor"></path></svg>`}
+                              />
+                            </Block>
+                          </Block>
+                        </Link>
+                      ) : (
+                        <Block
+                          className={"logostrip_item_image_wrapper"}
+                          tag={"div"}
+                        >
+                          <Image
+                            alt={logo.name || ""}
+                            className={"logostrip_item_image"}
+                            loading={"lazy"}
+                            width={125}
+                            src={logo.logo_url}
+                          />
+                        </Block>
+                      )}
+                    </Block>
+                  ))}
+                </Block>
+              </Block>
+            ) : null}
           </Block>
           <Padding space={"Small (3rem)"} />
         </Block>

@@ -8,7 +8,7 @@ import { SectionCompliantCarousel } from "../../components/SectionCompliantCarou
 import { SectionPillIllus } from "../../../webflow/sections/SectionPillIllus";
 import { SectionFeaturesHeader } from "../../../webflow/sections/SectionFeaturesHeader";
 import { SectionFeature } from "../../../webflow/sections/SectionFeature";
-import { SectionTestimonials } from "../../../webflow/sections/SectionTestimonials";
+import { SectionTestimonialsI18n as SectionTestimonials } from "../../components/SectionTestimonialsI18n";
 import { SectionResources } from "../../components/SectionResourcesI18n";
 import { SectionCta } from "../../../webflow/sections/SectionCta";
 import { Footer } from "../../components/FooterI18n";

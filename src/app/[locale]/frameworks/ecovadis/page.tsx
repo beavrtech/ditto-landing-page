@@ -11,7 +11,7 @@ import { SectionFeaturesHeader } from "../../../../../webflow/sections/SectionFe
 import { SectionFeature } from "../../../../../webflow/sections/SectionFeature";
 import { SectionCompliantCarousel } from "../../../../components/SectionCompliantCarouselInit";
 import { SectionCtaPill } from "../../../../components/SectionCtaPillI18n";
-import { SectionTestimonials } from "../../../../../webflow/sections/SectionTestimonials";
+import { SectionTestimonialsI18n as SectionTestimonials } from "../../../../components/SectionTestimonialsI18n";
 import { SectionCta } from "../../../../../webflow/sections/SectionCta";
 import { Button } from "../../../../../webflow/elements/Button";
 

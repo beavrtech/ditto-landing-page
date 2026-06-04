@@ -8,18 +8,19 @@
  */
 "use client";
 
+import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
 import Heading from "../../webflow/webflow_modules/Basic/components/Heading";
 import Image from "../../webflow/webflow_modules/Basic/components/Image";
 import Link from "../../webflow/webflow_modules/Basic/components/Link";
-import NotSupported from "../../webflow/webflow_modules/Builtin/components/NotSupported";
 import Paragraph from "../../webflow/webflow_modules/Basic/components/Paragraph";
 import Section from "../../webflow/webflow_modules/Layout/components/Section";
 import { Background } from "../../webflow/Background";
 import { Button } from "../../webflow/elements/Button";
 import { Padding } from "../../webflow/Padding";
+import { getBlogPosts } from "../lib/cms";
 
 /**
  * Props for {@link SectionResources}
@@ -43,6 +44,15 @@ export function SectionResources({
   const t = useTranslations("resourcesSection");
   const locale = useLocale();
   const prefix = `/${locale}`;
+
+  const [posts, setPosts] = useState<any[]>([]);
+
+  useEffect(() => {
+    getBlogPosts(locale as "en" | "fr", 3)
+      .then((data) => setPosts(data || []))
+      .catch(() => {});
+  }, [locale]);
+
   return (
     <div
       className={DEVLINK_SCOPE_CLASS}
@@ -69,7 +79,48 @@ export function SectionResources({
           </Block>
           <Block className={"spacer-3rem"} tag={"div"} />
           <Block className={"container-84rem"} tag={"div"}>
-            <NotSupported _atom={"Collection List"} />
+            {posts.length > 0 ? (
+              <div className="blog_list_wrapper w-dyn-list">
+                <div role="list" className="blog_list w-dyn-items">
+                  {posts.map((post) => (
+                    <div key={post.id} role="listitem" className="blog-preview_item w-dyn-item">
+                      <Block className="card-image" tag="div">
+                        <Block className="card-image_thumbnail" tag="div">
+                          <Image
+                            className="media-full-size"
+                            height="auto"
+                            loading="lazy"
+                            src={post.banner_url || ""}
+                            width="auto"
+                          />
+                        </Block>
+                        <Block className="card-image_content" tag="div">
+                          <Block className="spacer-1x5rem spacer-mob-1rem" tag="div" />
+                          <Paragraph className="label">
+                            {post.category?.name_en || ""}
+                          </Paragraph>
+                          <Block className="spacer-0x75rem" tag="div" />
+                          <Block className="card-image_link_wrapper" tag="div">
+                            <Link
+                              block=""
+                              button={false}
+                              className="heading-size-2rem link-hover-parent"
+                              options={{ href: `${prefix}/resources/blog/${post.slug}` }}
+                            >
+                              {post.name}
+                            </Link>
+                          </Block>
+                          <Block className="spacer-0x75rem" tag="div" />
+                          <Paragraph className="text-size-1rem">
+                            {post.description}
+                          </Paragraph>
+                        </Block>
+                      </Block>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
             <Block className={"spacer-3rem"} tag={"div"} />
             <Block className={"button-group x-center"} tag={"div"}>
               <Button
