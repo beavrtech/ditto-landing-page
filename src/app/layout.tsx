@@ -1,16 +1,14 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "Ditto — Your CSR Copilot",
+  title: "Ditto - Your CSR copilot | More impact, less effort",
   description:
-    "Get the CSR recognition you deserve. Prove your sustainability work across EcoVadis, ISO 14001, CDP, and CSRD with AI-powered tools and expert guidance.",
+    "Ditto empowers SMEs and mid-sized enterprises to build reliable, structured, and value-driven CSR strategies through a platform and expert guidance on EcoVadis, CSRD, ISO, and CDP.",
+  icons: {
+    icon: "/images/favicon.png",
+    apple: "/images/webclip.png",
+  },
 };
 
 export default function RootLayout({

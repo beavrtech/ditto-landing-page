@@ -1,0 +1,11 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g style="mix-blend-mode:multiply">
+<rect x="15" y="4" width="49" height="32" rx="16" fill="#FFE228"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<rect x="1" y="19" width="46" height="30" rx="8" fill="#E261E5"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M26 44C26 42.3431 24.6569 41 23 41H12.2426C9.56993 41 8.23143 44.2314 10.1213 46.1213L20.8787 56.8787C22.7686 58.7686 26 57.4301 26 54.7574V44Z" fill="#3A93FF"/>
+</g>
+</svg>

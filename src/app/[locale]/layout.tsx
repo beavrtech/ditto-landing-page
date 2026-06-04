@@ -1,12 +1,8 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Geist } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
+import { DevLinkProvider } from "../../../webflow/DevLinkProvider";
+import { GlobalStyles } from "../../../webflow/GlobalStyles";
 
 export default async function LocaleLayout({
   children,
@@ -23,10 +19,16 @@ export default async function LocaleLayout({
   const messages = (await import(`../../../messages/${locale}.json`)).default;
 
   return (
-    <html lang={locale} className={`${geistSans.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-ivory">
+    <html lang={locale}>
+      <head>
+        <link rel="stylesheet" href="/webflow-css/webflow-bundle.css" />
+      </head>
+      <body>
         <NextIntlClientProvider messages={messages}>
-          {children}
+          <DevLinkProvider>
+            <GlobalStyles />
+            {children}
+          </DevLinkProvider>
         </NextIntlClientProvider>
       </body>
     </html>

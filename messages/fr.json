@@ -2,129 +2,800 @@
   "nav": {
     "frameworks": "Référentiels",
     "solutions": "Solutions",
+    "customers": "Clients",
     "resources": "Ressources",
     "about": "À propos",
     "login": "Connexion",
-    "getStarted": "Commencer",
+    "getStarted": "Essayer Ditto",
     "ecovadis": "EcoVadis",
     "iso14001": "ISO 14001",
     "cdp": "CDP",
     "csrd": "CSRD / VSME",
+    "otherFrameworks": "Autres référentiels",
     "managementSystem": "Système de management",
-    "questionnaireAutomation": "Automatisation questionnaires",
-    "aiIntelligence": "Intelligence IA",
+    "complianceQuestionnaires": "Questionnaires automatisés",
+    "aiSolutions": "Assistants IA",
     "supplierEngagement": "Engagement fournisseurs",
+    "webinars": "Webinaires",
+    "seeAllResources": "Voir toutes les ressources",
     "blog": "Blog",
     "guides": "Guides",
-    "caseStudies": "Études de cas",
+    "news": "Actualités",
     "manifesto": "Manifeste",
     "careers": "Carrières",
-    "contact": "Contact"
+    "sme": "PME",
+    "largeCompanies": "Grandes entreprises",
+    "allCaseStudies": "Tous les témoignages"
   },
   "hero": {
-    "title": "Obtenez la reconnaissance RSE que vous méritez",
-    "subtitle": "Prouvez votre engagement RSE sur les principaux référentiels — EcoVadis, ISO 14001, CDP, CSRD — grâce à l'IA et à l'accompagnement d'experts.",
-    "cta": "Commencer",
-    "trustpilot": "4.6/5 sur Trustpilot"
+    "title": "Obtenez enfin la médaille que vous méritez",
+    "subtitle": "Vos engagements RSE méritent d'être visibles. Ditto vous aide à les valoriser, sur EcoVadis, CDP, ISO 14 001, et la CSRD.",
+    "cta": "Essayer Ditto",
+    "trustpilot": "4.6/5 on Trustpilot"
   },
   "socialProof": {
-    "title": "Rejoignez plus de 500 entreprises qui utilisent Ditto"
+    "title": "Rejoignez plus de 500 entreprises qui assurent leur conformité avec Ditto"
   },
   "frameworks": {
-    "title": "Une plateforme, tous les référentiels",
-    "subtitle": "Préparez les évaluations et certifications essentielles pour votre entreprise.",
+    "title": "Assurez votre conformité RSE quatre fois plus rapidement",
     "csrd": {
       "title": "CSRD / VSME",
-      "description": "Simplifiez votre conformité CSRD et votre reporting de durabilité grâce à la collecte automatisée des données et l'analyse des écarts."
+      "description": "Conformez-vous aux exigences de la CSRD et préparez votre rapport de durabilité directement dans Ditto"
     },
     "ecovadis": {
       "title": "EcoVadis",
-      "description": "Maximisez votre score EcoVadis grâce à la préparation de questionnaires par IA et au suivi d'amélioration continue."
+      "description": "Structurez votre approche, préparez-vous à l'évaluation EcoVadis et décrochez la médaille que vous méritez"
     },
     "iso": {
-      "title": "ISO 14001 / 45001 / 50001",
-      "description": "Construisez et maintenez vos systèmes de management ISO avec des workflows structurés et une documentation prête pour l'audit."
+      "title": "ISO",
+      "description": "Centralisez vos politiques, preuves et audits et préparez vos certifications ISO 14001, 45001 et 50001"
     },
     "cdp": {
       "title": "CDP",
-      "description": "Améliorez votre score de divulgation environnementale CDP grâce à un reporting guidé et des contrôles de qualité des données."
+      "description": "Appuyez-vous sur la méthode et l'expertise de Ditto pour obtenir le meilleur score à l'évaluation CDP"
     }
   },
   "solutions": {
-    "title": "Tout ce dont vous avez besoin pour réussir",
-    "subtitle": "Notre plateforme combine technologie IA avancée et expertise humaine pour accélérer votre parcours RSE.",
+    "title": "Une solution complète pour prouver et valoriser vos engagements",
+    "subtitle": "Ditto est le centre de commande RSE de votre équipe. Il combine IA, logiciel et expertise intégrée pour vous aider à structurer vos initiatives, répondre aux attentes de vos partenaires et maximiser votre impact.",
     "management": {
-      "title": "Système de management",
-      "description": "Centralisez toutes vos connaissances, documents et processus RSE dans une plateforme intelligente.",
+      "label": "Système de management",
+      "title": "Un espace central pour toute votre connaissance RSE",
+      "description": "Ditto est la source unique de vérité pour les données RSE et conformité de votre équipe, pour rechercher, collaborer et progresser facilement.",
       "cta": "En savoir plus"
     },
     "questionnaire": {
-      "title": "Automatisation des questionnaires",
-      "description": "Laissez l'IA compléter vos questionnaires d'évaluation avec des réponses précises et documentées en quelques minutes.",
+      "label": "Questionnaires automatisés",
+      "title": "Répondez automatiquement aux questionnaires et aux appels d'offres",
+      "description": "Ditto organise vos données et nos assistants IA génèrent des réponses à partir de votre base de connaissances pour pré-remplir questionnaires, formulaires et appels d'offres, en un clic.",
       "cta": "En savoir plus"
     },
     "ai": {
-      "title": "Intelligence IA",
-      "description": "Obtenez des recommandations actionnables basées sur notre méthodologie RSE propriétaire.",
+      "label": "Assistants IA",
+      "title": "Demandez à Ditto de l'aide et des pistes d'amélioration",
+      "description": "Ditto utilise l'IA pour comprendre vos données dans le contexte des meilleures pratiques et référentiels, afin de répondre à vos questions et proposer des recommandations de manière proactive.",
       "cta": "En savoir plus"
     },
     "supplier": {
-      "title": "Engagement fournisseurs",
-      "description": "Engagez et développez vos partenaires de la chaîne d'approvisionnement avec des évaluations et un coaching ciblés.",
+      "label": "Engagement fournisseurs",
+      "title": "Aidez vos partenaires à renforcer votre impact",
+      "description": "Vos partenaires sont le reflet de votre entreprise. Aidez-les à donner le meilleur d'eux-mêmes grâce à de meilleures pratiques et notations RSE.",
       "cta": "En savoir plus"
     }
   },
   "expertise": {
-    "title": "Technologie avancée et expertise humaine",
-    "subtitle": "Ditto combine une IA de pointe avec une expertise RSE approfondie pour des résultats fiables.",
+    "title": "Quand l'expertise humaine rencontre la technologie de pointe",
+    "subtitle": "Chaque accompagnement Ditto repose sur une même promesse : une expertise reconnue, une méthode claire et des outils puissants. Votre coach vous aide à fiabiliser vos données et à valoriser vos résultats.",
+    "cta": "Commencer",
     "methodology": {
       "title": "Méthodologie propriétaire",
-      "description": "Construite sur des années d'expérience en conseil RSE et continuellement affinée avec des données réelles."
+      "description": "Notre approche pour chaque référentiel est développée par nos experts internes"
     },
     "coach": {
       "title": "Coach dédié",
-      "description": "Chaque client bénéficie d'un expert RSE dédié pour le guider dans son parcours de durabilité."
+      "description": "Un coach dédié est assigné pour suivre votre programme RSE et vous aider à progresser"
     },
     "ecovadisPartner": {
       "title": "Partenaire de formation EcoVadis",
-      "description": "Partenaire officiel de formation EcoVadis avec une expertise approfondie en préparation d'évaluations."
+      "description": "Ditto est un partenaire de formation EcoVadis agréé"
     },
     "efrag": {
-      "title": "Partenariat EFRAG",
-      "description": "Collaboration avec l'EFRAG pour garantir l'alignement de nos outils CSRD avec les dernières normes européennes."
+      "title": "Friend of EFRAG",
+      "description": "Nous sommes fiers d'apporter notre expertise au soutien des efforts de l'EFRAG"
     },
     "compliance": {
-      "title": "Veille réglementaire",
-      "description": "Anticipez les évolutions réglementaires grâce à une veille en temps réel et des alertes proactives."
+      "title": "Veille réglementaire et conformité",
+      "description": "Notre équipe surveille de près les réglementations et vous informe de tout changement"
     }
   },
   "testimonials": {
-    "title": "La confiance des leaders de la durabilité",
-    "readMore": "Lire le témoignage complet"
+    "title": "Ce que nos clients en disent",
+    "subtitle": "Des entreprises de toutes tailles adorent Ditto pour sa simplicité, son intelligence et son impact.",
+    "readMore": "En savoir plus"
   },
   "blog": {
-    "title": "Dernières ressources",
-    "subtitle": "Restez informé avec les dernières analyses sur la RSE, la durabilité et la conformité.",
-    "viewAll": "Voir toutes les ressources"
+    "title": "En savoir plus sur Ditto et l'IA au service de la conformité RSE",
+    "viewAll": "Afficher toutes les ressources",
+    "articles": {
+      "esg": {
+        "title": "ESG : définition, critères et enjeux",
+        "excerpt": "ESG — Environnement, Social, Gouvernance — structure la transformation durable des entreprises. Il englobe les pratiques, politiques et indicateurs qui aident à concilier performance économique et impact positif sur la société et la planète."
+      },
+      "csr": {
+        "title": "RSE : définition claire et champs d'application",
+        "excerpt": "La Responsabilité Sociétale des Entreprises (RSE) structure la contribution d'une organisation au développement durable et éthique. Son périmètre, fondé sur des principes précis, relie management stratégique, performance mesurable et conformité réglementaire."
+      },
+      "responsibility": {
+        "title": "Qu'est-ce que la Responsabilité Sociétale des Entreprises ?",
+        "excerpt": "La Responsabilité Sociétale des Entreprises (RSE) structure l'engagement d'une organisation envers la société et l'environnement. Comprendre ses fondements, son impact sur la conformité et la performance RSE aide à construire une stratégie de durabilité crédible et pérenne."
+      }
+    }
+  },
+  "cta": {
+    "title": "Prêt à vous mettre en conformité ? Ditto.",
+    "subtitle": "Transformez votre programme RSE en avantage stratégique avec un copilote conformité qui vous accompagne à chaque étape.",
+    "button": "Commencer"
   },
   "newsletter": {
-    "title": "Restez informé",
-    "subtitle": "Recevez les dernières analyses RSE et les nouveautés produit directement dans votre boîte mail.",
+    "title": "Abonnez-vous à notre newsletter RSE : études, cas concrets, outils",
     "placeholder": "Entrez votre email",
     "cta": "S'abonner",
     "success": "Merci pour votre inscription !",
     "error": "Une erreur est survenue. Veuillez réessayer."
   },
+  "solutionsManagement": {
+    "breadcrumb": "Système de management",
+    "hero": {
+      "title": "Votre source de référence pour la RSE et la conformité",
+      "paragraph": "Fini les recherches dans des documents dispersés ou les relances internes. Ditto vous donne tout ce qu'il vous faut pour piloter votre conformité et vos démarches RSE, dans un espace unique.",
+      "button": "Commencer"
+    },
+    "header": {
+      "title": "Une vision claire pour avancer avec confiance"
+    },
+    "feature1": {
+      "label": "Tableau de bord centralisé",
+      "title": "Centralisez vos données conformité et identifiez les écarts",
+      "paragraph": "Quand il s'agit de conformité, avoir une vue d'ensemble change tout. Ditto centralise vos politiques, vos documents et vos actions, pour vous aider à repérer rapidement les manques et à prioriser vos améliorations."
+    },
+    "feature2": {
+      "label": "Suivi des progrès",
+      "title": "Fixez des objectifs ambitieux et suivez vos progrès",
+      "paragraph": "Définissez des objectifs mesurables, planifiez vos échéances et mobilisez votre équipe pour les atteindre."
+    },
+    "feature3": {
+      "label": "Base de données",
+      "title": "Gardez une trace de toutes vos informations importantes",
+      "paragraph": "Ditto conserve l'historique vivant de vos politiques, évaluations et plans d'action."
+    },
+    "testimonials": {
+      "title": "Ce que disent nos clients",
+      "text": "Des entreprises de toutes tailles choisissent Ditto pour sa clarté, son expertise et son impact.",
+      "button": "En savoir plus"
+    },
+    "cta": {
+      "title": "Prêt à vous mettre en conformité ? Ditto.",
+      "paragraph": "Transformez votre démarche RSE en avantage stratégique, avec un copilote conformité à vos côtés à chaque étape.",
+      "button": "Commencer"
+    }
+  },
+  "solutionsCompliance": {
+    "breadcrumb": "Questionnaires automatisés",
+    "hero": {
+      "title": "Automatisez vos questionnaires RSE et conformité",
+      "paragraph": "Fini les feuilles de calcul dispersées et les réponses obsolètes. Ditto centralise vos questionnaires, réutilise les réponses validées, accélère la rédaction de vos rapports et vous aide à rester concentré sur l'essentiel.",
+      "button": "Commencer"
+    },
+    "header": {
+      "title": "Répondez plus vite, rapportez plus intelligemment",
+      "text": "Dites adieu aux copier-coller répétitifs. Avec Ditto, vous collectez une fois et réutilisez pour toujours. Suivez l'avancement, répartissez les responsabilités, et gagnez du temps sans compromettre la rigueur, la clarté ou l'auditabilité."
+    },
+    "feature1": {
+      "label": "Import en un clic",
+      "title": "Importez vos questionnaires en toute simplicité",
+      "paragraph": "Déposez vos fichiers Excel, Word ou PDF dans Ditto. Nous détectons les questions automatiquement et les associons à vos données existantes — fini le formatage interminable."
+    },
+    "feature2": {
+      "label": "Suggestions IA",
+      "title": "Laissez l'IA générer vos réponses à partir de sources vérifiées",
+      "paragraph": "Notre moteur rédige des réponses à partir de vos documents validés — politiques, KPIs, certifications — puis vous assignez le bon collaborateur pour relecture et validation."
+    },
+    "feature3": {
+      "label": "Base de données intelligente",
+      "title": "Transformez chaque réponse en savoir réutilisable",
+      "paragraph": "Chaque réponse validée peut être enregistrée dans votre bibliothèque interne. Choisissez ce qui est réutilisable, affinez au fil du temps et améliorez les suggestions IA à chaque questionnaire."
+    },
+    "feature4": {
+      "label": "Réponse instantanée, où que vous soyez",
+      "title": "Vous n'arrivez pas à télécharger votre questionnaire ? Pas de problème.",
+      "paragraph": "Utilisez notre extension de navigateur pour obtenir des réponses contextuelles où que vous soyez — portails clients, dossiers partagés ou boîtes de réception. Ou posez simplement votre question dans l'espace de travail Ditto."
+    },
+    "testimonials": {
+      "title": "Ce que disent nos clients",
+      "text": "Des entreprises de toutes tailles choisissent Ditto pour sa clarté, son expertise et son impact.",
+      "button": "En savoir plus"
+    },
+    "cta": {
+      "title": "Prêt à vous mettre en conformité ? Ditto.",
+      "paragraph": "Gagnez du temps sur chaque questionnaire avec une plateforme conçue pour la clarté, la vitesse et la réutilisation de toutes vos informations.",
+      "button": "Commencer"
+    }
+  },
+  "solutionsAi": {
+    "breadcrumb": "Assistants IA",
+    "hero": {
+      "title": "Des solutions IA conçues pour les équipes RSE et conformité",
+      "paragraph": "De l'analyse d'écarts à la rédaction de rapports, les assistants IA de Ditto vous aident à travailler plus vite, avec moins d'efforts.",
+      "button": "Commencer"
+    },
+    "header": {
+      "title": "Des assistants IA conçus pour augmenter vos capacités RSE et conformité"
+    },
+    "feature1": {
+      "label": "Analyse des écarts et plan d'actions",
+      "title": "Générez des plans d'action instantanés, quel que soit le référentiel",
+      "paragraph": "À partir d'un diagnostic ou d'une évaluation, Ditto crée un plan d'action structuré, avec des tâches priorisées et des échéances, alignées sur les exigences.",
+      "button": "Commencer"
+    },
+    "feature2": {
+      "label": "Expertise avancée",
+      "title": "Accédez à des conseils d'experts à tout moment",
+      "paragraph": "Besoin d'aide pour répondre à une question EcoVadis, CDP, CSRD ou ISO ? L'assistant IA vous fournit des réponses fiables, basées sur des connaissances vérifiées.",
+      "button": "Commencer"
+    },
+    "feature3": {
+      "label": "Formalisation documentaire",
+      "title": "Rédigez ou révisez vos politiques, procédures et plans",
+      "paragraph": "Besoin d'un Code de conduite ? D'une politique environnementale ? Téléchargez votre brouillon ou demandez-en un nouveau — l'assistant IA vous aide à rédiger, structurer et évaluer chaque document.",
+      "button": "Commencer"
+    },
+    "feature4": {
+      "label": "Questionnaires et RFPs automatisés",
+      "title": "Réutilisez vos meilleures réponses partout, quel que soit le format",
+      "paragraph": "L'assistant retrouve automatiquement les réponses validées, modèles ou extraits pertinents pour répondre aux questionnaires clients, appels d'offres ou audits.",
+      "button": "En savoir plus"
+    },
+    "feature5": {
+      "label": "Génération de rapports",
+      "title": "Générez vos rapports RSE en quelques minutes, pas en semaines",
+      "paragraph": "L'assistant IA de Ditto structure vos contenus, sélectionne les bons éléments et produit une première version prête pour relecture et export.",
+      "button": "Commencer"
+    },
+    "testimonials": {
+      "title": "Ce que disent nos clients",
+      "text": "Les entreprises qui utilisent les assistants IA de Ditto ne se contentent pas d'aller plus vite, ils construisent des programmes plus solides.",
+      "button": "En savoir plus"
+    },
+    "cta": {
+      "title": "Prêt à vous mettre en conformité ? Ditto.",
+      "paragraph": "Déployez vos assistants IA là où vous en avez besoin : pour répondre aux questionnaires, rédiger vos politiques ou générer vos rapports.",
+      "button": "Commencer"
+    }
+  },
+  "solutionsSupplier": {
+    "breadcrumb": "Engagement fournisseurs",
+    "hero": {
+      "title": "Impliquez vos fournisseurs dans votre démarche de durabilité",
+      "paragraph": "Ditto combine expertise intégrée et outils intelligents pour vous aider à embarquer, évaluer et accompagner vos fournisseurs — pour qu'ils avancent avec vous, et non en décalage.",
+      "button": "Commencer"
+    },
+    "header": {
+      "title": "(re)Connectez votre stratégie achats à la réalité terrain",
+      "text": "Votre stratégie fournisseurs est claire, mais son exécution se heurte souvent à une surcharge opérationnelle, un manque d'engagement ou des actions isolées ? Ditto vous aide à embarquer vos partenaires avec de la structure, de la clarté et les bons outils."
+    },
+    "feature1": {
+      "label": "Alignement stratégique",
+      "title": "Embarquez vos fournisseurs dans votre feuille de route RSE",
+      "paragraph": "Définissez vos priorités, cartographiez vos risques et construisez un plan de progrès adapté à chaque segment de fournisseurs."
+    },
+    "feature2": {
+      "label": "Questionnaires fournisseurs",
+      "title": "Créez et envoyez facilement des questionnaires personnalisés",
+      "paragraph": "Créez des questionnaires multilingues et alignés sur les standards. L'interface intuitive, le support expert et la possibilité pour vos fournisseurs de réutiliser leurs données facilitent la collecte."
+    },
+    "feature3": {
+      "label": "Suivi de l'engagement",
+      "title": "Suivez les réponses et relancez facilement",
+      "paragraph": "Visualisez les réponses en temps réel, envoyez des rappels en un clic, segmentez vos fournisseurs par région, catégorie ou niveau de maturité."
+    },
+    "testimonials": {
+      "title": "Offrez à vos fournisseurs l'expérience qu'ils méritent",
+      "text": "Avec Ditto, vos fournisseurs ne remplissent pas un simple formulaire. Ils bénéficient d'un accompagnement, peuvent réutiliser leurs réponses et visualiser leur progression.",
+      "button": "En savoir plus"
+    },
+    "cta": {
+      "title": "Prêt à impliquer vos fournisseurs ? Ditto.",
+      "paragraph": "Structurez votre programme achats responsables, engagez vos fournisseurs et transformez vos objectifs en actions partagées.",
+      "button": "Commencer"
+    }
+  },
+  "legalTerms": {
+    "breadcrumbParent": "Juridique",
+    "breadcrumb": "Conditions générales",
+    "title": "Conditions générales",
+    "effectiveDate": "Date d'entrée en vigueur : 19/08/2022",
+    "cmsPlaceholder": "Le contenu complet des conditions générales sera chargé depuis le CMS."
+  },
+  "privacyPolicy": {
+    "breadcrumbParent": "Juridique",
+    "breadcrumb": "Politique de confidentialité",
+    "title": "Politique de confidentialité",
+    "updatedDate": "Mise à jour le 24 mars 2025",
+    "cmsPlaceholder": "Le contenu complet de la politique de confidentialité sera chargé depuis le CMS."
+  },
+  "legalNotices": {
+    "breadcrumbParent": "Juridique",
+    "breadcrumb": "Mentions légales",
+    "title": "Mentions légales",
+    "effectiveDate": "Date d'entrée en vigueur : 19/08/2022",
+    "cmsPlaceholder": "Le contenu complet des mentions légales sera chargé depuis le CMS."
+  },
+  "resourcesPage": {
+    "breadcrumb": "Ressources",
+    "title": "Ressources",
+    "all": "Tout",
+    "blog": "Blog",
+    "news": "Actualités",
+    "guide": "Guide",
+    "guides": "Guides",
+    "viewAllBlog": "Voir tout le blog",
+    "viewAllNews": "Voir toutes les actualités",
+    "viewAllGuides": "Voir tous les guides"
+  },
+  "resourcesBlog": {
+    "heading": "Ressources & Blog"
+  },
+  "resourcesGuides": {
+    "heading": "Ressources & Guides"
+  },
+  "resourcesNews": {
+    "heading": "Ressources & Actualités"
+  },
+  "resourcesEvents": {
+    "breadcrumb": "Événements",
+    "heading": "Ressources & Événements"
+  },
+  "customerStories": {
+    "breadcrumb": "Témoignages clients",
+    "title": "Plus de 500 leaders de l'industrie choisissent Ditto",
+    "subtitle": "Découvrez comment des centaines d'entreprises utilisent Ditto pour gérer en toute confiance leurs programmes RSE et conformité."
+  },
+  "manifesto": {
+    "breadcrumb": "Manifeste",
+    "hero": {
+      "title": "Nous aidons les entreprises \u00e0 construire de la confiance et \u00e0 mieux construire, ensemble",
+      "subtitle": "Chaque partenaire, chaque fournisseur, chaque collaborateur est une extension de votre entreprise. Mais construire la confiance entre eux tous ? Ce n\u2019est pas simple. C\u2019est pour cela que nous avons cr\u00e9\u00e9 Ditto."
+    },
+    "beliefs": {
+      "title": "Nos convictions profondes"
+    },
+    "belief1": {
+      "title": "Les bons partenaires font les grandes entreprises",
+      "description": "Un bon partenaire vous tire vers le haut. C\u2019est une force sur laquelle vous pouvez compter. C\u2019est le type de partenaire que nous voulons \u00eatre pour nos clients et pour tous ceux avec qui ils travaillent."
+    },
+    "belief2": {
+      "title": "La conformit\u00e9 est une opportunit\u00e9, pas un obstacle",
+      "description": "Chez Ditto, nous voyons la conformit\u00e9 comme une chance de structurer votre d\u00e9marche, de valoriser vos pratiques RSE et de collaborer avec ceux qui partagent vos valeurs."
+    },
+    "belief3": {
+      "title": "Quand les entreprises durables r\u00e9ussissent, c\u2019est le monde entier qui gagne",
+      "description": "Construire une strat\u00e9gie RSE solide, c\u2019est la meilleure fa\u00e7on de pr\u00e9parer l\u2019avenir. C\u2019est gagnant-gagnant pour la plan\u00e8te, vos partenaires et votre entreprise."
+    },
+    "commitments": {
+      "title": "Nous nous engageons en faveur d\u2019un avenir durable pour tous",
+      "ecovadisPartner": {
+        "title": "Partenaire de formation EcoVadis",
+        "description": "Nous travaillons avec EcoVadis depuis 2023 pour accro\u00eetre la durabilit\u00e9 dans les cha\u00eenes d\u2019approvisionnement, un programme RSE \u00e0 la fois."
+      },
+      "efrag": {
+        "title": "Ditto est Friend of EFRAG",
+        "description": "Nous soutenons le travail de l\u2019EFRAG pour promouvoir des pratiques de reporting de durabilit\u00e9 standardis\u00e9es en Europe."
+      },
+      "platinum": {
+        "title": "Ditto est EcoVadis Platine",
+        "description": "Nous avons test\u00e9 notre m\u00e9thodologie sur notre propre entreprise et obtenu la note EcoVadis la plus \u00e9lev\u00e9e."
+      },
+      "ungc": {
+        "title": "Pacte mondial des Nations Unies",
+        "description": "Notre adh\u00e9sion au Pacte mondial des Nations Unies signifie que nous mettons nos valeurs au service d\u2019une entreprise durable et d\u2019un monde meilleur."
+      }
+    }
+  },
+  "careers": {
+    "breadcrumb": "Carri\u00e8res",
+    "hero": {
+      "title": "Les grandes entreprises ne se construisent jamais seules",
+      "subtitle": "C\u2019est le principe fondateur de Ditto. Notre mission : aider chacun \u00e0 donner le meilleur de lui-m\u00eame, et cela commence par notre \u00e9quipe.",
+      "cta": "Voir les offres"
+    },
+    "teams": {
+      "title": "Une seule vision, port\u00e9e par toutes les \u00e9quipes",
+      "subtitle": "Chez Ditto, chaque \u00e9quipe joue un r\u00f4le essentiel. Nous avan\u00e7ons ensemble, avec des expertises diff\u00e9rentes mais une ambition partag\u00e9e.",
+      "cta": "Postuler",
+      "engineering": {
+        "title": "Produit et Tech",
+        "description": "Nous mobilisons l\u2019IA et la technologie pour r\u00e9soudre les d\u00e9fis les plus complexes de nos clients. Et nous le faisons avec exigence\u2026 mais aussi avec plaisir."
+      },
+      "customerSuccess": {
+        "title": "Customer Success",
+        "description": "Nos experts accompagnement client \u00e9coutent, conseillent et traduisent les retours utilisateurs en actions concr\u00e8tes. Parce qu\u2019un bon produit s\u2019am\u00e9liore toujours avec ceux qui l\u2019utilisent."
+      },
+      "growth": {
+        "title": "Growth",
+        "description": "Plus nous aidons d\u2019entreprises, plus notre impact est r\u00e9el. L\u2019\u00e9quipe growth nous aide \u00e0 atteindre celles et ceux qui ont le plus besoin de Ditto."
+      },
+      "partnerships": {
+        "title": "Partenariats",
+        "description": "Les bons partenaires peuvent faire toute la diff\u00e9rence. L\u2019\u00e9quipe Partenariats cherche \u00e0 construire des opportunit\u00e9s de croissance avec des acteurs qui partagent nos valeurs."
+      },
+      "sales": {
+        "title": "Sales",
+        "description": "L\u2019\u00e9quipe Sales est souvent le tout premier contact avec Ditto. D\u00e8s les premiers \u00e9changes, notre r\u00f4le est clair : aider, simplifier, et accompagner les clients face \u00e0 leurs plus grands d\u00e9fis RSE et conformit\u00e9."
+      },
+      "expertise": {
+        "title": "Expertise",
+        "description": "Notre \u00e9quipe Expertise donne \u00e0 nos clients un avantage d\u00e9cisif en int\u00e9grant la connaissance fine des r\u00e9f\u00e9rentiels directement dans nos produits et nos parcours."
+      }
+    },
+    "values": {
+      "title": "Les valeurs qui nous animent",
+      "noEgo": {
+        "title": "We have no ego",
+        "description": "Chez Ditto, pas de solo : on avance en \u00e9quipe. On met l\u2019ego de c\u00f4t\u00e9, on se soutient, et on se tire vers le haut."
+      },
+      "ownIt": {
+        "title": "We own it",
+        "description": "On ne se contente pas de suivre : on agit. On r\u00e9fl\u00e9chit, on fait, on assume."
+      },
+      "impact": {
+        "title": "We have impact",
+        "description": "Nos clients sont notre priorit\u00e9. Et on garde les yeux riv\u00e9s sur ce qui compte : leur r\u00e9ussite."
+      },
+      "relentless": {
+        "title": "We are relentless",
+        "description": "On ne se repose jamais sur nos acquis. On cherche en permanence la prochaine \u00e9tape, le prochain progr\u00e8s."
+      }
+    },
+    "interviewing": {
+      "title": "Entretiens chez Ditto",
+      "subtitle": "Chez Ditto, nous souhaitons que le recrutement soit aussi transparent que possible. Peu importe le r\u00f4le, notre process dure en g\u00e9n\u00e9ral 2 \u00e0 3 semaines entre le premier contact et l\u2019offre finale.",
+      "step1": "Entretien d\u00e9couverte avec l\u2019\u00e9quipe RH",
+      "step2": "Entretien avec le manager",
+      "step3": "\u00c9tude de cas \u00e0 domicile",
+      "step4": "Entretien sur site (4 \u00e0 5 pour toutes les \u00e9quipes)",
+      "step5": "Prise de r\u00e9f\u00e9rence",
+      "step6": "Offre"
+    }
+  },
+  "getStarted": {
+    "breadcrumb": "D\u00e9marrer",
+    "hero": {
+      "title": "Assurez votre conformit\u00e9 quatre fois plus rapidement",
+      "subtitle": "Ditto simplifie la mise en conformit\u00e9 et vous aide \u00e0 le rester avec des r\u00e9f\u00e9rentiels comme EcoVadis, ISO, CSRD ou CDP. Et ce n\u2019est que le d\u00e9but."
+    },
+    "numbers": {
+      "title": "Notre impact",
+      "card1": {
+        "number": "500+",
+        "text": "entreprises font confiance \u00e0 Ditto, des PME aux grandes entreprises de tous secteurs"
+      },
+      "card2": {
+        "number": "100%",
+        "text": "de nos clients constatent une am\u00e9lioration de leur structure ou de leurs scores"
+      },
+      "card3": {
+        "number": "-60%",
+        "text": "de temps consacr\u00e9 aux workflows de conformit\u00e9"
+      }
+    }
+  },
+  "frameworksIndex": {
+    "breadcrumb1": "R\u00e9f\u00e9rentiels",
+    "breadcrumb2": "R\u00e9f\u00e9rentiels additionnels",
+    "hero": {
+      "title": "Multipliez votre impact, pas vos efforts",
+      "subtitle": "Ditto simplifie la mise en conformit\u00e9 et vous aide \u00e0 le rester avec des r\u00e9f\u00e9rentiels comme EcoVadis, ISO, CSRD ou CDP."
+    },
+    "allFrameworks": {
+      "title": "Tous les frameworks",
+      "tab1": "S\u00e9curit\u00e9",
+      "tab2": "Confidentialit\u00e9",
+      "tab3": "Autres",
+      "category1": "\u00c9valuations, certifications et notations",
+      "category2": "Normes ISO",
+      "category3": "Transparence et reporting de durabilit\u00e9"
+    }
+  },
+  "frameworksEcovadis": {
+    "breadcrumb": "EcoVadis",
+    "hero": {
+      "title": "EcoVadis en toute simplicit\u00e9",
+      "subtitle": "Ditto vous accompagne sur chaque \u00e9tape de votre \u00e9valuation EcoVadis. Structurez vos donn\u00e9es, r\u00e9pondez efficacement, et progressez d'ann\u00e9e en ann\u00e9e.",
+      "cta": "Commencer"
+    },
+    "numbers": {
+      "title": "Ditto & EcoVadis en quelques chiffres",
+      "card1Number": "500+",
+      "card1Text": "entreprises accompagn\u00e9es dans leur \u00e9valuation EcoVadis, partout en Europe",
+      "card2Number": "100 %",
+      "card2Text": "des clients que nous accompagnons obtiennent une m\u00e9daille",
+      "card3Number": "+16",
+      "card3Text": "points en moyenne d'augmentation du score la premi\u00e8re ann\u00e9e de collaboration avec Ditto"
+    },
+    "approach": {
+      "title": "Notre approche pour pr\u00e9parer son \u00e9valuation EcoVadis",
+      "subtitle": "Nous avons d\u00e9coup\u00e9 l'\u00e9valuation EcoVadis en \u00e9tapes claires. Vous pouvez vous concentrer sur l'essentiel et avancer \u00e9tape par \u00e9tape, avec une structure \u00e9prouv\u00e9e."
+    },
+    "step1": {
+      "label": "\u00c9tape 1",
+      "title": "Visualisez vos priorit\u00e9s",
+      "description": "Commencez par identifier les crit\u00e8res les plus importants dans votre \u00e9valuation. Votre coach Ditto vous aide \u00e0 prioriser ce qui comptera vraiment dans votre score."
+    },
+    "step2": {
+      "label": "\u00c9tape 2",
+      "title": "Organisez vos donn\u00e9es",
+      "description": "Centralisez vos politiques, donn\u00e9es et documents. Ditto vous guide pour regrouper l'essentiel, comprendre ce qui manque, et avancer plus vite."
+    },
+    "step3": {
+      "label": "\u00c9tape 3",
+      "title": "Structurez un programme RSE solide",
+      "description": "Ditto a int\u00e9gr\u00e9 des mod\u00e8les et des outils pour vous aider \u00e0 poser les bases d'un programme durable, structur\u00e9 et align\u00e9 avec les attentes EcoVadis."
+    },
+    "step4": {
+      "label": "\u00c9tape 4",
+      "title": "Am\u00e9liorez ou maintenez vos r\u00e9sultats, ann\u00e9e apr\u00e8s ann\u00e9e",
+      "description": "D'ann\u00e9e en ann\u00e9e, Ditto vous aide \u00e0 maintenir votre contenu \u00e0 jour et organis\u00e9, \u00e0 progresser, identifier les axes d'am\u00e9lioration, et viser une performance durable sur EcoVadis."
+    },
+    "carousel": {
+      "title": "R\u00e9utilisez vos donn\u00e9es pour tous vos enjeux RSE et conformit\u00e9"
+    },
+    "testimonials": {
+      "title": "Ditto s'adapte \u00e0 toutes les \u00e9quipes",
+      "subtitle": "Ditto est utilis\u00e9 par des PME, des ETI et des grands groupes. Nos clients soulignent la simplicit\u00e9 d'usage, la clart\u00e9 et l'efficacit\u00e9 de notre accompagnement.",
+      "cta": "En savoir plus"
+    },
+    "cta": {
+      "title": "Pr\u00eat \u00e0 vous mettre en conformit\u00e9 ? Ditto.",
+      "subtitle": "Faites de votre programme RSE un v\u00e9ritable levier strat\u00e9gique, avec un copilote conformit\u00e9 \u00e0 vos c\u00f4t\u00e9s \u00e0 chaque \u00e9tape.",
+      "button": "Commencer"
+    }
+  },
+  "frameworksCdp": {
+    "breadcrumb": "CDP",
+    "hero": {
+      "title": "Am\u00e9liorez votre score CDP, sans complexit\u00e9",
+      "subtitle": "Ditto combine expertise humaine et intelligence artificielle pour structurer vos donn\u00e9es, centraliser vos preuves et optimiser vos r\u00e9ponses. Gagnez du temps et progressez plus vite, sans rien laisser au hasard.",
+      "cta": "Commencer"
+    },
+    "approach": {
+      "title": "Notre approche de l'\u00e9valuation CDP",
+      "subtitle": "Nous avons d\u00e9coup\u00e9 le processus CDP en \u00e9tapes simples et guid\u00e9es. Notre approche allie m\u00e9thode et clart\u00e9 pour vous aider \u00e0 structurer vos r\u00e9ponses et identifier les bonnes preuves tout en s'adaptant \u00e0 vos donn\u00e9es et \u00e0 votre organisation."
+    },
+    "step1": {
+      "label": "\u00c9tape 1",
+      "title": "Identifiez les lacunes dans votre questionnaire",
+      "description": "Commencez par rep\u00e9rer les parties d\u00e9j\u00e0 bien renseign\u00e9es et celles qui n\u00e9cessitent des am\u00e9liorations. Ditto vous aide \u00e0 prioriser les sections importantes et \u00e0 concentrer vos efforts l\u00e0 o\u00f9 ils comptent le plus."
+    },
+    "step2": {
+      "label": "\u00c9tape 2",
+      "title": "Organisez vos donn\u00e9es et mobilisez votre \u00e9quipe",
+      "description": "Centralisez vos donn\u00e9es d'\u00e9missions, vos documents internes et vos politiques climatiques dans un espace unique. Collaborez facilement entre \u00e9quipes pour assurer une r\u00e9ponse coh\u00e9rente et structur\u00e9e \u00e0 travers toute l'organisation."
+    },
+    "step3": {
+      "label": "\u00c9tape 3",
+      "title": "Construisez une r\u00e9ponse cr\u00e9dible et bien structur\u00e9e",
+      "description": "Utilisez les mod\u00e8les, les exemples et les recommandations de Ditto pour formuler des r\u00e9ponses solides, argument\u00e9es et align\u00e9es sur les attentes du CDP. Votre disclosure devient un levier, pas un fardeau."
+    },
+    "step4": {
+      "label": "\u00c9tape 4",
+      "title": "Am\u00e9liorez votre performance ann\u00e9e apr\u00e8s ann\u00e9e",
+      "description": "Ditto vous permet de suivre votre progression dans le temps, d'identifier les axes d'am\u00e9lioration et de renforcer vos pratiques. Pr\u00e9parez vos prochaines r\u00e9ponses au CDP plus rapidement et plus efficacement."
+    },
+    "carousel": {
+      "title": "R\u00e9utilisez vos donn\u00e9es pour tous vos enjeux RSE et conformit\u00e9"
+    },
+    "testimonials": {
+      "title": "Ditto s'adapte \u00e0 toutes les \u00e9quipes",
+      "subtitle": "Que ce soit votre premi\u00e8re \u00e9valuation CDP ou que vous soyez un habitu\u00e9 du process, Ditto s'adapte \u00e0 votre organisation et vous aide \u00e0 gagner en efficacit\u00e9 \u00e0 chaque \u00e9tape.",
+      "cta": "En savoir plus"
+    },
+    "cta": {
+      "title": "Pr\u00eat \u00e0 vous mettre en conformit\u00e9 ? Ditto.",
+      "subtitle": "Pr\u00e9parez une r\u00e9ponse CDP claire, coh\u00e9rente et conforme, avec un copilote expert \u00e0 vos c\u00f4t\u00e9s \u00e0 chaque \u00e9tape.",
+      "button": "Commencer"
+    }
+  },
+  "frameworksCsrd": {
+    "breadcrumb": "CSRD / VSME",
+    "hero": {
+      "title": "Conformit\u00e9 CSRD et VSME assist\u00e9e par l'IA",
+      "subtitle": "Ditto vous aide \u00e0 produire des rapports CSRD conformes, complets et auditables, plus facilement. En combinant expertise, IA et donn\u00e9es centralis\u00e9es, vous pouvez avancer \u00e9tape par \u00e9tape, avec une structure claire.",
+      "cta": "Commencer"
+    },
+    "approach": {
+      "title": "Notre approche de la conformit\u00e9 CSRD/VSME",
+      "subtitle": "Nous rendons la conformit\u00e9 CSRD simple et accessible, \u00e9tape par \u00e9tape. Gr\u00e2ce \u00e0 des recommandations claires, des outils puissants et l'expertise int\u00e9gr\u00e9e de Ditto, vous avancez sereinement vers la ligne d'arriv\u00e9e."
+    },
+    "step1": {
+      "label": "\u00c9tape 1",
+      "title": "Cartographiez vos donn\u00e9es et identifiez les \u00e9carts",
+      "description": "Commencez par visualiser votre couverture actuelle face aux exigences de la CSRD / VSME. Gr\u00e2ce \u00e0 l'IA, Ditto identifie les donn\u00e9es manquantes et vous montre o\u00f9 concentrer vos efforts."
+    },
+    "step2": {
+      "label": "\u00c9tape 2",
+      "title": "Structurez vos d\u00e9clarations selon les th\u00e8mes ESRS",
+      "description": "Une fois vos donn\u00e9es consolid\u00e9es, vous pouvez organiser vos contenus selon les th\u00e9matiques des normes ESRS."
+    },
+    "step3": {
+      "label": "\u00c9tape 3",
+      "title": "R\u00e9digez votre rapport avec l'aide de l'IA et d'experts",
+      "description": "\u00c0 partir de vos donn\u00e9es, Ditto g\u00e9n\u00e8re un premier brouillon structur\u00e9 et align\u00e9 sur les exigences."
+    },
+    "step4": {
+      "label": "\u00c9tape 4",
+      "title": "Validez, publiez et progressez chaque ann\u00e9e",
+      "description": "Votre rapport est valid\u00e9, structur\u00e9 et archiv\u00e9 dans un format conforme."
+    },
+    "carousel": {
+      "title": "R\u00e9utilisez vos donn\u00e9es pour tous vos enjeux RSE et conformit\u00e9"
+    },
+    "testimonials": {
+      "title": "Ditto fonctionne pour toutes sortes d'\u00e9quipes",
+      "subtitle": "Que ce soit votre premi\u00e8re exp\u00e9rience avec la CSRD / le VSME ou que vous soyez d\u00e9j\u00e0 familiaris\u00e9 avec les exigences r\u00e9glementaires, Ditto s'adapte \u00e0 votre contexte.",
+      "cta": "En savoir plus"
+    },
+    "cta": {
+      "title": "Pr\u00eat \u00e0 vous mettre en conformit\u00e9 ? Ditto.",
+      "subtitle": "Cr\u00e9ez un rapport CSRD ou VSME conforme, clair et cr\u00e9dible avec un copilote intelligent \u00e0 vos c\u00f4t\u00e9s, \u00e0 chaque \u00e9tape.",
+      "button": "Commencer"
+    }
+  },
+  "frameworksIso14001": {
+    "breadcrumb": "ISO 14001",
+    "hero": {
+      "title": "La conformit\u00e9 ISO 14001, simplifi\u00e9e",
+      "subtitle": "Ditto vous aide \u00e0 mettre en place et maintenir un syst\u00e8me de management environnemental conforme \u00e0 la norme ISO 14001. Une plateforme unique pour structurer vos d\u00e9marches, gagner du temps et r\u00e9ussir vos audits d\u00e8s la premi\u00e8re fois.",
+      "cta": "Commencer"
+    },
+    "approach": {
+      "title": "Notre approche de la certification ISO 14001",
+      "subtitle": "Nous avons simplifi\u00e9 la norme ISO 14001. Notre approche vous guide \u00e9tape par \u00e9tape, avec les bons outils, mod\u00e8les et recommandations pour structurer votre syst\u00e8me, r\u00e9pondre aux exigences et r\u00e9ussir l'audit."
+    },
+    "step1": {
+      "label": "\u00c9tape 1",
+      "title": "Structurez votre syst\u00e8me de management",
+      "description": "Commencez par organiser vos donn\u00e9es, politiques, objectifs et indicateurs environnementaux. Ditto vous aide \u00e0 poser les bases d'un syst\u00e8me solide, align\u00e9 sur les exigences de la norme, d\u00e8s le premier jour."
+    },
+    "step2": {
+      "label": "\u00c9tape 2",
+      "title": "Couvrez les exigences ISO 14001",
+      "description": "Une fois le syst\u00e8me en place, Ditto vous guide pour couvrir chaque exigence de la norme. Vous acc\u00e9dez \u00e0 des contenus pr\u00e9-structur\u00e9s, \u00e0 des mod\u00e8les personnalisables et \u00e0 une expertise int\u00e9gr\u00e9e pour vous aider \u00e0 tout documenter."
+    },
+    "step3": {
+      "label": "\u00c9tape 3",
+      "title": "Pr\u00e9parez votre audit sereinement",
+      "description": "Quand l'audit approche, vous savez o\u00f9 vous en \u00eates. Ditto centralise les preuves attendues, vous aide \u00e0 identifier les manques \u00e9ventuels et vous pr\u00e9pare \u00e0 r\u00e9pondre aux questions de mani\u00e8re claire et structur\u00e9e."
+    },
+    "step4": {
+      "label": "\u00c9tape 4",
+      "title": "Maintenez votre conformit\u00e9 dans le temps",
+      "description": "Une fois l'audit r\u00e9ussi, Ditto vous aide \u00e0 maintenir votre conformit\u00e9 ann\u00e9e apr\u00e8s ann\u00e9e. Suivez vos plans d'action, mettez \u00e0 jour vos documents, am\u00e9liorez vos indicateurs \u2014 et restez pr\u00eat pour le prochain audit \u00e0 tout moment."
+    },
+    "carousel": {
+      "title": "R\u00e9utilisez vos donn\u00e9es pour tous vos enjeux RSE et conformit\u00e9"
+    },
+    "testimonials": {
+      "title": "Ditto fonctionne pour toutes sortes d'\u00e9quipes",
+      "subtitle": "Que vous soyez en train de structurer votre syst\u00e8me de management ou de pr\u00e9parer une recertification, Ditto vous aide \u00e0 structurer votre d\u00e9marche, \u00e0 r\u00e9partir les r\u00f4les dans l'\u00e9quipe et \u00e0 r\u00e9ussir l'audit plus facilement.",
+      "cta": "En savoir plus"
+    },
+    "cta": {
+      "title": "Pr\u00eat \u00e0 \u00eatre certifi\u00e9 ISO 14001 ? Ditto.",
+      "subtitle": "Mettez en place un syst\u00e8me de management solide, couvrez toutes les exigences et passez vos audits en toute s\u00e9r\u00e9nit\u00e9.",
+      "button": "Commencer"
+    }
+  },
+  "aiAgents": {
+    "hero": {
+      "title": "Une nouvelle g\u00e9n\u00e9ration d\u2019agents IA pour acc\u00e9l\u00e9rer vos t\u00e2ches quotidiennes"
+    },
+    "active": "Actif",
+    "comingSoon": "Bient\u00f4t disponible",
+    "tryNow": "Essayer",
+    "requestAccess": "Demander l\u2019acc\u00e8s",
+    "joinWaitlist": "Rejoindre la liste d\u2019attente",
+    "tabs": {
+      "csr": "Conformit\u00e9 RSE",
+      "compliance": "Conformit\u00e9 g\u00e9n\u00e9rale",
+      "productivity": "Productivit\u00e9"
+    },
+    "categories": {
+      "csr": "Conformit\u00e9 RSE",
+      "compliance": "Conformit\u00e9 g\u00e9n\u00e9rale",
+      "productivity": "Productivit\u00e9"
+    },
+    "agents": {
+      "pestel": {
+        "title": "Analyse PESTEL",
+        "description": "Analyse compl\u00e8te des facteurs Politiques, \u00c9conomiques, Sociaux, Technologiques, Environnementaux et L\u00e9gaux"
+      },
+      "csrStrategy": {
+        "title": "Strat\u00e9gie RSE",
+        "description": "Concevez votre feuille de route RSE adapt\u00e9e aux objectifs et obligations de votre entreprise."
+      },
+      "environmental": {
+        "title": "Analyse environnementale",
+        "description": "Chargez vos donn\u00e9es RSE et obtenez une analyse environnementale compatible ISO 14001."
+      },
+      "ecovadisWorkplan": {
+        "title": "Plan d\u2019action EcoVadis",
+        "description": "Obtenez un plan EcoVadis complet adapt\u00e9 \u00e0 votre progression actuelle et ne manquez aucune \u00e9tape."
+      },
+      "cdpWorkplan": {
+        "title": "Plan d\u2019action CDP",
+        "description": "Construisez votre plan de divulgation CDP \u00e9tape par \u00e9tape, sans consultant."
+      },
+      "autoFill": {
+        "title": "Remplissage automatique de questionnaires",
+        "description": "Laissez l\u2019IA pr\u00e9-remplir vos questionnaires de conformit\u00e9 \u00e0 partir de vos donn\u00e9es et documents."
+      },
+      "isoWorkplan": {
+        "title": "Plan d\u2019action ISO",
+        "description": "Structurez automatiquement vos feuilles de route ISO et suivez votre niveau de pr\u00e9paration. Compatible ISO 14001 et ISO 45001."
+      },
+      "complianceWatch": {
+        "title": "Veille r\u00e9glementaire",
+        "description": "Suivez l\u2019\u00e9volution des r\u00e9glementations et recevez des alertes pertinentes pour votre secteur."
+      },
+      "translator": {
+        "title": "Traducteur de documents",
+        "description": "Traduisez instantan\u00e9ment vos documents RSE dans plusieurs langues, en conservant la structure et le ton de conformit\u00e9."
+      },
+      "presentation": {
+        "title": "G\u00e9n\u00e9rateur de pr\u00e9sentations",
+        "description": "G\u00e9n\u00e9rez automatiquement des pr\u00e9sentations claires et percutantes pour votre comit\u00e9 RSE ou vos sessions de formation."
+      },
+      "spreadsheet": {
+        "title": "Assistant tableur",
+        "description": "Simplifiez Excel pour vos travaux de conformit\u00e9. Formatez, structurez et automatisez vos tableurs."
+      }
+    }
+  },
   "footer": {
-    "tagline": "Votre copilote RSE. Plus d'impact, moins d'effort.",
-    "frameworks": "Référentiels",
+    "tagline": "Votre copilote RSE et conformit\u00e9",
+    "frameworks": "R\u00e9f\u00e9rentiels",
     "solutions": "Solutions",
     "customers": "Clients",
     "resources": "Ressources",
-    "about": "À propos",
-    "terms": "Conditions d'utilisation",
-    "privacy": "Politique de confidentialité",
-    "legal": "Mentions légales",
-    "copyright": "© {year} Ditto. Tous droits réservés."
+    "about": "\u00c0 propos",
+    "terms": "CGVU",
+    "privacy": "Confidentialit\u00e9",
+    "legal": "Mentions l\u00e9gales",
+    "copyright": "\u00a9 {year} Ditto.",
+    "sme": "PME",
+    "largeCompanies": "Grandes entreprises",
+    "allCaseStudies": "Tous les t\u00e9moignages",
+    "all": "Tout",
+    "events": "\u00c9v\u00e9nements"
+  },
+  "ctaPill": {
+    "title": "Une plateforme pour acc\u00e9l\u00e9rer votre progression",
+    "paragraph": "Ditto vous donne les outils et les informations pour transformer votre programme RSE. Pour aborder sereinement vos certifications et r\u00e9pondre avec confiance \u00e0 vos prochains appels d\u2019offres.",
+    "button": "Commencer"
+  },
+  "resourcesSection": {
+    "viewAll": "Afficher toutes les ressources"
+  },
+  "contactSidebar": {
+    "companiesUse": "Les entreprises utilisent Ditto pour :",
+    "benefit1": "Gagner plus d'appels d'offres",
+    "benefit2": "Se diff\u00e9rencier de la concurrence",
+    "benefit3": "Construire des relations plus solides avec leurs partenaires",
+    "benefit4": "R\u00e9duire les co\u00fbts et le temps de mise en conformit\u00e9"
+  },
+  "newsletterForm": {
+    "button": "Commencer",
+    "success": "Merci ! Votre inscription a bien \u00e9t\u00e9 prise en compte !",
+    "error": "Oups ! Une erreur est survenue lors de l'envoi du formulaire."
   }
 }
