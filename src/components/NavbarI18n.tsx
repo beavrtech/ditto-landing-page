@@ -9,6 +9,9 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
+import { useEffect, useState } from "react";
+import { getBlogPosts } from "../lib/cms";
+import { localizedCmsHref } from "../lib/localized-paths";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
 import DOM from "../../webflow/webflow_modules/Builtin/components/DOM";
@@ -46,6 +49,14 @@ export function Navbar({}: NavbarProps) {
   const t = useTranslations("nav");
   const locale = useLocale();
   const p = `/${locale}`;
+  const [previewPosts, setPreviewPosts] = useState<any[]>([]);
+
+  useEffect(() => {
+    getBlogPosts(locale as "en" | "fr", 2)
+      .then((data) => setPreviewPosts(data || []))
+      .catch(() => {});
+  }, [locale]);
+
   return (
     <div
       className={DEVLINK_SCOPE_CLASS}
@@ -597,7 +608,28 @@ export function Navbar({}: NavbarProps) {
                               </Paragraph>
                             </Block>
                           </Block>
-                          {/* Preview cards removed - collection lists not yet supported */}
+                          <Block className={"dropdown1_grid_content"} tag={"div"}>
+                            {previewPosts.map((post: any) => (
+                              <Block key={post.slug} className={"dropdown1_card2"} tag={"div"}>
+                                <Block className={"dropdown1_card2_content"} tag={"div"}>
+                                  <Paragraph className={"label"}>{"Blog"}</Paragraph>
+                                  <Block className={"spacer-0x5rem"} tag={"div"} />
+                                  <Link
+                                    block={""}
+                                    button={false}
+                                    className={"heading-size-1x375rem link-hover-parent text-style-2lines"}
+                                    options={{ href: localizedCmsHref("/resources/blog", post.slug, post.slug_fr, locale) }}
+                                  >
+                                    {post.name}
+                                  </Link>
+                                  <Block className={"spacer-0x5rem"} tag={"div"} />
+                                  <Paragraph className={"text-size-0x875rem text-style-3lines"}>
+                                    {post.description}
+                                  </Paragraph>
+                                </Block>
+                              </Block>
+                            ))}
+                          </Block>
                         </Block>
                       </Block>
                     </Block>
