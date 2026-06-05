@@ -192,13 +192,27 @@ export async function getShowcaseCustomerStories(locale: Locale) {
 }
 
 export async function getCustomerStoryBySlug(slug: string, locale: Locale) {
-  const { data, error } = await supabase
+  // Try English slug first, then French slug
+  let { data, error } = await supabase
     .from("customer_stories")
     .select(
       "*, industry:industries(*), customer_story_frameworks(framework:frameworks(*))"
     )
     .eq("slug", slug)
     .single();
+
+  if (error || !data) {
+    // Try French slug
+    const frResult = await supabase
+      .from("customer_stories")
+      .select(
+        "*, industry:industries(*), customer_story_frameworks(framework:frameworks(*))"
+      )
+      .eq("slug_fr", slug)
+      .single();
+    data = frResult.data;
+    error = frResult.error;
+  }
 
   if (error) throw error;
   if (!data) return null;
@@ -270,11 +284,22 @@ export async function getFeaturedBlogPosts(locale: Locale) {
 }
 
 export async function getBlogPostBySlug(slug: string, locale: Locale) {
-  const { data, error } = await supabase
+  // Try English slug first, then French slug
+  let { data, error } = await supabase
     .from("blog_posts")
     .select("*, author:authors(*), category:frameworks(*)")
     .eq("slug", slug)
     .single();
+
+  if (error || !data) {
+    const frResult = await supabase
+      .from("blog_posts")
+      .select("*, author:authors(*), category:frameworks(*)")
+      .eq("slug_fr", slug)
+      .single();
+    data = frResult.data;
+    error = frResult.error;
+  }
 
   if (error) throw error;
   if (!data) return null;
@@ -330,11 +355,22 @@ export async function getFeaturedNews(locale: Locale) {
 }
 
 export async function getNewsItemBySlug(slug: string, locale: Locale) {
-  const { data, error } = await supabase
+  // Try English slug first, then French slug
+  let { data, error } = await supabase
     .from("news")
     .select("*, author:authors(*)")
     .eq("slug", slug)
     .single();
+
+  if (error || !data) {
+    const frResult = await supabase
+      .from("news")
+      .select("*, author:authors(*)")
+      .eq("slug_fr", slug)
+      .single();
+    data = frResult.data;
+    error = frResult.error;
+  }
 
   if (error) throw error;
   if (!data) return null;
@@ -378,13 +414,26 @@ export async function getGuides(locale: Locale, limit?: number) {
 }
 
 export async function getGuideBySlug(slug: string, locale: Locale) {
-  const { data, error } = await supabase
+  // Try English slug first, then French slug
+  let { data, error } = await supabase
     .from("guides")
     .select(
       "*, author:authors(*), tag:frameworks(*), guide_display_frameworks(framework:frameworks(*))"
     )
     .eq("slug", slug)
     .single();
+
+  if (error || !data) {
+    const frResult = await supabase
+      .from("guides")
+      .select(
+        "*, author:authors(*), tag:frameworks(*), guide_display_frameworks(framework:frameworks(*))"
+      )
+      .eq("slug_fr", slug)
+      .single();
+    data = frResult.data;
+    error = frResult.error;
+  }
 
   if (error) throw error;
   if (!data) return null;
@@ -426,11 +475,22 @@ export async function getEvents(locale: Locale) {
 }
 
 export async function getEventBySlug(slug: string, locale: Locale) {
-  const { data, error } = await supabase
+  // Try English slug first, then French slug
+  let { data, error } = await supabase
     .from("events")
     .select("*, author:authors(*), tag:frameworks(*)")
     .eq("slug", slug)
     .single();
+
+  if (error || !data) {
+    const frResult = await supabase
+      .from("events")
+      .select("*, author:authors(*), tag:frameworks(*)")
+      .eq("slug_fr", slug)
+      .single();
+    data = frResult.data;
+    error = frResult.error;
+  }
 
   if (error) throw error;
   if (!data) return null;
@@ -469,11 +529,22 @@ export async function getCompanyUpdates(locale: Locale) {
 }
 
 export async function getCompanyUpdateBySlug(slug: string, locale: Locale) {
-  const { data, error } = await supabase
+  // Try English slug first, then French slug
+  let { data, error } = await supabase
     .from("company_updates")
     .select("*, author:authors(*)")
     .eq("slug", slug)
     .single();
+
+  if (error || !data) {
+    const frResult = await supabase
+      .from("company_updates")
+      .select("*, author:authors(*)")
+      .eq("slug_fr", slug)
+      .single();
+    data = frResult.data;
+    error = frResult.error;
+  }
 
   if (error) throw error;
   if (!data) return null;
@@ -536,12 +607,24 @@ export async function getCollectionItemBySlug(
 
   if (!fw) return null;
 
-  const { data, error } = await supabase
+  // Try English slug first, then French slug
+  let { data, error } = await supabase
     .from("collection_items")
     .select("*, author:authors(*)")
     .eq("framework_id", fw.id)
     .eq("slug", itemSlug)
     .single();
+
+  if (error || !data) {
+    const frResult = await supabase
+      .from("collection_items")
+      .select("*, author:authors(*)")
+      .eq("framework_id", fw.id)
+      .eq("slug_fr", itemSlug)
+      .single();
+    data = frResult.data;
+    error = frResult.error;
+  }
 
   if (error) throw error;
   if (!data) return null;

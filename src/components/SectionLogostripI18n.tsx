@@ -9,7 +9,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { localizedHref } from "../lib/localized-paths";
 import { getCompanyLogos } from "../lib/cms";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
@@ -40,6 +41,8 @@ export type SectionLogostripProps = {
  */
 export function SectionLogostrip({ variant = "Base" }: SectionLogostripProps) {
   const t = useTranslations("socialProof");
+  const locale = useLocale();
+  const prefix = `/${locale}`;
   const [logos, setLogos] = useState<any[]>([]);
 
   useEffect(() => {
@@ -105,7 +108,7 @@ export function SectionLogostrip({ variant = "Base" }: SectionLogostripProps) {
                           block={""}
                           button={false}
                           className={"logostrip_item_linkblock w-inline-block"}
-                          options={{ href: logo.case_study_url }}
+                          options={{ href: localizedHref(logo.case_study_url, locale) }}
                         >
                           <Block
                             className={"logostrip_item_image_wrapper"}
