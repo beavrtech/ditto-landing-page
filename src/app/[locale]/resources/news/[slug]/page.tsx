@@ -5,56 +5,45 @@ import { Footer } from "../../../../../components/FooterI18n";
 import { SectionBreadcrumbs } from "../../../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
-import { getCollectionItemBySlug, getCategoryTranslations } from "../../../../../lib/cms";
+import { getNewsItemBySlug } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
 
-const FRAMEWORK_TITLES: Record<string, string> = {
-  ecovadis: "EcoVadis",
-  cdp: "CDP",
-  vsme: "VSME",
-  "iso-14001": "ISO 14001",
-  csrd: "CSRD",
-};
-
-
-export default async function CollectionArticlePage({
+export default async function NewsDetailPage({
   params,
 }: {
-  params: Promise<{ locale: string; framework: string; slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { locale, framework, slug } = await params;
+  const { locale, slug } = await params;
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
-  const fwTitle = FRAMEWORK_TITLES[framework];
-  if (!fwTitle) notFound();
-
-  const [item, catTranslations] = await Promise.all([
-    getCollectionItemBySlug(framework, slug, locale as "en" | "fr"),
-    getCategoryTranslations(),
-  ]);
+  const item = await getNewsItemBySlug(slug, locale as "en" | "fr");
   if (!item) notFound();
 
-  const categoryLabel = item.categorie
-    ? (locale === "fr" ? catTranslations[item.categorie] || item.categorie : item.categorie)
-    : null;
+  // Author can be a reference object or inline fields
+  const authorObj = item.author;
+  const authorName = authorObj?.name ?? (item as any).author_name ?? null;
+  const authorSlug = authorObj?.slug ?? null;
+  const authorPicture = authorObj?.picture_url ?? null;
+  const authorJobTitle = authorObj?.job_title ?? null;
+  const authorJobTitleFr = authorObj?.job_title_fr ?? null;
 
   return (
     <div className="page-wrapper">
       <main className="main-wrapper">
         <Navbar />
 
-        {/* Breadcrumbs: Resources > EcoVadis > Article */}
+        {/* Breadcrumbs: Resources > News > Article title */}
         <SectionBreadcrumbs
           backgroundBackground="Secondary"
           item1Item1Text={locale === "fr" ? "Ressources" : "Resources"}
           item1Item1Link={{ href: localizedHref("/resources", locale) }}
           item2Item2Visibility={true}
-          item2Item2Text={fwTitle}
-          item2Item2Link={{ href: `${prefix}/collection/${framework}` }}
+          item2Item2Text={locale === "fr" ? "Actualités" : "News"}
+          item2Item2Link={{ href: localizedHref("/resources/news", locale) }}
           item3Item3Visibility={true}
           item3Item3Text={item.name}
-          item3Item3Link={{ href: `${prefix}/collection/${framework}/${slug}` }}
+          item3Item3Link={{ href: `${prefix}/resources/news/${slug}` }}
         />
 
         {/* Hero */}
@@ -67,12 +56,6 @@ export default async function CollectionArticlePage({
               <div className="container-84rem">
                 <div className="post-hero_component">
                   <div className="post-hero_content">
-                    {categoryLabel && (
-                      <>
-                        <p className="label">{categoryLabel}</p>
-                        <div className="spacer-1x5rem" />
-                      </>
-                    )}
                     <h1 className="heading-size-3rem">{item.name}</h1>
                     {item.description && (
                       <>
@@ -80,21 +63,25 @@ export default async function CollectionArticlePage({
                         <p className="text-size-1x375rem">{item.description}</p>
                       </>
                     )}
-                    {item.author && (
+                    {authorName && (
                       <>
                         <div className="spacer-1x5rem" />
                         <div className="profile_wrapper">
-                          {item.author.picture_url && (
+                          {authorPicture && (
                             <div className="profile_image">
-                              <img width={48} height={48} alt="" loading="lazy" src={item.author.picture_url} className="media-full-size" />
+                              <img width={48} height={48} alt="" loading="lazy" src={authorPicture} className="media-full-size" />
                             </div>
                           )}
                           <div className="profile_content">
-                            <a href={`${prefix}/authors/${item.author.slug}`} className="text-size-1rem text-weight-400 link-hover-parent">{item.author.name}</a>
-                            {item.author.job_title && (
+                            {authorSlug ? (
+                              <a href={`${prefix}/authors/${authorSlug}`} className="text-size-1rem text-weight-400 link-hover-parent">{authorName}</a>
+                            ) : (
+                              <p className="text-size-1rem text-weight-400">{authorName}</p>
+                            )}
+                            {authorJobTitle && (
                               <>
                                 <div className="spacer-0x25rem" />
-                                <p className="text-size-0x875rem text-color-neutral">{locale === "fr" ? item.author.job_title_fr || item.author.job_title : item.author.job_title}</p>
+                                <p className="text-size-0x875rem text-color-neutral">{locale === "fr" ? authorJobTitleFr || authorJobTitle : authorJobTitle}</p>
                               </>
                             )}
                           </div>

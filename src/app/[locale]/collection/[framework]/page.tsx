@@ -242,15 +242,19 @@ export default async function CollectionPage({
                         </Heading>
                       </Block>
                       <Block className={"spacer-1x5rem"} tag={"div"} />
-                      {(grouped[cat.name] || []).map((item: any) => (
-                        <ElementCollectionArticleLink
-                          key={item.slug}
-                          text={item.name}
-                          link={{
-                            href: `${prefix}/collection/${framework}/${locale === "fr" && item.slug_fr ? item.slug_fr : item.slug}`,
-                          }}
-                        />
-                      ))}
+                      {(grouped[cat.name] || []).map((item: any) => {
+                        const slug = locale === "fr" && item.slug_fr ? item.slug_fr : item.slug;
+                        const href = item._type === "guide"
+                          ? localizedHref(`/resources/guides/${slug}`, locale)
+                          : `${prefix}/collection/${framework}/${slug}`;
+                        return (
+                          <ElementCollectionArticleLink
+                            key={item.slug}
+                            text={item.name}
+                            link={{ href }}
+                          />
+                        );
+                      })}
                     </Block>
                   ))}
                 </Block>

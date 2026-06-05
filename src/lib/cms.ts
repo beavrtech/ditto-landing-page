@@ -598,6 +598,7 @@ export async function getCollectionItems(
 
   if (!fw) return [];
 
+  // 1. Native collection items
   const { data, error } = await supabase
     .from("collection_items")
     .select("*, author:authors(*)")
@@ -608,14 +609,53 @@ export async function getCollectionItems(
 
   if (error) throw error;
 
-  return data?.map((item) => ({
+  const items = (data || []).map((item) => ({
     ...item,
     name: localized(item, "name", locale),
     seo_title: localized(item, "seo_title", locale),
     seo_meta_desc: localized(item, "seo_meta_desc", locale),
     description: localized(item, "description", locale),
     body: localized(item, "body", locale),
+    _type: "collection_item" as const,
   }));
+
+  // 2. Linked guides (via guide_display_frameworks)
+  const { data: linkedGuides } = await supabase
+    .from("guide_display_frameworks")
+    .select("guide:guides!guide_display_frameworks_guide_id_fkey(*, author:authors(*))")
+    .eq("framework_id", fw.id);
+
+  const guideItems = (linkedGuides || [])
+    .map((row: any) => row.guide)
+    .filter((g: any) => g && g.published !== false && g.archived !== true)
+    .map((guide: any) => {
+      // Map "Succeeding with X" → "Succeeding with EcoVadis" etc.
+      const catTemplate = guide.display_on_collection_page_category || "";
+      const fwNameMap: Record<string, string> = {
+        ecovadis: "EcoVadis",
+        cdp: "CDP",
+        vsme: "VSME",
+        "iso-14001": "ISO 14001",
+        csrd: "CSRD",
+        sbti: "SBTi",
+      };
+      const fwName = fwNameMap[frameworkSlug] || frameworkSlug;
+      const categorie = catTemplate.replace(/X/g, fwName);
+
+      return {
+        ...guide,
+        slug: guide.slug,
+        slug_fr: guide.slug_fr,
+        name: localized(guide, "name", locale),
+        description: localized(guide, "description", locale),
+        body: localized(guide, "body", locale),
+        categorie,
+        banner_url: guide.banner_url,
+        _type: "guide" as const,
+      };
+    });
+
+  return [...items, ...guideItems];
 }
 
 export async function getCollectionItemBySlug(

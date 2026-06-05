@@ -5,56 +5,39 @@ import { Footer } from "../../../../../components/FooterI18n";
 import { SectionBreadcrumbs } from "../../../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
-import { getCollectionItemBySlug, getCategoryTranslations } from "../../../../../lib/cms";
+import { getBlogPostBySlug } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
 
-const FRAMEWORK_TITLES: Record<string, string> = {
-  ecovadis: "EcoVadis",
-  cdp: "CDP",
-  vsme: "VSME",
-  "iso-14001": "ISO 14001",
-  csrd: "CSRD",
-};
-
-
-export default async function CollectionArticlePage({
+export default async function BlogPostPage({
   params,
 }: {
-  params: Promise<{ locale: string; framework: string; slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { locale, framework, slug } = await params;
+  const { locale, slug } = await params;
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
-  const fwTitle = FRAMEWORK_TITLES[framework];
-  if (!fwTitle) notFound();
-
-  const [item, catTranslations] = await Promise.all([
-    getCollectionItemBySlug(framework, slug, locale as "en" | "fr"),
-    getCategoryTranslations(),
-  ]);
+  const item = await getBlogPostBySlug(slug, locale as "en" | "fr");
   if (!item) notFound();
 
-  const categoryLabel = item.categorie
-    ? (locale === "fr" ? catTranslations[item.categorie] || item.categorie : item.categorie)
-    : null;
+  const categoryLabel = item.category?.name ?? null;
 
   return (
     <div className="page-wrapper">
       <main className="main-wrapper">
         <Navbar />
 
-        {/* Breadcrumbs: Resources > EcoVadis > Article */}
+        {/* Breadcrumbs: Resources > Blog > Article title */}
         <SectionBreadcrumbs
           backgroundBackground="Secondary"
           item1Item1Text={locale === "fr" ? "Ressources" : "Resources"}
           item1Item1Link={{ href: localizedHref("/resources", locale) }}
           item2Item2Visibility={true}
-          item2Item2Text={fwTitle}
-          item2Item2Link={{ href: `${prefix}/collection/${framework}` }}
+          item2Item2Text="Blog"
+          item2Item2Link={{ href: localizedHref("/resources/blog", locale) }}
           item3Item3Visibility={true}
           item3Item3Text={item.name}
-          item3Item3Link={{ href: `${prefix}/collection/${framework}/${slug}` }}
+          item3Item3Link={{ href: `${prefix}/resources/blog/${slug}` }}
         />
 
         {/* Hero */}

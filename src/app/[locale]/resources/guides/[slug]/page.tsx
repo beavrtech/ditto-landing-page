@@ -5,56 +5,37 @@ import { Footer } from "../../../../../components/FooterI18n";
 import { SectionBreadcrumbs } from "../../../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
-import { getCollectionItemBySlug, getCategoryTranslations } from "../../../../../lib/cms";
+import { getGuideBySlug } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
 
-const FRAMEWORK_TITLES: Record<string, string> = {
-  ecovadis: "EcoVadis",
-  cdp: "CDP",
-  vsme: "VSME",
-  "iso-14001": "ISO 14001",
-  csrd: "CSRD",
-};
-
-
-export default async function CollectionArticlePage({
+export default async function GuideDetailPage({
   params,
 }: {
-  params: Promise<{ locale: string; framework: string; slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const { locale, framework, slug } = await params;
+  const { locale, slug } = await params;
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
-  const fwTitle = FRAMEWORK_TITLES[framework];
-  if (!fwTitle) notFound();
-
-  const [item, catTranslations] = await Promise.all([
-    getCollectionItemBySlug(framework, slug, locale as "en" | "fr"),
-    getCategoryTranslations(),
-  ]);
+  const item = await getGuideBySlug(slug, locale as "en" | "fr");
   if (!item) notFound();
-
-  const categoryLabel = item.categorie
-    ? (locale === "fr" ? catTranslations[item.categorie] || item.categorie : item.categorie)
-    : null;
 
   return (
     <div className="page-wrapper">
       <main className="main-wrapper">
         <Navbar />
 
-        {/* Breadcrumbs: Resources > EcoVadis > Article */}
+        {/* Breadcrumbs: Resources > Guides > Guide title */}
         <SectionBreadcrumbs
           backgroundBackground="Secondary"
           item1Item1Text={locale === "fr" ? "Ressources" : "Resources"}
           item1Item1Link={{ href: localizedHref("/resources", locale) }}
           item2Item2Visibility={true}
-          item2Item2Text={fwTitle}
-          item2Item2Link={{ href: `${prefix}/collection/${framework}` }}
+          item2Item2Text="Guides"
+          item2Item2Link={{ href: localizedHref("/resources/guides", locale) }}
           item3Item3Visibility={true}
           item3Item3Text={item.name}
-          item3Item3Link={{ href: `${prefix}/collection/${framework}/${slug}` }}
+          item3Item3Link={{ href: `${prefix}/resources/guides/${slug}` }}
         />
 
         {/* Hero */}
@@ -67,12 +48,6 @@ export default async function CollectionArticlePage({
               <div className="container-84rem">
                 <div className="post-hero_component">
                   <div className="post-hero_content">
-                    {categoryLabel && (
-                      <>
-                        <p className="label">{categoryLabel}</p>
-                        <div className="spacer-1x5rem" />
-                      </>
-                    )}
                     <h1 className="heading-size-3rem">{item.name}</h1>
                     {item.description && (
                       <>
@@ -99,6 +74,20 @@ export default async function CollectionArticlePage({
                             )}
                           </div>
                         </div>
+                      </>
+                    )}
+                    {item.document_url && (
+                      <>
+                        <div className="spacer-1x5rem" />
+                        <a
+                          href={item.document_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          data-wf--button--variant="secondary"
+                          className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block"
+                        >
+                          <div>{locale === "fr" ? "Télécharger" : "Download"}</div>
+                        </a>
                       </>
                     )}
                   </div>
@@ -134,23 +123,29 @@ export default async function CollectionArticlePage({
                     </div>
                     {/* Sidebar */}
                     <div className="post_sidebar">
-                      <div className="post_sidebar_cta">
-                        <p className="heading-size-1x375rem">
-                          {locale === "fr"
-                            ? "Conformité RSE : on vous accompagne (CSRD, EcoVadis, etc.) !"
-                            : "CSR compliance: we'll guide you (CSRD, EcoVadis, etc.)!"}
-                        </p>
-                        <div className="spacer-0x75rem" />
-                        <p className="text-size-1rem">
-                          {locale === "fr"
-                            ? "Avec Ditto, améliorez votre performance RSE et renforcez la confiance de vos partenaires."
-                            : "With Ditto, improve your CSR performance and boost your partners' confidence."}
-                        </p>
-                        <div className="spacer-1x5rem" />
-                        <a data-wf--button--variant="secondary" href={localizedHref("/get-started", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">
-                          <div>{locale === "fr" ? "Contactez-nous" : "Contact Us"}</div>
-                        </a>
-                      </div>
+                      {item.form ? (
+                        <div className="post_sidebar_cta">
+                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: item.form }} />
+                        </div>
+                      ) : (
+                        <div className="post_sidebar_cta">
+                          <p className="heading-size-1x375rem">
+                            {locale === "fr"
+                              ? "Conformité RSE : on vous accompagne (CSRD, EcoVadis, etc.) !"
+                              : "CSR compliance: we'll guide you (CSRD, EcoVadis, etc.)!"}
+                          </p>
+                          <div className="spacer-0x75rem" />
+                          <p className="text-size-1rem">
+                            {locale === "fr"
+                              ? "Avec Ditto, améliorez votre performance RSE et renforcez la confiance de vos partenaires."
+                              : "With Ditto, improve your CSR performance and boost your partners' confidence."}
+                          </p>
+                          <div className="spacer-1x5rem" />
+                          <a data-wf--button--variant="secondary" href={localizedHref("/get-started", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">
+                            <div>{locale === "fr" ? "Contactez-nous" : "Contact Us"}</div>
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
