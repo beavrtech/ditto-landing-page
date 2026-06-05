@@ -9,6 +9,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { useLocale } from "next-intl";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
 import DOM from "../../webflow/webflow_modules/Builtin/components/DOM";
@@ -32,6 +33,8 @@ const HUBSPOT_PORTAL_ID = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID!;
 const HUBSPOT_FORM_ID = process.env.NEXT_PUBLIC_HUBSPOT_FORM_ID!;
 
 function FooterNewsletter() {
+  const locale = useLocale();
+  const isFr = locale === "fr";
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
@@ -69,12 +72,12 @@ function FooterNewsletter() {
   return (
     <Block className={"footer_newsletter"} tag={"div"}>
       <Paragraph className={"text-size-1rem text-weight-600 text-wrap-balance"}>
-        {"Practical CSR insights—tools, studies, and templates, in your inbox"}
+        {isFr ? "Abonnez-vous \u00e0 notre newsletter RSE\u00a0: \u00e9tudes, cas concrets, outils" : "Practical CSR insights\u2014tools, studies, and templates, in your inbox"}
       </Paragraph>
       {status === "success" ? (
         <Block className={"newsletter_form_wrapper"} tag={"div"}>
           <div className="newsletter_form_success w-form-done" style={{ display: "block" }}>
-            <div>{"Thank you for subscribing!"}</div>
+            <div>{isFr ? "Merci pour votre inscription !" : "Thank you for subscribing!"}</div>
           </div>
         </Block>
       ) : (
@@ -94,14 +97,14 @@ function FooterNewsletter() {
               <input
                 type="submit"
                 className="button w-button"
-                value={status === "loading" ? "Please wait..." : "Subscribe"}
+                value={status === "loading" ? (isFr ? "Veuillez patienter..." : "Please wait...") : (isFr ? "S'inscrire" : "Subscribe")}
                 disabled={status === "loading"}
               />
             </div>
           </form>
           {status === "error" && (
             <div className="w-form-fail" style={{ display: "block" }}>
-              <div>{"Oops! Something went wrong while submitting the form."}</div>
+              <div>{isFr ? "Oups ! Une erreur est survenue lors de l'envoi du formulaire." : "Oops! Something went wrong while submitting the form."}</div>
             </div>
           )}
         </Block>
