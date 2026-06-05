@@ -5,7 +5,8 @@ import { Footer } from "../../../../components/FooterI18n";
 import { SectionBreadcrumbs } from "../../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionCta } from "../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
-import { getCustomerStoryBySlug } from "../../../../lib/cms";
+import { getCustomerStoryBySlug, getCustomerStories } from "../../../../lib/cms";
+import { localizedCmsHref, localizedHref } from "../../../../lib/localized-paths";
 
 export default async function CustomerStoryPage({
   params,
@@ -156,7 +157,6 @@ export default async function CustomerStoryPage({
                 <div className="post_grid">
                   <div className="post_main">
                     <div className="post_content">
-                      {/* Company / Presentation */}
                       {story.presentation && (
                         <div id="company" className="post_chapter">
                           <p className="label">{locale === "fr" ? "Entreprise" : "Company"}</p>
@@ -164,8 +164,6 @@ export default async function CustomerStoryPage({
                           <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: story.presentation }} />
                         </div>
                       )}
-
-                      {/* Quote 1 */}
                       {story.quote && (
                         <div className="post_testimonial_wrapper">
                           <div className="post_testimonial">
@@ -183,12 +181,7 @@ export default async function CustomerStoryPage({
                                   )}
                                   <div className="profile_content">
                                     {story.quote_author && <h4 className="text-size-1rem text-weight-400">{story.quote_author}</h4>}
-                                    {story.quote_author_role && (
-                                      <>
-                                        <div className="spacer-0x25rem" />
-                                        <p className="text-size-0x875rem text-color-neutral">{story.quote_author_role}</p>
-                                      </>
-                                    )}
+                                    {story.quote_author_role && (<><div className="spacer-0x25rem" /><p className="text-size-0x875rem text-color-neutral">{story.quote_author_role}</p></>)}
                                   </div>
                                 </div>
                               </>
@@ -196,8 +189,6 @@ export default async function CustomerStoryPage({
                           </div>
                         </div>
                       )}
-
-                      {/* CSR Context */}
                       {story.contexte_rse && (
                         <div className="post_chapter">
                           <div className="spacer-2rem" />
@@ -206,8 +197,6 @@ export default async function CustomerStoryPage({
                           <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: story.contexte_rse }} />
                         </div>
                       )}
-
-                      {/* Challenges */}
                       {story.challenges && (
                         <div id="challenge" className="post_chapter">
                           <div className="spacer-2rem" />
@@ -216,8 +205,6 @@ export default async function CustomerStoryPage({
                           <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: story.challenges }} />
                         </div>
                       )}
-
-                      {/* Solution */}
                       {story.solution && (
                         <div id="solution" className="post_chapter">
                           <div className="spacer-2rem" />
@@ -226,8 +213,6 @@ export default async function CustomerStoryPage({
                           <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: story.solution }} />
                         </div>
                       )}
-
-                      {/* Quote 2 */}
                       {story.quote_2 && (
                         <div className="post_testimonial_wrapper">
                           <div className="post_testimonial">
@@ -237,8 +222,6 @@ export default async function CustomerStoryPage({
                           </div>
                         </div>
                       )}
-
-                      {/* Impact */}
                       {story.impact && (
                         <div id="impact" className="post_chapter">
                           <div className="spacer-2rem" />
@@ -247,8 +230,6 @@ export default async function CustomerStoryPage({
                           <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: story.impact }} />
                         </div>
                       )}
-
-                      {/* Quote 3 */}
                       {story.quote_3 && (
                         <div className="post_testimonial_wrapper">
                           <div className="post_testimonial">
@@ -258,25 +239,75 @@ export default async function CustomerStoryPage({
                           </div>
                         </div>
                       )}
-
-                      {/* Ending / Conclusion */}
                       {story.ending && (
                         <div className="post_chapter">
                           <div className="spacer-2rem" />
                           <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: story.ending }} />
                         </div>
                       )}
+                    </div>{/* /post_content */}
+                  </div>{/* /post_main */}
+                  <div className="post_sidebar">
+                    <div className="post_sidebar_toc hide-tablet">
+                      <div className="post_toc_heading">
+                        <p className="text-size-1rem text-weight-600">{locale === "fr" ? "Sommaire" : "Table of contents"}</p>
+                      </div>
+                      <div className="post_toc_content_grid">
+                        <div className="post_toc_content_clip">
+                          <div className="post_toc_content">
+                            <div className="post_toc_content_list">
+                              {story.presentation && <a href="#company" className="link-size-1rem">{locale === "fr" ? "Entreprise" : "Company"}</a>}
+                              {story.challenges && <a href="#challenge" className="link-size-1rem">{locale === "fr" ? "Défis" : "Challenge"}</a>}
+                              {story.solution && <a href="#solution" className="link-size-1rem">Solution</a>}
+                              {story.impact && <a href="#impact" className="link-size-1rem">Impact</a>}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div className="spacer-component" data-wf--padding--space="small-3rem" />
-            </div>
+                    <div className="spacer-1x5rem hide-tablet" />
+                    <div className="post_sidebar_guide">
+                      <div className="post_sidebar_guide_content">
+                        <div className="post_sidebar_guide_thumbnail">
+                          <img src="/images/The-Complete-EcoVadis-Guide---Cover-Website-EN.avif" loading="lazy" alt="" className="media-full-size" />
+                        </div>
+                        <div className="spacer-1x5rem hide-tablet" />
+                        <div>
+                          <p className="label">{locale === "fr" ? "Guide EcoVadis" : "EcoVadis Guide"}</p>
+                          <div className="spacer-0x75rem" />
+                          <p className="heading-size-2rem">{locale === "fr" ? "3 semaines pour réussir votre évaluation RSE" : "3 weeks to succeed in your CSR assessment"}</p>
+                          <div className="spacer-0x75rem" />
+                          <p className="text-size-1rem text-style-3lines">{locale === "fr" ? "Une méthode éprouvée, étape par étape, pour maximiser votre score et transformer l'évaluation en véritable avantage." : "A proven, step-by-step method to maximize your score and turn the evaluation into a real advantage."}</p>
+                        </div>
+                      </div>
+                      <div className="spacer-1x5rem" />
+                      <a data-wf--button--variant="primary" href={localizedHref("/resources/guides/ecovadis-guide-3-weeks-to-succeed-in-your-csr-assessment", locale)} className="button w-inline-block">
+                        <div>{locale === "fr" ? "Télécharger le guide" : "Download Guide"}</div>
+                      </a>
+                    </div>
+                    <div className="spacer-1x5rem spacer-mob-1rem" />
+                    <div className="post_sidebar_cta">
+                      <p className="heading-size-1x375rem">{locale === "fr" ? "Conformité RSE : on vous accompagne (CSRD, EcoVadis, etc.) !" : "CSR compliance: we'll guide you (CSRD, EcoVadis, etc.)!"}</p>
+                      <div className="spacer-0x75rem" />
+                      <p className="text-size-1rem">{locale === "fr" ? "Avec Ditto, améliorez votre performance RSE et renforcez la confiance de vos partenaires." : "With Ditto, improve your CSR performance and boost your partners' confidence."}</p>
+                      <div className="spacer-1x5rem" />
+                      <a data-wf--button--variant="secondary" href={localizedHref("/get-started", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">
+                        <div>{locale === "fr" ? "Contactez-nous" : "Contact Us"}</div>
+                      </a>
+                    </div>
+                  </div>{/* /post_sidebar */}
+                </div>{/* /post_grid */}
+              </div>{/* /container-84rem */}
+              <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" data-wf--padding--space="medium-6rem" />
+            </div>{/* /padding-global */}
             <div className="layer-4">
               <div className="background" data-wf--background--color="primary" />
             </div>
           </section>
         </div>
+
+        {/* Read more customer stories */}
+        <ReadMoreStories locale={locale} currentSlug={slug} prefix={prefix} />
 
         {/* CTA */}
         <SectionCta
@@ -288,6 +319,68 @@ export default async function CustomerStoryPage({
 
         <Footer />
       </main>
+    </div>
+  );
+}
+
+async function ReadMoreStories({ locale, currentSlug, prefix }: { locale: string; currentSlug: string; prefix: string }) {
+  const stories = await getCustomerStories(locale as "en" | "fr");
+  const otherStories = (stories || []).filter((s: any) => s.slug !== currentSlug).slice(0, 3);
+
+  if (otherStories.length === 0) return null;
+
+  return (
+    <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
+      <section className="blog-preview_section">
+        <div className="padding-global">
+          <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" data-wf--padding--space="medium-6rem" />
+          <div className="container-48rem">
+            <div className="header">
+              <h2 className="heading-size-3rem">{locale === "fr" ? "Découvrez d'autres témoignages clients" : "Read more customer stories"}</h2>
+            </div>
+          </div>
+          <div className="spacer-3rem" />
+          <div className="container-84rem">
+            <div className="blog_list_wrapper">
+              <div className="blog_list" role="list">
+                {otherStories.map((story: any) => (
+                  <div key={story.slug} className="blog-preview_item" role="listitem">
+                    <a href={localizedCmsHref("/customer-stories", story.slug, story.slug_fr, locale)} className="card-image w-inline-block">
+                      {story.banner_url && (
+                        <div className="card-image_thumbnail">
+                          <img src={story.banner_url} loading="lazy" alt="" className="media-full-size" />
+                        </div>
+                      )}
+                      <div className="card-image_content">
+                        <div className="spacer-1x5rem spacer-mob-1rem" />
+                        {story.industry && (
+                          <p className="label">{locale === "fr" ? story.industry.name_fr || story.industry.name_en : story.industry.name_en}</p>
+                        )}
+                        <div className="spacer-0x75rem" />
+                        <div className="card-image_link_wrapper">
+                          <p className="heading-size-2rem link-hover-parent text-style-2lines">{story.name}</p>
+                        </div>
+                        <div className="spacer-0x75rem" />
+                        <p className="text-size-1rem text-style-3lines">{story.description}</p>
+                      </div>
+                    </a>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="spacer-3rem" />
+            <div className="button-group x-center">
+              <a data-wf--button--variant="secondary" href={localizedHref("/get-started", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">
+                <div>{locale === "fr" ? "Voir toutes les ressources" : "View All Resources"}</div>
+              </a>
+            </div>
+          </div>
+          <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" data-wf--padding--space="medium-6rem" />
+        </div>
+        <div className="layer-4">
+          <div className="background" data-wf--background--color="primary" />
+        </div>
+      </section>
     </div>
   );
 }

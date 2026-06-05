@@ -11,7 +11,8 @@
 import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { localizedHref } from "../lib/localized-paths";
-import { getCompanyLogos } from "../lib/cms";
+import { getCompanyLogos, getCustomerStories } from "../lib/cms";
+import { localizedCmsHref } from "../lib/localized-paths";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
 import Heading from "../../webflow/webflow_modules/Basic/components/Heading";
@@ -44,10 +45,19 @@ export function SectionLogostrip({ variant = "Base" }: SectionLogostripProps) {
   const locale = useLocale();
   const prefix = `/${locale}`;
   const [logos, setLogos] = useState<any[]>([]);
+  const [storySlugMap, setStorySlugMap] = useState<Record<string, { slug: string; slug_fr: string | null }>>({});
 
   useEffect(() => {
     getCompanyLogos().then((data) => setLogos(data || []));
-  }, []);
+    // Build a map of English slug → { slug, slug_fr } from customer stories
+    getCustomerStories(locale as "en" | "fr").then((stories) => {
+      const map: Record<string, { slug: string; slug_fr: string | null }> = {};
+      for (const s of stories || []) {
+        map[s.slug] = { slug: s.slug, slug_fr: s.slug_fr };
+      }
+      setStorySlugMap(map);
+    });
+  }, [locale]);
 
   const _styleVariantMap = {
     Base: "",
@@ -103,12 +113,20 @@ export function SectionLogostrip({ variant = "Base" }: SectionLogostripProps) {
                       tag={"div"}
                       role={"listitem"}
                     >
-                      {logo.case_study_url ? (
+                      {logo.case_study_url ? (() => {
+                        // Extract the slug from the case_study_url (e.g. "/customer-stories/ferco-..." → "ferco-...")
+                        const parts = logo.case_study_url.split("/");
+                        const enSlug = parts[parts.length - 1];
+                        const storyInfo = storySlugMap[enSlug];
+                        const href = storyInfo
+                          ? localizedCmsHref("/customer-stories", storyInfo.slug, storyInfo.slug_fr, locale)
+                          : localizedHref(logo.case_study_url, locale);
+                        return (
                         <Link
                           block={""}
                           button={false}
                           className={"logostrip_item_linkblock w-inline-block"}
-                          options={{ href: localizedHref(logo.case_study_url, locale) }}
+                          options={{ href }}
                         >
                           <Block
                             className={"logostrip_item_image_wrapper"}
@@ -133,7 +151,8 @@ export function SectionLogostrip({ variant = "Base" }: SectionLogostripProps) {
                             </Block>
                           </Block>
                         </Link>
-                      ) : (
+                        );
+                      })() : (
                         <Block
                           className={"logostrip_item_image_wrapper"}
                           tag={"div"}

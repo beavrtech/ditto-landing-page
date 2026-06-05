@@ -1,14 +1,46 @@
-"use client";
-
-import { useTranslations, useLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarI18n";
 import { Footer } from "../../../../components/FooterI18n";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
+import { getEvents } from "../../../../lib/cms";
+import { localizedHref, localizedCmsHref } from "../../../../lib/localized-paths";
 
-export default function ResourcesEventsPage() {
-  const t = useTranslations();
-  const locale = useLocale();
+function ResourceCard({ item, type, locale }: { item: any; type: string; locale: string }) {
+  const basePath = type === "blog" ? "/resources/blog" : type === "news" ? "/resources/news" : type === "events" ? "/resources/events" : "/resources/guides";
+  const href = localizedCmsHref(basePath, item.slug, item.slug_fr, locale);
+  return (
+    <div className="blog_list_item" role="listitem">
+      <a href={href} className="card-image w-inline-block">
+        {item.banner_url && (
+          <div className="card-image_thumbnail">
+            <img src={item.banner_url} loading="lazy" alt={item.banner_alt_desc || ""} className="media-full-size" />
+          </div>
+        )}
+        <div className="card-image_content">
+          <div className="spacer-1x5rem spacer-mob-1rem" />
+          <p className="label">Event</p>
+          <div className="spacer-0x75rem" />
+          <div className="card-image_link_wrapper">
+            <p className="heading-size-2rem link-hover-parent text-style-2lines">{item.name}</p>
+          </div>
+          <div className="spacer-0x75rem" />
+          <p className="text-size-1rem text-style-3lines">{item.description}</p>
+        </div>
+      </a>
+    </div>
+  );
+}
+
+export default async function ResourcesEventsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations();
   const prefix = `/${locale}`;
+
+  const items = await getEvents(locale as "en" | "fr").catch(() => []);
 
   return (
     <div className="page-wrapper">
@@ -65,13 +97,21 @@ export default function ResourcesEventsPage() {
             </div>
           </section>
 
-          {/* Events list (Collection List - CMS content will come later) */}
+          {/* Events list */}
           <section className="blog-preview_section">
             <div className="padding-global">
               <div className="container-84rem">
-                <div className="w-dyn-empty">
-                  <div>No items found.</div>
-                </div>
+                {items && items.length > 0 ? (
+                  <div className="blog_list_wrapper">
+                    <div className="blog_list" role="list">
+                      {items.map((event: any) => (
+                        <ResourceCard key={event.slug} item={event} type="events" locale={locale} />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="w-dyn-empty"><div>No items found.</div></div>
+                )}
               </div>
               <div data-wf--padding--space="medium-6rem" className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c"></div>
             </div>

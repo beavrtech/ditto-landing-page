@@ -11732,3 +11732,24 @@ figcaption {
     background-image: url('/images/label-bullet.svg');
   }
 }
+
+/* Testimonials carousel: equal height cards */
+@scope (.wf-devlink-334d291de626c444a9725b27acd9cb00) {
+  .testimonials-scroll .card-testimonial {
+    height: 100%;
+  }
+}
+
+/* Fix: always show left carousel arrow */
+@scope (.wf-devlink-334d291de626c444a9725b27acd9cb00) {
+  .testimonials-scroll ~ .carousel_navigation_wrapper .carousel_navigation_button_left {
+    opacity: 1;
+  }
+}
+
+/* Collection article link spacing */
+@scope (.wf-devlink-334d291de626c444a9725b27acd9cb00) {
+  .collection_col .collection_item {
+    margin-bottom: 0.75rem;
+  }
+}

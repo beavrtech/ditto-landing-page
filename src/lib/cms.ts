@@ -87,6 +87,8 @@ export async function getTestimonials(locale: Locale) {
   const { data, error } = await supabase
     .from("testimonials")
     .select("*")
+    .eq("published", true)
+    .eq("archived", false)
     .order("sort_order");
 
   if (error) throw error;
@@ -122,6 +124,8 @@ export async function getCustomerStories(locale: Locale) {
     .select(
       "*, industry:industries(*), customer_story_frameworks(framework:frameworks(*))"
     )
+    .eq("published", true)
+    .eq("archived", false)
     .order("publish_date", { ascending: false });
 
   if (error) throw error;
@@ -156,6 +160,8 @@ export async function getFeaturedCustomerStories(locale: Locale) {
     .select(
       "*, industry:industries(*), customer_story_frameworks(framework:frameworks(*))"
     )
+    .eq("published", true)
+    .eq("archived", false)
     .eq("featured", true)
     .order("publish_date", { ascending: false });
 
@@ -177,6 +183,8 @@ export async function getShowcaseCustomerStories(locale: Locale) {
     .select(
       "*, industry:industries(*), customer_story_frameworks(framework:frameworks(*))"
     )
+    .eq("published", true)
+    .eq("archived", false)
     .eq("display_on_showcase", true)
     .order("publish_date", { ascending: false });
 
@@ -249,6 +257,8 @@ export async function getBlogPosts(locale: Locale, limit?: number) {
   let query = supabase
     .from("blog_posts")
     .select("*, author:authors(*), category:frameworks(*)")
+    .eq("published", true)
+    .eq("archived", false)
     .order("date_de_publication", { ascending: false });
 
   if (limit) query = query.limit(limit);
@@ -270,6 +280,8 @@ export async function getFeaturedBlogPosts(locale: Locale) {
   const { data, error } = await supabase
     .from("blog_posts")
     .select("*, author:authors(*), category:frameworks(*)")
+    .eq("published", true)
+    .eq("archived", false)
     .eq("en_avant", true)
     .order("date_de_publication", { ascending: false });
 
@@ -322,6 +334,8 @@ export async function getNews(locale: Locale, limit?: number) {
   let query = supabase
     .from("news")
     .select("*, author:authors(*)")
+    .eq("published", true)
+    .eq("archived", false)
     .order("published_date", { ascending: false });
 
   if (limit) query = query.limit(limit);
@@ -341,6 +355,8 @@ export async function getFeaturedNews(locale: Locale) {
   const { data, error } = await supabase
     .from("news")
     .select("*, author:authors(*)")
+    .eq("published", true)
+    .eq("archived", false)
     .eq("en_avant", true)
     .order("published_date", { ascending: false });
 
@@ -391,8 +407,10 @@ export async function getGuides(locale: Locale, limit?: number) {
   let query = supabase
     .from("guides")
     .select(
-      "*, author:authors(*), tag:frameworks(*), guide_display_frameworks(framework:frameworks(*))"
+      "*, author:authors(*), tag:frameworks!guides_tag_id_fkey(*), guide_display_frameworks(framework:frameworks!guide_display_frameworks_framework_id_fkey(*))"
     )
+    .eq("published", true)
+    .eq("archived", false)
     .order("date", { ascending: false });
 
   if (limit) query = query.limit(limit);
@@ -418,7 +436,7 @@ export async function getGuideBySlug(slug: string, locale: Locale) {
   let { data, error } = await supabase
     .from("guides")
     .select(
-      "*, author:authors(*), tag:frameworks(*), guide_display_frameworks(framework:frameworks(*))"
+      "*, author:authors(*), tag:frameworks!guides_tag_id_fkey(*), guide_display_frameworks(framework:frameworks!guide_display_frameworks_framework_id_fkey(*))"
     )
     .eq("slug", slug)
     .single();
@@ -427,7 +445,7 @@ export async function getGuideBySlug(slug: string, locale: Locale) {
     const frResult = await supabase
       .from("guides")
       .select(
-        "*, author:authors(*), tag:frameworks(*), guide_display_frameworks(framework:frameworks(*))"
+        "*, author:authors(*), tag:frameworks!guides_tag_id_fkey(*), guide_display_frameworks(framework:frameworks!guide_display_frameworks_framework_id_fkey(*))"
       )
       .eq("slug_fr", slug)
       .single();
@@ -459,6 +477,8 @@ export async function getEvents(locale: Locale) {
   const { data, error } = await supabase
     .from("events")
     .select("*, author:authors(*), tag:frameworks(*)")
+    .eq("published", true)
+    .eq("archived", false)
     .order("date", { ascending: false });
 
   if (error) throw error;
@@ -514,6 +534,8 @@ export async function getCompanyUpdates(locale: Locale) {
   const { data, error } = await supabase
     .from("company_updates")
     .select("*, author:authors(*)")
+    .eq("published", true)
+    .eq("archived", false)
     .order("published_date", { ascending: false });
 
   if (error) throw error;
@@ -579,6 +601,8 @@ export async function getCollectionItems(
   const { data, error } = await supabase
     .from("collection_items")
     .select("*, author:authors(*)")
+    .eq("published", true)
+    .eq("archived", false)
     .eq("framework_id", fw.id)
     .order("ordre");
 
@@ -675,4 +699,22 @@ export async function getAllResources(locale: Locale, limit?: number) {
   });
 
   return limit ? all.slice(0, limit) : all;
+}
+
+// ============================================================
+// CATEGORY TRANSLATIONS
+// ============================================================
+
+export async function getCategoryTranslations(): Promise<Record<string, string>> {
+  const { data, error } = await supabase
+    .from("category_translations")
+    .select("name_en, name_fr");
+
+  if (error) throw error;
+
+  const map: Record<string, string> = {};
+  for (const row of data || []) {
+    map[row.name_en] = row.name_fr;
+  }
+  return map;
 }

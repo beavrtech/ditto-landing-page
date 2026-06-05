@@ -1,7 +1,7 @@
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { DevLinkProvider } from "../../../webflow/DevLinkProvider";
+import { SafeDevLinkProvider } from "../../components/SafeDevLinkProvider";
 import { GlobalStyles } from "../../../webflow/GlobalStyles";
 
 export default async function LocaleLayout({
@@ -25,10 +25,10 @@ export default async function LocaleLayout({
       </head>
       <body>
         <NextIntlClientProvider messages={messages}>
-          <DevLinkProvider>
+          <SafeDevLinkProvider>
             <GlobalStyles />
             {children}
-          </DevLinkProvider>
+          </SafeDevLinkProvider>
         </NextIntlClientProvider>
       </body>
     </html>

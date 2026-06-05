@@ -1,13 +1,12 @@
 /**
  * @file SectionTestimonialsI18n
  * i18n copy of the Webflow SectionTestimonials component.
- * Replaces NotSupported Collection List with real testimonials from Supabase.
+ * Uses CSS scroll-snap instead of Splide for the carousel.
  */
 "use client";
 
 import { useEffect, useState, useRef } from "react";
 import { useLocale } from "next-intl";
-import "@splidejs/splide/css/core";
 import { getTestimonials } from "../lib/cms";
 
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
@@ -18,13 +17,8 @@ import Section from "../../webflow/webflow_modules/Layout/components/Section";
 import { Background } from "../../webflow/Background";
 import { Button } from "../../webflow/elements/Button";
 import { CardTestimonial } from "../../webflow/elements/CardTestimonial";
-import { CarouselButtonNext } from "../../webflow/elements/CarouselButtonNext";
-import { CarouselButtonPrevious } from "../../webflow/elements/CarouselButtonPrevious";
 import { Padding } from "../../webflow/Padding";
 
-/**
- * Props for {@link SectionTestimonialsI18n}
- */
 export type SectionTestimonialsI18nProps = {
   buttonLink?: {
     href: string;
@@ -37,76 +31,79 @@ export type SectionTestimonialsI18nProps = {
 };
 
 export function SectionTestimonialsI18n({
-  buttonLink = {
-    href: "/en/customer-stories",
-  },
+  buttonLink = { href: "/en/customer-stories" },
   buttonText = "Read More",
   text = "Customers of all sizes love Ditto for its simplicity, smarts, and impact, above all.",
   title = "What teams are saying",
 }: SectionTestimonialsI18nProps) {
-  const locale = useLocale() as "en" | "fr";
+  const locale = useLocale();
   const [testimonials, setTestimonials] = useState<any[]>([]);
-  const splideRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeft = useRef(0);
 
   useEffect(() => {
-    getTestimonials(locale).then((data) => {
+    getTestimonials(locale as "en" | "fr").then((data) => {
       if (data) setTestimonials(data);
     });
   }, [locale]);
 
+  // Drag to scroll
   useEffect(() => {
-    if (testimonials.length === 0) return;
+    const el = scrollRef.current;
+    if (!el) return;
 
-    let splideInstance: any = null;
+    const onMouseDown = (e: MouseEvent) => {
+      isDragging.current = true;
+      startX.current = e.pageX - el.offsetLeft;
+      scrollLeft.current = el.scrollLeft;
+      el.style.cursor = "grabbing";
+    };
+    const onMouseUp = () => {
+      isDragging.current = false;
+      el.style.cursor = "grab";
+    };
+    const onMouseMove = (e: MouseEvent) => {
+      if (!isDragging.current) return;
+      e.preventDefault();
+      const x = e.pageX - el.offsetLeft;
+      const walk = (x - startX.current) * 1.5;
+      el.scrollLeft = scrollLeft.current - walk;
+    };
 
-    async function initSplide() {
-      const { default: Splide } = await import("@splidejs/splide");
-
-      if (splideRef.current) {
-        const el = splideRef.current.querySelector(".splide");
-        if (el && !(el as any).__splide) {
-          splideInstance = new Splide(el as HTMLElement, {
-            type: "loop",
-            autoWidth: true,
-            gap: "3rem",
-            arrows: false,
-            pagination: false,
-            drag: true,
-            breakpoints: {
-              991: { gap: "1.5rem" },
-              479: { gap: "1rem" },
-            },
-          });
-          splideInstance.mount();
-          (el as any).__splide = true;
-        }
-      }
-    }
-
-    initSplide();
+    el.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mouseup", onMouseUp);
+    el.addEventListener("mousemove", onMouseMove);
+    el.addEventListener("mouseleave", onMouseUp);
 
     return () => {
-      if (splideInstance) {
-        try {
-          splideInstance.destroy();
-        } catch {}
-      }
+      el.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mouseup", onMouseUp);
+      el.removeEventListener("mousemove", onMouseMove);
+      el.removeEventListener("mouseleave", onMouseUp);
     };
   }, [testimonials]);
+
+  const scroll = (direction: "left" | "right") => {
+    if (!scrollRef.current) return;
+    const container = scrollRef.current;
+    const cardWidth = container.querySelector(".card-testimonial")?.getBoundingClientRect().width || 400;
+    const scrollAmount = cardWidth + 48;
+    container.scrollBy({
+      left: direction === "right" ? scrollAmount : -scrollAmount,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <div
       className={DEVLINK_SCOPE_CLASS}
-      style={{
-        display: "contents",
-      }}
-      ref={splideRef}
+      style={{ display: "contents" }}
     >
       <Section
         className={"carousel_section"}
-        grid={{
-          type: "section",
-        }}
+        grid={{ type: "section" }}
         id={"w-node-_3bc96074-d8ef-94b2-8c5e-1514982ed182-982ed182"}
         tag={"section"}
       >
@@ -134,62 +131,67 @@ export function SectionTestimonialsI18n({
           </Block>
           <Block className={"spacer-3rem"} tag={"div"} />
           <Block className={"container-84rem"} tag={"div"}>
-            <Block
-              className={"carousel_component"}
-              // @ts-ignore - User-defined custom attribute(s)
-              splide={"carousel"}
-              splide-direction={"ltr"}
-              splide-gap={"3rem"}
-              splide-gap-mobile={"1rem"}
-              splide-interval={"5000"}
-              tag={"div"}
-            >
-              <Block className={"carousel_splide_wrapper"} tag={"div"}>
-                <Block className={"carousel_splide splide"} tag={"div"}>
-                  <Block
-                    className={"carousel_track splide__track"}
-                    tag={"div"}
-                  >
-                    <Block
-                      className={"carousel_list splide__list"}
-                      tag={"div"}
+            {testimonials.length > 0 && (
+              <div style={{ position: "relative" }}>
+                {/* Scroll container */}
+                <div
+                  ref={scrollRef}
+                  className="testimonials-scroll"
+                  style={{
+                    display: "flex",
+                    gap: "3rem",
+                    overflowX: "auto",
+                    scrollSnapType: "x mandatory",
+                    scrollbarWidth: "none",
+                    msOverflowStyle: "none" as any,
+                    WebkitOverflowScrolling: "touch",
+                    paddingBottom: "1rem",
+                    cursor: "grab",
+                    userSelect: "none",
+                  }}
+                >
+                  <style>{`.testimonials-scroll::-webkit-scrollbar { display: none; }`}</style>
+                  {testimonials.map((t) => (
+                    <div
+                      key={t.id}
+                      style={{
+                        flex: "0 0 auto",
+                        scrollSnapAlign: "start",
+                        display: "flex",
+                        alignItems: "stretch",
+                      }}
                     >
-                      {testimonials.map((t) => (
-                        <Block
-                          key={t.id}
-                          className={"carousel_slide splide__slide"}
-                          tag={"div"}
-                        >
-                          <CardTestimonial
-                            testimonial={t.quote}
-                            logo={t.logo_url}
-                            authorAuthorName={t.name}
-                            authorAuthorRole={t.job_title}
-                            authorAuthorImage={t.profile_picture_url}
-                          />
-                        </Block>
-                      ))}
-                    </Block>
-                  </Block>
-                </Block>
-                <Block className={"carousel_navigation_wrapper"} tag={"div"}>
-                  <CarouselButtonPrevious />
-                  <CarouselButtonNext />
-                </Block>
-              </Block>
-              <Block className={"spacer-1x5rem"} tag={"div"} />
-              <Block className={"carousel_pagination_list"} tag={"div"}>
-                <Block
-                  className={"carousel_pagination_button"}
-                  splide-button={"pagination"}
-                  tag={"div"}
-                />
-                <Block
-                  className={"carousel_pagination_button is-active"}
-                  tag={"div"}
-                />
-              </Block>
-            </Block>
+                      <CardTestimonial
+                        testimonial={t.quote}
+                        logo={t.logo_url || undefined}
+                        authorAuthorName={t.name}
+                        authorAuthorRole={t.job_title}
+                        authorAuthorImage={t.profile_picture_url || undefined}
+                      />
+                    </div>
+                  ))}
+                </div>
+                {/* Navigation arrows */}
+                <div className="carousel_navigation_wrapper">
+                  <button
+                    className="carousel_navigation_button_left"
+                    onClick={() => scroll("left")}
+                  >
+                    <div className="icon-wrapper">
+                      <div className="icon w-embed" dangerouslySetInnerHTML={{ __html: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform: rotate(180deg)"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289L15.7071 11.2929C16.0976 11.6834 16.0976 12.3166 15.7071 12.7071L9.70711 18.7071C9.31658 19.0976 8.68342 19.0976 8.29289 18.7071C7.90237 18.3166 7.90237 17.6834 8.29289 17.2929L13.5858 12L8.29289 6.70711C7.90237 6.31658 7.90237 5.68342 8.29289 5.29289Z" fill="currentColor"/></svg>' }} />
+                    </div>
+                  </button>
+                  <button
+                    className="carousel_navigation_button_right"
+                    onClick={() => scroll("right")}
+                  >
+                    <div className="icon-wrapper">
+                      <div className="icon w-embed" dangerouslySetInnerHTML={{ __html: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.29289 5.29289C8.68342 4.90237 9.31658 4.90237 9.70711 5.29289L15.7071 11.2929C16.0976 11.6834 16.0976 12.3166 15.7071 12.7071L9.70711 18.7071C9.31658 19.0976 8.68342 19.0976 8.29289 18.7071C7.90237 18.3166 7.90237 17.6834 8.29289 17.2929L13.5858 12L8.29289 6.70711C7.90237 6.31658 7.90237 5.68342 8.29289 5.29289Z" fill="currentColor"/></svg>' }} />
+                    </div>
+                  </button>
+                </div>
+              </div>
+            )}
           </Block>
           <Padding space={"Medium (6rem)"} />
         </Block>
@@ -200,3 +202,6 @@ export function SectionTestimonialsI18n({
     </div>
   );
 }
+
+// Keep the same export name for compatibility
+export { SectionTestimonialsI18n as SectionTestimonials };
