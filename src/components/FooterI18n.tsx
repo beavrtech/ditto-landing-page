@@ -10,6 +10,8 @@
 
 import { useState, useCallback, useEffect } from "react";
 import { useLocale } from "next-intl";
+import { usePathname } from "next/navigation";
+import { switchLocalePath } from "../lib/localized-paths";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
 import DOM from "../../webflow/webflow_modules/Builtin/components/DOM";
@@ -128,6 +130,8 @@ export type FooterProps = {};
  * @see {@link https://ditto-preprod.design.webflow.com | Source site in Webflow}
  */
 export function Footer({}: FooterProps) {
+  const locale = useLocale();
+  const pathname = usePathname();
   const [blogPosts, setBlogPosts] = useState<any[]>([]);
   const [newsItems, setNewsItems] = useState<any[]>([]);
 
@@ -169,7 +173,7 @@ export function Footer({}: FooterProps) {
                   button={false}
                   className={"footer_linkblock"}
                   options={{
-                    href: "/en/",
+                    href: `/${locale}/`,
                   }}
                 >
                   <Image
@@ -213,12 +217,12 @@ export function Footer({}: FooterProps) {
                   <Block className={"w-locales-list"} tag={"div"}>
                     <Block className={"w-locales-items"} tag={"div"} role={"list"}>
                       <Block className={"w-locales-item"} tag={"div"} role={"listitem"}>
-                        <Link block={""} button={false} options={{ href: "/en/" }}>
+                        <Link block={""} button={false} options={{ href: switchLocalePath(pathname, "en") }}>
                           {"English"}
                         </Link>
                       </Block>
                       <Block className={"w-locales-item"} tag={"div"} role={"listitem"}>
-                        <Link block={""} button={false} options={{ href: "/fr/" }}>
+                        <Link block={""} button={false} options={{ href: switchLocalePath(pathname, "fr") }}>
                           {"Français"}
                         </Link>
                       </Block>

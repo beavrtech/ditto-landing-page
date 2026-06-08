@@ -19,18 +19,11 @@ export default async function LocaleLayout({
   const messages = (await import(`../../../messages/${locale}.json`)).default;
 
   return (
-    <html lang={locale}>
-      <head>
-        <link rel="stylesheet" href="/webflow-css/webflow-bundle.css" />
-      </head>
-      <body>
-        <NextIntlClientProvider messages={messages}>
-          <SafeDevLinkProvider>
-            <GlobalStyles />
-            {children}
-          </SafeDevLinkProvider>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages}>
+      <SafeDevLinkProvider>
+        <GlobalStyles />
+        {children}
+      </SafeDevLinkProvider>
+    </NextIntlClientProvider>
   );
 }

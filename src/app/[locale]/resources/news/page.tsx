@@ -40,7 +40,7 @@ export default async function ResourcesNewsPage({
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
-  const items = await getNews(locale as "en" | "fr", 20).catch(() => []);
+  const items = await getNews(locale as "en" | "fr").catch(() => []);
 
   return (
     <div className="page-wrapper">

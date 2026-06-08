@@ -33,13 +33,25 @@ export const routing = defineRouting({
       en: "/resources/blog",
       fr: "/ressources/blog",
     },
+    "/resources/blog/[slug]": {
+      en: "/resources/blog/[slug]",
+      fr: "/ressources/blog/[slug]",
+    },
     "/resources/guides": {
       en: "/resources/guides",
       fr: "/ressources/guides",
     },
+    "/resources/guides/[slug]": {
+      en: "/resources/guides/[slug]",
+      fr: "/ressources/guides/[slug]",
+    },
     "/resources/news": {
       en: "/resources/news",
       fr: "/ressources/news",
+    },
+    "/resources/news/[slug]": {
+      en: "/resources/news/[slug]",
+      fr: "/ressources/news/[slug]",
     },
     "/resources/events": {
       en: "/resources/events",

@@ -60,6 +60,17 @@ function HubSpotContactForm({ formId }: { formId: string }) {
         portalId: process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID_CONTACT,
         formId,
         target: "#hubspot-form-container",
+        redirectUrl: "",
+        onFormSubmitted: () => {
+          if (containerRef.current) {
+            containerRef.current.innerHTML = `
+              <div style="padding: 2rem; text-align: center;">
+                <p style="font-size: 1.375rem; font-weight: 600; color: #130E30;">Thank you!</p>
+                <p style="font-size: 1rem; color: #5F5C6E; margin-top: 0.5rem;">We'll be in touch shortly.</p>
+              </div>
+            `;
+          }
+        },
       });
       formCreated.current = true;
 

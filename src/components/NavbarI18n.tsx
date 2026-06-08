@@ -9,9 +9,10 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getBlogPosts } from "../lib/cms";
-import { localizedHref, localizedCmsHref } from "../lib/localized-paths";
+import { localizedHref, localizedCmsHref, switchLocalePath } from "../lib/localized-paths";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
 import DOM from "../../webflow/webflow_modules/Builtin/components/DOM";
@@ -48,6 +49,7 @@ export type NavbarProps = {};
 export function Navbar({}: NavbarProps) {
   const t = useTranslations("nav");
   const locale = useLocale();
+  const pathname = usePathname();
   const p = `/${locale}`;
   const [previewPosts, setPreviewPosts] = useState<any[]>([]);
 
@@ -236,7 +238,7 @@ export function Navbar({}: NavbarProps) {
                                 "text-size-1rem text-weight-600 link-hover-parent"
                               }
                               options={{
-                                href: "#",
+                                href: `${p}/frameworks`,
                               }}
                             >
                               {t("otherFrameworks")}
@@ -414,17 +416,19 @@ export function Navbar({}: NavbarProps) {
                               className={"dropdown_list1_card"}
                               tag={"div"}
                             >
-                              <DOM
+                              <Link
+                                block={""}
+                                button={false}
                                 className={
-                                  "text-size-1rem text-weight-600 link-hover-parent obflink"
+                                  "text-size-1rem text-weight-600 link-hover-parent"
                                 }
-                                data-o={
-                                  "aHR0cHM6Ly93d3cudHJ1c3RkaXR0by5jb20vZW4vcmVzb3VyY2VzL2V2ZW50cw=="
-                                }
-                                tag={"span"}
+                                options={{
+                                  href: locale === "fr" ? "https://app.livestorm.co/trustditto?lang=fr" : "https://app.livestorm.co/trustditto?lang=en",
+                                  target: "_blank",
+                                }}
                               >
                                 {t("webinars")}
-                              </DOM>
+                              </Link>
                               <Paragraph
                                 className={
                                   "text-size-0x875rem text-color-neutral hide-tablet"
@@ -715,14 +719,14 @@ export function Navbar({}: NavbarProps) {
                           <Block className={"dropdown_lang_wrapper"} tag={"div"}>
                             <Block className={"navbar_dropdown-language-links-list"} tag={"div"}>
                               <Block className={"navbar_dropdown-card-link"} tag={"div"}>
-                                <Link block={""} button={false} className={"dropdown_lang_link"} options={{ href: "/en/" }}>
+                                <Link block={""} button={false} className={"dropdown_lang_link"} options={{ href: switchLocalePath(pathname, "en") }}>
                                   {""}
                                 </Link>
                                 <Image alt={""} className={"dropdown_lang_flag"} loading={"lazy"} src={"/images/lang-en.svg"} />
                                 <Paragraph className={"text-weight-600"}>{"English"}</Paragraph>
                               </Block>
                               <Block className={"navbar_dropdown-card-link"} tag={"div"}>
-                                <Link block={""} button={false} className={"dropdown_lang_link"} options={{ href: "/fr/" }}>
+                                <Link block={""} button={false} className={"dropdown_lang_link"} options={{ href: switchLocalePath(pathname, "fr") }}>
                                   {""}
                                 </Link>
                                 <Image alt={""} className={"dropdown_lang_flag"} loading={"lazy"} src={"/images/lang-fr.svg"} />

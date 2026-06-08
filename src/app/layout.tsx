@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getLocale } from "next-intl/server";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,10 +12,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return children;
+  const locale = await getLocale();
+
+  return (
+    <html lang={locale}>
+      <head>
+        <link rel="stylesheet" href="/webflow-css/webflow-bundle.css" />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
 }

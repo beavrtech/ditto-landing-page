@@ -40,7 +40,7 @@ export default async function ResourcesGuidesPage({
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
-  const items = await getGuides(locale as "en" | "fr", 20).catch(() => []);
+  const items = await getGuides(locale as "en" | "fr").catch(() => []);
 
   return (
     <div className="page-wrapper">

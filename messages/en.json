@@ -516,7 +516,9 @@
       "category1": "Assessment, Certification & Compliance",
       "category2": "ISO Management Systems",
       "category3": "Sustainability Reporting & Disclosure"
-    }
+    },
+    "readMore": "Read more",
+    "resources": "Resources"
   },
   "aiAgents": {
     "hero": {

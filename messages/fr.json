@@ -524,7 +524,9 @@
       "category1": "\u00c9valuations, certifications et notations",
       "category2": "Normes ISO",
       "category3": "Transparence et reporting de durabilit\u00e9"
-    }
+    },
+    "readMore": "En savoir plus",
+    "resources": "Ressources"
   },
   "frameworksEcovadis": {
     "breadcrumb": "EcoVadis",
