@@ -25,7 +25,23 @@
     "careers": "Careers",
     "sme": "SME",
     "largeCompanies": "Large Companies",
-    "allCaseStudies": "All Case Studies"
+    "allCaseStudies": "All Case Studies",
+    "descEcovadis": "Achieve top sustainability ratings",
+    "descIso14001": "Build a robust environmental management system",
+    "descCdp": "Lead in environmental transparency",
+    "descCsrd": "Simplify EU sustainability reporting",
+    "descOtherFrameworks": "Showcase your performance across all frameworks",
+    "descManagementSystem": "Centralize and streamline your CSR efforts",
+    "descComplianceQuestionnaires": "Respond to compliance requests in a flash",
+    "descAiSolutions": "Your AI-powered CSR co-pilot",
+    "descSupplierEngagement": "Engage your supply chain in sustainability",
+    "descWebinars": "Watch our past CSR & compliance webinars",
+    "descCollectionEcovadis": "Access resources to succeed in your EcoVadis assessment",
+    "descCollectionCdp": "Master your CDP assessment with our dedicated resources.",
+    "descCollectionVsme": "Structure your ESG reporting with the VSME standard.",
+    "descBlog": "Explore the latest CSR & compliance trends",
+    "descGuides": "Access our guides and tools to structure your compliance",
+    "descNews": "Keep up to date with the latest Ditto news"
   },
   "hero": {
     "title": "Get the CSR recognition you deserve",
@@ -571,7 +587,10 @@
   "customerStories": {
     "breadcrumb": "Customer stories",
     "title": "500+ industry leaders choose Ditto",
-    "subtitle": "Discover how hundreds of companies use Ditto to confidently build trust and manage their CSR and compliance programs."
+    "subtitle": "Discover how hundreds of companies use Ditto to confidently build trust and manage their CSR and compliance programs.",
+    "filterFramework": "Framework",
+    "filterTeamSize": "Team Size",
+    "filterIndustry": "Industry"
   },
   "frameworksEcovadis": {
     "breadcrumb": "EcoVadis",

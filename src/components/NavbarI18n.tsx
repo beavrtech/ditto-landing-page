@@ -11,7 +11,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import { useEffect, useState } from "react";
 import { getBlogPosts } from "../lib/cms";
-import { localizedCmsHref } from "../lib/localized-paths";
+import { localizedHref, localizedCmsHref } from "../lib/localized-paths";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
 import DOM from "../../webflow/webflow_modules/Builtin/components/DOM";
@@ -162,7 +162,7 @@ export function Navbar({}: NavbarProps) {
                                 "text-size-0x875rem text-color-neutral hide-tablet"
                               }
                             >
-                              {"Achieve top sustainability ratings"}
+                              {t("descEcovadis")}
                             </Paragraph>
                           </Block>
                           <Block className={"dropdown_list1_card"} tag={"div"}>
@@ -183,7 +183,7 @@ export function Navbar({}: NavbarProps) {
                                 "text-size-0x875rem text-color-neutral hide-tablet"
                               }
                             >
-                              {"Build a robust environmental management system"}
+                              {t("descIso14001")}
                             </Paragraph>
                           </Block>
                           <Block className={"dropdown_list1_card"} tag={"div"}>
@@ -204,7 +204,7 @@ export function Navbar({}: NavbarProps) {
                                 "text-size-0x875rem text-color-neutral hide-tablet"
                               }
                             >
-                              {"Lead in environmental transparency"}
+                              {t("descCdp")}
                             </Paragraph>
                           </Block>
                           <Block className={"dropdown_list1_card"} tag={"div"}>
@@ -225,7 +225,7 @@ export function Navbar({}: NavbarProps) {
                                 "text-size-0x875rem text-color-neutral hide-tablet"
                               }
                             >
-                              {"Simplify EU sustainability reporting"}
+                              {t("descCsrd")}
                             </Paragraph>
                           </Block>
                           <Block className={"dropdown_list1_card"} tag={"div"}>
@@ -247,7 +247,7 @@ export function Navbar({}: NavbarProps) {
                               }
                             >
                               {
-                                "Showcase your performance across all frameworks"
+                                t("descOtherFrameworks")
                               }
                             </Paragraph>
                           </Block>
@@ -299,7 +299,7 @@ export function Navbar({}: NavbarProps) {
                                   "text-size-0x875rem text-color-neutral hide-tablet"
                                 }
                               >
-                                {"Centralize and streamline your CSR efforts"}
+                                {t("descManagementSystem")}
                               </Paragraph>
                             </Block>
                             <Block
@@ -323,7 +323,7 @@ export function Navbar({}: NavbarProps) {
                                   "text-size-0x875rem text-color-neutral hide-tablet"
                                 }
                               >
-                                {"Respond to compliance requests in a flash"}
+                                {t("descComplianceQuestionnaires")}
                               </Paragraph>
                             </Block>
                             <Block
@@ -347,7 +347,7 @@ export function Navbar({}: NavbarProps) {
                                   "text-size-0x875rem text-color-neutral hide-tablet"
                                 }
                               >
-                                {"Your AI-powered CSR co-pilot"}
+                                {t("descAiSolutions")}
                               </Paragraph>
                             </Block>
                             <Block
@@ -371,7 +371,7 @@ export function Navbar({}: NavbarProps) {
                                   "text-size-0x875rem text-color-neutral hide-tablet"
                                 }
                               >
-                                {"Engage your supply chain in sustainability"}
+                                {t("descSupplierEngagement")}
                               </Paragraph>
                             </Block>
                           </Block>
@@ -383,7 +383,7 @@ export function Navbar({}: NavbarProps) {
                 <NavbarLink
                   className={"navbar1_link"}
                   options={{
-                    href: `${p}/customer-stories`,
+                    href: localizedHref("/customer-stories", locale),
                   }}
                 >
                   {t("customers")}
@@ -430,7 +430,7 @@ export function Navbar({}: NavbarProps) {
                                   "text-size-0x875rem text-color-neutral hide-tablet"
                                 }
                               >
-                                {"Watch our past CSR & compliance webinars"}
+                                {t("descWebinars")}
                               </Paragraph>
                             </Block>
                             <Block
@@ -455,7 +455,7 @@ export function Navbar({}: NavbarProps) {
                                 }
                               >
                                 {
-                                  "Access resources to succeed in your EcoVadis assessment"
+                                  t("descCollectionEcovadis")
                                 }
                               </Paragraph>
                             </Block>
@@ -481,7 +481,7 @@ export function Navbar({}: NavbarProps) {
                                 }
                               >
                                 {
-                                  "Master your CDP assessment with our dedicated resources."
+                                  t("descCollectionCdp")
                                 }
                               </Paragraph>
                             </Block>
@@ -507,7 +507,7 @@ export function Navbar({}: NavbarProps) {
                                 }
                               >
                                 {
-                                  "Structure your ESG reporting with the VSME standard."
+                                  t("descCollectionVsme")
                                 }
                               </Paragraph>
                             </Block>
@@ -522,7 +522,7 @@ export function Navbar({}: NavbarProps) {
                                   "text-size-1rem text-weight-600 link-hover-parent"
                                 }
                                 options={{
-                                  href: `${p}/resources`,
+                                  href: localizedHref("/resources", locale),
                                 }}
                               >
                                 {t("seeAllResources")}
@@ -542,7 +542,7 @@ export function Navbar({}: NavbarProps) {
                                   "text-size-1rem text-weight-600 link-hover-parent"
                                 }
                                 options={{
-                                  href: `${p}/resources/blog`,
+                                  href: localizedHref("/resources/blog", locale),
                                 }}
                               >
                                 {t("blog")}
@@ -552,7 +552,7 @@ export function Navbar({}: NavbarProps) {
                                   "text-size-0x875rem text-color-neutral hide-tablet"
                                 }
                               >
-                                {"Explore the latest CSR & compliance trends"}
+                                {t("descBlog")}
                               </Paragraph>
                             </Block>
                             <Block
@@ -567,7 +567,7 @@ export function Navbar({}: NavbarProps) {
                                   "text-size-1rem text-weight-600 link-hover-parent"
                                 }
                                 options={{
-                                  href: `${p}/resources/guides`,
+                                  href: localizedHref("/resources/guides", locale),
                                 }}
                               >
                                 {t("guides")}
@@ -578,7 +578,7 @@ export function Navbar({}: NavbarProps) {
                                 }
                               >
                                 {
-                                  "Access our guides and tools to structure your compliance"
+                                  t("descGuides")
                                 }
                               </Paragraph>
                             </Block>
@@ -594,7 +594,7 @@ export function Navbar({}: NavbarProps) {
                                   "text-size-1rem text-weight-600 link-hover-parent"
                                 }
                                 options={{
-                                  href: `${p}/resources/news`,
+                                  href: localizedHref("/resources/news", locale),
                                 }}
                               >
                                 {t("news")}
@@ -604,7 +604,7 @@ export function Navbar({}: NavbarProps) {
                                   "text-size-0x875rem text-color-neutral hide-tablet"
                                 }
                               >
-                                {"Keep up to date with the latest Ditto news"}
+                                {t("descNews")}
                               </Paragraph>
                             </Block>
                           </Block>

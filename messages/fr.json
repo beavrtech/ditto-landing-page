@@ -25,7 +25,23 @@
     "careers": "Carrières",
     "sme": "PME",
     "largeCompanies": "Grandes entreprises",
-    "allCaseStudies": "Tous les témoignages"
+    "allCaseStudies": "Tous les témoignages",
+    "descEcovadis": "Obtenez les meilleures notes en durabilité",
+    "descIso14001": "Construisez un système de management environnemental solide",
+    "descCdp": "Excellez en transparence environnementale",
+    "descCsrd": "Simplifiez votre reporting de durabilité européen",
+    "descOtherFrameworks": "Valorisez votre performance sur tous les référentiels",
+    "descManagementSystem": "Centralisez et optimisez vos démarches RSE",
+    "descComplianceQuestionnaires": "Répondez aux demandes de conformité en un éclair",
+    "descAiSolutions": "Votre copilote RSE propulsé par l'IA",
+    "descSupplierEngagement": "Engagez votre chaîne d'approvisionnement dans la durabilité",
+    "descWebinars": "Regardez nos webinaires RSE et conformité",
+    "descCollectionEcovadis": "Accédez aux ressources pour réussir votre évaluation EcoVadis",
+    "descCollectionCdp": "Maîtrisez votre évaluation CDP avec nos ressources dédiées.",
+    "descCollectionVsme": "Structurez votre reporting ESG avec le standard VSME.",
+    "descBlog": "Explorez les dernières tendances RSE et conformité",
+    "descGuides": "Accédez à nos guides et outils pour structurer votre conformité",
+    "descNews": "Restez informé des dernières actualités Ditto"
   },
   "hero": {
     "title": "Obtenez enfin la médaille que vous méritez",
@@ -359,7 +375,10 @@
   "customerStories": {
     "breadcrumb": "Témoignages clients",
     "title": "Plus de 500 leaders de l'industrie choisissent Ditto",
-    "subtitle": "Découvrez comment des centaines d'entreprises utilisent Ditto pour gérer en toute confiance leurs programmes RSE et conformité."
+    "subtitle": "Découvrez comment des centaines d'entreprises utilisent Ditto pour gérer en toute confiance leurs programmes RSE et conformité.",
+    "filterFramework": "Référentiel",
+    "filterTeamSize": "Taille d'équipe",
+    "filterIndustry": "Industrie"
   },
   "manifesto": {
     "breadcrumb": "Manifeste",
