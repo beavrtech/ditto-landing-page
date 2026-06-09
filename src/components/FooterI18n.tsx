@@ -9,18 +9,12 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import { switchLocalePath } from "../lib/localized-paths";
+import { switchLocalePath, localizedHref, localizedCmsHref } from "../lib/localized-paths";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
 import DOM from "../../webflow/webflow_modules/Builtin/components/DOM";
-import FormButton from "../../webflow/webflow_modules/Form/components/FormButton";
-import FormErrorMessage from "../../webflow/webflow_modules/Form/components/FormErrorMessage";
-import FormForm from "../../webflow/webflow_modules/Form/components/FormForm";
-import FormSuccessMessage from "../../webflow/webflow_modules/Form/components/FormSuccessMessage";
-import FormTextInput from "../../webflow/webflow_modules/Form/components/FormTextInput";
-import FormWrapper from "../../webflow/webflow_modules/Form/components/FormWrapper";
 import HtmlEmbed from "../../webflow/webflow_modules/Embed/components/HtmlEmbed";
 import Image from "../../webflow/webflow_modules/Basic/components/Image";
 import Link from "../../webflow/webflow_modules/Basic/components/Link";
@@ -136,25 +130,28 @@ export type FooterProps = {
 export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNewsItems }: FooterProps) {
   const locale = useLocale();
   const pathname = usePathname();
+  const t = useTranslations("footer");
+  const tNav = useTranslations("nav");
   const [clientBlogPosts, setClientBlogPosts] = useState<any[]>(serverBlogPosts || []);
   const [clientNewsItems, setClientNewsItems] = useState<any[]>(serverNewsItems || []);
 
   useEffect(() => {
     if (serverBlogPosts && serverNewsItems) return;
     if (!serverBlogPosts) {
-      getBlogPosts("en", 4)
+      getBlogPosts(locale as "en" | "fr", 4)
         .then((data) => setClientBlogPosts(data || []))
         .catch(() => {});
     }
     if (!serverNewsItems) {
-      getNews("en", 4)
+      getNews(locale as "en" | "fr", 4)
         .then((data) => setClientNewsItems(data || []))
         .catch(() => {});
     }
-  }, [serverBlogPosts, serverNewsItems]);
+  }, [locale, serverBlogPosts, serverNewsItems]);
 
   const blogPosts = serverBlogPosts || clientBlogPosts;
   const newsItems = serverNewsItems || clientNewsItems;
+  const prefix = `/${locale}`;
 
   return (
     <div
@@ -185,7 +182,7 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                   button={false}
                   className={"footer_linkblock"}
                   options={{
-                    href: `/${locale}/`,
+                    href: `${prefix}/`,
                   }}
                 >
                   <Image
@@ -202,9 +199,7 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                   <Block className={"spacer-0x25rem"} tag={"div"} />
                 </Block>
                 <Paragraph className={"heading-size-1x375rem"}>
-                  {"Your CSR and"}
-                  <br />
-                  {"compliance copilot"}
+                  {t("tagline")}
                 </Paragraph>
                 <Block className={"spacer-2rem"} tag={"div"} />
                 <ElementSocialproofTrustpilot />
@@ -244,61 +239,61 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                 <Block className={"spacer-2rem"} tag={"div"} />
                 <Block className={"footer_legal_list"} tag={"div"}>
                   <Paragraph className={"text-size-0x875rem text-weight-600"}>
-                    {"© 2025 Ditto."}
+                    {t("copyright", { year: new Date().getFullYear() })}
                   </Paragraph>
                   <Link
                     block={""}
                     button={false}
                     className={"text-size-0x875rem"}
                     options={{
-                      href: "/en/legal/terms-and-conditions",
+                      href: localizedHref("/legal/terms-and-conditions", locale),
                     }}
                   >
-                    {"Terms"}
+                    {t("terms")}
                   </Link>
                   <Link
                     block={""}
                     button={false}
                     className={"text-size-0x875rem"}
                     options={{
-                      href: "/en/legal/privacy-policy",
+                      href: localizedHref("/legal/privacy-policy", locale),
                     }}
                   >
-                    {"Privacy"}
+                    {t("privacy")}
                   </Link>
                   <Link
                     block={""}
                     button={false}
                     className={"text-size-0x875rem"}
                     options={{
-                      href: "/en/legal/legal-notices",
+                      href: localizedHref("/legal/legal-notices", locale),
                     }}
                   >
-                    {"Legal notices"}
+                    {t("legal")}
                   </Link>
                 </Block>
               </Block>
               <Block className={"footer_navigation"} tag={"nav"}>
                 <Block className={"footer_navigation_col"} tag={"div"}>
                   <Paragraph className={"text-size-1rem text-weight-600"}>
-                    {"Frameworks"}
+                    {t("frameworks")}
                   </Paragraph>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/frameworks/ecovadis",
+                      href: `${prefix}/frameworks/ecovadis`,
                     }}
                   >
-                    {"Ecovadis"}
+                    {"EcoVadis"}
                   </Link>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/frameworks/cdp",
+                      href: `${prefix}/frameworks/cdp`,
                     }}
                   >
                     {"CDP"}
@@ -308,7 +303,7 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/frameworks/csrd",
+                      href: `${prefix}/frameworks/csrd`,
                     }}
                   >
                     {"CSRD"}
@@ -318,7 +313,7 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/frameworks/iso-14001",
+                      href: `${prefix}/frameworks/iso-14001`,
                     }}
                   >
                     {"ISO 14001"}
@@ -326,153 +321,153 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                 </Block>
                 <Block className={"footer_navigation_col"} tag={"div"}>
                   <Paragraph className={"text-size-1rem text-weight-600"}>
-                    {"Solutions"}
+                    {t("solutions")}
                   </Paragraph>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/solutions/management-system",
+                      href: `${prefix}/solutions/management-system`,
                     }}
                   >
-                    {"Management System"}
+                    {tNav("managementSystem")}
                   </Link>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/solutions/compliance-questionnaires",
+                      href: `${prefix}/solutions/compliance-questionnaires`,
                     }}
                   >
-                    {"Compliance questionnaire"}
+                    {tNav("complianceQuestionnaires")}
                   </Link>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/solutions/ai-solutions",
+                      href: `${prefix}/solutions/ai-solutions`,
                     }}
                   >
-                    {"Artificial Intelligence"}
+                    {tNav("aiSolutions")}
                   </Link>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/solutions/supplier-engagement",
+                      href: `${prefix}/solutions/supplier-engagement`,
                     }}
                   >
-                    {"Supplier Engagement"}
+                    {tNav("supplierEngagement")}
                   </Link>
                 </Block>
                 <Block className={"footer_navigation_col"} tag={"div"}>
                   <Paragraph className={"text-size-1rem text-weight-600"}>
-                    {"Customers"}
+                    {t("customers")}
                   </Paragraph>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/customer-stories?team-size_equal=100-250",
+                      href: localizedHref("/customer-stories", locale) + "?team-size_equal=100-250",
                     }}
                   >
-                    {"SME"}
+                    {t("sme")}
                   </Link>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/customer-stories?team-size_equal=1000-5000",
+                      href: localizedHref("/customer-stories", locale) + "?team-size_equal=1000-5000",
                     }}
                   >
-                    {"Large Companies"}
+                    {t("largeCompanies")}
                   </Link>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/customer-stories",
+                      href: localizedHref("/customer-stories", locale),
                     }}
                   >
-                    {"All Case Studies"}
+                    {t("allCaseStudies")}
                   </Link>
                 </Block>
                 <Block className={"footer_navigation_col"} tag={"div"}>
                   <Paragraph className={"text-size-1rem text-weight-600"}>
-                    {"Resources"}
+                    {t("resources")}
                   </Paragraph>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/resources",
+                      href: localizedHref("/resources", locale),
                     }}
                   >
-                    {"All"}
+                    {t("all")}
                   </Link>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/resources/blog",
+                      href: localizedHref("/resources/blog", locale),
                     }}
                   >
-                    {"Blog"}
+                    {tNav("blog")}
                   </Link>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/resources/news",
+                      href: localizedHref("/resources/news", locale),
                     }}
                   >
-                    {"News"}
+                    {tNav("news")}
                   </Link>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/resources/guides",
+                      href: localizedHref("/resources/guides", locale),
                     }}
                   >
-                    {"Guides"}
+                    {tNav("guides")}
                   </Link>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "https://app.livestorm.co/trustditto?lang=en",
+                      href: `https://app.livestorm.co/trustditto?lang=${locale}`,
                       target: "_blank",
                     }}
                   >
-                    {"Events"}
+                    {t("events")}
                   </Link>
                 </Block>
                 <Block className={"footer_navigation_col"} tag={"div"}>
                   <Paragraph className={"text-size-1rem text-weight-600"}>
-                    {"About Us"}
+                    {t("about")}
                   </Paragraph>
                   <Link
                     block={""}
                     button={false}
                     className={"link-size-1rem"}
                     options={{
-                      href: "/en/manifesto",
+                      href: `${prefix}/manifesto`,
                     }}
                   >
-                    {"Manifesto"}
+                    {tNav("manifesto")}
                   </Link>
                   <DOM
                     className={"link-size-1rem obflink"}
@@ -481,7 +476,7 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                     }
                     tag={"span"}
                   >
-                    {"Careers"}
+                    {tNav("careers")}
                   </DOM>
                 </Block>
                 <Block
@@ -489,7 +484,7 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                   tag={"div"}
                 >
                   <Paragraph className={"text-size-1rem text-weight-600"}>
-                    {"Blog"}
+                    {tNav("blog")}
                   </Paragraph>
                   {blogPosts.map((post) => (
                     <Link
@@ -497,7 +492,7 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                       block={""}
                       button={false}
                       className={"link-size-1rem"}
-                      options={{ href: `/en/resources/blog/${post.slug}` }}
+                      options={{ href: localizedCmsHref("/resources/blog", post.slug, post.slug_fr, locale) }}
                     >
                       {post.name}
                     </Link>
@@ -508,7 +503,7 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                   tag={"div"}
                 >
                   <Paragraph className={"text-size-1rem text-weight-600"}>
-                    {"News"}
+                    {tNav("news")}
                   </Paragraph>
                   {newsItems.map((item) => (
                     <Link
@@ -516,7 +511,7 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                       block={""}
                       button={false}
                       className={"link-size-1rem"}
-                      options={{ href: `/en/resources/news/${item.slug}` }}
+                      options={{ href: localizedCmsHref("/resources/news", item.slug, item.slug_fr, locale) }}
                     >
                       {item.name}
                     </Link>
