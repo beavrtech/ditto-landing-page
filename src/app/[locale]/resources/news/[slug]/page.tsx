@@ -5,7 +5,8 @@ import { Footer } from "../../../../../components/FooterI18n";
 import { SectionBreadcrumbs } from "../../../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
-import { getNewsItemBySlug } from "../../../../../lib/cms";
+import { getNewsItemBySlug, getFeaturedGuide } from "../../../../../lib/cms";
+import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
 
 export default async function NewsDetailPage({
@@ -19,6 +20,9 @@ export default async function NewsDetailPage({
 
   const item = await getNewsItemBySlug(slug, locale as "en" | "fr");
   if (!item) notFound();
+
+  const bodyHtml = item.body ? injectHeadingIds(item.body) : "";
+  const guide = await getFeaturedGuide(locale as "en" | "fr").catch(() => null);
 
   // Author can be a reference object or inline fields
   const authorObj = item.author;
@@ -106,8 +110,8 @@ export default async function NewsDetailPage({
           </section>
         </div>
 
-        {/* Article body */}
-        {item.body && (
+        {/* Article body + sidebar */}
+        {bodyHtml && (
           <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
             <section className="post_section">
               <div className="padding-global">
@@ -116,29 +120,10 @@ export default async function NewsDetailPage({
                   <div className="post_grid">
                     <div className="post_main">
                       <div className="post_content">
-                        <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: item.body }} />
+                        <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
                       </div>
                     </div>
-                    {/* Sidebar */}
-                    <div className="post_sidebar">
-                      <div className="post_sidebar_cta">
-                        <p className="heading-size-1x375rem">
-                          {locale === "fr"
-                            ? "Conformité RSE : on vous accompagne (CSRD, EcoVadis, etc.) !"
-                            : "CSR compliance: we'll guide you (CSRD, EcoVadis, etc.)!"}
-                        </p>
-                        <div className="spacer-0x75rem" />
-                        <p className="text-size-1rem">
-                          {locale === "fr"
-                            ? "Avec Ditto, améliorez votre performance RSE et renforcez la confiance de vos partenaires."
-                            : "With Ditto, improve your CSR performance and boost your partners' confidence."}
-                        </p>
-                        <div className="spacer-1x5rem" />
-                        <a data-wf--button--variant="secondary" href={localizedHref("/get-started", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">
-                          <div>{locale === "fr" ? "Contactez-nous" : "Contact Us"}</div>
-                        </a>
-                      </div>
-                    </div>
+                    <ArticleSidebar body={bodyHtml} guide={guide} locale={locale} />
                   </div>
                 </div>
                 <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" data-wf--padding--space="medium-6rem" />

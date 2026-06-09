@@ -411,6 +411,16 @@
         "title": "UN Global Compact",
         "description": "Our membership in the UN Global Compact means we're putting our values to work to build a sustainable business and a better world."
       }
+    },
+    "careersIntro": {
+      "label": "Careers",
+      "title": "We're all copilots on this journey",
+      "description": "This work is about building better together—and that starts with our team. If you want to work on the future of sustainable business, we'd love to hear from you.",
+      "cta": "Explore open roles"
+    },
+    "investors": {
+      "title": "Our investors",
+      "subtitle": "Partnership is in our DNA and we're proud to work with many of the best."
     }
   },
   "careers": {

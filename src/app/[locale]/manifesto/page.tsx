@@ -9,8 +9,6 @@ import { SectionBreadcrumbs } from "../../../../webflow/sections/SectionBreadcru
 import { SectionHero2 } from "../../../../webflow/sections/SectionHero2";
 import { SectionFeaturesHeader } from "../../../../webflow/sections/SectionFeaturesHeader";
 import { SectionFeature } from "../../../../webflow/sections/SectionFeature";
-import { SectionCareersIntro } from "../../../../webflow/sections/SectionCareersIntro";
-import { SectionInvestors } from "../../../../webflow/sections/SectionInvestors";
 import { SectionCta } from "../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../webflow/devlinkScope";
 
@@ -99,7 +97,43 @@ export default function ManifestoPage() {
         />
 
         {/* 7. Careers intro */}
-        <SectionCareersIntro />
+        <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
+          <section className="careers-intro_section">
+            <div className="padding-global">
+              <div data-wf--padding--space="medium-6rem" className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" />
+              <div className="show-tablet">
+                <div data-wf--padding--space="large-9rem" className="spacer-component" />
+              </div>
+              <div className="container-64rem">
+                <div className="careers-intro_component">
+                  <div className="careers-intro_image_wrapper">
+                    <img alt="" className="media-full-size" loading="lazy" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b2bf2bcf770c96ef396c_manifesto.avif" />
+                  </div>
+                  <div className="careers-intro_content_wrapper">
+                    <div className="label">{t("manifesto.careersIntro.label")}</div>
+                    <div className="spacer-1x5rem" />
+                    <h2 className="heading-size-3rem">{t("manifesto.careersIntro.title")}</h2>
+                    <div className="spacer-1x5rem" />
+                    <p className="text-size-1x375rem">{t("manifesto.careersIntro.description")}</p>
+                    <div className="spacer-1x5rem" />
+                    <div className="button-group">
+                      <a href={`${prefix}/careers`} className="button w-inline-block">
+                        <div>{t("manifesto.careersIntro.cta")}</div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="show-tablet">
+                <div data-wf--padding--space="medium-6rem" className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" />
+              </div>
+              <div data-wf--padding--space="medium-6rem" className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" />
+            </div>
+            <div className="layer-4">
+              <div data-wf--background--color="primary" className="background" />
+            </div>
+          </section>
+        </div>
 
         {/* 8. Carousel - "We're committed to a sustainable future" - INLINE */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }} ref={carouselRef}>
@@ -188,7 +222,33 @@ export default function ManifestoPage() {
         </div>
 
         {/* 9. Investors */}
-        <SectionInvestors />
+        <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
+          <section className="generic_section">
+            <div className="padding-global">
+              <div data-wf--padding--space="small-3rem" className="spacer-component" />
+              <div className="container-84rem">
+                <div className="header">
+                  <h2 className="heading-size-3rem">{t("manifesto.investors.title")}</h2>
+                  <div className="spacer-0x75rem" />
+                  <p className="text-size-1rem">{t("manifesto.investors.subtitle")}</p>
+                  <div className="spacer-2rem" />
+                  <div className="investors_list">
+                    <img alt="" loading="lazy" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b96085a32e7106c24bfb_nine.avif" width={59} />
+                    <img alt="" className="mix-blend-mode-multiply" loading="lazy" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b9606ef3fedec0757bf1_purple.avif" width={70} />
+                    <img alt="" className="mix-blend-mode-multiply" loading="lazy" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b960ce58e09d2418ad5e_better-angle.avif" width={78} />
+                    <img alt="" className="mix-blend-mode-multiply" loading="lazy" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b96042c32bcf5e05cab4_aonia.avif" width={80} />
+                    <img alt="" className="mix-blend-mode-multiply" loading="lazy" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b960f81118f10549ee7a_kima-ventures.avif" width={80} />
+                    <img alt="" className="mix-blend-mode-multiply" loading="lazy" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b960ce3117638f74790e_motier-ventures.avif" width={120} />
+                  </div>
+                </div>
+              </div>
+              <div data-wf--padding--space="small-3rem" className="spacer-component" />
+            </div>
+            <div className="layer-4">
+              <div data-wf--background--color="secondary" className="background w-variant-d4e67767-ab3f-6e5c-2116-e9a6d2688920" />
+            </div>
+          </section>
+        </div>
 
         {/* 10. Blog preview - CMS driven, left as NotSupported placeholder */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>

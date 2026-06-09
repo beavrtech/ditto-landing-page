@@ -2,10 +2,11 @@ import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../../../../components/NavbarI18n";
 import { Footer } from "../../../../../components/FooterI18n";
+import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { SectionBreadcrumbs } from "../../../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
-import { getCollectionItemBySlug, getCategoryTranslations } from "../../../../../lib/cms";
+import { getCollectionItemBySlug, getCategoryTranslations, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
 
 const FRAMEWORK_TITLES: Record<string, string> = {
@@ -35,9 +36,20 @@ export default async function CollectionArticlePage({
   ]);
   if (!item) notFound();
 
+  // Fetch related guide for sidebar (fallback to featured guide)
+  let guide = item.framework_id
+    ? await getGuideByFrameworkId(item.framework_id, locale as "en" | "fr").catch(() => null)
+    : null;
+  if (!guide) {
+    guide = await getFeaturedGuide(locale as "en" | "fr").catch(() => null);
+  }
+
   const categoryLabel = item.categorie
     ? (locale === "fr" ? catTranslations[item.categorie] || item.categorie : item.categorie)
     : null;
+
+  // Inject heading IDs into body for TOC links
+  const bodyHtml = item.body ? injectHeadingIds(item.body) : "";
 
   return (
     <div className="page-wrapper">
@@ -119,8 +131,8 @@ export default async function CollectionArticlePage({
           </section>
         </div>
 
-        {/* Article body */}
-        {item.body && (
+        {/* Article body + sidebar */}
+        {bodyHtml && (
           <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
             <section className="post_section">
               <div className="padding-global">
@@ -129,29 +141,10 @@ export default async function CollectionArticlePage({
                   <div className="post_grid">
                     <div className="post_main">
                       <div className="post_content">
-                        <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: item.body }} />
+                        <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: bodyHtml }} />
                       </div>
                     </div>
-                    {/* Sidebar */}
-                    <div className="post_sidebar">
-                      <div className="post_sidebar_cta">
-                        <p className="heading-size-1x375rem">
-                          {locale === "fr"
-                            ? "Conformité RSE : on vous accompagne (CSRD, EcoVadis, etc.) !"
-                            : "CSR compliance: we'll guide you (CSRD, EcoVadis, etc.)!"}
-                        </p>
-                        <div className="spacer-0x75rem" />
-                        <p className="text-size-1rem">
-                          {locale === "fr"
-                            ? "Avec Ditto, améliorez votre performance RSE et renforcez la confiance de vos partenaires."
-                            : "With Ditto, improve your CSR performance and boost your partners' confidence."}
-                        </p>
-                        <div className="spacer-1x5rem" />
-                        <a data-wf--button--variant="secondary" href={localizedHref("/get-started", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">
-                          <div>{locale === "fr" ? "Contactez-nous" : "Contact Us"}</div>
-                        </a>
-                      </div>
-                    </div>
+                    <ArticleSidebar body={bodyHtml} guide={guide} locale={locale} />
                   </div>
                 </div>
                 <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" data-wf--padding--space="medium-6rem" />
@@ -167,7 +160,7 @@ export default async function CollectionArticlePage({
           title={t("cta.title")}
           paragraph={t("cta.subtitle")}
           buttonText={t("cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: localizedHref("/get-started", locale) }}
         />
 
         <Footer />

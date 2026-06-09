@@ -31,7 +31,8 @@ import { Background } from "../../webflow/Background";
 import { ElementSocialproofTrustpilot } from "../../webflow/elements/ElementSocialproofTrustpilot";
 import { Padding } from "../../webflow/Padding";
 
-const HUBSPOT_PORTAL_ID = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID!;
+// Portal ID is numeric, form ID is the HubSpot form UUID
+const HUBSPOT_PORTAL_ID = process.env.NEXT_PUBLIC_HUBSPOT_PORTAL_ID_CONTACT!;
 const HUBSPOT_FORM_ID = process.env.NEXT_PUBLIC_HUBSPOT_FORM_ID!;
 
 function FooterNewsletter() {

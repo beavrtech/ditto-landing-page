@@ -704,6 +704,72 @@ export async function getCollectionItemBySlug(
 }
 
 // ============================================================
+// GUIDE BY FRAMEWORK (for sidebar)
+// ============================================================
+
+export async function getGuideByFrameworkId(frameworkId: string, locale: Locale) {
+  // First try via tag_id direct FK
+  let { data } = await supabase
+    .from("guides")
+    .select("*, tag:frameworks!guides_tag_id_fkey(*)")
+    .eq("published", true)
+    .eq("archived", false)
+    .eq("tag_id", frameworkId)
+    .order("date", { ascending: false })
+    .limit(1)
+    .single();
+
+  // If no direct match, try via guide_display_frameworks junction
+  if (!data) {
+    const { data: junction } = await supabase
+      .from("guide_display_frameworks")
+      .select("guide_id")
+      .eq("framework_id", frameworkId)
+      .limit(1)
+      .single();
+
+    if (junction) {
+      const { data: guide } = await supabase
+        .from("guides")
+        .select("*, tag:frameworks!guides_tag_id_fkey(*)")
+        .eq("id", junction.guide_id)
+        .eq("published", true)
+        .eq("archived", false)
+        .single();
+      data = guide;
+    }
+  }
+
+  if (!data) return null;
+
+  return {
+    ...data,
+    name: localized(data, "name", locale),
+    description: localized(data, "description", locale),
+    slug_fr: data.slug_fr,
+  };
+}
+
+const DEFAULT_GUIDE_SLUG = "ecovadis-guide-3-weeks-to-succeed-in-your-csr-assessment";
+
+export async function getFeaturedGuide(locale: Locale) {
+  const { data } = await supabase
+    .from("guides")
+    .select("*, tag:frameworks!guides_tag_id_fkey(*)")
+    .eq("slug", DEFAULT_GUIDE_SLUG)
+    .single();
+
+  if (!data) return null;
+
+  return {
+    ...data,
+    name: localized(data, "name", locale),
+    description: localized(data, "description", locale),
+    slug_fr: data.slug_fr,
+  };
+}
+
+// ============================================================
 // COMBINED: All resources (blog + guides + news) for the resources hub
 // ============================================================
 

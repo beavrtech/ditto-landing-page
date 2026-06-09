@@ -419,6 +419,16 @@
         "title": "Pacte mondial des Nations Unies",
         "description": "Notre adh\u00e9sion au Pacte mondial des Nations Unies signifie que nous mettons nos valeurs au service d\u2019une entreprise durable et d\u2019un monde meilleur."
       }
+    },
+    "careersIntro": {
+      "label": "Carri\u00e8res",
+      "title": "Nous sommes tous copilotes dans cette aventure",
+      "description": "Ce travail consiste \u00e0 construire mieux ensemble, et cela commence par notre \u00e9quipe. Si vous voulez travailler sur l\u2019avenir de l\u2019entreprise durable, nous serions ravis de vous entendre.",
+      "cta": "D\u00e9couvrir les postes ouverts"
+    },
+    "investors": {
+      "title": "Nos investisseurs",
+      "subtitle": "Le partenariat est dans notre ADN et nous sommes fiers de travailler avec les meilleurs."
     }
   },
   "careers": {
