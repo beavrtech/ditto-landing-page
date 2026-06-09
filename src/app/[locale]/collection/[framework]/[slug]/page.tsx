@@ -9,6 +9,8 @@ import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
 import { getCollectionItemBySlug, getCategoryTranslations, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
+import { transformRichText } from "../../../../../lib/rich-text";
+import { ExploreArticlesSection } from "../../../../../components/ExploreArticlesSection";
 
 export async function generateMetadata({
   params,
@@ -64,7 +66,7 @@ export default async function CollectionArticlePage({
     : null;
 
   // Inject heading IDs into body for TOC links
-  const bodyHtml = item.body ? injectHeadingIds(item.body) : "";
+  const bodyHtml = item.body ? injectHeadingIds(transformRichText(item.body)) : "";
 
   return (
     <div className="page-wrapper">
@@ -170,6 +172,9 @@ export default async function CollectionArticlePage({
             </section>
           </div>
         )}
+
+        {/* Explore [Framework] articles */}
+        <ExploreArticlesSection framework={framework} locale={locale} />
 
         <SectionCta
           title={t("cta.title")}

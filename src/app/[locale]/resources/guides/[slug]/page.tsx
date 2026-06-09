@@ -8,6 +8,7 @@ import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
 import { getGuideBySlug } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
+import { transformRichText } from "../../../../../lib/rich-text";
 
 export async function generateMetadata({
   params,
@@ -203,7 +204,7 @@ export default async function GuideDetailPage({
                 <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" data-wf--padding--space="medium-6rem" />
                 <div className="container-48rem">
                   <div className="post_content">
-                    <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: item.body }} />
+                    <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(item.body) }} />
                   </div>
                 </div>
                 <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" data-wf--padding--space="medium-6rem" />

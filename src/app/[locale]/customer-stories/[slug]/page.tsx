@@ -8,6 +8,7 @@ import { SectionCta } from "../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
 import { getCustomerStoryBySlug, getCustomerStories } from "../../../../lib/cms";
 import { localizedCmsHref, localizedHref } from "../../../../lib/localized-paths";
+import { transformRichText } from "../../../../lib/rich-text";
 
 export async function generateMetadata({
   params,
@@ -141,7 +142,7 @@ export default async function CustomerStoryPage({
                     <div className="customer-intro_card">
                       <h3 className="heading-size-2rem">{locale === "fr" ? "Défis" : "Challenges"}</h3>
                       <div className="spacer-1x5rem spacer-mob-1rem" />
-                      <div className="rich-text_bullet-list w-richtext" dangerouslySetInnerHTML={{ __html: story.challenge_summary }} />
+                      <div className="rich-text_bullet-list w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(story.challenge_summary) }} />
                     </div>
                   )}
 
@@ -150,7 +151,7 @@ export default async function CustomerStoryPage({
                     <div className="customer-intro_card">
                       <h3 className="heading-size-2rem">Impact</h3>
                       <div className="spacer-1x5rem spacer-mob-1rem" />
-                      <div className="rich-text_bullet-list w-richtext" dangerouslySetInnerHTML={{ __html: story.impact_summary }} />
+                      <div className="rich-text_bullet-list w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(story.impact_summary) }} />
                     </div>
                   )}
                 </div>
@@ -176,7 +177,7 @@ export default async function CustomerStoryPage({
                         <div id="company" className="post_chapter">
                           <p className="label">{locale === "fr" ? "Entreprise" : "Company"}</p>
                           <div className="spacer-1rem" />
-                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: story.presentation }} />
+                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(story.presentation) }} />
                         </div>
                       )}
                       {story.quote && (
@@ -209,7 +210,7 @@ export default async function CustomerStoryPage({
                           <div className="spacer-2rem" />
                           <p className="label">{locale === "fr" ? "Contexte RSE" : "CSR Context"}</p>
                           <div className="spacer-1rem" />
-                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: story.contexte_rse }} />
+                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(story.contexte_rse) }} />
                         </div>
                       )}
                       {story.challenges && (
@@ -217,7 +218,7 @@ export default async function CustomerStoryPage({
                           <div className="spacer-2rem" />
                           <p className="label">{locale === "fr" ? "Défis" : "Challenges"}</p>
                           <div className="spacer-1rem" />
-                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: story.challenges }} />
+                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(story.challenges) }} />
                         </div>
                       )}
                       {story.solution && (
@@ -225,7 +226,7 @@ export default async function CustomerStoryPage({
                           <div className="spacer-2rem" />
                           <p className="label">Solution</p>
                           <div className="spacer-1rem" />
-                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: story.solution }} />
+                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(story.solution) }} />
                         </div>
                       )}
                       {story.quote_2 && (
@@ -242,7 +243,7 @@ export default async function CustomerStoryPage({
                           <div className="spacer-2rem" />
                           <p className="label">Impact</p>
                           <div className="spacer-1rem" />
-                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: story.impact }} />
+                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(story.impact) }} />
                         </div>
                       )}
                       {story.quote_3 && (
@@ -257,7 +258,7 @@ export default async function CustomerStoryPage({
                       {story.ending && (
                         <div className="post_chapter">
                           <div className="spacer-2rem" />
-                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: story.ending }} />
+                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(story.ending) }} />
                         </div>
                       )}
                     </div>{/* /post_content */}

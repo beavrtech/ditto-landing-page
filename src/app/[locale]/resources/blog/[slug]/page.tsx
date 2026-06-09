@@ -9,6 +9,7 @@ import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
 import { getBlogPostBySlug, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
+import { transformRichText } from "../../../../../lib/rich-text";
 
 export async function generateMetadata({
   params,
@@ -44,7 +45,7 @@ export default async function BlogPostPage({
   }
 
   const categoryLabel = item.category?.name ?? null;
-  const bodyHtml = item.body ? injectHeadingIds(item.body) : "";
+  const bodyHtml = item.body ? injectHeadingIds(transformRichText(item.body)) : "";
 
   return (
     <div className="page-wrapper">
