@@ -19,6 +19,7 @@ const STATIC_PAGES: { en: string; fr: string; changeFrequency: MetadataRoute.Sit
   { en: "/resources/news", fr: "/ressources/news", changeFrequency: "weekly", priority: 0.7 },
   { en: "/resources/guides", fr: "/ressources/guides", changeFrequency: "weekly", priority: 0.7 },
   { en: "/resources/events", fr: "/ressources/events", changeFrequency: "weekly", priority: 0.5 },
+  { en: "/frameworks", fr: "/frameworks", changeFrequency: "monthly", priority: 0.7 },
   { en: "/frameworks/ecovadis", fr: "/frameworks/ecovadis", changeFrequency: "monthly", priority: 0.8 },
   { en: "/frameworks/csrd", fr: "/frameworks/csrd", changeFrequency: "monthly", priority: 0.8 },
   { en: "/frameworks/cdp", fr: "/frameworks/cdp", changeFrequency: "monthly", priority: 0.8 },
@@ -31,6 +32,10 @@ const STATIC_PAGES: { en: string; fr: string; changeFrequency: MetadataRoute.Sit
   { en: "/manifesto", fr: "/manifesto", changeFrequency: "yearly", priority: 0.4 },
   { en: "/careers", fr: "/careers", changeFrequency: "monthly", priority: 0.5 },
   { en: "/ai-agents", fr: "/ai-agents", changeFrequency: "monthly", priority: 0.6 },
+  { en: "/collection/ecovadis", fr: "/collection/ecovadis", changeFrequency: "monthly", priority: 0.7 },
+  { en: "/collection/cdp", fr: "/collection/cdp", changeFrequency: "monthly", priority: 0.7 },
+  { en: "/collection/csrd", fr: "/collection/csrd", changeFrequency: "monthly", priority: 0.7 },
+  { en: "/collection/iso-14001", fr: "/collection/iso-14001", changeFrequency: "monthly", priority: 0.7 },
   { en: "/legal/terms-and-conditions", fr: "/legal/conditions-generales-dutilisation", changeFrequency: "yearly", priority: 0.2 },
   { en: "/legal/privacy-policy", fr: "/legal/politique-de-confidentialite", changeFrequency: "yearly", priority: 0.2 },
   { en: "/legal/legal-notices", fr: "/legal/mentions-legales", changeFrequency: "yearly", priority: 0.2 },
@@ -137,8 +142,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  // Authors
+  // Authors (exclude former employees)
+  const EXCLUDED_AUTHORS = ["charles-lorin", "lisa-venturi"];
   for (const author of authors || []) {
+    if (EXCLUDED_AUTHORS.includes(author.slug)) continue;
     urls.push({
       url: `${BASE_URL}/en/authors/${author.slug}`,
       changeFrequency: "monthly",
