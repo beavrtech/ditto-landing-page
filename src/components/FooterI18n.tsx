@@ -190,7 +190,7 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                     height={"auto"}
                     loading={"lazy"}
                     src={
-                      "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682d8b77e73e672cfd2353a9_ditto-logo.svg"
+                      "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682d8b77e73e672cfd2353a9_ditto-logo.svg"
                     }
                     width={"120"}
                   />

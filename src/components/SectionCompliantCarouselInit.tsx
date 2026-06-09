@@ -143,7 +143,7 @@ export function SectionCompliantCarousel({
                         <CardIcon
                           description={t("csrd.description")}
                           icon={
-                            "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ed169cfc14d8e3135faa6_Csrd.avif"
+                            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed169cfc14d8e3135faa6_csrd.avif"
                           }
                           title={<Strong>{"CSRD"}</Strong>}
                         />
@@ -155,7 +155,7 @@ export function SectionCompliantCarousel({
                         <CardIcon
                           description={t("ecovadis.description")}
                           icon={
-                            "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ed1c26a35724770ef7a90_Ecovadis.avif"
+                            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed1c26a35724770ef7a90_ecovadis.avif"
                           }
                           title={"EcoVadis"}
                         />
@@ -167,7 +167,7 @@ export function SectionCompliantCarousel({
                         <CardIcon
                           description={t("iso.description")}
                           icon={
-                            "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ed1c27d430a77816d3240_Iso.avif"
+                            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed1c27d430a77816d3240_iso.avif"
                           }
                           title={"ISO"}
                         />
@@ -179,7 +179,7 @@ export function SectionCompliantCarousel({
                         <CardIcon
                           description={t("cdp.description")}
                           icon={
-                            "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ed1c2ab419262c58ece95_Cdp.avif"
+                            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed1c2ab419262c58ece95_cdp.avif"
                           }
                           title={"CDP"}
                         />

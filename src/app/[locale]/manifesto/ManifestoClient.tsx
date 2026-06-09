@@ -103,7 +103,7 @@ export function ManifestoClient() {
             <div className="container-64rem">
               <div className="careers-intro_component">
                 <div className="careers-intro_image_wrapper">
-                  <Image alt="" className="media-full-size" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b2bf2bcf770c96ef396c_manifesto.avif" width={1200} height={630} />
+                  <Image alt="" className="media-full-size" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b2bf2bcf770c96ef396c_manifesto.avif" width={1200} height={630} />
                 </div>
                 <div className="careers-intro_content_wrapper">
                   <div className="label">{t("manifesto.careersIntro.label")}</div>
@@ -229,12 +229,12 @@ export function ManifestoClient() {
                 <p className="text-size-1rem">{t("manifesto.investors.subtitle")}</p>
                 <div className="spacer-2rem" />
                 <div className="investors_list">
-                  <Image alt="" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b96085a32e7106c24bfb_nine.avif" width={59} height={59} />
-                  <Image alt="" className="mix-blend-mode-multiply" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b9606ef3fedec0757bf1_purple.avif" width={70} height={70} />
-                  <Image alt="" className="mix-blend-mode-multiply" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b960ce58e09d2418ad5e_better-angle.avif" width={78} height={78} />
-                  <Image alt="" className="mix-blend-mode-multiply" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b96042c32bcf5e05cab4_aonia.avif" width={80} height={80} />
-                  <Image alt="" className="mix-blend-mode-multiply" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b960f81118f10549ee7a_kima-ventures.avif" width={80} height={80} />
-                  <Image alt="" className="mix-blend-mode-multiply" src="https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b960ce3117638f74790e_motier-ventures.avif" width={120} height={40} />
+                  <Image alt="" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b96085a32e7106c24bfb_nine.avif" width={59} height={59} />
+                  <Image alt="" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b9606ef3fedec0757bf1_purple.avif" width={70} height={70} />
+                  <Image alt="" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b960ce58e09d2418ad5e_better-angle.avif" width={78} height={78} />
+                  <Image alt="" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b96042c32bcf5e05cab4_aonia.avif" width={80} height={80} />
+                  <Image alt="" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b960f81118f10549ee7a_kima-ventures.avif" width={80} height={80} />
+                  <Image alt="" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b960ce3117638f74790e_motier-ventures.avif" width={120} height={40} />
                 </div>
               </div>
             </div>
