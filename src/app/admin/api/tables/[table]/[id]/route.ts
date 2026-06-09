@@ -1,14 +1,17 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getSupabaseAdmin } from "../../../../../lib/supabase-admin";
+import { getSupabaseAdmin } from "../../../../../../lib/supabase-admin";
+import { getTableConfig } from "../../../../../../lib/admin-tables";
 
-// GET: Get a single blog post
 export async function GET(
   _req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ table: string; id: string }> }
 ) {
-  const { id } = await params;
+  const { table: tableSlug, id } = await params;
+  const config = getTableConfig(tableSlug);
+  if (!config) return NextResponse.json({ error: "Unknown table" }, { status: 404 });
+
   const { data, error } = await getSupabaseAdmin()
-    .from("blog_posts")
+    .from(config.table)
     .select("*")
     .eq("id", id)
     .single();
@@ -17,19 +20,21 @@ export async function GET(
   return NextResponse.json(data);
 }
 
-// PUT: Update a blog post
 export async function PUT(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ table: string; id: string }> }
 ) {
-  const { id } = await params;
+  const { table: tableSlug, id } = await params;
+  const config = getTableConfig(tableSlug);
+  if (!config) return NextResponse.json({ error: "Unknown table" }, { status: 404 });
+
   const body = await req.json();
   delete body.id;
   delete body.created_at;
   delete body.updated_at;
 
   const { data, error } = await getSupabaseAdmin()
-    .from("blog_posts")
+    .from(config.table)
     .update(body)
     .eq("id", id)
     .select()
@@ -39,14 +44,16 @@ export async function PUT(
   return NextResponse.json(data);
 }
 
-// DELETE: Delete a blog post
 export async function DELETE(
   _req: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ table: string; id: string }> }
 ) {
-  const { id } = await params;
+  const { table: tableSlug, id } = await params;
+  const config = getTableConfig(tableSlug);
+  if (!config) return NextResponse.json({ error: "Unknown table" }, { status: 404 });
+
   const { error } = await getSupabaseAdmin()
-    .from("blog_posts")
+    .from(config.table)
     .delete()
     .eq("id", id);
 

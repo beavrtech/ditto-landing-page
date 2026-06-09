@@ -196,6 +196,7 @@ export function RichTextEditor({
       {label && <label style={{ display: "block", marginBottom: "0.5rem", fontWeight: 500, fontSize: "0.875rem" }}>{label}</label>}
       {/* Toolbar */}
       <div style={{ display: "flex", gap: "4px", flexWrap: "wrap", padding: "8px", background: "#fafafa", border: "1px solid #ddd", borderBottom: "none", borderRadius: "6px 6px 0 0" }}>
+        <button type="button" style={btnStyle(editor.isActive("heading", { level: 1 }))} onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}>H1</button>
         <button type="button" style={btnStyle(editor.isActive("heading", { level: 2 }))} onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}>H2</button>
         <button type="button" style={btnStyle(editor.isActive("heading", { level: 3 }))} onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}>H3</button>
         <button type="button" style={btnStyle(editor.isActive("bold"))} onClick={() => editor.chain().focus().toggleBold().run()}>B</button>
@@ -230,6 +231,7 @@ export function RichTextEditor({
         <div style={{ border: "1px solid #ddd", borderRadius: "0 0 6px 6px", background: "white" }}>
           <style>{`
             .ProseMirror { padding: 1rem; min-height: 300px; outline: none; }
+            .ProseMirror h1 { font-size: 2rem; font-weight: 700; margin: 2rem 0 1rem; }
             .ProseMirror h2 { font-size: 1.5rem; font-weight: 600; margin: 1.5rem 0 0.75rem; }
             .ProseMirror h3 { font-size: 1.25rem; font-weight: 600; margin: 1.25rem 0 0.5rem; }
             .ProseMirror p { margin: 0.5rem 0; line-height: 1.6; }
