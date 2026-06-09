@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../../../../components/NavbarI18n";
@@ -7,6 +8,20 @@ import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
 import { getGuideBySlug } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const item = await getGuideBySlug(slug, locale as "en" | "fr");
+  if (!item) return {};
+  return {
+    title: item.seo_title || item.name,
+    description: item.seo_meta_desc || item.description || undefined,
+  };
+}
 
 const GUIDE_FORM_CSS = `
 /* Reset HubSpot defaults inside the guide form card */
@@ -165,7 +180,7 @@ export default async function GuideDetailPage({
                     {item.form ? (
                       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: item.form }} />
                     ) : item.banner_url ? (
-                      <img src={item.banner_url} loading="lazy" alt="" className="media-full-size" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+                      <img src={item.banner_url} loading="lazy" alt={item.banner_alt_desc || ""} className="media-full-size" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
                     ) : null}
                   </div>
                 </div>

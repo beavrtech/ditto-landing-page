@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../../../components/NavbarI18n";
@@ -5,6 +6,20 @@ import { Footer } from "../../../../components/FooterI18n";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
 import { getAuthorBySlug, getBlogPosts, getNews, getGuides } from "../../../../lib/cms";
 import { localizedHref, localizedCmsHref } from "../../../../lib/localized-paths";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const author = await getAuthorBySlug(slug);
+  if (!author) return {};
+  return {
+    title: `${author.name} – Ditto`,
+    description: author.job_title || undefined,
+  };
+}
 
 export default async function AuthorPage({
   params,
@@ -110,7 +125,7 @@ export default async function AuthorPage({
                               <a href={localizedCmsHref("/resources/blog", post.slug, post.slug_fr, locale)} className="card-image w-inline-block">
                                 {post.banner_url && (
                                   <div className="card-image_thumbnail">
-                                    <img src={post.banner_url} loading="lazy" alt="" className="media-full-size" />
+                                    <img src={post.banner_url} loading="lazy" alt={post.banner_alt_desc || ""} className="media-full-size" />
                                   </div>
                                 )}
                                 <div className="card-image_content">
@@ -141,7 +156,7 @@ export default async function AuthorPage({
                               <a href={localizedCmsHref("/resources/news", item.slug, item.slug_fr, locale)} className="card-image w-inline-block">
                                 {item.banner_url && (
                                   <div className="card-image_thumbnail">
-                                    <img src={item.banner_url} loading="lazy" alt="" className="media-full-size" />
+                                    <img src={item.banner_url} loading="lazy" alt={item.banner_alt_desc || ""} className="media-full-size" />
                                   </div>
                                 )}
                                 <div className="card-image_content">
@@ -171,7 +186,7 @@ export default async function AuthorPage({
                             <a href={localizedCmsHref("/resources/guides", guide.slug, guide.slug_fr, locale)} className="card-image w-inline-block">
                               {guide.banner_url && (
                                 <div className="card-image_thumbnail">
-                                  <img src={guide.banner_url} loading="lazy" alt="" className="media-full-size" />
+                                  <img src={guide.banner_url} loading="lazy" alt={guide.banner_alt_desc || ""} className="media-full-size" />
                                 </div>
                               )}
                               <div className="card-image_content">

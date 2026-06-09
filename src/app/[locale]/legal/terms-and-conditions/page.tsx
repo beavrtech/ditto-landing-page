@@ -1,13 +1,11 @@
-"use client";
-
-import { useTranslations, useLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarI18n";
 import { Footer } from "../../../../components/FooterI18n";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
 
-export default function TermsAndConditionsPage() {
-  const t = useTranslations();
-  const locale = useLocale();
+export default async function TermsAndConditionsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations();
   const prefix = `/${locale}`;
 
   return (

@@ -1,6 +1,4 @@
-"use client";
-
-import { useTranslations, useLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Navbar } from "../../components/NavbarI18n";
 import { SectionHero } from "../../../webflow/sections/SectionHero";
 import { SectionLogostrip } from "../../components/SectionLogostripI18n";
@@ -16,9 +14,13 @@ import { DEVLINK_SCOPE_CLASS } from "../../../webflow/devlinkScope";
 import { NewsletterForm } from "../../components/NewsletterFormI18n";
 import { ExpertiseCarousel } from "../../components/ExpertiseCarousel";
 
-export default function HomePage() {
-  const t = useTranslations();
-  const locale = useLocale();
+export default async function HomePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations();
   const prefix = `/${locale}`;
 
   return (

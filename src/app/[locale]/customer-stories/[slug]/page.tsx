@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../../../components/NavbarI18n";
@@ -7,6 +8,20 @@ import { SectionCta } from "../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
 import { getCustomerStoryBySlug, getCustomerStories } from "../../../../lib/cms";
 import { localizedCmsHref, localizedHref } from "../../../../lib/localized-paths";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const story = await getCustomerStoryBySlug(slug, locale as "en" | "fr");
+  if (!story) return {};
+  return {
+    title: story.seo_title || story.name,
+    description: story.seo_meta_desc || story.description || undefined,
+  };
+}
 
 export default async function CustomerStoryPage({
   params,
@@ -61,7 +76,7 @@ export default async function CustomerStoryPage({
                   </div>
                   {story.banner_url && (
                     <div className="post-hero_banner_wrapper">
-                      <img src={story.banner_url} loading="lazy" alt="" className="media-full-size" />
+                      <img src={story.banner_url} loading="lazy" alt={story.banner_alt_desc || ""} className="media-full-size" />
                     </div>
                   )}
                 </div>
@@ -348,7 +363,7 @@ async function ReadMoreStories({ locale, currentSlug, prefix }: { locale: string
                     <a href={localizedCmsHref("/customer-stories", story.slug, story.slug_fr, locale)} className="card-image w-inline-block">
                       {story.banner_url && (
                         <div className="card-image_thumbnail">
-                          <img src={story.banner_url} loading="lazy" alt="" className="media-full-size" />
+                          <img src={story.banner_url} loading="lazy" alt={story.banner_alt_desc || ""} className="media-full-size" />
                         </div>
                       )}
                       <div className="card-image_content">

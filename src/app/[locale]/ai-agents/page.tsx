@@ -1,6 +1,4 @@
-"use client";
-
-import { useTranslations, useLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarI18n";
 import { Footer } from "../../../components/FooterI18n";
 import { DEVLINK_SCOPE_CLASS } from "../../../../webflow/devlinkScope";
@@ -25,9 +23,9 @@ const PRODUCTIVITY_AGENTS = [
   { icon: "/images/product-and-engineering.svg", key: "spreadsheet", status: "comingSoon", hasLink: false },
 ];
 
-export default function AiAgentsPage() {
-  const t = useTranslations();
-  const locale = useLocale();
+export default async function AiAgentsPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations();
   const prefix = `/${locale}`;
 
   const renderAgentCard = (agent: { icon: string; key: string; status: string; hasLink: boolean }) => (

@@ -1,6 +1,4 @@
-"use client";
-
-import { useTranslations, useLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarI18n";
 import { Footer } from "../../../components/FooterI18n";
 import { SectionBreadcrumbs } from "../../../../webflow/sections/SectionBreadcrumbs";
@@ -9,9 +7,9 @@ import { SectionLogostrip } from "../../../components/SectionLogostripI18n";
 import { SectionNumbers } from "../../../../webflow/sections/SectionNumbers";
 import { SectionCta } from "../../../../webflow/sections/SectionCta";
 
-export default function GetStartedPage() {
-  const t = useTranslations();
-  const locale = useLocale();
+export default async function GetStartedPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations();
   const prefix = `/${locale}`;
 
   return (

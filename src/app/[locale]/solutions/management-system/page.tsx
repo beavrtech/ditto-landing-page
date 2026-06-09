@@ -1,6 +1,4 @@
-"use client";
-
-import { useTranslations, useLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarI18n";
 import { Footer } from "../../../../components/FooterI18n";
 import { SectionHero } from "../../../../../webflow/sections/SectionHero";
@@ -11,9 +9,9 @@ import { SectionCta } from "../../../../../webflow/sections/SectionCta";
 import { SectionBreadcrumbs } from "../../../../../webflow/sections/SectionBreadcrumbs";
 import { Button } from "../../../../../webflow/elements/Button";
 
-export default function ManagementSystemPage() {
-  const t = useTranslations();
-  const locale = useLocale();
+export default async function ManagementSystemPage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations();
   const prefix = `/${locale}`;
 
   return (

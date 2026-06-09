@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../../../../components/NavbarI18n";
@@ -8,6 +9,20 @@ import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
 import { getCollectionItemBySlug, getCategoryTranslations, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; framework: string; slug: string }>;
+}): Promise<Metadata> {
+  const { locale, framework, slug } = await params;
+  const item = await getCollectionItemBySlug(framework, slug, locale as "en" | "fr");
+  if (!item) return {};
+  return {
+    title: item.seo_title || item.name,
+    description: item.seo_meta_desc || item.description || undefined,
+  };
+}
 
 const FRAMEWORK_TITLES: Record<string, string> = {
   ecovadis: "EcoVadis",
@@ -116,7 +131,7 @@ export default async function CollectionArticlePage({
                   </div>
                   {item.banner_url && (
                     <div className="post-hero_banner_wrapper">
-                      <img src={item.banner_url} loading="lazy" alt="" className="media-full-size" />
+                      <img src={item.banner_url} loading="lazy" alt={item.banner_alt_desc || ""} className="media-full-size" />
                     </div>
                   )}
                 </div>
