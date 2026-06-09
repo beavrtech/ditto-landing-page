@@ -156,10 +156,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  // Collection items (per framework)
+  // Collection items (per framework) — exclude linked guides (they're already in /resources/guides/)
   for (let i = 0; i < FRAMEWORKS.length; i++) {
     const fw = FRAMEWORKS[i];
-    const items = collectionResults[i] || [];
+    const allItems = collectionResults[i] || [];
+    const items = allItems.filter((item: any) => item._type !== "guide");
     for (const item of items) {
       urls.push({
         url: `${BASE_URL}/en/collection/${fw}/${item.slug}`,
