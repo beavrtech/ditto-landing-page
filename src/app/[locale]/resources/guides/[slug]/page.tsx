@@ -10,6 +10,7 @@ import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
 import { getGuideBySlug, getGuides } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
+import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -134,6 +135,14 @@ export default async function GuideDetailPage({
 
   return (
     <div className="page-wrapper">
+      <JsonLd data={articleJsonLd({
+        title: item.name,
+        description: item.description,
+        url: `https://www.trustditto.com/${locale}/resources/guides/${slug}`,
+        imageUrl: item.banner_url,
+        datePublished: item.date,
+        authorName: item.author?.name,
+      })} />
       <main className="main-wrapper">
         <Navbar />
 

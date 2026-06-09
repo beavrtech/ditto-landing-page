@@ -11,6 +11,7 @@ import { getNewsItemBySlug, getNews, getFeaturedGuide } from "../../../../../lib
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
+import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -75,6 +76,14 @@ export default async function NewsDetailPage({
 
   return (
     <div className="page-wrapper">
+      <JsonLd data={articleJsonLd({
+        title: item.name,
+        description: item.description,
+        url: `https://www.trustditto.com/${locale}/resources/news/${slug}`,
+        imageUrl: item.banner_url,
+        datePublished: item.published_date,
+        authorName: item.author?.name,
+      })} />
       <main className="main-wrapper">
         <Navbar />
 

@@ -1,0 +1,121 @@
+export function JsonLd({ data }: { data: Record<string, any> }) {
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
+export const SOFTWARE_APP_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "@id": "https://www.trustditto.com/#software",
+  name: "Ditto",
+  operatingSystem: "Web",
+  applicationCategory: "BusinessApplication",
+  url: "https://www.trustditto.com/",
+  description:
+    "Ditto is a web-based software platform that provides AI-powered tools to help companies improve sustainability, ensure regulatory compliance, and boost productivity.",
+  softwareVersion: "1.0",
+  publisher: {
+    "@type": "Organization",
+    name: "Ditto",
+    url: "https://www.trustditto.com/",
+  },
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "EUR",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    bestRating: "5",
+    worstRating: "1",
+    ratingCount: "6",
+  },
+};
+
+export const ORGANIZATION_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Ditto",
+  alternateName: "Beavr",
+  url: "https://www.trustditto.com/en",
+  logo: "https://www.trustditto.com/logo.png",
+  description:
+    "Ditto helps you level up your CSR practices and meet your partner requirements across frameworks like EcoVadis, ISO, CSRD, and CDP. Your CSR and compliance copilot.",
+  slogan: "Your CSR and compliance copilot",
+  foundingDate: "2020",
+  numberOfEmployees: "10-50",
+  availableLanguage: ["English", "French"],
+  sameAs: [
+    "https://www.trustditto.com/en",
+    "https://www.trustditto.com/fr",
+    "https://www.linkedin.com/company/trustditto/",
+  ],
+  knowsAbout: [
+    "EcoVadis",
+    "ISO 14001",
+    "CDP",
+    "CSRD",
+    "VSME",
+    "Corporate Social Responsibility",
+    "Sustainability Reporting",
+    "Compliance Management",
+  ],
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "EcoVadis Training Partner",
+      credentialCategory: "Partnership",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Friend of EFRAG",
+      credentialCategory: "Partnership",
+    },
+  ],
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    ratingCount: "6",
+    bestRating: "5",
+    worstRating: "1",
+  },
+};
+
+export function articleJsonLd({
+  title,
+  description,
+  url,
+  imageUrl,
+  datePublished,
+  authorName,
+}: {
+  title: string;
+  description?: string;
+  url: string;
+  imageUrl?: string;
+  datePublished?: string;
+  authorName?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: title,
+    ...(description && { description }),
+    url,
+    ...(imageUrl && { image: imageUrl }),
+    ...(datePublished && { datePublished }),
+    ...(authorName && {
+      author: { "@type": "Person", name: authorName },
+    }),
+    publisher: {
+      "@type": "Organization",
+      name: "Ditto",
+      url: "https://www.trustditto.com/",
+    },
+  };
+}

@@ -15,6 +15,7 @@ import { Footer } from "../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../webflow/devlinkScope";
 import { NewsletterForm } from "../../components/NewsletterFormI18n";
 import { ExpertiseCarousel } from "../../components/ExpertiseCarousel";
+import { JsonLd, ORGANIZATION_JSONLD } from "../../components/JsonLd";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -46,6 +47,7 @@ export default async function HomePage({
 
   return (
     <div className="page-wrapper">
+      <JsonLd data={ORGANIZATION_JSONLD} />
       <main className="main-wrapper">
         <Navbar />
 

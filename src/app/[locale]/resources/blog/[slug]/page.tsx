@@ -11,6 +11,7 @@ import { getBlogPostBySlug, getBlogPosts, getGuideByFrameworkId, getFeaturedGuid
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
+import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
 
 export async function generateMetadata({
   params,
@@ -74,6 +75,14 @@ export default async function BlogPostPage({
 
   return (
     <div className="page-wrapper">
+      <JsonLd data={articleJsonLd({
+        title: item.name,
+        description: item.description,
+        url: `https://www.trustditto.com/${locale}/resources/blog/${slug}`,
+        imageUrl: item.banner_url,
+        datePublished: item.date_de_publication,
+        authorName: item.author?.name,
+      })} />
       <main className="main-wrapper">
         <Navbar />
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
 import { Inter, Hedvig_Letters_Serif } from "next/font/google";
 import "./globals.css";
+import { JsonLd, SOFTWARE_APP_JSONLD } from "../components/JsonLd";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -37,6 +38,7 @@ export default async function RootLayout({
     <html lang={locale} className={`${inter.variable} ${hedvig.variable}`}>
       <head>
         <link rel="stylesheet" href="/webflow-css/webflow-bundle.css" />
+        <JsonLd data={SOFTWARE_APP_JSONLD} />
       </head>
       <body>{children}</body>
     </html>
