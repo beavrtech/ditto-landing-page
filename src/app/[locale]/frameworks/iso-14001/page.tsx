@@ -19,6 +19,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t("frameworksIso14001.title"),
     description: t("frameworksIso14001.description"),
+    alternates: {
+      canonical: `https://www.trustditto.com/${locale}/frameworks/iso-14001`,
+      languages: {
+        en: "https://www.trustditto.com/en/frameworks/iso-14001",
+        fr: "https://www.trustditto.com/fr/frameworks/iso-14001",
+      },
+    },
   };
 }
 

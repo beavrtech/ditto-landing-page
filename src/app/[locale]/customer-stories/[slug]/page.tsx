@@ -19,9 +19,20 @@ export async function generateMetadata({
   const { locale, slug } = await params;
   const story = await getCustomerStoryBySlug(slug, locale as "en" | "fr");
   if (!story) return {};
+  const enSlug = story.slug;
+  const frSlug = story.slug_fr || story.slug;
   return {
     title: story.seo_title || story.name,
     description: story.seo_meta_desc || story.description || undefined,
+    alternates: {
+      canonical: locale === "fr"
+        ? `https://www.trustditto.com/fr/cas-clients/${frSlug}`
+        : `https://www.trustditto.com/en/customer-stories/${enSlug}`,
+      languages: {
+        en: `https://www.trustditto.com/en/customer-stories/${enSlug}`,
+        fr: `https://www.trustditto.com/fr/cas-clients/${frSlug}`,
+      },
+    },
   };
 }
 

@@ -50,6 +50,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t("frameworksIndex.title"),
     description: t("frameworksIndex.description"),
+    alternates: {
+      canonical: `https://www.trustditto.com/${locale}/frameworks`,
+      languages: {
+        en: "https://www.trustditto.com/en/frameworks",
+        fr: "https://www.trustditto.com/fr/frameworks",
+      },
+    },
   };
 }
 

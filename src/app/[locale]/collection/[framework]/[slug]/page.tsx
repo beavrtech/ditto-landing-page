@@ -21,9 +21,20 @@ export async function generateMetadata({
   const { locale, framework, slug } = await params;
   const item = await getCollectionItemBySlug(framework, slug, locale as "en" | "fr");
   if (!item) return {};
+  const enSlug = item.slug;
+  const frSlug = item.slug_fr || item.slug;
   return {
     title: item.seo_title || item.name,
     description: item.seo_meta_desc || item.description || undefined,
+    alternates: {
+      canonical: locale === "fr"
+        ? `https://www.trustditto.com/fr/collection/${framework}/${frSlug}`
+        : `https://www.trustditto.com/en/collection/${framework}/${enSlug}`,
+      languages: {
+        en: `https://www.trustditto.com/en/collection/${framework}/${enSlug}`,
+        fr: `https://www.trustditto.com/fr/collection/${framework}/${frSlug}`,
+      },
+    },
   };
 }
 

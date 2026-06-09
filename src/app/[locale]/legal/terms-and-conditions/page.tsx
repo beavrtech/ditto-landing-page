@@ -10,6 +10,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t("legalTerms.title"),
     description: t("legalTerms.description"),
+    alternates: {
+      canonical: locale === "fr" ? "https://www.trustditto.com/fr/legal/conditions-generales-dutilisation" : "https://www.trustditto.com/en/legal/terms-and-conditions",
+      languages: {
+        en: "https://www.trustditto.com/en/legal/terms-and-conditions",
+        fr: "https://www.trustditto.com/fr/legal/conditions-generales-dutilisation",
+      },
+    },
   };
 }
 

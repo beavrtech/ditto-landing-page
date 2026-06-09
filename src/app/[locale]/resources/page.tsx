@@ -40,6 +40,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t("resources.title"),
     description: t("resources.description"),
+    alternates: {
+      canonical: locale === "fr" ? "https://www.trustditto.com/fr/ressources" : "https://www.trustditto.com/en/resources",
+      languages: {
+        en: "https://www.trustditto.com/en/resources",
+        fr: "https://www.trustditto.com/fr/ressources",
+      },
+    },
   };
 }
 

@@ -20,6 +20,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t("frameworksEcovadis.title"),
     description: t("frameworksEcovadis.description"),
+    alternates: {
+      canonical: `https://www.trustditto.com/${locale}/frameworks/ecovadis`,
+      languages: {
+        en: "https://www.trustditto.com/en/frameworks/ecovadis",
+        fr: "https://www.trustditto.com/fr/frameworks/ecovadis",
+      },
+    },
   };
 }
 

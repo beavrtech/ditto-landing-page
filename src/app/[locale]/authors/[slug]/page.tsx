@@ -13,12 +13,21 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const author = await getAuthorBySlug(slug);
   if (!author) return {};
   return {
     title: `${author.name} – Ditto`,
     description: author.job_title || undefined,
+    alternates: {
+      canonical: locale === "fr"
+        ? `https://www.trustditto.com/fr/auteurs/${slug}`
+        : `https://www.trustditto.com/en/authors/${slug}`,
+      languages: {
+        en: `https://www.trustditto.com/en/authors/${slug}`,
+        fr: `https://www.trustditto.com/fr/auteurs/${slug}`,
+      },
+    },
   };
 }
 

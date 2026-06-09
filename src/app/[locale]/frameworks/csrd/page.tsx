@@ -19,6 +19,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t("frameworksCsrd.title"),
     description: t("frameworksCsrd.description"),
+    alternates: {
+      canonical: `https://www.trustditto.com/${locale}/frameworks/csrd`,
+      languages: {
+        en: "https://www.trustditto.com/en/frameworks/csrd",
+        fr: "https://www.trustditto.com/fr/frameworks/csrd",
+      },
+    },
   };
 }
 
