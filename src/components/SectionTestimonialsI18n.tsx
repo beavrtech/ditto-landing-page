@@ -157,7 +157,7 @@ export function SectionTestimonialsI18n({
                       <CardTestimonial
                         testimonial={t.quote}
                         logo={t.logo_url || undefined}
-                        authorAuthorName={t.name}
+                        authorAuthorName={<>{t.customer_name}{t.name ? `, ${t.name}` : ""}</>}
                         authorAuthorRole={t.job_title}
                         authorAuthorImage={t.profile_picture_url || undefined}
                       />
