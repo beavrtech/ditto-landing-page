@@ -222,7 +222,7 @@ export async function getCustomerStoryBySlug(slug: string, locale: Locale) {
     error = frResult.error;
   }
 
-  if (error) throw error;
+  if (error) return null;
   if (!data) return null;
 
   return {
@@ -313,7 +313,7 @@ export async function getBlogPostBySlug(slug: string, locale: Locale) {
     error = frResult.error;
   }
 
-  if (error) throw error;
+  if (error) return null;
   if (!data) return null;
 
   return {
@@ -388,7 +388,7 @@ export async function getNewsItemBySlug(slug: string, locale: Locale) {
     error = frResult.error;
   }
 
-  if (error) throw error;
+  if (error) return null;
   if (!data) return null;
 
   return {
@@ -453,7 +453,7 @@ export async function getGuideBySlug(slug: string, locale: Locale) {
     error = frResult.error;
   }
 
-  if (error) throw error;
+  if (error) return null;
   if (!data) return null;
 
   return {
@@ -512,7 +512,7 @@ export async function getEventBySlug(slug: string, locale: Locale) {
     error = frResult.error;
   }
 
-  if (error) throw error;
+  if (error) return null;
   if (!data) return null;
 
   return {
@@ -568,7 +568,7 @@ export async function getCompanyUpdateBySlug(slug: string, locale: Locale) {
     error = frResult.error;
   }
 
-  if (error) throw error;
+  if (error) return null;
   if (!data) return null;
 
   return {
@@ -690,7 +690,7 @@ export async function getCollectionItemBySlug(
     error = frResult.error;
   }
 
-  if (error) throw error;
+  if (error) return null;
   if (!data) return null;
 
   return {

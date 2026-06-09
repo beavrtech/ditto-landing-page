@@ -72,7 +72,7 @@ export default function BlogPostsListPage() {
               </td>
               <td style={{ padding: "0.75rem 1rem", fontSize: "0.8rem", color: "#666", fontFamily: "monospace" }}>{post.slug}</td>
               <td style={{ padding: "0.75rem 1rem", fontSize: "0.8rem", color: "#666" }}>
-                {post.date_de_publication ? new Date(post.date_de_publication).toLocaleDateString() : "—"}
+                {post.date_de_publication ? new Date(post.date_de_publication).toLocaleDateString("fr-FR") : "—"}
               </td>
               <td style={{ padding: "0.75rem 1rem" }}>
                 <span style={{

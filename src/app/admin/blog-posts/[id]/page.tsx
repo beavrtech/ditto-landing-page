@@ -11,7 +11,10 @@ export default function EditBlogPostPage() {
 
   useEffect(() => {
     fetch(`/admin/api/blog-posts/${id}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error(`Not found (${res.status})`);
+        return res.json();
+      })
       .then((data) => {
         if (data.error) setError(data.error);
         else setPost(data);
@@ -19,7 +22,12 @@ export default function EditBlogPostPage() {
       .catch((err) => setError(err.message));
   }, [id]);
 
-  if (error) return <p style={{ color: "red" }}>Error: {error}</p>;
+  if (error) return (
+    <div>
+      <p style={{ color: "#dc2626", marginBottom: "1rem" }}>Post not found</p>
+      <a href="/admin/blog-posts" style={{ color: "#130E30" }}>&larr; Back to list</a>
+    </div>
+  );
   if (!post) return <p>Loading...</p>;
 
   return <BlogPostForm post={post} />;
