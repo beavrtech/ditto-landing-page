@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
@@ -6,6 +7,15 @@ import { SectionContactSidebar } from "../../../components/SectionContactSidebar
 import { SectionLogostrip } from "../../../components/LogostripServer";
 import { SectionNumbers } from "../../../../webflow/sections/SectionNumbers";
 import { SectionCta } from "../../../../webflow/sections/SectionCta";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
+  return {
+    title: t("getStarted.title"),
+    description: t("getStarted.description"),
+  };
+}
 
 export const revalidate = 3600;
 

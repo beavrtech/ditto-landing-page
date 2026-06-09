@@ -829,5 +829,91 @@
     "button": "Commencer",
     "success": "Merci ! Votre inscription a bien \u00e9t\u00e9 prise en compte !",
     "error": "Oups ! Une erreur est survenue lors de l'envoi du formulaire."
+  },
+  "metadata": {
+    "home": {
+      "title": "Ditto – Le copilote RSE | Multipliez votre impact, pas vos efforts",
+      "description": "Ditto aide les PME et ETI à structurer, fiabiliser et valoriser leur démarche RSE, grâce à une plateforme et un accompagnement expert des référentiels EcoVadis, CSRD, ISO et CDP."
+    },
+    "frameworksEcovadis": {
+      "title": "Avec Ditto, 500+ entreprises réussissent EcoVadis simplement",
+      "description": "Préparez facilement votre évaluation EcoVadis et décrochez la médaille que vous méritez."
+    },
+    "frameworksCsrd": {
+      "title": "Conformité CSRD et VSME assistée par l'IA",
+      "description": "Simplifiez votre reporting CSRD ou VSME grâce à l'IA, des données structurées et l'expertise Ditto."
+    },
+    "frameworksCdp": {
+      "title": "Améliorez votre score CDP, sans complexité",
+      "description": "Structurez vos données climat et optimisez votre réponse CDP avec l'expertise IA de Ditto."
+    },
+    "frameworksIso14001": {
+      "title": "La conformité ISO 14001, simplifiée",
+      "description": "Préparez votre certification ISO 14001 sans stress grâce à l'IA et aux experts Ditto."
+    },
+    "frameworksIndex": {
+      "title": "Frameworks",
+      "description": "Explorez les frameworks RSE de Ditto pour simplifier vos reportings, centraliser vos données et valoriser vos engagements durables."
+    },
+    "solutionsManagement": {
+      "title": "Votre source de référence pour la RSE et la conformité",
+      "description": "Centralisez vos données et démarches RSE avec Ditto : tout pour piloter votre conformité en un seul espace."
+    },
+    "solutionsQuestionnaires": {
+      "title": "Automatisez vos questionnaires RSE et conformité",
+      "description": "Fini les feuilles de calcul dispersées ! Ditto centralise vos questionnaires, réutilise vos réponses validées et accélère la rédaction de vos rapports."
+    },
+    "solutionsAi": {
+      "title": "Des solutions IA conçues pour les équipes RSE et conformité",
+      "description": "Accélérez vos rapports RSE avec l'IA. De l'analyse d'écarts à la rédaction, les assistants IA de Ditto automatisent vos démarches EcoVadis, CSRD, CDP, ISO et plus encore."
+    },
+    "solutionsSupplier": {
+      "title": "Impliquez vos fournisseurs dans votre démarche de durabilité",
+      "description": "Ditto combine expertise intégrée et outils intelligents pour embarquer, évaluer et accompagner vos fournisseurs afin qu'ils avancent avec vous."
+    },
+    "customerStories": {
+      "title": "Témoignages clients – 500+ entreprises font confiance à Ditto",
+      "description": "Découvrez comment des centaines d'entreprises utilisent Ditto pour gérer leur RSE et leur conformité, tout en renforçant la confiance de leurs partenaires."
+    },
+    "resources": {
+      "title": "Ressources RSE & conformité",
+      "description": "Explorez nos ressources pour comprendre comment l'IA et l'automatisation simplifient la conformité RSE et les référentiels comme EcoVadis ou CDP."
+    },
+    "resourcesBlog": {
+      "title": "Blog – conseils, bonnes pratiques et actualités",
+      "description": "Suivez les dernières tendances RSE et conformité, inspirez-vous des bonnes pratiques et découvrez les conseils d'experts sur le blog Ditto."
+    },
+    "resourcesNews": {
+      "title": "Hub • Vos actualités RSE",
+      "description": "Actus RSE, tendances et inspirations : chaque semaine, le meilleur de la durabilité pour vos initiatives responsables."
+    },
+    "resourcesGuides": {
+      "title": "Guides et rapports",
+      "description": "Obtenez des ressources détaillées sur la RSE et la conformité grâce aux guides Ditto. Découvrez les meilleures pratiques et les conseils d'experts."
+    },
+    "getStarted": {
+      "title": "Prêt à vous mettre en conformité ? Ditto.",
+      "description": "Mettez-vous en conformité 4x plus vite avec EcoVadis, ISO, CSRD ou CDP grâce à Ditto."
+    },
+    "manifesto": {
+      "title": "Manifeste Ditto | Renforcer la confiance et mieux construire, ensemble",
+      "description": "Chaque partenaire, fournisseur et client fait partie de votre histoire. Bâtir la confiance entre eux est un défi. Ditto est là pour le relever."
+    },
+    "careers": {
+      "title": "Carrières chez Ditto – Les grandes entreprises ne se construisent pas seules",
+      "description": "C'est l'idée qui est au cœur de Ditto. Nous sommes là pour aider chacun à donner le meilleur de soi-même, et cela commence par notre équipe."
+    },
+    "legalTerms": {
+      "title": "Conditions générales d'utilisation",
+      "description": "Consultez les conditions générales d'utilisation du site Ditto pour une expérience transparente et conforme à la réglementation."
+    },
+    "legalPrivacy": {
+      "title": "Politique de confidentialité",
+      "description": "Découvrez comment Ditto protège vos données personnelles, respecte votre vie privée et assure la transparence dans le traitement de vos informations."
+    },
+    "legalNotices": {
+      "title": "Mentions légales",
+      "description": "Retrouvez toutes les informations légales de Ditto : éditeur, hébergeur, propriété intellectuelle et conditions d'utilisation du site."
+    }
   }
 }

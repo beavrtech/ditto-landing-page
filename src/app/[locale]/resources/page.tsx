@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarServer";
@@ -31,6 +32,15 @@ function ResourceCard({ item, type, locale }: { item: any; type: string; locale:
       </a>
     </div>
   );
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
+  return {
+    title: t("resources.title"),
+    description: t("resources.description"),
+  };
 }
 
 export const revalidate = 3600;

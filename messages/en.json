@@ -829,5 +829,91 @@
     "button": "Get Started",
     "success": "Thank you! Your submission has been received!",
     "error": "Oops! Something went wrong while submitting the form."
+  },
+  "metadata": {
+    "home": {
+      "title": "Ditto – Your CSR copilot | More impact, less effort",
+      "description": "Ditto empowers SMEs and mid-sized enterprises to build reliable, structured, and value-driven CSR strategies through a platform and expert guidance on EcoVadis, CSRD, ISO, and CDP."
+    },
+    "frameworksEcovadis": {
+      "title": "EcoVadis made easy with Ditto - 500+ companies supported",
+      "description": "Ditto helps you structure your CSR approach and complete the EcoVadis assessment with ease, so you get the medal you deserve each year."
+    },
+    "frameworksCsrd": {
+      "title": "AI-powered platform for CSRD and VSME compliance",
+      "description": "Reporting under CSRD or VSME? Ditto helps you navigate disclosures, structure data, and publish faster with built-in AI and expert guidance."
+    },
+    "frameworksCdp": {
+      "title": "How to simplify your CDP disclosure effectively",
+      "description": "Ditto helps you structure climate data and streamline your CDP response with AI and embedded expertise to boost your score and show real progress."
+    },
+    "frameworksIso14001": {
+      "title": "ISO 14001 compliance in no time, without the stress",
+      "description": "Prepare for ISO 14001 certification without stress. Ditto helps you structure your EMS, close gaps, and pass audits faster with AI and expert support."
+    },
+    "frameworksIndex": {
+      "title": "Frameworks",
+      "description": "Discover Ditto's sustainability reporting frameworks to simplify data management, boost ESG performance, and strengthen your long-term impact worldwide."
+    },
+    "solutionsManagement": {
+      "title": "A central place for all your CSR & compliance knowledge",
+      "description": "Ditto is a single source of truth for your team's CSR and compliance data, so you can easily search, collaborate, and improve over time."
+    },
+    "solutionsQuestionnaires": {
+      "title": "Automate compliance questionnaires & answer 10x faster",
+      "description": "Speed up your compliance process with Ditto's questionnaire automation. Centralize answers, reuse past responses, and reduce reporting time by up to 90%."
+    },
+    "solutionsAi": {
+      "title": "AI solutions built for sustainability and ESG teams",
+      "description": "From setting smart goals to drafting reports and automating responses, Ditto's AI helps teams move faster and smarter across CSRD, EcoVadis, CDP, and ISO."
+    },
+    "solutionsSupplier": {
+      "title": "Streamline supplier ESG data collection at scale",
+      "description": "Collect, verify, and manage ESG data from suppliers fast. Ditto helps you drive engagement, track progress, and centralize documentation on one platform."
+    },
+    "customerStories": {
+      "title": "Customer Stories – 500+ industry leaders choose Ditto",
+      "description": "Discover how hundreds of companies use Ditto to confidently build trust and manage their CSR and compliance programs."
+    },
+    "resources": {
+      "title": "CSR & compliance resources",
+      "description": "Discover how Ditto's automation and AI tools help your team simplify CSR compliance, strengthen practices, and build trust across EcoVadis, CDP, and ISO."
+    },
+    "resourcesBlog": {
+      "title": "Blog – resources, tips, best practices, and news",
+      "description": "Read the latest industry insights on CSR and compliance news and trends, learn best practices, and get insight from experts on the Ditto blog."
+    },
+    "resourcesNews": {
+      "title": "CSR & CSRD News Hub",
+      "description": "Stay up to date with Ditto's latest news, partnerships, and insights on sustainability reporting and corporate transparency."
+    },
+    "resourcesGuides": {
+      "title": "Resources & Guides",
+      "description": "Get actionable CSR and compliance resources with Ditto guides. Learn best practices, use checklists, and gain valuable insights from experts."
+    },
+    "getStarted": {
+      "title": "Ready to get compliant? Ditto.",
+      "description": "Get compliant 4 times faster. Ditto makes it easy to get compliant and stay compliant with frameworks like EcoVadis, ISO, CSRD, and CDP."
+    },
+    "manifesto": {
+      "title": "Ditto's manifesto: help businesses build trust and build better, together",
+      "description": "Every partner you pick, every supplier you choose, every customer you serve – they're all part of your story. Building trust isn't easy. Ditto changes that."
+    },
+    "careers": {
+      "title": "Careers at Ditto – Great businesses aren't built alone",
+      "description": "That's the idea at the heart of Ditto. We're here to help people do their best work together, and that starts with our team."
+    },
+    "legalTerms": {
+      "title": "Terms and Conditions",
+      "description": "Review Ditto's terms and conditions to understand how to use the platform safely and in compliance with applicable laws."
+    },
+    "legalPrivacy": {
+      "title": "Privacy Policy",
+      "description": "Learn how Ditto protects your personal data, ensures transparency, and upholds your privacy rights in compliance with regulations."
+    },
+    "legalNotices": {
+      "title": "Legal Note",
+      "description": "Access Ditto's legal information, including publisher details, intellectual property rights, and website terms of use."
+    }
   }
 }

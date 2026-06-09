@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
@@ -5,6 +6,15 @@ import { CustomerStoriesFilter } from "../../../components/CustomerStoriesFilter
 import { DEVLINK_SCOPE_CLASS } from "../../../../webflow/devlinkScope";
 import { getCustomerStories } from "../../../lib/cms";
 import { localizedHref } from "../../../lib/localized-paths";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
+  return {
+    title: t("customerStories.title"),
+    description: t("customerStories.description"),
+  };
+}
 
 export const revalidate = 3600;
 

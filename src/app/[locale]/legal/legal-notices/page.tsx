@@ -1,7 +1,17 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
+  return {
+    title: t("legalNotices.title"),
+    description: t("legalNotices.description"),
+  };
+}
 
 export const revalidate = 3600;
 
