@@ -127,7 +127,7 @@ export function CareersClient() {
                         ].map((team) => (
                           <div key={team.key} className="carousel_slide splide__slide width-26rem">
                             <div data-wf--card---icon--variant="primary" className="card-icon">
-                              <Image src={team.icon} alt="" width={40} height={40} className="card-icon_image" />
+                              <Image src={team.icon} alt="" width={40} height={40} className="card-icon_image" style={{ width: "auto", height: "auto" }} />
                               <div className="spacer-3rem spacer-mob-2rem" />
                               <h3 className="heading-size-2rem">{t(`careers.teams.${team.key}.title`)}</h3>
                               <div className="spacer-0x75rem" />
