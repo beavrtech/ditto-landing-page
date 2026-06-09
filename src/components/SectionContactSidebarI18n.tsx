@@ -63,10 +63,11 @@ function HubSpotContactForm({ formId }: { formId: string }) {
         redirectUrl: "",
         onFormSubmitted: () => {
           if (containerRef.current) {
-            containerRef.current.innerHTML = `
+            const isFr = document.documentElement.lang === "fr";
+          containerRef.current.innerHTML = `
               <div style="padding: 2rem; text-align: center;">
-                <p style="font-size: 1.375rem; font-weight: 600; color: #130E30;">Thank you!</p>
-                <p style="font-size: 1rem; color: #5F5C6E; margin-top: 0.5rem;">We'll be in touch shortly.</p>
+                <p style="font-size: 1.375rem; font-weight: 600; color: #130E30;">${isFr ? "Merci !" : "Thank you!"}</p>
+                <p style="font-size: 1rem; color: #5F5C6E; margin-top: 0.5rem;">${isFr ? "Nous vous recontacterons rapidement." : "We'll be in touch shortly."}</p>
               </div>
             `;
           }
@@ -135,11 +136,14 @@ export type SectionContactSidebarProps = {
  */
 export function SectionContactSidebar({
   hubspotFormId = "b9355524-ebc4-45f2-bead-b719926b54db",
-  subtitle = "Ditto makes it easy to get compliant and stay compliant with frameworks like EcoVadis, ISO, CSRD, and CDP. And that’s just the beginning.",
-  title = "Get compliant four times faster",
+  subtitle,
+  title,
 }: SectionContactSidebarProps) {
   const t = useTranslations("contactSidebar");
+  const tGetStarted = useTranslations("getStarted");
   const locale = useLocale();
+  const resolvedTitle = title ?? tGetStarted("hero.title");
+  const resolvedSubtitle = subtitle ?? tGetStarted("hero.subtitle");
   const prefix = `/${locale}`;
   return (
     <div
@@ -164,10 +168,10 @@ export function SectionContactSidebar({
             <Block className={"contact_component"} tag={"div"}>
               <Block className={"contact_content_wrapper"} tag={"div"}>
                 <Block className={"contact_content"} tag={"div"}>
-                  <Paragraph className={"heading-size-4rem"}>{title}</Paragraph>
+                  <Paragraph className={"heading-size-4rem"}>{resolvedTitle}</Paragraph>
                   <Block className={"spacer-1x5rem"} tag={"div"} />
                   <Paragraph className={"text-size-1x375rem"}>
-                    {subtitle}
+                    {resolvedSubtitle}
                   </Paragraph>
                   <Block className={"spacer-3rem"} tag={"div"} />
                   <Heading className={"heading-size-2rem"} tag={"h3"}>

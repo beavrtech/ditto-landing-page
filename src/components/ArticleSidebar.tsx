@@ -95,7 +95,7 @@ export function ArticleSidebar({
               href={localizedCmsHref("/resources/guides", guide.slug, guide.slug_fr, locale)}
               className="button w-inline-block"
             >
-              <div>{isFr ? "Télécharger le guide" : "Download Guide"}</div>
+              <div>{isFr ? "Télécharger le guide" : "Download guide"}</div>
             </a>
           </div>
           <div className="spacer-1x5rem spacer-mob-1rem" />
