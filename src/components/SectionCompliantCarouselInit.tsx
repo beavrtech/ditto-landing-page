@@ -5,6 +5,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import "@splidejs/splide/css/core";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
@@ -28,6 +29,7 @@ export function SectionCompliantCarousel({
   title = "Lorem ipsum",
   variant = "Base",
 }: SectionCompliantCarouselProps) {
+  const t = useTranslations("frameworks");
   const _styleVariantMap = {
     Base: "",
     "Title larger": "w-variant-206a19d0-2893-3fb0-f589-5ad4d034675d",
@@ -139,9 +141,7 @@ export function SectionCompliantCarousel({
                         tag={"div"}
                       >
                         <CardIcon
-                          description={
-                            "Comply with CSRD requirements and prepare your sustainability report directly in Ditto"
-                          }
+                          description={t("csrd.description")}
                           icon={
                             "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ed169cfc14d8e3135faa6_Csrd.avif"
                           }
@@ -153,9 +153,7 @@ export function SectionCompliantCarousel({
                         tag={"div"}
                       >
                         <CardIcon
-                          description={
-                            "Structure your approach, prepare for the EcoVadis assessment, and earn the medal you deserve"
-                          }
+                          description={t("ecovadis.description")}
                           icon={
                             "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ed1c26a35724770ef7a90_Ecovadis.avif"
                           }
@@ -167,9 +165,7 @@ export function SectionCompliantCarousel({
                         tag={"div"}
                       >
                         <CardIcon
-                          description={
-                            "Organize all of your audit info and prepare your ISO certifications for 14001, 45001, and 50001"
-                          }
+                          description={t("iso.description")}
                           icon={
                             "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ed1c27d430a77816d3240_Iso.avif"
                           }
@@ -181,9 +177,7 @@ export function SectionCompliantCarousel({
                         tag={"div"}
                       >
                         <CardIcon
-                          description={
-                            "Get your best score by taking advantage of Ditto's structure and expertise for the CDP evaluation"
-                          }
+                          description={t("cdp.description")}
                           icon={
                             "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ed1c2ab419262c58ece95_Cdp.avif"
                           }
