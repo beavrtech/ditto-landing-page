@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { Navbar } from "../../../../components/NavbarI18n";
-import { Footer } from "../../../../components/FooterI18n";
+import { Navbar } from "../../../../components/NavbarServer";
+import { Footer } from "../../../../components/FooterServer";
 import { SectionBreadcrumbs } from "../../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionCta } from "../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";

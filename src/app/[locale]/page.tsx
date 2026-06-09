@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Navbar } from "../../components/NavbarI18n";
+import { Navbar } from "../../components/NavbarServer";
 import { SectionHero } from "../../../webflow/sections/SectionHero";
 import { SectionLogostrip } from "../../components/SectionLogostripI18n";
 import { SectionCompliantCarousel } from "../../components/SectionCompliantCarouselInit";
@@ -9,7 +9,7 @@ import { SectionFeature } from "../../../webflow/sections/SectionFeature";
 import { SectionTestimonialsI18n as SectionTestimonials } from "../../components/SectionTestimonialsI18n";
 import { SectionResources } from "../../components/SectionResourcesI18n";
 import { SectionCta } from "../../../webflow/sections/SectionCta";
-import { Footer } from "../../components/FooterI18n";
+import { Footer } from "../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../webflow/devlinkScope";
 import { NewsletterForm } from "../../components/NewsletterFormI18n";
 import { ExpertiseCarousel } from "../../components/ExpertiseCarousel";

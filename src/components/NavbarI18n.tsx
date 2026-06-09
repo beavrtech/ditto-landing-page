@@ -35,7 +35,9 @@ import { Label } from "../../webflow/elements/Label";
 /**
  * Props for {@link Navbar}
  */
-export type NavbarProps = {};
+export type NavbarProps = {
+  previewPosts?: any[];
+};
 
 /**
  * Navbar
@@ -46,18 +48,21 @@ export type NavbarProps = {};
  *
  * @see {@link https://ditto-preprod.design.webflow.com | Source site in Webflow}
  */
-export function Navbar({}: NavbarProps) {
+export function NavbarClient({ previewPosts: serverPosts }: NavbarProps) {
   const t = useTranslations("nav");
   const locale = useLocale();
   const pathname = usePathname();
   const p = `/${locale}`;
-  const [previewPosts, setPreviewPosts] = useState<any[]>([]);
+  const [clientPosts, setClientPosts] = useState<any[]>(serverPosts || []);
 
   useEffect(() => {
+    if (serverPosts) return;
     getBlogPosts(locale as "en" | "fr", 2)
-      .then((data) => setPreviewPosts(data || []))
+      .then((data) => setClientPosts(data || []))
       .catch(() => {});
-  }, [locale]);
+  }, [locale, serverPosts]);
+
+  const previewPosts = serverPosts || clientPosts;
 
   return (
     <div

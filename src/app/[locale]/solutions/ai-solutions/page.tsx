@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { Navbar } from "../../../../components/NavbarI18n";
-import { Footer } from "../../../../components/FooterI18n";
+import { Navbar } from "../../../../components/NavbarServer";
+import { Footer } from "../../../../components/FooterServer";
 import { SectionHero } from "../../../../../webflow/sections/SectionHero";
 import { SectionFeaturesHeader } from "../../../../../webflow/sections/SectionFeaturesHeader";
 import { SectionFeature } from "../../../../../webflow/sections/SectionFeature";

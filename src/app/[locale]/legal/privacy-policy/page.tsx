@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { Navbar } from "../../../../components/NavbarI18n";
-import { Footer } from "../../../../components/FooterI18n";
+import { Navbar } from "../../../../components/NavbarServer";
+import { Footer } from "../../../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
 
 export default async function PrivacyPolicyPage({ params }: { params: Promise<{ locale: string }> }) {

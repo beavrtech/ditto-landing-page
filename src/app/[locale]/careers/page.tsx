@@ -3,8 +3,8 @@
 import { useTranslations, useLocale } from "next-intl";
 import { useEffect, useRef } from "react";
 import "@splidejs/splide/css/core";
-import { Navbar } from "../../../components/NavbarI18n";
-import { Footer } from "../../../components/FooterI18n";
+import { Navbar } from "../../../components/NavbarServer";
+import { Footer } from "../../../components/FooterServer";
 import { SectionBreadcrumbs } from "../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionCta } from "../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../webflow/devlinkScope";

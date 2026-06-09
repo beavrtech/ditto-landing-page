@@ -119,7 +119,10 @@ function FooterNewsletter() {
 /**
  * Props for {@link Footer}
  */
-export type FooterProps = {};
+export type FooterProps = {
+  blogPosts?: any[];
+  newsItems?: any[];
+};
 
 /**
  * Footer
@@ -130,20 +133,28 @@ export type FooterProps = {};
  *
  * @see {@link https://ditto-preprod.design.webflow.com | Source site in Webflow}
  */
-export function Footer({}: FooterProps) {
+export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNewsItems }: FooterProps) {
   const locale = useLocale();
   const pathname = usePathname();
-  const [blogPosts, setBlogPosts] = useState<any[]>([]);
-  const [newsItems, setNewsItems] = useState<any[]>([]);
+  const [clientBlogPosts, setClientBlogPosts] = useState<any[]>(serverBlogPosts || []);
+  const [clientNewsItems, setClientNewsItems] = useState<any[]>(serverNewsItems || []);
 
   useEffect(() => {
-    getBlogPosts("en", 4)
-      .then((data) => setBlogPosts(data || []))
-      .catch(() => {});
-    getNews("en", 4)
-      .then((data) => setNewsItems(data || []))
-      .catch(() => {});
-  }, []);
+    if (serverBlogPosts && serverNewsItems) return;
+    if (!serverBlogPosts) {
+      getBlogPosts("en", 4)
+        .then((data) => setClientBlogPosts(data || []))
+        .catch(() => {});
+    }
+    if (!serverNewsItems) {
+      getNews("en", 4)
+        .then((data) => setClientNewsItems(data || []))
+        .catch(() => {});
+    }
+  }, [serverBlogPosts, serverNewsItems]);
+
+  const blogPosts = serverBlogPosts || clientBlogPosts;
+  const newsItems = serverNewsItems || clientNewsItems;
 
   return (
     <div

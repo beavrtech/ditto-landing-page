@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { Navbar } from "../../../components/NavbarI18n";
-import { Footer } from "../../../components/FooterI18n";
+import { Navbar } from "../../../components/NavbarServer";
+import { Footer } from "../../../components/FooterServer";
 import { SectionBreadcrumbs } from "../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionContactSidebar } from "../../../components/SectionContactSidebarI18n";
 import { SectionLogostrip } from "../../../components/SectionLogostripI18n";
