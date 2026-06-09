@@ -12,7 +12,7 @@ const BASE_URL = "https://www.trustditto.com";
 
 // Static pages with their French path equivalents
 const STATIC_PAGES: { en: string; fr: string; changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"]; priority: number }[] = [
-  { en: "/", fr: "/", changeFrequency: "weekly", priority: 1 },
+  { en: "", fr: "", changeFrequency: "weekly", priority: 1 },
   { en: "/customer-stories", fr: "/cas-clients", changeFrequency: "weekly", priority: 0.8 },
   { en: "/resources", fr: "/ressources", changeFrequency: "weekly", priority: 0.8 },
   { en: "/resources/blog", fr: "/ressources/blog", changeFrequency: "weekly", priority: 0.7 },

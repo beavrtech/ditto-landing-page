@@ -5,6 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/api/", "/admin/", "/*?*", "/404", "/500"],
     },
     sitemap: "https://www.trustditto.com/sitemap.xml",
   };
