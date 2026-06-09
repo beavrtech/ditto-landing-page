@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { RichTextEditor } from "./RichTextEditor";
+import { ImageField } from "./ImageField";
 import type { TableConfig, FieldDef } from "../../lib/admin-tables";
 
 const fieldStyle: React.CSSProperties = { marginBottom: "1.5rem" };
@@ -86,6 +87,16 @@ export function GenericEditForm({
   const renderField = (field: FieldDef, key: string) => {
     const val = data[key];
     switch (field.type) {
+      case "image":
+        return (
+          <div key={key}>
+            <ImageField
+              label={field.label}
+              value={val || null}
+              onChange={(url) => set(key, url || "")}
+            />
+          </div>
+        );
       case "richtext":
         return (
           <div key={key} style={fieldStyle}>
@@ -175,8 +186,9 @@ export function GenericEditForm({
       <div style={sectionStyle}>
         <h2 style={{ fontSize: "1rem", fontWeight: 600, margin: "0 0 1rem", color: "#333" }}>Fields</h2>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 1.5rem" }}>
-          {nonLocaleFields.filter((f) => f.type !== "richtext" && f.type !== "boolean").map((f) => renderField(f, f.name))}
+          {nonLocaleFields.filter((f) => f.type !== "richtext" && f.type !== "boolean" && f.type !== "image").map((f) => renderField(f, f.name))}
         </div>
+        {nonLocaleFields.filter((f) => f.type === "image").map((f) => renderField(f, f.name))}
         <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
           {nonLocaleFields.filter((f) => f.type === "boolean").map((f) => renderField(f, f.name))}
         </div>
