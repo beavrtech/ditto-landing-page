@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -89,7 +90,7 @@ export default async function NewsDetailPage({
                         <div className="profile_wrapper">
                           {authorPicture && (
                             <div className="profile_image">
-                              <img width={48} height={48} alt="" loading="lazy" src={authorPicture} className="media-full-size" />
+                              <Image width={48} height={48} alt="" src={authorPicture} className="media-full-size" />
                             </div>
                           )}
                           <div className="profile_content">
@@ -111,7 +112,7 @@ export default async function NewsDetailPage({
                   </div>
                   {item.banner_url && (
                     <div className="post-hero_banner_wrapper">
-                      <img src={item.banner_url} loading="lazy" alt={item.banner_alt_desc || ""} className="media-full-size" />
+                      <Image src={item.banner_url} alt={item.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" />
                     </div>
                   )}
                 </div>

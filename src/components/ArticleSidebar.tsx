@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { localizedHref, localizedCmsHref } from "../lib/localized-paths";
 import { CollapsibleToc } from "./CollapsibleToc";
 import { SidebarNewsletter } from "./SidebarNewsletter";
@@ -73,7 +74,7 @@ export function ArticleSidebar({
             <div className="post_sidebar_guide_content">
               {guide.banner_url && (
                 <div className="post_sidebar_guide_thumbnail">
-                  <img alt="" className="media-full-size" loading="lazy" src={guide.banner_url} />
+                  <Image alt="" className="media-full-size" src={guide.banner_url} width={800} height={450} />
                 </div>
               )}
               <div className="spacer-1x5rem hide-tablet" />

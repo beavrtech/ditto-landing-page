@@ -1,3 +1,9 @@
+/* Override Webflow font-family variables with next/font CSS custom properties */
+:root {
+  --font-family--paragraph: var(--font-inter), Arial, sans-serif;
+  --font-family--headings: var(--font-hedvig), "Times New Roman", sans-serif;
+}
+
 /* Body-level styles from Webflow tags.css — can't be @scope'd since body isn't inside the DevLink wrapper */
 body {
   margin: 0;

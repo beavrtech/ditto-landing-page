@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { localizedCmsHref } from "../lib/localized-paths";
 
@@ -281,7 +282,7 @@ export function CustomerStoriesFilter({
                         <a href={href} className="card-image w-inline-block">
                           {item.banner_url && (
                             <div className="card-image_thumbnail">
-                              <img src={item.banner_url} loading="lazy" alt={item.banner_alt_desc || ""} className="media-full-size" />
+                              <Image src={item.banner_url} alt={item.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" />
                             </div>
                           )}
                           <div className="card-image_content">

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -77,7 +78,7 @@ export default async function CustomerStoryPage({
                   </div>
                   {story.banner_url && (
                     <div className="post-hero_banner_wrapper">
-                      <img src={story.banner_url} loading="lazy" alt={story.banner_alt_desc || ""} className="media-full-size" />
+                      <Image src={story.banner_url} alt={story.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" />
                     </div>
                   )}
                 </div>
@@ -192,7 +193,7 @@ export default async function CustomerStoryPage({
                                 <div className="profile_wrapper">
                                   {story.quote_author_picture_url && (
                                     <div className="profile_image">
-                                      <img width={48} height={48} alt="" loading="lazy" src={story.quote_author_picture_url} className="media-full-size" />
+                                      <Image width={48} height={48} alt="" src={story.quote_author_picture_url} className="media-full-size" />
                                     </div>
                                   )}
                                   <div className="profile_content">
@@ -285,7 +286,7 @@ export default async function CustomerStoryPage({
                     <div className="post_sidebar_guide">
                       <div className="post_sidebar_guide_content">
                         <div className="post_sidebar_guide_thumbnail">
-                          <img src="/images/The-Complete-EcoVadis-Guide---Cover-Website-EN.avif" loading="lazy" alt="" className="media-full-size" />
+                          <Image src="/images/The-Complete-EcoVadis-Guide---Cover-Website-EN.avif" alt="" width={800} height={450} className="media-full-size" />
                         </div>
                         <div className="spacer-1x5rem hide-tablet" />
                         <div>
@@ -364,7 +365,7 @@ async function ReadMoreStories({ locale, currentSlug, prefix }: { locale: string
                     <a href={localizedCmsHref("/customer-stories", story.slug, story.slug_fr, locale)} className="card-image w-inline-block">
                       {story.banner_url && (
                         <div className="card-image_thumbnail">
-                          <img src={story.banner_url} loading="lazy" alt={story.banner_alt_desc || ""} className="media-full-size" />
+                          <Image src={story.banner_url} alt={story.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" />
                         </div>
                       )}
                       <div className="card-image_content">

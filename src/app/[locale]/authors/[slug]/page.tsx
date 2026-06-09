@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -66,7 +67,7 @@ export default async function AuthorPage({
                 <div className="header" style={{ display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
                   {author.picture_url && (
                     <div className="profile_image" style={{ width: "6rem", height: "6rem", marginBottom: "1.5rem" }}>
-                      <img width={96} height={96} alt={author.name} loading="lazy" src={author.picture_url} className="media-full-size" style={{ borderRadius: "50%" }} />
+                      <Image width={96} height={96} alt={author.name} src={author.picture_url} className="media-full-size" style={{ borderRadius: "50%" }} />
                     </div>
                   )}
                   <h1 className="heading-size-3rem">{author.name}</h1>
@@ -125,7 +126,7 @@ export default async function AuthorPage({
                               <a href={localizedCmsHref("/resources/blog", post.slug, post.slug_fr, locale)} className="card-image w-inline-block">
                                 {post.banner_url && (
                                   <div className="card-image_thumbnail">
-                                    <img src={post.banner_url} loading="lazy" alt={post.banner_alt_desc || ""} className="media-full-size" />
+                                    <Image src={post.banner_url} alt={post.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" />
                                   </div>
                                 )}
                                 <div className="card-image_content">
@@ -156,7 +157,7 @@ export default async function AuthorPage({
                               <a href={localizedCmsHref("/resources/news", item.slug, item.slug_fr, locale)} className="card-image w-inline-block">
                                 {item.banner_url && (
                                   <div className="card-image_thumbnail">
-                                    <img src={item.banner_url} loading="lazy" alt={item.banner_alt_desc || ""} className="media-full-size" />
+                                    <Image src={item.banner_url} alt={item.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" />
                                   </div>
                                 )}
                                 <div className="card-image_content">
@@ -186,7 +187,7 @@ export default async function AuthorPage({
                             <a href={localizedCmsHref("/resources/guides", guide.slug, guide.slug_fr, locale)} className="card-image w-inline-block">
                               {guide.banner_url && (
                                 <div className="card-image_thumbnail">
-                                  <img src={guide.banner_url} loading="lazy" alt={guide.banner_alt_desc || ""} className="media-full-size" />
+                                  <Image src={guide.banner_url} alt={guide.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" />
                                 </div>
                               )}
                               <div className="card-image_content">

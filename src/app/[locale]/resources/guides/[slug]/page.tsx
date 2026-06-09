@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -151,7 +152,7 @@ export default async function GuideDetailPage({
                         <div className="profile_wrapper">
                           {item.author.picture_url && (
                             <div className="profile_image">
-                              <img width={48} height={48} alt="" loading="lazy" src={item.author.picture_url} className="media-full-size" />
+                              <Image width={48} height={48} alt="" src={item.author.picture_url} className="media-full-size" />
                             </div>
                           )}
                           <div className="profile_content">
@@ -181,7 +182,7 @@ export default async function GuideDetailPage({
                     {item.form ? (
                       <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: item.form }} />
                     ) : item.banner_url ? (
-                      <img src={item.banner_url} loading="lazy" alt={item.banner_alt_desc || ""} className="media-full-size" style={{ objectFit: "cover", width: "100%", height: "100%" }} />
+                      <Image src={item.banner_url} alt={item.banner_alt_desc || ""} fill className="media-full-size" style={{ objectFit: "cover" }} />
                     ) : null}
                   </div>
                 </div>

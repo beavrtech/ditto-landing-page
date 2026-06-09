@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../../../components/NavbarServer";
@@ -62,11 +63,11 @@ export default async function CollectionPage({
                   </div>
                   {config.heroImage && (
                     <div className="hero3_image_wrapper">
-                      <img
+                      <Image
                         width={1920}
+                        height={1080}
                         sizes="100vw"
                         alt=""
-                        loading="lazy"
                         src={config.heroImage}
                         className="hero_image"
                       />

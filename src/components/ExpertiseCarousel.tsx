@@ -5,6 +5,7 @@
  */
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import "@splidejs/splide/css/core";
@@ -90,7 +91,7 @@ export function ExpertiseCarousel() {
                       {ITEMS.map((item) => (
                         <div key={item.key} className="carousel_slide splide__slide width-26rem">
                           <div className="card-icon" data-wf--card---icon--variant="primary">
-                            <img src={item.icon} loading="lazy" alt="" className="card-icon_image" />
+                            <Image src={item.icon} alt="" width={40} height={40} className="card-icon_image" />
                             <div className="spacer-3rem spacer-mob-2rem" />
                             <h3 className="heading-size-2rem">{t(`${item.key}.title`)}</h3>
                             <div className="spacer-0x75rem" />

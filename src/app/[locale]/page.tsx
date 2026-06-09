@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Navbar } from "../../components/NavbarServer";
 import { SectionHero } from "../../../webflow/sections/SectionHero";
@@ -56,10 +57,11 @@ export default async function HomePage({
               <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" />
               <div className="container-84rem">
                 <div className="home-illus_wrapper">
-                  <img
+                  <Image
                     src="/images/ditto_better_businesses_illustration_1_narrow_1.avif"
-                    loading="lazy"
                     alt=""
+                    width={800}
+                    height={450}
                     className="home-illus_image"
                   />
                 </div>

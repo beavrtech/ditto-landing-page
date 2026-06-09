@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
@@ -31,7 +32,7 @@ export default async function AiAgentsPage({ params }: { params: Promise<{ local
   const renderAgentCard = (agent: { icon: string; key: string; status: string; hasLink: boolean }) => (
     <div key={agent.key} className="agents_card">
       <div className="agents_card_top">
-        <div className="agents_card_icon"><img src={agent.icon} loading="lazy" alt="" /></div>
+        <div className="agents_card_icon"><Image src={agent.icon} alt="" width={40} height={40} /></div>
         <p className={`tag${agent.status === "comingSoon" ? " is--orange" : ""}`}>
           {agent.status === "comingSoon" ? t("aiAgents.comingSoon") : t("aiAgents.active")}
         </p>

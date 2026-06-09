@@ -1,6 +1,19 @@
 import type { Metadata } from "next";
 import { getLocale } from "next-intl/server";
+import { Inter, Hedvig_Letters_Serif } from "next/font/google";
 import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
+
+const hedvig = Hedvig_Letters_Serif({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-hedvig",
+});
 
 export const metadata: Metadata = {
   title: "Ditto - Your CSR copilot | More impact, less effort",
@@ -20,7 +33,7 @@ export default async function RootLayout({
   const locale = await getLocale();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} className={`${inter.variable} ${hedvig.variable}`}>
       <head>
         <link rel="stylesheet" href="/webflow-css/webflow-bundle.css" />
       </head>
