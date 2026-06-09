@@ -32,6 +32,8 @@ export async function generateMetadata({
     openGraph: {
       title: `${author.name} – Ditto`,
       description: author.job_title || undefined,
+      ...(author.picture_url && { images: [{ url: author.picture_url }] }),
+      url: locale === "fr" ? `https://www.trustditto.com/fr/auteurs/${slug}` : `https://www.trustditto.com/en/authors/${slug}`,
     },
   };
 }

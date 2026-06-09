@@ -40,6 +40,8 @@ export async function generateMetadata({
     openGraph: {
       title: item.seo_title || item.name,
       description: item.seo_meta_desc || item.description || undefined,
+      ...(item.banner_url && { images: [{ url: item.banner_url }] }),
+      url: `https://www.trustditto.com/${locale}/collection/${framework}/${slug}`,
     },
   };
 }

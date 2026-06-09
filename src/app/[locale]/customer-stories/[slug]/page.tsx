@@ -37,6 +37,8 @@ export async function generateMetadata({
     openGraph: {
       title: story.seo_title || story.name,
       description: story.seo_meta_desc || story.description || undefined,
+      ...(story.banner_url && { images: [{ url: story.banner_url }] }),
+      url: locale === "fr" ? `https://www.trustditto.com/fr/cas-clients/${slug}` : `https://www.trustditto.com/en/customer-stories/${slug}`,
     },
   };
 }
