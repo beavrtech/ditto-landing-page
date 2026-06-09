@@ -86,6 +86,7 @@ export default async function ManagementSystemPage({ params }: { params: Promise
 
         {/* 8. Testimonials carousel */}
         <SectionTestimonials
+          locale={locale}
           title={t("solutionsManagement.testimonials.title")}
           text={t("solutionsManagement.testimonials.text")}
           buttonText={t("solutionsManagement.testimonials.button")}

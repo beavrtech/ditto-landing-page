@@ -52,7 +52,7 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
         />
 
         {/* 3. Logo strip */}
-        <SectionLogostrip />
+        <SectionLogostrip locale={locale} />
 
         {/* 4. Approach header */}
         <SectionFeaturesHeader
@@ -113,6 +113,7 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
 
         {/* 11. Testimonials */}
         <SectionTestimonials
+          locale={locale}
           title={t("frameworksCsrd.testimonials.title")}
           text={t("frameworksCsrd.testimonials.subtitle")}
           buttonText={t("frameworksCsrd.testimonials.cta")}

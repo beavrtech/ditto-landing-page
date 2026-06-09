@@ -54,7 +54,7 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
         />
 
         {/* 3. Logo strip */}
-        <SectionLogostrip />
+        <SectionLogostrip locale={locale} />
 
         {/* 4. Numbers */}
         <SectionNumbers
@@ -134,6 +134,7 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
 
         {/* 12. Testimonials */}
         <SectionTestimonials
+          locale={locale}
           title={t("frameworksEcovadis.testimonials.title")}
           text={t("frameworksEcovadis.testimonials.subtitle")}
           buttonText={t("frameworksEcovadis.testimonials.cta")}

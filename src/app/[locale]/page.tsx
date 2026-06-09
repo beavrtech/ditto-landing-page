@@ -43,7 +43,7 @@ export default async function HomePage({
         />
 
         {/* 2. Logo strip */}
-        <SectionLogostrip />
+        <SectionLogostrip locale={locale} />
 
         {/* 3. Frameworks carousel */}
         <SectionCompliantCarousel
@@ -136,6 +136,7 @@ export default async function HomePage({
 
         {/* 12. Testimonials */}
         <SectionTestimonials
+          locale={locale}
           title={t("testimonials.title")}
           text={t("testimonials.subtitle")}
           buttonText={t("testimonials.readMore")}
@@ -144,6 +145,7 @@ export default async function HomePage({
 
         {/* 12. Resources / Blog preview */}
         <SectionResources
+          locale={locale}
           title={t("blog.title")}
         />
 

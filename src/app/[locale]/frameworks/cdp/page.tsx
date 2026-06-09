@@ -52,7 +52,7 @@ export default async function FrameworksCdpPage({ params }: { params: Promise<{ 
         />
 
         {/* 3. Logo strip */}
-        <SectionLogostrip />
+        <SectionLogostrip locale={locale} />
 
         {/* 4. Approach header */}
         <SectionFeaturesHeader
@@ -113,6 +113,7 @@ export default async function FrameworksCdpPage({ params }: { params: Promise<{ 
 
         {/* 11. Testimonials */}
         <SectionTestimonials
+          locale={locale}
           title={t("frameworksCdp.testimonials.title")}
           text={t("frameworksCdp.testimonials.subtitle")}
           buttonText={t("frameworksCdp.testimonials.cta")}

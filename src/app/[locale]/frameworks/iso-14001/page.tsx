@@ -52,7 +52,7 @@ export default async function FrameworksIso14001Page({ params }: { params: Promi
         />
 
         {/* 3. Logo strip */}
-        <SectionLogostrip />
+        <SectionLogostrip locale={locale} />
 
         {/* 4. Approach header */}
         <SectionFeaturesHeader
@@ -117,6 +117,7 @@ export default async function FrameworksIso14001Page({ params }: { params: Promi
 
         {/* 11. Testimonials */}
         <SectionTestimonials
+          locale={locale}
           title={t("frameworksIso14001.testimonials.title")}
           text={t("frameworksIso14001.testimonials.subtitle")}
           buttonText={t("frameworksIso14001.testimonials.cta")}

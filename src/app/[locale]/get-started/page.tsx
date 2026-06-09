@@ -36,7 +36,7 @@ export default async function GetStartedPage({ params }: { params: Promise<{ loc
         />
 
         {/* 3. Logo strip */}
-        <SectionLogostrip variant="Base" />
+        <SectionLogostrip variant="Base" locale={locale} />
 
         {/* 4. Numbers */}
         <SectionNumbers

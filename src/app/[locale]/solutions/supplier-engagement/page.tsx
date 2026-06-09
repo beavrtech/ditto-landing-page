@@ -85,6 +85,7 @@ export default async function SupplierEngagementPage({ params }: { params: Promi
 
         {/* 7. Testimonials carousel */}
         <SectionTestimonials
+          locale={locale}
           title={t("solutionsSupplier.testimonials.title")}
           text={t("solutionsSupplier.testimonials.text")}
           buttonText={t("solutionsSupplier.testimonials.button")}

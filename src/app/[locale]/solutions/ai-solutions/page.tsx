@@ -109,6 +109,7 @@ export default async function AiSolutionsPage({ params }: { params: Promise<{ lo
 
         {/* 9. Testimonials carousel */}
         <SectionTestimonials
+          locale={locale}
           title={t("solutionsAi.testimonials.title")}
           text={t("solutionsAi.testimonials.text")}
           buttonText={t("solutionsAi.testimonials.button")}

@@ -1,11 +1,10 @@
 import { getCompanyLogos, getCustomerStories } from "../lib/cms";
 import { SectionLogostrip as SectionLogostripClient } from "./SectionLogostripI18n";
-import { getLocale } from "next-intl/server";
 
 import type { SectionLogostripProps } from "./SectionLogostripI18n";
 
-export async function SectionLogostrip(props: Omit<SectionLogostripProps, "serverLogos" | "serverStorySlugMap">) {
-  const locale = await getLocale();
+export async function SectionLogostrip(props: Omit<SectionLogostripProps, "serverLogos" | "serverStorySlugMap"> & { locale: string }) {
+  const { locale, ...rest } = props;
   const [logos, stories] = await Promise.all([
     getCompanyLogos().catch(() => []),
     getCustomerStories(locale as "en" | "fr").catch(() => []),
@@ -18,7 +17,7 @@ export async function SectionLogostrip(props: Omit<SectionLogostripProps, "serve
 
   return (
     <SectionLogostripClient
-      {...props}
+      {...rest}
       serverLogos={logos || []}
       serverStorySlugMap={storySlugMap}
     />

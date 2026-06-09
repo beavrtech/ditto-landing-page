@@ -95,6 +95,7 @@ export default async function ComplianceQuestionnairesPage({ params }: { params:
 
         {/* 8. Testimonials carousel */}
         <SectionTestimonials
+          locale={locale}
           title={t("solutionsCompliance.testimonials.title")}
           text={t("solutionsCompliance.testimonials.text")}
           buttonText={t("solutionsCompliance.testimonials.button")}
