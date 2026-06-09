@@ -18,6 +18,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr/manifesto",
       },
     },
+    openGraph: {
+      title: t("manifesto.title"),
+      description: t("manifesto.description"),
+    },
   };
 }
 

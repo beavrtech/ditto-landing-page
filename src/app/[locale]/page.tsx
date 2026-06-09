@@ -31,6 +31,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr",
       },
     },
+    openGraph: {
+      title: t("home.title"),
+      description: t("home.description"),
+    },
   };
 }
 

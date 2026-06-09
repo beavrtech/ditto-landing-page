@@ -24,6 +24,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr/solutions/supplier-engagement",
       },
     },
+    openGraph: {
+      title: t("solutionsSupplier.title"),
+      description: t("solutionsSupplier.description"),
+    },
   };
 }
 

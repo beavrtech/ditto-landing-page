@@ -27,6 +27,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr/frameworks/cdp",
       },
     },
+    openGraph: {
+      title: t("frameworksCdp.title"),
+      description: t("frameworksCdp.description"),
+    },
   };
 }
 

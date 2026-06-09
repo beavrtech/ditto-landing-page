@@ -28,6 +28,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr/frameworks/ecovadis",
       },
     },
+    openGraph: {
+      title: t("frameworksEcovadis.title"),
+      description: t("frameworksEcovadis.description"),
+    },
   };
 }
 

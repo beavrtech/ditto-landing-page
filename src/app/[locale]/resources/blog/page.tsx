@@ -47,6 +47,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr/ressources/blog",
       },
     },
+    openGraph: {
+      title: t("resourcesBlog.title"),
+      description: t("resourcesBlog.description"),
+    },
   };
 }
 

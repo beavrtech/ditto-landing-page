@@ -27,6 +27,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr/frameworks/iso-14001",
       },
     },
+    openGraph: {
+      title: t("frameworksIso14001.title"),
+      description: t("frameworksIso14001.description"),
+    },
   };
 }
 

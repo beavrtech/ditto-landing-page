@@ -29,6 +29,10 @@ export async function generateMetadata({
         fr: `https://www.trustditto.com/fr/auteurs/${slug}`,
       },
     },
+    openGraph: {
+      title: `${author.name} – Ditto`,
+      description: author.job_title || undefined,
+    },
   };
 }
 

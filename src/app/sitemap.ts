@@ -39,7 +39,7 @@ const STATIC_PAGES: { en: string; fr: string; changeFrequency: MetadataRoute.Sit
   { en: "/legal/legal-notices", fr: "/legal/mentions-legales", changeFrequency: "yearly", priority: 0.2 },
 ];
 
-const FRAMEWORKS = ["ecovadis", "cdp", "csrd", "iso-14001"];
+const FRAMEWORKS = ["ecovadis", "cdp", "csrd", "iso-14001", "vsme"];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [stories, posts, news, guides, authors, ...collectionResults] =

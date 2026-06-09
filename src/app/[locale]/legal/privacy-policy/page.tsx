@@ -18,6 +18,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr/legal/politique-de-confidentialite",
       },
     },
+    openGraph: {
+      title: t("legalPrivacy.title"),
+      description: t("legalPrivacy.description"),
+    },
   };
 }
 

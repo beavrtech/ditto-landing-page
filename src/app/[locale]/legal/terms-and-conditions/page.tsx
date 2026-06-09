@@ -18,6 +18,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr/legal/conditions-generales-dutilisation",
       },
     },
+    openGraph: {
+      title: t("legalTerms.title"),
+      description: t("legalTerms.description"),
+    },
   };
 }
 

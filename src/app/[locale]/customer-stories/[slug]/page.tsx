@@ -34,6 +34,10 @@ export async function generateMetadata({
         fr: `https://www.trustditto.com/fr/cas-clients/${frSlug}`,
       },
     },
+    openGraph: {
+      title: story.seo_title || story.name,
+      description: story.seo_meta_desc || story.description || undefined,
+    },
   };
 }
 

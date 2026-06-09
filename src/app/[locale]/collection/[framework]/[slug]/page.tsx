@@ -37,6 +37,10 @@ export async function generateMetadata({
         fr: `https://www.trustditto.com/fr/collection/${framework}/${frSlug}`,
       },
     },
+    openGraph: {
+      title: item.seo_title || item.name,
+      description: item.seo_meta_desc || item.description || undefined,
+    },
   };
 }
 

@@ -24,6 +24,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr/solutions/compliance-questionnaires",
       },
     },
+    openGraph: {
+      title: t("solutionsQuestionnaires.title"),
+      description: t("solutionsQuestionnaires.description"),
+    },
   };
 }
 

@@ -18,6 +18,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr/careers",
       },
     },
+    openGraph: {
+      title: t("careers.title"),
+      description: t("careers.description"),
+    },
   };
 }
 

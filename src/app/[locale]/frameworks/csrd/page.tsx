@@ -27,6 +27,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr/frameworks/csrd",
       },
     },
+    openGraph: {
+      title: t("frameworksCsrd.title"),
+      description: t("frameworksCsrd.description"),
+    },
   };
 }
 

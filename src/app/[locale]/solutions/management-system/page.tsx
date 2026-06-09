@@ -24,6 +24,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         fr: "https://www.trustditto.com/fr/solutions/management-system",
       },
     },
+    openGraph: {
+      title: t("solutionsManagement.title"),
+      description: t("solutionsManagement.description"),
+    },
   };
 }
 
