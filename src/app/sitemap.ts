@@ -152,7 +152,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.4,
     });
     urls.push({
-      url: `${BASE_URL}/fr/authors/${author.slug}`,
+      url: `${BASE_URL}/fr/auteurs/${author.slug}`,
       changeFrequency: "monthly",
       priority: 0.4,
     });
