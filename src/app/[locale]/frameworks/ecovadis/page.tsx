@@ -3,13 +3,13 @@ import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
 import { SectionBreadcrumbs } from "../../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionHero } from "../../../../../webflow/sections/SectionHero";
-import { SectionLogostrip } from "../../../../components/SectionLogostripI18n";
+import { SectionLogostrip } from "../../../../components/LogostripServer";
 import { SectionNumbers } from "../../../../../webflow/sections/SectionNumbers";
 import { SectionFeaturesHeader } from "../../../../../webflow/sections/SectionFeaturesHeader";
 import { SectionFeature } from "../../../../../webflow/sections/SectionFeature";
 import { SectionCompliantCarousel } from "../../../../components/SectionCompliantCarouselInit";
 import { SectionCtaPill } from "../../../../components/SectionCtaPillI18n";
-import { SectionTestimonialsI18n as SectionTestimonials } from "../../../../components/SectionTestimonialsI18n";
+import { SectionTestimonials } from "../../../../components/TestimonialsServer";
 import { SectionCta } from "../../../../../webflow/sections/SectionCta";
 import { Button } from "../../../../../webflow/elements/Button";
 

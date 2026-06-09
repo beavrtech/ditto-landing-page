@@ -5,9 +5,7 @@
  */
 "use client";
 
-import { useEffect, useState, useRef } from "react";
-import { useLocale } from "next-intl";
-import { getTestimonials } from "../lib/cms";
+import { useEffect, useRef } from "react";
 
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
@@ -28,6 +26,7 @@ export type SectionTestimonialsI18nProps = {
   buttonText?: React.ReactNode;
   text?: React.ReactNode;
   title?: React.ReactNode;
+  serverTestimonials?: any[];
 };
 
 export function SectionTestimonialsI18n({
@@ -35,19 +34,13 @@ export function SectionTestimonialsI18n({
   buttonText = "Read More",
   text = "Customers of all sizes love Ditto for its simplicity, smarts, and impact, above all.",
   title = "What teams are saying",
+  serverTestimonials = [],
 }: SectionTestimonialsI18nProps) {
-  const locale = useLocale();
-  const [testimonials, setTestimonials] = useState<any[]>([]);
+  const testimonials = serverTestimonials;
   const scrollRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollLeft = useRef(0);
-
-  useEffect(() => {
-    getTestimonials(locale as "en" | "fr").then((data) => {
-      if (data) setTestimonials(data);
-    });
-  }, [locale]);
 
   // Drag to scroll
   useEffect(() => {

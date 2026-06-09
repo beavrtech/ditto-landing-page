@@ -4,7 +4,7 @@ import { Footer } from "../../../../components/FooterServer";
 import { SectionHero } from "../../../../../webflow/sections/SectionHero";
 import { SectionFeaturesHeader } from "../../../../../webflow/sections/SectionFeaturesHeader";
 import { SectionFeature } from "../../../../../webflow/sections/SectionFeature";
-import { SectionTestimonialsI18n as SectionTestimonials } from "../../../../components/SectionTestimonialsI18n";
+import { SectionTestimonials } from "../../../../components/TestimonialsServer";
 import { SectionCta } from "../../../../../webflow/sections/SectionCta";
 import { SectionBreadcrumbs } from "../../../../../webflow/sections/SectionBreadcrumbs";
 import { Button } from "../../../../../webflow/elements/Button";

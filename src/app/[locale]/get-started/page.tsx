@@ -3,7 +3,7 @@ import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
 import { SectionBreadcrumbs } from "../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionContactSidebar } from "../../../components/SectionContactSidebarI18n";
-import { SectionLogostrip } from "../../../components/SectionLogostripI18n";
+import { SectionLogostrip } from "../../../components/LogostripServer";
 import { SectionNumbers } from "../../../../webflow/sections/SectionNumbers";
 import { SectionCta } from "../../../../webflow/sections/SectionCta";
 

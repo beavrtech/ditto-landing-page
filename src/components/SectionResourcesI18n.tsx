@@ -8,7 +8,6 @@
  */
 "use client";
 
-import { useEffect, useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
 import Block from "../../webflow/webflow_modules/Basic/components/Block";
@@ -20,13 +19,12 @@ import Section from "../../webflow/webflow_modules/Layout/components/Section";
 import { Background } from "../../webflow/Background";
 import { Button } from "../../webflow/elements/Button";
 import { Padding } from "../../webflow/Padding";
-import { getBlogPosts } from "../lib/cms";
-
 /**
  * Props for {@link SectionResources}
  */
 export type SectionResourcesProps = {
   title?: React.ReactNode;
+  serverPosts?: any[];
 };
 
 /**
@@ -40,18 +38,13 @@ export type SectionResourcesProps = {
  */
 export function SectionResources({
   title = "Learn more about Ditto & AI-powered CSR compliance",
+  serverPosts = [],
 }: SectionResourcesProps) {
   const t = useTranslations("resourcesSection");
   const locale = useLocale();
   const prefix = `/${locale}`;
 
-  const [posts, setPosts] = useState<any[]>([]);
-
-  useEffect(() => {
-    getBlogPosts(locale as "en" | "fr", 3)
-      .then((data) => setPosts(data || []))
-      .catch(() => {});
-  }, [locale]);
+  const posts = serverPosts;
 
   return (
     <div
