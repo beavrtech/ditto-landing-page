@@ -19,6 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: `https://www.trustditto.com/${locale}/solutions/compliance-questionnaires`,
       languages: {
+        "x-default": "https://www.trustditto.com/en/solutions/compliance-questionnaires",
         en: "https://www.trustditto.com/en/solutions/compliance-questionnaires",
         fr: "https://www.trustditto.com/fr/solutions/compliance-questionnaires",
       },

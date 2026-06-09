@@ -30,6 +30,7 @@ export async function generateMetadata({
         ? `https://www.trustditto.com/fr/ressources/blog/${frSlug}`
         : `https://www.trustditto.com/en/resources/blog/${enSlug}`,
       languages: {
+        "x-default": `https://www.trustditto.com/en/resources/blog/${enSlug}`,
         en: `https://www.trustditto.com/en/resources/blog/${enSlug}`,
         fr: `https://www.trustditto.com/fr/ressources/blog/${frSlug}`,
       },

@@ -24,6 +24,7 @@ export async function generateMetadata({
         ? `https://www.trustditto.com/fr/auteurs/${slug}`
         : `https://www.trustditto.com/en/authors/${slug}`,
       languages: {
+        "x-default": `https://www.trustditto.com/en/authors/${slug}`,
         en: `https://www.trustditto.com/en/authors/${slug}`,
         fr: `https://www.trustditto.com/fr/auteurs/${slug}`,
       },

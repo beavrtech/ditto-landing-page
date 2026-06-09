@@ -13,6 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: locale === "fr" ? "https://www.trustditto.com/fr/legal/mentions-legales" : "https://www.trustditto.com/en/legal/legal-notices",
       languages: {
+        "x-default": "https://www.trustditto.com/en/legal/legal-notices",
         en: "https://www.trustditto.com/en/legal/legal-notices",
         fr: "https://www.trustditto.com/fr/legal/mentions-legales",
       },

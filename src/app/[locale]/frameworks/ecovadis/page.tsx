@@ -23,6 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: `https://www.trustditto.com/${locale}/frameworks/ecovadis`,
       languages: {
+        "x-default": "https://www.trustditto.com/en/frameworks/ecovadis",
         en: "https://www.trustditto.com/en/frameworks/ecovadis",
         fr: "https://www.trustditto.com/fr/frameworks/ecovadis",
       },
