@@ -32,8 +32,6 @@ const STATIC_PAGES: { en: string; fr: string; changeFrequency: MetadataRoute.Sit
   { en: "/careers", fr: "/careers", changeFrequency: "monthly", priority: 0.5 },
   { en: "/collection/ecovadis", fr: "/collection/ecovadis", changeFrequency: "monthly", priority: 0.7 },
   { en: "/collection/cdp", fr: "/collection/cdp", changeFrequency: "monthly", priority: 0.7 },
-  { en: "/collection/csrd", fr: "/collection/csrd", changeFrequency: "monthly", priority: 0.7 },
-  { en: "/collection/iso-14001", fr: "/collection/iso-14001", changeFrequency: "monthly", priority: 0.7 },
   { en: "/legal/terms-and-conditions", fr: "/legal/conditions-generales-dutilisation", changeFrequency: "yearly", priority: 0.2 },
   { en: "/legal/privacy-policy", fr: "/legal/politique-de-confidentialite", changeFrequency: "yearly", priority: 0.2 },
   { en: "/legal/legal-notices", fr: "/legal/mentions-legales", changeFrequency: "yearly", priority: 0.2 },
