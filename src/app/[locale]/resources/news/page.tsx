@@ -32,6 +32,8 @@ function ResourceCard({ item, type, locale }: { item: any; type: string; locale:
   );
 }
 
+export const revalidate = 3600;
+
 export default async function ResourcesNewsPage({
   params,
 }: {

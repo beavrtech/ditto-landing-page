@@ -6,6 +6,8 @@ import { DEVLINK_SCOPE_CLASS } from "../../../../webflow/devlinkScope";
 import { getCustomerStories } from "../../../lib/cms";
 import { localizedHref } from "../../../lib/localized-paths";
 
+export const revalidate = 3600;
+
 export default async function CustomerStoriesPage({
   params,
 }: {

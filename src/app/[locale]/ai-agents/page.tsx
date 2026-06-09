@@ -24,6 +24,8 @@ const PRODUCTIVITY_AGENTS = [
   { icon: "/images/product-and-engineering.svg", key: "spreadsheet", status: "comingSoon", hasLink: false },
 ];
 
+export const revalidate = 3600;
+
 export default async function AiAgentsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations();

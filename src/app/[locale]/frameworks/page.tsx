@@ -43,6 +43,8 @@ async function getFrameworksByType() {
   return groups;
 }
 
+export const revalidate = 3600;
+
 export default async function FrameworksPage({
   params,
 }: {

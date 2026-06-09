@@ -7,7 +7,7 @@ import { Footer } from "../../../../../components/FooterServer";
 import { SectionBreadcrumbs } from "../../../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
-import { getGuideBySlug } from "../../../../../lib/cms";
+import { getGuideBySlug, getGuides } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
 
@@ -93,6 +93,18 @@ const GUIDE_FORM_CSS = `
 .guide-form-card ul.inputs-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 .guide-form-card .hs-form-checkbox { display: flex; align-items: center; gap: 0.5rem; }
 `;
+
+export async function generateStaticParams() {
+  const guides = await getGuides("en").catch(() => []);
+  const params: { locale: string; slug: string }[] = [];
+  for (const guide of guides || []) {
+    params.push({ locale: "en", slug: guide.slug });
+    if (guide.slug_fr) params.push({ locale: "fr", slug: guide.slug_fr });
+  }
+  return params;
+}
+
+export const revalidate = 3600;
 
 export default async function GuideDetailPage({
   params,

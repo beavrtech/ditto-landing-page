@@ -7,7 +7,7 @@ import { Footer } from "../../../../../components/FooterServer";
 import { SectionBreadcrumbs } from "../../../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
-import { getNewsItemBySlug, getFeaturedGuide } from "../../../../../lib/cms";
+import { getNewsItemBySlug, getNews, getFeaturedGuide } from "../../../../../lib/cms";
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
@@ -25,6 +25,18 @@ export async function generateMetadata({
     description: item.seo_meta_desc || item.description || undefined,
   };
 }
+
+export async function generateStaticParams() {
+  const items = await getNews("en").catch(() => []);
+  const params: { locale: string; slug: string }[] = [];
+  for (const item of items || []) {
+    params.push({ locale: "en", slug: item.slug });
+    if (item.slug_fr) params.push({ locale: "fr", slug: item.slug_fr });
+  }
+  return params;
+}
+
+export const revalidate = 3600;
 
 export default async function NewsDetailPage({
   params,

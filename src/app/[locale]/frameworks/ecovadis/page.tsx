@@ -13,6 +13,8 @@ import { SectionTestimonials } from "../../../../components/TestimonialsServer";
 import { SectionCta } from "../../../../../webflow/sections/SectionCta";
 import { Button } from "../../../../../webflow/elements/Button";
 
+export const revalidate = 3600;
+
 export default async function FrameworksEcovadisPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations();

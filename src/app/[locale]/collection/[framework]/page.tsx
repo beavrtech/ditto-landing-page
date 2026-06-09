@@ -12,6 +12,8 @@ import { ExploreArticlesSection, FRAMEWORK_CONFIG } from "../../../../components
 
 const VALID_FRAMEWORKS = Object.keys(FRAMEWORK_CONFIG);
 
+export const revalidate = 3600;
+
 export default async function CollectionPage({
   params,
 }: {

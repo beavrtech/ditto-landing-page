@@ -8,7 +8,7 @@ import { ArticleSidebar, injectHeadingIds } from "../../../../../components/Arti
 import { SectionBreadcrumbs } from "../../../../../../webflow/sections/SectionBreadcrumbs";
 import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
-import { getCollectionItemBySlug, getCategoryTranslations, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
+import { getCollectionItemBySlug, getCollectionItems, getCategoryTranslations, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
 import { ExploreArticlesSection } from "../../../../../components/ExploreArticlesSection";
@@ -35,6 +35,21 @@ const FRAMEWORK_TITLES: Record<string, string> = {
   csrd: "CSRD",
 };
 
+
+export async function generateStaticParams() {
+  const frameworks = ["ecovadis", "cdp", "csrd", "iso-14001"];
+  const params: { locale: string; framework: string; slug: string }[] = [];
+  for (const fw of frameworks) {
+    const items = await getCollectionItems(fw, "en").catch(() => []);
+    for (const item of items || []) {
+      params.push({ locale: "en", framework: fw, slug: item.slug });
+      if (item.slug_fr) params.push({ locale: "fr", framework: fw, slug: item.slug_fr });
+    }
+  }
+  return params;
+}
+
+export const revalidate = 3600;
 
 export default async function CollectionArticlePage({
   params,

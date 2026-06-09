@@ -7,6 +7,8 @@ import { SectionLogostrip } from "../../../components/LogostripServer";
 import { SectionNumbers } from "../../../../webflow/sections/SectionNumbers";
 import { SectionCta } from "../../../../webflow/sections/SectionCta";
 
+export const revalidate = 3600;
+
 export default async function GetStartedPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations();

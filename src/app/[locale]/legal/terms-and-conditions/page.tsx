@@ -3,6 +3,8 @@ import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
 
+export const revalidate = 3600;
+
 export default async function TermsAndConditionsPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations();

@@ -9,6 +9,8 @@ import { SectionCta } from "../../../../../webflow/sections/SectionCta";
 import { SectionBreadcrumbs } from "../../../../../webflow/sections/SectionBreadcrumbs";
 import { Button } from "../../../../../webflow/elements/Button";
 
+export const revalidate = 3600;
+
 export default async function SupplierEngagementPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations();

@@ -15,6 +15,8 @@ import { DEVLINK_SCOPE_CLASS } from "../../../webflow/devlinkScope";
 import { NewsletterForm } from "../../components/NewsletterFormI18n";
 import { ExpertiseCarousel } from "../../components/ExpertiseCarousel";
 
+export const revalidate = 3600;
+
 export default async function HomePage({
   params,
 }: {

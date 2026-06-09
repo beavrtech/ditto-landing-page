@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
-import { getAuthorBySlug, getBlogPosts, getNews, getGuides } from "../../../../lib/cms";
+import { getAuthorBySlug, getAuthors, getBlogPosts, getNews, getGuides } from "../../../../lib/cms";
 import { localizedHref, localizedCmsHref } from "../../../../lib/localized-paths";
 
 export async function generateMetadata({
@@ -21,6 +21,18 @@ export async function generateMetadata({
     description: author.job_title || undefined,
   };
 }
+
+export async function generateStaticParams() {
+  const authors = await getAuthors().catch(() => []);
+  const params: { locale: string; slug: string }[] = [];
+  for (const author of authors || []) {
+    params.push({ locale: "en", slug: author.slug });
+    params.push({ locale: "fr", slug: author.slug });
+  }
+  return params;
+}
+
+export const revalidate = 3600;
 
 export default async function AuthorPage({
   params,

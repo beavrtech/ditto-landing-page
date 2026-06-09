@@ -25,6 +25,18 @@ export async function generateMetadata({
   };
 }
 
+export async function generateStaticParams() {
+  const stories = await getCustomerStories("en").catch(() => []);
+  const params: { locale: string; slug: string }[] = [];
+  for (const story of stories || []) {
+    params.push({ locale: "en", slug: story.slug });
+    if (story.slug_fr) params.push({ locale: "fr", slug: story.slug_fr });
+  }
+  return params;
+}
+
+export const revalidate = 3600;
+
 export default async function CustomerStoryPage({
   params,
 }: {
