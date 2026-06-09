@@ -8,7 +8,7 @@ import { Table } from "@tiptap/extension-table";
 import { TableRow } from "@tiptap/extension-table-row";
 import { TableCell } from "@tiptap/extension-table-cell";
 import { TableHeader } from "@tiptap/extension-table-header";
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 
 const btnStyle = (active?: boolean): React.CSSProperties => ({
   padding: "4px 8px",
@@ -21,6 +21,115 @@ const btnStyle = (active?: boolean): React.CSSProperties => ({
   fontWeight: 500,
 });
 
+async function uploadImage(file: File): Promise<string> {
+  const formData = new FormData();
+  formData.append("file", file);
+  const res = await fetch("/admin/api/upload", { method: "POST", body: formData });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || "Upload failed");
+  return data.url;
+}
+
+function ImageUploadModal({
+  onInsert,
+  onClose,
+}: {
+  onInsert: (url: string) => void;
+  onClose: () => void;
+}) {
+  const [dragging, setDragging] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFile = async (file: File) => {
+    if (!file.type.startsWith("image/")) {
+      setError("Please select an image file");
+      return;
+    }
+    setUploading(true);
+    setError(null);
+    try {
+      const url = await uploadImage(file);
+      onInsert(url);
+    } catch (err: any) {
+      setError(err.message);
+      setUploading(false);
+    }
+  };
+
+  const handleDrop = (e: React.DragEvent) => {
+    e.preventDefault();
+    setDragging(false);
+    const file = e.dataTransfer.files[0];
+    if (file) handleFile(file);
+  };
+
+  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) handleFile(file);
+  };
+
+  return (
+    <div
+      style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 9999 }}
+      onClick={onClose}
+    >
+      <div
+        style={{ background: "white", borderRadius: "12px", padding: "2rem", width: "420px", maxWidth: "90vw" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h3 style={{ margin: "0 0 1rem", fontSize: "1.1rem", fontWeight: 600 }}>Insert Image</h3>
+        <div
+          onDragOver={(e) => { e.preventDefault(); setDragging(true); }}
+          onDragLeave={() => setDragging(false)}
+          onDrop={handleDrop}
+          onClick={() => fileInputRef.current?.click()}
+          style={{
+            border: `2px dashed ${dragging ? "#130E30" : "#ccc"}`,
+            borderRadius: "8px",
+            padding: "2.5rem 1.5rem",
+            textAlign: "center",
+            cursor: "pointer",
+            background: dragging ? "#f0f0ff" : "#fafafa",
+            transition: "all 150ms",
+          }}
+        >
+          {uploading ? (
+            <p style={{ margin: 0, color: "#666" }}>Uploading...</p>
+          ) : (
+            <>
+              <p style={{ margin: "0 0 0.5rem", fontSize: "0.95rem", fontWeight: 500 }}>
+                Drop an image here or click to browse
+              </p>
+              <p style={{ margin: 0, fontSize: "0.8rem", color: "#999" }}>
+                PNG, JPG, AVIF, WebP, SVG, GIF
+              </p>
+            </>
+          )}
+        </div>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          style={{ display: "none" }}
+          onChange={handleFileInput}
+        />
+        {error && <p style={{ color: "#dc2626", fontSize: "0.875rem", marginTop: "0.75rem" }}>{error}</p>}
+        <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "1rem" }}>
+          <button
+            type="button"
+            onClick={onClose}
+            style={{ padding: "0.5rem 1rem", border: "1px solid #ddd", borderRadius: "6px", background: "white", cursor: "pointer", fontSize: "0.875rem" }}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function RichTextEditor({
   value,
   onChange,
@@ -32,6 +141,7 @@ export function RichTextEditor({
 }) {
   const [showSource, setShowSource] = useState(false);
   const [sourceValue, setSourceValue] = useState(value);
+  const [showImageModal, setShowImageModal] = useState(false);
 
   const editor = useEditor({
     extensions: [
@@ -63,12 +173,10 @@ export function RichTextEditor({
     }
   }, [editor]);
 
-  const addImage = useCallback(() => {
+  const handleImageInsert = useCallback((url: string) => {
     if (!editor) return;
-    const url = window.prompt("Image URL:");
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
-    }
+    editor.chain().focus().setImage({ src: url }).run();
+    setShowImageModal(false);
   }, [editor]);
 
   const toggleSource = () => {
@@ -96,7 +204,7 @@ export function RichTextEditor({
         <button type="button" style={btnStyle(editor.isActive("orderedList"))} onClick={() => editor.chain().focus().toggleOrderedList().run()}>1.</button>
         <button type="button" style={btnStyle(editor.isActive("blockquote"))} onClick={() => editor.chain().focus().toggleBlockquote().run()}>Quote</button>
         <button type="button" style={btnStyle(editor.isActive("link"))} onClick={addLink}>Link</button>
-        <button type="button" style={btnStyle()} onClick={addImage}>Image</button>
+        <button type="button" style={btnStyle()} onClick={() => setShowImageModal(true)}>Image</button>
         <button type="button" style={btnStyle()} onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}>Table</button>
         <div style={{ flex: 1 }} />
         <button type="button" style={btnStyle(showSource)} onClick={toggleSource}>&lt;/&gt;</button>
@@ -135,6 +243,13 @@ export function RichTextEditor({
           `}</style>
           <EditorContent editor={editor} />
         </div>
+      )}
+      {/* Image upload modal */}
+      {showImageModal && (
+        <ImageUploadModal
+          onInsert={handleImageInsert}
+          onClose={() => setShowImageModal(false)}
+        />
       )}
     </div>
   );
