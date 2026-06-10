@@ -8,8 +8,9 @@
 "use client";
 
 import { useTranslations, useLocale } from "next-intl";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
+import { onAxeptioConsent } from "./AxeptioConsent";
 import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
 import Block from "../../devlink/modules/Basic/components/Block";
 import Heading from "../../devlink/modules/Basic/components/Heading";
@@ -45,6 +46,14 @@ ul.inputs-list.multi-container .hs-form-checkbox-display { display: flex; justif
 function HubSpotContactForm({ formId }: { formId: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const formCreated = useRef(false);
+  // null = consent not yet known, true/false = user choice for the hubspot vendor
+  const [hubspotConsent, setHubspotConsent] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    onAxeptioConsent((choices) => {
+      setHubspotConsent(!!choices.hubspot);
+    });
+  }, []);
 
   useEffect(() => {
     function tryCreateForm() {
@@ -105,18 +114,45 @@ function HubSpotContactForm({ formId }: { formId: string }) {
     };
   }, [formId]);
 
+  const isFr = typeof document !== "undefined" && document.documentElement.lang === "fr";
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: HUBSPOT_FORM_CSS }} />
-      <Script
-        src="//js-eu1.hsforms.net/forms/embed/v2.js"
-        strategy="afterInteractive"
-        onReady={() => {
-          if ((window as any).__hubspotFormInit) {
-            (window as any).__hubspotFormInit();
-          }
-        }}
-      />
+      {hubspotConsent === true && (
+        <Script
+          src="//js-eu1.hsforms.net/forms/embed/v2.js"
+          strategy="afterInteractive"
+          onReady={() => {
+            if ((window as any).__hubspotFormInit) {
+              (window as any).__hubspotFormInit();
+            }
+          }}
+        />
+      )}
+      {hubspotConsent === false && (
+        <div style={{ padding: "2rem 0" }}>
+          <p style={{ fontSize: "1rem", color: "#130E30" }}>
+            {isFr
+              ? "Le formulaire de contact nécessite les cookies HubSpot."
+              : "The contact form requires HubSpot cookies."}
+          </p>
+          <button
+            type="button"
+            onClick={() => (window as any).openAxeptioCookies?.()}
+            style={{ marginTop: "1rem", padding: "14px 24px", background: "#130E30", color: "#EFF2E5", borderRadius: "999px", fontSize: "16px", border: "none", cursor: "pointer" }}
+          >
+            {isFr ? "Gérer mes cookies" : "Manage my cookies"}
+          </button>
+          <p style={{ fontSize: "0.9375rem", color: "#5F5C6E", marginTop: "1rem" }}>
+            {isFr ? (
+              <>Ou écrivez-nous : <a href="mailto:hello@trustditto.com" style={{ color: "#130E30" }}>hello@trustditto.com</a></>
+            ) : (
+              <>Or email us: <a href="mailto:hello@trustditto.com" style={{ color: "#130E30" }}>hello@trustditto.com</a></>
+            )}
+          </p>
+        </div>
+      )}
       <div id="hubspot-form-container" ref={containerRef} />
     </>
   );

@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import { SafeDevLinkProvider } from "../../components/SafeDevLinkProvider";
 import { GlobalStyles } from "../../../devlink/GlobalStyles";
 import { JsonLd, SOFTWARE_APP_JSONLD } from "../../components/JsonLd";
+import { AxeptioConsent } from "../../components/AxeptioConsent";
 import "../globals.css";
 
 const inter = Inter({
@@ -74,6 +75,7 @@ export default async function LocaleLayout({
         <JsonLd data={SOFTWARE_APP_JSONLD} />
       </head>
       <body>
+        <AxeptioConsent locale={locale} />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SafeDevLinkProvider>
             <GlobalStyles />
