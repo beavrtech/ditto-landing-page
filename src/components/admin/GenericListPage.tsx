@@ -7,6 +7,7 @@ import type { TableConfig } from "../../lib/admin-tables";
 export function GenericListPage({ config }: { config: TableConfig }) {
   const [rows, setRows] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
 
   const fetchRows = async () => {
     const res = await fetch(`/admin/api/tables/${config.slug}`);
@@ -15,6 +16,15 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   };
 
   useEffect(() => { fetchRows(); }, []);
+
+  const filteredRows = rows.filter((row) => {
+    if (!search) return true;
+    const q = search.toLowerCase();
+    return config.listColumns.some((col) => {
+      const val = row[col.key];
+      return val && String(val).toLowerCase().includes(q);
+    });
+  });
 
   const handleDelete = async (id: string, name: string) => {
     if (!confirm(`Delete "${name}"? This cannot be undone.`)) return;
@@ -57,13 +67,22 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
-        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, margin: 0 }}>{config.displayName} ({rows.length})</h1>
+        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, margin: 0 }}>{config.displayName} ({filteredRows.length})</h1>
+        <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+          <input
+            type="text"
+            placeholder="Search..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            style={{ padding: "0.5rem 0.75rem", border: "1px solid #ddd", borderRadius: "6px", fontSize: "0.875rem", width: "220px" }}
+          />
         <Link
           href={`/admin/${config.slug}/new`}
           style={{ padding: "0.5rem 1rem", background: "#130E30", color: "white", borderRadius: "6px", textDecoration: "none", fontSize: "0.875rem" }}
         >
           + New
         </Link>
+        </div>
       </div>
       <table style={{ width: "100%", borderCollapse: "collapse", background: "white", borderRadius: "8px", overflow: "hidden", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>
         <thead>
@@ -77,7 +96,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row) => (
+          {filteredRows.map((row) => (
             <tr key={row.id} style={{ borderBottom: "1px solid #f0f0f0" }}>
               {config.listColumns.map((col, i) => (
                 <td key={col.key} style={{ padding: "0.75rem 1rem", fontSize: "0.875rem" }}>
