@@ -103,7 +103,7 @@ export function ManifestoClient() {
             <div className="container-64rem">
               <div className="careers-intro_component">
                 <div className="careers-intro_image_wrapper">
-                  <Image alt="" className="media-full-size" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b2bf2bcf770c96ef396c_manifesto.avif" width={1200} height={630} />
+                  <Image alt="Ditto team collaborating" className="media-full-size" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b2bf2bcf770c96ef396c_manifesto.avif" width={1200} height={630} />
                 </div>
                 <div className="careers-intro_content_wrapper">
                   <div className="label">{t("manifesto.careersIntro.label")}</div>
@@ -148,7 +148,7 @@ export function ManifestoClient() {
                       <div className="carousel_list splide__list">
                         <div className="carousel_slide splide__slide width-26rem">
                           <div data-wf--card---icon--variant="secondary" className="card-icon w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7">
-                            <Image src="/images/ecovadis-partner-2026.svg" alt="" width={40} height={40} className="card-icon_image w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7" />
+                            <Image src="/images/ecovadis-partner-2026.svg" alt="EcoVadis Training Partner" width={40} height={40} className="card-icon_image w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7" />
                             <div className="spacer-3rem spacer-mob-2rem" />
                             <h3 className="heading-size-2rem">{t("manifesto.commitments.ecovadisPartner.title")}</h3>
                             <div className="spacer-0x75rem" />
@@ -158,7 +158,7 @@ export function ManifestoClient() {
                         </div>
                         <div className="carousel_slide splide__slide width-26rem">
                           <div data-wf--card---icon--variant="secondary-blend-logo" className="card-icon w-variant-09d5c0ae-36c1-e974-3edd-0ee349a57bda">
-                            <Image src="/images/Efrag.avif" alt="" width={40} height={40} className="card-icon_image w-variant-09d5c0ae-36c1-e974-3edd-0ee349a57bda" />
+                            <Image src="/images/Efrag.avif" alt="EFRAG" width={40} height={40} className="card-icon_image w-variant-09d5c0ae-36c1-e974-3edd-0ee349a57bda" />
                             <div className="spacer-3rem spacer-mob-2rem" />
                             <h3 className="heading-size-2rem">{t("manifesto.commitments.efrag.title")}</h3>
                             <div className="spacer-0x75rem" />
@@ -168,7 +168,7 @@ export function ManifestoClient() {
                         </div>
                         <div className="carousel_slide splide__slide width-26rem">
                           <div data-wf--card---icon--variant="secondary" className="card-icon w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7">
-                            <Image src="/images/ecovadis-medal-2026.svg" alt="" width={40} height={40} className="card-icon_image w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7" />
+                            <Image src="/images/ecovadis-medal-2026.svg" alt="EcoVadis Platinum Medal" width={40} height={40} className="card-icon_image w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7" />
                             <div className="spacer-3rem spacer-mob-2rem" />
                             <h3 className="heading-size-2rem">{t("manifesto.commitments.platinum.title")}</h3>
                             <div className="spacer-0x75rem" />
@@ -178,7 +178,7 @@ export function ManifestoClient() {
                         </div>
                         <div className="carousel_slide splide__slide width-26rem">
                           <div data-wf--card---icon--variant="secondary" className="card-icon w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7">
-                            <Image src="/images/un-global-compact.avif" alt="" width={40} height={40} className="card-icon_image w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7" />
+                            <Image src="/images/un-global-compact.avif" alt="UN Global Compact" width={40} height={40} className="card-icon_image w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7" />
                             <div className="spacer-3rem spacer-mob-2rem" />
                             <h3 className="heading-size-2rem">{t("manifesto.commitments.ungc.title")}</h3>
                             <div className="spacer-0x75rem" />
@@ -229,12 +229,12 @@ export function ManifestoClient() {
                 <p className="text-size-1rem">{t("manifesto.investors.subtitle")}</p>
                 <div className="spacer-2rem" />
                 <div className="investors_list">
-                  <Image alt="" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b96085a32e7106c24bfb_nine.avif" width={59} height={59} />
-                  <Image alt="" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b9606ef3fedec0757bf1_purple.avif" width={70} height={70} />
-                  <Image alt="" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b960ce58e09d2418ad5e_better-angle.avif" width={78} height={78} />
-                  <Image alt="" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b96042c32bcf5e05cab4_aonia.avif" width={80} height={80} />
-                  <Image alt="" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b960f81118f10549ee7a_kima-ventures.avif" width={80} height={80} />
-                  <Image alt="" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b960ce3117638f74790e_motier-ventures.avif" width={120} height={40} />
+                  <Image alt="Nine Capital" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b96085a32e7106c24bfb_nine.avif" width={59} height={59} />
+                  <Image alt="Purple" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b9606ef3fedec0757bf1_purple.avif" width={70} height={70} />
+                  <Image alt="Better Angle" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b960ce58e09d2418ad5e_better-angle.avif" width={78} height={78} />
+                  <Image alt="Aonia" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b96042c32bcf5e05cab4_aonia.avif" width={80} height={80} />
+                  <Image alt="Kima Ventures" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b960f81118f10549ee7a_kima-ventures.avif" width={80} height={80} />
+                  <Image alt="Motier Ventures" className="mix-blend-mode-multiply" src="https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b960ce3117638f74790e_motier-ventures.avif" width={120} height={40} />
                 </div>
               </div>
             </div>

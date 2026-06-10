@@ -86,7 +86,7 @@ export default async function HomePage({
                 <div className="home-illus_wrapper">
                   <Image
                     src="/images/ditto_better_businesses_illustration_1_narrow_1.avif"
-                    alt=""
+                    alt="Ditto helps businesses build better sustainability practices"
                     width={800}
                     height={450}
                     className="home-illus_image"

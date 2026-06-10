@@ -81,10 +81,10 @@ export function CareersClient() {
                 <div className="hero-carousel_splide splide">
                   <div className="hero-carousel_track splide__track">
                     <div className="hero-carousel_list splide__list">
-                      <div className="hero-carousel_slide splide__slide"><Image src="/images/careers-pic-1_1.avif" width={532} height={355} alt="" /></div>
-                      <div className="hero-carousel_slide splide__slide"><Image src="/images/careers-pic-2_1.avif" width={532} height={355} alt="" /></div>
-                      <div className="hero-carousel_slide splide__slide"><Image src="/images/careers-pic-3_1.avif" width={532} height={355} alt="" /></div>
-                      <div className="hero-carousel_slide splide__slide"><Image src="/images/careers-pic-4_1.avif" width={532} height={355} alt="" /></div>
+                      <div className="hero-carousel_slide splide__slide"><Image src="/images/careers-pic-1_1.avif" width={532} height={355} alt="Ditto team at work" /></div>
+                      <div className="hero-carousel_slide splide__slide"><Image src="/images/careers-pic-2_1.avif" width={532} height={355} alt="Ditto office culture" /></div>
+                      <div className="hero-carousel_slide splide__slide"><Image src="/images/careers-pic-3_1.avif" width={532} height={355} alt="Ditto team collaboration" /></div>
+                      <div className="hero-carousel_slide splide__slide"><Image src="/images/careers-pic-4_1.avif" width={532} height={355} alt="Life at Ditto" /></div>
                     </div>
                   </div>
                 </div>
@@ -127,7 +127,7 @@ export function CareersClient() {
                         ].map((team) => (
                           <div key={team.key} className="carousel_slide splide__slide width-26rem">
                             <div data-wf--card---icon--variant="primary" className="card-icon">
-                              <Image src={team.icon} alt="" width={40} height={40} className="card-icon_image" style={{ width: "auto", height: "auto" }} />
+                              <Image src={team.icon} alt={team.key} width={40} height={40} className="card-icon_image" style={{ width: "auto", height: "auto" }} />
                               <div className="spacer-3rem spacer-mob-2rem" />
                               <h3 className="heading-size-2rem">{t(`careers.teams.${team.key}.title`)}</h3>
                               <div className="spacer-0x75rem" />
@@ -168,7 +168,7 @@ export function CareersClient() {
             <div data-wf--padding--space="small-3rem" className="spacer-component" />
             <div className="container-84rem">
               <div className="video_component">
-                <Image src="/images/IMG_3632-1_1.avif" alt="" width={1200} height={630} className="media-full-size" />
+                <Image src="/images/IMG_3632-1_1.avif" alt="Ditto team gathering" width={1200} height={630} className="media-full-size" />
               </div>
             </div>
             <div data-wf--padding--space="none" className="spacer-component w-variant-c5e33d14-e297-6cd7-2fd0-a5ca94b32941" />
