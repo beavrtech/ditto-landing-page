@@ -113,7 +113,7 @@ export function SectionCompliantCarousel({
                             "Comply with CSRD requirements and prepare your sustainability report directly in Ditto"
                           }
                           icon={
-                            "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ed169cfc14d8e3135faa6_Csrd.avif"
+                            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed169cfc14d8e3135faa6_Csrd.avif"
                           }
                           title={<Strong>{"CSRD"}</Strong>}
                         />
@@ -127,7 +127,7 @@ export function SectionCompliantCarousel({
                             "Structure your approach, prepare for the EcoVadis assessment, and earn the medal you deserve"
                           }
                           icon={
-                            "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ed1c26a35724770ef7a90_Ecovadis.avif"
+                            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed1c26a35724770ef7a90_Ecovadis.avif"
                           }
                           title={"EcoVadis"}
                         />
@@ -141,7 +141,7 @@ export function SectionCompliantCarousel({
                             "Organize all of your audit info and prepare your ISO certifications for 14001, 45001, and 50001"
                           }
                           icon={
-                            "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ed1c27d430a77816d3240_Iso.avif"
+                            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed1c27d430a77816d3240_Iso.avif"
                           }
                           title={"ISO"}
                         />
@@ -155,7 +155,7 @@ export function SectionCompliantCarousel({
                             "Get your best score by takingadvantage of Ditto's structure and expertise for the CDP evaluation"
                           }
                           icon={
-                            "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ed1c2ab419262c58ece95_Cdp.avif"
+                            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed1c2ab419262c58ece95_Cdp.avif"
                           }
                           title={"CDP"}
                         />

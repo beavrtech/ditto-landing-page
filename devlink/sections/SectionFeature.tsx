@@ -53,7 +53,7 @@ export function SectionFeature({
 
   buttonButtonText = "Learn More",
   buttonButtonVisibility = true,
-  image = "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682d7fad3c89203197a56fb7_image.svg",
+  image = "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682d7fad3c89203197a56fb7_image.svg",
   labelLabelText = "Lorem ipsum",
   labelLabelVisibility = true,
   paragraph = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",

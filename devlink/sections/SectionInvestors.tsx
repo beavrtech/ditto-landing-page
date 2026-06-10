@@ -61,7 +61,7 @@ export function SectionInvestors({}: SectionInvestorsProps) {
                   height={"auto"}
                   loading={"lazy"}
                   src={
-                    "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b96085a32e7106c24bfb_nine.avif"
+                    "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b96085a32e7106c24bfb_nine.avif"
                   }
                   width={"59"}
                 />
@@ -71,7 +71,7 @@ export function SectionInvestors({}: SectionInvestorsProps) {
                   height={"auto"}
                   loading={"lazy"}
                   src={
-                    "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b9606ef3fedec0757bf1_purple.avif"
+                    "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b9606ef3fedec0757bf1_purple.avif"
                   }
                   width={"70"}
                 />
@@ -81,7 +81,7 @@ export function SectionInvestors({}: SectionInvestorsProps) {
                   height={"auto"}
                   loading={"lazy"}
                   src={
-                    "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b960ce58e09d2418ad5e_better-angle.avif"
+                    "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b960ce58e09d2418ad5e_better-angle.avif"
                   }
                   width={"78"}
                 />
@@ -91,7 +91,7 @@ export function SectionInvestors({}: SectionInvestorsProps) {
                   height={"auto"}
                   loading={"lazy"}
                   src={
-                    "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b96042c32bcf5e05cab4_aonia.avif"
+                    "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b96042c32bcf5e05cab4_aonia.avif"
                   }
                   width={"80"}
                 />
@@ -101,7 +101,7 @@ export function SectionInvestors({}: SectionInvestorsProps) {
                   height={"auto"}
                   loading={"lazy"}
                   src={
-                    "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b960f81118f10549ee7a_kima-ventures.avif"
+                    "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b960f81118f10549ee7a_kima-ventures.avif"
                   }
                   width={"80"}
                 />
@@ -111,7 +111,7 @@ export function SectionInvestors({}: SectionInvestorsProps) {
                   height={"auto"}
                   loading={"lazy"}
                   src={
-                    "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b960ce3117638f74790e_motier-ventures.avif"
+                    "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b960ce3117638f74790e_motier-ventures.avif"
                   }
                   width={"120"}
                 />

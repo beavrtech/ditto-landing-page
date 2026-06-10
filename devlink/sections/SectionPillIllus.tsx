@@ -27,7 +27,7 @@ export type SectionPillIllusProps = {
  *
  */
 export function SectionPillIllus({
-  image = "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682ee40e21f304d2370b1de0_happy-business-meeting-team-laughing.avif",
+  image = "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ee40e21f304d2370b1de0_happy-business-meeting-team-laughing.avif",
 }: SectionPillIllusProps) {
   return (
     <div

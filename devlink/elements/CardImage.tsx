@@ -39,7 +39,7 @@ export type CardImageProps = {
  */
 export function CardImage({
   imageThumbnailDesc = "__wf_reserved_inherit",
-  imageThumbnailImage = "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682d7fad3c89203197a56fb7_image.svg",
+  imageThumbnailImage = "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682d7fad3c89203197a56fb7_image.svg",
   labelLabel = "lorem ipsum",
   labelLabelField = "",
 

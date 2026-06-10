@@ -66,7 +66,7 @@ export function SectionCollectionCdp({}: SectionCollectionCdpProps) {
                     height={"auto"}
                     loading={"lazy"}
                     src={
-                      "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6887c1520f8ba57b7a6b29c2_Icon%204.png"
+                      "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_Icon-4.png"
                     }
                     width={"40"}
                   />
@@ -85,7 +85,7 @@ export function SectionCollectionCdp({}: SectionCollectionCdpProps) {
                     height={"auto"}
                     loading={"lazy"}
                     src={
-                      "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6887c152c34ca7caf3a490b8_Icon%201.png"
+                      "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152c34ca7caf3a490b8_Icon-1.png"
                     }
                     width={"40"}
                   />
@@ -104,7 +104,7 @@ export function SectionCollectionCdp({}: SectionCollectionCdpProps) {
                     height={"auto"}
                     loading={"lazy"}
                     src={
-                      "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6887c152cad37b73c312337f_Icon%2012.png"
+                      "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152cad37b73c312337f_Icon-12.png"
                     }
                     width={"40"}
                   />
@@ -123,7 +123,7 @@ export function SectionCollectionCdp({}: SectionCollectionCdpProps) {
                     height={"auto"}
                     loading={"lazy"}
                     src={
-                      "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6887c152cf1d54d25b2a5ff2_Icon%202.png"
+                      "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152cf1d54d25b2a5ff2_Icon-2.png"
                     }
                     width={"40"}
                   />
@@ -142,7 +142,7 @@ export function SectionCollectionCdp({}: SectionCollectionCdpProps) {
                     height={"auto"}
                     loading={"lazy"}
                     src={
-                      "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6887c152405312512f5d8b66_Icon%205.png"
+                      "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152405312512f5d8b66_Icon-5.png"
                     }
                     width={"40"}
                   />
@@ -172,7 +172,7 @@ export function SectionCollectionCdp({}: SectionCollectionCdpProps) {
                     height={"auto"}
                     loading={"lazy"}
                     src={
-                      "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6887c1528594922b61752e25_Icon%206.png"
+                      "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1528594922b61752e25_Icon-6.png"
                     }
                     width={"40"}
                   />
@@ -191,7 +191,7 @@ export function SectionCollectionCdp({}: SectionCollectionCdpProps) {
                     height={"auto"}
                     loading={"lazy"}
                     src={
-                      "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6887c1520f8ba57b7a6b29c2_Icon%204.png"
+                      "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_Icon-4.png"
                     }
                     width={"40"}
                   />

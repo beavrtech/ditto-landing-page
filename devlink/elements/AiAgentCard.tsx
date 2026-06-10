@@ -43,7 +43,7 @@ export function AiAgentCard({}: AiAgentCardProps) {
             height={"auto"}
             loading={"lazy"}
             src={
-              "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6887c152c34ca7caf3a490b8_Icon%201.png"
+              "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152c34ca7caf3a490b8_Icon-1.png"
             }
             width={"auto"}
           />

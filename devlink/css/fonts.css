@@ -2,7 +2,7 @@
 
 @font-face {
   font-family: "Hedvig Letters Serif";
-  src: url("https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682d814c290a61c385954ee5_HedvigLettersSerif18pt-Regular.woff2")
+  src: url("/fonts/HedvigLettersSerif18pt-Regular.woff2")
     format("woff2");
   font-weight: 400;
   font-style: normal;
@@ -10,7 +10,7 @@
 }
 @font-face {
   font-family: "Inter";
-  src: url("https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682d81f386d4d0fc969f4949_Inter-SemiBold.woff2")
+  src: url("/fonts/Inter-SemiBold.woff2")
     format("woff2");
   font-weight: 600;
   font-style: normal;
@@ -18,7 +18,7 @@
 }
 @font-face {
   font-family: "Inter";
-  src: url("https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682d81f35d5ce632bc455671_Inter-Regular.woff2")
+  src: url("/fonts/Inter-Regular.woff2")
     format("woff2");
   font-weight: 400;
   font-style: normal;
@@ -26,7 +26,7 @@
 }
 @font-face {
   font-family: "Inter";
-  src: url("https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682d8f1ccbe673aa6efdfd41_Inter-Medium.woff2")
+  src: url("/fonts/Inter-Medium.woff2")
     format("woff2");
   font-weight: 500;
   font-style: normal;

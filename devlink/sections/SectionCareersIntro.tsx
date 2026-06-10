@@ -58,7 +58,7 @@ export function SectionCareersIntro({}: SectionCareersIntroProps) {
                   height={"auto"}
                   loading={"lazy"}
                   src={
-                    "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/6835b2bf2bcf770c96ef396c_manifesto.avif"
+                    "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6835b2bf2bcf770c96ef396c_manifesto.avif"
                   }
                   width={"auto"}
                 />

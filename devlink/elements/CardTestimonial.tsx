@@ -29,10 +29,10 @@ export type CardTestimonialProps = {
  *
  */
 export function CardTestimonial({
-  authorAuthorImage = "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682d7fad3c89203197a56fb7_image.svg",
+  authorAuthorImage = "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682d7fad3c89203197a56fb7_image.svg",
   authorAuthorName = "Lorem ipsum",
   authorAuthorRole = "CEO of lorem ipsum",
-  logo = "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682d7fad3c89203197a56fb7_image.svg",
+  logo = "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682d7fad3c89203197a56fb7_image.svg",
   testimonial = '"Ditto ensures that everything is done efficiently. The quality of the work is evident, which is very reassuring as we move forward on managing our CSR compliance."',
 }: CardTestimonialProps) {
   return (

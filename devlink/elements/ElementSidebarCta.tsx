@@ -40,7 +40,7 @@ export function ElementSidebarCta({}: ElementSidebarCtaProps) {
               height={"auto"}
               loading={"lazy"}
               src={
-                "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/69031ebc245c1ee5f31512b5_The%20Complete%20EcoVadis%20Guide%20-%20Cover%20Website%20(EN).avif"
+                "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/69031ebc245c1ee5f31512b5_The-Complete-EcoVadis-Guide---Cover-Website-EN.avif"
               }
               width={"auto"}
             />

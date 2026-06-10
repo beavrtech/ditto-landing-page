@@ -32,7 +32,7 @@ export type ElementSocialproofTrustpilotProps = {
  *
  */
 export function ElementSocialproofTrustpilot({
-  image = "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/69a7fb7319962df0c9f5adbc_trustpilot-2.svg",
+  image = "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/69a7fb7319962df0c9f5adbc_trustpilot-2.svg",
 
   link = {
     href: "https://fr.trustpilot.com/review/trustditto.com",

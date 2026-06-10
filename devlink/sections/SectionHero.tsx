@@ -39,7 +39,7 @@ export function SectionHero({
   buttonLeft,
   buttonRight,
   buttonsVisibility = true,
-  image = "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682d7fad3c89203197a56fb7_image.svg",
+  image = "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682d7fad3c89203197a56fb7_image.svg",
   paddingBottom = "Small (3rem)",
   paragraph = "Ditto helps you structure your CSR approach and complete the EcoVadis assessment with ease, so you get the medal you deserve each year.",
   title = "lorem ipsum",

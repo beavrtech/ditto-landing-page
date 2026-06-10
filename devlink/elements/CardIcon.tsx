@@ -29,7 +29,7 @@ export type CardIconProps = {
  */
 export function CardIcon({
   description = "Description",
-  icon = "https://cdn.prod.website-files.com/682d7fad3c89203197a56faa/682d7fad3c89203197a56fb7_image.svg",
+  icon = "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682d7fad3c89203197a56fb7_image.svg",
   title = "Heading",
   variant = "Primary",
 }: CardIconProps) {
