@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { useEffect, useRef } from "react";
 import "@splidejs/splide/css/core";
-import { SectionBreadcrumbs } from "../../../../webflow/sections/SectionBreadcrumbs";
-import { SectionCta } from "../../../../webflow/sections/SectionCta";
-import { DEVLINK_SCOPE_CLASS } from "../../../../webflow/devlinkScope";
+import { Breadcrumbs } from "../../../components/BreadcrumbsWithSchema";
+import { SectionCta } from "../../../../devlink/sections/SectionCta";
+import { DEVLINK_SCOPE_CLASS } from "../../../../devlink/devlinkScope";
 
 export function CareersClient() {
   const t = useTranslations();
@@ -49,7 +49,7 @@ export function CareersClient() {
   return (
     <div ref={pageRef} style={{ display: "contents" }}>
       {/* 1. Breadcrumbs */}
-      <SectionBreadcrumbs
+      <Breadcrumbs
         backgroundBackground="Yellow"
         item1Item1Text={t("careers.breadcrumb")}
         item1Item1Link={{ href: `${prefix}/careers` }}

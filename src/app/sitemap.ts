@@ -39,6 +39,30 @@ const STATIC_PAGES: { en: string; fr: string; changeFrequency: MetadataRoute.Sit
 
 const FRAMEWORKS = ["ecovadis", "cdp", "csrd", "iso-14001", "vsme"];
 
+type EntryOptions = {
+  lastModified?: Date;
+  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+  priority: number;
+};
+
+// Emits the EN and FR variants of a page, each carrying bidirectional
+// hreflang alternates (plus x-default pointing at the EN version).
+function localizedPair(
+  enPath: string,
+  frPath: string,
+  opts: EntryOptions
+): MetadataRoute.Sitemap {
+  const en = `${BASE_URL}/en${enPath}`;
+  const fr = `${BASE_URL}/fr${frPath}`;
+  const alternates = {
+    languages: { "x-default": en, en, fr },
+  };
+  return [
+    { url: en, alternates, ...opts },
+    { url: fr, alternates, ...opts },
+  ];
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const [stories, posts, news, guides, authors, ...collectionResults] =
     await Promise.all([
@@ -54,87 +78,91 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Static pages (both locales)
   for (const page of STATIC_PAGES) {
-    urls.push({
-      url: `${BASE_URL}/en${page.en}`,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    });
-    urls.push({
-      url: `${BASE_URL}/fr${page.fr}`,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
-    });
+    urls.push(
+      ...localizedPair(page.en, page.fr, {
+        changeFrequency: page.changeFrequency,
+        priority: page.priority,
+      })
+    );
   }
 
   // Customer stories
   for (const story of stories || []) {
-    urls.push({
-      url: `${BASE_URL}/en/customer-stories/${story.slug}`,
+    const opts: EntryOptions = {
       lastModified: story.publish_date ? new Date(story.publish_date) : undefined,
       changeFrequency: "monthly",
       priority: 0.7,
-    });
+    };
     if (story.slug_fr) {
-      urls.push({
-        url: `${BASE_URL}/fr/cas-clients/${story.slug_fr}`,
-        lastModified: story.publish_date ? new Date(story.publish_date) : undefined,
-        changeFrequency: "monthly",
-        priority: 0.7,
-      });
+      urls.push(
+        ...localizedPair(
+          `/customer-stories/${story.slug}`,
+          `/cas-clients/${story.slug_fr}`,
+          opts
+        )
+      );
+    } else {
+      urls.push({ url: `${BASE_URL}/en/customer-stories/${story.slug}`, ...opts });
     }
   }
 
   // Blog posts
   for (const post of posts || []) {
-    urls.push({
-      url: `${BASE_URL}/en/resources/blog/${post.slug}`,
+    const opts: EntryOptions = {
       lastModified: post.date_de_publication ? new Date(post.date_de_publication) : undefined,
       changeFrequency: "monthly",
       priority: 0.6,
-    });
+    };
     if (post.slug_fr) {
-      urls.push({
-        url: `${BASE_URL}/fr/ressources/blog/${post.slug_fr}`,
-        lastModified: post.date_de_publication ? new Date(post.date_de_publication) : undefined,
-        changeFrequency: "monthly",
-        priority: 0.6,
-      });
+      urls.push(
+        ...localizedPair(
+          `/resources/blog/${post.slug}`,
+          `/ressources/blog/${post.slug_fr}`,
+          opts
+        )
+      );
+    } else {
+      urls.push({ url: `${BASE_URL}/en/resources/blog/${post.slug}`, ...opts });
     }
   }
 
   // News
   for (const item of news || []) {
-    urls.push({
-      url: `${BASE_URL}/en/resources/news/${item.slug}`,
+    const opts: EntryOptions = {
       lastModified: item.published_date ? new Date(item.published_date) : undefined,
       changeFrequency: "monthly",
       priority: 0.6,
-    });
+    };
     if (item.slug_fr) {
-      urls.push({
-        url: `${BASE_URL}/fr/ressources/news/${item.slug_fr}`,
-        lastModified: item.published_date ? new Date(item.published_date) : undefined,
-        changeFrequency: "monthly",
-        priority: 0.6,
-      });
+      urls.push(
+        ...localizedPair(
+          `/resources/news/${item.slug}`,
+          `/ressources/news/${item.slug_fr}`,
+          opts
+        )
+      );
+    } else {
+      urls.push({ url: `${BASE_URL}/en/resources/news/${item.slug}`, ...opts });
     }
   }
 
   // Guides
   for (const guide of guides || []) {
-    urls.push({
-      url: `${BASE_URL}/en/resources/guides/${guide.slug}`,
+    const opts: EntryOptions = {
       lastModified: guide.date ? new Date(guide.date) : undefined,
       changeFrequency: "monthly",
       priority: 0.7,
-    });
+    };
     if (guide.slug_fr) {
-      urls.push({
-        url: `${BASE_URL}/fr/ressources/guides/${guide.slug_fr}`,
-        lastModified: guide.date ? new Date(guide.date) : undefined,
-        changeFrequency: "monthly",
-        priority: 0.7,
-      });
+      urls.push(
+        ...localizedPair(
+          `/resources/guides/${guide.slug}`,
+          `/ressources/guides/${guide.slug_fr}`,
+          opts
+        )
+      );
+    } else {
+      urls.push({ url: `${BASE_URL}/en/resources/guides/${guide.slug}`, ...opts });
     }
   }
 
@@ -142,16 +170,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const EXCLUDED_AUTHORS = ["charles-lorin", "lisa-venturi"];
   for (const author of authors || []) {
     if (EXCLUDED_AUTHORS.includes(author.slug)) continue;
-    urls.push({
-      url: `${BASE_URL}/en/authors/${author.slug}`,
-      changeFrequency: "monthly",
-      priority: 0.4,
-    });
-    urls.push({
-      url: `${BASE_URL}/fr/auteurs/${author.slug}`,
-      changeFrequency: "monthly",
-      priority: 0.4,
-    });
+    urls.push(
+      ...localizedPair(`/authors/${author.slug}`, `/auteurs/${author.slug}`, {
+        changeFrequency: "monthly",
+        priority: 0.4,
+      })
+    );
   }
 
   // Collection items (per framework) — exclude linked guides (they're already in /resources/guides/)
@@ -160,17 +184,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const allItems = collectionResults[i] || [];
     const items = allItems.filter((item: any) => item._type !== "guide");
     for (const item of items) {
-      urls.push({
-        url: `${BASE_URL}/en/collection/${fw}/${item.slug}`,
+      const opts: EntryOptions = {
         changeFrequency: "monthly",
         priority: 0.5,
-      });
+      };
       if (item.slug_fr) {
-        urls.push({
-          url: `${BASE_URL}/fr/collection/${fw}/${item.slug_fr}`,
-          changeFrequency: "monthly",
-          priority: 0.5,
-        });
+        urls.push(
+          ...localizedPair(
+            `/collection/${fw}/${item.slug}`,
+            `/collection/${fw}/${item.slug_fr}`,
+            opts
+          )
+        );
+      } else {
+        urls.push({ url: `${BASE_URL}/en/collection/${fw}/${item.slug}`, ...opts });
       }
     }
   }

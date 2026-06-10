@@ -1,12 +1,12 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../../../../components/NavbarServer";
 import { Footer } from "../../../../../components/FooterServer";
-import { SectionBreadcrumbs } from "../../../../../../webflow/sections/SectionBreadcrumbs";
-import { SectionCta } from "../../../../../../webflow/sections/SectionCta";
-import { DEVLINK_SCOPE_CLASS } from "../../../../../../webflow/devlinkScope";
+import { Breadcrumbs } from "../../../../../components/BreadcrumbsWithSchema";
+import { SectionCta } from "../../../../../../devlink/sections/SectionCta";
+import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
 import { getBlogPostBySlug, getBlogPosts, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
@@ -63,6 +63,7 @@ export default async function BlogPostPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
@@ -93,7 +94,7 @@ export default async function BlogPostPage({
         <Navbar />
 
         {/* Breadcrumbs: Resources > Blog > Article title */}
-        <SectionBreadcrumbs
+        <Breadcrumbs
           backgroundBackground="Secondary"
           item1Item1Text={locale === "fr" ? "Ressources" : "Resources"}
           item1Item1Link={{ href: localizedHref("/resources", locale) }}

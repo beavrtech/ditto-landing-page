@@ -7,14 +7,14 @@
 import { useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import "@splidejs/splide/css/core";
-import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
-import Block from "../../webflow/webflow_modules/Basic/components/Block";
-import Heading from "../../webflow/webflow_modules/Basic/components/Heading";
-import Section from "../../webflow/webflow_modules/Layout/components/Section";
-import Strong from "../../webflow/webflow_modules/Basic/components/Strong";
-import { Background } from "../../webflow/Background";
-import { CardIcon } from "../../webflow/elements/CardIcon";
-import { Padding } from "../../webflow/Padding";
+import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
+import Block from "../../devlink/modules/Basic/components/Block";
+import Heading from "../../devlink/modules/Basic/components/Heading";
+import Section from "../../devlink/modules/Layout/components/Section";
+import Strong from "../../devlink/modules/Basic/components/Strong";
+import { Background } from "../../devlink/Background";
+import { CardIcon } from "../../devlink/elements/CardIcon";
+import { Padding } from "../../devlink/Padding";
 
 export type SectionCompliantCarouselProps = {
   spaceBottom?: "Small (3rem)" | "Medium (6rem)" | "Large (9rem)" | "None";

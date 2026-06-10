@@ -1,12 +1,12 @@
-import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
-import Block from "../../webflow/webflow_modules/Basic/components/Block";
-import Heading from "../../webflow/webflow_modules/Basic/components/Heading";
-import Image from "../../webflow/webflow_modules/Basic/components/Image";
-import Section from "../../webflow/webflow_modules/Layout/components/Section";
-import { Background } from "../../webflow/Background";
-import { ElementCollectionArticleLink } from "../../webflow/elements/ElementCollectionArticleLink";
-import { Label } from "../../webflow/elements/Label";
-import { Padding } from "../../webflow/Padding";
+import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
+import Block from "../../devlink/modules/Basic/components/Block";
+import Heading from "../../devlink/modules/Basic/components/Heading";
+import Image from "../../devlink/modules/Basic/components/Image";
+import Section from "../../devlink/modules/Layout/components/Section";
+import { Background } from "../../devlink/Background";
+import { ElementCollectionArticleLink } from "../../devlink/elements/ElementCollectionArticleLink";
+import { Label } from "../../devlink/elements/Label";
+import { Padding } from "../../devlink/Padding";
 import { getCollectionItems, getCategoryTranslations } from "../lib/cms";
 import { localizedHref } from "../lib/localized-paths";
 

@@ -1,21 +1,21 @@
 /**
  * @file SectionTestimonialsI18n
- * i18n copy of the Webflow SectionTestimonials component.
+ * i18n copy of the DevLink SectionTestimonials component.
  * Uses CSS scroll-snap instead of Splide for the carousel.
  */
 "use client";
 
 import { useEffect, useRef } from "react";
 
-import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
-import Block from "../../webflow/webflow_modules/Basic/components/Block";
-import Heading from "../../webflow/webflow_modules/Basic/components/Heading";
-import Paragraph from "../../webflow/webflow_modules/Basic/components/Paragraph";
-import Section from "../../webflow/webflow_modules/Layout/components/Section";
-import { Background } from "../../webflow/Background";
-import { Button } from "../../webflow/elements/Button";
-import { CardTestimonial } from "../../webflow/elements/CardTestimonial";
-import { Padding } from "../../webflow/Padding";
+import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
+import Block from "../../devlink/modules/Basic/components/Block";
+import Heading from "../../devlink/modules/Basic/components/Heading";
+import Paragraph from "../../devlink/modules/Basic/components/Paragraph";
+import Section from "../../devlink/modules/Layout/components/Section";
+import { Background } from "../../devlink/Background";
+import { Button } from "../../devlink/elements/Button";
+import { CardTestimonial } from "../../devlink/elements/CardTestimonial";
+import { Padding } from "../../devlink/Padding";
 
 export type SectionTestimonialsI18nProps = {
   buttonLink?: {

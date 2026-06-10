@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
 import { CareersClient } from "./CareersClient";
@@ -21,14 +21,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: t("careers.title"),
       description: t("careers.description"),
-      images: [{ url: "https://www.trustditto.com/images/ditto-frameworks-hero.jpg" }],
+      images: [{ url: "https://www.trustditto.com/images/og-default.jpg" }],
     },
   };
 }
 
 export const revalidate = 3600;
 
-export default async function CareersPage() {
+export default async function CareersPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
   return (
     <div className="page-wrapper">
       <main className="main-wrapper">

@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../components/NavbarServer";
-import { SectionHero } from "../../../webflow/sections/SectionHero";
+import { SectionHero } from "../../../devlink/sections/SectionHero";
 import { SectionLogostrip } from "../../components/LogostripServer";
 import { SectionCompliantCarousel } from "../../components/SectionCompliantCarouselInit";
-import { SectionPillIllus } from "../../../webflow/sections/SectionPillIllus";
-import { SectionFeaturesHeader } from "../../../webflow/sections/SectionFeaturesHeader";
-import { SectionFeature } from "../../../webflow/sections/SectionFeature";
+import { SectionPillIllus } from "../../../devlink/sections/SectionPillIllus";
+import { SectionFeaturesHeader } from "../../../devlink/sections/SectionFeaturesHeader";
+import { SectionFeature } from "../../../devlink/sections/SectionFeature";
 import { SectionTestimonials } from "../../components/TestimonialsServer";
 import { SectionResources } from "../../components/ResourcesServer";
-import { SectionCta } from "../../../webflow/sections/SectionCta";
+import { SectionCta } from "../../../devlink/sections/SectionCta";
 import { Footer } from "../../components/FooterServer";
-import { DEVLINK_SCOPE_CLASS } from "../../../webflow/devlinkScope";
+import { DEVLINK_SCOPE_CLASS } from "../../../devlink/devlinkScope";
 import { NewsletterForm } from "../../components/NewsletterFormI18n";
 import { ExpertiseCarousel } from "../../components/ExpertiseCarousel";
-import { JsonLd, ORGANIZATION_JSONLD } from "../../components/JsonLd";
+import { JsonLd, ORGANIZATION_JSONLD, WEBSITE_JSONLD } from "../../components/JsonLd";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: t("home.title"),
       description: t("home.description"),
-      images: [{ url: "https://www.trustditto.com/images/ditto-frameworks-hero.jpg" }],
+      images: [{ url: "https://www.trustditto.com/images/og-default.jpg" }],
     },
   };
 }
@@ -47,12 +47,14 @@ export default async function HomePage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
   return (
     <div className="page-wrapper">
       <JsonLd data={ORGANIZATION_JSONLD} />
+      <JsonLd data={WEBSITE_JSONLD} />
       <main className="main-wrapper">
         <Navbar />
 

@@ -1,14 +1,14 @@
 /**
  * Transform CMS rich-text HTML by replacing custom embed tags
  * (<goodtoknow>, <cta>) with properly-structured HTML that matches
- * the Webflow CSS classes in the bundle.
+ * the design-system CSS classes in the bundle.
  */
 
 const INFO_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`;
 
 /**
  * Replace <goodtoknow>...</goodtoknow> with styled callout boxes.
- * CSS: .post_goodtoknow, .post_goodtoknow_icon (in webflow-bundle.css)
+ * CSS: .post_goodtoknow, .post_goodtoknow_icon (in devlink-bundle.css)
  */
 function transformGoodToKnow(html: string): string {
   return html.replace(
@@ -21,7 +21,7 @@ function transformGoodToKnow(html: string): string {
 
 /**
  * Replace <cta>...</cta> with styled inline CTA blocks.
- * CSS: .post_richtext_cta (in webflow-bundle.css)
+ * CSS: .post_richtext_cta (in devlink-bundle.css)
  */
 function transformCta(html: string): string {
   return html.replace(

@@ -37,6 +37,21 @@ export const SOFTWARE_APP_JSONLD = {
   },
 };
 
+export const WEBSITE_JSONLD = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://www.trustditto.com/#website",
+  name: "Ditto",
+  alternateName: "Ditto – Your CSR copilot",
+  url: "https://www.trustditto.com/",
+  inLanguage: ["en", "fr"],
+  publisher: {
+    "@type": "Organization",
+    name: "Ditto",
+    url: "https://www.trustditto.com/",
+  },
+};
+
 export const ORGANIZATION_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Organization",

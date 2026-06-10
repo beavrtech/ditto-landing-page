@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
-import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
+import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
 import { getNews } from "../../../../lib/cms";
 import { localizedHref, localizedCmsHref } from "../../../../lib/localized-paths";
 
@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: t("resourcesNews.title"),
       description: t("resourcesNews.description"),
-      images: [{ url: "https://www.trustditto.com/images/ditto-frameworks-hero.jpg" }],
+      images: [{ url: "https://www.trustditto.com/images/og-default.jpg" }],
     },
   };
 }
@@ -63,6 +63,7 @@ export default async function ResourcesNewsPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
 

@@ -1,10 +1,10 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
-import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
+import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
 import { getAuthorBySlug, getAuthors, getBlogPosts, getNews, getGuides } from "../../../../lib/cms";
 import { localizedHref, localizedCmsHref } from "../../../../lib/localized-paths";
 
@@ -56,6 +56,7 @@ export default async function AuthorPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
 

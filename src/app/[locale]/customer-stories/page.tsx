@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
 import { CustomerStoriesFilter } from "../../../components/CustomerStoriesFilter";
-import { DEVLINK_SCOPE_CLASS } from "../../../../webflow/devlinkScope";
+import { DEVLINK_SCOPE_CLASS } from "../../../../devlink/devlinkScope";
 import { getCustomerStories } from "../../../lib/cms";
 import { localizedHref } from "../../../lib/localized-paths";
 
@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: t("customerStories.title"),
       description: t("customerStories.description"),
-      images: [{ url: "https://www.trustditto.com/images/ditto-frameworks-hero.jpg" }],
+      images: [{ url: "https://www.trustditto.com/images/og-default.jpg" }],
     },
   };
 }
@@ -37,6 +37,7 @@ export default async function CustomerStoriesPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations();
 
   const items = await getCustomerStories(locale as "en" | "fr").catch(() => []);

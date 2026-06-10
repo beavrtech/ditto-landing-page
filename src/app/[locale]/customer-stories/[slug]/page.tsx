@@ -1,12 +1,12 @@
 import Image from "next/image";
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
-import { SectionBreadcrumbs } from "../../../../../webflow/sections/SectionBreadcrumbs";
-import { SectionCta } from "../../../../../webflow/sections/SectionCta";
-import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
+import { Breadcrumbs } from "../../../../components/BreadcrumbsWithSchema";
+import { SectionCta } from "../../../../../devlink/sections/SectionCta";
+import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
 import { getCustomerStoryBySlug, getCustomerStories } from "../../../../lib/cms";
 import { localizedCmsHref, localizedHref } from "../../../../lib/localized-paths";
 import { transformRichText } from "../../../../lib/rich-text";
@@ -61,6 +61,7 @@ export default async function CustomerStoryPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
@@ -76,7 +77,7 @@ export default async function CustomerStoryPage({
         <Navbar />
 
         {/* Breadcrumbs */}
-        <SectionBreadcrumbs
+        <Breadcrumbs
           backgroundBackground="Secondary"
           item1Item1Text={locale === "fr" ? "Témoignages clients" : "Customer stories"}
           item1Item1Link={{ href: `${prefix}/customer-stories` }}

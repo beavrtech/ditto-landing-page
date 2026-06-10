@@ -1,16 +1,60 @@
+import type { Metadata } from "next";
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
-import { SectionBreadcrumbs } from "../../../../../webflow/sections/SectionBreadcrumbs";
-import { SectionCta } from "../../../../../webflow/sections/SectionCta";
-import { DEVLINK_SCOPE_CLASS } from "../../../../../webflow/devlinkScope";
-import { Label } from "../../../../../webflow/elements/Label";
+import { Breadcrumbs } from "../../../../components/BreadcrumbsWithSchema";
+import { SectionCta } from "../../../../../devlink/sections/SectionCta";
+import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
+import { Label } from "../../../../../devlink/elements/Label";
 import { localizedHref } from "../../../../lib/localized-paths";
 import { ExploreArticlesSection, FRAMEWORK_CONFIG } from "../../../../components/ExploreArticlesSection";
 
 const VALID_FRAMEWORKS = Object.keys(FRAMEWORK_CONFIG);
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; framework: string }>;
+}): Promise<Metadata> {
+  const { locale, framework } = await params;
+  const config = FRAMEWORK_CONFIG[framework];
+  if (!config) {
+    return {};
+  }
+  const lang = locale === "fr" ? "fr" : "en";
+  const title = `${config.heroTitle[lang]} | Ditto`;
+  const description = config.heroDesc[lang];
+  const path = `/collection/${framework}`;
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `https://www.trustditto.com/${locale}${path}`,
+      languages: {
+        "x-default": `https://www.trustditto.com/en${path}`,
+        en: `https://www.trustditto.com/en${path}`,
+        fr: `https://www.trustditto.com/fr${path}`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      images: [
+        {
+          url: config.heroImage
+            ? `https://www.trustditto.com${config.heroImage}`
+            : "https://www.trustditto.com/images/og-default.jpg",
+        },
+      ],
+    },
+  };
+}
+
+export function generateStaticParams() {
+  return VALID_FRAMEWORKS.map((framework) => ({ framework }));
+}
 
 export const revalidate = 3600;
 
@@ -20,6 +64,7 @@ export default async function CollectionPage({
   params: Promise<{ locale: string; framework: string }>;
 }) {
   const { locale, framework } = await params;
+  setRequestLocale(locale);
 
   if (!VALID_FRAMEWORKS.includes(framework)) {
     notFound();
@@ -35,7 +80,7 @@ export default async function CollectionPage({
         <Navbar />
 
         {/* Breadcrumbs: Resources > EcoVadis */}
-        <SectionBreadcrumbs
+        <Breadcrumbs
           backgroundBackground="Secondary"
           item1Item1Text={locale === "fr" ? "Ressources" : "Resources"}
           item1Item1Link={{ href: localizedHref("/resources", locale) }}
@@ -45,7 +90,7 @@ export default async function CollectionPage({
           item3Item3Visibility={false}
         />
 
-        {/* Hero section — hero3_section from Webflow */}
+        {/* Hero section — hero3_section from the original design */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
           <section className="hero3_section">
             <div className="padding-global">

@@ -4,12 +4,12 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { useEffect, useRef } from "react";
 import "@splidejs/splide/css/core";
-import { SectionBreadcrumbs } from "../../../../webflow/sections/SectionBreadcrumbs";
-import { SectionHero2 } from "../../../../webflow/sections/SectionHero2";
-import { SectionFeaturesHeader } from "../../../../webflow/sections/SectionFeaturesHeader";
-import { SectionFeature } from "../../../../webflow/sections/SectionFeature";
-import { SectionCta } from "../../../../webflow/sections/SectionCta";
-import { DEVLINK_SCOPE_CLASS } from "../../../../webflow/devlinkScope";
+import { Breadcrumbs } from "../../../components/BreadcrumbsWithSchema";
+import { SectionHero2 } from "../../../../devlink/sections/SectionHero2";
+import { SectionFeaturesHeader } from "../../../../devlink/sections/SectionFeaturesHeader";
+import { SectionFeature } from "../../../../devlink/sections/SectionFeature";
+import { SectionCta } from "../../../../devlink/sections/SectionCta";
+import { DEVLINK_SCOPE_CLASS } from "../../../../devlink/devlinkScope";
 
 export function ManifestoClient() {
   const t = useTranslations();
@@ -48,7 +48,7 @@ export function ManifestoClient() {
   return (
     <>
       {/* 1. Breadcrumbs */}
-      <SectionBreadcrumbs
+      <Breadcrumbs
         backgroundBackground="Primary"
         item1Item1Text={t("manifesto.breadcrumb")}
         item1Item1Link={{ href: `${prefix}/manifesto` }}

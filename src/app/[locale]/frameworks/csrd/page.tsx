@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
-import { SectionBreadcrumbs } from "../../../../../webflow/sections/SectionBreadcrumbs";
-import { SectionHero } from "../../../../../webflow/sections/SectionHero";
+import { Breadcrumbs } from "../../../../components/BreadcrumbsWithSchema";
+import { SectionHero } from "../../../../../devlink/sections/SectionHero";
 import { SectionLogostrip } from "../../../../components/LogostripServer";
-import { SectionFeaturesHeader } from "../../../../../webflow/sections/SectionFeaturesHeader";
-import { SectionFeature } from "../../../../../webflow/sections/SectionFeature";
+import { SectionFeaturesHeader } from "../../../../../devlink/sections/SectionFeaturesHeader";
+import { SectionFeature } from "../../../../../devlink/sections/SectionFeature";
 import { SectionCompliantCarousel } from "../../../../components/SectionCompliantCarouselInit";
 import { SectionCtaPill } from "../../../../components/SectionCtaPillI18n";
 import { SectionTestimonials } from "../../../../components/TestimonialsServer";
-import { SectionCta } from "../../../../../webflow/sections/SectionCta";
-import { Button } from "../../../../../webflow/elements/Button";
+import { SectionCta } from "../../../../../devlink/sections/SectionCta";
+import { Button } from "../../../../../devlink/elements/Button";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: t("frameworksCsrd.title"),
       description: t("frameworksCsrd.description"),
-      images: [{ url: "https://www.trustditto.com/images/ditto-frameworks-hero.jpg" }],
+      images: [{ url: "https://www.trustditto.com/images/og-default.jpg" }],
     },
   };
 }
@@ -39,6 +39,7 @@ export const revalidate = 3600;
 
 export default async function FrameworksCsrdPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
@@ -48,7 +49,7 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
         <Navbar />
 
         {/* 1. Breadcrumbs */}
-        <SectionBreadcrumbs
+        <Breadcrumbs
           item1Item1Text={t("frameworksCsrd.breadcrumb")}
           item1Item1Link={{ href: `${prefix}/frameworks/csrd` }}
           item2Item2Visibility={false}

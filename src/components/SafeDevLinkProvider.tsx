@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { DevLinkProvider } from "../../webflow/DevLinkProvider";
+import { DevLinkProvider } from "../../devlink/DevLinkProvider";
 
 function SafeImage(props: React.ImgHTMLAttributes<HTMLImageElement>) {
   if (!props.src || props.src === "") {

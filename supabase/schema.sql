@@ -1,5 +1,5 @@
 -- Ditto Landing Page CMS Schema
--- Matches exact Webflow CMS collection field schemas
+-- Matches the exact field schemas of the original CMS collections
 -- Run this in the Supabase SQL Editor to create all tables
 
 -- ============================================================
@@ -61,7 +61,7 @@ CREATE TABLE testimonials (
 );
 
 -- ============================================================
--- COMPANY LOGOS (not a Webflow collection, manually populated)
+-- COMPANY LOGOS (not an original CMS collection, manually populated)
 -- ============================================================
 
 CREATE TABLE company_logos (

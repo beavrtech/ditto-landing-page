@@ -1,6 +1,6 @@
 /**
  * @file ExpertiseCarousel - "Advanced technology meets human expertise" section
- * Built from the original Webflow HTML (index.html lines 1408-1505)
+ * Built from the original exported HTML (index.html lines 1408-1505)
  * Uses the same carousel pattern as SectionCompliantCarousel with Splide init.
  */
 "use client";
@@ -9,7 +9,7 @@ import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import "@splidejs/splide/css/core";
-import { DEVLINK_SCOPE_CLASS } from "../../webflow/devlinkScope";
+import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
 
 const ITEMS = [
   { key: "methodology" as const, icon: "/images/proprietary-methodology.svg" },

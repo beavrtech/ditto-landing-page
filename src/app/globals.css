@@ -1,10 +1,10 @@
-/* Override Webflow font-family variables with next/font CSS custom properties */
+/* Override design-system font-family variables with next/font CSS custom properties */
 :root {
   --font-family--paragraph: var(--font-inter), Arial, sans-serif;
   --font-family--headings: var(--font-hedvig), "Times New Roman", sans-serif;
 }
 
-/* Body-level styles from Webflow tags.css — can't be @scope'd since body isn't inside the DevLink wrapper */
+/* Body-level styles from the original tags.css — can't be @scope'd since body isn't inside the DevLink wrapper */
 body {
   margin: 0;
   padding: 0;
@@ -40,7 +40,7 @@ a {
   text-decoration: inherit;
 }
 
-/* CMS rich-text table styles (blog-table / table-wrap from Webflow) */
+/* CMS rich-text table styles (blog-table / table-wrap from the original design) */
 .table-wrap {
   overflow-x: auto;
   margin-top: 1.5rem;

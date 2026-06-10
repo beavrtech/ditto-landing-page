@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
 import { SectionContactSidebar } from "../../../components/SectionContactSidebarI18n";
 import { SectionCtaPill } from "../../../components/SectionCtaPillI18n";
-import { DEVLINK_SCOPE_CLASS } from "../../../../webflow/devlinkScope";
+import { DEVLINK_SCOPE_CLASS } from "../../../../devlink/devlinkScope";
 import { localizedHref } from "../../../lib/localized-paths";
 import { supabase } from "../../../lib/supabase";
 
@@ -61,7 +61,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: t("frameworksIndex.title"),
       description: t("frameworksIndex.description"),
-      images: [{ url: "https://www.trustditto.com/images/ditto-frameworks-hero.jpg" }],
+      images: [{ url: "https://www.trustditto.com/images/og-default.jpg" }],
     },
   };
 }
@@ -74,6 +74,7 @@ export default async function FrameworksPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
 

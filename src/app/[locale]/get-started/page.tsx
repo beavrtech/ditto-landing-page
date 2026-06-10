@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
-import { SectionBreadcrumbs } from "../../../../webflow/sections/SectionBreadcrumbs";
+import { Breadcrumbs } from "../../../components/BreadcrumbsWithSchema";
 import { SectionContactSidebar } from "../../../components/SectionContactSidebarI18n";
 import { SectionLogostrip } from "../../../components/LogostripServer";
-import { SectionNumbers } from "../../../../webflow/sections/SectionNumbers";
-import { SectionCta } from "../../../../webflow/sections/SectionCta";
+import { SectionNumbers } from "../../../../devlink/sections/SectionNumbers";
+import { SectionCta } from "../../../../devlink/sections/SectionCta";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: t("getStarted.title"),
       description: t("getStarted.description"),
-      images: [{ url: "https://www.trustditto.com/images/ditto-frameworks-hero.jpg" }],
+      images: [{ url: "https://www.trustditto.com/images/og-default.jpg" }],
     },
   };
 }
@@ -34,6 +34,7 @@ export const revalidate = 3600;
 
 export default async function GetStartedPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
+  setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
@@ -43,7 +44,7 @@ export default async function GetStartedPage({ params }: { params: Promise<{ loc
         <Navbar />
 
         {/* 1. Breadcrumbs */}
-        <SectionBreadcrumbs
+        <Breadcrumbs
           backgroundBackground="Primary"
           item1Item1Text={t("getStarted.breadcrumb")}
           item1Item1Link={{ href: `${prefix}/get-started` }}
