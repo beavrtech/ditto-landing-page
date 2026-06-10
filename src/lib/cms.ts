@@ -207,6 +207,7 @@ export async function getCustomerStoryBySlug(slug: string, locale: Locale) {
       "*, industry:industries(*), customer_story_frameworks(framework:frameworks(*))"
     )
     .eq("slug", slug)
+    .eq("published", true)
     .single();
 
   if (error || !data) {
@@ -217,6 +218,7 @@ export async function getCustomerStoryBySlug(slug: string, locale: Locale) {
         "*, industry:industries(*), customer_story_frameworks(framework:frameworks(*))"
       )
       .eq("slug_fr", slug)
+      .eq("published", true)
       .single();
     data = frResult.data;
     error = frResult.error;
@@ -301,6 +303,7 @@ export async function getBlogPostBySlug(slug: string, locale: Locale) {
     .from("blog_posts")
     .select("*, author:authors(*), category:frameworks(*)")
     .eq("slug", slug)
+    .eq("published", true)
     .single();
 
   if (error || !data) {
@@ -308,6 +311,7 @@ export async function getBlogPostBySlug(slug: string, locale: Locale) {
       .from("blog_posts")
       .select("*, author:authors(*), category:frameworks(*)")
       .eq("slug_fr", slug)
+      .eq("published", true)
       .single();
     data = frResult.data;
     error = frResult.error;
@@ -376,6 +380,7 @@ export async function getNewsItemBySlug(slug: string, locale: Locale) {
     .from("news")
     .select("*, author:authors(*)")
     .eq("slug", slug)
+    .eq("published", true)
     .single();
 
   if (error || !data) {
@@ -383,6 +388,7 @@ export async function getNewsItemBySlug(slug: string, locale: Locale) {
       .from("news")
       .select("*, author:authors(*)")
       .eq("slug_fr", slug)
+      .eq("published", true)
       .single();
     data = frResult.data;
     error = frResult.error;
@@ -439,6 +445,7 @@ export async function getGuideBySlug(slug: string, locale: Locale) {
       "*, author:authors(*), tag:frameworks!guides_tag_id_fkey(*), guide_display_frameworks(framework:frameworks!guide_display_frameworks_framework_id_fkey(*))"
     )
     .eq("slug", slug)
+    .eq("published", true)
     .single();
 
   if (error || !data) {
@@ -448,6 +455,7 @@ export async function getGuideBySlug(slug: string, locale: Locale) {
         "*, author:authors(*), tag:frameworks!guides_tag_id_fkey(*), guide_display_frameworks(framework:frameworks!guide_display_frameworks_framework_id_fkey(*))"
       )
       .eq("slug_fr", slug)
+      .eq("published", true)
       .single();
     data = frResult.data;
     error = frResult.error;
@@ -500,6 +508,7 @@ export async function getEventBySlug(slug: string, locale: Locale) {
     .from("events")
     .select("*, author:authors(*), tag:frameworks(*)")
     .eq("slug", slug)
+    .eq("published", true)
     .single();
 
   if (error || !data) {
@@ -507,6 +516,7 @@ export async function getEventBySlug(slug: string, locale: Locale) {
       .from("events")
       .select("*, author:authors(*), tag:frameworks(*)")
       .eq("slug_fr", slug)
+      .eq("published", true)
       .single();
     data = frResult.data;
     error = frResult.error;
@@ -556,6 +566,7 @@ export async function getCompanyUpdateBySlug(slug: string, locale: Locale) {
     .from("company_updates")
     .select("*, author:authors(*)")
     .eq("slug", slug)
+    .eq("published", true)
     .single();
 
   if (error || !data) {
@@ -563,6 +574,7 @@ export async function getCompanyUpdateBySlug(slug: string, locale: Locale) {
       .from("company_updates")
       .select("*, author:authors(*)")
       .eq("slug_fr", slug)
+      .eq("published", true)
       .single();
     data = frResult.data;
     error = frResult.error;
@@ -677,6 +689,7 @@ export async function getCollectionItemBySlug(
     .select("*, author:authors(*)")
     .eq("framework_id", fw.id)
     .eq("slug", itemSlug)
+    .eq("published", true)
     .single();
 
   if (error || !data) {
@@ -685,6 +698,7 @@ export async function getCollectionItemBySlug(
       .select("*, author:authors(*)")
       .eq("framework_id", fw.id)
       .eq("slug_fr", itemSlug)
+      .eq("published", true)
       .single();
     data = frResult.data;
     error = frResult.error;
