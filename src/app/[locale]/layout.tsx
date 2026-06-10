@@ -6,7 +6,7 @@ import { Inter, Hedvig_Letters_Serif } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { SafeDevLinkProvider } from "../../components/SafeDevLinkProvider";
 import { GlobalStyles } from "../../../devlink/GlobalStyles";
-import { JsonLd, SOFTWARE_APP_JSONLD } from "../../components/JsonLd";
+import { JsonLd, SOFTWARE_APP_JSONLD, ORGANIZATION_JSONLD } from "../../components/JsonLd";
 import { AxeptioConsent } from "../../components/AxeptioConsent";
 import "../globals.css";
 
@@ -30,6 +30,7 @@ export async function generateMetadata({
   const { locale } = await params;
   return {
     metadataBase: new URL("https://www.trustditto.com"),
+    robots: { index: true, follow: true },
     title: "Ditto – Your CSR copilot | More impact, less effort",
     openGraph: {
       type: "website",
@@ -73,6 +74,7 @@ export default async function LocaleLayout({
       <head>
         <link rel="stylesheet" href="/devlink-css/devlink-bundle.css" />
         <JsonLd data={SOFTWARE_APP_JSONLD} />
+        <JsonLd data={ORGANIZATION_JSONLD} />
       </head>
       <body>
         <AxeptioConsent locale={locale} />

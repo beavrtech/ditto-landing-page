@@ -7,8 +7,8 @@ import { Background } from "../../devlink/Background";
 import { ElementCollectionArticleLink } from "../../devlink/elements/ElementCollectionArticleLink";
 import { Label } from "../../devlink/elements/Label";
 import { Padding } from "../../devlink/Padding";
-import { getCollectionItems, getCategoryTranslations } from "../lib/cms";
-import { localizedHref } from "../lib/localized-paths";
+import { getCollectionItems, getCategoryTranslations, getBlogSlugMap } from "../lib/cms";
+import { localizedHref, localizedCmsHref } from "../lib/localized-paths";
 
 type CategoryDef = {
   name: string;
@@ -125,6 +125,7 @@ export async function ExploreArticlesSection({
     getCollectionItems(framework, locale as "en" | "fr"),
     getCategoryTranslations(),
   ]);
+  const blogSlugMap = await getBlogSlugMap().catch(() => new Map());
 
   // Group items by category
   const grouped: Record<string, any[]> = {};
@@ -189,9 +190,13 @@ export async function ExploreArticlesSection({
                   <Block className={"spacer-1x5rem"} tag={"div"} />
                   {(grouped[cat.name] || []).map((item: any) => {
                     const slug = locale === "fr" && item.slug_fr ? item.slug_fr : item.slug;
+                    // Items duplicating a blog post link to the canonical blog URL
+                    const blogTwin = item._type !== "guide" ? blogSlugMap.get(item.slug) : null;
                     const href = item._type === "guide"
                       ? localizedHref(`/resources/guides/${slug}`, locale)
-                      : `${prefix}/collection/${framework}/${slug}`;
+                      : blogTwin
+                        ? localizedCmsHref("/resources/blog", blogTwin.slug, blogTwin.slug_fr, locale)
+                        : `${prefix}/collection/${framework}/${slug}`;
                     return (
                       <ElementCollectionArticleLink
                         key={item.slug}

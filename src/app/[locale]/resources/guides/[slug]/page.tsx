@@ -201,7 +201,7 @@ export default async function GuideDetailPage({
                     <div className="guide_content">
                       <div className="post_chapter">
                         {item.body && (
-                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(item.body) }} />
+                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(item.body, locale) }} />
                         )}
                       </div>
                     </div>

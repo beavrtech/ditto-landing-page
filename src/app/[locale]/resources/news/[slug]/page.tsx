@@ -70,7 +70,7 @@ export default async function NewsDetailPage({
   const item = await getNewsItemBySlug(slug, locale as "en" | "fr");
   if (!item) notFound();
 
-  const bodyHtml = item.body ? injectHeadingIds(transformRichText(item.body)) : "";
+  const bodyHtml = item.body ? injectHeadingIds(transformRichText(item.body, locale)) : "";
   const guide = await getFeaturedGuide(locale as "en" | "fr").catch(() => null);
 
   // Author can be a reference object or inline fields

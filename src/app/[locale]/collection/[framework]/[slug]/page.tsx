@@ -1,14 +1,14 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { Navbar } from "../../../../../components/NavbarServer";
 import { Footer } from "../../../../../components/FooterServer";
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { Breadcrumbs } from "../../../../../components/BreadcrumbsWithSchema";
 import { SectionCta } from "../../../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
-import { getCollectionItemBySlug, getCollectionItems, getCategoryTranslations, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
+import { getCollectionItemBySlug, getCollectionItems, getCategoryTranslations, getGuideByFrameworkId, getFeaturedGuide, getBlogPostBySlug, getBlogSlugMap } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
@@ -24,17 +24,26 @@ export async function generateMetadata({
   if (!item) return {};
   const enSlug = item.slug;
   const frSlug = item.slug_fr || item.slug;
+
+  // Some collection items duplicate a blog post under a second URL.
+  // Canonicalize those to the blog version to avoid duplicate content.
+  const blogTwin = await getBlogPostBySlug(enSlug, "en").catch(() => null);
+  const enUrl = blogTwin
+    ? `https://www.trustditto.com/en/resources/blog/${blogTwin.slug}`
+    : `https://www.trustditto.com/en/collection/${framework}/${enSlug}`;
+  const frUrl = blogTwin
+    ? `https://www.trustditto.com/fr/ressources/blog/${blogTwin.slug_fr || blogTwin.slug}`
+    : `https://www.trustditto.com/fr/collection/${framework}/${frSlug}`;
+
   return {
     title: item.seo_title || item.name,
     description: item.seo_meta_desc || item.description || undefined,
     alternates: {
-      canonical: locale === "fr"
-        ? `https://www.trustditto.com/fr/collection/${framework}/${frSlug}`
-        : `https://www.trustditto.com/en/collection/${framework}/${enSlug}`,
+      canonical: locale === "fr" ? frUrl : enUrl,
       languages: {
-        "x-default": `https://www.trustditto.com/en/collection/${framework}/${enSlug}`,
-        en: `https://www.trustditto.com/en/collection/${framework}/${enSlug}`,
-        fr: `https://www.trustditto.com/fr/collection/${framework}/${frSlug}`,
+        "x-default": enUrl,
+        en: enUrl,
+        fr: frUrl,
       },
     },
     openGraph: {
@@ -56,11 +65,15 @@ const FRAMEWORK_TITLES: Record<string, string> = {
 
 
 export async function generateStaticParams() {
-  const frameworks = ["ecovadis", "cdp", "csrd", "iso-14001"];
+  const frameworks = ["ecovadis", "cdp", "csrd", "iso-14001", "vsme"];
+  const blogSlugs = await getBlogSlugMap().catch(() => new Map());
   const params: { locale: string; framework: string; slug: string }[] = [];
   for (const fw of frameworks) {
     const items = await getCollectionItems(fw, "en").catch(() => []);
     for (const item of items || []) {
+      // Skip items duplicating a blog post — those URLs 308 to the blog
+      // version at request time and must not be prerendered as pages.
+      if (blogSlugs.has(item.slug)) continue;
       params.push({ locale: "en", framework: fw, slug: item.slug });
       if (item.slug_fr) params.push({ locale: "fr", framework: fw, slug: item.slug_fr });
     }
@@ -89,6 +102,17 @@ export default async function CollectionArticlePage({
   ]);
   if (!item) notFound();
 
+  // Items duplicating a blog post permanently redirect to the blog version
+  // (single canonical URL per article).
+  const blogTwin = await getBlogPostBySlug(item.slug, "en").catch(() => null);
+  if (blogTwin) {
+    permanentRedirect(
+      locale === "fr"
+        ? `/fr/ressources/blog/${blogTwin.slug_fr || blogTwin.slug}`
+        : `/en/resources/blog/${blogTwin.slug}`
+    );
+  }
+
   // Fetch related guide for sidebar (fallback to featured guide)
   let guide = item.framework_id
     ? await getGuideByFrameworkId(item.framework_id, locale as "en" | "fr").catch(() => null)
@@ -102,7 +126,7 @@ export default async function CollectionArticlePage({
     : null;
 
   // Inject heading IDs into body for TOC links
-  const bodyHtml = item.body ? injectHeadingIds(transformRichText(item.body)) : "";
+  const bodyHtml = item.body ? injectHeadingIds(transformRichText(item.body, locale)) : "";
 
   return (
     <div className="page-wrapper">

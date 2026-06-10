@@ -122,6 +122,21 @@ export function switchLocalePath(
     }
   }
 
+  // Author slugs are identical in both locales — switch directly.
+  // (There is no /authors index page, so never fall back to it.)
+  if (canonicalPath.startsWith("/authors/") || canonicalPath.startsWith("/auteurs/")) {
+    const slug = canonicalPath.split("/")[2];
+    return targetLocale === "fr" ? `/fr/auteurs/${slug}` : `/en/authors/${slug}`;
+  }
+
+  // Collection framework listings are identical in both locales and switch
+  // directly. Item slugs are locale-specific, so fall back to the framework
+  // listing — there is no /collection index page.
+  if (canonicalPath.startsWith("/collection/")) {
+    const framework = canonicalPath.split("/")[2];
+    return `/${targetLocale}/collection/${framework}`;
+  }
+
   // CMS detail pages have locale-specific slugs that can't be mapped
   // without a DB lookup. For these, redirect to the parent listing page.
   const CMS_PARENT_PATHS = [
@@ -130,21 +145,11 @@ export function switchLocalePath(
     "/resources/news",
     "/resources/events",
     "/customer-stories",
-    "/collection",
-    "/authors",
   ];
 
   for (const parent of CMS_PARENT_PATHS) {
     // Match /resources/blog/some-slug but NOT /resources/blog itself
     if (canonicalPath.startsWith(parent + "/")) {
-      const rest = canonicalPath.slice(parent.length + 1);
-      // If rest contains another slash, it's a nested path (e.g. /collection/ecovadis/some-slug)
-      // For /collection/framework/slug, go to /collection/framework
-      const slashIdx = rest.indexOf("/");
-      if (parent === "/collection" && slashIdx !== -1) {
-        // /collection/ecovadis/some-slug → /collection/ecovadis
-        return localizedHref(parent + "/" + rest.slice(0, slashIdx), targetLocale);
-      }
       return localizedHref(parent, targetLocale);
     }
   }

@@ -255,6 +255,21 @@ export async function getCustomerStoryBySlug(slug: string, locale: Locale) {
 // BLOG POSTS
 // ============================================================
 
+/**
+ * Map of published blog post EN slug -> { slug, slug_fr }. Used to detect
+ * collection items that duplicate a blog post so their URLs can point to
+ * the canonical blog version.
+ */
+export async function getBlogSlugMap(): Promise<Map<string, { slug: string; slug_fr: string | null }>> {
+  const { data, error } = await supabase
+    .from("blog_posts")
+    .select("slug, slug_fr")
+    .eq("published", true)
+    .eq("archived", false);
+  if (error) throw error;
+  return new Map((data || []).map((p) => [p.slug, p]));
+}
+
 export async function getBlogPosts(locale: Locale, limit?: number) {
   let query = supabase
     .from("blog_posts")

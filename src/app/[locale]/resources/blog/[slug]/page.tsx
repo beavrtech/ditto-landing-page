@@ -78,7 +78,7 @@ export default async function BlogPostPage({
   }
 
   const categoryLabel = item.category?.name ?? null;
-  const bodyHtml = item.body ? injectHeadingIds(transformRichText(item.body)) : "";
+  const bodyHtml = item.body ? injectHeadingIds(transformRichText(item.body, locale)) : "";
 
   return (
     <div className="page-wrapper">

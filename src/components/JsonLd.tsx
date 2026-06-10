@@ -28,13 +28,6 @@ export const SOFTWARE_APP_JSONLD = {
     price: "0",
     priceCurrency: "EUR",
   },
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    bestRating: "5",
-    worstRating: "1",
-    ratingCount: "6",
-  },
 };
 
 export const WEBSITE_JSONLD = {
@@ -58,7 +51,7 @@ export const ORGANIZATION_JSONLD = {
   name: "Ditto",
   alternateName: "Beavr",
   url: "https://www.trustditto.com/en",
-  logo: "https://www.trustditto.com/logo.png",
+  logo: "https://www.trustditto.com/images/ditto-logo.svg",
   description:
     "Ditto helps you level up your CSR practices and meet your partner requirements across frameworks like EcoVadis, ISO, CSRD, and CDP. Your CSR and compliance copilot.",
   slogan: "Your CSR and compliance copilot",
@@ -92,13 +85,6 @@ export const ORGANIZATION_JSONLD = {
       credentialCategory: "Partnership",
     },
   ],
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: "5",
-    ratingCount: "6",
-    bestRating: "5",
-    worstRating: "1",
-  },
 };
 
 export function articleJsonLd({

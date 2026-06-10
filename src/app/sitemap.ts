@@ -178,11 +178,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     );
   }
 
-  // Collection items (per framework) — exclude linked guides (they're already in /resources/guides/)
+  // Collection items (per framework) — exclude linked guides (already in
+  // /resources/guides/) and items that duplicate a blog post (those URLs
+  // canonicalize to the blog version)
+  const blogSlugs = new Set((posts || []).map((p: { slug: string }) => p.slug));
   for (let i = 0; i < FRAMEWORKS.length; i++) {
     const fw = FRAMEWORKS[i];
     const allItems = collectionResults[i] || [];
-    const items = allItems.filter((item: any) => item._type !== "guide");
+    const items = allItems.filter(
+      (item: any) => item._type !== "guide" && !blogSlugs.has(item.slug)
+    );
     for (const item of items) {
       const opts: EntryOptions = {
         changeFrequency: "monthly",
