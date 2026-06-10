@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Ditto",
     locale: "en",
-    images: [{ url: "/images/ditto-og.png", width: 1200, height: 630 }],
+    images: [{ url: "/images/ditto-frameworks-hero.jpg", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
