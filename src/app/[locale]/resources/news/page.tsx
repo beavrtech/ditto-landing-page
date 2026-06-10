@@ -50,6 +50,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     openGraph: {
       title: t("resourcesNews.title"),
       description: t("resourcesNews.description"),
+      images: [{ url: "https://www.trustditto.com/images/ditto-frameworks-hero.jpg" }],
     },
   };
 }
