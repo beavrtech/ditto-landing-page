@@ -38,6 +38,16 @@ export function ManifestoClient() {
           });
           splideInstance.mount();
           (el as any).__splide = true;
+
+          // Wire the custom navigation arrows to the Splide instance
+          const goPrev = () => splideInstance?.go("<");
+          const goNext = () => splideInstance?.go(">");
+          carouselRef.current
+            .querySelector(".carousel_navigation_button_left")
+            ?.addEventListener("click", goPrev);
+          carouselRef.current
+            .querySelector(".carousel_navigation_button_right")
+            ?.addEventListener("click", goNext);
         }
       }
     }
@@ -151,7 +161,7 @@ export function ManifestoClient() {
                       <div className="carousel_list splide__list">
                         <div className="carousel_slide splide__slide width-26rem">
                           <div data-wf--card---icon--variant="secondary" className="card-icon w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7">
-                            <Image src="/images/ecovadis-partner-2026.svg" alt="EcoVadis Training Partner" width={40} height={40} className="card-icon_image w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7" />
+                            <Image src="/images/ecovadis-partner-2026.svg" alt="EcoVadis Training Partner" width={96} height={96} style={{ height: "6rem", width: "auto" }} className="card-icon_image w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7" />
                             <div className="spacer-3rem spacer-mob-2rem" />
                             <h3 className="heading-size-2rem">{t("manifesto.commitments.ecovadisPartner.title")}</h3>
                             <div className="spacer-0x75rem" />
@@ -161,7 +171,7 @@ export function ManifestoClient() {
                         </div>
                         <div className="carousel_slide splide__slide width-26rem">
                           <div data-wf--card---icon--variant="secondary-blend-logo" className="card-icon w-variant-09d5c0ae-36c1-e974-3edd-0ee349a57bda">
-                            <Image src="/images/Efrag.avif" alt="EFRAG" width={40} height={40} className="card-icon_image w-variant-09d5c0ae-36c1-e974-3edd-0ee349a57bda" />
+                            <Image src="/images/Efrag.avif" alt="EFRAG" width={96} height={96} style={{ height: "6rem", width: "auto" }} className="card-icon_image w-variant-09d5c0ae-36c1-e974-3edd-0ee349a57bda" />
                             <div className="spacer-3rem spacer-mob-2rem" />
                             <h3 className="heading-size-2rem">{t("manifesto.commitments.efrag.title")}</h3>
                             <div className="spacer-0x75rem" />
@@ -171,7 +181,7 @@ export function ManifestoClient() {
                         </div>
                         <div className="carousel_slide splide__slide width-26rem">
                           <div data-wf--card---icon--variant="secondary" className="card-icon w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7">
-                            <Image src="/images/ecovadis-medal-2026.svg" alt="EcoVadis Platinum Medal" width={40} height={40} className="card-icon_image w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7" />
+                            <Image src="/images/ecovadis-medal-2026.svg" alt="EcoVadis Platinum Medal" width={96} height={96} style={{ height: "6rem", width: "auto" }} className="card-icon_image w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7" />
                             <div className="spacer-3rem spacer-mob-2rem" />
                             <h3 className="heading-size-2rem">{t("manifesto.commitments.platinum.title")}</h3>
                             <div className="spacer-0x75rem" />
@@ -181,7 +191,7 @@ export function ManifestoClient() {
                         </div>
                         <div className="carousel_slide splide__slide width-26rem">
                           <div data-wf--card---icon--variant="secondary" className="card-icon w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7">
-                            <Image src="/images/un-global-compact.avif" alt="UN Global Compact" width={40} height={40} className="card-icon_image w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7" />
+                            <Image src="/images/un-global-compact.avif" alt="UN Global Compact" width={96} height={96} style={{ height: "6rem", width: "auto" }} className="card-icon_image w-variant-ba013e42-81a1-5445-06dc-1cad1363eec7" />
                             <div className="spacer-3rem spacer-mob-2rem" />
                             <h3 className="heading-size-2rem">{t("manifesto.commitments.ungc.title")}</h3>
                             <div className="spacer-0x75rem" />
