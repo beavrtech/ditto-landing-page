@@ -138,8 +138,6 @@ export default async function GuideDetailPage({
   const item = await getGuideBySlug(slug, locale as "en" | "fr");
   if (!item) notFound();
 
-  const categoryLabel = item.tag?.name || "Guide";
-
   return (
     <div className="page-wrapper">
       <JsonLd data={articleJsonLd({
@@ -166,96 +164,66 @@ export default async function GuideDetailPage({
           item3Item3Link={{ href: `${prefix}/resources/guides/${slug}` }}
         />
 
-        {/* Hero — yellow bg, form overlapping into body */}
+        {/* Hero — yellow bg, label + title only (matches original guide template) */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
           {item.form && <style dangerouslySetInnerHTML={{ __html: GUIDE_FORM_CSS }} />}
-          <section className="post-hero_section">
+          <section className="guide-hero_section">
             <div className="padding-global">
-              <div className="hide-tablet">
-                <div className="spacer-component" data-wf--padding--space="small-3rem" />
-              </div>
+              <div className="spacer-component" data-wf--padding--space="small-3rem" />
               <div className="container-84rem">
                 <div className="post-hero_component">
                   <div className="post-hero_content">
-                    <div className="label">{categoryLabel}</div>
+                    <p className="label">Guide</p>
                     <div className="spacer-1x5rem" />
                     <h1 className="heading-size-3rem">{item.name}</h1>
-                    {item.description && (
-                      <>
-                        <div className="spacer-1x5rem" />
-                        <p className="text-size-1x375rem">{item.description}</p>
-                      </>
-                    )}
-                    {item.author && (
-                      <>
-                        <div className="spacer-1x5rem" />
-                        <div className="profile_wrapper">
-                          {item.author.picture_url && (
-                            <div className="profile_image">
-                              <Image width={48} height={48} alt="" src={item.author.picture_url} className="media-full-size" />
-                            </div>
-                          )}
-                          <div className="profile_content">
-                            <a href={`${prefix}/authors/${item.author.slug}`} className="text-size-1rem text-weight-400 link-hover-parent">{item.author.name}</a>
-                            {item.author.job_title && (
-                              <>
-                                <div className="spacer-0x25rem" />
-                                <p className="text-size-0x875rem text-color-neutral">{locale === "fr" ? item.author.job_title_fr || item.author.job_title : item.author.job_title}</p>
-                              </>
-                            )}
-                          </div>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                  {/* Form card — overlaps into body section */}
-                  <div
-                    className="post-hero_banner_wrapper guide-form-card"
-                    style={{
-                      backgroundColor: "var(--_colors-•-semantic---surface-secondary, #eff2e5)",
-                      padding: "2.5rem",
-                      overflow: "visible",
-                      height: "auto",
-                      minHeight: "auto",
-                    }}
-                  >
-                    {item.form ? (
-                      <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: item.form }} />
-                    ) : item.banner_url ? (
-                      <Image src={item.banner_url} alt={item.banner_alt_desc || ""} fill className="media-full-size" style={{ objectFit: "cover" }} />
-                    ) : null}
                   </div>
                 </div>
               </div>
               <div className="show-tablet">
-                <div className="spacer-component" data-wf--padding--space="small-3rem" />
+                <div className="spacer-1x5rem" />
               </div>
+              <div className="spacer-component" data-wf--padding--space="small-3rem" />
             </div>
             <div className="layer-4">
-              <div className="background" data-wf--background--color="yellow" />
+              <div className="background w-variant-a7dfcbb5-832b-e2f7-5007-3979e521cf50" data-wf--background--color="yellow" />
             </div>
           </section>
         </div>
 
-        {/* Article body — no sidebar for guides */}
-        {item.body && (
-          <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
-            <section className="post_section">
-              <div className="padding-global">
-                <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" data-wf--padding--space="medium-6rem" />
-                <div className="container-48rem">
-                  <div className="post_content">
-                    <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(item.body) }} />
+        {/* Body + form sidebar overlapping into the hero (guide_grid layout) */}
+        <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
+          <section className="guide_section">
+            <div className="padding-global">
+              <div className="spacer-component" data-wf--padding--space="small-3rem" />
+              <div className="container-84rem">
+                <div className="guide_grid">
+                  <div className="guide_main">
+                    <div className="guide_content">
+                      <div className="post_chapter">
+                        {item.body && (
+                          <div className="text-rich-text w-richtext" dangerouslySetInnerHTML={{ __html: transformRichText(item.body) }} />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="guide_sidebar">
+                    <div className="guide_form guide-form-card">
+                      {item.form ? (
+                        <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: item.form }} />
+                      ) : item.banner_url ? (
+                        <Image src={item.banner_url} alt={item.banner_alt_desc || ""} width={648} height={400} className="media-full-size" style={{ objectFit: "cover", borderRadius: "1rem" }} />
+                      ) : null}
+                    </div>
                   </div>
                 </div>
-                <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" data-wf--padding--space="medium-6rem" />
               </div>
-              <div className="layer-4">
-                <div className="background" data-wf--background--color="primary" />
-              </div>
-            </section>
-          </div>
-        )}
+              <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" data-wf--padding--space="medium-6rem" />
+            </div>
+            <div className="layer-4">
+              <div className="background" data-wf--background--color="primary" />
+            </div>
+          </section>
+        </div>
 
         <SectionCta
           title={t("cta.title")}

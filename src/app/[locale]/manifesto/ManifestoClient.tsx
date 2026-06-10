@@ -71,6 +71,7 @@ export function ManifestoClient() {
       {/* 4. Feature: Great partners (reversed + title bigger) */}
       <SectionFeature
         variant="Layout • Reversed + Title • Bigger"
+        labelLabelVisibility={false}
         title={t("manifesto.belief1.title")}
         paragraph={t("manifesto.belief1.description")}
         image="/images/manifesto-illus-1_1.avif"
@@ -79,6 +80,7 @@ export function ManifestoClient() {
       {/* 5. Feature: Compliance as opportunity (title bigger) */}
       <SectionFeature
         variant="Title • Bigger"
+        labelLabelVisibility={false}
         title={t("manifesto.belief2.title")}
         paragraph={t("manifesto.belief2.description")}
         image="/images/manifesto-illus-2_1.avif"
@@ -87,6 +89,7 @@ export function ManifestoClient() {
       {/* 6. Feature: Sustainable businesses win (reversed + title bigger) */}
       <SectionFeature
         variant="Layout • Reversed + Title • Bigger"
+        labelLabelVisibility={false}
         title={t("manifesto.belief3.title")}
         paragraph={t("manifesto.belief3.description")}
         image="/images/manifesto-illus-3_1.avif"
