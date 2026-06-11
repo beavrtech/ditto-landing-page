@@ -9,6 +9,7 @@ import { GlobalStyles } from "../../../devlink/GlobalStyles";
 import { JsonLd, SOFTWARE_APP_JSONLD, ORGANIZATION_JSONLD } from "../../components/JsonLd";
 import { AxeptioConsent } from "../../components/AxeptioConsent";
 import { GoogleTagManager, GoogleTagManagerNoScript } from "../../components/GoogleTagManager";
+import { Analytics } from "@vercel/analytics/next";
 import "../globals.css";
 
 const inter = Inter({
@@ -87,6 +88,7 @@ export default async function LocaleLayout({
             {children}
           </SafeDevLinkProvider>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   );
