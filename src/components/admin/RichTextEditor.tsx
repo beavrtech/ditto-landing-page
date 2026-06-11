@@ -8,7 +8,108 @@ import { Table } from "@tiptap/extension-table";
 import { TableRow } from "@tiptap/extension-table-row";
 import { TableCell } from "@tiptap/extension-table-cell";
 import { TableHeader } from "@tiptap/extension-table-header";
+import { Node } from "@tiptap/core";
 import { useState, useCallback, useEffect, useRef } from "react";
+
+/**
+ * Custom CMS embeds (stored as <div data-rt-embed-type='true'><tag>…),
+ * rendered on the site by src/lib/rich-text.ts. Without these extensions
+ * Tiptap would silently strip the blocks when an article is edited.
+ */
+const GoodToKnow = Node.create({
+  name: "goodToKnow",
+  group: "block",
+  content: "inline*",
+  defining: true,
+  parseHTML() {
+    return [{ tag: "goodtoknow" }];
+  },
+  renderHTML() {
+    return ["div", { "data-rt-embed-type": "true" }, ["goodtoknow", 0]];
+  },
+});
+
+const CtaEmbed = Node.create({
+  name: "ctaEmbed",
+  group: "block",
+  atom: true,
+  addAttributes() {
+    return {
+      title: { default: "" },
+      text: { default: "" },
+      buttonText: { default: "" },
+      buttonLink: { default: "" },
+    };
+  },
+  parseHTML() {
+    return [
+      {
+        tag: "cta",
+        getAttrs: (element) => {
+          const el = element as HTMLElement;
+          const grab = (sel: string) => el.querySelector(sel)?.textContent?.trim() ?? "";
+          return {
+            title: grab("title"),
+            text: grab("text"),
+            buttonText: grab("button-text"),
+            buttonLink: grab("button-link"),
+          };
+        },
+      },
+    ];
+  },
+  renderHTML({ node }) {
+    const a = node.attrs;
+    return [
+      "div",
+      { "data-rt-embed-type": "true" },
+      [
+        "cta",
+        ["title", a.title || ""],
+        ["text", a.text || ""],
+        ["button-text", a.buttonText || ""],
+        ["button-link", a.buttonLink || ""],
+      ],
+    ];
+  },
+});
+
+function CtaModal({
+  initial,
+  onSave,
+  onClose,
+}: {
+  initial: { title: string; text: string; buttonText: string; buttonLink: string };
+  onSave: (attrs: { title: string; text: string; buttonText: string; buttonLink: string }) => void;
+  onClose: () => void;
+}) {
+  const [form, setForm] = useState(initial);
+  const field = (key: keyof typeof form, label: string) => (
+    <div style={{ marginBottom: "0.75rem" }}>
+      <label style={{ display: "block", fontSize: "0.8rem", fontWeight: 500, marginBottom: "0.25rem" }}>{label}</label>
+      <input
+        value={form[key]}
+        onChange={(e) => setForm({ ...form, [key]: e.target.value })}
+        style={{ width: "100%", padding: "0.5rem", border: "1px solid #ddd", borderRadius: "4px", boxSizing: "border-box", fontSize: "0.875rem" }}
+      />
+    </div>
+  );
+  return (
+    <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }} onClick={onClose}>
+      <div style={{ background: "white", borderRadius: "8px", padding: "1.5rem", width: "420px" }} onClick={(e) => e.stopPropagation()}>
+        <h3 style={{ margin: "0 0 1rem", fontSize: "1rem" }}>CTA block</h3>
+        {field("title", "Title")}
+        {field("text", "Text")}
+        {field("buttonText", "Button text")}
+        {field("buttonLink", "Button link (URL)")}
+        <div style={{ display: "flex", gap: "0.5rem", justifyContent: "flex-end", marginTop: "1rem" }}>
+          <button type="button" style={btnStyle()} onClick={onClose}>Cancel</button>
+          <button type="button" style={btnStyle(true)} onClick={() => onSave(form)}>Save</button>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const btnStyle = (active?: boolean): React.CSSProperties => ({
   padding: "4px 8px",
@@ -142,6 +243,7 @@ export function RichTextEditor({
   const [showSource, setShowSource] = useState(false);
   const [sourceValue, setSourceValue] = useState(value);
   const [showImageModal, setShowImageModal] = useState(false);
+  const [ctaModal, setCtaModal] = useState<null | { title: string; text: string; buttonText: string; buttonLink: string }>(null);
 
   const editor = useEditor({
     extensions: [
@@ -152,6 +254,8 @@ export function RichTextEditor({
       TableRow,
       TableCell,
       TableHeader,
+      GoodToKnow,
+      CtaEmbed,
     ],
     content: value,
     onUpdate: ({ editor }) => {
@@ -177,6 +281,37 @@ export function RichTextEditor({
     if (!editor) return;
     editor.chain().focus().setImage({ src: url }).run();
     setShowImageModal(false);
+  }, [editor]);
+
+  const insertGoodToKnow = useCallback(() => {
+    if (!editor) return;
+    editor.chain().focus().insertContent({
+      type: "goodToKnow",
+      content: [
+        { type: "text", marks: [{ type: "bold" }], text: "Good to know: " },
+        { type: "text", text: "…" },
+      ],
+    }).run();
+  }, [editor]);
+
+  const openCtaModal = useCallback(() => {
+    if (!editor) return;
+    if (editor.isActive("ctaEmbed")) {
+      const a = editor.getAttributes("ctaEmbed");
+      setCtaModal({ title: a.title || "", text: a.text || "", buttonText: a.buttonText || "", buttonLink: a.buttonLink || "" });
+    } else {
+      setCtaModal({ title: "", text: "", buttonText: "", buttonLink: "" });
+    }
+  }, [editor]);
+
+  const saveCta = useCallback((attrs: { title: string; text: string; buttonText: string; buttonLink: string }) => {
+    if (!editor) return;
+    if (editor.isActive("ctaEmbed")) {
+      editor.chain().focus().updateAttributes("ctaEmbed", attrs).run();
+    } else {
+      editor.chain().focus().insertContent({ type: "ctaEmbed", attrs }).run();
+    }
+    setCtaModal(null);
   }, [editor]);
 
   const toggleSource = () => {
@@ -206,6 +341,8 @@ export function RichTextEditor({
         <button type="button" style={btnStyle(editor.isActive("link"))} onClick={addLink}>Link</button>
         <button type="button" style={btnStyle()} onClick={() => setShowImageModal(true)}>Image</button>
         <button type="button" style={btnStyle()} onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}>Table</button>
+        <button type="button" style={btnStyle(editor.isActive("goodToKnow"))} onClick={insertGoodToKnow}>💡 Note</button>
+        <button type="button" style={btnStyle(editor.isActive("ctaEmbed"))} onClick={openCtaModal}>CTA</button>
         <div style={{ flex: 1 }} />
         <button type="button" style={btnStyle(showSource)} onClick={toggleSource}>&lt;/&gt;</button>
       </div>
@@ -240,9 +377,21 @@ export function RichTextEditor({
             .ProseMirror table { border-collapse: collapse; width: 100%; }
             .ProseMirror th, .ProseMirror td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
             .ProseMirror th { background: #f5f5f5; font-weight: 600; }
+            .ProseMirror goodtoknow { display: block; background: #FFF8D6; border: 1px solid #F2E29B; border-radius: 8px; padding: 0.75rem 1rem; margin: 1rem 0; }
+            .ProseMirror goodtoknow::before { content: "💡 "; }
+            .ProseMirror cta { display: block; background: #130E30; color: #EFF2E5; border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; cursor: pointer; }
+            .ProseMirror cta title { display: block; font-weight: 600; font-size: 1rem; }
+            .ProseMirror cta text { display: block; margin-top: 4px; font-size: 0.875rem; opacity: 0.85; }
+            .ProseMirror cta button-text { display: inline-block; margin-top: 10px; background: #FFE228; color: #130E30; padding: 4px 14px; border-radius: 999px; font-size: 0.8rem; font-weight: 500; }
+            .ProseMirror cta button-link { display: block; margin-top: 6px; font-size: 0.7rem; opacity: 0.6; }
+            .ProseMirror cta::after { content: "Click, then use the CTA button to edit"; display: block; margin-top: 6px; font-size: 0.65rem; opacity: 0.45; }
           `}</style>
           <EditorContent editor={editor} />
         </div>
+      )}
+      {/* CTA edit modal */}
+      {ctaModal && (
+        <CtaModal initial={ctaModal} onSave={saveCta} onClose={() => setCtaModal(null)} />
       )}
       {/* Image upload modal */}
       {showImageModal && (

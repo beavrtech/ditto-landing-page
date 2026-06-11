@@ -85,6 +85,29 @@ function transformBlockquote(html: string): string {
   });
 }
 
+/**
+ * Ensure every table renders with the design's styles, regardless of how
+ * it was stored: legacy bodies carry table-wrap/blog-table markup, while
+ * the admin editor (Tiptap) re-serializes bare <table> tags. Normalize
+ * both to <div class="table-wrap"><table class="blog-table">.
+ */
+function transformTables(html: string): string {
+  let out = html.replace(
+    /<div class="table-wrap"[^>]*>\s*(<table[\s\S]*?<\/table>)\s*<\/div>/gi,
+    "$1"
+  );
+  out = out.replace(/<table([^>]*)>([\s\S]*?)<\/table>/gi, (_, attrs, inner) => {
+    let a = attrs;
+    if (!/blog-table/.test(a)) {
+      a = /class="/.test(a)
+        ? a.replace(/class="/, 'class="blog-table ')
+        : ` class="blog-table"${a}`;
+    }
+    return `<div class="table-wrap" tabindex="0"><table${a}>${inner}</table></div>`;
+  });
+  return out;
+}
+
 const LEGACY_FRAMEWORKS = ["ecovadis", "cdp", "csrd", "iso-14001", "vsme"];
 
 /**
@@ -134,6 +157,7 @@ export function transformRichText(html: string, locale: string = "en"): string {
   result = transformGoodToKnow(result);
   result = transformCta(result);
   result = transformBlockquote(result);
+  result = transformTables(result);
   result = relativizeLinks(result);
   result = rewriteLegacyLinks(result, locale);
   return result;
