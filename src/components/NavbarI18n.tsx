@@ -12,6 +12,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getBlogPosts } from "../lib/cms";
 import { localizedHref, localizedCmsHref, switchLocalePath } from "../lib/localized-paths";
+import { useAlternateUrls } from "./AlternateUrlContext";
 import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
 import Block from "../../devlink/modules/Basic/components/Block";
 import DOM from "../../devlink/modules/Builtin/components/DOM";
@@ -50,6 +51,7 @@ export function NavbarClient({ previewPosts: serverPosts }: NavbarProps) {
   const t = useTranslations("nav");
   const locale = useLocale();
   const pathname = usePathname();
+  const { urls: alternateUrls } = useAlternateUrls();
   const p = `/${locale}`;
   const [clientPosts, setClientPosts] = useState<any[]>(serverPosts || []);
 
@@ -722,14 +724,14 @@ export function NavbarClient({ previewPosts: serverPosts }: NavbarProps) {
                           <Block className={"dropdown_lang_wrapper"} tag={"div"}>
                             <Block className={"navbar_dropdown-language-links-list"} tag={"div"}>
                               <Block className={"navbar_dropdown-card-link"} tag={"div"}>
-                                <Link block={""} button={false} className={"dropdown_lang_link"} options={{ href: switchLocalePath(pathname, "en") }}>
+                                <Link block={""} button={false} className={"dropdown_lang_link"} options={{ href: alternateUrls["en"] || switchLocalePath(pathname, "en") }}>
                                   {""}
                                 </Link>
                                 <Image alt={""} className={"dropdown_lang_flag"} loading={"lazy"} src={"/images/lang-en.svg"} />
                                 <Paragraph className={"text-weight-600"}>{"English"}</Paragraph>
                               </Block>
                               <Block className={"navbar_dropdown-card-link"} tag={"div"}>
-                                <Link block={""} button={false} className={"dropdown_lang_link"} options={{ href: switchLocalePath(pathname, "fr") }}>
+                                <Link block={""} button={false} className={"dropdown_lang_link"} options={{ href: alternateUrls["fr"] || switchLocalePath(pathname, "fr") }}>
                                   {""}
                                 </Link>
                                 <Image alt={""} className={"dropdown_lang_flag"} loading={"lazy"} src={"/images/lang-fr.svg"} />

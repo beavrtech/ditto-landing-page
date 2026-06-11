@@ -10,6 +10,7 @@ import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
 import { getBlogPostBySlug, getBlogPosts, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
+import { SetAlternateUrls } from "../../../../../components/AlternateUrlContext";
 import { transformRichText } from "../../../../../lib/rich-text";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
 
@@ -92,6 +93,10 @@ export default async function BlogPostPage({
       })} />
       <main className="main-wrapper">
         <Navbar />
+        <SetAlternateUrls urls={{
+          en: `/en/resources/blog/${item.slug}`,
+          fr: `/fr/ressources/blog/${item.slug_fr || item.slug}`,
+        }} />
 
         {/* Breadcrumbs: Resources > Blog > Article title */}
         <Breadcrumbs

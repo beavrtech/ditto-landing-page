@@ -9,6 +9,7 @@ import { SectionCta } from "../../../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
 import { getGuideBySlug, getGuides } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
+import { SetAlternateUrls } from "../../../../../components/AlternateUrlContext";
 import { transformRichText } from "../../../../../lib/rich-text";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
 
@@ -150,6 +151,10 @@ export default async function GuideDetailPage({
       })} />
       <main className="main-wrapper">
         <Navbar />
+        <SetAlternateUrls urls={{
+          en: `/en/resources/guides/${item.slug}`,
+          fr: `/fr/ressources/guides/${item.slug_fr || item.slug}`,
+        }} />
 
         {/* Breadcrumbs */}
         <Breadcrumbs

@@ -10,6 +10,7 @@ import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
 import { getNewsItemBySlug, getNews, getFeaturedGuide } from "../../../../../lib/cms";
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
+import { SetAlternateUrls } from "../../../../../components/AlternateUrlContext";
 import { transformRichText } from "../../../../../lib/rich-text";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
 
@@ -93,6 +94,10 @@ export default async function NewsDetailPage({
       })} />
       <main className="main-wrapper">
         <Navbar />
+        <SetAlternateUrls urls={{
+          en: `/en/resources/news/${item.slug}`,
+          fr: `/fr/ressources/news/${item.slug_fr || item.slug}`,
+        }} />
 
         {/* Breadcrumbs: Resources > News > Article title */}
         <Breadcrumbs
