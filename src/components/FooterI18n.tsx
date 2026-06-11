@@ -118,6 +118,7 @@ function FooterNewsletter() {
 export type FooterProps = {
   blogPosts?: any[];
   newsItems?: any[];
+  alternateUrls?: Record<string, string>;
 };
 
 /**
@@ -128,10 +129,11 @@ export type FooterProps = {
  * - Unsupported elements: `Locales Wrapper`, `Collection List`
  *
  */
-export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNewsItems }: FooterProps) {
+export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNewsItems, alternateUrls }: FooterProps) {
   const locale = useLocale();
   const pathname = usePathname();
-  const { urls: alternateUrls } = useAlternateUrls();
+  const { urls: contextUrls } = useAlternateUrls();
+  const resolvedAlternateUrls = alternateUrls || contextUrls;
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
   const [clientBlogPosts, setClientBlogPosts] = useState<any[]>(serverBlogPosts || []);
@@ -226,12 +228,12 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                   <Block className={"w-locales-list"} tag={"div"}>
                     <Block className={"w-locales-items"} tag={"div"} role={"list"}>
                       <Block className={"w-locales-item"} tag={"div"} role={"listitem"}>
-                        <Link block={""} button={false} options={{ href: alternateUrls["en"] || switchLocalePath(pathname, "en") }}>
+                        <Link block={""} button={false} options={{ href: resolvedAlternateUrls["en"] || switchLocalePath(pathname, "en") }}>
                           {"English"}
                         </Link>
                       </Block>
                       <Block className={"w-locales-item"} tag={"div"} role={"listitem"}>
-                        <Link block={""} button={false} options={{ href: alternateUrls["fr"] || switchLocalePath(pathname, "fr") }}>
+                        <Link block={""} button={false} options={{ href: resolvedAlternateUrls["fr"] || switchLocalePath(pathname, "fr") }}>
                           {"Français"}
                         </Link>
                       </Block>

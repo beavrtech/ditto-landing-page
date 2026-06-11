@@ -10,7 +10,6 @@ import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
 import { getCustomerStoryBySlug, getCustomerStories } from "../../../../lib/cms";
 import { localizedCmsHref, localizedHref } from "../../../../lib/localized-paths";
 import { transformRichText, QUOTE_OPEN_SVG, QUOTE_CLOSE_SVG } from "../../../../lib/rich-text";
-import { SetAlternateUrls } from "../../../../components/AlternateUrlContext";
 
 
 // Yellow quotation marks around customer story quotes (from the original
@@ -96,14 +95,15 @@ export default async function CustomerStoryPage({
   const enSlug = story.slug;
   const frSlug = story.slug_fr || story.slug;
 
+  const alternateUrls = {
+    en: `/en/customer-stories/${enSlug}`,
+    fr: `/fr/cas-clients/${frSlug}`,
+  };
+
   return (
     <div className="page-wrapper">
       <main className="main-wrapper">
-        <Navbar />
-        <SetAlternateUrls urls={{
-          en: `/en/customer-stories/${enSlug}`,
-          fr: `/fr/cas-clients/${frSlug}`,
-        }} />
+        <Navbar alternateUrls={alternateUrls} />
 
         {/* Breadcrumbs */}
         <Breadcrumbs
@@ -386,7 +386,7 @@ export default async function CustomerStoryPage({
           buttonLink={{ href: `${prefix}/get-started` }}
         />
 
-        <Footer />
+        <Footer alternateUrls={alternateUrls} />
       </main>
     </div>
   );

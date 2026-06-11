@@ -10,7 +10,6 @@ import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
 import { getBlogPostBySlug, getBlogPosts, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
-import { SetAlternateUrls } from "../../../../../components/AlternateUrlContext";
 import { transformRichText } from "../../../../../lib/rich-text";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
 
@@ -92,8 +91,7 @@ export default async function BlogPostPage({
         authorName: item.author?.name,
       })} />
       <main className="main-wrapper">
-        <Navbar />
-        <SetAlternateUrls urls={{
+        <Navbar alternateUrls={{
           en: `/en/resources/blog/${item.slug}`,
           fr: `/fr/ressources/blog/${item.slug_fr || item.slug}`,
         }} />
@@ -203,7 +201,10 @@ export default async function BlogPostPage({
           buttonLink={{ href: `${prefix}/get-started` }}
         />
 
-        <Footer />
+        <Footer alternateUrls={{
+          en: `/en/resources/blog/${item.slug}`,
+          fr: `/fr/ressources/blog/${item.slug_fr || item.slug}`,
+        }} />
       </main>
     </div>
   );

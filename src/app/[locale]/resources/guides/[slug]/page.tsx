@@ -9,7 +9,6 @@ import { SectionCta } from "../../../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
 import { getGuideBySlug, getGuides } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
-import { SetAlternateUrls } from "../../../../../components/AlternateUrlContext";
 import { transformRichText } from "../../../../../lib/rich-text";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
 
@@ -150,8 +149,7 @@ export default async function GuideDetailPage({
         authorName: item.author?.name,
       })} />
       <main className="main-wrapper">
-        <Navbar />
-        <SetAlternateUrls urls={{
+        <Navbar alternateUrls={{
           en: `/en/resources/guides/${item.slug}`,
           fr: `/fr/ressources/guides/${item.slug_fr || item.slug}`,
         }} />
@@ -237,7 +235,10 @@ export default async function GuideDetailPage({
           buttonLink={{ href: localizedHref("/get-started", locale) }}
         />
 
-        <Footer />
+        <Footer alternateUrls={{
+          en: `/en/resources/guides/${item.slug}`,
+          fr: `/fr/ressources/guides/${item.slug_fr || item.slug}`,
+        }} />
       </main>
     </div>
   );
