@@ -7,6 +7,7 @@
  */
 "use client";
 
+import posthog from "posthog-js";
 import { useState, useCallback, useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
@@ -56,6 +57,7 @@ function FooterNewsletter() {
       );
       if (res.ok) {
         setStatus("success");
+        try { posthog.capture("newsletter_subscribed", { placement: "footer" }); } catch {}
         setEmail("");
       } else {
         setStatus("error");

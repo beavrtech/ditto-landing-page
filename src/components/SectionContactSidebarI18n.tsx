@@ -11,6 +11,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 import { onAxeptioConsent } from "./AxeptioConsent";
+import posthog from "posthog-js";
 import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
 import Block from "../../devlink/modules/Basic/components/Block";
 import Heading from "../../devlink/modules/Basic/components/Heading";
@@ -70,6 +71,7 @@ function HubSpotContactForm({ formId }: { formId: string }) {
         target: "#hubspot-form-container",
         redirectUrl: "",
         onFormSubmitted: () => {
+          try { posthog.capture("contact_form_submitted", { page: window.location.pathname }); } catch {}
           if (containerRef.current) {
             const isFr = document.documentElement.lang === "fr";
           containerRef.current.innerHTML = `

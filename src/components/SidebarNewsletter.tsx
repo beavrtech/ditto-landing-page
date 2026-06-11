@@ -1,5 +1,7 @@
 "use client";
 
+import posthog from "posthog-js";
+
 import { useState, useCallback } from "react";
 
 export function SidebarNewsletter({ locale }: { locale: string }) {
@@ -26,6 +28,7 @@ export function SidebarNewsletter({ locale }: { locale: string }) {
         }
       );
       setStatus(res.ok ? "success" : "error");
+      if (res.ok) { try { posthog.capture("newsletter_subscribed", { placement: "article_sidebar" }); } catch {} }
     } catch {
       setStatus("error");
     }

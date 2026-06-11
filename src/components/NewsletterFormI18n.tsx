@@ -15,6 +15,7 @@ import Block from "../../devlink/modules/Basic/components/Block";
 import FormForm from "../../devlink/modules/Form/components/FormForm";
 import FormTextInput from "../../devlink/modules/Form/components/FormTextInput";
 import FormWrapper from "../../devlink/modules/Form/components/FormWrapper";
+import posthog from "posthog-js";
 import { localizedHref } from "../lib/localized-paths";
 
 /**
@@ -42,6 +43,10 @@ export function NewsletterForm({}: NewsletterFormProps) {
 
     try {
       localStorage.setItem("userEmail", email);
+    } catch {}
+
+    try {
+      posthog.capture("lead_submitted", { placement: "hero", page: window.location.pathname });
     } catch {}
 
     // Fire-and-forget Slack notification; keepalive survives the navigation
