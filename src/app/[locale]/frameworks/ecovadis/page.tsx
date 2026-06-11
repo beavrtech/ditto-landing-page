@@ -66,12 +66,23 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
           paddingBottom="Small (3rem)"
           buttonsVisibility={true}
           buttonLeft={
-            <div>
-              <Button
-                arrow={false}
-                text={t("frameworksEcovadis.hero.cta")}
-                link={{ href: `${prefix}/get-started` }}
-              />
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}>
+                <Button
+                  arrow={false}
+                  text={t("frameworksEcovadis.hero.cta")}
+                  link={{ href: `${prefix}/get-started?utm_source=website&utm_medium=cta&utm_campaign=ecovadis_readiness&utm_content=hero` }}
+                />
+                <Button
+                  arrow={false}
+                  variant="Secondary"
+                  text={t("frameworksEcovadis.hero.ctaSecondary")}
+                  link={{ href: `${prefix}/get-started?utm_source=website&utm_medium=cta&utm_campaign=ecovadis_get_started&utm_content=hero_secondary` }}
+                />
+              </div>
+              <p style={{ margin: 0, maxWidth: "34rem", fontSize: "0.9375rem", lineHeight: 1.5, opacity: 0.8 }}>
+                {t("frameworksEcovadis.hero.ctaSubtext")}
+              </p>
             </div>
           }
           buttonRight={<div></div>}
@@ -170,7 +181,7 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
           title={t("frameworksEcovadis.cta.title")}
           paragraph={t("frameworksEcovadis.cta.subtitle")}
           buttonText={t("frameworksEcovadis.cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/get-started?utm_source=website&utm_medium=cta&utm_campaign=ecovadis_readiness&utm_content=footer` }}
         />
 
         <Footer />

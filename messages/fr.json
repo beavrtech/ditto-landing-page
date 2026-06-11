@@ -47,6 +47,8 @@
     "title": "Obtenez enfin la médaille que vous méritez",
     "subtitle": "Vos engagements RSE méritent d'être visibles. Ditto vous aide à les valoriser, sur EcoVadis, CDP, ISO 14 001, et la CSRD.",
     "cta": "Essayer Ditto",
+    "ctaExpert": "Parler à un expert RSE",
+    "ctaExpertSubtext": "Vous préférez en discuter d'abord ? Réservez 20 minutes avec un spécialiste.",
     "trustpilot": "4.6/5 on Trustpilot"
   },
   "socialProof": {
@@ -543,7 +545,9 @@
     "hero": {
       "title": "EcoVadis en toute simplicité",
       "subtitle": "Ditto vous accompagne sur chaque étape de votre évaluation EcoVadis. Structurez vos données, répondez efficacement, et progressez d'année en année.",
-      "cta": "Commencer"
+      "cta": "Obtenez votre diagnostic EcoVadis gratuit",
+      "ctaSubtext": "20 minutes avec un expert accrédité EcoVadis — découvrez la médaille que vous pouvez viser, et ce qui vous sépare du niveau supérieur.",
+      "ctaSecondary": "Commencer"
     },
     "numbers": {
       "title": "Ditto & EcoVadis en quelques chiffres",
@@ -589,7 +593,7 @@
     "cta": {
       "title": "Prêt à vous mettre en conformité ? Ditto.",
       "subtitle": "Faites de votre programme RSE un véritable levier stratégique, avec un copilote conformité à vos côtés à chaque étape.",
-      "button": "Commencer"
+      "button": "Obtenez votre diagnostic EcoVadis gratuit"
     }
   },
   "frameworksCdp": {
@@ -597,7 +601,9 @@
     "hero": {
       "title": "Améliorez votre score CDP, sans complexité",
       "subtitle": "Ditto combine expertise humaine et intelligence artificielle pour structurer vos données, centraliser vos preuves et optimiser vos réponses. Gagnez du temps et progressez plus vite, sans rien laisser au hasard.",
-      "cta": "Commencer"
+      "cta": "Parler à un expert accrédité CDP",
+      "ctaSubtext": "Ditto est CDP Accredited Solutions Provider. Obtenez une analyse gratuite de votre questionnaire 2026 — avant la deadline.",
+      "ctaSecondary": "Commencer"
     },
     "approach": {
       "title": "Notre approche de l'évaluation CDP",
@@ -634,7 +640,7 @@
     "cta": {
       "title": "Prêt à vous mettre en conformité ? Ditto.",
       "subtitle": "Préparez une réponse CDP claire, cohérente et conforme, avec un copilote expert à vos côtés à chaque étape.",
-      "button": "Commencer"
+      "button": "Parler à un expert accrédité CDP"
     }
   },
   "frameworksCsrd": {
@@ -642,7 +648,9 @@
     "hero": {
       "title": "Conformité CSRD et VSME assistée par l'IA",
       "subtitle": "Ditto vous aide à produire des rapports CSRD conformes, complets et auditables, plus facilement. En combinant expertise, IA et données centralisées, vous pouvez avancer étape par étape, avec une structure claire.",
-      "cta": "Commencer"
+      "cta": "Découvrez ce que la CSRD exige vraiment de vous",
+      "ctaSubtext": "Vous ne savez pas si vous êtes concerné ni par où commencer ? Réservez un appel de cadrage gratuit de 20 minutes avec un spécialiste du reporting.",
+      "ctaSecondary": "Commencer"
     },
     "approach": {
       "title": "Notre approche de la conformité CSRD/VSME",
@@ -679,7 +687,7 @@
     "cta": {
       "title": "Prêt à vous mettre en conformité ? Ditto.",
       "subtitle": "Créez un rapport CSRD ou VSME conforme, clair et crédible avec un copilote intelligent à vos côtés, à chaque étape.",
-      "button": "Commencer"
+      "button": "Découvrez ce que la CSRD exige vraiment de vous"
     }
   },
   "frameworksIso14001": {
@@ -687,7 +695,9 @@
     "hero": {
       "title": "La conformité ISO 14001, simplifiée",
       "subtitle": "Ditto vous aide à mettre en place et maintenir un système de management environnemental conforme à la norme ISO 14001. Une plateforme unique pour structurer vos démarches, gagner du temps et réussir vos audits dès la première fois.",
-      "cta": "Commencer"
+      "cta": "Obtenez votre feuille de route de certification ISO",
+      "ctaSubtext": "Échangez avec un spécialiste sur votre situation au regard des normes 14001, 45001 ou 50001 — et la voie la plus rapide vers la certification.",
+      "ctaSecondary": "Commencer"
     },
     "approach": {
       "title": "Notre approche de la certification ISO 14001",
@@ -724,7 +734,7 @@
     "cta": {
       "title": "Prêt à être certifié ISO 14001 ? Ditto.",
       "subtitle": "Mettez en place un système de management solide, couvrez toutes les exigences et passez vos audits en toute sérénité.",
-      "button": "Commencer"
+      "button": "Obtenez votre feuille de route de certification ISO"
     }
   },
   "aiAgents": {

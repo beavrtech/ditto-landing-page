@@ -14,6 +14,7 @@ import { SectionCta } from "../../../devlink/sections/SectionCta";
 import { Footer } from "../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../devlink/devlinkScope";
 import { NewsletterForm } from "../../components/NewsletterFormI18n";
+import { Button } from "../../../devlink/elements/Button";
 import { ExpertiseCarousel } from "../../components/ExpertiseCarousel";
 import { JsonLd, WEBSITE_JSONLD } from "../../components/JsonLd";
 
@@ -65,7 +66,22 @@ export default async function HomePage({
           image="/images/ditto-frameworks-hero.jpg"
           paddingBottom="None"
           buttonsVisibility={true}
-          buttonLeft={<NewsletterForm />}
+          buttonLeft={
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}>
+                <NewsletterForm />
+                <Button
+                  arrow={false}
+                  variant="Secondary"
+                  text={t("hero.ctaExpert")}
+                  link={{ href: `${prefix}/get-started?utm_source=website&utm_medium=cta&utm_campaign=home_expert&utm_content=hero` }}
+                />
+              </div>
+              <p style={{ margin: 0, maxWidth: "34rem", fontSize: "0.9375rem", lineHeight: 1.5, opacity: 0.8 }}>
+                {t("hero.ctaExpertSubtext")}
+              </p>
+            </div>
+          }
         />
 
         {/* 2. Logo strip */}
