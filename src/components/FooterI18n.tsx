@@ -221,6 +221,22 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                       }
                     />
                   </Link>
+                  <Link
+                    block={"inline"}
+                    button={false}
+                    className={"socials_link"}
+                    options={{
+                      href: "https://www.youtube.com/@trustditto",
+                      target: "_blank",
+                    }}
+                  >
+                    <HtmlEmbed
+                      className={"icon"}
+                      content={
+                        '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.582 5.188a2.513 2.513 0 0 0-1.768-1.78C16.254 3 10 3 10 3s-6.254 0-7.814.408A2.513 2.513 0 0 0 .418 5.188C0 6.758 0 10.024 0 10.024s0 3.266.418 4.836a2.513 2.513 0 0 0 1.768 1.78C3.746 17.048 10 17.048 10 17.048s6.254 0 7.814-.408a2.513 2.513 0 0 0 1.768-1.78C20 13.29 20 10.024 20 10.024s0-3.266-.418-4.836ZM7.976 13.048V7l5.227 3.024L7.976 13.048Z" fill="#130E30"/></svg>'
+                      }
+                    />
+                  </Link>
                   <Block className={"w-locales-list"} tag={"div"}>
                     <Block className={"w-locales-items"} tag={"div"} role={"list"}>
                       <Block className={"w-locales-item"} tag={"div"} role={"listitem"}>
