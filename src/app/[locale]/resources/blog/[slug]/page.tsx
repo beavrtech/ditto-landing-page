@@ -158,9 +158,7 @@ export default async function BlogPostPage({
                   )}
                 </div>
               </div>
-              <div className="show-tablet">
-                <div className="spacer-component" data-wf--padding--space="small-3rem" />
-              </div>
+              <div className="spacer-component" data-wf--padding--space="small-3rem" />
             </div>
             <div className="layer-4">
               <div className="background w-variant-d4e67767-ab3f-6e5c-2116-e9a6d2688920" data-wf--background--color="secondary" />
