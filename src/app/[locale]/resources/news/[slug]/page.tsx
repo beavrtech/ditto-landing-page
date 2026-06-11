@@ -152,7 +152,7 @@ export default async function NewsDetailPage({
                   </div>
                   {item.banner_url && (
                     <div className="post-hero_banner_wrapper">
-                      <Image src={item.banner_url} alt={item.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" />
+                      <Image src={item.banner_url} alt={item.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" priority />
                     </div>
                   )}
                 </div>

@@ -246,8 +246,12 @@ export function RichTextEditor({
   const [ctaModal, setCtaModal] = useState<null | { title: string; text: string; buttonText: string; buttonLink: string }>(null);
 
   const editor = useEditor({
+    // The editor only mounts client-side (behind the admin password gate)
+    immediatelyRender: false,
     extensions: [
-      StarterKit,
+      // StarterKit v3 bundles its own Link extension — disable it in favor
+      // of our configured one to avoid the duplicate-extension warning
+      StarterKit.configure({ link: false }),
       LinkExtension.configure({ openOnClick: false }),
       ImageExtension,
       Table.configure({ resizable: true }),

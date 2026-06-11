@@ -130,7 +130,7 @@ export default async function CustomerStoryPage({
                   </div>
                   {story.banner_url && (
                     <div className="post-hero_banner_wrapper">
-                      <Image src={story.banner_url} alt={story.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" />
+                      <Image src={story.banner_url} alt={story.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" priority />
                     </div>
                   )}
                 </div>
