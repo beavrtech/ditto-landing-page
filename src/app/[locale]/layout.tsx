@@ -8,6 +8,7 @@ import { SafeDevLinkProvider } from "../../components/SafeDevLinkProvider";
 import { GlobalStyles } from "../../../devlink/GlobalStyles";
 import { JsonLd, SOFTWARE_APP_JSONLD, ORGANIZATION_JSONLD } from "../../components/JsonLd";
 import { AxeptioConsent } from "../../components/AxeptioConsent";
+import { GoogleTagManager, GoogleTagManagerNoScript } from "../../components/GoogleTagManager";
 import "../globals.css";
 
 const inter = Inter({
@@ -72,11 +73,13 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} className={`${inter.variable} ${hedvig.variable}`}>
       <head>
+        <GoogleTagManager />
         <link rel="stylesheet" href="/devlink-css/devlink-bundle.css" />
         <JsonLd data={SOFTWARE_APP_JSONLD} />
         <JsonLd data={ORGANIZATION_JSONLD} />
       </head>
       <body>
+        <GoogleTagManagerNoScript />
         <AxeptioConsent locale={locale} />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <SafeDevLinkProvider>
