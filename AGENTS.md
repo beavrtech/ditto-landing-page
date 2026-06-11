@@ -8,6 +8,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 This is a Next.js 16 (Turbopack) marketing site for "Ditto" (trustditto.com) with `next-intl` i18n (`en`, `fr`) and a Supabase CMS backend. Package manager is npm (`package-lock.json`). The update script runs `npm install`.
 
+### On task completion
+- Always send the preview URL back to Slack when a task is done.
+
 ### Required env to run anything
 `src/lib/supabase.ts` calls `createClient()` at module load, so **every page that imports `lib/cms` crashes with a 500 ("supabaseUrl is required") unless `NEXT_PUBLIC_SUPABASE_URL` is set**. Create a gitignored `.env.local` (not committed, not in fresh VMs) with at minimum:
 - `NEXT_PUBLIC_SUPABASE_URL` — the project URL is public: `https://xrbgrzbifkchbjimewvu.supabase.co` (also hardcoded in `next.config.ts`).
