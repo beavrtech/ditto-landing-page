@@ -157,7 +157,7 @@ export default async function CustomerStoryPage({
                     <div className="customer-intro_details_list">
                       {story.localisation && (
                         <div className="customer-intro_details_item">
-                          <p className="text-size-1rem text-weight-600">{locale === "fr" ? "Localisation" : "Location"}</p>
+                          <p className="text-size-1rem text-weight-600">{locale === "fr" ? "Région" : "Location"}</p>
                           <p className="text-size-1rem">{story.localisation}</p>
                         </div>
                       )}
