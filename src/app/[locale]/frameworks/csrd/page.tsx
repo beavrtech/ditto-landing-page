@@ -65,11 +65,23 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
           paddingBottom="Small (3rem)"
           buttonsVisibility={true}
           buttonLeft={
-            <div>
-              <Button
-                text={t("frameworksCsrd.hero.cta")}
-                link={{ href: `${prefix}/get-started` }}
-              />
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem", alignItems: "center" }}>
+                <Button
+                  arrow={false}
+                  text={t("frameworksCsrd.hero.cta")}
+                  link={{ href: `${prefix}/get-started?utm_source=website&utm_medium=cta&utm_campaign=csrd_scoping&utm_content=hero` }}
+                />
+                <Button
+                  arrow={false}
+                  variant="Secondary"
+                  text={t("frameworksCsrd.hero.ctaSecondary")}
+                  link={{ href: `${prefix}/get-started?utm_source=website&utm_medium=cta&utm_campaign=csrd_get_started&utm_content=hero_secondary` }}
+                />
+              </div>
+              <p style={{ margin: 0, maxWidth: "34rem", fontSize: "0.9375rem", lineHeight: 1.5, opacity: 0.8 }}>
+                {t("frameworksCsrd.hero.ctaSubtext")}
+              </p>
             </div>
           }
           buttonRight={<div></div>}
@@ -149,7 +161,7 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
           title={t("frameworksCsrd.cta.title")}
           paragraph={t("frameworksCsrd.cta.subtitle")}
           buttonText={t("frameworksCsrd.cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/get-started?utm_source=website&utm_medium=cta&utm_campaign=csrd_scoping&utm_content=footer` }}
         />
 
         <Footer />
