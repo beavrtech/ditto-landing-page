@@ -92,10 +92,18 @@ export default async function CustomerStoryPage({
     notFound();
   }
 
+  const enSlug = story.slug;
+  const frSlug = story.slug_fr || story.slug;
+
+  const alternateUrls = {
+    en: `/en/customer-stories/${enSlug}`,
+    fr: `/fr/cas-clients/${frSlug}`,
+  };
+
   return (
     <div className="page-wrapper">
       <main className="main-wrapper">
-        <Navbar />
+        <Navbar alternateUrls={alternateUrls} />
 
         {/* Breadcrumbs */}
         <Breadcrumbs
@@ -378,7 +386,7 @@ export default async function CustomerStoryPage({
           buttonLink={{ href: `${prefix}/get-started` }}
         />
 
-        <Footer />
+        <Footer alternateUrls={alternateUrls} />
       </main>
     </div>
   );

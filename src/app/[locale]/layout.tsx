@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { Inter, Hedvig_Letters_Serif } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { SafeDevLinkProvider } from "../../components/SafeDevLinkProvider";
+import { AlternateUrlProvider } from "../../components/AlternateUrlContext";
 import { GlobalStyles } from "../../../devlink/GlobalStyles";
 import { JsonLd, SOFTWARE_APP_JSONLD, ORGANIZATION_JSONLD } from "../../components/JsonLd";
 import { AxeptioConsent } from "../../components/AxeptioConsent";
@@ -85,10 +86,12 @@ export default async function LocaleLayout({
         <AxeptioConsent locale={locale} />
         <PostHogInit />
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <SafeDevLinkProvider>
-            <GlobalStyles />
-            {children}
-          </SafeDevLinkProvider>
+          <AlternateUrlProvider>
+            <SafeDevLinkProvider>
+              <GlobalStyles />
+              {children}
+            </SafeDevLinkProvider>
+          </AlternateUrlProvider>
         </NextIntlClientProvider>
         <Analytics />
       </body>

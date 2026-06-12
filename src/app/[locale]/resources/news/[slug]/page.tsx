@@ -92,7 +92,10 @@ export default async function NewsDetailPage({
         authorName: item.author?.name,
       })} />
       <main className="main-wrapper">
-        <Navbar />
+        <Navbar alternateUrls={{
+          en: `/en/resources/news/${item.slug}`,
+          fr: `/fr/ressources/news/${item.slug_fr || item.slug}`,
+        }} />
 
         {/* Breadcrumbs: Resources > News > Article title */}
         <Breadcrumbs
@@ -197,7 +200,10 @@ export default async function NewsDetailPage({
           buttonLink={{ href: `${prefix}/get-started` }}
         />
 
-        <Footer />
+        <Footer alternateUrls={{
+          en: `/en/resources/news/${item.slug}`,
+          fr: `/fr/ressources/news/${item.slug_fr || item.slug}`,
+        }} />
       </main>
     </div>
   );
