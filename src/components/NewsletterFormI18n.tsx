@@ -86,7 +86,7 @@ export function NewsletterForm({}: NewsletterFormProps) {
               id={"email"}
               maxLength={256}
               name={"email"}
-              placeholder={"name@company.com"}
+              placeholder={t("placeholder")}
               required={true}
               type={"email"}
               ref={inputRef}

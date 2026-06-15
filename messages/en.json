@@ -169,7 +169,7 @@
     }
   },
   "testimonials": {
-    "title": "What customers are saying",
+    "title": "Don't take our word for it. Take theirs",
     "subtitle": "Customers of all sizes love Ditto for its simplicity, smarts, and impact, above all.",
     "readMore": "Read more customer stories"
   },
@@ -271,7 +271,7 @@
       "paragraph": "Use our browser extension to get contextual answers wherever you are—client portals, shared folders, or inboxes. Or just ask a question in the Ditto workspace."
     },
     "testimonials": {
-      "title": "Hear it from our customers",
+      "title": "Don't take our word for it. Take theirs",
       "text": "Customers of all sizes love Ditto for its simplicity, smarts, and impact, above all.",
       "button": "Read More"
     },
@@ -322,7 +322,7 @@
       "button": "Get started"
     },
     "testimonials": {
-      "title": "Hear it from our customers",
+      "title": "Don't take our word for it. Take theirs",
       "text": "Customers using Ditto's AI assistants don't just move faster—they build stronger, smarter compliance programs without the chaos.",
       "button": "Read More"
     },
@@ -880,9 +880,10 @@
     "benefit4": "Reduce compliance costs and time"
   },
   "newsletterForm": {
-    "button": "Get Started",
+    "button": "Book a demo",
     "success": "Thank you! Your submission has been received!",
-    "error": "Oops! Something went wrong while submitting the form."
+    "error": "Oops! Something went wrong while submitting the form.",
+    "placeholder": "ilove@compliance.com"
   },
   "metadata": {
     "home": {

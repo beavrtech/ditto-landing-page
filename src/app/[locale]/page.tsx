@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../components/NavbarServer";
-import { Button } from "../../../devlink/elements/Button";
+import { NewsletterForm } from "../../components/NewsletterFormI18n";
 import { ElementSocialproofTrustpilot } from "../../../devlink/elements/ElementSocialproofTrustpilot";
 import { Background } from "../../../devlink/Background";
 import { SectionLogostrip } from "../../components/LogostripServer";
@@ -73,14 +73,9 @@ export default async function HomePage({
                   {/* First thing on the page: the framework launchpad */}
                   <FrameworkChooser locale={locale} />
 
-                  {/* CTA below the chooser */}
+                  {/* Email-capture demo form below the chooser */}
                   <div className="home-hero_cta">
-                    <Button
-                      variant="Primary"
-                      arrow={false}
-                      text={t("hero.cta")}
-                      link={{ href: `${prefix}/demo` }}
-                    />
+                    <NewsletterForm />
                   </div>
 
                   <div style={{ marginTop: "1.5rem", display: "flex", justifyContent: "center" }}>

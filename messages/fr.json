@@ -169,7 +169,7 @@
     }
   },
   "testimonials": {
-    "title": "Ce que nos clients en disent",
+    "title": "Ils en parlent mieux que nous",
     "subtitle": "Des entreprises de toutes tailles adorent Ditto pour sa simplicité, son intelligence et son impact.",
     "readMore": "Lire plus de témoignages clients"
   },
@@ -229,7 +229,7 @@
       "paragraph": "Ditto conserve l'historique vivant de vos politiques, évaluations et plans d'action."
     },
     "testimonials": {
-      "title": "Ce que disent nos clients",
+      "title": "Ils en parlent mieux que nous",
       "text": "Des entreprises de toutes tailles choisissent Ditto pour sa clarté, son expertise et son impact.",
       "button": "En savoir plus"
     },
@@ -880,9 +880,10 @@
     "benefit4": "Réduire les coûts et le temps de mise en conformité"
   },
   "newsletterForm": {
-    "button": "Commencer",
+    "button": "Réserver une démo",
     "success": "Merci ! Votre inscription a bien été prise en compte !",
-    "error": "Oups ! Une erreur est survenue lors de l'envoi du formulaire."
+    "error": "Oups ! Une erreur est survenue lors de l'envoi du formulaire.",
+    "placeholder": "jaimela@conformite.fr"
   },
   "metadata": {
     "home": {
