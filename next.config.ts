@@ -94,13 +94,23 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/en/contact",
-        destination: "/en/get-started",
+        source: "/en/get-started",
+        destination: "/en/demo",
         permanent: true,
       },
       {
         source: "/fr/get-started",
-        destination: "/fr/contact",
+        destination: "/fr/demo",
+        permanent: true,
+      },
+      {
+        source: "/en/contact",
+        destination: "/en/demo",
+        permanent: true,
+      },
+      {
+        source: "/fr/contact",
+        destination: "/fr/demo",
         permanent: true,
       },
     ];

@@ -27,7 +27,6 @@ const FRENCH_PATHS: Record<string, string> = {
   "/resources/guides": "/ressources/guides",
   "/resources/news": "/ressources/news",
   "/resources/events": "/ressources/events",
-  "/get-started": "/contact",
   "/legal/terms-and-conditions": "/legal/conditions-generales-dutilisation",
   "/legal/privacy-policy": "/legal/politique-de-confidentialite",
   "/legal/legal-notices": "/legal/mentions-legales",

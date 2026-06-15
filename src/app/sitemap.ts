@@ -27,7 +27,7 @@ const STATIC_PAGES: { en: string; fr: string; changeFrequency: MetadataRoute.Sit
   { en: "/solutions/compliance-questionnaires", fr: "/solutions/compliance-questionnaires", changeFrequency: "monthly", priority: 0.8 },
   { en: "/solutions/ai-solutions", fr: "/solutions/ai-solutions", changeFrequency: "monthly", priority: 0.8 },
   { en: "/solutions/supplier-engagement", fr: "/solutions/supplier-engagement", changeFrequency: "monthly", priority: 0.8 },
-  { en: "/get-started", fr: "/contact", changeFrequency: "monthly", priority: 0.9 },
+  { en: "/demo", fr: "/demo", changeFrequency: "monthly", priority: 0.9 },
   { en: "/manifesto", fr: "/manifesto", changeFrequency: "yearly", priority: 0.4 },
   { en: "/careers", fr: "/careers", changeFrequency: "monthly", priority: 0.5 },
   { en: "/collection/ecovadis", fr: "/collection/ecovadis", changeFrequency: "monthly", priority: 0.7 },

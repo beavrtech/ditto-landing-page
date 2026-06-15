@@ -113,7 +113,7 @@ export function ExpertiseCarousel() {
             </div>
             <div className="spacer-3rem" />
             <div className="button-group x-center">
-              <a href={`${prefix}/get-started`} className="button w-inline-block" data-wf--button--variant="primary">
+              <a href={`${prefix}/demo`} className="button w-inline-block" data-wf--button--variant="primary">
                 <div>{t("cta")}</div>
               </a>
             </div>

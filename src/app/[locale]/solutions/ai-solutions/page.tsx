@@ -64,7 +64,7 @@ export default async function AiSolutionsPage({ params }: { params: Promise<{ lo
           buttonLeft={
             <Button
               text={t("solutionsAi.hero.button")}
-              link={{ href: `${prefix}/get-started` }}
+              link={{ href: `${prefix}/demo` }}
               variant="Primary"
             />
           }
@@ -84,7 +84,7 @@ export default async function AiSolutionsPage({ params }: { params: Promise<{ lo
           paragraph={t("solutionsAi.feature1.paragraph")}
           image="/images/management-feature-2_3.avif"
           buttonButtonText={t("solutionsAi.feature1.button")}
-          buttonButtonLink={{ href: `${prefix}/get-started` }}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 5. Feature 2: Framework experts */}
@@ -95,7 +95,7 @@ export default async function AiSolutionsPage({ params }: { params: Promise<{ lo
           paragraph={t("solutionsAi.feature2.paragraph")}
           image="/images/ecovadis-step-3_4.svg"
           buttonButtonText={t("solutionsAi.feature2.button")}
-          buttonButtonLink={{ href: `${prefix}/get-started` }}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 6. Feature 3: Document review */}
@@ -106,7 +106,7 @@ export default async function AiSolutionsPage({ params }: { params: Promise<{ lo
           paragraph={t("solutionsAi.feature3.paragraph")}
           image="/images/ecovadis-step-3_3.svg"
           buttonButtonText={t("solutionsAi.feature3.button")}
-          buttonButtonLink={{ href: `${prefix}/get-started` }}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 7. Feature 4: Questionnaire module */}
@@ -128,7 +128,7 @@ export default async function AiSolutionsPage({ params }: { params: Promise<{ lo
           paragraph={t("solutionsAi.feature5.paragraph")}
           image="/images/home-feature-3_1.svg"
           buttonButtonText={t("solutionsAi.feature5.button")}
-          buttonButtonLink={{ href: `${prefix}/get-started` }}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 9. Testimonials carousel */}
@@ -145,7 +145,7 @@ export default async function AiSolutionsPage({ params }: { params: Promise<{ lo
           title={t("solutionsAi.cta.title")}
           paragraph={t("solutionsAi.cta.paragraph")}
           buttonText={t("solutionsAi.cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer />

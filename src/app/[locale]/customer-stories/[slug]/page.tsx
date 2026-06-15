@@ -393,7 +393,7 @@ export default async function CustomerStoryPage({
                       <div className="spacer-0x75rem" />
                       <p className="text-size-1rem">{locale === "fr" ? "Avec Ditto, améliorez votre performance RSE et renforcez la confiance de vos partenaires." : "With Ditto, improve your CSR performance and boost your partners' confidence."}</p>
                       <div className="spacer-1x5rem" />
-                      <a data-wf--button--variant="secondary" href={localizedHref("/get-started", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">
+                      <a data-wf--button--variant="secondary" href={localizedHref("/demo", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">
                         <div>{locale === "fr" ? "Contactez-nous" : "Contact Us"}</div>
                       </a>
                     </div>
@@ -416,7 +416,7 @@ export default async function CustomerStoryPage({
           title={t("cta.title")}
           paragraph={t("cta.subtitle")}
           buttonText={t("cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer alternateUrls={alternateUrls} />
@@ -472,7 +472,7 @@ async function ReadMoreStories({ locale, currentSlug, prefix }: { locale: string
             </div>
             <div className="spacer-3rem" />
             <div className="button-group x-center">
-              <a data-wf--button--variant="secondary" href={localizedHref("/get-started", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">
+              <a data-wf--button--variant="secondary" href={localizedHref("/demo", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">
                 <div>{locale === "fr" ? "Voir toutes les ressources" : "View All Resources"}</div>
               </a>
             </div>

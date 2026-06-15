@@ -6,7 +6,8 @@
     "resources": "Ressources",
     "about": "À propos",
     "login": "Connexion",
-    "getStarted": "Essayer Ditto",
+    "pricing": "Obtenir un devis",
+    "getStarted": "Réserver une démo",
     "ecovadis": "EcoVadis",
     "iso14001": "ISO 14001",
     "cdp": "CDP",
@@ -44,10 +45,52 @@
     "descNews": "Restez informé des dernières actualités Ditto"
   },
   "hero": {
-    "title": "Obtenez enfin la médaille que vous méritez",
-    "subtitle": "Vos engagements RSE méritent d'être visibles. Ditto vous aide à les valoriser, sur EcoVadis, CDP, ISO 14 001, et la CSRD.",
-    "cta": "Essayer Ditto",
+    "title": "Votre plateforme conformité & durabilité, et l'expert qui la pilote avec vous.",
+    "subtitle": "Gardez l'accès au marché, signez plus de contrats et réduisez les risques, tout en allégeant vos coûts de conformité.",
+    "cta": "Réserver une démo",
     "trustpilot": "4.6/5 on Trustpilot"
+  },
+  "frameworkChooser": {
+    "heading": "J'ai besoin d'aide pour :",
+    "tabs": {
+      "sustainability": "Durabilité",
+      "quality": "Qualité"
+    },
+    "ecovadis": {
+      "name": "EcoVadis",
+      "urgency": "Évaluation à renouveler ? Visez une meilleure médaille ce cycle.",
+      "cta": "Obtenez la médaille que vous méritez"
+    },
+    "cdp": {
+      "name": "CDP",
+      "urgency": "L'échéance de déclaration CDP 2026 approche.",
+      "cta": "Préparer ma réponse CDP"
+    },
+    "vsme": {
+      "name": "VSME",
+      "urgency": "PME qui publie son reporting ? Le standard volontaire, simplifié.",
+      "cta": "Démarrer mon rapport VSME"
+    },
+    "carbon": {
+      "name": "Bilan carbone",
+      "urgency": "Mesurez et réduisez vos émissions sur toute la chaîne de valeur.",
+      "cta": "Mesurer mon empreinte"
+    },
+    "csrd": {
+      "name": "CSRD / VSME",
+      "urgency": "Le reporting durabilité européen, des grands groupes aux PME.",
+      "cta": "Soyez prêt à publier"
+    },
+    "iso": {
+      "name": "ISO 14001",
+      "urgency": "Audit en vue ? Centralisez vos preuves dès maintenant.",
+      "cta": "Préparer mon audit ISO"
+    },
+    "iso50001": {
+      "name": "ISO 50001",
+      "urgency": "Audit de management de l'énergie en vue ? Constituez vos preuves.",
+      "cta": "Préparer mon audit ISO 50001"
+    }
   },
   "socialProof": {
     "title": "Rejoignez plus de 500 entreprises qui assurent leur conformité avec Ditto",
@@ -151,7 +194,7 @@
   "cta": {
     "title": "Prêt à vous mettre en conformité ? Ditto.",
     "subtitle": "Transformez votre programme RSE en avantage stratégique avec un copilote conformité qui vous accompagne à chaque étape.",
-    "button": "Commencer"
+    "button": "Réserver une démo"
   },
   "newsletter": {
     "title": "Abonnez-vous à notre newsletter RSE : études, cas concrets, outils",
@@ -495,6 +538,17 @@
       "step4": "Entretien sur site (4 à 5 pour toutes les équipes)",
       "step5": "Prise de référence",
       "step6": "Offre"
+    }
+  },
+  "pricing": {
+    "breadcrumb": "Obtenir un devis",
+    "hero": {
+      "title": "Un devis adapté",
+      "subtitle": "Le tarif dépend de vos référentiels, de votre taille et de vos objectifs. Donnez-nous quelques informations : nous préparons un devis sur mesure et planifions un échange avec un expert."
+    },
+    "calendar": {
+      "title": "Ou choisissez un créneau",
+      "subtitle": "Réservez 30 minutes avec notre équipe pour obtenir votre devis et découvrir Ditto."
     }
   },
   "getStarted": {
@@ -894,6 +948,10 @@
     "getStarted": {
       "title": "Prêt à vous mettre en conformité ? Ditto.",
       "description": "Mettez-vous en conformité 4x plus vite avec EcoVadis, ISO, CSRD ou CDP grâce à Ditto."
+    },
+    "pricing": {
+      "title": "Tarifs Ditto – un devis adapté à votre programme",
+      "description": "Le tarif dépend de vos référentiels, de votre taille et de vos objectifs. Obtenez un devis sur mesure et un échange avec un expert qui vous guide."
     },
     "manifesto": {
       "title": "Manifeste Ditto | Renforcer la confiance et mieux construire, ensemble",

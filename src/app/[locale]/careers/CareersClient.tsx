@@ -276,7 +276,7 @@ export function CareersClient() {
         title={t("cta.title")}
         paragraph={t("cta.subtitle")}
         buttonText={t("cta.button")}
-        buttonLink={{ href: `${prefix}/get-started` }}
+        buttonLink={{ href: `${prefix}/demo` }}
       />
     </div>
   );

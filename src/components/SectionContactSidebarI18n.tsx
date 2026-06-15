@@ -164,6 +164,10 @@ export type SectionContactSidebarProps = {
   hubspotFormId?: string;
   subtitle?: React.ReactNode;
   title?: React.ReactNode;
+  /** Custom content for the right column. When provided, replaces the HubSpot form. */
+  formSlot?: React.ReactNode;
+  /** Extra content rendered in the left column, below the benefits list. */
+  contentFooter?: React.ReactNode;
 };
 
 /**
@@ -174,6 +178,8 @@ export function SectionContactSidebar({
   hubspotFormId = "b9355524-ebc4-45f2-bead-b719926b54db",
   subtitle,
   title,
+  formSlot,
+  contentFooter,
 }: SectionContactSidebarProps) {
   const t = useTranslations("contactSidebar");
   const tGetStarted = useTranslations("getStarted");
@@ -268,11 +274,16 @@ export function SectionContactSidebar({
                       </Paragraph>
                     </Block>
                   </Block>
+                  {contentFooter ? (
+                    <Block className={"contact_content_footer"} tag={"div"}>
+                      {contentFooter}
+                    </Block>
+                  ) : null}
                 </Block>
               </Block>
               <Block className={"contact_form_wrapper"} tag={"div"}>
                 <Block className={"contact_form"} tag={"div"}>
-                  <HubSpotContactForm formId={hubspotFormId} />
+                  {formSlot ?? <HubSpotContactForm formId={hubspotFormId} />}
                 </Block>
               </Block>
             </Block>

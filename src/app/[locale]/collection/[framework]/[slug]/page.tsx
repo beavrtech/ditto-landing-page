@@ -246,7 +246,7 @@ export default async function CollectionArticlePage({
           title={t("cta.title")}
           paragraph={t("cta.subtitle")}
           buttonText={t("cta.button")}
-          buttonLink={{ href: localizedHref("/get-started", locale) }}
+          buttonLink={{ href: localizedHref("/demo", locale) }}
         />
 
         <Footer />

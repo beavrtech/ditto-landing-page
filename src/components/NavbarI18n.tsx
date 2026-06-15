@@ -751,22 +751,24 @@ export function NavbarClient({ previewPosts: serverPosts, alternateUrls }: Navba
                 <Block className={"navbar_button"} tag={"div"}>
                   <Button
                     arrow={false}
-                    link={{
-                      href: "https://cloud.trustditto.com/o",
-                      target: "_blank",
-                    }}
-                    text={t("login")}
+                    link={{ href: localizedHref("/pricing", locale) }}
+                    text={t("pricing")}
                     variant={"Secondary"}
                   />
                 </Block>
                 <Block className={"navbar_button"} tag={"div"}>
-                  <Button arrow={false} text={t("getStarted")} />
+                  <Button
+                    arrow={false}
+                    link={{ href: localizedHref("/demo", locale) }}
+                    text={t("getStarted")}
+                  />
                 </Block>
               </Block>
             </NavbarMenu>
             <Block className={"navbar1_mobile_button"} tag={"div"}>
               <Button
                 arrow={false}
+                link={{ href: localizedHref("/demo", locale) }}
                 text={t("getStarted")}
                 variant={"Primary - Small"}
               />

@@ -14,6 +14,7 @@ export const routing = defineRouting({
     "/solutions/compliance-questionnaires": "/solutions/compliance-questionnaires",
     "/solutions/ai-solutions": "/solutions/ai-solutions",
     "/solutions/supplier-engagement": "/solutions/supplier-engagement",
+    "/pricing": "/pricing",
     "/manifesto": "/manifesto",
     "/careers": "/careers",
     "/ai-agents": "/ai-agents",
@@ -57,10 +58,7 @@ export const routing = defineRouting({
       en: "/resources/events",
       fr: "/ressources/events",
     },
-    "/get-started": {
-      en: "/get-started",
-      fr: "/contact",
-    },
+    "/demo": "/demo",
     "/legal/terms-and-conditions": {
       en: "/legal/terms-and-conditions",
       fr: "/legal/conditions-generales-dutilisation",

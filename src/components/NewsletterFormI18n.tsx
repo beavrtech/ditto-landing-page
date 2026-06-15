@@ -59,7 +59,7 @@ export function NewsletterForm({}: NewsletterFormProps) {
       }).catch(() => {});
     } catch {}
 
-    router.push(localizedHref("/get-started", locale));
+    router.push(localizedHref("/demo", locale));
   }
 
   return (

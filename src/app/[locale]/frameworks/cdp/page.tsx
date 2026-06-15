@@ -68,7 +68,7 @@ export default async function FrameworksCdpPage({ params }: { params: Promise<{ 
             <div>
               <Button
                 text={t("frameworksCdp.hero.cta")}
-                link={{ href: `${prefix}/get-started` }}
+                link={{ href: `${prefix}/demo` }}
               />
             </div>
           }
@@ -149,7 +149,7 @@ export default async function FrameworksCdpPage({ params }: { params: Promise<{ 
           title={t("frameworksCdp.cta.title")}
           paragraph={t("frameworksCdp.cta.subtitle")}
           buttonText={t("frameworksCdp.cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer />

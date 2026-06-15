@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../components/NavbarServer";
-import { SectionHero } from "../../../devlink/sections/SectionHero";
+import { Button } from "../../../devlink/elements/Button";
+import { ElementSocialproofTrustpilot } from "../../../devlink/elements/ElementSocialproofTrustpilot";
+import { Background } from "../../../devlink/Background";
 import { SectionLogostrip } from "../../components/LogostripServer";
 import { SectionCompliantCarousel } from "../../components/SectionCompliantCarouselInit";
 import { SectionPillIllus } from "../../../devlink/sections/SectionPillIllus";
@@ -13,8 +15,8 @@ import { SectionResources } from "../../components/ResourcesServer";
 import { SectionCta } from "../../../devlink/sections/SectionCta";
 import { Footer } from "../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../devlink/devlinkScope";
-import { NewsletterForm } from "../../components/NewsletterFormI18n";
 import { ExpertiseCarousel } from "../../components/ExpertiseCarousel";
+import { FrameworkChooser } from "../../components/FrameworkChooser";
 import { JsonLd, WEBSITE_JSONLD } from "../../components/JsonLd";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -57,16 +59,41 @@ export default async function HomePage({
       <main className="main-wrapper">
         <Navbar />
 
-        {/* 1. Hero */}
-        <SectionHero
-          variant="Heading 4rem"
-          title={t("hero.title")}
-          paragraph={t("hero.subtitle")}
-          image="/images/ditto-frameworks-hero.jpg"
-          paddingBottom="None"
-          buttonsVisibility={true}
-          buttonLeft={<NewsletterForm />}
-        />
+        {/* 1. Hero launchpad — tabbed framework chooser + CTA, no platform image */}
+        <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
+          <section className="hero_section home-hero">
+            <div className="padding-global">
+              <div className="container-84rem">
+                <div className="home-hero_inner">
+                  <h1 className="heading-size-3rem">{t("hero.title")}</h1>
+                  <p className="text-size-1x375rem home-hero_subtitle">
+                    {t("hero.subtitle")}
+                  </p>
+
+                  {/* First thing on the page: the framework launchpad */}
+                  <FrameworkChooser locale={locale} />
+
+                  {/* CTA below the chooser */}
+                  <div className="home-hero_cta">
+                    <Button
+                      variant="Primary"
+                      arrow={false}
+                      text={t("hero.cta")}
+                      link={{ href: `${prefix}/demo` }}
+                    />
+                  </div>
+
+                  <div style={{ marginTop: "1.5rem", display: "flex", justifyContent: "center" }}>
+                    <ElementSocialproofTrustpilot />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="layer-4">
+              <Background color="Primary" />
+            </div>
+          </section>
+        </div>
 
         {/* 2. Logo strip */}
         <SectionLogostrip locale={locale} />
@@ -180,7 +207,7 @@ export default async function HomePage({
           title={t("cta.title")}
           paragraph={t("cta.subtitle")}
           buttonText={t("cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer />

@@ -64,7 +64,7 @@ export default async function ComplianceQuestionnairesPage({ params }: { params:
           buttonLeft={
             <Button
               text={t("solutionsCompliance.hero.button")}
-              link={{ href: `${prefix}/get-started` }}
+              link={{ href: `${prefix}/demo` }}
               variant="Primary"
             />
           }
@@ -131,7 +131,7 @@ export default async function ComplianceQuestionnairesPage({ params }: { params:
           title={t("solutionsCompliance.cta.title")}
           paragraph={t("solutionsCompliance.cta.paragraph")}
           buttonText={t("solutionsCompliance.cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer />

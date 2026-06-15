@@ -86,18 +86,23 @@ export function SectionLogostrip({ variant = "Base", serverLogos = [], serverSto
               tag={"div"}
             />
             {logos.length > 0 ? (
-              <Block className={"logostrip_list_wrapper w-dyn-list"} tag={"div"}>
+              <Block
+                className={"logostrip_list_wrapper logostrip-marquee_viewport w-dyn-list"}
+                tag={"div"}
+              >
                 <Block
-                  className={"logostrip_list w-dyn-items"}
+                  className={"logostrip_list logostrip-marquee w-dyn-items"}
                   tag={"div"}
                   role={"list"}
                 >
-                  {logos.map((logo) => (
+                  {/* Render the set twice so the marquee can loop seamlessly */}
+                  {[...logos, ...logos].map((logo, _i) => (
                     <Block
-                      key={logo.id}
+                      key={`${logo.id}-${_i}`}
                       className={"logostrip_item w-dyn-item"}
                       tag={"div"}
                       role={"listitem"}
+                      aria-hidden={_i >= logos.length ? true : undefined}
                     >
                       {logo.case_study_url ? (() => {
                         // Extract the slug from the case_study_url (e.g. "/customer-stories/ferco-..." → "ferco-...")

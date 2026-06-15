@@ -68,7 +68,7 @@ export default async function FrameworksIso14001Page({ params }: { params: Promi
             <div>
               <Button
                 text={t("frameworksIso14001.hero.cta")}
-                link={{ href: `${prefix}/get-started` }}
+                link={{ href: `${prefix}/demo` }}
               />
             </div>
           }
@@ -153,7 +153,7 @@ export default async function FrameworksIso14001Page({ params }: { params: Promi
           title={t("frameworksIso14001.cta.title")}
           paragraph={t("frameworksIso14001.cta.subtitle")}
           buttonText={t("frameworksIso14001.cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer />

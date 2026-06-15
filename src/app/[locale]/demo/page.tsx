@@ -15,11 +15,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: t("getStarted.title"),
     description: t("getStarted.description"),
     alternates: {
-      canonical: locale === "fr" ? "https://www.trustditto.com/fr/contact" : "https://www.trustditto.com/en/get-started",
+      canonical: `https://www.trustditto.com/${locale}/demo`,
       languages: {
-        "x-default": "https://www.trustditto.com/en/get-started",
-        en: "https://www.trustditto.com/en/get-started",
-        fr: "https://www.trustditto.com/fr/contact",
+        "x-default": "https://www.trustditto.com/en/demo",
+        en: "https://www.trustditto.com/en/demo",
+        fr: "https://www.trustditto.com/fr/demo",
       },
     },
     openGraph: {
@@ -47,7 +47,7 @@ export default async function GetStartedPage({ params }: { params: Promise<{ loc
         <Breadcrumbs
           backgroundBackground="Primary"
           item1Item1Text={t("getStarted.breadcrumb")}
-          item1Item1Link={{ href: `${prefix}/get-started` }}
+          item1Item1Link={{ href: `${prefix}/demo` }}
           item2Item2Visibility={false}
           item3Item3Visibility={false}
         />
@@ -78,7 +78,7 @@ export default async function GetStartedPage({ params }: { params: Promise<{ loc
           title={t("cta.title")}
           paragraph={t("cta.subtitle")}
           buttonText={t("cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer />
