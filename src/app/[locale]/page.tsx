@@ -98,6 +98,37 @@ export default async function HomePage({
         {/* 2. Logo strip */}
         <SectionLogostrip locale={locale} />
 
+        {/* 2b. Product block — PLACEHOLDER, fill with real product content */}
+        <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
+          <section className="home-product_section">
+            <div className="padding-global">
+              <div className="container-84rem">
+                <div className="home-product_placeholder">
+                  <p className="home-product_label">Product</p>
+                  <h2 className="heading-size-3rem">Product block (placeholder)</h2>
+                  <p className="home-product_text">
+                    Placeholder for the product story — what Ditto does, a
+                    screenshot or short demo, and the key capabilities. Replace
+                    this block with the real content.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="layer-4">
+              <div className="background" data-wf--background--color="primary" />
+            </div>
+          </section>
+        </div>
+
+        {/* 2c. Testimonials (moved up, right below the clients + product) */}
+        <SectionTestimonials
+          locale={locale}
+          title={t("testimonials.title")}
+          text={t("testimonials.subtitle")}
+          buttonText={t("testimonials.readMore")}
+          buttonLink={{ href: `${prefix}/customer-stories` }}
+        />
+
         {/* 3. Frameworks carousel */}
         <SectionCompliantCarousel
           title={t("frameworks.title")}
@@ -186,15 +217,6 @@ export default async function HomePage({
 
         {/* 11. Expertise carousel */}
         <ExpertiseCarousel />
-
-        {/* 12. Testimonials */}
-        <SectionTestimonials
-          locale={locale}
-          title={t("testimonials.title")}
-          text={t("testimonials.subtitle")}
-          buttonText={t("testimonials.readMore")}
-          buttonLink={{ href: `${prefix}/customer-stories` }}
-        />
 
         {/* 12. Resources / Blog preview */}
         <SectionResources

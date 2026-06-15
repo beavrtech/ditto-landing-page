@@ -552,10 +552,10 @@
     }
   },
   "getStarted": {
-    "breadcrumb": "Démarrer",
+    "breadcrumb": "Réserver une démo",
     "hero": {
-      "title": "Assurez votre conformité quatre fois plus rapidement",
-      "subtitle": "Ditto simplifie la mise en conformité et vous aide à le rester avec des référentiels comme EcoVadis, ISO, CSRD ou CDP. Et ce n’est que le début."
+      "title": "Découvrez Ditto en action",
+      "subtitle": "Réservez 30 minutes avec notre équipe. On regarde vos référentiels, on vous montre Ditto en direct et on trace le chemin le plus court vers un dossier prêt pour l'audit."
     },
     "numbers": {
       "title": "Notre impact",
@@ -946,8 +946,8 @@
       "description": "Obtenez des ressources détaillées sur la RSE et la conformité grâce aux guides Ditto. Découvrez les meilleures pratiques et les conseils d'experts."
     },
     "getStarted": {
-      "title": "Prêt à vous mettre en conformité ? Ditto.",
-      "description": "Mettez-vous en conformité 4x plus vite avec EcoVadis, ISO, CSRD ou CDP grâce à Ditto."
+      "title": "Réservez une démo Ditto",
+      "description": "Découvrez Ditto en direct. Réservez 30 minutes pour passer en revue vos référentiels et le chemin le plus court vers un dossier prêt pour l'audit, avec un expert RSE et conformité."
     },
     "pricing": {
       "title": "Tarifs Ditto – un devis adapté à votre programme",

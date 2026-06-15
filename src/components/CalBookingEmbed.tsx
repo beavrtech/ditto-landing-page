@@ -7,7 +7,7 @@ import { useEffect } from "react";
  * Inline Cal.com booking embed for the pricing page.
  * Lets visitors book a 30-minute slot directly without leaving the page.
  */
-export function PricingCalEmbed() {
+export function CalBookingEmbed() {
   useEffect(() => {
     (async function () {
       const cal = await getCalApi({ namespace: "30min" });

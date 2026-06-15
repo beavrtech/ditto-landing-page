@@ -99,6 +99,109 @@ a {
   grid-template-columns: 7.5rem 1fr !important;
 }
 
+/* Testimonials — auto-scrolling marquee of smaller quote cards.
+   Cards are rendered twice; translating the track by -50% loops seamlessly. */
+.testimonials-marquee_viewport {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+}
+
+.testimonials-marquee {
+  display: flex;
+  width: max-content;
+  gap: 1.5rem;
+  animation: testimonials-scroll 60s linear infinite;
+  will-change: transform;
+}
+
+.testimonials-marquee:hover {
+  animation-play-state: paused;
+}
+
+.testimonials-marquee_item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Smaller cards + smaller quote text */
+.testimonials-marquee .card-testimonial {
+  width: 23rem;
+  padding: 2rem;
+}
+
+.testimonials-marquee .card-testimonial .heading-size-2rem {
+  font-size: 1.125rem;
+  line-height: 1.45;
+}
+
+@keyframes testimonials-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-marquee {
+    animation: none;
+  }
+}
+
+/* Homepage product block — PLACEHOLDER (dashed frame signals it needs filling) */
+.home-product_section {
+  position: relative;
+}
+
+.home-product_section .container-84rem {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.home-product_placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  border: 2px dashed var(--_colors-\•-semantic---border-medium, #c9cdb4);
+  border-radius: 1.5rem;
+  text-align: center;
+}
+
+.home-product_label {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--_colors-\•-primitives---neutral--neutral-gray, #5f5c6e);
+}
+
+.home-product_text {
+  max-width: 38rem;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--_colors-\•-primitives---neutral--neutral-gray, #5f5c6e);
+}
+
 /* Homepage hero launchpad — centered headline, tabbed framework chooser, CTA.
    Routes visitors straight into the product-specific pages. */
 .home-hero {
@@ -348,42 +451,42 @@ a {
 }
 
 /* Tighten the hero's vertical rhythm so more fits above the fold.
-   Scoped to .pricing-page so the get-started page is unaffected. */
-.pricing-page .contact_section .spacer-component {
+   Scoped to .booking-page so other pages are unaffected. */
+.booking-page .contact_section .spacer-component {
   padding-top: 1.5rem;
 }
 
-.pricing-page .contact_section .contact_content {
+.booking-page .contact_section .contact_content {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
 }
 
-.pricing-page .contact_section .spacer-3rem {
+.booking-page .contact_section .spacer-3rem {
   padding-top: 1.25rem;
 }
 
-.pricing-page .contact_section .spacer-1x5rem {
+.booking-page .contact_section .spacer-1x5rem {
   padding-top: 0.75rem;
 }
 
 /* Give the Cal.com column the width it needs to render the full month_view
    (calendar + time slots side by side, not the narrow "zoomed" view).
    Narrow the text column, let the calendar take the rest, trim padding. */
-.pricing-page .contact_component {
+.booking-page .contact_component {
   grid-column-gap: 2rem;
 }
 
-.pricing-page .contact_content_wrapper {
+.booking-page .contact_content_wrapper {
   max-width: 30rem;
   flex: 0 1 30rem;
 }
 
-.pricing-page .contact_form_wrapper {
+.booking-page .contact_form_wrapper {
   max-width: none;
   flex: 1 1 auto;
 }
 
-.pricing-page .contact_form {
+.booking-page .contact_form {
   padding: 1rem;
 }
 

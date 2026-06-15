@@ -6,7 +6,7 @@ import { Breadcrumbs } from "../../../components/BreadcrumbsWithSchema";
 import { SectionContactSidebar } from "../../../components/SectionContactSidebarI18n";
 import { SectionLogostrip } from "../../../components/LogostripServer";
 import { SectionCta } from "../../../../devlink/sections/SectionCta";
-import { PricingCalEmbed } from "../../../components/PricingCalEmbed";
+import { CalBookingEmbed } from "../../../components/CalBookingEmbed";
 import { ElementSocialproofTrustpilot } from "../../../../devlink/elements/ElementSocialproofTrustpilot";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -40,7 +40,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
   const prefix = `/${locale}`;
 
   return (
-    <div className="page-wrapper pricing-page">
+    <div className="page-wrapper booking-page">
       <main className="main-wrapper">
         <Navbar />
 
@@ -64,7 +64,7 @@ export default async function PricingPage({ params }: { params: Promise<{ locale
           }
           formSlot={
             <div className="pricing-cal_embed">
-              <PricingCalEmbed />
+              <CalBookingEmbed />
             </div>
           }
         />

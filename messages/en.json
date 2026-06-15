@@ -544,10 +544,10 @@
     }
   },
   "getStarted": {
-    "breadcrumb": "Get started",
+    "breadcrumb": "Book a demo",
     "hero": {
-      "title": "Get compliant four times faster",
-      "subtitle": "Ditto makes it easy to get compliant and stay compliant with frameworks like EcoVadis, ISO, CSRD, and CDP. And that's just the beginning."
+      "title": "See Ditto in action",
+      "subtitle": "Book a 30-minute call with our team. We'll look at your frameworks, show you Ditto live, and map out the fastest route to audit-ready."
     },
     "numbers": {
       "title": "Our impact",
@@ -946,8 +946,8 @@
       "description": "Get actionable CSR and compliance resources with Ditto guides. Learn best practices, use checklists, and gain valuable insights from experts."
     },
     "getStarted": {
-      "title": "Ready to get compliant? Ditto.",
-      "description": "Get compliant 4 times faster. Ditto makes it easy to get compliant and stay compliant with frameworks like EcoVadis, ISO, CSRD, and CDP."
+      "title": "Book a Ditto demo",
+      "description": "See Ditto live. Book a 30-minute call to walk through your frameworks and the fastest path to audit-ready, with a CSR and compliance expert."
     },
     "pricing": {
       "title": "Ditto pricing – a quote built around your program",
