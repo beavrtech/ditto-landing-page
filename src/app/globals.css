@@ -93,7 +93,8 @@ a {
 }
 
 /* Widen the label column in customer-story intro cards so longer labels
-   (e.g. "Référentiels") don't overlap values */
+   (e.g. "Référentiels") don't overlap values.
+   !important needed because devlink-bundle.css loads after this file in the cascade. */
 .customer-intro_details_item {
-  grid-template-columns: 7rem 1fr;
+  grid-template-columns: 7.5rem 1fr !important;
 }
