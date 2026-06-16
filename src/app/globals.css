@@ -79,6 +79,19 @@ a {
   border-bottom: none;
 }
 
+/* Underline links inside rich-text bullet lists (Impact / Challenges intro cards)
+   to match the treatment already applied by .text-rich-text a in the design system */
+.rich-text_bullet-list a {
+  text-decoration: underline;
+  text-decoration-color: var(--_colors-\•-primitives---system--yellow-on-tan);
+  text-decoration-skip-ink: none;
+  text-decoration-thickness: calc(1em / 5);
+}
+
+.rich-text_bullet-list a:hover {
+  text-decoration-color: var(--_colors-\•-primitives---brand--blue);
+}
+
 /* Widen the label column in customer-story intro cards so longer labels
    (e.g. "Référentiels") don't overlap values */
 .customer-intro_details_item {
