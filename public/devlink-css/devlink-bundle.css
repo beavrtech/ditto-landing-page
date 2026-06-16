@@ -9003,7 +9003,7 @@ figcaption {
   grid-column-gap: .75rem;
   grid-row-gap: .75rem;
   grid-template-rows: auto;
-  grid-template-columns: 4.125rem 1fr;
+  grid-template-columns: 7.5rem 1fr;
   grid-auto-columns: 1fr;
   justify-content: flex-start;
   align-items: center;
