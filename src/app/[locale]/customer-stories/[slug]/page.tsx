@@ -290,6 +290,22 @@ export default async function CustomerStoryPage({
                         <div className="post_testimonial_wrapper">
                           <div className="post_testimonial">
                             <TestimonialQuote text={story.quote_2} />
+                            {(story.quote_author || story.quote_author_role) && (
+                              <>
+                                <div className="spacer-1x5rem" />
+                                <div className="profile_wrapper">
+                                  {story.quote_author_picture_url && (
+                                    <div className="profile_image">
+                                      <Image width={48} height={48} alt="" src={story.quote_author_picture_url} className="media-full-size" />
+                                    </div>
+                                  )}
+                                  <div className="profile_content">
+                                    {story.quote_author && <h4 className="text-size-1rem text-weight-400">{story.quote_author}</h4>}
+                                    {story.quote_author_role && (<><div className="spacer-0x25rem" /><p className="text-size-0x875rem text-color-neutral">{story.quote_author_role}</p></>)}
+                                  </div>
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
                       )}
@@ -305,6 +321,22 @@ export default async function CustomerStoryPage({
                         <div className="post_testimonial_wrapper">
                           <div className="post_testimonial">
                             <TestimonialQuote text={story.quote_3} />
+                            {(story.quote_author || story.quote_author_role) && (
+                              <>
+                                <div className="spacer-1x5rem" />
+                                <div className="profile_wrapper">
+                                  {story.quote_author_picture_url && (
+                                    <div className="profile_image">
+                                      <Image width={48} height={48} alt="" src={story.quote_author_picture_url} className="media-full-size" />
+                                    </div>
+                                  )}
+                                  <div className="profile_content">
+                                    {story.quote_author && <h4 className="text-size-1rem text-weight-400">{story.quote_author}</h4>}
+                                    {story.quote_author_role && (<><div className="spacer-0x25rem" /><p className="text-size-0x875rem text-color-neutral">{story.quote_author_role}</p></>)}
+                                  </div>
+                                </div>
+                              </>
+                            )}
                           </div>
                         </div>
                       )}
