@@ -12,6 +12,7 @@ import { useState, useCallback, useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { switchLocalePath, localizedHref, localizedCmsHref } from "../lib/localized-paths";
+import { useAlternateUrls } from "./AlternateUrlContext";
 import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
 import Block from "../../devlink/modules/Basic/components/Block";
 import DOM from "../../devlink/modules/Builtin/components/DOM";
@@ -117,6 +118,7 @@ function FooterNewsletter() {
 export type FooterProps = {
   blogPosts?: any[];
   newsItems?: any[];
+  alternateUrls?: Record<string, string>;
 };
 
 /**
@@ -127,9 +129,11 @@ export type FooterProps = {
  * - Unsupported elements: `Locales Wrapper`, `Collection List`
  *
  */
-export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNewsItems }: FooterProps) {
+export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNewsItems, alternateUrls }: FooterProps) {
   const locale = useLocale();
   const pathname = usePathname();
+  const { urls: contextUrls } = useAlternateUrls();
+  const resolvedAlternateUrls = alternateUrls || contextUrls;
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
   const [clientBlogPosts, setClientBlogPosts] = useState<any[]>(serverBlogPosts || []);
@@ -240,12 +244,12 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                   <Block className={"w-locales-list"} tag={"div"}>
                     <Block className={"w-locales-items"} tag={"div"} role={"list"}>
                       <Block className={"w-locales-item"} tag={"div"} role={"listitem"}>
-                        <Link block={""} button={false} options={{ href: switchLocalePath(pathname, "en") }}>
+                        <Link block={""} button={false} options={{ href: resolvedAlternateUrls["en"] || switchLocalePath(pathname, "en") }}>
                           {"English"}
                         </Link>
                       </Block>
                       <Block className={"w-locales-item"} tag={"div"} role={"listitem"}>
-                        <Link block={""} button={false} options={{ href: switchLocalePath(pathname, "fr") }}>
+                        <Link block={""} button={false} options={{ href: resolvedAlternateUrls["fr"] || switchLocalePath(pathname, "fr") }}>
                           {"Français"}
                         </Link>
                       </Block>

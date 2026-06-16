@@ -149,7 +149,10 @@ export default async function GuideDetailPage({
         authorName: item.author?.name,
       })} />
       <main className="main-wrapper">
-        <Navbar />
+        <Navbar alternateUrls={{
+          en: `/en/resources/guides/${item.slug}`,
+          fr: `/fr/ressources/guides/${item.slug_fr || item.slug}`,
+        }} />
 
         {/* Breadcrumbs */}
         <Breadcrumbs
@@ -232,7 +235,10 @@ export default async function GuideDetailPage({
           buttonLink={{ href: localizedHref("/get-started", locale) }}
         />
 
-        <Footer />
+        <Footer alternateUrls={{
+          en: `/en/resources/guides/${item.slug}`,
+          fr: `/fr/ressources/guides/${item.slug_fr || item.slug}`,
+        }} />
       </main>
     </div>
   );
