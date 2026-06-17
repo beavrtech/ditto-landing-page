@@ -11,6 +11,7 @@ import { getGuideBySlug, getGuides } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
+import GuideFormEmbed from "../../../../../components/GuideFormEmbed";
 
 export async function generateMetadata({
   params,
@@ -212,7 +213,7 @@ export default async function GuideDetailPage({
                   <div className="guide_sidebar">
                     <div className="guide_form guide-form-card">
                       {item.form ? (
-                        <div suppressHydrationWarning dangerouslySetInnerHTML={{ __html: item.form }} />
+                        <GuideFormEmbed html={item.form} />
                       ) : item.banner_url ? (
                         <Image src={item.banner_url} alt={item.banner_alt_desc || ""} width={648} height={400} className="media-full-size" style={{ objectFit: "cover", borderRadius: "1rem" }} />
                       ) : null}
