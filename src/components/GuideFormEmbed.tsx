@@ -1,16 +1,20 @@
 "use client";
 
-import { useRef, useEffect, useCallback, useMemo } from "react";
+import { useRef, useEffect, useCallback } from "react";
 
 /**
- * The CMS "form" field is typed as richtext (Tiptap), which HTML-entity-encodes
- * elements it doesn't recognise — <script> becomes &lt;script&gt;. Detect that
- * and decode so the browser parses actual <script> elements.
+ * The CMS "form" field was typed as richtext (Tiptap), which HTML-entity-encodes
+ * elements it doesn't recognise — <script> becomes &lt;script&gt;. Decode common
+ * HTML entities so the browser parses actual <script> elements.
  */
 function decodeFormHtml(raw: string): string {
   if (!raw.includes("&lt;script")) return raw;
-  const doc = new DOMParser().parseFromString(raw, "text/html");
-  return doc.body.textContent || raw;
+  return raw
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#0?39;/g, "'")
+    .replace(/&amp;/g, "&");
 }
 
 /**
@@ -20,7 +24,7 @@ function decodeFormHtml(raw: string): string {
  */
 export default function GuideFormEmbed({ html }: { html: string }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const decoded = useMemo(() => decodeFormHtml(html), [html]);
+  const decoded = decodeFormHtml(html);
 
   const activateScripts = useCallback(() => {
     const container = containerRef.current;
