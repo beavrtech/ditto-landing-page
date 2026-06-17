@@ -28,6 +28,7 @@ export type SectionLogostripProps = {
   variant?: "Base" | "Not clickable";
   serverLogos?: any[];
   serverStorySlugMap?: Record<string, { slug: string; slug_fr: string | null }>;
+  afterContent?: React.ReactNode;
 };
 
 /**
@@ -38,7 +39,7 @@ export type SectionLogostripProps = {
  * - Unsupported element: `Collection List`
  *
  */
-export function SectionLogostrip({ variant = "Base", serverLogos = [], serverStorySlugMap = {} }: SectionLogostripProps) {
+export function SectionLogostrip({ variant = "Base", serverLogos = [], serverStorySlugMap = {}, afterContent }: SectionLogostripProps) {
   const t = useTranslations("socialProof");
   const locale = useLocale();
   const prefix = `/${locale}`;
@@ -163,6 +164,11 @@ export function SectionLogostrip({ variant = "Base", serverLogos = [], serverSto
               </Block>
             ) : null}
           </Block>
+          {afterContent && (
+            <div style={{ display: "flex", justifyContent: "center", paddingTop: "1.5rem" }}>
+              {afterContent}
+            </div>
+          )}
           <Padding space={"Small (3rem)"} />
         </Block>
         <Block className={`layer-4 ${_activeStyleVariant}`} tag={"div"}>

@@ -4,6 +4,7 @@
     "solutions": "Solutions",
     "customers": "Clients",
     "resources": "Ressources",
+    "plans": "Tarifs",
     "about": "À propos",
     "login": "Connexion",
     "pricing": "Obtenir un devis",
@@ -42,7 +43,22 @@
     "descCollectionVsme": "Structurez votre reporting ESG avec le standard VSME.",
     "descBlog": "Explorez les dernières tendances RSE et conformité",
     "descGuides": "Accédez à nos guides et outils pour structurer votre conformité",
-    "descNews": "Restez informé des dernières actualités Ditto"
+    "descNews": "Restez informé des dernières actualités Ditto",
+    "descManifesto": "Découvrez notre vision d'une entreprise durable",
+    "descCareers": "Rejoignez l'équipe qui construit l'avenir de la conformité",
+    "bucketCustomers": "Clients",
+    "bucketComplianceResources": "Ressources conformité",
+    "bucketCompany": "Entreprise",
+    "bucketAllResources": "Toutes les ressources",
+    "allCustomerStories": "Tous les témoignages",
+    "allResources": "Toutes les ressources",
+    "guidesAndReports": "Guides et rapports",
+    "industryBusinessServices": "Business Services",
+    "industryConstructionMaterials": "Construction & Materials",
+    "industryCosmeticsBeauty": "Cosmetics & Beauty",
+    "industryDistributionWholesale": "Distribution & Wholesale",
+    "industryIndustrialEquipment": "Industrial Equipment & Systems",
+    "industryTransportationLogistics": "Transportation & Logistics"
   },
   "hero": {
     "title": "Votre plateforme conformité & durabilité, et l'expert qui la pilote avec vous.",
@@ -541,7 +557,7 @@
     }
   },
   "pricing": {
-    "breadcrumb": "Obtenir un devis",
+    "breadcrumb": "Tarifs",
     "hero": {
       "title": "Un devis adapté",
       "subtitle": "Le tarif dépend de vos référentiels, de votre taille et de vos objectifs. Donnez-nous quelques informations : nous préparons un devis sur mesure et planifions un échange avec un expert."

@@ -28,25 +28,25 @@ export function FrameworkTabs({ tabs }: { tabs: FrameworkTab[] }) {
 
   return (
     <div className="framework-tabs">
-      <div className="framework-tabs_list" role="tablist">
-        {tabs.map((tab) => (
-          <button
-            key={tab.key}
-            type="button"
-            role="tab"
-            aria-selected={tab.key === active}
-            className={`framework-tabs_tab${
-              tab.key === active ? " is-active" : ""
-            }`}
-            onClick={() => setActive(tab.key)}
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      <div className="framework-tabs_panel">
+        <div className="framework-tabs_list" role="tablist">
+          {tabs.map((tab) => (
+            <button
+              key={tab.key}
+              type="button"
+              role="tab"
+              aria-selected={tab.key === active}
+              className={`framework-tabs_tab${
+                tab.key === active ? " is-active" : ""
+              }`}
+              onClick={() => setActive(tab.key)}
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
 
-      <div className="framework-tabs_panel" role="tabpanel">
-        <div className="framework-tabs_grid">
+        <div className="framework-tabs_grid" role="tabpanel">
           {current?.frameworks.map((fw) => (
             <Link key={fw.key} href={fw.href} className="framework-chooser_card">
               <span className="framework-chooser_name">

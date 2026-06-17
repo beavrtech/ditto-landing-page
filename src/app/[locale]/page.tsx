@@ -78,9 +78,6 @@ export default async function HomePage({
                     <NewsletterForm />
                   </div>
 
-                  <div style={{ marginTop: "1.5rem", display: "flex", justifyContent: "center" }}>
-                    <ElementSocialproofTrustpilot />
-                  </div>
                 </div>
               </div>
             </div>
@@ -91,7 +88,7 @@ export default async function HomePage({
         </div>
 
         {/* 2. Logo strip */}
-        <SectionLogostrip locale={locale} />
+        <SectionLogostrip locale={locale} afterContent={<ElementSocialproofTrustpilot />} />
 
         {/* 2b. Product block — PLACEHOLDER, fill with real product content */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>

@@ -4,6 +4,7 @@
     "solutions": "Solutions",
     "customers": "Customers",
     "resources": "Resources",
+    "plans": "Plans",
     "about": "About",
     "login": "Log in",
     "pricing": "Pricing",
@@ -42,7 +43,22 @@
     "descCollectionVsme": "Structure your ESG reporting with the VSME standard.",
     "descBlog": "Explore the latest CSR & compliance trends",
     "descGuides": "Access our guides and tools to structure your compliance",
-    "descNews": "Keep up to date with the latest Ditto news"
+    "descNews": "Keep up to date with the latest Ditto news",
+    "descManifesto": "Discover our vision for sustainable business",
+    "descCareers": "Join the team building the future of compliance",
+    "bucketCustomers": "Customers",
+    "bucketComplianceResources": "Compliance resources",
+    "bucketCompany": "Company",
+    "bucketAllResources": "All resources",
+    "allCustomerStories": "All customer stories",
+    "allResources": "All Resources",
+    "guidesAndReports": "Guides and reports",
+    "industryBusinessServices": "Business Services",
+    "industryConstructionMaterials": "Construction & Materials",
+    "industryCosmeticsBeauty": "Cosmetics & Beauty",
+    "industryDistributionWholesale": "Distribution & Wholesale",
+    "industryIndustrialEquipment": "Industrial Equipment & Systems",
+    "industryTransportationLogistics": "Transportation & Logistics"
   },
   "hero": {
     "title": "Your compliance & sustainability platform, and the expert who runs it with you.",
@@ -533,7 +549,7 @@
     }
   },
   "pricing": {
-    "breadcrumb": "Pricing",
+    "breadcrumb": "Plans",
     "hero": {
       "title": "A tailored quote",
       "subtitle": "Pricing depends on your frameworks, your size and your goals. Share a few details and we'll send a tailored quote, and book time with an expert who'll walk you through it."

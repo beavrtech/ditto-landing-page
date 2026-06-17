@@ -230,26 +230,27 @@ a {
 
 /* Segmented tab control + frosted card panel */
 .framework-tabs {
-  margin-top: 2.5rem;
+  margin-top: 1rem;
 }
 
 .framework-tabs_list {
   display: inline-flex;
-  gap: 0.25rem;
-  margin-bottom: 1.5rem;
-  padding: 0.3125rem;
+  gap: 0.125rem;
+  margin-bottom: 1rem;
+  padding: 0.1875rem;
   border-radius: 100vw;
-  background-color: var(--_colors-\•-semantic---surface-secondary, #f5f5f0);
+  background-color: var(--_colors-\•-primitives---tan--tan-dark, #e8ebd9);
 }
 
 .framework-tabs_tab {
-  padding: 0.625rem 1.5rem;
+  padding: 0.2rem 1rem;
   border: none;
   border-radius: 100vw;
   background-color: transparent;
   font: inherit;
-  font-size: 1rem;
+  font-size: 0.8125rem;
   font-weight: 600;
+  letter-spacing: 0.01em;
   color: var(--_colors-\•-primitives---neutral--neutral-gray, #5f5c6e);
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
@@ -266,31 +267,35 @@ a {
 }
 
 .framework-tabs_panel {
-  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 1.25rem 1.25rem;
   border: 1px solid rgba(19, 14, 48, 0.06);
-  border-radius: 1.5rem;
+  border-radius: 1.25rem;
   background-color: var(--_colors-\•-semantic---surface-primary, #fff);
   box-shadow: 0 24px 64px -28px rgba(60, 50, 20, 0.22);
 }
 
 .framework-tabs_grid {
   display: flex;
+  width: 100%;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.625rem;
 }
 
 .framework-chooser_card {
-  flex: 1 1 13rem;
-  min-width: 13rem;
-  max-width: 17rem;
+  flex: 1 1 12rem;
+  min-width: 11rem;
+  max-width: 16rem;
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1.375rem;
+  gap: 0.375rem;
+  padding: 1rem;
   border: 1px solid var(--_colors-\•-semantic---border-medium, #e5e5e5);
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   background-color: var(--_colors-\•-semantic---surface-secondary, #f5f5f0);
   text-decoration: none;
   color: var(--_colors-\•-semantic---text-primary, #130e30);
@@ -302,22 +307,22 @@ a {
   transform: translateY(-2px);
   border-color: var(--_colors-\•-primitives---brand--yellow, #ffe228);
   background-color: var(--_colors-\•-semantic---surface-primary, #fff);
-  box-shadow: 0 12px 28px -12px rgba(60, 50, 20, 0.2);
+  box-shadow: 0 8px 20px -8px rgba(60, 50, 20, 0.18);
 }
 
 .framework-chooser_name {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 0.5rem;
-  font-size: 1.3125rem;
+  gap: 0.375rem;
+  font-size: 1.125rem;
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.15;
 }
 
 .framework-chooser_arrow {
   flex: none;
-  font-size: 1rem;
+  font-size: 0.875rem;
   line-height: 1.3;
   color: var(--_colors-\•-primitives---neutral--neutral-gray, #5f5c6e);
   transition: transform 0.15s ease, color 0.15s ease;
@@ -330,14 +335,13 @@ a {
 
 .framework-chooser_urgency {
   flex: 1 1 auto;
-  font-size: 0.9375rem;
-  line-height: 1.4;
+  font-size: 0.8125rem;
+  line-height: 1.45;
   color: var(--_colors-\•-primitives---neutral--neutral-gray, #5f5c6e);
 }
 
 .framework-chooser_cta {
-  margin-top: 0.25rem;
-  font-size: 0.9375rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: var(--_colors-\•-semantic---text-primary, #130e30);
 }
@@ -523,5 +527,538 @@ a {
 
   .wf-devlink-334d291de626c444a9725b27acd9cb00 .navbar_button {
     width: 100%;
+  }
+}
+
+/* Log in button: neutral outlined pill — subtle border + primary (navy) text
+   on a transparent background, filling to a light tan surface on hover.
+   Uses semantic design tokens (overrides the Secondary variant's yellow fill). */
+.navbar_button--login .button {
+  border-color: var(--_colors-•-semantic---border-medium) !important;
+  background-color: transparent !important;
+  color: var(--_colors-•-semantic---text-primary) !important;
+}
+
+.navbar_button--login .button:hover {
+  border-color: var(--_colors-•-semantic---border-strong) !important;
+  background-color: var(--_colors-•-primitives---tan--tan-light) !important;
+  color: var(--_colors-•-semantic---text-primary) !important;
+}
+
+/* ── Resources mega-menu (Vanta-style buckets) ──────────────────────────────
+   Left column of buckets swaps the right content panel on hover/focus. */
+.resources-mega {
+  display: flex;
+  gap: 1.5rem;
+  width: min(60rem, 92vw);
+  padding: 0.5rem;
+}
+
+.resources-mega_buckets {
+  display: flex;
+  flex: 0 0 17rem;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-right: 1rem;
+  border-right: 1px solid var(--_colors-•-semantic---border-subtle);
+}
+
+.resources-mega_bucket {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 100vw;
+  background-color: transparent;
+  color: var(--_colors-•-semantic---text-primary);
+  font-family: var(--font-family--paragraph);
+  font-size: var(--_paragraphs---text-size-1rem--font-size);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.resources-mega_bucket-arrow {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.resources-mega_bucket-arrow svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.resources-mega_bucket:hover {
+  background-color: var(--_colors-•-primitives---tan--tan-light);
+}
+
+.resources-mega_bucket.is-active {
+  background-color: var(--_colors-•-semantic---text-primary);
+  color: var(--_colors-•-semantic---text-inverse);
+}
+
+.resources-mega_bucket.is-active .resources-mega_bucket-arrow {
+  opacity: 1;
+}
+
+.resources-mega_panel {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 1.5rem;
+}
+
+.resources-mega_links {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: 0.25rem 1rem;
+  align-content: start;
+}
+
+.resources-mega_link {
+  /* position:relative confines the link-hover-parent ::after (absolute, inset:0)
+     to the link's own box. Without it the ::after resolves against the fixed
+     dropdown wrapper and overlays the whole menu, hijacking bucket clicks. */
+  position: relative;
+  display: block;
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--radius--radius-default);
+  text-decoration: none !important;
+  transition: background-color 150ms ease;
+}
+
+.resources-mega_link:hover {
+  background-color: var(--_colors-•-primitives---tan--tan-light);
+}
+
+.resources-mega_preview {
+  display: flex;
+  flex: 0 0 17rem;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 991px) {
+  .resources-mega {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .resources-mega_buckets {
+    flex: none;
+    padding-right: 0;
+    padding-bottom: 0.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--_colors-•-semantic---border-subtle);
+  }
+
+  .resources-mega_panel {
+    flex-direction: column;
+  }
+
+  .resources-mega_links {
+    grid-template-columns: 1fr;
+  }
+
+  .resources-mega_preview {
+    flex: none;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   PRICING PAGE — Vanta-style plans, comparison table & FAQ
+   ════════════════════════════════════════════════════════════════════════ */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.pricing-hero {
+  padding-top: 3.5rem;
+  padding-bottom: 1.5rem;
+  text-align: center;
+}
+
+.pricing-hero_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.pricing-hero_eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--_colors-•-semantic---text-neutral);
+}
+
+.pricing-hero_subtitle {
+  margin: 0;
+  color: var(--_colors-•-semantic---text-neutral);
+}
+
+.pricing-hero_cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  padding: 0.625rem 0.625rem 0.625rem 1.5rem;
+  border-radius: 100vw;
+  background-color: var(--_colors-•-semantic---text-primary);
+  color: var(--_colors-•-semantic---text-inverse);
+  font-weight: 600;
+  text-decoration: none !important;
+  transition: background-color 150ms ease;
+}
+
+.pricing-hero_cta:hover {
+  background-color: var(--_colors-•-primitives---neutral--neutral-navy-a50);
+}
+
+.pricing-hero_cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 2rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100vw;
+  background-color: var(--_colors-•-primitives---brand--yellow);
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+.pricing-hero_cta-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Plan cards ───────────────────────────────────────────────────────── */
+.pricing-plans_section {
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
+.pricing-plans_grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.pricing-plan {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 1.75rem 1.5rem;
+  border: 1px solid var(--_colors-•-semantic---border-subtle);
+  border-radius: 1.5rem;
+  background-color: var(--_colors-•-primitives---tan--tan-light);
+}
+
+.pricing-plan.is-featured {
+  border: 2px solid var(--_colors-•-semantic---text-primary);
+  background-color: var(--_colors-•-semantic---surface-primary);
+  box-shadow: 0 24px 64px -28px rgba(60, 50, 20, 0.28);
+}
+
+.pricing-plan_badge {
+  position: absolute;
+  top: -0.75rem;
+  left: 1.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 100vw;
+  background-color: var(--_colors-•-primitives---brand--yellow);
+  color: var(--_colors-•-semantic---text-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.pricing-plan_head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.pricing-plan_name {
+  margin: 0;
+  font-family: var(--font-family--headings);
+  font-size: 1.75rem;
+  line-height: 1.1;
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+.pricing-plan_scope {
+  flex-shrink: 0;
+  padding: 0.1875rem 0.625rem;
+  border-radius: 100vw;
+  background-color: var(--_colors-•-primitives---tan--tan-darkest-a13);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--_colors-•-semantic---text-neutral);
+}
+
+.pricing-plan_tagline {
+  margin: 0.75rem 0 0;
+  font-weight: 600;
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+.pricing-plan_desc {
+  margin: 0.375rem 0 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--_colors-•-semantic---text-neutral);
+}
+
+.pricing-plan_cta {
+  display: block;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--_colors-•-semantic---text-primary);
+  border-radius: 100vw;
+  background-color: transparent;
+  color: var(--_colors-•-semantic---text-primary);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none !important;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.pricing-plan_cta:hover {
+  background-color: var(--_colors-•-semantic---text-primary);
+  color: var(--_colors-•-semantic---text-inverse);
+}
+
+.pricing-plan_cta.is-primary {
+  background-color: var(--_colors-•-semantic---text-primary);
+  color: var(--_colors-•-semantic---text-inverse);
+}
+
+.pricing-plan_cta.is-primary:hover {
+  background-color: var(--_colors-•-primitives---neutral--neutral-navy-a50);
+}
+
+.pricing-plan_features {
+  list-style: none;
+  margin: 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--_colors-•-semantic---border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.pricing-plan_feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+.pricing-plan_feature-icon {
+  display: inline-flex;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: var(--_colors-•-semantic---green, #1f9d72);
+}
+
+.pricing-plan_feature-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Comparison table ─────────────────────────────────────────────────── */
+.pricing-compare_section {
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
+.pricing-compare_heading {
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.pricing-compare_scroll {
+  overflow-x: auto;
+}
+
+.pricing-compare_table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 48rem;
+}
+
+.pricing-compare_table th,
+.pricing-compare_table td {
+  padding: 0.875rem 1rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.pricing-compare_table thead th {
+  position: sticky;
+  top: 0;
+  background-color: var(--_colors-•-semantic---surface-primary);
+  font-family: var(--font-family--headings);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--_colors-•-semantic---text-primary);
+  border-bottom: 2px solid var(--_colors-•-semantic---border-medium);
+}
+
+.pricing-compare_corner {
+  width: 34%;
+}
+
+.pricing-compare_table thead th.is-featured,
+.pricing-compare_table td.is-featured {
+  background-color: var(--_colors-•-primitives---tan--tan-light);
+}
+
+.pricing-compare_grouptitle {
+  text-align: left !important;
+  padding-top: 1.5rem !important;
+  padding-bottom: 0.5rem !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--_colors-•-semantic---text-neutral);
+}
+
+.pricing-compare_rowlabel {
+  text-align: left !important;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+.pricing-compare_table tbody tr {
+  border-bottom: 1px solid var(--_colors-•-semantic---border-subtle);
+}
+
+.pricing-compare_table tbody tr.pricing-compare_grouprow {
+  border-bottom: none;
+}
+
+.pricing-compare_check {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  color: var(--_colors-•-semantic---green, #1f9d72);
+}
+
+.pricing-compare_check svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.pricing-compare_dash {
+  color: var(--_colors-•-primitives---tan--tan-darkest);
+}
+
+.pricing-compare_value {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+/* ── FAQ ──────────────────────────────────────────────────────────────── */
+.pricing-faq_section {
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+}
+
+.pricing-faq_heading {
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.pricing-faq_item {
+  border-bottom: 1px solid var(--_colors-•-semantic---border-subtle);
+}
+
+.pricing-faq_question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--_colors-•-semantic---text-primary);
+  cursor: pointer;
+  list-style: none;
+}
+
+.pricing-faq_question::-webkit-details-marker {
+  display: none;
+}
+
+.pricing-faq_icon {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--_colors-•-semantic---text-neutral);
+  transition: transform 200ms ease;
+}
+
+.pricing-faq_item[open] .pricing-faq_icon {
+  transform: rotate(45deg);
+}
+
+.pricing-faq_answer {
+  margin: 0;
+  padding: 0 0 1.5rem;
+  max-width: 48rem;
+  color: var(--_colors-•-semantic---text-neutral);
+  line-height: 1.6;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .pricing-plans_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .pricing-plans_grid {
+    grid-template-columns: 1fr;
   }
 }
