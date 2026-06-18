@@ -181,7 +181,13 @@ export function CustomerStoriesFilter({
       teamSizeOptions.push({ id: story.team_size, label: story.team_size });
     }
   }
-  teamSizeOptions.sort((a, b) => a.label.localeCompare(b.label));
+  teamSizeOptions.sort((a, b) => {
+    const firstNum = (s: string) => {
+      const m = s.replace(/\s/g, "").match(/\d+/);
+      return m ? parseInt(m[0], 10) : 0;
+    };
+    return firstNum(a.label) - firstNum(b.label);
+  });
 
   const industryOptions: FilterOption[] = [];
   const industrySeen = new Set<string>();
