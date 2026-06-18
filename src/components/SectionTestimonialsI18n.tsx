@@ -5,7 +5,7 @@
  */
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
 import Block from "../../devlink/modules/Basic/components/Block";
@@ -40,7 +40,70 @@ export function SectionTestimonialsI18n({
   const scrollRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
-  const scrollLeft = useRef(0);
+  const scrollLeftPos = useRef(0);
+  const isPaused = useRef(false);
+  const autoScrollTimer = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const AUTO_SCROLL_INTERVAL_MS = 4000;
+
+  const getScrollUnit = useCallback(() => {
+    if (!scrollRef.current) return 400;
+    const card = scrollRef.current.querySelector(".card-testimonial");
+    return (card?.getBoundingClientRect().width || 400) + 48;
+  }, []);
+
+  const scroll = useCallback(
+    (direction: "left" | "right") => {
+      const container = scrollRef.current;
+      if (!container) return;
+      const scrollAmount = getScrollUnit();
+      container.scrollBy({
+        left: direction === "right" ? scrollAmount : -scrollAmount,
+        behavior: "smooth",
+      });
+    },
+    [getScrollUnit],
+  );
+
+  const advanceOrLoop = useCallback(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const maxScroll = container.scrollWidth - container.clientWidth;
+    if (container.scrollLeft >= maxScroll - 2) {
+      container.scrollTo({ left: 0, behavior: "smooth" });
+    } else {
+      scroll("right");
+    }
+  }, [scroll]);
+
+  // Auto-scroll interval
+  useEffect(() => {
+    if (testimonials.length === 0) return;
+
+    const start = () => {
+      if (autoScrollTimer.current) return;
+      autoScrollTimer.current = setInterval(() => {
+        if (!isPaused.current) advanceOrLoop();
+      }, AUTO_SCROLL_INTERVAL_MS);
+    };
+
+    start();
+
+    return () => {
+      if (autoScrollTimer.current) {
+        clearInterval(autoScrollTimer.current);
+        autoScrollTimer.current = null;
+      }
+    };
+  }, [testimonials, advanceOrLoop]);
+
+  const pauseAutoScroll = useCallback(() => {
+    isPaused.current = true;
+  }, []);
+
+  const resumeAutoScroll = useCallback(() => {
+    isPaused.current = false;
+  }, []);
 
   // Drag to scroll
   useEffect(() => {
@@ -50,19 +113,21 @@ export function SectionTestimonialsI18n({
     const onMouseDown = (e: MouseEvent) => {
       isDragging.current = true;
       startX.current = e.pageX - el.offsetLeft;
-      scrollLeft.current = el.scrollLeft;
+      scrollLeftPos.current = el.scrollLeft;
       el.style.cursor = "grabbing";
+      pauseAutoScroll();
     };
     const onMouseUp = () => {
       isDragging.current = false;
       el.style.cursor = "grab";
+      resumeAutoScroll();
     };
     const onMouseMove = (e: MouseEvent) => {
       if (!isDragging.current) return;
       e.preventDefault();
       const x = e.pageX - el.offsetLeft;
       const walk = (x - startX.current) * 1.5;
-      el.scrollLeft = scrollLeft.current - walk;
+      el.scrollLeft = scrollLeftPos.current - walk;
     };
 
     el.addEventListener("mousedown", onMouseDown);
@@ -76,18 +141,7 @@ export function SectionTestimonialsI18n({
       el.removeEventListener("mousemove", onMouseMove);
       el.removeEventListener("mouseleave", onMouseUp);
     };
-  }, [testimonials]);
-
-  const scroll = (direction: "left" | "right") => {
-    if (!scrollRef.current) return;
-    const container = scrollRef.current;
-    const cardWidth = container.querySelector(".card-testimonial")?.getBoundingClientRect().width || 400;
-    const scrollAmount = cardWidth + 48;
-    container.scrollBy({
-      left: direction === "right" ? scrollAmount : -scrollAmount,
-      behavior: "smooth",
-    });
-  };
+  }, [testimonials, pauseAutoScroll, resumeAutoScroll]);
 
   return (
     <div
@@ -130,6 +184,10 @@ export function SectionTestimonialsI18n({
                 <div
                   ref={scrollRef}
                   className="testimonials-scroll"
+                  onMouseEnter={pauseAutoScroll}
+                  onMouseLeave={resumeAutoScroll}
+                  onTouchStart={pauseAutoScroll}
+                  onTouchEnd={resumeAutoScroll}
                   style={{
                     display: "flex",
                     gap: "3rem",
