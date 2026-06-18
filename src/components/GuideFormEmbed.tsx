@@ -1,65 +1,94 @@
 "use client";
 
-import { useRef, useEffect, useCallback } from "react";
+import { useRef, useEffect } from "react";
+import Script from "next/script";
 
 /**
- * The CMS "form" field was typed as richtext (Tiptap), which HTML-entity-encodes
- * elements it doesn't recognise — <script> becomes &lt;script&gt;. Decode common
- * HTML entities so the browser parses actual <script> elements.
+ * Extract HubSpot form parameters from CMS embed HTML, regardless of whether
+ * the HTML is raw or entity-encoded by Tiptap's richtext editor.
  */
-function decodeFormHtml(raw: string): string {
-  if (!raw.includes("&lt;script")) return raw;
-  return raw
+function extractHubSpotConfig(html: string) {
+  const text = html
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
     .replace(/&#0?39;/g, "'")
     .replace(/&amp;/g, "&");
+
+  const portalId = text.match(/portalId\s*:\s*["'](\d+)["']/)?.[1];
+  const formId = text.match(/formId\s*:\s*["']([a-f0-9-]+)["']/)?.[1];
+  const region = text.match(/region\s*:\s*["']([a-z0-9]+)["']/)?.[1];
+  const sdkUrl = text.match(
+    /src\s*=\s*["']((?:https?:)?\/\/[^"']*hsforms[^"']*)["']/
+  )?.[1];
+
+  if (!portalId || !formId) return null;
+  return {
+    portalId,
+    formId,
+    region: region || "eu1",
+    sdkUrl: sdkUrl || "//js-eu1.hsforms.net/forms/embed/v2.js",
+  };
 }
 
 /**
- * Client component that renders raw CMS HTML (typically a HubSpot form embed)
- * and activates any <script> tags that would otherwise be inert when inserted
- * via dangerouslySetInnerHTML (per the HTML5 spec).
+ * Renders a HubSpot form by extracting portalId/formId/region from the CMS
+ * embed HTML and loading the SDK programmatically — the same pattern used by
+ * the contact page (SectionContactSidebarI18n).
  */
 export default function GuideFormEmbed({ html }: { html: string }) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const decoded = decodeFormHtml(html);
-
-  const activateScripts = useCallback(() => {
-    const container = containerRef.current;
-    if (!container) return;
-    if (!/<script/i.test(decoded)) return;
-
-    const scripts = container.querySelectorAll("script");
-    scripts.forEach((oldScript) => {
-      const newScript = document.createElement("script");
-      for (const attr of Array.from(oldScript.attributes)) {
-        newScript.setAttribute(attr.name, attr.value);
-      }
-      if (oldScript.textContent) {
-        let text = oldScript.textContent;
-        // DOMContentLoaded has already fired by the time this component mounts.
-        // Replace the listener wrapper so the callback runs immediately.
-        text = text.replace(
-          /document\.addEventListener\(\s*['"]DOMContentLoaded['"]\s*,\s*function\s*\([^)]*\)\s*\{/g,
-          "(function(){"
-        );
-        newScript.textContent = text;
-      }
-      oldScript.parentNode?.replaceChild(newScript, oldScript);
-    });
-  }, [decoded]);
+  const config = extractHubSpotConfig(html);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const formCreated = useRef(false);
 
   useEffect(() => {
-    activateScripts();
-  }, [activateScripts]);
+    if (!config || formCreated.current) return;
+    const { portalId, formId, region } = config;
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const win = window as unknown as Record<string, any>;
+
+    function tryCreate() {
+      if (formCreated.current || !containerRef.current) return;
+      if (!win.hbspt) return;
+
+      win.hbspt.forms.create({
+        portalId,
+        formId,
+        region,
+        target: `#guide-hs-form-${formId}`,
+      });
+      formCreated.current = true;
+    }
+
+    if (win.hbspt) {
+      tryCreate();
+      return;
+    }
+
+    const interval = setInterval(() => {
+      if (win.hbspt) {
+        tryCreate();
+        clearInterval(interval);
+      }
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, [config]);
+
+  if (!config) {
+    return (
+      <div
+        suppressHydrationWarning
+        dangerouslySetInnerHTML={{ __html: html }}
+      />
+    );
+  }
 
   return (
-    <div
-      ref={containerRef}
-      suppressHydrationWarning
-      dangerouslySetInnerHTML={{ __html: decoded }}
-    />
+    <>
+      <Script src={config.sdkUrl} strategy="afterInteractive" />
+      <div id={`guide-hs-form-${config.formId}`} ref={containerRef} />
+    </>
   );
 }
