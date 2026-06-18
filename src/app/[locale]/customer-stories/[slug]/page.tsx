@@ -10,6 +10,7 @@ import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
 import { getCustomerStoryBySlug, getCustomerStories } from "../../../../lib/cms";
 import { localizedCmsHref, localizedHref } from "../../../../lib/localized-paths";
 import { transformRichText, QUOTE_OPEN_SVG, QUOTE_CLOSE_SVG } from "../../../../lib/rich-text";
+import { industryLabel } from "../../../../lib/industry-fr";
 
 
 // Yellow quotation marks around customer story quotes (from the original
@@ -128,7 +129,7 @@ export default async function CustomerStoryPage({
                   <div className="post-hero_content">
                     {story.industry?.name_en && (
                       <>
-                        <p className="label">{locale === "fr" ? story.industry.name_fr || story.industry.name_en : story.industry.name_en}</p>
+                        <p className="label">{industryLabel(story.industry.name_en, story.industry.name_fr, locale)}</p>
                         <div className="spacer-1x5rem" />
                       </>
                     )}
@@ -172,7 +173,7 @@ export default async function CustomerStoryPage({
                       {story.industry && (
                         <div className="customer-intro_details_item">
                           <p className="text-size-1rem text-weight-600">{locale === "fr" ? "Industrie" : "Industry"}</p>
-                          <p className="text-size-1rem">{locale === "fr" ? story.industry.name_fr || story.industry.name_en : story.industry.name_en}</p>
+                          <p className="text-size-1rem">{industryLabel(story.industry.name_en, story.industry.name_fr, locale)}</p>
                         </div>
                       )}
                       {story.team_size && (
@@ -455,7 +456,7 @@ async function ReadMoreStories({ locale, currentSlug, prefix }: { locale: string
                       <div className="card-image_content">
                         <div className="spacer-1x5rem spacer-mob-1rem" />
                         {story.industry && (
-                          <p className="label">{locale === "fr" ? story.industry.name_fr || story.industry.name_en : story.industry.name_en}</p>
+                          <p className="label">{industryLabel(story.industry.name_en, story.industry.name_fr, locale)}</p>
                         )}
                         <div className="spacer-0x75rem" />
                         <div className="card-image_link_wrapper">
