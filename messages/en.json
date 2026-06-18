@@ -47,6 +47,8 @@
     "title": "Get the CSR recognition you deserve",
     "subtitle": "You're already doing the work. Ditto helps you prove it, on EcoVadis, CDP and other CSR frameworks.",
     "cta": "Get Started",
+    "ctaExpert": "Talk to a CSR expert",
+    "ctaExpertSubtext": "Prefer to talk it through first? Book 20 minutes with a specialist.",
     "trustpilot": "4.6/5 on Trustpilot"
   },
   "socialProof": {
@@ -609,7 +611,9 @@
     "hero": {
       "title": "EcoVadis made easy",
       "subtitle": "Ditto helps you structure your CSR approach and complete the EcoVadis assessment with ease, so you get the medal you deserve each year.",
-      "cta": "Get started"
+      "cta": "Get your free EcoVadis readiness check",
+      "ctaSubtext": "20 minutes with an EcoVadis-accredited expert — find out which medal you're on track for, and what's between you and the next one.",
+      "ctaSecondary": "Get started"
     },
     "numbers": {
       "title": "Ditto and EcoVadis by the numbers",
@@ -655,7 +659,7 @@
     "cta": {
       "title": "Ready to get compliant? Ditto.",
       "subtitle": "Turn your CSR program into a strategic advantage with a compliance copilot that's with you every step of the way.",
-      "button": "Get started"
+      "button": "Get your free EcoVadis readiness check"
     }
   },
   "frameworksCdp": {
@@ -663,7 +667,9 @@
     "hero": {
       "title": "Maximize your CDP score with less efforts",
       "subtitle": "Ditto helps you structure your climate data and streamline your CDP response by combining embedded expertise with AI, so you can boost your score and demonstrate real progress.",
-      "cta": "Get started"
+      "cta": "Talk to a CDP-accredited expert",
+      "ctaSubtext": "Ditto is a CDP Accredited Solutions Provider. Get a free read on your 2026 questionnaire — before the deadline.",
+      "ctaSecondary": "Get started"
     },
     "approach": {
       "title": "Our approach to the CDP assessment",
@@ -700,7 +706,7 @@
     "cta": {
       "title": "Ready to get compliant? Ditto.",
       "subtitle": "Build a credible CDP response and unlock your full climate potential with an expert copilot by your side.",
-      "button": "Get started"
+      "button": "Talk to a CDP-accredited expert"
     }
   },
   "frameworksCsrd": {
@@ -708,7 +714,9 @@
     "hero": {
       "title": "AI-powered platform for CSRD and VSME compliance",
       "subtitle": "Ditto helps you prepare a complete, compliant sustainability report under CSRD /VSME by combining embedded expertise, AI, and smart templates. So you can move fast, stay structured, and publish on time.",
-      "cta": "Get started"
+      "cta": "Find out what CSRD actually requires of you",
+      "ctaSubtext": "Not sure if you're in scope or where to start? Book a free 20-minute scoping call with a reporting specialist.",
+      "ctaSecondary": "Get started"
     },
     "approach": {
       "title": "Our approach to CSRD / VSME compliance",
@@ -745,7 +753,7 @@
     "cta": {
       "title": "Ready to get compliant? Ditto.",
       "subtitle": "Move faster, avoid blind spots, and build a credible CSRD or VSME report from day one.",
-      "button": "Get started"
+      "button": "Find out what CSRD actually requires of you"
     }
   },
   "frameworksIso14001": {
@@ -753,7 +761,9 @@
     "hero": {
       "title": "ISO 14001 compliance made simple",
       "subtitle": "Ditto provides you with the tools to build and maintain a strong Environmental Management System (EMS) and meet ISO 14001 requirements\u2014faster, and without the usual stress.",
-      "cta": "Get started"
+      "cta": "Get your ISO certification roadmap",
+      "ctaSubtext": "Talk to a specialist about where you stand on 14001, 45001 or 50001 \u2014 and the fastest route to certification.",
+      "ctaSecondary": "Get started"
     },
     "approach": {
       "title": "Our approach to the ISO 14001 certification",
@@ -790,7 +800,7 @@
     "cta": {
       "title": "Ready to get ISO compliant? Ditto.",
       "subtitle": "Build a strong EMS, close compliance gaps, and stay audit-ready.",
-      "button": "Get started"
+      "button": "Get your ISO certification roadmap"
     }
   },
   "footer": {
