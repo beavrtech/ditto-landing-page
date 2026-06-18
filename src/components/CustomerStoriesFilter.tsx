@@ -178,7 +178,11 @@ export function CustomerStoriesFilter({
   for (const story of stories) {
     if (story.team_size && !teamSizeSeen.has(story.team_size)) {
       teamSizeSeen.add(story.team_size);
-      teamSizeOptions.push({ id: story.team_size, label: story.team_size });
+      let label = story.team_size;
+      if (story.team_size === "<100") {
+        label = locale === "fr" ? "<100 employés" : "<100 employees";
+      }
+      teamSizeOptions.push({ id: story.team_size, label });
     }
   }
   teamSizeOptions.sort((a, b) => {
