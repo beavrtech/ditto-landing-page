@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { localizedCmsHref } from "../lib/localized-paths";
+import { industryLabel } from "../lib/industry-fr";
 
 type Story = {
   slug: string;
@@ -198,8 +199,10 @@ export function CustomerStoriesFilter({
   for (const story of stories) {
     if (story.industry && !industrySeen.has(story.industry.id)) {
       industrySeen.add(story.industry.id);
-      const label = locale === "fr" && story.industry.name_fr ? story.industry.name_fr : story.industry.name_en;
-      industryOptions.push({ id: story.industry.id, label });
+      industryOptions.push({
+        id: story.industry.id,
+        label: industryLabel(story.industry.name_en, story.industry.name_fr, locale),
+      });
     }
   }
   industryOptions.sort((a, b) => a.label.localeCompare(b.label));
@@ -298,9 +301,9 @@ export function CustomerStoriesFilter({
                           <div className="card-image_content">
                             <div className="spacer-1x5rem spacer-mob-1rem" />
                             <p className="label">
-                              {locale === "fr" && item.industry?.name_fr
-                                ? item.industry.name_fr
-                                : item.industry?.name_en || (locale === "fr" ? "Témoignage client" : "Customer Story")}
+                              {item.industry
+                                ? industryLabel(item.industry.name_en, item.industry.name_fr, locale)
+                                : (locale === "fr" ? "Témoignage client" : "Customer Story")}
                             </p>
                             <div className="spacer-0x75rem" />
                             <div className="card-image_link_wrapper">
