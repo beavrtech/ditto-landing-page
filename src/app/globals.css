@@ -169,9 +169,9 @@ a {
   position: relative;
 }
 
-.home-product_section .container-84rem {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+.home-product_section .container-80rem {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .home-product_screenshot {
@@ -188,17 +188,24 @@ a {
   left: 0;
   right: 0;
   z-index: 40;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3rem;
-  padding: 0.375rem 3rem;
-  background: #eff2e5;
-  border-top: 1px solid rgba(19, 14, 48, 0.08);
+  padding: 0 3rem;
+  background: var(--_colors-\•-semantic---surface-secondary, #e8ebd9);
   transform: translateY(100%);
   opacity: 0;
-  transition: transform 0.35s ease, opacity 0.35s ease;
   pointer-events: none;
+}
+
+/* Logos sit in the site's standard 80rem (1280px) centered container.
+   Same flex model as .customer-logos_row so the logo centers track the inline
+   logo tiles at every width (used for the seamless scroll swap). */
+.sticky-logo-bar_inner {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .sticky-logo-bar.is-visible {
@@ -207,14 +214,145 @@ a {
   pointer-events: auto;
 }
 
+/* Hide the sticky logo bar below 988px */
+@media (max-width: 987.98px) {
+  .sticky-logo-bar {
+    display: none;
+  }
+}
+
+/* 64px-tall wrapper centers each logo. Uses .logo-tile's flex: 1 1 0 grow
+   model so slots size/round like the inline tiles (logos line up across both),
+   but min-width: 0 + no wrap keeps the bar to a single row — it shrinks the
+   logos instead of dropping one to a second line. */
+.sticky-logo-bar_wrapper {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem; /* 64px */
+}
+
+/* Logo expands to its max-width but object-fit: contain + max-height keep it
+   within both bounds while preserving its native aspect ratio. So the rendered
+   height is width × (naturalHeight / naturalWidth), capped at 40px. */
 .sticky-logo-bar_logo {
-  width: auto;
-  height: auto;
-  max-width: 120px;
-  max-height: 24px;
+  width: 100%;
+  height: 100%;
+  max-width: 7.5rem; /* 120px */
+  max-height: 2.5rem; /* 40px */
   object-fit: contain;
   padding: 0;
   margin: 0;
+}
+
+/* Heavier logos get tighter caps (88px × 32px) so they don't dominate */
+.sticky-logo-bar_logo.is-smaller {
+  max-width: 5.5rem; /* 88px */
+  max-height: 2rem; /* 32px */
+}
+
+/* Homepage customer-logos section — two rows of logo tiles */
+.customer-logos_rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Single row above the breakpoint — shrink the tiles to fit rather than wrap,
+   so they track the sticky logo bar exactly. Below 988px they may wrap. */
+.customer-logos_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (max-width: 987.98px) {
+  .customer-logos_row {
+    flex-wrap: wrap;
+  }
+  .customer-logos_row .logo-tile {
+    min-width: 9rem;
+  }
+}
+
+/* Reusable logo tile — fixed size, logo centered, optional case-study link.
+   Tile height reserves room for the absolutely-positioned case-study label so
+   the logo never shifts whether or not a case study is present. */
+.logo-tile {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 4rem; /* 64px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+  transition: background-color 0.15s ease;
+}
+
+.logo-tile--link {
+  cursor: pointer;
+}
+
+/* Fixed 120×40 logo box (88×32 for heavier logos), preserving aspect ratio */
+.logo-tile_logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 7.5rem; /* 120px */
+  height: 2.5rem; /* 40px */
+}
+
+.logo-tile_logo {
+  width: 100%;
+  height: 100%;
+  max-width: 7.5rem; /* 120px */
+  max-height: 2.5rem; /* 40px */
+  object-fit: contain;
+}
+
+.logo-tile_logo.is-smaller {
+  max-width: 5.5rem; /* 88px */
+  max-height: 2rem; /* 32px */
+}
+
+/* "CASE STUDY >" small button — same style as the marquee's button_tiny
+   (transparent, tiny uppercase, subtle hover bg). Absolutely positioned just
+   below the centered logo so the logo never shifts whether or not it exists. */
+.logo-tile_casestudy {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 1.5rem);
+  transform: translateX(-50%);
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+  font-family: var(--font-family--paragraph);
+  font-size: 0.625rem;
+  line-height: 1.25;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--_colors-\•-semantic---text-neutral, #5f5c6e);
+  padding: 0.1rem 0.25rem;
+  border-radius: 100vw;
+  background-color: transparent;
+  transition: background-color 0.25s cubic-bezier(0.645, 0.045, 0.355, 1),
+    color 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.logo-tile--link:hover .logo-tile_casestudy {
+  background-color: var(--_colors-\•-semantic---surface-tertiary, #f9fbf2);
+  color: var(--_colors-\•-semantic---text-primary, #130e30);
 }
 
 .home-product_placeholder {

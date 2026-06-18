@@ -313,7 +313,7 @@ export function ExportCollection({
             <Block className={"hide-tablet"} tag={"div"}>
               <Padding space={paddingSpace} />
             </Block>
-            <Block className={"container-84rem"} tag={"div"}>
+            <Block className={"container-80rem"} tag={"div"}>
               <Block className={"post-hero_component"} tag={"div"}>
                 <Block className={"post-hero_content"} tag={"div"}>
                   <Label label={catGorie} />
@@ -381,7 +381,7 @@ export function ExportCollection({
         >
           <Block className={"padding-global"} tag={"div"}>
             <Padding space={padding3Space} />
-            <Block className={"container-84rem"} tag={"div"}>
+            <Block className={"container-80rem"} tag={"div"}>
               <Block className={"post_grid"} tag={"div"}>
                 <Block className={"post_sidebar_toc show-tablet"} tag={"div"}>
                   <Block className={"post_toc_heading"} tag={"div"}>

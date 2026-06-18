@@ -79,7 +79,7 @@ export default async function ResourcesNewsPage({
           <section className="breadcrumbs_section">
             <div className="padding-global">
               <div className="spacer-1x5rem"></div>
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="breadcrumbs_list">
                   <a href={`${prefix}/resources`} className="link-size-1rem">{t("resourcesPage.breadcrumb")}</a>
                   <div className="icon-wrapper">
@@ -127,7 +127,7 @@ export default async function ResourcesNewsPage({
           {/* News list */}
           <section className="blog-preview_section">
             <div className="padding-global">
-              <div className="container-84rem">
+              <div className="container-80rem">
                 {items && items.length > 0 ? (
                   <div className="blog_list_wrapper">
                     <div className="blog_list" role="list">

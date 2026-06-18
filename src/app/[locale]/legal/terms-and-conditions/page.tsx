@@ -44,7 +44,7 @@ export default async function TermsAndConditionsPage({ params }: { params: Promi
           <section className="breadcrumbs_section">
             <div className="padding-global">
               <div className="spacer-1x5rem"></div>
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="breadcrumbs_list">
                   <a href={`${prefix}/legal/terms-and-conditions`} className="link-size-1rem">{t("legalTerms.breadcrumbParent")}</a>
                   <div className="icon-wrapper">
@@ -70,7 +70,7 @@ export default async function TermsAndConditionsPage({ params }: { params: Promi
               <div className="hide-tablet">
                 <div data-wf--padding--space="small-3rem" className="spacer-component"></div>
               </div>
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="post-hero_component">
                   <div className="post-hero_content">
                     <h1 className="heading-size-3rem">{t("legalTerms.title")}</h1>
@@ -102,7 +102,7 @@ export default async function TermsAndConditionsPage({ params }: { params: Promi
           <section className="post_section">
             <div className="padding-global">
               <div data-wf--padding--space="small-3rem" className="spacer-component"></div>
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="post_grid">
                   <div className="post_main">
                     <div className="post_content">

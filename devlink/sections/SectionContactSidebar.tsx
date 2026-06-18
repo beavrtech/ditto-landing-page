@@ -53,7 +53,7 @@ export function SectionContactSidebar({
       >
         <Block className={"padding-global"} tag={"div"}>
           <Padding space={"Small (3rem)"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <Block className={"contact_component"} tag={"div"}>
               <Block className={"contact_content_wrapper"} tag={"div"}>
                 <Block className={"contact_content"} tag={"div"}>

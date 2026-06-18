@@ -43,7 +43,7 @@ export function SectionInvestors({}: SectionInvestorsProps) {
       >
         <Block className={"padding-global"} tag={"div"}>
           <Padding space={"Small (3rem)"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <Block className={"header"} tag={"div"}>
               <Heading className={"heading-size-3rem"} tag={"h2"}>
                 {"Our investors"}

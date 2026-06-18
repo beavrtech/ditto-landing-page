@@ -63,7 +63,7 @@ export function Breadcrumbs(props: SectionBreadcrumbsProps) {
       <section className="breadcrumbs_section">
         <div className="padding-global">
           <div className="spacer-1x5rem" />
-          <div className="container-84rem">
+          <div className="container-80rem">
             <div className="breadcrumbs_list">
               <a href={homeHref} className="link-size-1rem">
                 {homeLabel}

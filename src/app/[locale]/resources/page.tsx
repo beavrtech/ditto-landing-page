@@ -84,7 +84,7 @@ export default async function ResourcesPage({
           <section className="breadcrumbs_section">
             <div className="padding-global">
               <div className="spacer-1x5rem" />
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="breadcrumbs_list">
                   <a href={localizedHref("/resources", locale)} className="link-size-1rem">{t("resourcesPage.breadcrumb")}</a>
                 </div>
@@ -127,7 +127,7 @@ export default async function ResourcesPage({
               <div data-wf--padding--space="small-3rem" className="spacer-component" />
 
               {/* Blog subsection */}
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="blog-preview_header">
                   <h2 className="heading-size-3rem">{t("resourcesPage.blog")}</h2>
                   <a data-wf--button--variant="secondary" href={localizedHref("/resources/blog", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">
@@ -151,7 +151,7 @@ export default async function ResourcesPage({
               <div className="spacer-3rem" />
 
               {/* News subsection */}
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="blog-preview_header">
                   <h2 className="heading-size-3rem">{t("resourcesPage.news")}</h2>
                   <a data-wf--button--variant="secondary" href={localizedHref("/resources/news", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">
@@ -175,7 +175,7 @@ export default async function ResourcesPage({
               <div className="spacer-3rem" />
 
               {/* Guides subsection */}
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="blog-preview_header">
                   <h2 className="heading-size-3rem">{t("resourcesPage.guides")}</h2>
                   <a data-wf--button--variant="secondary" href={localizedHref("/resources/guides", locale)} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 w-inline-block">

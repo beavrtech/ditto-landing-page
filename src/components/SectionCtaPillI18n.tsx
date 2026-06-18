@@ -48,7 +48,7 @@ export function SectionCtaPill({}: SectionCtaPillProps) {
       >
         <Block className={"padding-global"} tag={"div"}>
           <Padding space={"Medium (6rem)"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <Block className={"cta-pill_component"} tag={"div"}>
               <Block className={"cta-pill_content"} tag={"div"}>
                 <Heading className={"heading-size-3rem"} tag={"h2"}>

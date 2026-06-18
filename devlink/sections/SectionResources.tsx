@@ -62,7 +62,7 @@ export function SectionResources({
             </Block>
           </Block>
           <Block className={"spacer-3rem"} tag={"div"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <NotSupported _atom={"Collection List"} />
             <Block className={"spacer-3rem"} tag={"div"} />
             <Block className={"button-group x-center"} tag={"div"}>

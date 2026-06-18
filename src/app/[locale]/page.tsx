@@ -5,7 +5,7 @@ import { Navbar } from "../../components/NavbarServer";
 import { NewsletterForm } from "../../components/NewsletterFormI18n";
 import { ElementSocialproofTrustpilot } from "../../../devlink/elements/ElementSocialproofTrustpilot";
 import { Background } from "../../../devlink/Background";
-import { SectionLogostrip } from "../../components/LogostripServer";
+import { SectionCustomerLogos } from "../../components/CustomerLogosServer";
 import { SectionCompliantCarousel } from "../../components/SectionCompliantCarouselInit";
 import { SectionPillIllus } from "../../../devlink/sections/SectionPillIllus";
 import { SectionFeaturesHeader } from "../../../devlink/sections/SectionFeaturesHeader";
@@ -19,7 +19,6 @@ import { ExpertiseCarousel } from "../../components/ExpertiseCarousel";
 import { FrameworkChooser } from "../../components/FrameworkChooser";
 import { JsonLd, WEBSITE_JSONLD } from "../../components/JsonLd";
 import { StickyLogoBarClient } from "../../components/StickyLogoBarClient";
-import { getCompanyLogos } from "../../lib/cms";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -54,7 +53,6 @@ export default async function HomePage({
   setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
-  const logos = await getCompanyLogos().catch(() => []);
 
   return (
     <div className="page-wrapper">
@@ -66,7 +64,7 @@ export default async function HomePage({
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
           <section className="hero_section home-hero">
             <div className="padding-global">
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="home-hero_inner">
                   <div className="home-hero_text">
                     <h1 className="heading-size-3rem">{t("hero.title")}</h1>
@@ -91,7 +89,7 @@ export default async function HomePage({
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
           <section className="home-product_section">
             <div className="padding-global">
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <Image
                   src="/images/product-screenshot.png"
                   alt="Ditto product — project dashboard, work plan and coach"
@@ -107,7 +105,7 @@ export default async function HomePage({
 
         {/* 3. Logo strip + social proof */}
         <div id="logostrip-anchor">
-          <SectionLogostrip locale={locale} afterContent={<ElementSocialproofTrustpilot />} />
+          <SectionCustomerLogos locale={locale} afterContent={<ElementSocialproofTrustpilot />} />
         </div>
 
         {/* 2c. Testimonials (moved up, right below the clients + product) */}
@@ -131,7 +129,7 @@ export default async function HomePage({
           <section className="home-illus_section">
             <div className="padding-global">
               <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" />
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="home-illus_wrapper">
                   <Image
                     src="/images/ditto_better_businesses_illustration_1_narrow_1.avif"
@@ -226,7 +224,7 @@ export default async function HomePage({
 
         <Footer />
       </main>
-      <StickyLogoBarClient logos={logos ?? []} />
+      <StickyLogoBarClient />
     </div>
   );
 }

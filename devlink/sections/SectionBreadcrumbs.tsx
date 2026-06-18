@@ -90,7 +90,7 @@ export function SectionBreadcrumbs({
       >
         <Block className={"padding-global"} tag={"div"}>
           <Block className={"spacer-1x5rem"} tag={"div"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <Block className={"breadcrumbs_list"} tag={"div"}>
               <Link
                 block={""}

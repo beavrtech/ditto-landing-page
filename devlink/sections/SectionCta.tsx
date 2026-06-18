@@ -61,7 +61,7 @@ export function SectionCta({
       >
         <Block className={"padding-global"} tag={"div"}>
           <Padding space={"Medium (6rem)"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <Block className={"cta_header"} tag={"div"}>
               <Block className={"cta_header_content"} tag={"div"}>
                 <Heading className={"heading-size-4rem"} tag={"h2"}>

@@ -145,7 +145,7 @@ export default async function AuthorPage({
                 </div>
                 <div className="spacer-3rem" />
 
-                <div className="container-84rem">
+                <div className="container-80rem">
                   {blogs.length > 0 && (
                     <>
                       <div className="blog_list_wrapper">

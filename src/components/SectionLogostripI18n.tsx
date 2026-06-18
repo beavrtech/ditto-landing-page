@@ -71,7 +71,7 @@ export function SectionLogostrip({ variant = "Base", serverLogos = [], serverSto
         <Block className={`padding-global ${_activeStyleVariant}`} tag={"div"}>
           <Padding space={"Small (3rem)"} />
           <Block
-            className={`container-84rem ${_activeStyleVariant}`}
+            className={`container-80rem ${_activeStyleVariant}`}
             tag={"div"}
           >
             <Block className={`header ${_activeStyleVariant}`} tag={"div"}>

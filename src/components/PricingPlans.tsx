@@ -36,7 +36,7 @@ export function PricingPlans({ locale }: { locale: string }) {
       {/* Hero */}
       <section className="pricing-hero">
         <div className="padding-global">
-          <div className="container-84rem">
+          <div className="container-80rem">
             <div className="pricing-hero_inner">
               <h1 className="heading-size-3rem">{c.hero.title}</h1>
               <p className="pricing-hero_subtitle text-size-1x375rem">{c.hero.subtitle}</p>
@@ -56,7 +56,7 @@ export function PricingPlans({ locale }: { locale: string }) {
       {/* Plan cards */}
       <section className="pricing-plans_section">
         <div className="padding-global">
-          <div className="container-84rem">
+          <div className="container-80rem">
             <div className="pricing-plans_grid">
               {c.plans.map((plan) => (
                 <div
@@ -96,7 +96,7 @@ export function PricingPlans({ locale }: { locale: string }) {
       {/* Comparison table */}
       <section className="pricing-compare_section">
         <div className="padding-global">
-          <div className="container-84rem">
+          <div className="container-80rem">
             <h2 className="pricing-compare_heading heading-size-2rem">{c.comparison.heading}</h2>
             <div className="pricing-compare_scroll">
               <table className="pricing-compare_table">

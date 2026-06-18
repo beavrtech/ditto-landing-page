@@ -124,7 +124,7 @@ export default async function CustomerStoryPage({
               <div className="hide-tablet">
                 <div className="spacer-component" data-wf--padding--space="small-3rem" />
               </div>
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="post-hero_component">
                   <div className="post-hero_content">
                     {story.industry?.name_en && (
@@ -157,7 +157,7 @@ export default async function CustomerStoryPage({
           <section className="stories-intro_section">
             <div className="padding-global">
               <div className="spacer-component" data-wf--padding--space="small-3rem" />
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="customer-intro_component">
                   {/* About card */}
                   <div className="customer-intro_card">
@@ -229,7 +229,7 @@ export default async function CustomerStoryPage({
           <section className="post_section">
             <div className="padding-global">
               <div className="spacer-component" data-wf--padding--space="small-3rem" />
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="post_grid">
                   <div className="post_main">
                     <div className="post_content">
@@ -399,7 +399,7 @@ export default async function CustomerStoryPage({
                     </div>
                   </div>{/* /post_sidebar */}
                 </div>{/* /post_grid */}
-              </div>{/* /container-84rem */}
+              </div>{/* /container-80rem */}
               <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" data-wf--padding--space="medium-6rem" />
             </div>{/* /padding-global */}
             <div className="layer-4">
@@ -442,7 +442,7 @@ async function ReadMoreStories({ locale, currentSlug, prefix }: { locale: string
             </div>
           </div>
           <div className="spacer-3rem" />
-          <div className="container-84rem">
+          <div className="container-80rem">
             <div className="blog_list_wrapper">
               <div className="blog_list" role="list">
                 {otherStories.map((story: any) => (

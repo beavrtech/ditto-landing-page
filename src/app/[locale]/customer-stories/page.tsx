@@ -53,7 +53,7 @@ export default async function CustomerStoriesPage({
           <section className="breadcrumbs_section">
             <div className="padding-global">
               <div className="spacer-1x5rem"></div>
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="breadcrumbs_list">
                   <a href={localizedHref("/customer-stories", locale)} className="link-size-1rem">{t("customerStories.breadcrumb")}</a>
                 </div>

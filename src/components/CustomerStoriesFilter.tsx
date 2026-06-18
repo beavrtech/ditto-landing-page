@@ -295,7 +295,7 @@ export function CustomerStoriesFilter({
       <section className="blog-preview_section">
         <div className="padding-global">
           <div data-wf--padding--space="small-3rem" className="spacer-component"></div>
-          <div className="container-84rem">
+          <div className="container-80rem">
             {filtered.length > 0 ? (
               <div className="blog_list_wrapper">
                 <div className="blog_list" role="list">

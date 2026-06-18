@@ -74,7 +74,7 @@ export function ExpertiseCarousel() {
             </div>
           </div>
           <div className="spacer-3rem" />
-          <div className="container-84rem">
+          <div className="container-80rem">
             <div
               className="carousel_component"
               splide-gap-mobile="1rem"

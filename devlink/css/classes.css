@@ -229,9 +229,9 @@
     font-weight: var(--_headings---heading-size-1x375rem--font-weight);
     letter-spacing: var(--_headings---heading-size-1x375rem--letter-spacing);
   }
-  .container-84rem {
+  .container-80rem {
     width: 100%;
-    max-width: 84rem;
+    max-width: 80rem;
     margin-right: auto;
     margin-left: auto;
   }

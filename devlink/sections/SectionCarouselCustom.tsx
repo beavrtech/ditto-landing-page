@@ -77,7 +77,7 @@ export function SectionCarouselCustom({
       >
         <Block className={"padding-global"} tag={"div"}>
           <Padding space={"Medium (6rem)"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <Block className={"max-width-32rem"} tag={"div"} />
             <Heading
               className={"heading-size-3rem text-wrap-balance"}

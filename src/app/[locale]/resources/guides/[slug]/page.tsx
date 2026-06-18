@@ -174,7 +174,7 @@ export default async function GuideDetailPage({
           <section className="guide-hero_section">
             <div className="padding-global">
               <div className="spacer-component" data-wf--padding--space="small-3rem" />
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="post-hero_component">
                   <div className="post-hero_content">
                     <p className="label">Guide</p>
@@ -199,7 +199,7 @@ export default async function GuideDetailPage({
           <section className="guide_section">
             <div className="padding-global">
               <div className="spacer-component" data-wf--padding--space="small-3rem" />
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="guide_grid">
                   <div className="guide_main">
                     <div className="guide_content">
