@@ -1,66 +1,55 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
+import posthog from "posthog-js";
 
 export type FrameworkCard = {
   key: string;
   name: string;
   urgency: string;
-  cta: string;
   href: string;
 };
 
-export type FrameworkTab = {
-  key: string;
-  label: string;
-  frameworks: FrameworkCard[];
-};
+function ArrowUpRight() {
+  return (
+    <svg className="framework-chooser_arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  );
+}
 
 /**
- * Client tab switcher for the homepage launchpad. A segmented control flips the
- * card grid between categories (Sustainability / Quality); each card routes
- * straight into its product-specific framework page.
+ * Flat 2×3 grid of framework cards for the homepage hero. No tabs.
  */
-export function FrameworkTabs({ tabs }: { tabs: FrameworkTab[] }) {
-  const [active, setActive] = useState(tabs[0]?.key);
-  const current = tabs.find((t) => t.key === active) ?? tabs[0];
+export function FrameworkGrid({ frameworks }: { frameworks: FrameworkCard[] }) {
+  function handleTileClick(fw: FrameworkCard) {
+    try {
+      posthog.capture("framework_tile_clicked", { framework: fw.key });
+    } catch {}
+  }
+
+  const rows = [frameworks.slice(0, 3), frameworks.slice(3)];
 
   return (
-    <div className="framework-tabs">
-      <div className="framework-tabs_panel">
-        <div className="framework-tabs_list" role="tablist">
-          {tabs.map((tab) => (
-            <button
-              key={tab.key}
-              type="button"
-              role="tab"
-              aria-selected={tab.key === active}
-              className={`framework-tabs_tab${
-                tab.key === active ? " is-active" : ""
-              }`}
-              onClick={() => setActive(tab.key)}
+    <div className="framework-grid">
+      {rows.map((row, i) => (
+        <div key={i} className="framework-grid_row">
+          {row.map((fw) => (
+            <Link
+              key={fw.key}
+              href={fw.href}
+              className="framework-chooser_card"
+              onClick={() => handleTileClick(fw)}
             >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        <div className="framework-tabs_grid" role="tabpanel">
-          {current?.frameworks.map((fw) => (
-            <Link key={fw.key} href={fw.href} className="framework-chooser_card">
               <span className="framework-chooser_name">
                 {fw.name}
-                <span aria-hidden="true" className="framework-chooser_arrow">
-                  ↗
-                </span>
+                <ArrowUpRight />
               </span>
               <span className="framework-chooser_urgency">{fw.urgency}</span>
-              <span className="framework-chooser_cta">{fw.cta}</span>
             </Link>
           ))}
         </div>
-      </div>
+      ))}
     </div>
   );
 }

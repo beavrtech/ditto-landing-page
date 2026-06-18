@@ -18,6 +18,8 @@ import { DEVLINK_SCOPE_CLASS } from "../../../devlink/devlinkScope";
 import { ExpertiseCarousel } from "../../components/ExpertiseCarousel";
 import { FrameworkChooser } from "../../components/FrameworkChooser";
 import { JsonLd, WEBSITE_JSONLD } from "../../components/JsonLd";
+import { StickyLogoBarClient } from "../../components/StickyLogoBarClient";
+import { getCompanyLogos } from "../../lib/cms";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -52,6 +54,7 @@ export default async function HomePage({
   setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
+  const logos = await getCompanyLogos().catch(() => []);
 
   return (
     <div className="page-wrapper">
@@ -59,25 +62,22 @@ export default async function HomePage({
       <main className="main-wrapper">
         <Navbar />
 
-        {/* 1. Hero launchpad — tabbed framework chooser + CTA, no platform image */}
+        {/* 1. Hero — title, subtitle, email CTA, framework grid */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
           <section className="hero_section home-hero">
             <div className="padding-global">
               <div className="container-84rem">
                 <div className="home-hero_inner">
-                  <h1 className="heading-size-3rem">{t("hero.title")}</h1>
-                  <p className="text-size-1x375rem home-hero_subtitle">
-                    {t("hero.subtitle")}
-                  </p>
-
-                  {/* First thing on the page: the framework launchpad */}
-                  <FrameworkChooser locale={locale} />
-
-                  {/* Email-capture demo form below the chooser */}
+                  <div className="home-hero_text">
+                    <h1 className="heading-size-3rem">{t("hero.title")}</h1>
+                    <p className="text-size-1x375rem home-hero_subtitle">
+                      {t("hero.subtitle")}
+                    </p>
+                  </div>
                   <div className="home-hero_cta">
                     <NewsletterForm />
                   </div>
-
+                  <FrameworkChooser locale={locale} />
                 </div>
               </div>
             </div>
@@ -87,29 +87,27 @@ export default async function HomePage({
           </section>
         </div>
 
-        {/* 2. Logo strip */}
-        <SectionLogostrip locale={locale} afterContent={<ElementSocialproofTrustpilot />} />
-
-        {/* 2b. Product block — PLACEHOLDER, fill with real product content */}
+        {/* 2. Product screenshot — above customer credentials */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
           <section className="home-product_section">
             <div className="padding-global">
               <div className="container-84rem">
-                <div className="home-product_placeholder">
-                  <p className="home-product_label">Product</p>
-                  <h2 className="heading-size-3rem">Product block (placeholder)</h2>
-                  <p className="home-product_text">
-                    Placeholder for the product story — what Ditto does, a
-                    screenshot or short demo, and the key capabilities. Replace
-                    this block with the real content.
-                  </p>
-                </div>
+                <Image
+                  src="/images/product-screenshot.png"
+                  alt="Ditto product — project dashboard, work plan and coach"
+                  width={2000}
+                  height={959}
+                  className="home-product_screenshot"
+                  priority={false}
+                />
               </div>
             </div>
-            <div className="layer-4">
-              <div className="background" data-wf--background--color="primary" />
-            </div>
           </section>
+        </div>
+
+        {/* 3. Logo strip + social proof */}
+        <div id="logostrip-anchor">
+          <SectionLogostrip locale={locale} afterContent={<ElementSocialproofTrustpilot />} />
         </div>
 
         {/* 2c. Testimonials (moved up, right below the clients + product) */}
@@ -217,15 +215,18 @@ export default async function HomePage({
         />
 
         {/* 13. CTA */}
-        <SectionCta
-          title={t("cta.title")}
-          paragraph={t("cta.subtitle")}
-          buttonText={t("cta.button")}
-          buttonLink={{ href: `${prefix}/demo` }}
-        />
+        <div data-cta-placement="homepage_section_cta">
+          <SectionCta
+            title={t("cta.title")}
+            paragraph={t("cta.subtitle")}
+            buttonText={t("cta.button")}
+            buttonLink={{ href: `${prefix}/demo` }}
+          />
+        </div>
 
         <Footer />
       </main>
+      <StickyLogoBarClient logos={logos ?? []} />
     </div>
   );
 }

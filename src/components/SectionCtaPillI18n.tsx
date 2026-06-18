@@ -59,7 +59,9 @@ export function SectionCtaPill({}: SectionCtaPillProps) {
                     {t("paragraph")}
                   </Paragraph>
                 </Block>
-                <Button arrow={false} text={t("button")} link={{ href: `${prefix}/demo` }} />
+                <div data-cta-placement="homepage_cta_pill">
+                  <Button arrow={false} text={t("button")} link={{ href: `${prefix}/demo` }} />
+                </div>
               </Block>
               <HtmlEmbed
                 className={"cta-pill_left"}

@@ -12,6 +12,7 @@ import { AxeptioConsent } from "../../components/AxeptioConsent";
 import { GoogleTagManager, GoogleTagManagerNoScript } from "../../components/GoogleTagManager";
 import { Analytics } from "@vercel/analytics/next";
 import { PostHogInit } from "../../components/PostHogInit";
+import { DemoCTATracker } from "../../components/DemoCTATracker";
 import "../globals.css";
 
 const inter = Inter({
@@ -85,6 +86,7 @@ export default async function LocaleLayout({
         <GoogleTagManagerNoScript />
         <AxeptioConsent locale={locale} />
         <PostHogInit />
+        <DemoCTATracker />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <AlternateUrlProvider>
             <SafeDevLinkProvider>

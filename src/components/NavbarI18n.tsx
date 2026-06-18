@@ -453,21 +453,25 @@ export function NavbarClient({ previewPosts: serverPosts, alternateUrls }: Navba
                   />
                 </Block>
                 <Block className={"navbar_button"} tag={"div"}>
-                  <Button
-                    arrow={false}
-                    link={{ href: localizedHref("/demo", locale) }}
-                    text={t("getStarted")}
-                  />
+                  <div data-cta-placement="navbar">
+                    <Button
+                      arrow={false}
+                      link={{ href: localizedHref("/demo", locale) }}
+                      text={t("getStarted")}
+                    />
+                  </div>
                 </Block>
               </Block>
             </NavbarMenu>
             <Block className={"navbar1_mobile_button"} tag={"div"}>
-              <Button
-                arrow={false}
-                link={{ href: localizedHref("/demo", locale) }}
-                text={t("getStarted")}
-                variant={"Primary - Small"}
-              />
+              <div data-cta-placement="navbar">
+                <Button
+                  arrow={false}
+                  link={{ href: localizedHref("/demo", locale) }}
+                  text={t("getStarted")}
+                  variant={"Primary - Small"}
+                />
+              </div>
             </Block>
             <NavbarButton className={"navbar1_menu-button"} tag={"div"}>
               <Block className={"navbar_hamburger"} tag={"div"}>
