@@ -105,11 +105,6 @@ export function ExpertiseCarousel() {
                 </div>
                 <div className="carousel_navigation_wrapper" />
               </div>
-              <div className="spacer-1x5rem" />
-              <div className="carousel_pagination_list">
-                <div className="carousel_pagination_button" splide-button="pagination" />
-                <div className="carousel_pagination_button is-active" />
-              </div>
             </div>
             <div className="spacer-3rem" />
             <div className="button-group x-center">

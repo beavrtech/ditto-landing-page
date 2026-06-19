@@ -8,7 +8,7 @@
     "about": "About",
     "login": "Log in",
     "pricing": "Pricing",
-    "getStarted": "Book a demo",
+    "getStarted": "Let's talk",
     "ecovadis": "EcoVadis",
     "iso14001": "ISO 14001",
     "cdp": "CDP",
@@ -61,7 +61,7 @@
     "industryTransportationLogistics": "Transportation & Logistics"
   },
   "hero": {
-    "title": "Your compliance & sustainability platform, and the expert who runs it with you.",
+    "title": "Your compliance & sustainability platform,<br></br>and the expert who runs it with you.",
     "subtitle": "Protect market access, win more deals and reduce risk while lowering compliance costs.",
     "cta": "Book a demo",
     "trustpilot": "4.6/5 on Trustpilot"
@@ -185,7 +185,7 @@
     }
   },
   "testimonials": {
-    "title": "Don't take our word for it. Take theirs",
+    "title": "Don't take our word for it. Take theirs.",
     "subtitle": "Customers of all sizes love Ditto for its simplicity, smarts, and impact, above all.",
     "readMore": "Read more customer stories"
   },
@@ -287,7 +287,7 @@
       "paragraph": "Use our browser extension to get contextual answers wherever you are—client portals, shared folders, or inboxes. Or just ask a question in the Ditto workspace."
     },
     "testimonials": {
-      "title": "Don't take our word for it. Take theirs",
+      "title": "Don't take our word for it. Take theirs.",
       "text": "Customers of all sizes love Ditto for its simplicity, smarts, and impact, above all.",
       "button": "Read More"
     },
@@ -338,7 +338,7 @@
       "button": "Get started"
     },
     "testimonials": {
-      "title": "Don't take our word for it. Take theirs",
+      "title": "Don't take our word for it. Take theirs.",
       "text": "Customers using Ditto's AI assistants don't just move faster—they build stronger, smarter compliance programs without the chaos.",
       "button": "Read More"
     },
@@ -896,7 +896,7 @@
     "benefit4": "Reduce compliance costs and time"
   },
   "newsletterForm": {
-    "button": "Book a demo",
+    "button": "Book a Free Strategy Call",
     "success": "Thank you! Your submission has been received!",
     "error": "Oops! Something went wrong while submitting the form.",
     "placeholder": "ilove@compliance.com"

@@ -181,6 +181,13 @@ a {
   border-radius: 1.5rem;
 }
 
+/* Looping hero product animation (replaces the static product screenshot) */
+.home-product_animation {
+  width: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
 /* Sticky bottom logo bar */
 .sticky-logo-bar {
   position: fixed;
@@ -870,11 +877,15 @@ a {
   gap: 0.75rem;
   margin-top: 0.5rem;
   padding: 0.625rem 0.625rem 0.625rem 1.5rem;
+  border: none;
   border-radius: 100vw;
   background-color: var(--_colors-•-semantic---text-primary);
   color: var(--_colors-•-semantic---text-inverse);
+  font-family: inherit;
+  font-size: inherit;
   font-weight: 600;
   text-decoration: none !important;
+  cursor: pointer;
   transition: background-color 150ms ease;
 }
 

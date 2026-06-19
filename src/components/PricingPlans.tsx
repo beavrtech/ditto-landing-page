@@ -1,11 +1,8 @@
 import { getPricingContent, type ComparisonCell } from "../lib/pricing-plans";
-import { localizedHref } from "../lib/localized-paths";
+import { PricingHeroCta } from "./PricingHeroCta";
 
 const CHECK_SVG =
   '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 9.5L7 13L14.5 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-const ARROW_SVG =
-  '<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3.5 9h11M10 4.5L14.5 9 10 13.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
 function Cell({ value }: { value: ComparisonCell }) {
   if (value === true) {
@@ -40,14 +37,7 @@ export function PricingPlans({ locale }: { locale: string }) {
             <div className="pricing-hero_inner">
               <h1 className="heading-size-3rem">{c.hero.title}</h1>
               <p className="pricing-hero_subtitle text-size-1x375rem">{c.hero.subtitle}</p>
-              <a href={localizedHref(c.hero.ctaHref, locale)} className="pricing-hero_cta">
-                <span>{c.hero.cta}</span>
-                <span
-                  className="pricing-hero_cta-icon"
-                  aria-hidden="true"
-                  dangerouslySetInnerHTML={{ __html: ARROW_SVG }}
-                />
-              </a>
+              <PricingHeroCta label={c.hero.cta} />
             </div>
           </div>
         </div>

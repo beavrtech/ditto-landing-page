@@ -19,6 +19,7 @@ import { ExpertiseCarousel } from "../../components/ExpertiseCarousel";
 import { FrameworkChooser } from "../../components/FrameworkChooser";
 import { JsonLd, WEBSITE_JSONLD } from "../../components/JsonLd";
 import { StickyLogoBarClient } from "../../components/StickyLogoBarClient";
+import { HeroAnimation } from "../../components/HeroAnimation";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -67,7 +68,9 @@ export default async function HomePage({
               <div className="container-80rem">
                 <div className="home-hero_inner">
                   <div className="home-hero_text">
-                    <h1 className="heading-size-3rem">{t("hero.title")}</h1>
+                    <h1 className="heading-size-3rem">
+                      {t.rich("hero.title", { br: () => <br /> })}
+                    </h1>
                     <p className="text-size-1x375rem home-hero_subtitle">
                       {t("hero.subtitle")}
                     </p>
@@ -85,19 +88,14 @@ export default async function HomePage({
           </section>
         </div>
 
-        {/* 2. Product screenshot — above customer credentials */}
+        {/* 2. Product demo — looping hero animation — above customer credentials */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
           <section className="home-product_section">
             <div className="padding-global">
               <div className="container-80rem">
-                <Image
-                  src="/images/product-screenshot.png"
-                  alt="Ditto product — project dashboard, work plan and coach"
-                  width={2000}
-                  height={959}
-                  className="home-product_screenshot"
-                  priority={false}
-                />
+                <div className="home-product_animation">
+                  <HeroAnimation />
+                </div>
               </div>
             </div>
           </section>

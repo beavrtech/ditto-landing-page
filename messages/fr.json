@@ -8,7 +8,7 @@
     "about": "À propos",
     "login": "Connexion",
     "pricing": "Obtenir un devis",
-    "getStarted": "Réserver une démo",
+    "getStarted": "Discutons de votre projet",
     "ecovadis": "EcoVadis",
     "iso14001": "ISO 14001",
     "cdp": "CDP",
@@ -61,8 +61,8 @@
     "industryTransportationLogistics": "Transportation & Logistics"
   },
   "hero": {
-    "title": "Votre plateforme conformité & durabilité, et l'expert qui la pilote avec vous.",
-    "subtitle": "Gardez l'accès au marché, signez plus de contrats et réduisez les risques, tout en allégeant vos coûts de conformité.",
+    "title": "Votre plateforme conformité & durabilité,<br></br>et l'expert qui la pilote avec vous.",
+    "subtitle": "Sécurisez l'accès au marché, signez plus de contrats et réduisez vos risques, tout en allégeant vos coûts de conformité.",
     "cta": "Réserver une démo",
     "trustpilot": "4.6/5 on Trustpilot"
   },
@@ -185,7 +185,7 @@
     }
   },
   "testimonials": {
-    "title": "Ils en parlent mieux que nous",
+    "title": "Ils en parlent mieux que nous.",
     "subtitle": "Des entreprises de toutes tailles adorent Ditto pour sa simplicité, son intelligence et son impact.",
     "readMore": "Lire plus de témoignages clients"
   },
@@ -245,7 +245,7 @@
       "paragraph": "Ditto conserve l'historique vivant de vos politiques, évaluations et plans d'action."
     },
     "testimonials": {
-      "title": "Ils en parlent mieux que nous",
+      "title": "Ils en parlent mieux que nous.",
       "text": "Des entreprises de toutes tailles choisissent Ditto pour sa clarté, son expertise et son impact.",
       "button": "En savoir plus"
     },
@@ -896,7 +896,7 @@
     "benefit4": "Réduire les coûts et le temps de mise en conformité"
   },
   "newsletterForm": {
-    "button": "Réserver une démo",
+    "button": "Discutons de votre projet",
     "success": "Merci ! Votre inscription a bien été prise en compte !",
     "error": "Oups ! Une erreur est survenue lors de l'envoi du formulaire.",
     "placeholder": "jaimela@conformite.fr"

@@ -141,35 +141,11 @@ export function SectionCompliantCarousel({
                         tag={"div"}
                       >
                         <CardIcon
-                          description={t("csrd.description")}
-                          icon={
-                            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed169cfc14d8e3135faa6_csrd.avif"
-                          }
-                          title={<Strong>{"CSRD"}</Strong>}
-                        />
-                      </Block>
-                      <Block
-                        className={`carousel_slide splide__slide width-26rem ${_activeStyleVariant}`}
-                        tag={"div"}
-                      >
-                        <CardIcon
                           description={t("ecovadis.description")}
                           icon={
                             "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed1c26a35724770ef7a90_ecovadis.avif"
                           }
                           title={"EcoVadis"}
-                        />
-                      </Block>
-                      <Block
-                        className={`carousel_slide splide__slide width-26rem ${_activeStyleVariant}`}
-                        tag={"div"}
-                      >
-                        <CardIcon
-                          description={t("iso.description")}
-                          icon={
-                            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed1c27d430a77816d3240_iso.avif"
-                          }
-                          title={"ISO"}
                         />
                       </Block>
                       <Block
@@ -184,29 +160,35 @@ export function SectionCompliantCarousel({
                           title={"CDP"}
                         />
                       </Block>
+                      <Block
+                        className={`carousel_slide splide__slide width-26rem ${_activeStyleVariant}`}
+                        tag={"div"}
+                      >
+                        <CardIcon
+                          description={t("csrd.description")}
+                          icon={
+                            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed169cfc14d8e3135faa6_csrd.avif"
+                          }
+                          title={<Strong>{"CSRD"}</Strong>}
+                        />
+                      </Block>
+                      <Block
+                        className={`carousel_slide splide__slide width-26rem ${_activeStyleVariant}`}
+                        tag={"div"}
+                      >
+                        <CardIcon
+                          description={t("iso.description")}
+                          icon={
+                            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/682ed1c27d430a77816d3240_iso.avif"
+                          }
+                          title={"ISO"}
+                        />
+                      </Block>
                     </Block>
                   </Block>
                 </Block>
                 <Block
                   className={`carousel_navigation_wrapper ${_activeStyleVariant}`}
-                  tag={"div"}
-                />
-              </Block>
-              <Block
-                className={`spacer-1x5rem ${_activeStyleVariant}`}
-                tag={"div"}
-              />
-              <Block
-                className={`carousel_pagination_list ${_activeStyleVariant}`}
-                tag={"div"}
-              >
-                <Block
-                  className={`carousel_pagination_button ${_activeStyleVariant}`}
-                  splide-button={"pagination"}
-                  tag={"div"}
-                />
-                <Block
-                  className={`carousel_pagination_button is-active ${_activeStyleVariant}`}
                   tag={"div"}
                 />
               </Block>

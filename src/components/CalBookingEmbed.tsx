@@ -18,7 +18,8 @@ export function CalBookingEmbed() {
   return (
     <Cal
       namespace="30min"
-      calLink="etienne-dejoie/30min"
+      calLink="pierrepoirmeur/30min"
+      calOrigin="https://www.cal.eu"
       style={{ width: "100%", height: "100%", overflow: "hidden" }}
       config={{ layout: "month_view", theme: "light", useSlotsViewOnSmallScreen: "true" } as Record<string, string>}
     />
