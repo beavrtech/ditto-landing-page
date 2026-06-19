@@ -94,6 +94,11 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/en/resources/blog/csrsd-impact-materiality",
+        destination: "/en/resources/blog/csrd-impact-materiality",
+        permanent: true,
+      },
+      {
         source: "/en/get-started",
         destination: "/en/demo",
         permanent: true,
