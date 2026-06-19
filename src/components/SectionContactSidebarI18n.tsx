@@ -282,9 +282,11 @@ export function SectionContactSidebar({
                 </Block>
               </Block>
               <Block className={"contact_form_wrapper"} tag={"div"}>
-                <Block className={"contact_form"} tag={"div"}>
-                  {formSlot ?? <HubSpotContactForm formId={hubspotFormId} />}
-                </Block>
+                {formSlot ?? (
+                  <Block className={"contact_form"} tag={"div"}>
+                    <HubSpotContactForm formId={hubspotFormId} />
+                  </Block>
+                )}
               </Block>
             </Block>
           </Block>

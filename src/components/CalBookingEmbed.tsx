@@ -19,7 +19,7 @@ export function CalBookingEmbed() {
     <Cal
       namespace="30min"
       calLink="etienne-dejoie/30min"
-      style={{ width: "100%", height: "100%", overflow: "scroll" }}
+      style={{ width: "100%", height: "100%", overflow: "hidden" }}
       config={{ layout: "month_view", theme: "light", useSlotsViewOnSmallScreen: "true" } as Record<string, string>}
     />
   );

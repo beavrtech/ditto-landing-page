@@ -569,11 +569,18 @@ a {
    Give it generous height so the month grid + time slots render in full. */
 .pricing-cal_embed {
   width: 100%;
-  /* Tight height: shows the calendar (+ slots beside it) and clips the
-     "Cal.com" branding strip that sits at the very bottom of the iframe. */
-  height: 470px;
+  /* Tall enough to show the full month grid (and the time slots beside it once
+     the column is wide enough for Cal's side-by-side month_view) without the
+     calendar being clipped mid-row. */
+  height: 620px;
   overflow: hidden;
   border-radius: 0.75rem;
+}
+
+/* Hide the "Cal.com" branding footer: render the iframe taller than the
+   visible (overflow: hidden) wrapper so the footer is pushed below the clip. */
+.pricing-cal_embed iframe {
+  height: calc(100% + 3.5rem) !important;
 }
 
 /* Trustpilot, now under the benefits list in the left column */
@@ -609,12 +616,13 @@ a {
    (calendar + time slots side by side, not the narrow "zoomed" view).
    Narrow the text column, let the calendar take the rest, trim padding. */
 .booking-page .contact_component {
-  grid-column-gap: 2rem;
+  grid-column-gap: 2.5rem;
+  align-items: flex-start;
 }
 
 .booking-page .contact_content_wrapper {
-  max-width: 30rem;
-  flex: 0 1 30rem;
+  max-width: 24rem;
+  flex: 0 1 24rem;
 }
 
 .booking-page .contact_form_wrapper {
@@ -623,7 +631,7 @@ a {
 }
 
 .booking-page .contact_form {
-  padding: 1rem;
+  padding: 0.75rem;
 }
 
 @media (max-width: 768px) {

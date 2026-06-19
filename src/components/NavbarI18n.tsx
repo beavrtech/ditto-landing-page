@@ -88,7 +88,7 @@ export function NavbarClient({ previewPosts: serverPosts, alternateUrls }: Navba
       >
         <NavbarContainer className={"navbar_container"} tag={"div"}>
           <Block className={"spacer-1rem"} tag={"div"} />
-          <Block className={"navbar1_component"} tag={"div"}>
+          <Block className={"navbar1_component container-80rem"} tag={"div"}>
             <NavbarBrand
               className={"navbar_mobile-brand"}
               options={{
