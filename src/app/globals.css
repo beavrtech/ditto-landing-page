@@ -98,3 +98,1118 @@ a {
 .customer-intro_details_item {
   grid-template-columns: 7.5rem 1fr !important;
 }
+
+/* Testimonials — auto-scrolling marquee of smaller quote cards.
+   Cards are rendered twice; translating the track by -50% loops seamlessly. */
+.testimonials-marquee_viewport {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 5%,
+    #000 95%,
+    transparent
+  );
+}
+
+.testimonials-marquee {
+  display: flex;
+  width: max-content;
+  gap: 1.5rem;
+  animation: testimonials-scroll 60s linear infinite;
+  will-change: transform;
+}
+
+.testimonials-marquee:hover {
+  animation-play-state: paused;
+}
+
+.testimonials-marquee_item {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: stretch;
+}
+
+/* Smaller cards + smaller quote text */
+.testimonials-marquee .card-testimonial {
+  width: 23rem;
+  padding: 2rem;
+}
+
+.testimonials-marquee .card-testimonial .heading-size-2rem {
+  font-size: 1.125rem;
+  line-height: 1.45;
+}
+
+@keyframes testimonials-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-marquee {
+    animation: none;
+  }
+}
+
+/* Homepage product block — PLACEHOLDER (dashed frame signals it needs filling) */
+.home-product_section {
+  position: relative;
+}
+
+.home-product_section .container-80rem {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.home-product_screenshot {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 1.5rem;
+}
+
+/* Looping hero product animation (replaces the static product screenshot) */
+.home-product_animation {
+  width: 100%;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+
+/* Sticky bottom logo bar */
+.sticky-logo-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 40;
+  padding: 0 3rem;
+  background: var(--_colors-\•-semantic---surface-secondary, #e8ebd9);
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Logos sit in the site's standard 80rem (1280px) centered container.
+   Same flex model as .customer-logos_row so the logo centers track the inline
+   logo tiles at every width (used for the seamless scroll swap). */
+.sticky-logo-bar_inner {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.sticky-logo-bar.is-visible {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Hide the sticky logo bar below 988px */
+@media (max-width: 987.98px) {
+  .sticky-logo-bar {
+    display: none;
+  }
+}
+
+/* 64px-tall wrapper centers each logo. Uses .logo-tile's flex: 1 1 0 grow
+   model so slots size/round like the inline tiles (logos line up across both),
+   but min-width: 0 + no wrap keeps the bar to a single row — it shrinks the
+   logos instead of dropping one to a second line. */
+.sticky-logo-bar_wrapper {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem; /* 64px */
+}
+
+/* Logo expands to its max-width but object-fit: contain + max-height keep it
+   within both bounds while preserving its native aspect ratio. So the rendered
+   height is width × (naturalHeight / naturalWidth), capped at 40px. */
+.sticky-logo-bar_logo {
+  width: 100%;
+  height: 100%;
+  max-width: 7.5rem; /* 120px */
+  max-height: 2.5rem; /* 40px */
+  object-fit: contain;
+  padding: 0;
+  margin: 0;
+}
+
+/* Heavier logos get tighter caps (88px × 32px) so they don't dominate */
+.sticky-logo-bar_logo.is-smaller {
+  max-width: 5.5rem; /* 88px */
+  max-height: 2rem; /* 32px */
+}
+
+/* Homepage customer-logos section — two rows of logo tiles */
+.customer-logos_rows {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Single row above the breakpoint — shrink the tiles to fit rather than wrap,
+   so they track the sticky logo bar exactly. Below 988px they may wrap. */
+.customer-logos_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (max-width: 987.98px) {
+  .customer-logos_row {
+    flex-wrap: wrap;
+  }
+  .customer-logos_row .logo-tile {
+    min-width: 9rem;
+  }
+}
+
+/* Reusable logo tile — fixed size, logo centered, optional case-study link.
+   Tile height reserves room for the absolutely-positioned case-study label so
+   the logo never shifts whether or not a case study is present. */
+.logo-tile {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 4rem; /* 64px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  background-color: transparent;
+  transition: background-color 0.15s ease;
+}
+
+.logo-tile--link {
+  cursor: pointer;
+}
+
+/* Fixed 120×40 logo box (88×32 for heavier logos), preserving aspect ratio */
+.logo-tile_logo-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 7.5rem; /* 120px */
+  height: 2.5rem; /* 40px */
+}
+
+.logo-tile_logo {
+  width: 100%;
+  height: 100%;
+  max-width: 7.5rem; /* 120px */
+  max-height: 2.5rem; /* 40px */
+  object-fit: contain;
+}
+
+.logo-tile_logo.is-smaller {
+  max-width: 5.5rem; /* 88px */
+  max-height: 2rem; /* 32px */
+}
+
+/* "CASE STUDY >" small button — same style as the marquee's button_tiny
+   (transparent, tiny uppercase, subtle hover bg). Absolutely positioned just
+   below the centered logo so the logo never shifts whether or not it exists. */
+.logo-tile_casestudy {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + 1.5rem);
+  transform: translateX(-50%);
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+  font-family: var(--font-family--paragraph);
+  font-size: 0.625rem;
+  line-height: 1.25;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--_colors-\•-semantic---text-neutral, #5f5c6e);
+  padding: 0.1rem 0.25rem;
+  border-radius: 100vw;
+  background-color: transparent;
+  transition: background-color 0.25s cubic-bezier(0.645, 0.045, 0.355, 1),
+    color 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.logo-tile--link:hover .logo-tile_casestudy {
+  background-color: var(--_colors-\•-semantic---surface-tertiary, #f9fbf2);
+  color: var(--_colors-\•-semantic---text-primary, #130e30);
+}
+
+.home-product_placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 4rem 2rem;
+  border: 2px dashed var(--_colors-\•-semantic---border-medium, #c9cdb4);
+  border-radius: 1.5rem;
+  text-align: center;
+}
+
+.home-product_label {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--_colors-\•-primitives---neutral--neutral-gray, #5f5c6e);
+}
+
+.home-product_text {
+  max-width: 38rem;
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--_colors-\•-primitives---neutral--neutral-gray, #5f5c6e);
+}
+
+/* Homepage hero — centered headline, email CTA, flat framework grid. */
+.home-hero {
+  position: relative;
+  text-align: center;
+}
+
+.home-hero_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.home-hero_text {
+  max-width: 57.5rem;
+}
+
+.home-hero_subtitle {
+  max-width: 57.5rem;
+  margin: 1rem auto 0;
+  color: var(--_colors-\•-primitives---neutral--neutral-gray, #5f5c6e);
+}
+
+.home-hero_cta {
+  display: flex;
+  justify-content: center;
+}
+
+/* Flat 2×3 framework grid */
+.framework-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  text-align: left;
+}
+
+.framework-grid_row {
+  display: flex;
+  gap: 1rem;
+}
+
+.framework-chooser_card {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 1.5rem;
+  background-color: #f9fbf2;
+  text-decoration: none;
+  color: var(--_colors-\•-semantic---text-primary, #130e30);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.framework-chooser_card:hover {
+  transform: translateY(-2px);
+  background-color: #ffe228;
+  box-shadow: 0 8px 24px -8px rgba(60, 50, 20, 0.16);
+}
+
+.framework-chooser_name {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-family: var(--font-family--headings);
+  font-size: 1.375rem;
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.framework-chooser_arrow {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  color: var(--_colors-\•-primitives---neutral--neutral-gray, #5f5c6e);
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.framework-chooser_card:hover .framework-chooser_arrow {
+  transform: translate(2px, -2px);
+  color: var(--_colors-\•-semantic---text-primary, #130e30);
+}
+
+.framework-chooser_urgency {
+  font-size: 1rem;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--_colors-\•-primitives---neutral--neutral-gray, #5f5c6e);
+}
+
+@media (max-width: 991px) {
+  .home-hero_inner {
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .framework-grid_row {
+    flex-wrap: wrap;
+  }
+
+  .framework-chooser_card {
+    flex-basis: calc(50% - 0.5rem);
+  }
+}
+
+@media (max-width: 575px) {
+  .framework-grid_row {
+    flex-direction: column;
+  }
+}
+
+/* Logo strip — single-line infinite marquee.
+   The list is rendered twice in the DOM; translating the track by -50% (one
+   full set) and looping yields a seamless scroll. Selectors are doubled-up
+   (.logostrip_list.logostrip-marquee) to win over the devlink @scope rules. */
+.logostrip_list_wrapper.logostrip-marquee_viewport {
+  overflow: hidden;
+  width: 100%;
+  /* Fade the strip in/out at both edges */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 6%,
+    #000 94%,
+    transparent
+  );
+}
+
+.logostrip_list.logostrip-marquee {
+  width: max-content;
+  max-width: none;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  animation: logostrip-scroll 35s linear infinite;
+  will-change: transform;
+}
+
+.logostrip_list.logostrip-marquee:hover {
+  animation-play-state: paused;
+}
+
+.logostrip-marquee .logostrip_item {
+  flex: 0 0 auto;
+}
+
+@keyframes logostrip-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logostrip_list.logostrip-marquee {
+    animation: none;
+  }
+}
+
+/* CTA / pill buttons must never wrap to two lines, at any screen size.
+   nowrap makes each button's min-content width equal its full text, so the
+   flex layout can't shrink-wrap it onto two lines. Scope-class prefix wins
+   over the devlink @scope `.button` rule. */
+.wf-devlink-334d291de626c444a9725b27acd9cb00 .button {
+  white-space: nowrap;
+}
+
+/* Pricing page — Cal.com embed sits in the contact section's right column
+   (.contact_form already provides the card frame), so the embed is frameless.
+   Give it generous height so the month grid + time slots render in full. */
+.pricing-cal_embed {
+  width: 100%;
+  /* Tall enough to show the full month grid (and the time slots beside it once
+     the column is wide enough for Cal's side-by-side month_view) without the
+     calendar being clipped mid-row. */
+  height: 620px;
+  overflow: hidden;
+  border-radius: 0.75rem;
+}
+
+/* Hide the "Cal.com" branding footer: render the iframe taller than the
+   visible (overflow: hidden) wrapper so the footer is pushed below the clip. */
+.pricing-cal_embed iframe {
+  height: calc(100% + 3.5rem) !important;
+}
+
+/* Trustpilot, now under the benefits list in the left column */
+.contact_content_footer {
+  margin-top: 2rem;
+}
+
+.pricing-cal_trustpilot {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Tighten the hero's vertical rhythm so more fits above the fold.
+   Scoped to .booking-page so other pages are unaffected. */
+.booking-page .contact_section .spacer-component {
+  padding-top: 1.5rem;
+}
+
+.booking-page .contact_section .contact_content {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.booking-page .contact_section .spacer-3rem {
+  padding-top: 1.25rem;
+}
+
+.booking-page .contact_section .spacer-1x5rem {
+  padding-top: 0.75rem;
+}
+
+/* Give the Cal.com column the width it needs to render the full month_view
+   (calendar + time slots side by side, not the narrow "zoomed" view).
+   Narrow the text column, let the calendar take the rest, trim padding. */
+.booking-page .contact_component {
+  grid-column-gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.booking-page .contact_content_wrapper {
+  max-width: 24rem;
+  flex: 0 1 24rem;
+}
+
+.booking-page .contact_form_wrapper {
+  max-width: none;
+  flex: 1 1 auto;
+}
+
+.booking-page .contact_form {
+  padding: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .pricing-cal_embed {
+    height: 760px;
+  }
+
+  .pricing-cal_trustpilot {
+    justify-content: center;
+  }
+}
+
+/* Desktop navbar: separate the globe (language switcher) from the CTA group,
+   and give the two CTAs a touch more breathing room between them.
+   The language dropdown carries a -0.6rem right margin, so the button group
+   needs a left margin to clear it. */
+@media (min-width: 992px) {
+  .wf-devlink-334d291de626c444a9725b27acd9cb00 .navbar_button-group {
+    margin-left: 1.5rem;
+    grid-column-gap: 0.75rem;
+    column-gap: 0.75rem;
+  }
+}
+
+/* In the collapsed mobile menu, stack the two CTAs full-width so the
+   no-wrap labels always fit without overflowing on narrow phones. */
+@media (max-width: 991px) {
+  .wf-devlink-334d291de626c444a9725b27acd9cb00 .navbar_button-group {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .wf-devlink-334d291de626c444a9725b27acd9cb00 .navbar_button {
+    width: 100%;
+  }
+}
+
+/* Log in button: neutral outlined pill — subtle border + primary (navy) text
+   on a transparent background, filling to a light tan surface on hover.
+   Uses semantic design tokens (overrides the Secondary variant's yellow fill). */
+.navbar_button--login .button {
+  border-color: var(--_colors-•-semantic---border-medium) !important;
+  background-color: transparent !important;
+  color: var(--_colors-•-semantic---text-primary) !important;
+}
+
+.navbar_button--login .button:hover {
+  border-color: var(--_colors-•-semantic---border-strong) !important;
+  background-color: var(--_colors-•-primitives---tan--tan-light) !important;
+  color: var(--_colors-•-semantic---text-primary) !important;
+}
+
+/* ── Resources mega-menu (Vanta-style buckets) ──────────────────────────────
+   Left column of buckets swaps the right content panel on hover/focus. */
+.resources-mega {
+  display: flex;
+  gap: 1.5rem;
+  width: min(60rem, 92vw);
+  padding: 0.5rem;
+}
+
+.resources-mega_buckets {
+  display: flex;
+  flex: 0 0 17rem;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-right: 1rem;
+  border-right: 1px solid var(--_colors-•-semantic---border-subtle);
+}
+
+.resources-mega_bucket {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 100vw;
+  background-color: transparent;
+  color: var(--_colors-•-semantic---text-primary);
+  font-family: var(--font-family--paragraph);
+  font-size: var(--_paragraphs---text-size-1rem--font-size);
+  font-weight: 600;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.resources-mega_bucket-arrow {
+  display: inline-flex;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 150ms ease;
+}
+
+.resources-mega_bucket-arrow svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.resources-mega_bucket:hover {
+  background-color: var(--_colors-•-primitives---tan--tan-light);
+}
+
+.resources-mega_bucket.is-active {
+  background-color: var(--_colors-•-semantic---text-primary);
+  color: var(--_colors-•-semantic---text-inverse);
+}
+
+.resources-mega_bucket.is-active .resources-mega_bucket-arrow {
+  opacity: 1;
+}
+
+.resources-mega_panel {
+  display: flex;
+  flex: 1 1 auto;
+  gap: 1.5rem;
+}
+
+.resources-mega_links {
+  display: grid;
+  flex: 1 1 auto;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: 0.25rem 1rem;
+  align-content: start;
+}
+
+.resources-mega_link {
+  /* position:relative confines the link-hover-parent ::after (absolute, inset:0)
+     to the link's own box. Without it the ::after resolves against the fixed
+     dropdown wrapper and overlays the whole menu, hijacking bucket clicks. */
+  position: relative;
+  display: block;
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--radius--radius-default);
+  text-decoration: none !important;
+  transition: background-color 150ms ease;
+}
+
+.resources-mega_link:hover {
+  background-color: var(--_colors-•-primitives---tan--tan-light);
+}
+
+.resources-mega_preview {
+  display: flex;
+  flex: 0 0 17rem;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 991px) {
+  .resources-mega {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .resources-mega_buckets {
+    flex: none;
+    padding-right: 0;
+    padding-bottom: 0.5rem;
+    border-right: none;
+    border-bottom: 1px solid var(--_colors-•-semantic---border-subtle);
+  }
+
+  .resources-mega_panel {
+    flex-direction: column;
+  }
+
+  .resources-mega_links {
+    grid-template-columns: 1fr;
+  }
+
+  .resources-mega_preview {
+    flex: none;
+  }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   PRICING PAGE — Vanta-style plans, comparison table & FAQ
+   ════════════════════════════════════════════════════════════════════════ */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+.pricing-hero {
+  padding-top: 3.5rem;
+  padding-bottom: 1.5rem;
+  text-align: center;
+}
+
+.pricing-hero_inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.pricing-hero_eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--_colors-•-semantic---text-neutral);
+}
+
+.pricing-hero_subtitle {
+  margin: 0;
+  color: var(--_colors-•-semantic---text-neutral);
+}
+
+.pricing-hero_cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  padding: 0.625rem 0.625rem 0.625rem 1.5rem;
+  border: none;
+  border-radius: 100vw;
+  background-color: var(--_colors-•-semantic---text-primary);
+  color: var(--_colors-•-semantic---text-inverse);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 600;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.pricing-hero_cta:hover {
+  background-color: var(--_colors-•-primitives---neutral--neutral-navy-a50);
+}
+
+.pricing-hero_cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 2rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 100vw;
+  background-color: var(--_colors-•-primitives---brand--yellow);
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+.pricing-hero_cta-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Plan cards ───────────────────────────────────────────────────────── */
+.pricing-plans_section {
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
+.pricing-plans_grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  align-items: stretch;
+}
+
+.pricing-plan {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 1.75rem 1.5rem;
+  border: 1px solid var(--_colors-•-semantic---border-subtle);
+  border-radius: 1.5rem;
+  background-color: var(--_colors-•-primitives---tan--tan-light);
+}
+
+.pricing-plan.is-featured {
+  border: 2px solid var(--_colors-•-semantic---text-primary);
+  background-color: var(--_colors-•-semantic---surface-primary);
+  box-shadow: 0 24px 64px -28px rgba(60, 50, 20, 0.28);
+}
+
+.pricing-plan_badge {
+  position: absolute;
+  top: -0.75rem;
+  left: 1.5rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 100vw;
+  background-color: var(--_colors-•-primitives---brand--yellow);
+  color: var(--_colors-•-semantic---text-primary);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.pricing-plan_head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.pricing-plan_name {
+  margin: 0;
+  font-family: var(--font-family--headings);
+  font-size: 1.75rem;
+  line-height: 1.1;
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+.pricing-plan_scope {
+  flex-shrink: 0;
+  padding: 0.1875rem 0.625rem;
+  border-radius: 100vw;
+  background-color: var(--_colors-•-primitives---tan--tan-darkest-a13);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--_colors-•-semantic---text-neutral);
+}
+
+.pricing-plan_tagline {
+  margin: 0.75rem 0 0;
+  font-weight: 600;
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+.pricing-plan_desc {
+  margin: 0.375rem 0 1.5rem;
+  font-size: 0.9375rem;
+  color: var(--_colors-•-semantic---text-neutral);
+}
+
+.pricing-plan_cta {
+  display: block;
+  margin-bottom: 1.5rem;
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--_colors-•-semantic---text-primary);
+  border-radius: 100vw;
+  background-color: transparent;
+  color: var(--_colors-•-semantic---text-primary);
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none !important;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.pricing-plan_cta:hover {
+  background-color: var(--_colors-•-semantic---text-primary);
+  color: var(--_colors-•-semantic---text-inverse);
+}
+
+.pricing-plan_cta.is-primary {
+  background-color: var(--_colors-•-semantic---text-primary);
+  color: var(--_colors-•-semantic---text-inverse);
+}
+
+.pricing-plan_cta.is-primary:hover {
+  background-color: var(--_colors-•-primitives---neutral--neutral-navy-a50);
+}
+
+.pricing-plan_features {
+  list-style: none;
+  margin: 0;
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--_colors-•-semantic---border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.pricing-plan_feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+.pricing-plan_feature-icon {
+  display: inline-flex;
+  flex: 0 0 18px;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  color: var(--_colors-•-semantic---green, #1f9d72);
+}
+
+.pricing-plan_feature-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Comparison table ─────────────────────────────────────────────────── */
+.pricing-compare_section {
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
+.pricing-compare_heading {
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.pricing-compare_scroll {
+  overflow-x: auto;
+}
+
+.pricing-compare_table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 48rem;
+}
+
+.pricing-compare_table th,
+.pricing-compare_table td {
+  padding: 0.875rem 1rem;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.pricing-compare_table thead th {
+  position: sticky;
+  top: 0;
+  background-color: var(--_colors-•-semantic---surface-primary);
+  font-family: var(--font-family--headings);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--_colors-•-semantic---text-primary);
+  border-bottom: 2px solid var(--_colors-•-semantic---border-medium);
+}
+
+.pricing-compare_corner {
+  width: 34%;
+}
+
+.pricing-compare_table thead th.is-featured,
+.pricing-compare_table td.is-featured {
+  background-color: var(--_colors-•-primitives---tan--tan-light);
+}
+
+.pricing-compare_grouptitle {
+  text-align: left !important;
+  padding-top: 1.5rem !important;
+  padding-bottom: 0.5rem !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--_colors-•-semantic---text-neutral);
+}
+
+.pricing-compare_rowlabel {
+  text-align: left !important;
+  font-weight: 400;
+  font-size: 0.9375rem;
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+.pricing-compare_table tbody tr {
+  border-bottom: 1px solid var(--_colors-•-semantic---border-subtle);
+}
+
+.pricing-compare_table tbody tr.pricing-compare_grouprow {
+  border-bottom: none;
+}
+
+.pricing-compare_check {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  color: var(--_colors-•-semantic---green, #1f9d72);
+}
+
+.pricing-compare_check svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.pricing-compare_dash {
+  color: var(--_colors-•-primitives---tan--tan-darkest);
+}
+
+.pricing-compare_value {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+/* ── FAQ ──────────────────────────────────────────────────────────────── */
+.pricing-faq_section {
+  padding-top: 1rem;
+  padding-bottom: 4rem;
+}
+
+.pricing-faq_heading {
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.pricing-faq_item {
+  border-bottom: 1px solid var(--_colors-•-semantic---border-subtle);
+}
+
+.pricing-faq_question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--_colors-•-semantic---text-primary);
+  cursor: pointer;
+  list-style: none;
+}
+
+.pricing-faq_question::-webkit-details-marker {
+  display: none;
+}
+
+.pricing-faq_icon {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--_colors-•-semantic---text-neutral);
+  transition: transform 200ms ease;
+}
+
+.pricing-faq_item[open] .pricing-faq_icon {
+  transform: rotate(45deg);
+}
+
+.pricing-faq_answer {
+  margin: 0;
+  padding: 0 0 1.5rem;
+  max-width: 48rem;
+  color: var(--_colors-•-semantic---text-neutral);
+  line-height: 1.6;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .pricing-plans_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .pricing-plans_grid {
+    grid-template-columns: 1fr;
+  }
+}

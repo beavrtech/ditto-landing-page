@@ -70,7 +70,7 @@ export function SectionResources({
             </Block>
           </Block>
           <Block className={"spacer-3rem"} tag={"div"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             {posts.length > 0 ? (
               <div className="blog_list_wrapper w-dyn-list">
                 <div role="list" className="blog_list w-dyn-items">

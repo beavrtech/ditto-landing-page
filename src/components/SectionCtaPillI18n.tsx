@@ -48,7 +48,7 @@ export function SectionCtaPill({}: SectionCtaPillProps) {
       >
         <Block className={"padding-global"} tag={"div"}>
           <Padding space={"Medium (6rem)"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <Block className={"cta-pill_component"} tag={"div"}>
               <Block className={"cta-pill_content"} tag={"div"}>
                 <Heading className={"heading-size-3rem"} tag={"h2"}>
@@ -59,7 +59,9 @@ export function SectionCtaPill({}: SectionCtaPillProps) {
                     {t("paragraph")}
                   </Paragraph>
                 </Block>
-                <Button arrow={false} text={t("button")} link={{ href: `${prefix}/get-started` }} />
+                <div data-cta-placement="homepage_cta_pill">
+                  <Button arrow={false} text={t("button")} link={{ href: `${prefix}/demo` }} />
+                </div>
               </Block>
               <HtmlEmbed
                 className={"cta-pill_left"}

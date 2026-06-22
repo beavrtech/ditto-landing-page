@@ -149,7 +149,7 @@ export function ManifestoClient() {
         <section className="carousel_section">
           <div className="padding-global">
             <div data-wf--padding--space="medium-6rem" className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" />
-            <div className="container-84rem">
+            <div className="container-80rem">
               <div className="max-width-50rem">
                 <h2 className="heading-size-3rem text-wrap-balance">{t("manifesto.commitments.title")}</h2>
               </div>
@@ -235,7 +235,7 @@ export function ManifestoClient() {
         <section className="generic_section">
           <div className="padding-global">
             <div data-wf--padding--space="small-3rem" className="spacer-component" />
-            <div className="container-84rem">
+            <div className="container-80rem">
               <div className="header">
                 <h2 className="heading-size-3rem">{t("manifesto.investors.title")}</h2>
                 <div className="spacer-0x75rem" />
@@ -273,7 +273,7 @@ export function ManifestoClient() {
         title={t("cta.title")}
         paragraph={t("cta.subtitle")}
         buttonText={t("cta.button")}
-        buttonLink={{ href: `${prefix}/get-started` }}
+        buttonLink={{ href: `${prefix}/demo` }}
       />
     </>
   );

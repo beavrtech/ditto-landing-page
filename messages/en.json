@@ -4,9 +4,11 @@
     "solutions": "Solutions",
     "customers": "Customers",
     "resources": "Resources",
+    "plans": "Plans",
     "about": "About",
     "login": "Log in",
-    "getStarted": "Get Started",
+    "pricing": "Pricing",
+    "getStarted": "Let's talk",
     "ecovadis": "EcoVadis",
     "iso14001": "ISO 14001",
     "cdp": "CDP",
@@ -41,13 +43,70 @@
     "descCollectionVsme": "Structure your ESG reporting with the VSME standard.",
     "descBlog": "Explore the latest CSR & compliance trends",
     "descGuides": "Access our guides and tools to structure your compliance",
-    "descNews": "Keep up to date with the latest Ditto news"
+    "descNews": "Keep up to date with the latest Ditto news",
+    "descManifesto": "Discover our vision for sustainable business",
+    "descCareers": "Join the team building the future of compliance",
+    "bucketCustomers": "Customers",
+    "bucketComplianceResources": "Compliance resources",
+    "bucketCompany": "Company",
+    "bucketAllResources": "All resources",
+    "allCustomerStories": "All customer stories",
+    "allResources": "All Resources",
+    "guidesAndReports": "Guides and reports",
+    "industryBusinessServices": "Business Services",
+    "industryConstructionMaterials": "Construction & Materials",
+    "industryCosmeticsBeauty": "Cosmetics & Beauty",
+    "industryDistributionWholesale": "Distribution & Wholesale",
+    "industryIndustrialEquipment": "Industrial Equipment & Systems",
+    "industryTransportationLogistics": "Transportation & Logistics"
   },
   "hero": {
-    "title": "Get the CSR recognition you deserve",
-    "subtitle": "You're already doing the work. Ditto helps you prove it, on EcoVadis, CDP and other CSR frameworks.",
-    "cta": "Get Started",
+    "title": "Your compliance & sustainability platform,<br></br>and the expert who runs it with you.",
+    "subtitle": "Protect market access, win more deals and reduce risk while lowering compliance costs.",
+    "cta": "Book a demo",
     "trustpilot": "4.6/5 on Trustpilot"
+  },
+  "frameworkChooser": {
+    "heading": "I need help with:",
+    "tabs": {
+      "sustainability": "Sustainability",
+      "quality": "Quality"
+    },
+    "ecovadis": {
+      "name": "EcoVadis",
+      "urgency": "Renewing your assessment? Aim for a better medal this cycle.",
+      "cta": "Get the medal you deserve"
+    },
+    "cdp": {
+      "name": "CDP",
+      "urgency": "The CDP 2026 disclosure deadline is approaching.",
+      "cta": "Prepare my CDP response"
+    },
+    "vsme": {
+      "name": "VSME",
+      "urgency": "Reporting as an SME? The voluntary standard, made simple.",
+      "cta": "Start my VSME report"
+    },
+    "carbon": {
+      "name": "Carbon",
+      "urgency": "Measure and cut emissions across your value chain.",
+      "cta": "Measure my footprint"
+    },
+    "csrd": {
+      "name": "CSRD / VSME",
+      "urgency": "EU sustainability reporting, for large companies and SMEs alike.",
+      "cta": "Get report-ready"
+    },
+    "iso": {
+      "name": "ISO 14001",
+      "urgency": "Audit on the horizon? Organize your evidence now.",
+      "cta": "Prep my ISO audit"
+    },
+    "iso50001": {
+      "name": "ISO 50001",
+      "urgency": "Energy management audit ahead? Build your evidence now.",
+      "cta": "Prep my ISO 50001 audit"
+    }
   },
   "socialProof": {
     "title": "Join 500+ companies managing their compliance with Ditto",
@@ -126,9 +185,9 @@
     }
   },
   "testimonials": {
-    "title": "What customers are saying",
+    "title": "Don't take our word for it. Take theirs.",
     "subtitle": "Customers of all sizes love Ditto for its simplicity, smarts, and impact, above all.",
-    "readMore": "Read More"
+    "readMore": "Read more customer stories"
   },
   "blog": {
     "title": "Learn more about Ditto & AI-powered CSR compliance",
@@ -151,7 +210,7 @@
   "cta": {
     "title": "Ready to get compliant? Ditto.",
     "subtitle": "Turn your CSR program into a strategic advantage with a compliance copilot that's with you every step of the way.",
-    "button": "Get Started"
+    "button": "Book a demo"
   },
   "newsletter": {
     "title": "Practical CSR insights—tools, studies, and templates, in your inbox",
@@ -228,7 +287,7 @@
       "paragraph": "Use our browser extension to get contextual answers wherever you are—client portals, shared folders, or inboxes. Or just ask a question in the Ditto workspace."
     },
     "testimonials": {
-      "title": "Hear it from our customers",
+      "title": "Don't take our word for it. Take theirs.",
       "text": "Customers of all sizes love Ditto for its simplicity, smarts, and impact, above all.",
       "button": "Read More"
     },
@@ -279,7 +338,7 @@
       "button": "Get started"
     },
     "testimonials": {
-      "title": "Hear it from our customers",
+      "title": "Don't take our word for it. Take theirs.",
       "text": "Customers using Ditto's AI assistants don't just move faster—they build stronger, smarter compliance programs without the chaos.",
       "button": "Read More"
     },
@@ -489,11 +548,22 @@
       "step6": "Offer"
     }
   },
-  "getStarted": {
-    "breadcrumb": "Get started",
+  "pricing": {
+    "breadcrumb": "Plans",
     "hero": {
-      "title": "Get compliant four times faster",
-      "subtitle": "Ditto makes it easy to get compliant and stay compliant with frameworks like EcoVadis, ISO, CSRD, and CDP. And that's just the beginning."
+      "title": "A tailored quote",
+      "subtitle": "Pricing depends on your frameworks, your size and your goals. Share a few details and we'll send a tailored quote, and book time with an expert who'll walk you through it."
+    },
+    "calendar": {
+      "title": "Or pick a time that works",
+      "subtitle": "Grab 30 minutes with our team to get your quote and see Ditto in action."
+    }
+  },
+  "getStarted": {
+    "breadcrumb": "Book a demo",
+    "hero": {
+      "title": "See Ditto in action",
+      "subtitle": "Book a 30-minute call with our team. We'll look at your frameworks, show you Ditto live, and map out the fastest route to audit-ready."
     },
     "numbers": {
       "title": "Our impact",
@@ -631,7 +701,7 @@
     },
     "step2": {
       "label": "Step 2",
-      "title": "Organize your data\u2014and your team",
+      "title": "Organize your data—and your team",
       "description": "Bring all of your documents, data, and evidence onto a single platform that your stakeholders can access and update over time. Monitor your progress across frameworks on a central dashboard to keep everything on track."
     },
     "step3": {
@@ -727,7 +797,7 @@
     "step3": {
       "label": "Step 3",
       "title": "Draft your report using AI and expert support",
-      "description": "Our embedded AI helps you write faster and smarter\u2014suggesting content based on your documents, indicators, and frameworks. Then our coaches review and help finalize it, making sure every disclosure is compliant, auditable, and clear."
+      "description": "Our embedded AI helps you write faster and smarter—suggesting content based on your documents, indicators, and frameworks. Then our coaches review and help finalize it, making sure every disclosure is compliant, auditable, and clear."
     },
     "step4": {
       "label": "Step 4",
@@ -752,7 +822,7 @@
     "breadcrumb": "ISO 14001",
     "hero": {
       "title": "ISO 14001 compliance made simple",
-      "subtitle": "Ditto provides you with the tools to build and maintain a strong Environmental Management System (EMS) and meet ISO 14001 requirements\u2014faster, and without the usual stress.",
+      "subtitle": "Ditto provides you with the tools to build and maintain a strong Environmental Management System (EMS) and meet ISO 14001 requirements—faster, and without the usual stress.",
       "cta": "Get started"
     },
     "approach": {
@@ -826,9 +896,10 @@
     "benefit4": "Reduce compliance costs and time"
   },
   "newsletterForm": {
-    "button": "Get Started",
+    "button": "Book a Free Strategy Call",
     "success": "Thank you! Your submission has been received!",
-    "error": "Oops! Something went wrong while submitting the form."
+    "error": "Oops! Something went wrong while submitting the form.",
+    "placeholder": "ilove@compliance.com"
   },
   "metadata": {
     "home": {
@@ -892,8 +963,12 @@
       "description": "Get actionable CSR and compliance resources with Ditto guides. Learn best practices, use checklists, and gain valuable insights from experts."
     },
     "getStarted": {
-      "title": "Ready to get compliant? Ditto.",
-      "description": "Get compliant 4 times faster. Ditto makes it easy to get compliant and stay compliant with frameworks like EcoVadis, ISO, CSRD, and CDP."
+      "title": "Book a Ditto demo",
+      "description": "See Ditto live. Book a 30-minute call to walk through your frameworks and the fastest path to audit-ready, with a CSR and compliance expert."
+    },
+    "pricing": {
+      "title": "Ditto pricing – a quote built around your program",
+      "description": "Pricing depends on your frameworks, your size and your goals. Share a few details and get a tailored quote, plus time with an expert who'll walk you through it."
     },
     "manifesto": {
       "title": "Ditto's manifesto: help businesses build trust and build better, together",

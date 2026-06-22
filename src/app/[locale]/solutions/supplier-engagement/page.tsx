@@ -64,7 +64,7 @@ export default async function SupplierEngagementPage({ params }: { params: Promi
           buttonLeft={
             <Button
               text={t("solutionsSupplier.hero.button")}
-              link={{ href: `${prefix}/get-started` }}
+              link={{ href: `${prefix}/demo` }}
               variant="Primary"
             />
           }
@@ -121,7 +121,7 @@ export default async function SupplierEngagementPage({ params }: { params: Promi
           title={t("solutionsSupplier.cta.title")}
           paragraph={t("solutionsSupplier.cta.paragraph")}
           buttonText={t("solutionsSupplier.cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer />

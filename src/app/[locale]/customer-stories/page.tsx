@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
@@ -52,7 +53,7 @@ export default async function CustomerStoriesPage({
           <section className="breadcrumbs_section">
             <div className="padding-global">
               <div className="spacer-1x5rem"></div>
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="breadcrumbs_list">
                   <a href={localizedHref("/customer-stories", locale)} className="link-size-1rem">{t("customerStories.breadcrumb")}</a>
                 </div>
@@ -64,16 +65,19 @@ export default async function CustomerStoriesPage({
             </div>
           </section>
 
-          {/* Header + Filters + Stories — all inside one client component for filtering */}
-          <CustomerStoriesFilter
-            stories={items || []}
-            locale={locale}
-            title={t("customerStories.title")}
-            subtitle={t("customerStories.subtitle")}
-            frameworkLabel={t("customerStories.filterFramework")}
-            teamSizeLabel={t("customerStories.filterTeamSize")}
-            industryLabel={t("customerStories.filterIndustry")}
-          />
+          {/* Header + Filters + Stories — all inside one client component for filtering.
+              Wrapped in Suspense because the filter reads `?industry=` via useSearchParams. */}
+          <Suspense fallback={null}>
+            <CustomerStoriesFilter
+              stories={items || []}
+              locale={locale}
+              title={t("customerStories.title")}
+              subtitle={t("customerStories.subtitle")}
+              frameworkLabel={t("customerStories.filterFramework")}
+              teamSizeLabel={t("customerStories.filterTeamSize")}
+              industryLabel={t("customerStories.filterIndustry")}
+            />
+          </Suspense>
         </div>
 
         <Footer />

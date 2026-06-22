@@ -68,7 +68,7 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
             <div>
               <Button
                 text={t("frameworksCsrd.hero.cta")}
-                link={{ href: `${prefix}/get-started` }}
+                link={{ href: `${prefix}/demo` }}
               />
             </div>
           }
@@ -149,7 +149,7 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
           title={t("frameworksCsrd.cta.title")}
           paragraph={t("frameworksCsrd.cta.subtitle")}
           buttonText={t("frameworksCsrd.cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer />

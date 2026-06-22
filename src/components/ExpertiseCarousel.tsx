@@ -74,7 +74,7 @@ export function ExpertiseCarousel() {
             </div>
           </div>
           <div className="spacer-3rem" />
-          <div className="container-84rem">
+          <div className="container-80rem">
             <div
               className="carousel_component"
               splide-gap-mobile="1rem"
@@ -105,15 +105,10 @@ export function ExpertiseCarousel() {
                 </div>
                 <div className="carousel_navigation_wrapper" />
               </div>
-              <div className="spacer-1x5rem" />
-              <div className="carousel_pagination_list">
-                <div className="carousel_pagination_button" splide-button="pagination" />
-                <div className="carousel_pagination_button is-active" />
-              </div>
             </div>
             <div className="spacer-3rem" />
             <div className="button-group x-center">
-              <a href={`${prefix}/get-started`} className="button w-inline-block" data-wf--button--variant="primary">
+              <a href={`${prefix}/demo`} className="button w-inline-block" data-wf--button--variant="primary">
                 <div>{t("cta")}</div>
               </a>
             </div>

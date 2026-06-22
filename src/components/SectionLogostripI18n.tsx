@@ -28,6 +28,7 @@ export type SectionLogostripProps = {
   variant?: "Base" | "Not clickable";
   serverLogos?: any[];
   serverStorySlugMap?: Record<string, { slug: string; slug_fr: string | null }>;
+  afterContent?: React.ReactNode;
 };
 
 /**
@@ -38,7 +39,7 @@ export type SectionLogostripProps = {
  * - Unsupported element: `Collection List`
  *
  */
-export function SectionLogostrip({ variant = "Base", serverLogos = [], serverStorySlugMap = {} }: SectionLogostripProps) {
+export function SectionLogostrip({ variant = "Base", serverLogos = [], serverStorySlugMap = {}, afterContent }: SectionLogostripProps) {
   const t = useTranslations("socialProof");
   const locale = useLocale();
   const prefix = `/${locale}`;
@@ -70,7 +71,7 @@ export function SectionLogostrip({ variant = "Base", serverLogos = [], serverSto
         <Block className={`padding-global ${_activeStyleVariant}`} tag={"div"}>
           <Padding space={"Small (3rem)"} />
           <Block
-            className={`container-84rem ${_activeStyleVariant}`}
+            className={`container-80rem ${_activeStyleVariant}`}
             tag={"div"}
           >
             <Block className={`header ${_activeStyleVariant}`} tag={"div"}>
@@ -86,18 +87,23 @@ export function SectionLogostrip({ variant = "Base", serverLogos = [], serverSto
               tag={"div"}
             />
             {logos.length > 0 ? (
-              <Block className={"logostrip_list_wrapper w-dyn-list"} tag={"div"}>
+              <Block
+                className={"logostrip_list_wrapper logostrip-marquee_viewport w-dyn-list"}
+                tag={"div"}
+              >
                 <Block
-                  className={"logostrip_list w-dyn-items"}
+                  className={"logostrip_list logostrip-marquee w-dyn-items"}
                   tag={"div"}
                   role={"list"}
                 >
-                  {logos.map((logo) => (
+                  {/* Render the set twice so the marquee can loop seamlessly */}
+                  {[...logos, ...logos].map((logo, _i) => (
                     <Block
-                      key={logo.id}
+                      key={`${logo.id}-${_i}`}
                       className={"logostrip_item w-dyn-item"}
                       tag={"div"}
                       role={"listitem"}
+                      aria-hidden={_i >= logos.length ? true : undefined}
                     >
                       {logo.case_study_url ? (() => {
                         // Extract the slug from the case_study_url (e.g. "/customer-stories/ferco-..." → "ferco-...")
@@ -158,6 +164,11 @@ export function SectionLogostrip({ variant = "Base", serverLogos = [], serverSto
               </Block>
             ) : null}
           </Block>
+          {afterContent && (
+            <div style={{ display: "flex", justifyContent: "center", paddingTop: "1.5rem" }}>
+              {afterContent}
+            </div>
+          )}
           <Padding space={"Small (3rem)"} />
         </Block>
         <Block className={`layer-4 ${_activeStyleVariant}`} tag={"div"}>

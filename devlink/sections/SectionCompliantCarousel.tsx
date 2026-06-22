@@ -61,7 +61,7 @@ export function SectionCompliantCarousel({
         <Block className={`padding-global ${_activeStyleVariant}`} tag={"div"}>
           <Padding space={spaceTop} />
           <Block
-            className={`container-84rem ${_activeStyleVariant}`}
+            className={`container-80rem ${_activeStyleVariant}`}
             tag={"div"}
           >
             <Block

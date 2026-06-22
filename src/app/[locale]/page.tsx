@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../components/NavbarServer";
-import { SectionHero } from "../../../devlink/sections/SectionHero";
-import { SectionLogostrip } from "../../components/LogostripServer";
+import { NewsletterForm } from "../../components/NewsletterFormI18n";
+import { ElementSocialproofTrustpilot } from "../../../devlink/elements/ElementSocialproofTrustpilot";
+import { Background } from "../../../devlink/Background";
+import { SectionCustomerLogos } from "../../components/CustomerLogosServer";
 import { SectionCompliantCarousel } from "../../components/SectionCompliantCarouselInit";
 import { SectionPillIllus } from "../../../devlink/sections/SectionPillIllus";
 import { SectionFeaturesHeader } from "../../../devlink/sections/SectionFeaturesHeader";
@@ -13,9 +15,11 @@ import { SectionResources } from "../../components/ResourcesServer";
 import { SectionCta } from "../../../devlink/sections/SectionCta";
 import { Footer } from "../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../devlink/devlinkScope";
-import { NewsletterForm } from "../../components/NewsletterFormI18n";
 import { ExpertiseCarousel } from "../../components/ExpertiseCarousel";
+import { FrameworkChooser } from "../../components/FrameworkChooser";
 import { JsonLd, WEBSITE_JSONLD } from "../../components/JsonLd";
+import { StickyLogoBarClient } from "../../components/StickyLogoBarClient";
+import { HeroAnimation } from "../../components/HeroAnimation";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -57,19 +61,59 @@ export default async function HomePage({
       <main className="main-wrapper">
         <Navbar />
 
-        {/* 1. Hero */}
-        <SectionHero
-          variant="Heading 4rem"
-          title={t("hero.title")}
-          paragraph={t("hero.subtitle")}
-          image="/images/ditto-frameworks-hero.jpg"
-          paddingBottom="None"
-          buttonsVisibility={true}
-          buttonLeft={<NewsletterForm />}
-        />
+        {/* 1. Hero — title, subtitle, email CTA, framework grid */}
+        <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
+          <section className="hero_section home-hero">
+            <div className="padding-global">
+              <div className="container-80rem">
+                <div className="home-hero_inner">
+                  <div className="home-hero_text">
+                    <h1 className="heading-size-3rem">
+                      {t.rich("hero.title", { br: () => <br /> })}
+                    </h1>
+                    <p className="text-size-1x375rem home-hero_subtitle">
+                      {t("hero.subtitle")}
+                    </p>
+                  </div>
+                  <div className="home-hero_cta">
+                    <NewsletterForm />
+                  </div>
+                  <FrameworkChooser locale={locale} />
+                </div>
+              </div>
+            </div>
+            <div className="layer-4">
+              <Background color="Primary" />
+            </div>
+          </section>
+        </div>
 
-        {/* 2. Logo strip */}
-        <SectionLogostrip locale={locale} />
+        {/* 2. Product demo — looping hero animation — above customer credentials */}
+        <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
+          <section className="home-product_section">
+            <div className="padding-global">
+              <div className="container-80rem">
+                <div className="home-product_animation">
+                  <HeroAnimation />
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        {/* 3. Logo strip + social proof */}
+        <div id="logostrip-anchor">
+          <SectionCustomerLogos locale={locale} afterContent={<ElementSocialproofTrustpilot />} />
+        </div>
+
+        {/* 2c. Testimonials (moved up, right below the clients + product) */}
+        <SectionTestimonials
+          locale={locale}
+          title={t("testimonials.title")}
+          text={t("testimonials.subtitle")}
+          buttonText={t("testimonials.readMore")}
+          buttonLink={{ href: `${prefix}/customer-stories` }}
+        />
 
         {/* 3. Frameworks carousel */}
         <SectionCompliantCarousel
@@ -83,7 +127,7 @@ export default async function HomePage({
           <section className="home-illus_section">
             <div className="padding-global">
               <div className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" />
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="home-illus_wrapper">
                   <Image
                     src="/images/ditto_better_businesses_illustration_1_narrow_1.avif"
@@ -160,15 +204,6 @@ export default async function HomePage({
         {/* 11. Expertise carousel */}
         <ExpertiseCarousel />
 
-        {/* 12. Testimonials */}
-        <SectionTestimonials
-          locale={locale}
-          title={t("testimonials.title")}
-          text={t("testimonials.subtitle")}
-          buttonText={t("testimonials.readMore")}
-          buttonLink={{ href: `${prefix}/customer-stories` }}
-        />
-
         {/* 12. Resources / Blog preview */}
         <SectionResources
           locale={locale}
@@ -176,15 +211,18 @@ export default async function HomePage({
         />
 
         {/* 13. CTA */}
-        <SectionCta
-          title={t("cta.title")}
-          paragraph={t("cta.subtitle")}
-          buttonText={t("cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
-        />
+        <div data-cta-placement="homepage_section_cta">
+          <SectionCta
+            title={t("cta.title")}
+            paragraph={t("cta.subtitle")}
+            buttonText={t("cta.button")}
+            buttonLink={{ href: `${prefix}/demo` }}
+          />
+        </div>
 
         <Footer />
       </main>
+      <StickyLogoBarClient />
     </div>
   );
 }

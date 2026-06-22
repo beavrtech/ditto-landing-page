@@ -57,7 +57,7 @@ export function Footer({}: FooterProps) {
       >
         <Block className={"padding-global"} tag={"div"}>
           <Padding space={"None"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <Block className={"footer_newsletter"} tag={"div"}>
               <Paragraph
                 className={"text-size-1rem text-weight-600 text-wrap-balance"}
@@ -161,7 +161,7 @@ export function Footer({}: FooterProps) {
             </Block>
           </Block>
           <Padding space={"Medium (6rem)"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <Block className={"footer_component"} tag={"div"}>
               <Block className={"footer_brand"} tag={"div"}>
                 <Link

@@ -64,7 +64,7 @@ export default async function ManagementSystemPage({ params }: { params: Promise
           buttonLeft={
             <Button
               text={t("solutionsManagement.hero.button")}
-              link={{ href: `${prefix}/get-started` }}
+              link={{ href: `${prefix}/demo` }}
               variant="Primary"
             />
           }
@@ -122,7 +122,7 @@ export default async function ManagementSystemPage({ params }: { params: Promise
           title={t("solutionsManagement.cta.title")}
           paragraph={t("solutionsManagement.cta.paragraph")}
           buttonText={t("solutionsManagement.cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer />

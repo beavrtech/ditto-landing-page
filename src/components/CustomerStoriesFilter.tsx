@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { localizedCmsHref } from "../lib/localized-paths";
-import { industryLabel } from "../lib/industry-fr";
+import { industryLabel as localizeIndustry } from "../lib/industry-fr";
 
 type Story = {
   slug: string;
@@ -13,7 +14,7 @@ type Story = {
   banner_url?: string;
   banner_alt_desc?: string;
   team_size?: string | null;
-  industry?: { id: string; name_en: string; name_fr?: string | null } | null;
+  industry?: { id: string; slug?: string | null; name_en: string; name_fr?: string | null } | null;
   customer_story_frameworks?: Array<{
     framework: { id: string; name: string; slug: string } | null;
   }>;
@@ -155,9 +156,19 @@ export function CustomerStoriesFilter({
   teamSizeLabel: string;
   industryLabel: string;
 }) {
+  // Pre-select an industry from the `?industry=<slug>` URL param (e.g. arriving
+  // from the navbar's Customers menu). Matched against the loaded stories'
+  // industries once, when the component mounts.
+  const searchParams = useSearchParams();
+  const industrySlugParam = searchParams.get("industry");
+
   const [selectedFrameworks, setSelectedFrameworks] = useState<Set<string>>(new Set());
   const [selectedTeamSizes, setSelectedTeamSizes] = useState<Set<string>>(new Set());
-  const [selectedIndustries, setSelectedIndustries] = useState<Set<string>>(new Set());
+  const [selectedIndustries, setSelectedIndustries] = useState<Set<string>>(() => {
+    if (!industrySlugParam) return new Set();
+    const match = stories.find((s) => s.industry?.slug === industrySlugParam);
+    return match?.industry ? new Set([match.industry.id]) : new Set();
+  });
 
   const clearLabel = locale === "fr" ? "Effacer" : "Clear";
 
@@ -201,7 +212,7 @@ export function CustomerStoriesFilter({
       industrySeen.add(story.industry.id);
       industryOptions.push({
         id: story.industry.id,
-        label: industryLabel(story.industry.name_en, story.industry.name_fr, locale),
+        label: localizeIndustry(story.industry.name_en, story.industry.name_fr, locale),
       });
     }
   }
@@ -284,7 +295,7 @@ export function CustomerStoriesFilter({
       <section className="blog-preview_section">
         <div className="padding-global">
           <div data-wf--padding--space="small-3rem" className="spacer-component"></div>
-          <div className="container-84rem">
+          <div className="container-80rem">
             {filtered.length > 0 ? (
               <div className="blog_list_wrapper">
                 <div className="blog_list" role="list">
@@ -302,7 +313,7 @@ export function CustomerStoriesFilter({
                             <div className="spacer-1x5rem spacer-mob-1rem" />
                             <p className="label">
                               {item.industry
-                                ? industryLabel(item.industry.name_en, item.industry.name_fr, locale)
+                                ? localizeIndustry(item.industry.name_en, item.industry.name_fr, locale)
                                 : (locale === "fr" ? "Témoignage client" : "Customer Story")}
                             </p>
                             <div className="spacer-0x75rem" />

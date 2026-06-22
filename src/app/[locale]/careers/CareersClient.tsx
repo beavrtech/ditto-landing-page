@@ -76,7 +76,7 @@ export function CareersClient() {
               </div>
             </div>
             <div className="spacer-3rem" />
-            <div className="container-84rem">
+            <div className="container-80rem">
               <div className="hero-carousel_splide_wrapper">
                 <div className="hero-carousel_splide splide">
                   <div className="hero-carousel_track splide__track">
@@ -111,7 +111,7 @@ export function CareersClient() {
               </div>
             </div>
             <div className="spacer-3rem" />
-            <div className="container-84rem">
+            <div className="container-80rem">
               <div className="carousel_component">
                 <div className="carousel_splide_wrapper">
                   <div className="carousel_splide splide width-26rem">
@@ -166,7 +166,7 @@ export function CareersClient() {
         <section className="video_section">
           <div className="padding-global">
             <div data-wf--padding--space="small-3rem" className="spacer-component" />
-            <div className="container-84rem">
+            <div className="container-80rem">
               <div className="video_component">
                 <Image src="/images/IMG_3632-1_1.avif" alt="Ditto team gathering" width={1200} height={630} className="media-full-size" />
               </div>
@@ -184,7 +184,7 @@ export function CareersClient() {
         <section className="careers-values_section">
           <div className="padding-global">
             <div data-wf--padding--space="medium-6rem" className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c" />
-            <div className="container-84rem">
+            <div className="container-80rem">
               <div className="header">
                 <h2 className="heading-size-3rem">{t("careers.values.title")}</h2>
               </div>
@@ -237,7 +237,7 @@ export function CareersClient() {
               </div>
             </div>
             <div className="spacer-3rem" />
-            <div className="container-84rem">
+            <div className="container-80rem">
               <div className="interviewing_list">
                 {[
                   { color: "is--yellow", key: "step1" },
@@ -276,7 +276,7 @@ export function CareersClient() {
         title={t("cta.title")}
         paragraph={t("cta.subtitle")}
         buttonText={t("cta.button")}
-        buttonLink={{ href: `${prefix}/get-started` }}
+        buttonLink={{ href: `${prefix}/demo` }}
       />
     </div>
   );

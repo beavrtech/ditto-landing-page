@@ -113,14 +113,14 @@ const LEGACY_FRAMEWORKS = ["ecovadis", "cdp", "csrd", "iso-14001", "vsme"];
 /**
  * CMS bodies still contain links using the original site's URL structure
  * (no locale prefix, old sections): /blog/{slug}, /{framework}/{slug},
- * /get-started, /resources/... — rewrite them to current localized URLs.
+ * /demo, /resources/... — rewrite them to current localized URLs.
  * Slugs inside a body are already in that body's language, so the current
  * locale's path pattern is the right target.
  */
 function rewriteLegacyLinks(html: string, locale: string): string {
   const blogBase = locale === "fr" ? "/fr/ressources/blog" : "/en/resources/blog";
   const resourcesBase = locale === "fr" ? "/fr/ressources" : "/en/resources";
-  const getStarted = locale === "fr" ? "/fr/contact" : "/en/get-started";
+  const getStarted = locale === "fr" ? "/fr/demo" : "/en/demo";
 
   return html.replace(/href="(\/[^"]*)"/gi, (full, path: string) => {
     // Already locale-prefixed — leave untouched
@@ -134,7 +134,7 @@ function rewriteLegacyLinks(html: string, locale: string): string {
         return `href="/${locale}/collection${path}"`;
       }
     }
-    if (path === "/get-started" || path === "/contact") {
+    if (path === "/demo" || path === "/contact") {
       return `href="${getStarted}"`;
     }
     if (path.startsWith("/resources/")) {

@@ -14,6 +14,10 @@ export function PostHogInit() {
     const token = process.env.NEXT_PUBLIC_POSTHOG_PROJECT_TOKEN;
     if (!token || posthog.__loaded) return;
 
+    if (window.location.hostname === "localhost") return;
+    // Internal team members can visit /no-track to permanently opt out.
+    if (localStorage.getItem("ditto_no_track") === "1") return;
+
     posthog.init(token, {
       api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
       defaults: "2026-01-30",

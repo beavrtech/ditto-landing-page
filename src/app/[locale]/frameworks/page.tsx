@@ -100,7 +100,7 @@ export default async function FrameworksPage({
           <section className="breadcrumbs_section">
             <div className="padding-global">
               <div className="spacer-1x5rem" />
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="breadcrumbs_list">
                   <a href={`${prefix}/frameworks`} className="link-size-1rem">{t("frameworksIndex.breadcrumb1")}</a>
                 </div>
@@ -138,7 +138,7 @@ export default async function FrameworksPage({
                   ))}
                 </div>
               </div>
-              <div className="container-84rem">
+              <div className="container-80rem">
                 {categories.map((cat) => (
                   <div key={cat.id} id={cat.id} className="frameworks_category">
                     <div className="frameworks_category_header">

@@ -70,7 +70,7 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
               <Button
                 arrow={false}
                 text={t("frameworksEcovadis.hero.cta")}
-                link={{ href: `${prefix}/get-started` }}
+                link={{ href: `${prefix}/demo` }}
               />
             </div>
           }
@@ -170,7 +170,7 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
           title={t("frameworksEcovadis.cta.title")}
           paragraph={t("frameworksEcovadis.cta.subtitle")}
           buttonText={t("frameworksEcovadis.cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer />

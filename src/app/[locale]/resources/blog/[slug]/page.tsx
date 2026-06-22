@@ -116,7 +116,7 @@ export default async function BlogPostPage({
               <div className="hide-tablet">
                 <div className="spacer-component" data-wf--padding--space="small-3rem" />
               </div>
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="post-hero_component">
                   <div className="post-hero_content">
                     {categoryLabel && (
@@ -175,7 +175,7 @@ export default async function BlogPostPage({
             <section className="post_section">
               <div className="padding-global">
                 <div className="spacer-component" data-wf--padding--space="small-3rem" />
-                <div className="container-84rem">
+                <div className="container-80rem">
                   <div className="post_grid">
                     <div className="post_main">
                       <div className="post_content">
@@ -198,7 +198,7 @@ export default async function BlogPostPage({
           title={t("cta.title")}
           paragraph={t("cta.subtitle")}
           buttonText={t("cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer alternateUrls={{

@@ -174,11 +174,11 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
       >
         <Block className={"padding-global"} tag={"div"}>
           <Padding space={"None"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <FooterNewsletter />
           </Block>
           <Padding space={"Medium (6rem)"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <Block className={"footer_component"} tag={"div"}>
               <Block className={"footer_brand"} tag={"div"}>
                 <Link

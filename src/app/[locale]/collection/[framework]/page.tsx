@@ -95,7 +95,7 @@ export default async function CollectionPage({
           <section className="hero3_section">
             <div className="padding-global">
               <div data-wf--padding--space="none" className="spacer-component w-variant-c5e33d14-e297-6cd7-2fd0-a5ca94b32941" />
-              <div className="container-84rem">
+              <div className="container-80rem">
                 <div className="hero3_component">
                   <div className="hero_content">
                     <Label label="Collection" />
@@ -136,7 +136,7 @@ export default async function CollectionPage({
           title={t("cta.title")}
           paragraph={t("cta.subtitle")}
           buttonText={t("cta.button")}
-          buttonLink={{ href: `${prefix}/get-started` }}
+          buttonLink={{ href: `${prefix}/demo` }}
         />
 
         <Footer />

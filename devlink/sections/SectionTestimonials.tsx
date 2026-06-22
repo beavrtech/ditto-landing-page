@@ -89,7 +89,7 @@ export function SectionTestimonials({
             </Block>
           </Block>
           <Block className={"spacer-3rem"} tag={"div"} />
-          <Block className={"container-84rem"} tag={"div"}>
+          <Block className={"container-80rem"} tag={"div"}>
             <Block
               className={"carousel_component"}
               // @ts-ignore - User-defined custom attribute(s)
