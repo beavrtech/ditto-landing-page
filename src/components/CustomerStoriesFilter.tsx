@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { localizedCmsHref } from "../lib/localized-paths";
-import { industryLabel } from "../lib/industry-fr";
+import { industryLabel as localizeIndustry } from "../lib/industry-fr";
 
 type Story = {
   slug: string;
@@ -212,7 +212,7 @@ export function CustomerStoriesFilter({
       industrySeen.add(story.industry.id);
       industryOptions.push({
         id: story.industry.id,
-        label: industryLabel(story.industry.name_en, story.industry.name_fr, locale),
+        label: localizeIndustry(story.industry.name_en, story.industry.name_fr, locale),
       });
     }
   }
@@ -313,7 +313,7 @@ export function CustomerStoriesFilter({
                             <div className="spacer-1x5rem spacer-mob-1rem" />
                             <p className="label">
                               {item.industry
-                                ? industryLabel(item.industry.name_en, item.industry.name_fr, locale)
+                                ? localizeIndustry(item.industry.name_en, item.industry.name_fr, locale)
                                 : (locale === "fr" ? "Témoignage client" : "Customer Story")}
                             </p>
                             <div className="spacer-0x75rem" />
