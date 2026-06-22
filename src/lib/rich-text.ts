@@ -11,8 +11,14 @@ const INFO_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height
  * CSS: .post_goodtoknow, .post_goodtoknow_icon (in devlink-bundle.css)
  */
 function transformGoodToKnow(html: string): string {
+  // Match the <goodtoknow> tag itself rather than its data-rt-embed-type
+  // wrapper: multiple embeds can share one wrapper (e.g. a <goodtoknow>
+  // immediately followed by a <cta>), and anchoring on </goodtoknow></div>
+  // makes the lazy match span past the sibling embed and swallow all the
+  // content up to the next callout. The (harmless, unstyled) wrapper div is
+  // left in place.
   return html.replace(
-    /<div\s+data-rt-embed-type=['"]true['"]>\s*<goodtoknow>([\s\S]*?)<\/goodtoknow>\s*<\/div>/gi,
+    /<goodtoknow>([\s\S]*?)<\/goodtoknow>/gi,
     (_, content) => {
       return `<div class="post_goodtoknow"><div class="post_goodtoknow_icon">${INFO_ICON_SVG}</div><div>${content.trim()}</div></div>`;
     },
@@ -24,8 +30,10 @@ function transformGoodToKnow(html: string): string {
  * CSS: .post_richtext_cta (in devlink-bundle.css)
  */
 function transformCta(html: string): string {
+  // Match the <cta> tag itself (not its data-rt-embed-type wrapper) — see
+  // transformGoodToKnow: shared wrappers otherwise break the lazy match.
   return html.replace(
-    /<div\s+data-rt-embed-type=['"]true['"]>\s*<cta>([\s\S]*?)<\/cta>\s*<\/div>/gi,
+    /<cta>([\s\S]*?)<\/cta>/gi,
     (_, inner) => {
       const title = inner.match(/<title>([\s\S]*?)<\/title>/i)?.[1]?.trim() ?? "";
       const text = inner.match(/<text>([\s\S]*?)<\/text>/i)?.[1]?.trim() ?? "";
