@@ -411,7 +411,7 @@ export function RichTextEditor({
             .ProseMirror th { background: #f5f5f5; font-weight: 600; }
             .ProseMirror goodtoknow { display: block; background: #FFF8D6; border: 1px solid #F2E29B; border-radius: 8px; padding: 0.75rem 1rem; margin: 1rem 0; }
             .ProseMirror goodtoknow::before { content: "💡 "; }
-            .ProseMirror keytakeaways { display: block; background: #eef4ff; border-left: 4px solid #3a93ff; border-radius: 8px; padding: 0.75rem 1rem; margin: 1rem 0; }
+            .ProseMirror keytakeaways { display: block; background: #FFF8D6; border: 1px solid #F2E29B; border-radius: 8px; padding: 0.75rem 1rem; margin: 1rem 0; }
             .ProseMirror keytakeaways::before { content: "📋 "; }
             .ProseMirror cta { display: block; background: #130E30; color: #EFF2E5; border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; cursor: pointer; }
             .ProseMirror cta title { display: block; font-weight: 600; font-size: 1rem; }
