@@ -3,6 +3,7 @@
 import Cal, { getCalApi } from "@calcom/embed-react";
 import { useEffect } from "react";
 import { usePostHog } from "posthog-js/react";
+import { sha256 } from "../lib/hash";
 
 
 /**
@@ -23,11 +24,15 @@ export function CalBookingEmbed() {
       const cal = await getCalApi({ namespace: "30min" });
       cal("on", {
         action: "bookingSuccessfulV2",
-        callback: (e) => {
-          const data = e.detail.data;
+        callback: async (e) => {
+          // bookingSuccessfulV2's runtime payload (booking/attendees/eventType)
+          // is richer than the SDK's static type for e.detail.data.
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          const data = e.detail.data as any;
           const attendee = data?.booking?.attendees?.[0] ?? data?.attendees?.[0];
           if (attendee?.email) {
-            posthog.identify(attendee.email, { email: attendee.email, name: attendee.name });
+            const id = await sha256(attendee.email.trim().toLowerCase());
+            posthog.identify(id, { email: attendee.email, name: attendee.name });
             posthog.capture("meeting_booked", { booking_uid: data?.uid, event_type: data?.eventType?.slug });
           }
         },

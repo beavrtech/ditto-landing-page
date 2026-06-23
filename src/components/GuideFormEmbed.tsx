@@ -3,6 +3,7 @@
 import { useRef, useEffect, useMemo } from "react";
 import Script from "next/script";
 import { usePostHog } from "posthog-js/react";
+import { sha256 } from "../lib/hash";
 
 /**
  * Extract HubSpot form parameters from CMS embed HTML, regardless of whether
@@ -84,7 +85,7 @@ export default function GuideFormEmbed({ html, guideSlug }: { html: string; guid
   useEffect(() => {
     if (!config) return;
 
-    function onMessage(event: MessageEvent) {
+    async function onMessage(event: MessageEvent) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const msg = event.data as any;
       if (!msg || msg.type !== "hsFormCallback" || msg.eventName !== "onFormSubmitted") return;
@@ -102,7 +103,8 @@ export default function GuideFormEmbed({ html, guideSlug }: { html: string; guid
       }
 
       try {
-        if (email) posthog.identify(email, { email });
+        // Hash the email for a non-reversible distinct_id; keep raw email as a property.
+        if (email) posthog.identify(await sha256(email.trim().toLowerCase()), { email });
         posthog.capture("form_submitted", { form_id: msg.id });
         posthog.capture("guide_downloaded", {
           form_id: msg.id,
