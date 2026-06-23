@@ -5,7 +5,7 @@ import { Navbar } from "../../components/NavbarServer";
 import { NewsletterForm } from "../../components/NewsletterFormI18n";
 import { ElementSocialproofTrustpilot } from "../../../devlink/elements/ElementSocialproofTrustpilot";
 import { Background } from "../../../devlink/Background";
-import { SectionCustomerLogos } from "../../components/CustomerLogosServer";
+import { SectionCustomerLogos, getHomepageCustomerLogos } from "../../components/CustomerLogosServer";
 import { SectionCompliantCarousel } from "../../components/SectionCompliantCarouselInit";
 import { SectionPillIllus } from "../../../devlink/sections/SectionPillIllus";
 import { SectionFeaturesHeader } from "../../../devlink/sections/SectionFeaturesHeader";
@@ -54,6 +54,10 @@ export default async function HomePage({
   setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
+
+  // Homepage customers from the DB (first row drives the sticky logo bar).
+  const homepageCustomers = await getHomepageCustomerLogos();
+  const stickyBarLogos = homepageCustomers.slice(0, 6);
 
   return (
     <div className="page-wrapper">
@@ -222,7 +226,7 @@ export default async function HomePage({
 
         <Footer />
       </main>
-      <StickyLogoBarClient />
+      <StickyLogoBarClient logos={stickyBarLogos} />
     </div>
   );
 }

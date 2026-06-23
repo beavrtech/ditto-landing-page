@@ -63,7 +63,7 @@ const TimelineContext = React.createContext({ time: 0, duration: 10, playing: fa
 const useTime = () => React.useContext(TimelineContext).time;
 const useTimeline = () => React.useContext(TimelineContext);
 
-function Stage({ width = 1280, height = 720, duration = 10, background = '#f6f4ef', children }) {
+function Stage({ width = 1280, height = 720, duration = 10, background = '#f6f4ef', cropTop = 0, cropBottom = 0, children }) {
   const [time, setTime] = React.useState(0);
   const [scale, setScale] = React.useState(0);
   const [active, setActive] = React.useState(true);
@@ -125,10 +125,13 @@ function Stage({ width = 1280, height = 720, duration = 10, background = '#f6f4e
     [time, duration]
   );
 
+  // Crop empty top/bottom margins of the fixed design (stage px) so the visible
+  // "screen" sits tighter to neighbouring sections.
+  const visibleHeight = height - cropTop - cropBottom;
   return (
-    <div ref={wrapRef} style={{ position: 'relative', width: '100%', aspectRatio: `${width} / ${height}`, overflow: 'hidden' }}>
+    <div ref={wrapRef} style={{ position: 'relative', width: '100%', aspectRatio: `${width} / ${visibleHeight}`, overflow: 'hidden' }}>
       <div style={{
-        position: 'absolute', top: 0, left: 0, width, height, background,
+        position: 'absolute', top: -cropTop * scale, left: 0, width, height, background,
         transform: `scale(${scale})`, transformOrigin: 'top left',
         fontFamily: 'Inter, system-ui, sans-serif',
       }}>
@@ -709,7 +712,7 @@ function CoachCard() {
 // ════════════════════════════════════════════════════════════════════════
 function HeroAnimation() {
   return (
-    <Stage width={1920} height={1080} duration={25} background={C.tan} persistKey="ditto-hero">
+    <Stage width={1920} height={1080} cropTop={100} cropBottom={100} duration={25} background={C.tan} persistKey="ditto-hero">
       <CentralScreen />
       <AICard />
       <CoachCard />

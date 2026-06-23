@@ -5,8 +5,8 @@ import { notFound } from "next/navigation";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
-import { getAuthorBySlug, getAuthors, getBlogPosts, getNews, getGuides } from "../../../../lib/cms";
-import { localizedHref, localizedCmsHref } from "../../../../lib/localized-paths";
+import { getAuthorBySlug, getAuthors, getBlogPosts, getNews, getGuides, withCollectionTwins } from "../../../../lib/cms";
+import { localizedHref, localizedCmsHref, articleHref } from "../../../../lib/localized-paths";
 
 export async function generateMetadata({
   params,
@@ -65,7 +65,7 @@ export default async function AuthorPage({
 
   // Fetch all content by this author
   const [allBlogs, allNews, allGuides] = await Promise.all([
-    getBlogPosts(locale as "en" | "fr", 100).catch(() => []),
+    getBlogPosts(locale as "en" | "fr", 100).then(withCollectionTwins).catch(() => []),
     getNews(locale as "en" | "fr", 100).catch(() => []),
     getGuides(locale as "en" | "fr", 100).catch(() => []),
   ]);
@@ -152,7 +152,7 @@ export default async function AuthorPage({
                         <div className="blog_list" role="list">
                           {blogs.map((post: any) => (
                             <div key={post.slug} className="blog_list_item" role="listitem">
-                              <a href={localizedCmsHref("/resources/blog", post.slug, post.slug_fr, locale)} className="card-image w-inline-block">
+                              <a href={articleHref(post, post.collectionTwin, locale)} className="card-image w-inline-block">
                                 {post.banner_url && (
                                   <div className="card-image_thumbnail">
                                     <Image src={post.banner_url} alt={post.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" />

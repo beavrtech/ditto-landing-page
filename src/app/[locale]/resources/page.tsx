@@ -4,12 +4,14 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../../devlink/devlinkScope";
-import { getBlogPosts, getNews, getGuides } from "../../../lib/cms";
-import { localizedHref, localizedCmsHref } from "../../../lib/localized-paths";
+import { getBlogPosts, getNews, getGuides, withCollectionTwins } from "../../../lib/cms";
+import { localizedHref, localizedCmsHref, articleHref } from "../../../lib/localized-paths";
 
 function ResourceCard({ item, type, locale }: { item: any; type: string; locale: string }) {
   const basePath = type === "blog" ? "/resources/blog" : type === "news" ? "/resources/news" : "/resources/guides";
-  const href = localizedCmsHref(basePath, item.slug, item.slug_fr, locale);
+  const href = type === "blog"
+    ? articleHref(item, item.collectionTwin, locale)
+    : localizedCmsHref(basePath, item.slug, item.slug_fr, locale);
 
   return (
     <div className="blog-preview_item" role="listitem">
@@ -69,7 +71,7 @@ export default async function ResourcesPage({
   const prefix = `/${locale}`;
 
   const [blogs, news, guides] = await Promise.all([
-    getBlogPosts(locale as "en" | "fr", 6).catch(() => []),
+    getBlogPosts(locale as "en" | "fr", 6).then(withCollectionTwins).catch(() => []),
     getNews(locale as "en" | "fr", 6).catch(() => []),
     getGuides(locale as "en" | "fr", 6).catch(() => []),
   ]);

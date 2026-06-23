@@ -10,20 +10,27 @@ import Section from "../../devlink/modules/Layout/components/Section";
 import { Background } from "../../devlink/Background";
 import { Padding } from "../../devlink/Padding";
 import { LogoTile } from "./LogoTile";
-import {
-  CUSTOMER_LOGOS_PRIMARY,
-  CUSTOMER_LOGOS_SECONDARY,
-  type CustomerLogo,
-} from "../lib/customer-logos";
+import { CUSTOMER_LOGOS_FALLBACK, type CustomerLogo } from "../lib/customer-logos";
 
 type StorySlugMap = Record<string, { slug: string; slug_fr: string | null }>;
 
+/** Split the flat (homepage-ordered) list into rows of at most ROW_SIZE. */
+const ROW_SIZE = 6;
+function chunkRows(logos: CustomerLogo[]): CustomerLogo[][] {
+  const rows: CustomerLogo[][] = [];
+  for (let i = 0; i < logos.length; i += ROW_SIZE) rows.push(logos.slice(i, i + ROW_SIZE));
+  return rows;
+}
+
 export type SectionCustomerLogosProps = {
+  /** Homepage customers (from the DB), already ordered. */
+  serverCustomers?: CustomerLogo[];
   serverStorySlugMap?: StorySlugMap;
   afterContent?: React.ReactNode;
 };
 
 export function SectionCustomerLogos({
+  serverCustomers,
   serverStorySlugMap = {},
   afterContent,
 }: SectionCustomerLogosProps) {
@@ -64,12 +71,17 @@ export function SectionCustomerLogos({
             </Block>
             <Block className="spacer-2rem" tag="div" />
             <div className="customer-logos_rows">
-              <div className="customer-logos_row" id="customer-logos-primary-row">
-                {CUSTOMER_LOGOS_PRIMARY.map(renderLogo)}
-              </div>
-              <div className="customer-logos_row">
-                {CUSTOMER_LOGOS_SECONDARY.map(renderLogo)}
-              </div>
+              {chunkRows(serverCustomers?.length ? serverCustomers : CUSTOMER_LOGOS_FALLBACK).map(
+                (row, i) => (
+                  <div
+                    key={i}
+                    className="customer-logos_row"
+                    id={i === 0 ? "customer-logos-primary-row" : undefined}
+                  >
+                    {row.map(renderLogo)}
+                  </div>
+                ),
+              )}
             </div>
           </Block>
           {afterContent && (

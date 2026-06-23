@@ -84,6 +84,24 @@ export function localizedCmsHref(
 }
 
 /**
+ * Canonical URL for a blog post. Posts that duplicate a collection item link
+ * to the collection version (the canonical URL for those articles); all others
+ * link to the blog version. Pass the collection twin (from getCollectionSlugMap)
+ * if one exists for this post's slug.
+ */
+export function articleHref(
+  post: { slug: string; slug_fr: string | null | undefined },
+  collectionTwin: { slug: string; slug_fr: string | null; framework: string } | undefined,
+  locale: string
+): string {
+  if (collectionTwin) {
+    const slug = locale === "fr" && collectionTwin.slug_fr ? collectionTwin.slug_fr : collectionTwin.slug;
+    return `/${locale}/collection/${collectionTwin.framework}/${slug}`;
+  }
+  return localizedCmsHref("/resources/blog", post.slug, post.slug_fr, locale);
+}
+
+/**
  * Given the current full pathname (e.g. "/fr/cas-clients/some-slug"),
  * return the equivalent path in the target locale.
  *

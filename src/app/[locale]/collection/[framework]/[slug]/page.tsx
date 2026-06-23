@@ -1,14 +1,14 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { notFound, permanentRedirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import { Navbar } from "../../../../../components/NavbarServer";
 import { Footer } from "../../../../../components/FooterServer";
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { Breadcrumbs } from "../../../../../components/BreadcrumbsWithSchema";
 import { SectionCta } from "../../../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
-import { getCollectionItemBySlug, getCollectionItems, getCategoryTranslations, getGuideByFrameworkId, getFeaturedGuide, getBlogPostBySlug, getBlogSlugMap } from "../../../../../lib/cms";
+import { getCollectionItemBySlug, getCollectionItems, getCategoryTranslations, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
@@ -25,15 +25,9 @@ export async function generateMetadata({
   const enSlug = item.slug;
   const frSlug = item.slug_fr || item.slug;
 
-  // Some collection items duplicate a blog post under a second URL.
-  // Canonicalize those to the blog version to avoid duplicate content.
-  const blogTwin = await getBlogPostBySlug(enSlug, "en").catch(() => null);
-  const enUrl = blogTwin
-    ? `https://www.trustditto.com/en/resources/blog/${blogTwin.slug}`
-    : `https://www.trustditto.com/en/collection/${framework}/${enSlug}`;
-  const frUrl = blogTwin
-    ? `https://www.trustditto.com/fr/ressources/blog/${blogTwin.slug_fr || blogTwin.slug}`
-    : `https://www.trustditto.com/fr/collection/${framework}/${frSlug}`;
+  // Collection is the canonical URL for articles (blog twins redirect here).
+  const enUrl = `https://www.trustditto.com/en/collection/${framework}/${enSlug}`;
+  const frUrl = `https://www.trustditto.com/fr/collection/${framework}/${frSlug}`;
 
   return {
     title: item.seo_title || item.name,
@@ -66,14 +60,10 @@ const FRAMEWORK_TITLES: Record<string, string> = {
 
 export async function generateStaticParams() {
   const frameworks = ["ecovadis", "cdp", "csrd", "iso-14001", "vsme"];
-  const blogSlugs = await getBlogSlugMap().catch(() => new Map());
   const params: { locale: string; framework: string; slug: string }[] = [];
   for (const fw of frameworks) {
     const items = await getCollectionItems(fw, "en").catch(() => []);
     for (const item of items || []) {
-      // Skip items duplicating a blog post — those URLs 308 to the blog
-      // version at request time and must not be prerendered as pages.
-      if (blogSlugs.has(item.slug)) continue;
       params.push({ locale: "en", framework: fw, slug: item.slug });
       if (item.slug_fr) params.push({ locale: "fr", framework: fw, slug: item.slug_fr });
     }
@@ -101,17 +91,6 @@ export default async function CollectionArticlePage({
     getCategoryTranslations(),
   ]);
   if (!item) notFound();
-
-  // Items duplicating a blog post permanently redirect to the blog version
-  // (single canonical URL per article).
-  const blogTwin = await getBlogPostBySlug(item.slug, "en").catch(() => null);
-  if (blogTwin) {
-    permanentRedirect(
-      locale === "fr"
-        ? `/fr/ressources/blog/${blogTwin.slug_fr || blogTwin.slug}`
-        : `/en/resources/blog/${blogTwin.slug}`
-    );
-  }
 
   // Fetch related guide for sidebar (fallback to featured guide)
   let guide = item.framework_id

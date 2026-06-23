@@ -49,9 +49,9 @@ const nextConfig: NextConfig = {
   // Legacy URL structure (pre-migration) → current localized routes.
   // These run before the i18n middleware.
   async redirects() {
-    // Collection items that duplicate a blog post 308 to the blog version
-    // (single canonical URL per article). Computed from the CMS at build /
-    // server start.
+    // Blog posts that duplicate a collection item 308 to the collection
+    // version (single canonical URL per article). Computed from the CMS at
+    // build / server start.
     const duplicateRedirects: { source: string; destination: string; permanent: boolean }[] = [];
     try {
       const base = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -59,21 +59,26 @@ const nextConfig: NextConfig = {
       if (base && key) {
         const headers = { apikey: key, Authorization: `Bearer ${key}` };
         const [items, posts] = await Promise.all([
-          fetch(`${base}/rest/v1/collection_items?select=slug,slug_fr&limit=1000`, { headers }).then((r) => r.json()),
+          fetch(`${base}/rest/v1/collection_items?select=slug,slug_fr,framework:frameworks(slug)&published=eq.true&archived=eq.false&limit=1000`, { headers }).then((r) => r.json()),
           fetch(`${base}/rest/v1/blog_posts?select=slug,slug_fr&published=eq.true&limit=1000`, { headers }).then((r) => r.json()),
         ]);
-        const blogBySlug = new Map((posts as { slug: string; slug_fr: string | null }[]).map((p) => [p.slug, p]));
-        for (const item of items as { slug: string; slug_fr: string | null }[]) {
-          const twin = blogBySlug.get(item.slug);
+        const collectionBySlug = new Map(
+          (items as { slug: string; slug_fr: string | null; framework: { slug: string } | null }[])
+            .filter((i) => i.framework?.slug)
+            .map((i) => [i.slug, i])
+        );
+        for (const post of posts as { slug: string; slug_fr: string | null }[]) {
+          const twin = collectionBySlug.get(post.slug);
           if (!twin) continue;
+          const framework = twin.framework!.slug;
           duplicateRedirects.push({
-            source: `/en/collection/:framework/${item.slug}`,
-            destination: `/en/resources/blog/${twin.slug}`,
+            source: `/en/resources/blog/${post.slug}`,
+            destination: `/en/collection/${framework}/${twin.slug}`,
             permanent: true,
           });
           duplicateRedirects.push({
-            source: `/fr/collection/:framework/${item.slug_fr || item.slug}`,
-            destination: `/fr/ressources/blog/${twin.slug_fr || twin.slug}`,
+            source: `/fr/ressources/blog/${post.slug_fr || post.slug}`,
+            destination: `/fr/collection/${framework}/${twin.slug_fr || twin.slug}`,
             permanent: true,
           });
         }

@@ -263,9 +263,10 @@ export const TABLES: TableConfig[] = [
   {
     slug: "company-logos",
     table: "company_logos",
-    displayName: "Company Logos",
+    displayName: "Customers",
     listColumns: [
       { key: "name", label: "Name" },
+      { key: "industry", label: "Industry" },
       { key: "sort_order", label: "Order" },
       { key: "published", label: "Status" },
     ],
@@ -273,6 +274,7 @@ export const TABLES: TableConfig[] = [
     fields: [
       { name: "name", label: "Name", type: "text", required: true },
       { name: "logo_url", label: "Logo", type: "image", required: true },
+      { name: "industry", label: "Industry", type: "text" },
       { name: "case_study_url", label: "Case Study URL", type: "text" },
       { name: "sort_order", label: "Sort Order", type: "text" },
       { name: "published", label: "Published", type: "boolean" },

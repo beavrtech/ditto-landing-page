@@ -114,6 +114,33 @@ export async function getCompanyLogos() {
   return data;
 }
 
+/** Customers selected for the homepage logo strip, in homepage_order. */
+export async function getHomepageCustomers() {
+  const { data, error } = await supabase
+    .from("company_logos")
+    .select("*")
+    .eq("published", true)
+    .not("homepage_order", "is", null)
+    .order("homepage_order");
+
+  if (error) throw error;
+  return data;
+}
+
+/** Published customers tagged with the given industry slug (for /industry/[slug]). */
+export async function getCustomersByIndustry(industrySlug: string) {
+  const { data, error } = await supabase
+    .from("company_logos")
+    .select("*")
+    .eq("published", true)
+    .eq("industry", industrySlug)
+    .order("homepage_order", { ascending: true, nullsFirst: false })
+    .order("sort_order");
+
+  if (error) throw error;
+  return data;
+}
+
 // ============================================================
 // CUSTOMER STORIES
 // ============================================================
@@ -256,18 +283,39 @@ export async function getCustomerStoryBySlug(slug: string, locale: Locale) {
 // ============================================================
 
 /**
- * Map of published blog post EN slug -> { slug, slug_fr }. Used to detect
- * collection items that duplicate a blog post so their URLs can point to
- * the canonical blog version.
+ * Map of published collection-item EN slug -> { slug, slug_fr, framework }.
+ * Used to detect blog posts that duplicate a collection item so the blog URL
+ * can redirect to the canonical collection version at
+ * /collection/[framework]/[slug].
  */
-export async function getBlogSlugMap(): Promise<Map<string, { slug: string; slug_fr: string | null }>> {
+export async function getCollectionSlugMap(): Promise<
+  Map<string, { slug: string; slug_fr: string | null; framework: string }>
+> {
   const { data, error } = await supabase
-    .from("blog_posts")
-    .select("slug, slug_fr")
+    .from("collection_items")
+    .select("slug, slug_fr, framework:frameworks(slug)")
     .eq("published", true)
     .eq("archived", false);
   if (error) throw error;
-  return new Map((data || []).map((p) => [p.slug, p]));
+  const map = new Map<string, { slug: string; slug_fr: string | null; framework: string }>();
+  for (const item of (data || []) as any[]) {
+    const framework = item.framework?.slug;
+    if (!framework) continue;
+    map.set(item.slug, { slug: item.slug, slug_fr: item.slug_fr, framework });
+  }
+  return map;
+}
+
+/**
+ * Attaches each post's collection twin (if any) as `collectionTwin` so links
+ * can target the canonical collection URL instead of the blog URL (which
+ * redirects). See {@link getCollectionSlugMap} and `articleHref`.
+ */
+export async function withCollectionTwins<T extends { slug: string }>(
+  posts: T[]
+): Promise<(T & { collectionTwin: { slug: string; slug_fr: string | null; framework: string } | null })[]> {
+  const map = await getCollectionSlugMap().catch(() => new Map());
+  return (posts || []).map((p) => ({ ...p, collectionTwin: map.get(p.slug) || null }));
 }
 
 export async function getBlogPosts(locale: Locale, limit?: number) {

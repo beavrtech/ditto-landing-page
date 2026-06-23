@@ -4,7 +4,8 @@ import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
 import { Breadcrumbs } from "../../../../components/BreadcrumbsWithSchema";
 import { SectionHero } from "../../../../../devlink/sections/SectionHero";
-import { SectionLogostrip } from "../../../../components/LogostripServer";
+import { SectionCustomerLogos } from "../../../../components/CustomerLogosServer";
+import { ElementSocialproofTrustpilot } from "../../../../../devlink/elements/ElementSocialproofTrustpilot";
 import { SectionNumbers } from "../../../../../devlink/sections/SectionNumbers";
 import { SectionFeaturesHeader } from "../../../../../devlink/sections/SectionFeaturesHeader";
 import { SectionFeature } from "../../../../../devlink/sections/SectionFeature";
@@ -78,7 +79,7 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
         />
 
         {/* 3. Logo strip */}
-        <SectionLogostrip locale={locale} />
+        <SectionCustomerLogos locale={locale} afterContent={<ElementSocialproofTrustpilot />} />
 
         {/* 4. Numbers */}
         <SectionNumbers

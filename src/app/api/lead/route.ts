@@ -27,16 +27,35 @@ export async function POST(req: Request) {
   const page =
     typeof body.page === "string" ? body.page.slice(0, 200) : undefined;
 
-  const webhookUrl = process.env.SLACK_WEBHOOK_URL;
-  if (webhookUrl) {
-    await fetch(webhookUrl, {
+  const tasks: Promise<unknown>[] = [];
+
+  // Trigger the automation webhook with the captured email.
+  const automationUrl =
+    process.env.AUTOMATION_WEBHOOK_URL ??
+    "https://automation.trustditto.com/hooks/hk_fd5f908d654e4ff78d00d3c64e1ee049";
+  tasks.push(
+    fetch(automationUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        text: `:incoming_envelope: New lead from the website: *${slackEscape(email)}*${page ? ` (submitted on ${slackEscape(page)})` : ""}`,
-      }),
-    }).catch(() => {});
+      body: JSON.stringify({ email }),
+    }).catch(() => {}),
+  );
+
+  // Notify Slack (incoming webhook) when configured.
+  const webhookUrl = process.env.SLACK_WEBHOOK_URL;
+  if (webhookUrl) {
+    tasks.push(
+      fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          text: `:incoming_envelope: New lead from the website: *${slackEscape(email)}*${page ? ` (submitted on ${slackEscape(page)})` : ""}`,
+        }),
+      }).catch(() => {}),
+    );
   }
+
+  await Promise.allSettled(tasks);
 
   return NextResponse.json({ ok: true });
 }
