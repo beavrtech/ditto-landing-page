@@ -1,10 +1,12 @@
 /**
  * Transform CMS rich-text HTML by replacing custom embed tags
- * (<goodtoknow>, <cta>) with properly-structured HTML that matches
- * the design-system CSS classes in the bundle.
+ * (<goodtoknow>, <keytakeaways>, <cta>) with properly-structured
+ * HTML that matches the design-system CSS classes in the bundle.
  */
 
 const INFO_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`;
+
+const KEYTAKEAWAYS_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h12"/></svg>`;
 
 /**
  * Replace <goodtoknow>...</goodtoknow> with styled callout boxes.
@@ -15,6 +17,19 @@ function transformGoodToKnow(html: string): string {
     /<div\s+data-rt-embed-type=['"]true['"]>\s*<goodtoknow>([\s\S]*?)<\/goodtoknow>\s*<\/div>/gi,
     (_, content) => {
       return `<div class="post_goodtoknow"><div class="post_goodtoknow_icon">${INFO_ICON_SVG}</div><div>${content.trim()}</div></div>`;
+    },
+  );
+}
+
+/**
+ * Replace <keytakeaways>...</keytakeaways> with a summary callout.
+ * CSS: .post_keytakeaways, .post_keytakeaways_icon (in GlobalStyles)
+ */
+function transformKeyTakeaways(html: string): string {
+  return html.replace(
+    /<div\s+data-rt-embed-type=['"]true['"]>\s*<keytakeaways>([\s\S]*?)<\/keytakeaways>\s*<\/div>/gi,
+    (_, content) => {
+      return `<div class="post_keytakeaways"><div class="post_keytakeaways_icon">${KEYTAKEAWAYS_ICON_SVG}</div><div>${content.trim()}</div></div>`;
     },
   );
 }
@@ -155,6 +170,7 @@ function rewriteLegacyLinks(html: string, locale: string): string {
 export function transformRichText(html: string, locale: string = "en"): string {
   let result = html;
   result = transformGoodToKnow(result);
+  result = transformKeyTakeaways(result);
   result = transformCta(result);
   result = transformBlockquote(result);
   result = transformTables(result);

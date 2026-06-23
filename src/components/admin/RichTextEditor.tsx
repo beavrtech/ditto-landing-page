@@ -29,6 +29,19 @@ const GoodToKnow = Node.create({
   },
 });
 
+const KeyTakeaways = Node.create({
+  name: "keyTakeaways",
+  group: "block",
+  content: "block+",
+  defining: true,
+  parseHTML() {
+    return [{ tag: "keytakeaways" }];
+  },
+  renderHTML() {
+    return ["div", { "data-rt-embed-type": "true" }, ["keytakeaways", 0]];
+  },
+});
+
 const CtaEmbed = Node.create({
   name: "ctaEmbed",
   group: "block",
@@ -259,6 +272,7 @@ export function RichTextEditor({
       TableCell,
       TableHeader,
       GoodToKnow,
+      KeyTakeaways,
       CtaEmbed,
     ],
     content: value,
@@ -294,6 +308,19 @@ export function RichTextEditor({
       content: [
         { type: "text", marks: [{ type: "bold" }], text: "Good to know: " },
         { type: "text", text: "…" },
+      ],
+    }).run();
+  }, [editor]);
+
+  const insertKeyTakeaways = useCallback(() => {
+    if (!editor) return;
+    editor.chain().focus().insertContent({
+      type: "keyTakeaways",
+      content: [
+        { type: "paragraph", content: [{ type: "text", marks: [{ type: "bold" }], text: "Key takeaways" }] },
+        { type: "bulletList", content: [
+          { type: "listItem", content: [{ type: "paragraph", content: [{ type: "text", text: "…" }] }] },
+        ]},
       ],
     }).run();
   }, [editor]);
@@ -346,6 +373,7 @@ export function RichTextEditor({
         <button type="button" style={btnStyle()} onClick={() => setShowImageModal(true)}>Image</button>
         <button type="button" style={btnStyle()} onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}>Table</button>
         <button type="button" style={btnStyle(editor.isActive("goodToKnow"))} onClick={insertGoodToKnow}>💡 Note</button>
+        <button type="button" style={btnStyle(editor.isActive("keyTakeaways"))} onClick={insertKeyTakeaways}>📋 Takeaways</button>
         <button type="button" style={btnStyle(editor.isActive("ctaEmbed"))} onClick={openCtaModal}>CTA</button>
         <div style={{ flex: 1 }} />
         <button type="button" style={btnStyle(showSource)} onClick={toggleSource}>&lt;/&gt;</button>
@@ -383,6 +411,8 @@ export function RichTextEditor({
             .ProseMirror th { background: #f5f5f5; font-weight: 600; }
             .ProseMirror goodtoknow { display: block; background: #FFF8D6; border: 1px solid #F2E29B; border-radius: 8px; padding: 0.75rem 1rem; margin: 1rem 0; }
             .ProseMirror goodtoknow::before { content: "💡 "; }
+            .ProseMirror keytakeaways { display: block; background: #eef4ff; border-left: 4px solid #3a93ff; border-radius: 8px; padding: 0.75rem 1rem; margin: 1rem 0; }
+            .ProseMirror keytakeaways::before { content: "📋 "; }
             .ProseMirror cta { display: block; background: #130E30; color: #EFF2E5; border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; cursor: pointer; }
             .ProseMirror cta title { display: block; font-weight: 600; font-size: 1rem; }
             .ProseMirror cta text { display: block; margin-top: 4px; font-size: 0.875rem; opacity: 0.85; }
