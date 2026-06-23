@@ -7,16 +7,57 @@
 const INFO_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`;
 
 /**
- * Replace <goodtoknow>...</goodtoknow> with styled callout boxes.
+ * Build the styled callout markup used by .post_goodtoknow CSS.
+ */
+function goodToKnowBox(innerHtml: string): string {
+  return `<div class="post_goodtoknow"><div class="post_goodtoknow_icon">${INFO_ICON_SVG}</div><div>${innerHtml.trim()}</div></div>`;
+}
+
+/**
+ * Replace <goodtoknow>...</goodtoknow> with styled callout boxes, and also
+ * catch plain-text "Bon à savoir" / "Good to know" paragraphs that were
+ * authored without the embed wrapper.
  * CSS: .post_goodtoknow, .post_goodtoknow_icon (in devlink-bundle.css)
  */
 function transformGoodToKnow(html: string): string {
-  return html.replace(
+  const placeholders: string[] = [];
+
+  // 1. Wrapped embed: <div data-rt-embed-type="true"><goodtoknow>…</goodtoknow></div>
+  let result = html.replace(
     /<div\s+data-rt-embed-type=['"]true['"]>\s*<goodtoknow>([\s\S]*?)<\/goodtoknow>\s*<\/div>/gi,
     (_, content) => {
-      return `<div class="post_goodtoknow"><div class="post_goodtoknow_icon">${INFO_ICON_SVG}</div><div>${content.trim()}</div></div>`;
+      const ph = `__GTK_PH_${placeholders.length}__`;
+      placeholders.push(goodToKnowBox(content));
+      return ph;
     },
   );
+
+  // 2. Bare <goodtoknow> without the wrapper div
+  result = result.replace(
+    /<goodtoknow>([\s\S]*?)<\/goodtoknow>/gi,
+    (_, content) => {
+      const ph = `__GTK_PH_${placeholders.length}__`;
+      placeholders.push(goodToKnowBox(content));
+      return ph;
+    },
+  );
+
+  // 3. Plain-text paragraphs starting with bold "Bon à savoir" or "Good to know"
+  result = result.replace(
+    /<p>\s*<strong>\s*(Bon (?:à|&agrave;) savoir|Good to know)\s*[:\u00a0\s]*<\/strong>\s*[:\u00a0\s]*([\s\S]*?)<\/p>/gi,
+    (_, label, content) => {
+      return goodToKnowBox(
+        `<p><strong>${label.trim()}\u00a0: </strong>${content.trim()}</p>`,
+      );
+    },
+  );
+
+  // Restore placeholders so embed content isn't double-transformed
+  for (let i = 0; i < placeholders.length; i++) {
+    result = result.replace(`__GTK_PH_${i}__`, placeholders[i]);
+  }
+
+  return result;
 }
 
 /**
