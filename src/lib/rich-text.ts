@@ -1,10 +1,12 @@
 /**
  * Transform CMS rich-text HTML by replacing custom embed tags
- * (<goodtoknow>, <cta>) with properly-structured HTML that matches
- * the design-system CSS classes in the bundle.
+ * (<goodtoknow>, <keytakeaways>, <faq>, <cta>) with properly-structured
+ * HTML that matches the design-system CSS classes in the bundle.
  */
 
 const INFO_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>`;
+
+const KEYTAKEAWAYS_ICON_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h12"/></svg>`;
 
 /**
  * Replace <goodtoknow>...</goodtoknow> with styled callout boxes.
@@ -21,6 +23,69 @@ function transformGoodToKnow(html: string): string {
     /<goodtoknow>([\s\S]*?)<\/goodtoknow>/gi,
     (_, content) => {
       return `<div class="post_goodtoknow"><div class="post_goodtoknow_icon">${INFO_ICON_SVG}</div><div>${content.trim()}</div></div>`;
+    },
+  );
+}
+
+/**
+ * Replace <keytakeaways>...</keytakeaways> with a summary callout.
+ * CSS: .post_keytakeaways, .post_keytakeaways_icon (in GlobalStyles)
+ */
+function transformKeyTakeaways(html: string): string {
+  return html.replace(
+    /<div\s+data-rt-embed-type=['"]true['"]>\s*<keytakeaways>([\s\S]*?)<\/keytakeaways>\s*<\/div>/gi,
+    (_, content) => {
+      return `<div class="post_keytakeaways"><div class="post_keytakeaways_icon">${KEYTAKEAWAYS_ICON_SVG}</div><div>${content.trim()}</div></div>`;
+    },
+  );
+}
+
+function stripHtmlTags(s: string): string {
+  return s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'");
+}
+
+/**
+ * Replace <faq>...</faq> with a <details>/<summary> accordion + FAQPage JSON-LD.
+ * CSS: .post_faq, .post_faq_item, .post_faq_question, .post_faq_answer (in GlobalStyles)
+ */
+function transformFaq(html: string): string {
+  return html.replace(
+    /<div\s+data-rt-embed-type=['"]true['"]>\s*<faq>([\s\S]*?)<\/faq>\s*<\/div>/gi,
+    (_, inner) => {
+      const items: { question: string; answer: string }[] = [];
+      const itemRe = /<item>([\s\S]*?)<\/item>/gi;
+      let m: RegExpExecArray | null;
+      while ((m = itemRe.exec(inner)) !== null) {
+        const q = m[1].match(/<question>([\s\S]*?)<\/question>/i)?.[1]?.trim() ?? "";
+        const a = m[1].match(/<answer>([\s\S]*?)<\/answer>/i)?.[1]?.trim() ?? "";
+        if (q) items.push({ question: q, answer: a });
+      }
+      if (items.length === 0) return "";
+
+      const accordion = items
+        .map(
+          (it) =>
+            `<details class="post_faq_item"><summary class="post_faq_question">${it.question}</summary><div class="post_faq_answer">${it.answer}</div></details>`,
+        )
+        .join("");
+
+      const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: items.map((it) => ({
+          "@type": "Question",
+          name: stripHtmlTags(it.question),
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: stripHtmlTags(it.answer),
+          },
+        })),
+      };
+
+      return (
+        `<div class="post_faq"><h2 class="heading-size-2rem">FAQ</h2><div class="post_faq_list">${accordion}</div></div>` +
+        `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`
+      );
     },
   );
 }
@@ -163,6 +228,8 @@ function rewriteLegacyLinks(html: string, locale: string): string {
 export function transformRichText(html: string, locale: string = "en"): string {
   let result = html;
   result = transformGoodToKnow(result);
+  result = transformKeyTakeaways(result);
+  result = transformFaq(result);
   result = transformCta(result);
   result = transformBlockquote(result);
   result = transformTables(result);
