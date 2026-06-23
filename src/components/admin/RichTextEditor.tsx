@@ -42,6 +42,46 @@ const KeyTakeaways = Node.create({
   },
 });
 
+const FaqEmbed = Node.create({
+  name: "faqEmbed",
+  group: "block",
+  atom: true,
+  addAttributes() {
+    return {
+      items: { default: "[]" },
+    };
+  },
+  parseHTML() {
+    return [
+      {
+        tag: "faq",
+        getAttrs: (element) => {
+          const el = element as HTMLElement;
+          const nodes = el.querySelectorAll("item");
+          const items: { question: string; answer: string }[] = [];
+          nodes.forEach((n) => {
+            const q = n.querySelector("question")?.innerHTML?.trim() ?? "";
+            const a = n.querySelector("answer")?.innerHTML?.trim() ?? "";
+            if (q) items.push({ question: q, answer: a });
+          });
+          return { items: JSON.stringify(items) };
+        },
+      },
+    ];
+  },
+  renderHTML({ node }) {
+    let items: { question: string; answer: string }[] = [];
+    try { items = JSON.parse(node.attrs.items); } catch { /* empty */ }
+    const faqChildren: (string | string[])[][] = items.map((it) => ["item", ["question", it.question], ["answer", it.answer]]);
+    return ["div", { "data-rt-embed-type": "true" }, ["faq", ...faqChildren]];
+  },
+  renderText({ node }) {
+    let items: { question: string; answer: string }[] = [];
+    try { items = JSON.parse(node.attrs.items); } catch { /* empty */ }
+    return items.map((it) => `Q: ${it.question}\nA: ${it.answer}`).join("\n\n");
+  },
+});
+
 const CtaEmbed = Node.create({
   name: "ctaEmbed",
   group: "block",
@@ -118,6 +158,44 @@ function CtaModal({
         <div style={{ display: "flex", gap: "0.5rem", justifyContent: "flex-end", marginTop: "1rem" }}>
           <button type="button" style={btnStyle()} onClick={onClose}>Cancel</button>
           <button type="button" style={btnStyle(true)} onClick={() => onSave(form)}>Save</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function FaqModal({
+  initial,
+  onSave,
+  onClose,
+}: {
+  initial: { question: string; answer: string }[];
+  onSave: (items: { question: string; answer: string }[]) => void;
+  onClose: () => void;
+}) {
+  const [items, setItems] = useState(initial.length > 0 ? initial : [{ question: "", answer: "" }]);
+  const update = (idx: number, key: "question" | "answer", val: string) => {
+    const next = items.map((it, i) => (i === idx ? { ...it, [key]: val } : it));
+    setItems(next);
+  };
+  return (
+    <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.4)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1000 }} onClick={onClose}>
+      <div style={{ background: "white", borderRadius: "8px", padding: "1.5rem", width: "520px", maxHeight: "80vh", overflow: "auto" }} onClick={(e) => e.stopPropagation()}>
+        <h3 style={{ margin: "0 0 1rem", fontSize: "1rem" }}>FAQ block</h3>
+        {items.map((it, i) => (
+          <div key={i} style={{ marginBottom: "1rem", padding: "0.75rem", background: "#fafafa", borderRadius: "6px", position: "relative" }}>
+            <div style={{ fontSize: "0.7rem", fontWeight: 600, marginBottom: "0.5rem", color: "#999" }}>Item {i + 1}</div>
+            <input placeholder="Question" value={it.question} onChange={(e) => update(i, "question", e.target.value)} style={{ width: "100%", padding: "0.4rem", border: "1px solid #ddd", borderRadius: "4px", boxSizing: "border-box", fontSize: "0.875rem", marginBottom: "0.5rem" }} />
+            <textarea placeholder="Answer" value={it.answer} onChange={(e) => update(i, "answer", e.target.value)} style={{ width: "100%", padding: "0.4rem", border: "1px solid #ddd", borderRadius: "4px", boxSizing: "border-box", fontSize: "0.875rem", minHeight: "3rem", resize: "vertical" }} />
+            {items.length > 1 && (
+              <button type="button" onClick={() => setItems(items.filter((_, j) => j !== i))} style={{ position: "absolute", top: "0.5rem", right: "0.5rem", background: "none", border: "none", cursor: "pointer", color: "#999", fontSize: "1rem" }}>&times;</button>
+            )}
+          </div>
+        ))}
+        <button type="button" onClick={() => setItems([...items, { question: "", answer: "" }])} style={{ ...btnStyle(), marginBottom: "1rem" }}>+ Add item</button>
+        <div style={{ display: "flex", gap: "0.5rem", justifyContent: "flex-end" }}>
+          <button type="button" style={btnStyle()} onClick={onClose}>Cancel</button>
+          <button type="button" style={btnStyle(true)} onClick={() => onSave(items.filter((it) => it.question.trim()))}>Save</button>
         </div>
       </div>
     </div>
@@ -257,6 +335,7 @@ export function RichTextEditor({
   const [sourceValue, setSourceValue] = useState(value);
   const [showImageModal, setShowImageModal] = useState(false);
   const [ctaModal, setCtaModal] = useState<null | { title: string; text: string; buttonText: string; buttonLink: string }>(null);
+  const [faqModal, setFaqModal] = useState<null | { question: string; answer: string }[]>(null);
 
   const editor = useEditor({
     // The editor only mounts client-side (behind the admin password gate)
@@ -273,6 +352,7 @@ export function RichTextEditor({
       TableHeader,
       GoodToKnow,
       KeyTakeaways,
+      FaqEmbed,
       CtaEmbed,
     ],
     content: value,
@@ -345,6 +425,27 @@ export function RichTextEditor({
     setCtaModal(null);
   }, [editor]);
 
+  const openFaqModal = useCallback(() => {
+    if (!editor) return;
+    if (editor.isActive("faqEmbed")) {
+      let items: { question: string; answer: string }[] = [];
+      try { items = JSON.parse(editor.getAttributes("faqEmbed").items); } catch { /* empty */ }
+      setFaqModal(items);
+    } else {
+      setFaqModal([{ question: "", answer: "" }]);
+    }
+  }, [editor]);
+
+  const saveFaq = useCallback((items: { question: string; answer: string }[]) => {
+    if (!editor) return;
+    if (editor.isActive("faqEmbed")) {
+      editor.chain().focus().updateAttributes("faqEmbed", { items: JSON.stringify(items) }).run();
+    } else {
+      editor.chain().focus().insertContent({ type: "faqEmbed", attrs: { items: JSON.stringify(items) } }).run();
+    }
+    setFaqModal(null);
+  }, [editor]);
+
   const toggleSource = () => {
     if (showSource && editor) {
       editor.commands.setContent(sourceValue, { emitUpdate: false });
@@ -374,6 +475,7 @@ export function RichTextEditor({
         <button type="button" style={btnStyle()} onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}>Table</button>
         <button type="button" style={btnStyle(editor.isActive("goodToKnow"))} onClick={insertGoodToKnow}>💡 Note</button>
         <button type="button" style={btnStyle(editor.isActive("keyTakeaways"))} onClick={insertKeyTakeaways}>📋 Takeaways</button>
+        <button type="button" style={btnStyle(editor.isActive("faqEmbed"))} onClick={openFaqModal}>❓ FAQ</button>
         <button type="button" style={btnStyle(editor.isActive("ctaEmbed"))} onClick={openCtaModal}>CTA</button>
         <div style={{ flex: 1 }} />
         <button type="button" style={btnStyle(showSource)} onClick={toggleSource}>&lt;/&gt;</button>
@@ -413,6 +515,8 @@ export function RichTextEditor({
             .ProseMirror goodtoknow::before { content: "💡 "; }
             .ProseMirror keytakeaways { display: block; background: #FFF8D6; border: 1px solid #F2E29B; border-radius: 8px; padding: 0.75rem 1rem; margin: 1rem 0; }
             .ProseMirror keytakeaways::before { content: "📋 "; }
+            .ProseMirror div[data-type="faqEmbed"] { display: block; background: #FFF8D6; border: 1px solid #F2E29B; border-radius: 8px; padding: 0.75rem 1rem; margin: 1rem 0; cursor: pointer; white-space: pre-wrap; }
+            .ProseMirror div[data-type="faqEmbed"]::before { content: "❓ FAQ block (click, then use the FAQ button to edit)"; display: block; font-size: 0.8rem; font-weight: 600; opacity: 0.6; }
             .ProseMirror cta { display: block; background: #130E30; color: #EFF2E5; border-radius: 8px; padding: 1rem 1.25rem; margin: 1rem 0; cursor: pointer; }
             .ProseMirror cta title { display: block; font-weight: 600; font-size: 1rem; }
             .ProseMirror cta text { display: block; margin-top: 4px; font-size: 0.875rem; opacity: 0.85; }
@@ -426,6 +530,10 @@ export function RichTextEditor({
       {/* CTA edit modal */}
       {ctaModal && (
         <CtaModal initial={ctaModal} onSave={saveCta} onClose={() => setCtaModal(null)} />
+      )}
+      {/* FAQ edit modal */}
+      {faqModal && (
+        <FaqModal initial={faqModal} onSave={saveFaq} onClose={() => setFaqModal(null)} />
       )}
       {/* Image upload modal */}
       {showImageModal && (
