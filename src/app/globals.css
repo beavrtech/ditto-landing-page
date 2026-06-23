@@ -402,11 +402,14 @@ a {
   align-items: center;
   gap: 2rem;
   padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding-bottom: 0.5rem;
 }
 
 .home-hero_text {
-  max-width: 57.5rem;
+  /* Wide enough that the hero title's first line ("Votre plateforme
+     conformité & durabilité,") stays on a single line on desktop; the
+     subtitle keeps its own narrower max-width below. */
+  max-width: 64rem;
 }
 
 .home-hero_subtitle {

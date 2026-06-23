@@ -1,6 +1,14 @@
 import type React from "react";
-import { getCustomerStories } from "../lib/cms";
+import { getCustomerStories, getHomepageCustomers } from "../lib/cms";
 import { SectionCustomerLogos as SectionCustomerLogosClient } from "./SectionCustomerLogosI18n";
+import { CUSTOMER_LOGOS_FALLBACK, dbCustomerToLogo, type CustomerLogo } from "../lib/customer-logos";
+
+/** Homepage customers from the DB, falling back to the static list when empty. */
+export async function getHomepageCustomerLogos(): Promise<CustomerLogo[]> {
+  const rows = await getHomepageCustomers().catch(() => []);
+  if (rows && rows.length) return rows.map(dbCustomerToLogo);
+  return CUSTOMER_LOGOS_FALLBACK;
+}
 
 export async function SectionCustomerLogos({
   locale,
@@ -9,7 +17,10 @@ export async function SectionCustomerLogos({
   locale: string;
   afterContent?: React.ReactNode;
 }) {
-  const stories = await getCustomerStories(locale as "en" | "fr").catch(() => []);
+  const [stories, customers] = await Promise.all([
+    getCustomerStories(locale as "en" | "fr").catch(() => []),
+    getHomepageCustomerLogos(),
+  ]);
 
   const storySlugMap: Record<string, { slug: string; slug_fr: string | null }> = {};
   for (const s of stories || []) {
@@ -17,6 +28,10 @@ export async function SectionCustomerLogos({
   }
 
   return (
-    <SectionCustomerLogosClient serverStorySlugMap={storySlugMap} afterContent={afterContent} />
+    <SectionCustomerLogosClient
+      serverCustomers={customers}
+      serverStorySlugMap={storySlugMap}
+      afterContent={afterContent}
+    />
   );
 }

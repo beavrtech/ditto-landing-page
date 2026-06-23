@@ -76,6 +76,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const urls: MetadataRoute.Sitemap = [];
 
+  // Slugs of native collection items — the canonical version of any article
+  // that exists as both a collection item and a blog post. Used to keep the
+  // duplicate out of the blog section and the canonical in the collection one.
+  const collectionSlugs = new Set(
+    collectionResults
+      .flat()
+      .filter((item: any) => item._type !== "guide")
+      .map((item: any) => item.slug)
+  );
+
   // Static pages (both locales)
   for (const page of STATIC_PAGES) {
     urls.push(
@@ -106,8 +116,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
-  // Blog posts
+  // Blog posts (exclude those duplicating a collection item — those URLs
+  // canonicalize/redirect to the collection version)
   for (const post of posts || []) {
+    if (collectionSlugs.has(post.slug)) continue;
     const opts: EntryOptions = {
       lastModified: post.date_de_publication ? new Date(post.date_de_publication) : undefined,
       changeFrequency: "monthly",
@@ -179,15 +191,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // Collection items (per framework) — exclude linked guides (already in
-  // /resources/guides/) and items that duplicate a blog post (those URLs
-  // canonicalize to the blog version)
-  const blogSlugs = new Set((posts || []).map((p: { slug: string }) => p.slug));
+  // /resources/guides/). Items duplicating a blog post stay in (collection is
+  // the canonical version).
   for (let i = 0; i < FRAMEWORKS.length; i++) {
     const fw = FRAMEWORKS[i];
     const allItems = collectionResults[i] || [];
-    const items = allItems.filter(
-      (item: any) => item._type !== "guide" && !blogSlugs.has(item.slug)
-    );
+    const items = allItems.filter((item: any) => item._type !== "guide");
     for (const item of items) {
       const opts: EntryOptions = {
         changeFrequency: "monthly",

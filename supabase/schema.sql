@@ -64,13 +64,20 @@ CREATE TABLE testimonials (
 -- COMPANY LOGOS (not an original CMS collection, manually populated)
 -- ============================================================
 
+-- "company_logos" is the customers table (kept the original table name to avoid
+-- breaking changes; surfaced as "Customers" in the admin UI).
 CREATE TABLE company_logos (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   name TEXT NOT NULL,
   logo_url TEXT NOT NULL,
+  industry TEXT,
   case_study_url TEXT,
   published BOOLEAN DEFAULT FALSE,
   sort_order INTEGER DEFAULT 0,
+  -- When set, the customer appears in the homepage logo strip, ordered by this
+  -- value (ascending). NULL = not shown on the homepage. Lets us pick/order the
+  -- homepage customers without removing the others from the table.
+  homepage_order INTEGER,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 

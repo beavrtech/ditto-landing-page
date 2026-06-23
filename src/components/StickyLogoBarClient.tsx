@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { CUSTOMER_LOGOS_PRIMARY as LOGOS } from "../lib/customer-logos";
+import type { CustomerLogo } from "../lib/customer-logos";
 
-export function StickyLogoBarClient() {
+export function StickyLogoBarClient({ logos }: { logos: CustomerLogo[] }) {
   const [visible, setVisible] = useState(false);
   const barRef = useRef<HTMLDivElement>(null);
 
@@ -38,10 +38,12 @@ export function StickyLogoBarClient() {
     };
   }, []);
 
+  if (!logos.length) return null;
+
   return (
     <div ref={barRef} className={`sticky-logo-bar${visible ? " is-visible" : ""}`} aria-hidden="true">
       <div className="sticky-logo-bar_inner">
-        {LOGOS.map((logo) => (
+        {logos.map((logo) => (
           <div key={logo.name} className="sticky-logo-bar_wrapper">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img

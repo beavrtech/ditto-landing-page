@@ -4,12 +4,14 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
-import { getBlogPosts } from "../../../../lib/cms";
-import { localizedHref, localizedCmsHref } from "../../../../lib/localized-paths";
+import { getBlogPosts, withCollectionTwins } from "../../../../lib/cms";
+import { localizedHref, localizedCmsHref, articleHref } from "../../../../lib/localized-paths";
 
 function ResourceCard({ item, type, locale }: { item: any; type: string; locale: string }) {
   const basePath = type === "blog" ? "/resources/blog" : type === "news" ? "/resources/news" : "/resources/guides";
-  const href = localizedCmsHref(basePath, item.slug, item.slug_fr, locale);
+  const href = type === "blog"
+    ? articleHref(item, item.collectionTwin, locale)
+    : localizedCmsHref(basePath, item.slug, item.slug_fr, locale);
   return (
     <div className="blog_list_item" role="listitem">
       <a href={href} className="card-image w-inline-block">
@@ -67,7 +69,7 @@ export default async function ResourcesBlogPage({
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
-  const items = await getBlogPosts(locale as "en" | "fr").catch(() => []);
+  const items = await getBlogPosts(locale as "en" | "fr").then(withCollectionTwins).catch(() => []);
 
   return (
     <div className="page-wrapper">

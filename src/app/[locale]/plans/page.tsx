@@ -3,7 +3,8 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
 import { PricingPlans } from "../../../components/PricingPlans";
-import { SectionLogostrip } from "../../../components/LogostripServer";
+import { SectionCustomerLogos } from "../../../components/CustomerLogosServer";
+import { ElementSocialproofTrustpilot } from "../../../../devlink/elements/ElementSocialproofTrustpilot";
 import { SectionCta } from "../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../devlink/devlinkScope";
 
@@ -47,7 +48,7 @@ export default async function PlansPage({ params }: { params: Promise<{ locale: 
           <PricingPlans locale={locale} />
 
           {/* 3. Logo strip */}
-          <SectionLogostrip variant="Base" locale={locale} />
+          <SectionCustomerLogos locale={locale} afterContent={<ElementSocialproofTrustpilot />} />
 
           {/* 4. CTA */}
           <SectionCta

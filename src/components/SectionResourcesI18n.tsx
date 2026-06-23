@@ -18,7 +18,7 @@ import Section from "../../devlink/modules/Layout/components/Section";
 import { Background } from "../../devlink/Background";
 import { Button } from "../../devlink/elements/Button";
 import { Padding } from "../../devlink/Padding";
-import { localizedCmsHref } from "../lib/localized-paths";
+import { articleHref } from "../lib/localized-paths";
 /**
  * Props for {@link SectionResources}
  */
@@ -97,7 +97,7 @@ export function SectionResources({
                               block=""
                               button={false}
                               className="heading-size-2rem link-hover-parent"
-                              options={{ href: localizedCmsHref("/resources/blog", post.slug, post.slug_fr, locale) }}
+                              options={{ href: articleHref(post, post.collectionTwin, locale) }}
                             >
                               {post.name}
                             </Link>

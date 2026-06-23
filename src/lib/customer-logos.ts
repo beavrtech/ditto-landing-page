@@ -1,6 +1,7 @@
 /**
- * Static customer logos shown in the homepage logo section and the sticky
- * bottom bar. Images live in `public/customer-logos/`.
+ * Homepage customer logos. The live list comes from the DB (customers table /
+ * company_logos, `homepage_order`); these static arrays are the fallback used
+ * only when the DB has none yet (e.g. before the seed runs).
  *
  * - `smaller` flags visually "heavier" logos so they get the tighter caps
  *   (88×32 instead of 120×40) and don't dominate the row.
@@ -13,6 +14,19 @@ export type CustomerLogo = {
   smaller?: boolean;
   caseStudyUrl?: string;
 };
+
+/** Map a DB customer row (company_logos) to the tile shape used for rendering. */
+export function dbCustomerToLogo(row: {
+  name: string;
+  logo_url: string;
+  case_study_url?: string | null;
+}): CustomerLogo {
+  return {
+    name: row.name,
+    logo_url: row.logo_url,
+    caseStudyUrl: row.case_study_url ?? undefined,
+  };
+}
 
 /** First row — also reused by the sticky bottom bar. */
 export const CUSTOMER_LOGOS_PRIMARY: CustomerLogo[] = [
@@ -57,4 +71,10 @@ export const CUSTOMER_LOGOS_SECONDARY: CustomerLogo[] = [
   },
   { name: "France TV Publicité", logo_url: "/customer-logos/france-tv.png" },
   { name: "Malt", logo_url: "/customer-logos/malt.png" },
+];
+
+/** Fallback homepage list (primary then secondary) when the DB returns none. */
+export const CUSTOMER_LOGOS_FALLBACK: CustomerLogo[] = [
+  ...CUSTOMER_LOGOS_PRIMARY,
+  ...CUSTOMER_LOGOS_SECONDARY,
 ];

@@ -4,7 +4,8 @@ import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
 import { Breadcrumbs } from "../../../../components/BreadcrumbsWithSchema";
 import { SectionHero } from "../../../../../devlink/sections/SectionHero";
-import { SectionLogostrip } from "../../../../components/LogostripServer";
+import { SectionCustomerLogos } from "../../../../components/CustomerLogosServer";
+import { ElementSocialproofTrustpilot } from "../../../../../devlink/elements/ElementSocialproofTrustpilot";
 import { SectionFeaturesHeader } from "../../../../../devlink/sections/SectionFeaturesHeader";
 import { SectionFeature } from "../../../../../devlink/sections/SectionFeature";
 import { SectionCompliantCarousel } from "../../../../components/SectionCompliantCarouselInit";
@@ -76,7 +77,7 @@ export default async function FrameworksIso14001Page({ params }: { params: Promi
         />
 
         {/* 3. Logo strip */}
-        <SectionLogostrip locale={locale} />
+        <SectionCustomerLogos locale={locale} afterContent={<ElementSocialproofTrustpilot />} />
 
         {/* 4. Approach header */}
         <SectionFeaturesHeader

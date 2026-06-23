@@ -11,7 +11,7 @@ import posthog from "posthog-js";
 import { useState, useCallback, useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
-import { switchLocalePath, localizedHref, localizedCmsHref } from "../lib/localized-paths";
+import { switchLocalePath, localizedHref, localizedCmsHref, articleHref } from "../lib/localized-paths";
 import { useAlternateUrls } from "./AlternateUrlContext";
 import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
 import Block from "../../devlink/modules/Basic/components/Block";
@@ -512,7 +512,7 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                       block={""}
                       button={false}
                       className={"link-size-1rem"}
-                      options={{ href: localizedCmsHref("/resources/blog", post.slug, post.slug_fr, locale) }}
+                      options={{ href: articleHref(post, post.collectionTwin, locale) }}
                     >
                       {post.name}
                     </Link>

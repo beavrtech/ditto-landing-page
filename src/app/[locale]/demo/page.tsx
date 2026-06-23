@@ -4,7 +4,7 @@ import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
 import { Breadcrumbs } from "../../../components/BreadcrumbsWithSchema";
 import { SectionContactSidebar } from "../../../components/SectionContactSidebarI18n";
-import { SectionLogostrip } from "../../../components/LogostripServer";
+import { SectionCustomerLogos } from "../../../components/CustomerLogosServer";
 import { SectionNumbers } from "../../../../devlink/sections/SectionNumbers";
 import { CalBookingEmbed } from "../../../components/CalBookingEmbed";
 import { ElementSocialproofTrustpilot } from "../../../../devlink/elements/ElementSocialproofTrustpilot";
@@ -70,7 +70,7 @@ export default async function DemoPage({ params }: { params: Promise<{ locale: s
         />
 
         {/* 3. Logo strip */}
-        <SectionLogostrip variant="Base" locale={locale} />
+        <SectionCustomerLogos locale={locale} afterContent={<ElementSocialproofTrustpilot />} />
 
         {/* 4. Numbers */}
         <SectionNumbers

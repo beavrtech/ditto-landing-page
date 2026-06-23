@@ -11,7 +11,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getBlogPosts } from "../lib/cms";
-import { localizedHref, localizedCmsHref, switchLocalePath } from "../lib/localized-paths";
+import { localizedHref, articleHref, switchLocalePath } from "../lib/localized-paths";
 import { useAlternateUrls } from "./AlternateUrlContext";
 import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
 import Block from "../../devlink/modules/Basic/components/Block";
@@ -654,7 +654,7 @@ function ResourcesMegaMenu({ previewPosts }: { previewPosts: any[] }) {
                             block={""}
                             button={false}
                             className={"heading-size-1x375rem link-hover-parent text-style-2lines"}
-                            options={{ href: localizedCmsHref("/resources/blog", post.slug, post.slug_fr, locale) }}
+                            options={{ href: articleHref(post, post.collectionTwin, locale) }}
                           >
                             {post.name}
                           </Link>

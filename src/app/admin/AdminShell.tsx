@@ -15,7 +15,7 @@ const TABLES = [
   { name: "Testimonials", href: "/admin/testimonials" },
   { name: "Frameworks", href: "/admin/frameworks" },
   { name: "Industries", href: "/admin/industries" },
-  { name: "Company Logos", href: "/admin/company-logos" },
+  { name: "Customers", href: "/admin/company-logos" },
 ];
 
 function PasswordGate({ children }: { children: React.ReactNode }) {

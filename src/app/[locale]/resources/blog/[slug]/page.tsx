@@ -1,13 +1,13 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { Navbar } from "../../../../../components/NavbarServer";
 import { Footer } from "../../../../../components/FooterServer";
 import { Breadcrumbs } from "../../../../../components/BreadcrumbsWithSchema";
 import { SectionCta } from "../../../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
-import { getBlogPostBySlug, getBlogPosts, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
+import { getBlogPostBySlug, getBlogPosts, getGuideByFrameworkId, getFeaturedGuide, getCollectionSlugMap } from "../../../../../lib/cms";
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
@@ -23,17 +23,26 @@ export async function generateMetadata({
   if (!item) return {};
   const enSlug = item.slug;
   const frSlug = item.slug_fr || item.slug;
+
+  // Posts duplicating a collection item canonicalize to the collection version
+  // (single canonical URL per article); the page itself 308s there too.
+  const collectionTwin = (await getCollectionSlugMap().catch(() => new Map())).get(item.slug);
+  const enUrl = collectionTwin
+    ? `https://www.trustditto.com/en/collection/${collectionTwin.framework}/${collectionTwin.slug}`
+    : `https://www.trustditto.com/en/resources/blog/${enSlug}`;
+  const frUrl = collectionTwin
+    ? `https://www.trustditto.com/fr/collection/${collectionTwin.framework}/${collectionTwin.slug_fr || collectionTwin.slug}`
+    : `https://www.trustditto.com/fr/ressources/blog/${frSlug}`;
+
   return {
     title: item.seo_title || item.name,
     description: item.seo_meta_desc || item.description || undefined,
     alternates: {
-      canonical: locale === "fr"
-        ? `https://www.trustditto.com/fr/ressources/blog/${frSlug}`
-        : `https://www.trustditto.com/en/resources/blog/${enSlug}`,
+      canonical: locale === "fr" ? frUrl : enUrl,
       languages: {
-        "x-default": `https://www.trustditto.com/en/resources/blog/${enSlug}`,
-        en: `https://www.trustditto.com/en/resources/blog/${enSlug}`,
-        fr: `https://www.trustditto.com/fr/ressources/blog/${frSlug}`,
+        "x-default": enUrl,
+        en: enUrl,
+        fr: frUrl,
       },
     },
     openGraph: {
@@ -47,8 +56,12 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const posts = await getBlogPosts("en").catch(() => []);
+  const collectionSlugs = await getCollectionSlugMap().catch(() => new Map());
   const params: { locale: string; slug: string }[] = [];
   for (const post of posts || []) {
+    // Skip posts duplicating a collection item — those URLs 308 to the
+    // collection version at request time and must not be prerendered as pages.
+    if (collectionSlugs.has(post.slug)) continue;
     params.push({ locale: "en", slug: post.slug });
     if (post.slug_fr) params.push({ locale: "fr", slug: post.slug_fr });
   }
@@ -69,6 +82,17 @@ export default async function BlogPostPage({
 
   const item = await getBlogPostBySlug(slug, locale as "en" | "fr");
   if (!item) notFound();
+
+  // Posts duplicating a collection item permanently redirect to the collection
+  // version (single canonical URL per article).
+  const collectionTwin = (await getCollectionSlugMap().catch(() => new Map())).get(item.slug);
+  if (collectionTwin) {
+    permanentRedirect(
+      locale === "fr"
+        ? `/fr/collection/${collectionTwin.framework}/${collectionTwin.slug_fr || collectionTwin.slug}`
+        : `/en/collection/${collectionTwin.framework}/${collectionTwin.slug}`
+    );
+  }
 
   let guide = item.category_id
     ? await getGuideByFrameworkId(item.category_id, locale as "en" | "fr").catch(() => null)
