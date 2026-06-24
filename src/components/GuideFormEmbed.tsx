@@ -1,7 +1,9 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useMemo } from "react";
 import Script from "next/script";
+import { usePostHog } from "posthog-js/react";
+import { sha256 } from "../lib/hash";
 
 /**
  * Extract HubSpot form parameters from CMS embed HTML, regardless of whether
@@ -36,8 +38,9 @@ function extractHubSpotConfig(html: string) {
  * embed HTML and loading the SDK programmatically — the same pattern used by
  * the contact page (SectionContactSidebarI18n).
  */
-export default function GuideFormEmbed({ html }: { html: string }) {
-  const config = extractHubSpotConfig(html);
+export default function GuideFormEmbed({ html, guideSlug }: { html: string; guideSlug?: string }) {
+  const config = useMemo(() => extractHubSpotConfig(html), [html]);
+  const posthog = usePostHog();
   const containerRef = useRef<HTMLDivElement>(null);
   const formCreated = useRef(false);
 
@@ -75,6 +78,47 @@ export default function GuideFormEmbed({ html }: { html: string }) {
 
     return () => clearInterval(interval);
   }, [config]);
+
+  // Track HubSpot form submissions in PostHog: identify the lead by email and
+  // capture both a generic form_submitted event and a guide_downloaded event
+  // (the form gates the guide download).
+  useEffect(() => {
+    if (!config) return;
+
+    async function onMessage(event: MessageEvent) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const msg = event.data as any;
+      if (!msg || msg.type !== "hsFormCallback" || msg.eventName !== "onFormSubmitted") return;
+      // Multiple HubSpot forms can coexist on a page — only handle ours.
+      if (msg.id && config && msg.id !== config.formId) return;
+
+      // msg.data holds the submitted fields, either as [{ name, value }] or an object.
+      const fields = msg.data;
+      let email: string | undefined;
+      if (Array.isArray(fields)) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        email = fields.find((f: any) => f?.name === "email")?.value;
+      } else if (fields && typeof fields === "object") {
+        email = fields.submissionValues?.email ?? fields.email;
+      }
+
+      try {
+        // Hash the email for a non-reversible distinct_id; keep raw email as a property.
+        if (email) posthog.identify(await sha256(email.trim().toLowerCase()), { email });
+        posthog.capture("form_submitted", { form_id: msg.id });
+        posthog.capture("guide_downloaded", {
+          form_id: msg.id,
+          guide_slug: guideSlug,
+          page: window.location.pathname,
+        });
+      } catch {
+        // analytics must never break the form experience
+      }
+    }
+
+    window.addEventListener("message", onMessage);
+    return () => window.removeEventListener("message", onMessage);
+  }, [config, posthog, guideSlug]);
 
   if (!config) {
     return (
