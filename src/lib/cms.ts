@@ -413,6 +413,8 @@ export async function getNews(locale: Locale, limit?: number) {
   return data?.map((item) => ({
     ...item,
     name: localized(item, "name", locale),
+    seo_title: localized(item, "seo_title", locale),
+    seo_meta_desc: localized(item, "seo_meta_desc", locale),
     description: localized(item, "description", locale),
     body: localized(item, "body", locale),
   }));
@@ -432,6 +434,8 @@ export async function getFeaturedNews(locale: Locale) {
   return data?.map((item) => ({
     ...item,
     name: localized(item, "name", locale),
+    seo_title: localized(item, "seo_title", locale),
+    seo_meta_desc: localized(item, "seo_meta_desc", locale),
     description: localized(item, "description", locale),
     body: localized(item, "body", locale),
   }));
@@ -463,6 +467,8 @@ export async function getNewsItemBySlug(slug: string, locale: Locale) {
   return {
     ...data,
     name: localized(data, "name", locale),
+    seo_title: localized(data, "seo_title", locale),
+    seo_meta_desc: localized(data, "seo_meta_desc", locale),
     description: localized(data, "description", locale),
     body: localized(data, "body", locale),
   };
