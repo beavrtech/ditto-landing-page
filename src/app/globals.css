@@ -695,136 +695,232 @@ a {
   color: var(--_colors-•-semantic---text-primary) !important;
 }
 
-/* ── Resources mega-menu (Vanta-style buckets) ──────────────────────────────
-   Left column of buckets swaps the right content panel on hover/focus. */
-.resources-mega {
+/* ── Multi-column megamenu (Product / Solution / Resources) ──────────────────
+   Stripe/Clay-style: each Level-2 group is a column with an uppercase heading
+   and Level-3 links beneath; Resources adds a blog preview rail on the right.
+   The shrink-to-fit .dropdown surface (tan, radius, shadow) wraps this, so the
+   columns use flex (not auto-fit grid, which collapses in a shrink-wrapped box). */
+.nav-mega {
   display: flex;
   gap: 1.5rem;
-  width: min(60rem, 92vw);
+  align-items: flex-start;
+  width: 100%;
   padding: 0.5rem;
 }
 
-.resources-mega_buckets {
+.nav-mega_cols {
   display: flex;
-  flex: 0 0 17rem;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 1rem 1.5rem;
+  align-items: flex-start;
+}
+
+.nav-mega_col {
+  display: flex;
+  flex: 0 1 12rem;
+  min-width: 11rem;
   flex-direction: column;
-  gap: 0.25rem;
-  padding-right: 1rem;
-  border-right: 1px solid var(--_colors-•-semantic---border-subtle);
+  gap: 0.125rem;
 }
 
-.resources-mega_bucket {
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: 100vw;
-  background-color: transparent;
-  color: var(--_colors-•-semantic---text-primary);
-  font-family: var(--font-family--paragraph);
-  font-size: var(--_paragraphs---text-size-1rem--font-size);
+.nav-mega_heading {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  text-align: left;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--_colors-•-semantic---text-neutral);
 }
 
-.resources-mega_bucket-arrow {
-  display: inline-flex;
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 150ms ease;
+/* A group rendered across multiple columns (e.g. Solution > By industry). */
+.nav-mega_col--wide {
+  flex: 0 1 24rem;
 }
 
-.resources-mega_bucket-arrow svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.resources-mega_bucket:hover {
-  background-color: var(--_colors-•-primitives---tan--tan-light);
-}
-
-.resources-mega_bucket.is-active {
-  background-color: var(--_colors-•-semantic---text-primary);
-  color: var(--_colors-•-semantic---text-inverse);
-}
-
-.resources-mega_bucket.is-active .resources-mega_bucket-arrow {
-  opacity: 1;
-}
-
-.resources-mega_panel {
-  display: flex;
-  flex: 1 1 auto;
-  gap: 1.5rem;
-}
-
-.resources-mega_links {
+.nav-mega_links-grid {
   display: grid;
-  flex: 1 1 auto;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-  gap: 0.25rem 1rem;
-  align-content: start;
+  grid-auto-flow: column;
+  column-gap: 1rem;
 }
 
-.resources-mega_link {
+.nav-mega_link {
   /* position:relative confines the link-hover-parent ::after (absolute, inset:0)
      to the link's own box. Without it the ::after resolves against the fixed
-     dropdown wrapper and overlays the whole menu, hijacking bucket clicks. */
+     dropdown wrapper and overlays the whole menu. */
   position: relative;
   display: block;
-  padding: 0.625rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   border-radius: var(--radius--radius-default);
   text-decoration: none !important;
   transition: background-color 150ms ease;
 }
 
-.resources-mega_link:hover {
+.nav-mega_link:hover {
   background-color: var(--_colors-•-primitives---tan--tan-light);
 }
 
-.resources-mega_preview {
+.nav-mega_link-label {
+  font-size: var(--_paragraphs---text-size-1rem--font-size);
+  font-weight: 600;
+  color: var(--_colors-•-semantic---text-primary);
+}
+
+.nav-mega_link-desc {
+  margin-top: 0.125rem;
+  font-size: var(--_paragraphs---text-size-0x875rem--font-size);
+}
+
+.nav-mega_preview {
   display: flex;
   flex: 0 0 17rem;
   flex-direction: column;
   gap: 1rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid var(--_colors-•-semantic---border-subtle);
 }
 
 @media (max-width: 991px) {
-  .resources-mega {
+  .nav-mega {
     width: 100%;
+    max-width: none;
     flex-direction: column;
     gap: 0.5rem;
   }
 
-  .resources-mega_buckets {
-    flex: none;
-    padding-right: 0;
-    padding-bottom: 0.5rem;
-    border-right: none;
-    border-bottom: 1px solid var(--_colors-•-semantic---border-subtle);
-  }
-
-  .resources-mega_panel {
+  .nav-mega_cols {
     flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
   }
 
-  .resources-mega_links {
+  .nav-mega_col {
+    flex: none;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .nav-mega_links-grid {
+    grid-auto-flow: row;
+    grid-template-rows: none !important;
     grid-template-columns: 1fr;
   }
 
-  .resources-mega_preview {
+  .nav-mega_preview {
     flex: none;
+    width: 100%;
+    padding-left: 0;
+    border-left: none;
+  }
+}
+
+/* ── Stripe-style megamenu controller (MegaNav) ─────────────────────────────
+   Flush triggers (continuous hover) + one shared panel that morphs height and
+   cross-fades content as you move between menus. */
+
+/* Triggers sit flush so there is no dead zone between them. !important because
+   devlink-bundle.css loads after this file and sets a 0.25rem gap. */
+.navbar1_navigation-list {
+  grid-column-gap: 0 !important;
+  column-gap: 0 !important;
+}
+
+.meganav_item {
+  display: flex;
+  align-items: center;
+}
+
+.meganav_trigger {
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.meganav_chevron {
+  transition: transform 0.3s ease;
+}
+
+.meganav_trigger.is-active .meganav_chevron {
+  transform: rotate(-180deg);
+}
+
+.meganav_mobile {
+  display: none;
+}
+
+/* Shared desktop panel */
+.meganav_dropdown {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 4rem;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem; /* invisible bridge so trigger -> panel hover is continuous */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms;
+}
+
+.meganav_dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+/* Only the visible card is interactive — the full-width wrapper stays
+   pointer-events:none so hovering the empty left/right bands closes the menu
+   (and never blocks the page behind it). */
+.meganav_panel {
+  position: relative;
+  width: min(72rem, 92vw);
+  overflow: hidden;
+  pointer-events: auto;
+  border-radius: var(--radius--radius-default);
+  background-color: var(--_colors-•-semantic---surface-tertiary);
+  box-shadow: 0 48px 96px 0 rgba(64, 58, 45, 0.15);
+  transition: height 420ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.meganav_layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  /* opacity + translateX are set inline (direction depends on which menu is
+     active). Fast fade swaps the content in ("replaced"); the slower transform
+     then glides it into place from the travel direction ("slides after"). */
+  transition: opacity 150ms ease, transform 450ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.meganav_layer.is-active {
+  pointer-events: auto;
+}
+
+@media (max-width: 991px) {
+  /* Mobile: triggers stack and expand inline (the shared panel is hidden). */
+  .meganav_item {
+    display: block;
+  }
+
+  .meganav_dropdown {
+    display: none;
+  }
+
+  .meganav_mobile {
+    display: none;
+  }
+
+  .meganav_item.is-open .meganav_mobile {
+    display: block;
   }
 }
 
