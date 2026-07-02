@@ -719,6 +719,8 @@ export async function getCollectionItems(
         "iso-14001": "ISO 14001",
         csrd: "CSRD",
         sbti: "SBTi",
+        carbone: "Bilan Carbone",
+        qhse: "QHSE",
       };
       const fwName = fwNameMap[frameworkSlug] || frameworkSlug;
       const categorie = catTemplate.replace(/X/g, fwName);
