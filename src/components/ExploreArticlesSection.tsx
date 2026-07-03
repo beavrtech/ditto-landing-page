@@ -103,6 +103,28 @@ export const FRAMEWORK_CONFIG: Record<string, {
     sectionTitle: { en: "Explore CSRD articles", fr: "Explorez les articles CSRD" },
     categories: [],
   },
+  carbone: {
+    title: "Bilan Carbone",
+    heroTitle: { en: "Carbon Footprint Resources", fr: "Ressources Bilan Carbone" },
+    heroDesc: {
+      en: "Measure, report and reduce your carbon footprint. Resources to help you build a carbon assessment (Bilan Carbone) and decarbonize across your value chain.",
+      fr: "Mesurez, déclarez et réduisez votre empreinte carbone. Des ressources pour vous aider à réaliser votre bilan carbone et à décarboner toute votre chaîne de valeur.",
+    },
+    heroImage: "",
+    sectionTitle: { en: "Explore Carbon articles", fr: "Explorez les articles Bilan Carbone" },
+    categories: [],
+  },
+  qhse: {
+    title: "QHSE",
+    heroTitle: { en: "QHSE Resources", fr: "Ressources QHSE" },
+    heroDesc: {
+      en: "Structure your Quality, Health, Safety and Environment (QHSE) management. Resources to help you build and improve your QHSE program.",
+      fr: "Structurez votre démarche QHSE (Qualité, Hygiène, Sécurité, Environnement). Des ressources pour construire et améliorer votre système de management QHSE.",
+    },
+    heroImage: "",
+    sectionTitle: { en: "Explore QHSE articles", fr: "Explorez les articles QHSE" },
+    categories: [],
+  },
 };
 
 /**

@@ -55,11 +55,13 @@ const FRAMEWORK_TITLES: Record<string, string> = {
   vsme: "VSME",
   "iso-14001": "ISO 14001",
   csrd: "CSRD",
+  carbone: "Bilan Carbone",
+  qhse: "QHSE",
 };
 
 
 export async function generateStaticParams() {
-  const frameworks = ["ecovadis", "cdp", "csrd", "iso-14001", "vsme"];
+  const frameworks = ["ecovadis", "cdp", "csrd", "iso-14001", "vsme", "carbone", "qhse"];
   const params: { locale: string; framework: string; slug: string }[] = [];
   for (const fw of frameworks) {
     const items = await getCollectionItems(fw, "en").catch(() => []);
