@@ -8,7 +8,27 @@ import { ElementCollectionArticleLink } from "../../devlink/elements/ElementColl
 import { Label } from "../../devlink/elements/Label";
 import { Padding } from "../../devlink/Padding";
 import { getCollectionItems, getCategoryTranslations } from "../lib/cms";
-import { localizedHref } from "../lib/localized-paths";
+import { localizedHref, collectionPath } from "../lib/localized-paths";
+
+/**
+ * Resolves an article's `categorie` value to its display label.
+ *
+ * For frameworks with a curated `categories` list, `categorie` is a slug that
+ * maps to a hardcoded EN/FR heading. For legacy frameworks it is the full
+ * category string, optionally translated to FR via `category_translations`.
+ */
+export function categoryLabelFor(
+  framework: string,
+  categorie: string,
+  locale: "en" | "fr",
+  catTranslations: Record<string, string>
+): string {
+  const def = FRAMEWORK_CONFIG[framework]?.categories.find((c) => c.name === categorie);
+  if (def) {
+    return locale === "fr" ? catTranslations[def.name] || def.heading.fr : def.heading.en;
+  }
+  return locale === "fr" ? catTranslations[categorie] || categorie : categorie;
+}
 
 type CategoryDef = {
   name: string;
@@ -103,7 +123,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
     sectionTitle: { en: "Explore CSRD articles", fr: "Explorez les articles CSRD" },
     categories: [],
   },
-  carbone: {
+  carbon: {
     title: "Bilan Carbone",
     heroTitle: { en: "Carbon Footprint Resources", fr: "Ressources Bilan Carbone" },
     heroDesc: {
@@ -112,7 +132,15 @@ export const FRAMEWORK_CONFIG: Record<string, {
     },
     heroImage: "",
     sectionTitle: { en: "Explore Carbon articles", fr: "Explorez les articles Bilan Carbone" },
-    categories: [],
+    // Category `name` is a stable slug tagged on each article's `categorie`
+    // field in the CMS; the EN/FR headings are hardcoded here.
+    categories: [
+      { name: "understand", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_icon-4.png", heading: { en: "Understanding carbon accounting", fr: "Comprendre le bilan carbone" } },
+      { name: "measure", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152c34ca7caf3a490b8_icon-1.png", heading: { en: "Measuring your carbon footprint", fr: "Mesurer son empreinte carbone" } },
+      { name: "reduce", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152cad37b73c312337f_icon-12.png", heading: { en: "Reducing emissions & carbon neutrality", fr: "Réduction des émissions et neutralité carbone" } },
+      { name: "costs-tools", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152cf1d54d25b2a5ff2_icon-2.png", heading: { en: "Costs, tools & getting started", fr: "Coûts, outils et démarrage du bilan carbone" } },
+      { name: "other-frameworks", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152405312512f5d8b66_icon-5.png", heading: { en: "Carbon accounting & other frameworks", fr: "Bilan carbone et autres référentiels (EcoVadis, CDP)" } },
+    ],
   },
   qhse: {
     title: "QHSE",
@@ -140,8 +168,6 @@ export async function ExploreArticlesSection({
 }) {
   const config = FRAMEWORK_CONFIG[framework];
   if (!config) return null;
-
-  const prefix = `/${locale}`;
 
   const [items, catTranslations] = await Promise.all([
     getCollectionItems(framework, locale as "en" | "fr"),
@@ -213,7 +239,7 @@ export async function ExploreArticlesSection({
                     const slug = locale === "fr" && item.slug_fr ? item.slug_fr : item.slug;
                     const href = item._type === "guide"
                       ? localizedHref(`/resources/guides/${slug}`, locale)
-                      : `${prefix}/collection/${framework}/${slug}`;
+                      : collectionPath(framework, locale, slug);
                     return (
                       <ElementCollectionArticleLink
                         key={item.slug}

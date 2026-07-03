@@ -9,10 +9,10 @@ import { Breadcrumbs } from "../../../../../components/BreadcrumbsWithSchema";
 import { SectionCta } from "../../../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
 import { getCollectionItemBySlug, getCollectionItems, getCategoryTranslations, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
-import { localizedHref } from "../../../../../lib/localized-paths";
+import { localizedHref, collectionPath } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
-import { ExploreArticlesSection } from "../../../../../components/ExploreArticlesSection";
+import { ExploreArticlesSection, categoryLabelFor } from "../../../../../components/ExploreArticlesSection";
 
 export async function generateMetadata({
   params,
@@ -26,8 +26,8 @@ export async function generateMetadata({
   const frSlug = item.slug_fr || item.slug;
 
   // Collection is the canonical URL for articles (blog twins redirect here).
-  const enUrl = `https://www.trustditto.com/en/collection/${framework}/${enSlug}`;
-  const frUrl = `https://www.trustditto.com/fr/collection/${framework}/${frSlug}`;
+  const enUrl = `https://www.trustditto.com${collectionPath(framework, "en", enSlug)}`;
+  const frUrl = `https://www.trustditto.com${collectionPath(framework, "fr", frSlug)}`;
 
   return {
     title: item.seo_title || item.name,
@@ -44,7 +44,7 @@ export async function generateMetadata({
       title: item.seo_title || item.name,
       description: item.seo_meta_desc || item.description || undefined,
       ...(item.banner_url && { images: [{ url: item.banner_url }] }),
-      url: `https://www.trustditto.com/${locale}/collection/${framework}/${slug}`,
+      url: `https://www.trustditto.com${collectionPath(framework, locale, slug)}`,
     },
   };
 }
@@ -55,13 +55,13 @@ const FRAMEWORK_TITLES: Record<string, string> = {
   vsme: "VSME",
   "iso-14001": "ISO 14001",
   csrd: "CSRD",
-  carbone: "Bilan Carbone",
+  carbon: "Bilan Carbone",
   qhse: "QHSE",
 };
 
 
 export async function generateStaticParams() {
-  const frameworks = ["ecovadis", "cdp", "csrd", "iso-14001", "vsme", "carbone", "qhse"];
+  const frameworks = ["ecovadis", "cdp", "csrd", "iso-14001", "vsme", "carbon", "qhse"];
   const params: { locale: string; framework: string; slug: string }[] = [];
   for (const fw of frameworks) {
     const items = await getCollectionItems(fw, "en").catch(() => []);
@@ -103,7 +103,7 @@ export default async function CollectionArticlePage({
   }
 
   const categoryLabel = item.categorie
-    ? (locale === "fr" ? catTranslations[item.categorie] || item.categorie : item.categorie)
+    ? categoryLabelFor(framework, item.categorie, locale as "en" | "fr", catTranslations)
     : null;
 
   // Inject heading IDs into body for TOC links
@@ -114,7 +114,7 @@ export default async function CollectionArticlePage({
       <JsonLd data={articleJsonLd({
         title: item.name,
         description: item.description,
-        url: `https://www.trustditto.com/${locale}/collection/${framework}/${slug}`,
+        url: `https://www.trustditto.com${collectionPath(framework, locale, slug)}`,
         imageUrl: item.banner_url,
         datePublished: item.date_de_publication,
         authorName: item.author?.name,
@@ -129,10 +129,10 @@ export default async function CollectionArticlePage({
           item1Item1Link={{ href: localizedHref("/resources", locale) }}
           item2Item2Visibility={true}
           item2Item2Text={fwTitle}
-          item2Item2Link={{ href: `${prefix}/collection/${framework}` }}
+          item2Item2Link={{ href: collectionPath(framework, locale) }}
           item3Item3Visibility={true}
           item3Item3Text={item.name}
-          item3Item3Link={{ href: `${prefix}/collection/${framework}/${slug}` }}
+          item3Item3Link={{ href: collectionPath(framework, locale, slug) }}
         />
 
         {/* Hero */}

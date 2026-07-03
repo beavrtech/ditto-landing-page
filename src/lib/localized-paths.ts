@@ -66,6 +66,26 @@ export function localizedHref(path: string, locale: string): string {
 }
 
 /**
+ * Public URL for a collection framework landing page or item.
+ *
+ * Carbon is hosted at the clean top-level path /[locale]/carbon (and
+ * /[locale]/carbon/[slug] for articles); every other framework lives under
+ * /[locale]/collection/[framework]. Centralized here so breadcrumbs, article
+ * links and canonical metadata all emit the same canonical URL.
+ */
+export function collectionPath(
+  framework: string,
+  locale: string,
+  slug?: string
+): string {
+  const base =
+    framework === "carbon"
+      ? `/${locale}/carbon`
+      : `/${locale}/collection/${framework}`;
+  return slug ? `${base}/${slug}` : base;
+}
+
+/**
  * For CMS content with separate EN/FR slugs.
  * Returns the full localized URL using the correct slug for the locale.
  *
@@ -96,7 +116,7 @@ export function articleHref(
 ): string {
   if (collectionTwin) {
     const slug = locale === "fr" && collectionTwin.slug_fr ? collectionTwin.slug_fr : collectionTwin.slug;
-    return `/${locale}/collection/${collectionTwin.framework}/${slug}`;
+    return collectionPath(collectionTwin.framework, locale, slug);
   }
   return localizedCmsHref("/resources/blog", post.slug, post.slug_fr, locale);
 }
@@ -152,6 +172,12 @@ export function switchLocalePath(
   if (canonicalPath.startsWith("/collection/")) {
     const framework = canonicalPath.split("/")[2];
     return `/${targetLocale}/collection/${framework}`;
+  }
+
+  // Carbon collection lives at the top-level /carbon path. Item slugs are
+  // locale-specific, so fall back to the /carbon landing when switching locale.
+  if (canonicalPath === "/carbon" || canonicalPath.startsWith("/carbon/")) {
+    return `/${targetLocale}/carbon`;
   }
 
   // CMS detail pages have locale-specific slugs that can't be mapped

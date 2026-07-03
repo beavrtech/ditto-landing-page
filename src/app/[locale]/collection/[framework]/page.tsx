@@ -8,7 +8,7 @@ import { Breadcrumbs } from "../../../../components/BreadcrumbsWithSchema";
 import { SectionCta } from "../../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
 import { Label } from "../../../../../devlink/elements/Label";
-import { localizedHref } from "../../../../lib/localized-paths";
+import { localizedHref, collectionPath } from "../../../../lib/localized-paths";
 import { ExploreArticlesSection, FRAMEWORK_CONFIG } from "../../../../components/ExploreArticlesSection";
 
 const VALID_FRAMEWORKS = Object.keys(FRAMEWORK_CONFIG);
@@ -26,16 +26,16 @@ export async function generateMetadata({
   const lang = locale === "fr" ? "fr" : "en";
   const title = `${config.heroTitle[lang]} | Ditto`;
   const description = config.heroDesc[lang];
-  const path = `/collection/${framework}`;
+  const origin = "https://www.trustditto.com";
   return {
     title,
     description,
     alternates: {
-      canonical: `https://www.trustditto.com/${locale}${path}`,
+      canonical: `${origin}${collectionPath(framework, locale)}`,
       languages: {
-        "x-default": `https://www.trustditto.com/en${path}`,
-        en: `https://www.trustditto.com/en${path}`,
-        fr: `https://www.trustditto.com/fr${path}`,
+        "x-default": `${origin}${collectionPath(framework, "en")}`,
+        en: `${origin}${collectionPath(framework, "en")}`,
+        fr: `${origin}${collectionPath(framework, "fr")}`,
       },
     },
     openGraph: {
@@ -86,7 +86,7 @@ export default async function CollectionPage({
           item1Item1Link={{ href: localizedHref("/resources", locale) }}
           item2Item2Visibility={true}
           item2Item2Text={config.title}
-          item2Item2Link={{ href: `${prefix}/collection/${framework}` }}
+          item2Item2Link={{ href: collectionPath(framework, locale) }}
           item3Item3Visibility={false}
         />
 
