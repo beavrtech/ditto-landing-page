@@ -452,6 +452,14 @@ export function NavbarClient({ previewPosts: serverPosts, alternateUrls }: Navba
                     variant={"Secondary"}
                   />
                 </Block>
+                <Block className={"navbar_button navbar_button--login navbar_button--login-old"} tag={"div"}>
+                  <Button
+                    arrow={false}
+                    link={{ href: "https://cloud.trustditto.com/o", target: "_blank" }}
+                    text={t("loginOld")}
+                    variant={"Secondary"}
+                  />
+                </Block>
                 <Block className={"navbar_button"} tag={"div"}>
                   <div data-cta-placement="navbar">
                     <Button
