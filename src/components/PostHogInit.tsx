@@ -20,7 +20,7 @@ export function PostHogInit() {
 
     posthog.init(token, {
       api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
-      defaults: "2026-01-30",
+      defaults: '2026-05-30',
       persistence: "memory",
     });
 

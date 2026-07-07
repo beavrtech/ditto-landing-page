@@ -8,7 +8,7 @@ const FRAMEWORKS: { key: string; path: string }[] = [
   { key: "ecovadis", path: "/frameworks/ecovadis" },
   { key: "cdp", path: "/frameworks/cdp" },
   { key: "csrd", path: "/frameworks/csrd" },
-  { key: "carbon", path: FRAMEWORKS_INDEX },
+  { key: "carbon", path: "/frameworks/carbon" },
   { key: "iso", path: "/frameworks/iso-14001" },
   { key: "iso50001", path: FRAMEWORKS_INDEX },
 ];
