@@ -874,8 +874,8 @@ a {
 }
 
 /* Customer-quote card (Product) — yellow card with face + attribution.
-   Sized to its content (not stretched to the panel) and vertically centered
-   in the featured area, so there's no empty gap between quote and author. */
+   Sized to its content (not stretched to the panel) and top-aligned in the
+   featured area, so there's no empty gap between quote and author. */
 .nav-mega_quote {
   position: relative;
   display: flex;
@@ -889,7 +889,7 @@ a {
 }
 
 .nav-mega_featured--fill:has(.nav-mega_quote) {
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .nav-mega_quote-text {
