@@ -223,6 +223,101 @@ function rewriteLegacyLinks(html: string, locale: string): string {
 }
 
 /**
+ * Small "opens in a new tab" marker appended after external link text.
+ * Mirrors lucide-react's ArrowUpRight icon (already used elsewhere on the
+ * site via lucide-react) so it matches the design system's icon style.
+ */
+const EXTERNAL_LINK_ICON_SVG = `<svg class="richtext-external-icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>`;
+
+// Only the apex domain counts as "internal" — subdomains like
+// esg.trustditto.com are separate products and are already treated as
+// external, new-tab destinations elsewhere on the site (see NavbarI18n).
+const INTERNAL_HOST_RE = /^(?:www\.)?trustditto\.com$/i;
+
+/**
+ * Decide whether a CMS-authored href points off-site. Relative links
+ * (starting with "/", "#", or with no protocol at all) and same-domain
+ * absolute links are internal; everything else is external.
+ */
+function isExternalHref(href: string): boolean {
+  const trimmed = href.trim();
+  if (!trimmed) return false;
+  if (trimmed.startsWith("/") || trimmed.startsWith("#")) return false;
+
+  if (trimmed.startsWith("//")) {
+    try {
+      return !INTERNAL_HOST_RE.test(new URL(`https:${trimmed}`).hostname);
+    } catch {
+      return false;
+    }
+  }
+
+  const hasProtocol = /^[a-z][a-z0-9+.-]*:/i.test(trimmed);
+  if (!hasProtocol) return false; // no protocol -> treat as internal
+  if (/^(mailto|tel):/i.test(trimmed)) return false; // not a site navigation
+
+  try {
+    return !INTERNAL_HOST_RE.test(new URL(trimmed).hostname);
+  } catch {
+    // Unparseable but protocol-bearing URL — err on the side of treating it
+    // as an outbound link per "anything else = external".
+    return true;
+  }
+}
+
+function mergeClass(attrs: string, extraClass: string): string {
+  const doubleQuoted = attrs.match(/\sclass\s*=\s*"([^"]*)"/i);
+  if (doubleQuoted) {
+    return attrs.replace(doubleQuoted[0], ` class="${doubleQuoted[1]} ${extraClass}"`);
+  }
+  const singleQuoted = attrs.match(/\sclass\s*=\s*'([^']*)'/i);
+  if (singleQuoted) {
+    return attrs.replace(singleQuoted[0], ` class="${singleQuoted[1]} ${extraClass}"`);
+  }
+  return `${attrs} class="${extraClass}"`;
+}
+
+function setAttr(attrs: string, name: string, value: string): string {
+  const stripped = attrs.replace(new RegExp(`\\s${name}\\s*=\\s*("[^"]*"|'[^']*')`, "gi"), "");
+  return `${stripped} ${name}="${value}"`;
+}
+
+/**
+ * Mark every <a href="..."> as internal or external and set target/rel
+ * accordingly, computed solely from the href — never from any
+ * content-supplied target/rel, which are stripped and ignored. This is
+ * necessary because CMS-authored target/rel attributes aren't reliably
+ * preserved through the pipeline, and content shouldn't be able to opt out
+ * of this behavior anyway.
+ *
+ * External links open in a new tab (target="_blank" rel="noopener
+ * noreferrer") and get a small "opens in new tab" ↗ icon after the link
+ * text. Internal links are left completely untouched.
+ */
+function markExternalLinks(html: string): string {
+  return html.replace(/<a\b([^>]*)>([\s\S]*?)<\/a>/gi, (full, rawAttrs: string, inner: string) => {
+    const hrefMatch = rawAttrs.match(/\shref\s*=\s*("([^"]*)"|'([^']*)')/i);
+    const href = hrefMatch ? hrefMatch[2] ?? hrefMatch[3] ?? "" : "";
+    if (!href || !isExternalHref(href)) return full;
+
+    let attrs = rawAttrs;
+    attrs = setAttr(attrs, "target", "_blank");
+    attrs = setAttr(attrs, "rel", "noopener noreferrer");
+    attrs = mergeClass(attrs, "richtext-external-link");
+
+    // Button-styled links (e.g. the CTA embed) already have a strong visual
+    // affordance of their own — keep the target/rel fix but skip the inline
+    // icon so it doesn't get squeezed into the button layout.
+    const classMatch = rawAttrs.match(/\sclass\s*=\s*("([^"]*)"|'([^']*)')/i);
+    const classValue = classMatch ? classMatch[2] ?? classMatch[3] ?? "" : "";
+    const isButtonStyled = /\bbutton\b/i.test(classValue);
+
+    const content = isButtonStyled ? inner : `${inner}${EXTERNAL_LINK_ICON_SVG}`;
+    return `<a${attrs}>${content}</a>`;
+  });
+}
+
+/**
  * Apply all rich-text transformations to CMS body HTML.
  */
 export function transformRichText(html: string, locale: string = "en"): string {
@@ -235,5 +330,6 @@ export function transformRichText(html: string, locale: string = "en"): string {
   result = transformTables(result);
   result = relativizeLinks(result);
   result = rewriteLegacyLinks(result, locale);
+  result = markExternalLinks(result);
   return result;
 }
