@@ -47,6 +47,18 @@ a {
   border-left-color: var(--_colors-\•-semantic---text-primary, #130e30);
 }
 
+/* External links in CMS rich-text (see src/lib/rich-text.ts markExternalLinks):
+   a slightly lighter underline plus a small "opens in a new tab" arrow after
+   the link text, distinguishing them from same-tab internal links. */
+.text-rich-text a.richtext-external-link {
+  text-decoration-color: var(--_colors-\•-semantic---text-neutral, #6b7280);
+}
+.text-rich-text a.richtext-external-link .richtext-external-icon {
+  margin-left: 0.15em;
+  vertical-align: -0.05em;
+  opacity: 0.7;
+}
+
 /* CMS rich-text table styles (blog-table / table-wrap from the original design) */
 .table-wrap {
   overflow-x: auto;
