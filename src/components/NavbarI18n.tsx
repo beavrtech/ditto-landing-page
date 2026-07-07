@@ -10,8 +10,8 @@
 import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { getBlogPosts, getCustomerStories } from "../lib/cms";
-import { localizedHref, localizedCmsHref, switchLocalePath, collectionPath } from "../lib/localized-paths";
+import { getBlogPosts } from "../lib/cms";
+import { localizedHref, switchLocalePath, collectionPath } from "../lib/localized-paths";
 import { CUSTOMER_INDUSTRIES, industryName } from "../lib/customer-industries";
 import { MegaNav, type MegaMenu } from "./MegaNav";
 import { useAlternateUrls } from "./AlternateUrlContext";
@@ -37,7 +37,6 @@ import { Button } from "../../devlink/elements/Button";
  */
 export type NavbarProps = {
   previewPosts?: any[];
-  customerStories?: any[];
   alternateUrls?: Record<string, string>;
 };
 
@@ -51,7 +50,6 @@ export type NavbarProps = {
  */
 export function NavbarClient({
   previewPosts: serverPosts,
-  customerStories: serverStories,
   alternateUrls,
 }: NavbarProps) {
   const t = useTranslations("nav");
@@ -61,7 +59,6 @@ export function NavbarClient({
   const resolvedAlternateUrls = alternateUrls || contextUrls;
   const p = `/${locale}`;
   const [clientPosts, setClientPosts] = useState<any[]>(serverPosts || []);
-  const [clientStories, setClientStories] = useState<any[]>(serverStories || []);
 
   useEffect(() => {
     if (serverPosts) return;
@@ -70,15 +67,7 @@ export function NavbarClient({
       .catch(() => {});
   }, [locale, serverPosts]);
 
-  useEffect(() => {
-    if (serverStories) return;
-    getCustomerStories(locale as "en" | "fr")
-      .then((data) => setClientStories((data || []).slice(0, 5)))
-      .catch(() => {});
-  }, [locale, serverStories]);
-
   const previewPosts = serverPosts || clientPosts;
-  const customerStories = serverStories || clientStories;
 
   // Webinars are hosted externally on Livestorm; keep the locale-aware link.
   const webinarsHref =
@@ -110,12 +99,23 @@ export function NavbarClient({
       id: "product",
       label: t("product"),
       featured: {
-        kind: "promo",
-        promo: {
-          eyebrow: t("deadlineWatch"),
-          title: t("deadlineTitle"),
-          ctaLabel: t("startEarly"),
-          ctaHref: localizedHref("/frameworks/cdp", locale),
+        kind: "quote",
+        quote: {
+          quote:
+            locale === "fr"
+              ? "Ditto est l'outil tout-en-un qui nous permet de transformer notre conformité RSE en avantage concurrentiel."
+              : "Ditto is the all-in-one tool that enables us to turn our CSR compliance into a competitive advantage.",
+          name: "Sophie Wardan",
+          role:
+            locale === "fr"
+              ? "Responsable RSE Groupe, Superga Beauty"
+              : "Group CSR manager, Superga Beauty",
+          imageUrl:
+            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/testimonials/superga-beauty/profile_picture_url.jpeg",
+          href:
+            locale === "fr"
+              ? `${p}/cas-clients/superga-beauty-leadership-durable`
+              : `${p}/customer-stories/superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership`,
         },
       },
       groups: [
@@ -158,24 +158,6 @@ export function NavbarClient({
       ],
     },
     {
-      id: "customers",
-      label: t("customers"),
-      groups: [
-        {
-          id: "customerStories",
-          heading: t("customerStories"),
-          links: [
-            ...customerStories.slice(0, 5).map((story: any) => ({
-              // Show the company name (entreprise), not the long article title.
-              label: ((story.entreprise && story.entreprise.trim()) || story.name) as string,
-              href: localizedCmsHref("/customer-stories", story.slug, story.slug_fr, locale),
-            })),
-            { label: t("allStories"), href: localizedHref("/customer-stories", locale) },
-          ],
-        },
-      ],
-    },
-    {
       id: "resources",
       label: t("resources"),
       featured: { kind: "article", title: t("featuredReading") },
@@ -201,6 +183,14 @@ export function NavbarClient({
             { label: t("guides"), href: localizedHref("/resources/guides", locale) },
             { label: t("webinars"), href: webinarsHref, target: "_blank" },
             { label: t("news"), href: localizedHref("/resources/news", locale) },
+          ],
+        },
+        {
+          id: "company",
+          heading: t("company"),
+          links: [
+            { label: t("manifesto"), href: localizedHref("/manifesto", locale) },
+            { label: t("careers"), href: localizedHref("/careers", locale) },
           ],
         },
       ],
@@ -271,6 +261,12 @@ export function NavbarClient({
               </Link>
               <Block className={"navbar1_navigation-list"} tag={"div"}>
                 <MegaNav menus={megaMenus} previewPosts={previewPosts} locale={locale} />
+                <NavbarLink
+                  className={"navbar1_link"}
+                  options={{ href: localizedHref("/customer-stories", locale) }}
+                >
+                  {t("customers")}
+                </NavbarLink>
                 <NavbarLink
                   className={"navbar1_link"}
                   options={{ href: localizedHref("/plans", locale) }}

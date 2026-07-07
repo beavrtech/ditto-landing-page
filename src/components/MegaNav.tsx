@@ -19,13 +19,16 @@ export type MegaLink = { label: string; href: string; target?: "_blank" | "_self
 export type MegaGroup = { id: string; heading: string; links: MegaLink[]; columns?: number; variant?: "icon" };
 /** Yellow "deadline watch" promo card (Product), rendered inside the featured block. */
 export type MegaPromo = { eyebrow: string; title: string; ctaLabel: string; ctaHref: string };
+/** Customer-quote card (Product) — face + quote + attribution, links to the story. */
+export type MegaQuote = { quote: string; name: string; role: string; imageUrl: string; href: string };
 /**
  * The right-hand featured block. `title` is the optional uppercase heading above
- * the content; `kind` selects what fills it — a yellow promo card (Product) or
- * the latest blog post as an article card (Resources).
+ * the content; `kind` selects what fills it — a yellow promo card, a customer
+ * quote card (Product), or the latest blog post as an article card (Resources).
  */
 export type MegaFeatured =
   | { kind: "promo"; title?: string; promo: MegaPromo }
+  | { kind: "quote"; title?: string; quote: MegaQuote }
   | { kind: "article"; title?: string };
 export type MegaMenu = {
   id: string;
@@ -124,6 +127,26 @@ function PromoCard({ promo }: { promo: MegaPromo }) {
   );
 }
 
+/** Customer-quote card (Product) — replaces the promo: face + quote + attribution. */
+function QuoteCard({ quote }: { quote: MegaQuote }) {
+  return (
+    <Link block={""} button={false} className={"nav-mega_quote"} options={{ href: quote.href }}>
+      <span className={"nav-mega_quote-text"}>{`“${quote.quote}”`}</span>
+      <span className={"nav-mega_quote-author"}>
+        <span
+          className={"nav-mega_quote-avatar"}
+          style={{ backgroundImage: `url('${quote.imageUrl}')` }}
+          aria-hidden={"true"}
+        />
+        <span className={"nav-mega_quote-meta"}>
+          <span className={"nav-mega_quote-name"}>{quote.name}</span>
+          <span className={"nav-mega_quote-role"}>{quote.role}</span>
+        </span>
+      </span>
+    </Link>
+  );
+}
+
 /** Featured article card built from the latest blog post (Resources). */
 function FeaturedArticle({ post, locale }: { post: any; locale: string }) {
   return (
@@ -169,9 +192,11 @@ function MegaContent({
       </div>
 
       {featured ? (
-        <FeaturedBlock title={featured.title} variant={featured.kind === "promo" ? "fill" : "fixed"}>
+        <FeaturedBlock title={featured.title} variant={featured.kind === "article" ? "fixed" : "fill"}>
           {featured.kind === "promo" ? (
             <PromoCard promo={featured.promo} />
+          ) : featured.kind === "quote" ? (
+            <QuoteCard quote={featured.quote} />
           ) : post ? (
             <FeaturedArticle post={post} locale={locale} />
           ) : null}

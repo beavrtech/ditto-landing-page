@@ -873,6 +873,61 @@ a {
   background-color: #1d1844;
 }
 
+/* Customer-quote card (Product) — yellow card with face + attribution. */
+.nav-mega_quote {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 1.375rem; /* 22px */
+  background-color: var(--_colors-•-primitives---brand--yellow);
+  text-decoration: none !important;
+}
+
+.nav-mega_quote-text {
+  font-family: var(--font-family--headings);
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.25;
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+.nav-mega_quote-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-mega_quote-avatar {
+  flex: none;
+  width: 2.75rem; /* 44px */
+  height: 2.75rem;
+  border-radius: 999px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(19, 14, 48, 0.1);
+}
+
+.nav-mega_quote-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.nav-mega_quote-name {
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+.nav-mega_quote-role {
+  font-size: 0.8125rem; /* 13px */
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+  opacity: 0.7;
+}
+
 /* Featured article card (Resources) — image, tag, serif title, description;
    the whole card turns yellow on hover (matches the mockup). */
 .nav-mega_article {
