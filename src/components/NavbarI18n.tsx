@@ -158,9 +158,8 @@ export function NavbarClient({
       ],
     },
     {
-      id: "resources",
-      label: t("resources"),
-      featured: { kind: "article", title: t("featuredReading") },
+      id: "customers",
+      label: t("customers"),
       groups: [
         {
           id: "customerStories",
@@ -174,6 +173,13 @@ export function NavbarClient({
             { label: t("allStories"), href: localizedHref("/customer-stories", locale) },
           ],
         },
+      ],
+    },
+    {
+      id: "resources",
+      label: t("resources"),
+      featured: { kind: "article", title: t("featuredReading") },
+      groups: [
         {
           id: "perTopic",
           heading: t("perTopic"),
