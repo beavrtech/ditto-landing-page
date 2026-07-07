@@ -692,151 +692,532 @@ a {
   }
 }
 
-/* Log in button: neutral outlined pill — subtle border + primary (navy) text
-   on a transparent background, filling to a light tan surface on hover.
-   Uses semantic design tokens (overrides the Secondary variant's yellow fill). */
+/* Navbar CTAs (desktop) — matched to the mockup. The mobile primary button
+   (.navbar1_mobile_button) stays navy per the mobile mockup, so these override
+   only the desktop .navbar_button pair. !important because devlink-bundle.css
+   loads after this file. */
+
+/* Log in (Secondary): plain navy text, no border/fill, with a subtle navy-tint
+   wash on hover. */
 .navbar_button--login .button {
-  border-color: var(--_colors-•-semantic---border-medium) !important;
+  border-color: transparent !important;
   background-color: transparent !important;
-  color: var(--_colors-•-semantic---text-primary) !important;
+  color: var(--_colors-•-primitives---neutral--neutral-navy) !important;
+  font-weight: 500;
 }
 
 .navbar_button--login .button:hover {
-  border-color: var(--_colors-•-semantic---border-strong) !important;
-  background-color: var(--_colors-•-primitives---tan--tan-light) !important;
-  color: var(--_colors-•-semantic---text-primary) !important;
+  border-color: transparent !important;
+  background-color: rgba(19, 14, 48, 0.06) !important;
+  color: var(--_colors-•-primitives---neutral--neutral-navy) !important;
 }
 
-/* ── Resources mega-menu (Vanta-style buckets) ──────────────────────────────
-   Left column of buckets swaps the right content panel on hover/focus. */
-.resources-mega {
+/* Let's talk (Primary): yellow pill with a navy label, darkening on hover. */
+.navbar_button:not(.navbar_button--login) .button {
+  border-color: var(--_colors-•-primitives---brand--yellow) !important;
+  background-color: var(--_colors-•-primitives---brand--yellow) !important;
+  color: var(--_colors-•-primitives---neutral--neutral-navy) !important;
+  font-weight: 500;
+}
+
+.navbar_button:not(.navbar_button--login) .button:hover {
+  border-color: #ffd400 !important;
+  background-color: #ffd400 !important;
+  color: var(--_colors-•-primitives---neutral--neutral-navy) !important;
+}
+
+/* ── Multi-column megamenu (Product / Solution / Resources) ──────────────────
+   Stripe/Clay-style: each Level-2 group is a column with an uppercase heading
+   and Level-3 links beneath; Resources adds a blog preview rail on the right.
+   The shrink-to-fit .dropdown surface (tan, radius, shadow) wraps this, so the
+   columns use flex (not auto-fit grid, which collapses in a shrink-wrapped box). */
+.nav-mega {
   display: flex;
   gap: 1.5rem;
-  width: min(60rem, 92vw);
-  padding: 0.5rem;
-}
-
-.resources-mega_buckets {
-  display: flex;
-  flex: 0 0 17rem;
-  flex-direction: column;
-  gap: 0.25rem;
-  padding-right: 1rem;
-  border-right: 1px solid var(--_colors-•-semantic---border-subtle);
-}
-
-.resources-mega_bucket {
-  display: flex;
+  align-items: stretch;
   width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.75rem 1rem;
-  border: none;
-  border-radius: 100vw;
-  background-color: transparent;
-  color: var(--_colors-•-semantic---text-primary);
-  font-family: var(--font-family--paragraph);
-  font-size: var(--_paragraphs---text-size-1rem--font-size);
-  font-weight: 600;
-  text-align: left;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease;
+  padding: 2.25rem 2.5rem; /* 36px / 40px — matches the mockup panel padding */
 }
 
-.resources-mega_bucket-arrow {
-  display: inline-flex;
-  width: 16px;
-  height: 16px;
-  flex: 0 0 16px;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 150ms ease;
-}
-
-.resources-mega_bucket-arrow svg {
-  display: block;
-  width: 16px;
-  height: 16px;
-}
-
-.resources-mega_bucket:hover {
-  background-color: var(--_colors-•-primitives---tan--tan-light);
-}
-
-.resources-mega_bucket.is-active {
-  background-color: var(--_colors-•-semantic---text-primary);
-  color: var(--_colors-•-semantic---text-inverse);
-}
-
-.resources-mega_bucket.is-active .resources-mega_bucket-arrow {
-  opacity: 1;
-}
-
-.resources-mega_panel {
+/* The stack of Level-2 columns; sized to content so the featured block can take
+   the remaining width (Product) or sit right-aligned after a gap (Resources). */
+.nav-mega_cols {
   display: flex;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   gap: 1.5rem;
+  align-items: flex-start;
 }
 
-.resources-mega_links {
+.nav-mega_col {
+  display: flex;
+  flex-direction: column;
+  min-width: 10rem;
+}
+
+.nav-mega_heading {
+  margin-bottom: 1rem;
+  font-size: 0.6875rem; /* 11px */
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a8896;
+}
+
+.nav-mega_links {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* A group laid out across multiple columns (e.g. Solution > By industry). */
+.nav-mega_links--grid {
   display: grid;
-  flex: 1 1 auto;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-  gap: 0.25rem 1rem;
-  align-content: start;
+  grid-auto-flow: column;
+  column-gap: 1.5rem;
 }
 
-.resources-mega_link {
+.nav-mega_link {
   /* position:relative confines the link-hover-parent ::after (absolute, inset:0)
      to the link's own box. Without it the ::after resolves against the fixed
-     dropdown wrapper and overlays the whole menu, hijacking bucket clicks. */
+     dropdown wrapper and overlays the whole menu. */
   position: relative;
   display: block;
-  padding: 0.625rem 0.75rem;
-  border-radius: var(--radius--radius-default);
+  padding: 0.75rem;
+  border-radius: 0.75rem;
   text-decoration: none !important;
   transition: background-color 150ms ease;
 }
 
-.resources-mega_link:hover {
-  background-color: var(--_colors-•-primitives---tan--tan-light);
+.nav-mega_link:hover {
+  background-color: #eceee0;
 }
 
-.resources-mega_preview {
+.nav-mega_link-label {
+  display: block;
+  white-space: nowrap; /* keep menu labels on a single line (matches the mockup) */
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+/* Industry links (Solution) — label preceded by a yellow icon chip. */
+.nav-mega_link--icon {
   display: flex;
-  flex: 0 0 17rem;
+  align-items: center;
+  gap: 0.8125rem;
+  padding: 0.625rem;
+}
+
+.nav-mega_icon {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.6875rem;
+  background-color: var(--_colors-•-primitives---brand--yellow);
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+/* ── Featured block (reused by Product + Resources) ─────────────────────────── */
+.nav-mega_featured {
+  display: flex;
   flex-direction: column;
-  gap: 1rem;
+}
+
+/* Product: block grows to fill the panel; the promo card stretches into it. */
+.nav-mega_featured--fill {
+  flex: 1 1 auto;
+  min-width: 16rem;
+}
+
+/* Resources: a fixed-width card pushed to the right edge, after a gap. */
+.nav-mega_featured--fixed {
+  flex: 0 0 20rem;
+  margin-left: auto;
+}
+
+/* Yellow "deadline watch" promo card (Product). */
+.nav-mega_promo {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1.5rem;
+  border-radius: 1.375rem; /* 22px */
+  background-color: var(--_colors-•-primitives---brand--yellow);
+  text-decoration: none !important;
+}
+
+.nav-mega_promo-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+.nav-mega_promo-title {
+  font-family: var(--font-family--headings);
+  font-size: 1.3125rem; /* 21px */
+  line-height: 1.18;
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+.nav-mega_promo-cta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  margin-top: auto;
+  padding: 0.6875rem 1.25rem;
+  border-radius: 999px;
+  background-color: var(--_colors-•-primitives---neutral--neutral-navy);
+  color: var(--_colors-•-primitives---tan--tan);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.nav-mega_promo:hover .nav-mega_promo-cta {
+  background-color: #1d1844;
+}
+
+/* Customer-quote card (Product) — yellow card with face + attribution.
+   Sized to its content (not stretched to the panel) and top-aligned in the
+   featured area, so there's no empty gap between quote and author. */
+.nav-mega_quote {
+  position: relative;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 1.375rem; /* 22px */
+  background-color: var(--_colors-•-primitives---brand--yellow);
+  text-decoration: none !important;
+}
+
+.nav-mega_featured--fill:has(.nav-mega_quote) {
+  justify-content: flex-start;
+}
+
+.nav-mega_quote-text {
+  font-family: var(--font-family--headings);
+  font-size: 1.25rem; /* 20px */
+  line-height: 1.25;
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+.nav-mega_quote-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.nav-mega_quote-avatar {
+  flex: none;
+  width: 2.75rem; /* 44px */
+  height: 2.75rem;
+  border-radius: 999px;
+  background-size: cover;
+  background-position: center;
+  background-color: rgba(19, 14, 48, 0.1);
+}
+
+.nav-mega_quote-meta {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.nav-mega_quote-name {
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+.nav-mega_quote-role {
+  font-size: 0.8125rem; /* 13px */
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+  opacity: 0.7;
+}
+
+/* ── Footer navigation ──────────────────────────────────────────────────────
+   The link columns were laid out with flex-wrap, which turned into an ugly
+   masonry once the Customers/Customer-stories lists grew. On desktop, lay them
+   out as a top-aligned grid; the customer-stories list becomes a full-width
+   band that flows across sub-columns instead of one very tall stack.
+   !important: devlink-bundle.css loads after this file in the cascade. */
+@media (min-width: 992px) {
+  .footer_navigation {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)) !important;
+    align-items: start !important;
+    grid-column-gap: 1.5rem !important;
+    grid-row-gap: 2.5rem !important;
+  }
+
+  /* Let each column fill its grid track instead of its fixed flex width. */
+  .footer_navigation_col {
+    width: auto !important;
+  }
+
+  /* Blog keeps a wider track for its long article titles. */
+  .footer_navigation_col.width-20rem {
+    width: auto !important;
+    grid-column: span 2 !important;
+  }
+
+  /* Customer-stories band: full width, names flow across sub-columns. */
+  .footer_stories_col {
+    grid-column: 1 / -1 !important;
+    width: auto !important;
+  }
+
+  .footer_stories_links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 0.75rem;
+  }
+
+  /* Customers column: industries flow across two sub-columns (spans 2 tracks). */
+  .footer_customers_col {
+    grid-column: span 2 !important;
+    width: auto !important;
+  }
+
+  .footer_customers_links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 0.75rem;
+  }
+}
+
+/* Featured article card (Resources) — image, tag, serif title, description;
+   the whole card turns yellow on hover (matches the mockup). */
+.nav-mega_article {
+  position: relative;
+  display: block;
+  padding: 1.25rem;
+  margin: 0 -0.5rem;
+  border-radius: 1rem;
+  text-decoration: none !important;
+  background-color: var(--_colors-•-primitives---tan--tan);
+  transition: background-color 180ms ease;
+}
+
+.nav-mega_article:hover {
+  background-color: var(--_colors-•-primitives---brand--yellow);
+}
+
+.nav-mega_article-image {
+  display: block;
+  width: 100%;
+  height: 9.25rem; /* 148px */
+  margin-bottom: 0.8125rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid var(--_colors-•-primitives---neutral--neutral-navy);
+  background-color: var(--_colors-•-primitives---tan--tan);
+  background-size: cover;
+  background-position: center;
+}
+
+.nav-mega_article-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.4375rem;
+  margin-bottom: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--_colors-•-primitives---neutral--neutral-gray);
+}
+
+.nav-mega_article-dot {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background-color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+.nav-mega_article-title {
+  display: block;
+  font-family: var(--font-family--headings);
+  font-size: 1.1875rem; /* 19px */
+  line-height: 1.22;
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+.nav-mega_article-desc {
+  display: block;
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--_colors-•-primitives---neutral--neutral-gray);
 }
 
 @media (max-width: 991px) {
-  .resources-mega {
+  .nav-mega {
     width: 100%;
+    max-width: none;
     flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .nav-mega_cols {
+    flex-direction: column;
+    flex-wrap: nowrap;
     gap: 0.5rem;
   }
 
-  .resources-mega_buckets {
-    flex: none;
-    padding-right: 0;
-    padding-bottom: 0.5rem;
-    border-right: none;
-    border-bottom: 1px solid var(--_colors-•-semantic---border-subtle);
+  .nav-mega_col {
+    min-width: 0;
+    width: 100%;
   }
 
-  .resources-mega_panel {
-    flex-direction: column;
-  }
-
-  .resources-mega_links {
+  .nav-mega_links--grid {
+    grid-auto-flow: row;
+    grid-template-rows: none !important;
     grid-template-columns: 1fr;
   }
+}
 
-  .resources-mega_preview {
-    flex: none;
+/* ── Stripe-style megamenu controller (MegaNav) ─────────────────────────────
+   Flush triggers (continuous hover) + one shared panel that morphs height and
+   cross-fades content as you move between menus. */
+
+/* Triggers sit flush so there is no dead zone between them. !important because
+   devlink-bundle.css loads after this file and sets a 0.25rem gap. */
+.navbar1_navigation-list {
+  grid-column-gap: 0 !important;
+  column-gap: 0 !important;
+}
+
+.meganav_item {
+  display: flex;
+  align-items: center;
+}
+
+.meganav_trigger {
+  position: relative;
+  margin: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Underline the active menu title (navy bar just below the label), matching the
+   mockup. Pseudo-element so toggling it never shifts the navbar layout. */
+.meganav_trigger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.375rem;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--_colors-•-primitives---neutral--neutral-navy);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.meganav_trigger.is-active::after {
+  opacity: 1;
+}
+
+.meganav_chevron {
+  transition: transform 0.3s ease;
+}
+
+.meganav_trigger.is-active .meganav_chevron {
+  transform: rotate(-180deg);
+}
+
+.meganav_mobile {
+  display: none;
+}
+
+/* Shared desktop panel */
+.meganav_dropdown {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 4rem;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem; /* invisible bridge so trigger -> panel hover is continuous */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease, visibility 0s linear 180ms;
+}
+
+.meganav_dropdown.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+/* Only the visible card is interactive — the full-width wrapper stays
+   pointer-events:none so hovering the empty left/right bands closes the menu
+   (and never blocks the page behind it). */
+.meganav_panel {
+  position: relative;
+  width: min(60rem, 92vw);
+  overflow: hidden;
+  pointer-events: auto;
+  border: 1px solid rgba(19, 14, 48, 0.07);
+  border-radius: 1.75rem; /* 28px */
+  background-color: var(--_colors-•-primitives---tan--tan-light);
+  /* Soft, cool, evenly-diffused shadow (matches the mockup) rather than a heavy
+     warm drop. Negative spread keeps it tight to the panel. */
+  box-shadow: 0 24px 64px -16px rgba(19, 14, 48, 0.14),
+    0 8px 24px -12px rgba(19, 14, 48, 0.08);
+  transition: height 420ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.meganav_layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  /* opacity + translateX are set inline (direction depends on which menu is
+     active). Fast fade swaps the content in ("replaced"); the slower transform
+     then glides it into place from the travel direction ("slides after"). */
+  transition: opacity 150ms ease, transform 450ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.meganav_layer.is-active {
+  pointer-events: auto;
+}
+
+@media (max-width: 991px) {
+  /* Mobile: triggers stack and expand inline (the shared panel is hidden). */
+  .meganav_item {
+    display: block;
+  }
+
+  .meganav_dropdown {
+    display: none;
+  }
+
+  .meganav_mobile {
+    display: none;
+  }
+
+  .meganav_item.is-open .meganav_mobile {
+    display: block;
   }
 }
 

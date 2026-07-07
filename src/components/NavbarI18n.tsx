@@ -11,11 +11,12 @@ import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getBlogPosts } from "../lib/cms";
-import { localizedHref, articleHref, switchLocalePath } from "../lib/localized-paths";
+import { localizedHref, switchLocalePath, collectionPath } from "../lib/localized-paths";
+import { CUSTOMER_INDUSTRIES, industryName } from "../lib/customer-industries";
+import { MegaNav, type MegaMenu } from "./MegaNav";
 import { useAlternateUrls } from "./AlternateUrlContext";
 import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
 import Block from "../../devlink/modules/Basic/components/Block";
-import DOM from "../../devlink/modules/Builtin/components/DOM";
 import DropdownList from "../../devlink/modules/Dropdown/components/DropdownList";
 import DropdownToggle from "../../devlink/modules/Dropdown/components/DropdownToggle";
 import DropdownWrapper from "../../devlink/modules/Dropdown/components/DropdownWrapper";
@@ -30,7 +31,6 @@ import NavbarMenu from "../../devlink/modules/Navbar/components/NavbarMenu";
 import NavbarWrapper from "../../devlink/modules/Navbar/components/NavbarWrapper";
 import Paragraph from "../../devlink/modules/Basic/components/Paragraph";
 import { Button } from "../../devlink/elements/Button";
-import { Label } from "../../devlink/elements/Label";
 
 /**
  * Props for {@link Navbar}
@@ -48,7 +48,10 @@ export type NavbarProps = {
  * - Unsupported elements: `Collection List`, `Locales Wrapper`
  *
  */
-export function NavbarClient({ previewPosts: serverPosts, alternateUrls }: NavbarProps) {
+export function NavbarClient({
+  previewPosts: serverPosts,
+  alternateUrls,
+}: NavbarProps) {
   const t = useTranslations("nav");
   const locale = useLocale();
   const pathname = usePathname();
@@ -65,6 +68,141 @@ export function NavbarClient({ previewPosts: serverPosts, alternateUrls }: Navba
   }, [locale, serverPosts]);
 
   const previewPosts = serverPosts || clientPosts;
+
+  // Webinars are hosted externally on Livestorm; keep the locale-aware link.
+  const webinarsHref =
+    locale === "fr"
+      ? "https://app.livestorm.co/trustditto?lang=fr"
+      : "https://app.livestorm.co/trustditto?lang=en";
+
+  // Lucide icon key per industry (rendered as a yellow chip in Solution).
+  const INDUSTRY_ICONS: Record<string, string> = {
+    "aerospace-defense": "plane",
+    construction: "hard-hat",
+    "cosmetics-beauty": "sparkles",
+    electronics: "cpu",
+    "manufacturing-equipment": "factory",
+    retail: "shopping-bag",
+    "technology-software": "monitor",
+    "transportation-logistics": "truck",
+  };
+  const industryLinks = [...CUSTOMER_INDUSTRIES]
+    .map((industry) => ({
+      label: industryName(industry, locale),
+      href: localizedHref(`/industry/${industry.slug}`, locale),
+      icon: INDUSTRY_ICONS[industry.slug],
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label, locale));
+
+  // Single source of truth for the megamenus (Level 1 > Level 2 group > Level 3).
+  const megaMenus: MegaMenu[] = [
+    {
+      id: "product",
+      label: t("product"),
+      featured: {
+        kind: "quote",
+        quote: {
+          quote:
+            locale === "fr"
+              ? "Ditto est l'outil tout-en-un qui nous permet de transformer notre conformité RSE en avantage concurrentiel."
+              : "Ditto is the all-in-one tool that enables us to turn our CSR compliance into a competitive advantage.",
+          name: "Sophie Wardan",
+          role:
+            locale === "fr"
+              ? "Responsable RSE Groupe, Superga Beauty"
+              : "Group CSR manager, Superga Beauty",
+          imageUrl:
+            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/testimonials/superga-beauty/profile_picture_url.jpeg",
+          href:
+            locale === "fr"
+              ? `${p}/cas-clients/superga-beauty-leadership-durable`
+              : `${p}/customer-stories/superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership`,
+        },
+      },
+      groups: [
+        {
+          id: "byFramework",
+          heading: t("byFramework"),
+          links: [
+            { label: t("ecovadis"), href: localizedHref("/frameworks/ecovadis", locale) },
+            { label: t("cdp"), href: localizedHref("/frameworks/cdp", locale) },
+            { label: t("csrd"), href: localizedHref("/frameworks/csrd", locale) },
+            { label: t("carbon"), href: localizedHref("/frameworks/carbon", locale) },
+            { label: t("iso14001"), href: localizedHref("/frameworks/iso-14001", locale) },
+            { label: t("allFrameworks"), href: localizedHref("/frameworks", locale) },
+          ],
+        },
+        {
+          id: "byFeature",
+          heading: t("byFeatures"),
+          links: [
+            { label: t("managementSystem"), href: localizedHref("/solutions/management-system", locale) },
+            { label: t("complianceQuestionnaires"), href: localizedHref("/solutions/compliance-questionnaires", locale) },
+            { label: t("aiSolutions"), href: localizedHref("/solutions/ai-solutions", locale) },
+            { label: t("supplierEngagement"), href: localizedHref("/solutions/supplier-engagement", locale) },
+          ],
+        },
+      ],
+    },
+    {
+      id: "solution",
+      label: t("solution"),
+      groups: [
+        {
+          id: "byIndustry",
+          heading: t("byIndustry"),
+          columns: 2,
+          variant: "icon",
+          links: industryLinks,
+        },
+        // Future: "By size" group — deferred.
+      ],
+    },
+    {
+      id: "customers",
+      label: t("customers"),
+      href: localizedHref("/customer-stories", locale),
+      groups: [],
+    },
+    {
+      id: "resources",
+      label: t("resources"),
+      featured: { kind: "article", title: t("featuredReading") },
+      groups: [
+        {
+          id: "perTopic",
+          heading: t("perTopic"),
+          links: [
+            { label: t("ecovadis"), href: collectionPath("ecovadis", locale) },
+            { label: t("cdp"), href: collectionPath("cdp", locale) },
+            { label: "CSRD", href: collectionPath("csrd", locale) },
+            { label: "VSME", href: collectionPath("vsme", locale) },
+            { label: t("carbon"), href: collectionPath("carbon", locale) },
+            { label: t("iso14001"), href: collectionPath("iso-14001", locale) },
+            { label: "QHSE", href: collectionPath("qhse", locale) },
+          ],
+        },
+        {
+          id: "learn",
+          heading: t("learn"),
+          links: [
+            { label: t("blog"), href: localizedHref("/resources/blog", locale) },
+            { label: t("guides"), href: localizedHref("/resources/guides", locale) },
+            { label: t("webinars"), href: webinarsHref, target: "_blank" },
+            { label: t("news"), href: localizedHref("/resources/news", locale) },
+          ],
+        },
+        {
+          id: "company",
+          heading: t("company"),
+          links: [
+            { label: t("manifesto"), href: localizedHref("/manifesto", locale) },
+            { label: t("careers"), href: localizedHref("/careers", locale) },
+          ],
+        },
+      ],
+    },
+  ];
 
   return (
     <div
@@ -129,267 +267,7 @@ export function NavbarClient({ previewPosts: serverPosts, alternateUrls }: Navba
                 />
               </Link>
               <Block className={"navbar1_navigation-list"} tag={"div"}>
-                <DropdownWrapper
-                  className={"navbar1_dropdown"}
-                  delay={0}
-                  hover={true}
-                  tag={"div"}
-                >
-                  <DropdownToggle className={"navbar1_link"} tag={"div"}>
-                    <Block tag={"div"}>{t("frameworks")}</Block>
-                    <Block className={"icon-wrapper is-16px"} tag={"div"}>
-                      <HtmlEmbed
-                        className={"icon"}
-                        content={
-                          '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path fill-rule="evenodd" clip-rule="evenodd" d="M3.5312 5.52729C3.79155 5.26694 4.21366 5.26694 4.47401 5.52729L8.0026 9.05589L11.5312 5.52729C11.7915 5.26694 12.2137 5.26694 12.474 5.52729C12.7344 5.78764 12.7344 6.20975 12.474 6.4701L8.47401 10.4701C8.21366 10.7305 7.79155 10.7305 7.5312 10.4701L3.5312 6.4701C3.27085 6.20975 3.27085 5.78764 3.5312 5.52729Z" fill="#130E30"/>\n</svg>'
-                        }
-                      />
-                    </Block>
-                  </DropdownToggle>
-                  <DropdownList
-                    className={"navbar1_dropdown-small"}
-                    tag={"nav"}
-                  >
-                    <Block className={"dropdown"} tag={"div"}>
-                      <Block className={"dropdown1_grid"} tag={"div"}>
-                        <Block className={"dropdown_list1"} tag={"div"}>
-                          <Block className={"dropdown_list1_card"} tag={"div"}>
-                            <Link
-                              block={""}
-                              button={false}
-                              className={
-                                "text-size-1rem text-weight-600 link-hover-parent"
-                              }
-                              options={{
-                                href: `${p}/frameworks/ecovadis`,
-                              }}
-                            >
-                              {t("ecovadis")}
-                            </Link>
-                            <Paragraph
-                              className={
-                                "text-size-0x875rem text-color-neutral hide-tablet"
-                              }
-                            >
-                              {t("descEcovadis")}
-                            </Paragraph>
-                          </Block>
-                          <Block className={"dropdown_list1_card"} tag={"div"}>
-                            <Link
-                              block={""}
-                              button={false}
-                              className={
-                                "text-size-1rem text-weight-600 link-hover-parent"
-                              }
-                              options={{
-                                href: `${p}/frameworks/iso-14001`,
-                              }}
-                            >
-                              {t("iso14001")}
-                            </Link>
-                            <Paragraph
-                              className={
-                                "text-size-0x875rem text-color-neutral hide-tablet"
-                              }
-                            >
-                              {t("descIso14001")}
-                            </Paragraph>
-                          </Block>
-                          <Block className={"dropdown_list1_card"} tag={"div"}>
-                            <Link
-                              block={""}
-                              button={false}
-                              className={
-                                "text-size-1rem text-weight-600 link-hover-parent"
-                              }
-                              options={{
-                                href: `${p}/frameworks/cdp`,
-                              }}
-                            >
-                              {t("cdp")}
-                            </Link>
-                            <Paragraph
-                              className={
-                                "text-size-0x875rem text-color-neutral hide-tablet"
-                              }
-                            >
-                              {t("descCdp")}
-                            </Paragraph>
-                          </Block>
-                          <Block className={"dropdown_list1_card"} tag={"div"}>
-                            <Link
-                              block={""}
-                              button={false}
-                              className={
-                                "text-size-1rem text-weight-600 link-hover-parent"
-                              }
-                              options={{
-                                href: `${p}/frameworks/csrd`,
-                              }}
-                            >
-                              {t("csrd")}
-                            </Link>
-                            <Paragraph
-                              className={
-                                "text-size-0x875rem text-color-neutral hide-tablet"
-                              }
-                            >
-                              {t("descCsrd")}
-                            </Paragraph>
-                          </Block>
-                          <Block className={"dropdown_list1_card"} tag={"div"}>
-                            <Link
-                              block={""}
-                              button={false}
-                              className={
-                                "text-size-1rem text-weight-600 link-hover-parent"
-                              }
-                              options={{
-                                href: `${p}/frameworks`,
-                              }}
-                            >
-                              {t("otherFrameworks")}
-                            </Link>
-                            <Paragraph
-                              className={
-                                "text-size-0x875rem text-color-neutral hide-tablet"
-                              }
-                            >
-                              {
-                                t("descOtherFrameworks")
-                              }
-                            </Paragraph>
-                          </Block>
-                        </Block>
-                      </Block>
-                    </Block>
-                  </DropdownList>
-                </DropdownWrapper>
-                <DropdownWrapper
-                  className={"navbar1_dropdown"}
-                  delay={0}
-                  hover={true}
-                  tag={"div"}
-                >
-                  <DropdownToggle className={"navbar1_link"} tag={"div"}>
-                    <Block tag={"div"}>{t("solutions")}</Block>
-                    <Block className={"icon-wrapper is-16px"} tag={"div"}>
-                      <HtmlEmbed
-                        className={"icon"}
-                        content={
-                          '<svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M8.50001 8.78145L11.8 5.48145L12.7427 6.42411L8.50001 10.6668L4.25734 6.42411L5.20001 5.48145L8.50001 8.78145Z" fill="#171B26"/>\n</svg>'
-                        }
-                      />
-                    </Block>
-                  </DropdownToggle>
-                  <DropdownList className={"navbar1_dropdow2"} tag={"nav"}>
-                    <Block className={"dropdown2_wrapper"} tag={"div"}>
-                      <Block className={"dropdown"} tag={"div"}>
-                        <Block className={"dropdown1_grid"} tag={"div"}>
-                          <Block className={"dropdown_list1"} tag={"div"}>
-                            <Block
-                              className={"dropdown_list1_card"}
-                              tag={"div"}
-                            >
-                              <Link
-                                block={""}
-                                button={false}
-                                className={
-                                  "text-size-1rem text-weight-600 link-hover-parent"
-                                }
-                                options={{
-                                  href: `${p}/solutions/management-system`,
-                                }}
-                              >
-                                {t("managementSystem")}
-                              </Link>
-                              <Paragraph
-                                className={
-                                  "text-size-0x875rem text-color-neutral hide-tablet"
-                                }
-                              >
-                                {t("descManagementSystem")}
-                              </Paragraph>
-                            </Block>
-                            <Block
-                              className={"dropdown_list1_card"}
-                              tag={"div"}
-                            >
-                              <Link
-                                block={""}
-                                button={false}
-                                className={
-                                  "text-size-1rem text-weight-600 link-hover-parent"
-                                }
-                                options={{
-                                  href: `${p}/solutions/compliance-questionnaires`,
-                                }}
-                              >
-                                {t("complianceQuestionnaires")}
-                              </Link>
-                              <Paragraph
-                                className={
-                                  "text-size-0x875rem text-color-neutral hide-tablet"
-                                }
-                              >
-                                {t("descComplianceQuestionnaires")}
-                              </Paragraph>
-                            </Block>
-                            <Block
-                              className={"dropdown_list1_card"}
-                              tag={"div"}
-                            >
-                              <Link
-                                block={""}
-                                button={false}
-                                className={
-                                  "text-size-1rem text-weight-600 link-hover-parent"
-                                }
-                                options={{
-                                  href: `${p}/solutions/ai-solutions`,
-                                }}
-                              >
-                                {t("aiSolutions")}
-                              </Link>
-                              <Paragraph
-                                className={
-                                  "text-size-0x875rem text-color-neutral hide-tablet"
-                                }
-                              >
-                                {t("descAiSolutions")}
-                              </Paragraph>
-                            </Block>
-                            <Block
-                              className={"dropdown_list1_card"}
-                              tag={"div"}
-                            >
-                              <Link
-                                block={""}
-                                button={false}
-                                className={
-                                  "text-size-1rem text-weight-600 link-hover-parent"
-                                }
-                                options={{
-                                  href: `${p}/solutions/supplier-engagement`,
-                                }}
-                              >
-                                {t("supplierEngagement")}
-                              </Link>
-                              <Paragraph
-                                className={
-                                  "text-size-0x875rem text-color-neutral hide-tablet"
-                                }
-                              >
-                                {t("descSupplierEngagement")}
-                              </Paragraph>
-                            </Block>
-                          </Block>
-                        </Block>
-                      </Block>
-                    </Block>
-                  </DropdownList>
-                </DropdownWrapper>
-                <ResourcesMegaMenu previewPosts={previewPosts} />
+                <MegaNav menus={megaMenus} previewPosts={previewPosts} locale={locale} />
                 <NavbarLink
                   className={"navbar1_link"}
                   options={{ href: localizedHref("/plans", locale) }}
@@ -492,186 +370,10 @@ export function NavbarClient({ previewPosts: serverPosts, alternateUrls }: Navba
         <HtmlEmbed
           className={"paste-to-global"}
           content={
-            '<style>\n.navbar1_dropdown .icon-wrapper{\n\ttransition: transform 0.4s ease;\n}\n.navbar1_dropdown:hover .icon-wrapper, .navbar1_dropdown:has(.navbar1_link.w--open) .icon-wrapper{\n\ttransform: rotate(-180deg);\n}\n@media screen and (min-width: 992px){\n  .navbar1_dropdown:hover .navbar1_link.w--open{\n    background-color: var(--_colors-•-semantic---surface-tertiary);\n  }\n  \n  .dropdown1_grid{\n    grid-template-columns: 23.5rem 0rem;\n    transition-property: grid-template-columns;\n    transition-delay: 400ms;\n    transition-duration: 400ms;\n    transition-timing-function: ease-in-out;\n  }\n\n  .navbar1_dropdown-small{\n    left: 0rem;\n  }\n\n  .dropdown1_grid:has([dropdown-accordion="csrd-link"]:hover), .dropdown1_grid:has(.dropdown1_grid_clip:hover) {\n    grid-template-columns: 23.5rem 27rem;\n    transition-delay: 0ms;\n  }\n\n  .navbar1_dropdown-small:has([dropdown-accordion="csrd-link"]){\n    transition-property: left;\n    transition-delay: 400ms;\n    transition-duration: 400ms;\n    transition-timing-function: ease-in-out;\n    left: 0rem;\n  }\n\n  .navbar1_dropdown-small:has([dropdown-accordion="csrd-link"]:hover), .navbar1_dropdown-small:has(.dropdown1_grid_clip:hover){\n    left: -13.5rem;\n    transition-delay: 0ms;\n  }\n}\n\n\n\n\n\n</style>'
+            '<style>\n.navbar1_dropdown .icon-wrapper{\n\ttransition: transform 0.4s ease;\n}\n.navbar1_dropdown:hover .icon-wrapper, .navbar1_dropdown:has(.navbar1_link.w--open) .icon-wrapper{\n\ttransform: rotate(-180deg);\n}\n@media screen and (min-width: 992px){\n  .navbar1_dropdown:hover .navbar1_link.w--open{\n    background-color: var(--_colors-•-semantic---surface-tertiary);\n  }\n}\n</style>'
           }
         />
       </NavbarWrapper>
     </div>
-  );
-}
-
-const CHEVRON_DOWN =
-  '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path fill-rule="evenodd" clip-rule="evenodd" d="M3.5312 5.52729C3.79155 5.26694 4.21366 5.26694 4.47401 5.52729L8.0026 9.05589L11.5312 5.52729C11.7915 5.26694 12.2137 5.26694 12.474 5.52729C12.7344 5.78764 12.7344 6.20975 12.474 6.4701L8.47401 10.4701C8.21366 10.7305 7.79155 10.7305 7.5312 10.4701L3.5312 6.4701C3.27085 6.20975 3.27085 5.78764 3.5312 5.52729Z" fill="#130E30"/>\n</svg>';
-
-const ARROW_RIGHT =
-  '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-type MegaItem = {
-  label: React.ReactNode;
-  href: string;
-  desc?: string;
-  target?: "_blank" | "_self";
-};
-
-type MegaBucket = {
-  id: string;
-  label: string;
-  items: MegaItem[];
-  showPreview?: boolean;
-};
-
-/**
- * Vanta-style mega-menu for the "Resources" nav item. A left column of buckets
- * (Customers / Compliance resources / Company / All resources) swaps the
- * right-hand content panel on hover/focus. Replaces the former standalone
- * Customers link plus the Resources and About dropdowns.
- */
-function ResourcesMegaMenu({ previewPosts }: { previewPosts: any[] }) {
-  const t = useTranslations("nav");
-  const locale = useLocale();
-  const p = `/${locale}`;
-  const csBase = localizedHref("/customer-stories", locale);
-  const webinarsHref =
-    locale === "fr"
-      ? "https://app.livestorm.co/trustditto?lang=fr"
-      : "https://app.livestorm.co/trustditto?lang=en";
-
-  const buckets: MegaBucket[] = [
-    {
-      id: "allResources",
-      label: t("bucketAllResources"),
-      showPreview: true,
-      items: [
-        { label: t("allResources"), href: localizedHref("/resources", locale) },
-        { label: t("blog"), href: localizedHref("/resources/blog", locale), desc: t("descBlog") },
-        { label: t("guidesAndReports"), href: localizedHref("/resources/guides", locale), desc: t("descGuides") },
-        { label: t("webinars"), href: webinarsHref, target: "_blank", desc: t("descWebinars") },
-        { label: t("news"), href: localizedHref("/resources/news", locale), desc: t("descNews") },
-      ],
-    },
-    {
-      id: "customers",
-      label: t("bucketCustomers"),
-      items: [
-        { label: t("allCustomerStories"), href: csBase },
-        { label: t("industryBusinessServices"), href: `${csBase}?industry=business-services` },
-        { label: t("industryConstructionMaterials"), href: `${csBase}?industry=construction-materials` },
-        { label: t("industryCosmeticsBeauty"), href: `${csBase}?industry=cosmetics-beauty` },
-        { label: t("industryDistributionWholesale"), href: `${csBase}?industry=distribution-wholesale` },
-        { label: t("industryIndustrialEquipment"), href: `${csBase}?industry=industrial-equipment-systems` },
-        { label: t("industryTransportationLogistics"), href: `${csBase}?industry=transportation-logistics` },
-      ],
-    },
-    {
-      id: "compliance",
-      label: t("bucketComplianceResources"),
-      items: [
-        { label: t("ecovadis"), href: `${p}/collection/ecovadis`, desc: t("descCollectionEcovadis") },
-        { label: t("cdp"), href: `${p}/collection/cdp`, desc: t("descCollectionCdp") },
-        { label: "VSME", href: `${p}/collection/vsme`, desc: t("descCollectionVsme") },
-      ],
-    },
-    {
-      id: "company",
-      label: t("bucketCompany"),
-      items: [
-        { label: t("manifesto"), href: `${p}/manifesto`, desc: t("descManifesto") },
-        { label: t("careers"), href: `${p}/careers`, desc: t("descCareers") },
-      ],
-    },
-  ];
-
-  const [activeId, setActiveId] = useState(buckets[0].id);
-  const active = buckets.find((b) => b.id === activeId) ?? buckets[0];
-
-  return (
-    <DropdownWrapper className={"navbar1_dropdown"} delay={0} hover={true} tag={"div"}>
-      <DropdownToggle className={"navbar1_link"} tag={"div"}>
-        <Block tag={"div"}>{t("resources")}</Block>
-        <Block className={"icon-wrapper is-16px"} tag={"div"}>
-          <HtmlEmbed className={"icon"} content={CHEVRON_DOWN} />
-        </Block>
-      </DropdownToggle>
-      <DropdownList className={"navbar1_dropdown-big"} tag={"nav"}>
-        <Block className={"dropdown-big_wrapper"} tag={"div"}>
-          <Block className={"dropdown"} tag={"div"}>
-            <div className={"resources-mega"}>
-              <div className={"resources-mega_buckets"}>
-                {buckets.map((b) => (
-                  <button
-                    key={b.id}
-                    type={"button"}
-                    className={`resources-mega_bucket${b.id === activeId ? " is-active" : ""}`}
-                    onMouseEnter={() => setActiveId(b.id)}
-                    onFocus={() => setActiveId(b.id)}
-                    onClick={(e) => {
-                      // Swap the right-hand submenu without letting the click
-                      // bubble to Webflow's dropdown handler (which would close
-                      // the whole menu) or trigger any navigation.
-                      e.preventDefault();
-                      e.stopPropagation();
-                      setActiveId(b.id);
-                    }}
-                    aria-expanded={b.id === activeId}
-                  >
-                    <span>{b.label}</span>
-                    <span
-                      className={"resources-mega_bucket-arrow"}
-                      dangerouslySetInnerHTML={{ __html: ARROW_RIGHT }}
-                    />
-                  </button>
-                ))}
-              </div>
-              <div className={"resources-mega_panel"}>
-                <div className={"resources-mega_links"}>
-                  {active.items.map((item) => (
-                    <Link
-                      key={item.href}
-                      block={""}
-                      button={false}
-                      className={"resources-mega_link link-hover-parent"}
-                      options={{ href: item.href, ...(item.target ? { target: item.target } : {}) }}
-                    >
-                      <Block className={"text-size-1rem text-weight-600"} tag={"div"}>
-                        {item.label}
-                      </Block>
-                      {item.desc ? (
-                        <Paragraph className={"text-size-0x875rem text-color-neutral hide-tablet"}>
-                          {item.desc}
-                        </Paragraph>
-                      ) : null}
-                    </Link>
-                  ))}
-                </div>
-                {active.showPreview && previewPosts.length > 0 ? (
-                  <div className={"resources-mega_preview"}>
-                    {previewPosts.map((post: any) => (
-                      <Block key={post.slug} className={"dropdown1_card2"} tag={"div"}>
-                        <Block className={"dropdown1_card2_content"} tag={"div"}>
-                          <Paragraph className={"label"}>{"Blog"}</Paragraph>
-                          <Block className={"spacer-0x5rem"} tag={"div"} />
-                          <Link
-                            block={""}
-                            button={false}
-                            className={"heading-size-1x375rem link-hover-parent text-style-2lines"}
-                            options={{ href: articleHref(post, post.collectionTwin, locale) }}
-                          >
-                            {post.name}
-                          </Link>
-                          <Block className={"spacer-0x5rem"} tag={"div"} />
-                          <Paragraph className={"text-size-0x875rem text-style-3lines"}>
-                            {post.description}
-                          </Paragraph>
-                        </Block>
-                      </Block>
-                    ))}
-                  </div>
-                ) : null}
-              </div>
-            </div>
-          </Block>
-        </Block>
-      </DropdownList>
-    </DropdownWrapper>
   );
 }

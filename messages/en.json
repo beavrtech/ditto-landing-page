@@ -4,11 +4,30 @@
     "solutions": "Solutions",
     "customers": "Customers",
     "resources": "Resources",
+    "product": "Products",
+    "solution": "Solutions",
+    "byFramework": "By framework",
+    "allFrameworks": "All frameworks",
+    "byFeatures": "By feature",
+    "byIndustry": "By industry",
+    "framework": "Framework",
+    "otherResources": "Other resources",
+    "customerStories": "Customer stories",
+    "aboutUs": "About us",
+    "allStories": "All stories",
     "plans": "Plans",
     "about": "About",
     "login": "Log in",
     "pricing": "Pricing",
     "getStarted": "Let's talk",
+    "carbon": "Carbon",
+    "learn": "Learn",
+    "perTopic": "Per topic",
+    "featuredReading": "Featured reading",
+    "readArticle": "Read article",
+    "deadlineWatch": "Deadline watch",
+    "deadlineTitle": "The CDP 2026 disclosure deadline is approaching.",
+    "startEarly": "Start early",
     "ecovadis": "EcoVadis",
     "iso14001": "ISO 14001",
     "cdp": "CDP",
@@ -25,6 +44,7 @@
     "news": "News",
     "manifesto": "Manifesto",
     "careers": "Careers",
+    "company": "Company",
     "sme": "SME",
     "largeCompanies": "Large Companies",
     "allCaseStudies": "All Case Studies",
@@ -728,6 +748,51 @@
       "button": "Get started"
     }
   },
+  "frameworksCarbon": {
+    "breadcrumb": "Carbon footprint",
+    "hero": {
+      "title": "Answer your clients' carbon requests, without the complexity",
+      "subtitle": "Your buyers now assess suppliers on climate, through EcoVadis, CDP, and their RFPs. Ditto structures your emissions data across scopes 1, 2, and 3, gets you compliant, and turns your <pillar>carbon footprint</pillar> into a commercial argument. An expert with you every step of the way.",
+      "cta": "Get started"
+    },
+    "approach": {
+      "title": "Our approach to your carbon footprint",
+      "subtitle": "We've broken the carbon footprint down into clear steps, from defining your scope to driving reduction. You move forward step by step, with a proven method that adapts to your data and your organization."
+    },
+    "step1": {
+      "label": "Step 1",
+      "title": "Define your scope",
+      "description": "We start by framing the assessment: which entities, which sites, which base year, and which scopes you need to cover. Your Ditto coach helps you set a clear scope, the condition for an accurate footprint you can compare year over year."
+    },
+    "step2": {
+      "label": "Step 2",
+      "title": "Collect and centralize your emissions data",
+      "description": "Energy, fuel, travel, purchases, freight: Ditto centralizes your activity data and supporting documents in one place. Data collection, the longest phase of a first assessment, becomes structured and collaborative across your teams."
+    },
+    "step3": {
+      "label": "Step 3",
+      "title": "Calculate and prioritize your hotspots",
+      "description": "Ditto applies reference emission factors, converts your data into tonnes of CO2 equivalent, and surfaces the items that weigh the most. You finally know where to focus, instead of working blind."
+    },
+    "step4": {
+      "label": "Step 4",
+      "title": "Reduce and steer, year after year",
+      "description": "An assessment without an action plan is a diagnosis without treatment. Ditto connects your emissions, your reduction actions, and your transition plan on a single roadmap, and helps you progress each cycle. A dedicated coach passes on the method so you become autonomous."
+    },
+    "carousel": {
+      "title": "Reuse your data for all of your CSR and compliance needs"
+    },
+    "testimonials": {
+      "title": "Ditto works for all kinds of teams",
+      "subtitle": "Whether it's your first carbon footprint or a regulatory update, Ditto adapts to your organization and helps you gain efficiency at every step.",
+      "cta": "Read More"
+    },
+    "cta": {
+      "title": "Ready to get compliant? Ditto.",
+      "subtitle": "Make your carbon footprint a commercial asset: measure, get compliant, and prove it to your clients, with an expert copilot at every step.",
+      "button": "Get started"
+    }
+  },
   "frameworksCdp": {
     "breadcrumb": "CDP",
     "hero": {
@@ -913,6 +978,10 @@
     "frameworksCsrd": {
       "title": "AI-powered platform for CSRD and VSME compliance",
       "description": "Reporting under CSRD or VSME? Ditto helps you navigate disclosures, structure data, and publish faster with built-in AI and expert guidance."
+    },
+    "frameworksCarbon": {
+      "title": "Answer your clients' carbon requests, without the complexity",
+      "description": "Your clients are asking for your carbon footprint. Structure scopes 1, 2, and 3, get compliant, and win business, with Ditto's platform and expertise."
     },
     "frameworksCdp": {
       "title": "How to simplify your CDP disclosure effectively",

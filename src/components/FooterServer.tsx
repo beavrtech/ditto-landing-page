@@ -1,11 +1,11 @@
-import { getBlogPosts, getNews, withCollectionTwins } from "../lib/cms";
+import { getBlogPosts, getCustomerStories, withCollectionTwins } from "../lib/cms";
 import { FooterClient } from "./FooterI18n";
 
 export async function Footer({ alternateUrls }: { alternateUrls?: Record<string, string> } = {}) {
-  const [blogPosts, newsItems] = await Promise.all([
+  const [blogPosts, customerStories] = await Promise.all([
     getBlogPosts("en", 4).then(withCollectionTwins).catch(() => []),
-    getNews("en", 4).catch(() => []),
+    getCustomerStories("en").catch(() => []),
   ]);
 
-  return <FooterClient blogPosts={blogPosts || []} newsItems={newsItems || []} alternateUrls={alternateUrls} />;
+  return <FooterClient blogPosts={blogPosts || []} customerStories={customerStories || []} alternateUrls={alternateUrls} />;
 }

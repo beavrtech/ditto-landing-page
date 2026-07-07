@@ -72,12 +72,21 @@ export const CUSTOMER_INDUSTRIES: CustomerIndustry[] = [
   },
   {
     slug: "retail",
-    name_en: "Retail",
+    name_en: "Wholesale & Retail",
     name_fr: "Distribution",
     intro_en:
       "How retail and distribution companies use Ditto to structure their CSR approach, ace supplier assessments, and turn compliance into a competitive edge.",
     intro_fr:
       "Comment les enseignes et distributeurs utilisent Ditto pour structurer leur démarche RSE, réussir leurs évaluations et faire de la conformité un avantage concurrentiel.",
+  },
+  {
+    slug: "cosmetics-beauty",
+    name_en: "Cosmetics & Beauty",
+    name_fr: "Cosmétiques & Beauté",
+    intro_en:
+      "How cosmetics and beauty brands use Ditto to structure their CSR approach, ace supplier assessments, and turn compliance into a competitive edge.",
+    intro_fr:
+      "Comment les marques de cosmétiques et de beauté utilisent Ditto pour structurer leur démarche RSE, réussir leurs évaluations et faire de la conformité un avantage concurrentiel.",
   },
 ];
 

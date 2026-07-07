@@ -5,7 +5,6 @@ import { Footer } from "../../../components/FooterServer";
 import { SectionContactSidebar } from "../../../components/SectionContactSidebarI18n";
 import { SectionCtaPill } from "../../../components/SectionCtaPillI18n";
 import { DEVLINK_SCOPE_CLASS } from "../../../../devlink/devlinkScope";
-import { localizedHref } from "../../../lib/localized-paths";
 import { supabase } from "../../../lib/supabase";
 
 // Frameworks that have a /collection/{slug} page
@@ -149,16 +148,22 @@ export default async function FrameworksPage({
                       <div className="w-dyn-list">
                         <div role="list" className="frameworks_list w-dyn-items">
                           {cat.items.map((fw: any) => {
+                            // page_url is stored locale-agnostic (e.g.
+                            // /frameworks/carbon). Framework paths are not
+                            // localised — just prefix the current locale. The
+                            // strip handles any legacy /en|/fr-prefixed values.
                             const pageHref = fw.page_url
-                              ? localizedHref(fw.page_url.replace(/^\/(en|fr)/, ""), locale)
+                              ? `${prefix}${fw.page_url.replace(/^\/(en|fr)\//, "/")}`
                               : null;
+                            const displayName =
+                              locale === "fr" && fw.name_fr ? fw.name_fr : fw.name;
                             const collectionHref = COLLECTION_SLUGS.has(fw.slug)
                               ? `${prefix}/collection/${fw.slug}`
                               : null;
                             return (
                               <div key={fw.slug} role="listitem" className="w-dyn-item">
                                 <div className="frameworks_list_card">
-                                  <h3 className="heading-size-1x375rem">{fw.name}</h3>
+                                  <h3 className="heading-size-1x375rem">{displayName}</h3>
                                   <div className="spacer-0x75rem" />
                                   {(fw.description || fw.description_fr) && (
                                     <p className="text-size-1rem text-color-neutral">

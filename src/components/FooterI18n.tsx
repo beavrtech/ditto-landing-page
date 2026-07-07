@@ -19,7 +19,8 @@ import DOM from "../../devlink/modules/Builtin/components/DOM";
 import HtmlEmbed from "../../devlink/modules/Embed/components/HtmlEmbed";
 import Image from "../../devlink/modules/Basic/components/Image";
 import Link from "../../devlink/modules/Basic/components/Link";
-import { getBlogPosts, getNews } from "../lib/cms";
+import { getBlogPosts, getCustomerStories } from "../lib/cms";
+import { CUSTOMER_INDUSTRIES, industryName } from "../lib/customer-industries";
 import Paragraph from "../../devlink/modules/Basic/components/Paragraph";
 import Section from "../../devlink/modules/Layout/components/Section";
 import { Background } from "../../devlink/Background";
@@ -117,7 +118,7 @@ function FooterNewsletter() {
  */
 export type FooterProps = {
   blogPosts?: any[];
-  newsItems?: any[];
+  customerStories?: any[];
   alternateUrls?: Record<string, string>;
 };
 
@@ -129,7 +130,7 @@ export type FooterProps = {
  * - Unsupported elements: `Locales Wrapper`, `Collection List`
  *
  */
-export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNewsItems, alternateUrls }: FooterProps) {
+export function FooterClient({ blogPosts: serverBlogPosts, customerStories: serverStories, alternateUrls }: FooterProps) {
   const locale = useLocale();
   const pathname = usePathname();
   const { urls: contextUrls } = useAlternateUrls();
@@ -137,24 +138,24 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
   const t = useTranslations("footer");
   const tNav = useTranslations("nav");
   const [clientBlogPosts, setClientBlogPosts] = useState<any[]>(serverBlogPosts || []);
-  const [clientNewsItems, setClientNewsItems] = useState<any[]>(serverNewsItems || []);
+  const [clientStories, setClientStories] = useState<any[]>(serverStories || []);
 
   useEffect(() => {
-    if (serverBlogPosts && serverNewsItems) return;
+    if (serverBlogPosts && serverStories) return;
     if (!serverBlogPosts) {
       getBlogPosts(locale as "en" | "fr", 4)
         .then((data) => setClientBlogPosts(data || []))
         .catch(() => {});
     }
-    if (!serverNewsItems) {
-      getNews(locale as "en" | "fr", 4)
-        .then((data) => setClientNewsItems(data || []))
+    if (!serverStories) {
+      getCustomerStories(locale as "en" | "fr")
+        .then((data) => setClientStories(data || []))
         .catch(() => {});
     }
-  }, [locale, serverBlogPosts, serverNewsItems]);
+  }, [locale, serverBlogPosts, serverStories]);
 
   const blogPosts = serverBlogPosts || clientBlogPosts;
-  const newsItems = serverNewsItems || clientNewsItems;
+  const customerStories = serverStories || clientStories;
   const prefix = `/${locale}`;
 
   return (
@@ -338,6 +339,16 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                   >
                     {"ISO 14001"}
                   </Link>
+                  <Link
+                    block={""}
+                    button={false}
+                    className={"link-size-1rem"}
+                    options={{
+                      href: `${prefix}/frameworks/carbon`,
+                    }}
+                  >
+                    {tNav("carbon")}
+                  </Link>
                 </Block>
                 <Block className={"footer_navigation_col"} tag={"div"}>
                   <Paragraph className={"text-size-1rem text-weight-600"}>
@@ -384,40 +395,33 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                     {tNav("supplierEngagement")}
                   </Link>
                 </Block>
-                <Block className={"footer_navigation_col"} tag={"div"}>
+                <Block className={"footer_navigation_col footer_customers_col"} tag={"div"}>
                   <Paragraph className={"text-size-1rem text-weight-600"}>
                     {t("customers")}
                   </Paragraph>
-                  <Link
-                    block={""}
-                    button={false}
-                    className={"link-size-1rem"}
-                    options={{
-                      href: localizedHref("/customer-stories", locale) + "?team-size_equal=100-250",
-                    }}
-                  >
-                    {t("sme")}
-                  </Link>
-                  <Link
-                    block={""}
-                    button={false}
-                    className={"link-size-1rem"}
-                    options={{
-                      href: localizedHref("/customer-stories", locale) + "?team-size_equal=1000-5000",
-                    }}
-                  >
-                    {t("largeCompanies")}
-                  </Link>
-                  <Link
-                    block={""}
-                    button={false}
-                    className={"link-size-1rem"}
-                    options={{
-                      href: localizedHref("/customer-stories", locale),
-                    }}
-                  >
-                    {t("allCaseStudies")}
-                  </Link>
+                  <div className={"footer_customers_links"}>
+                    {CUSTOMER_INDUSTRIES.map((ind) => (
+                      <Link
+                        key={ind.slug}
+                        block={""}
+                        button={false}
+                        className={"link-size-1rem"}
+                        options={{ href: `${prefix}/industry/${ind.slug}` }}
+                      >
+                        {industryName(ind, locale)}
+                      </Link>
+                    ))}
+                    <Link
+                      block={""}
+                      button={false}
+                      className={"link-size-1rem"}
+                      options={{
+                        href: localizedHref("/customer-stories", locale),
+                      }}
+                    >
+                      {t("allCaseStudies")}
+                    </Link>
+                  </div>
                 </Block>
                 <Block className={"footer_navigation_col"} tag={"div"}>
                   <Paragraph className={"text-size-1rem text-weight-600"}>
@@ -442,16 +446,6 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                     }}
                   >
                     {tNav("blog")}
-                  </Link>
-                  <Link
-                    block={""}
-                    button={false}
-                    className={"link-size-1rem"}
-                    options={{
-                      href: localizedHref("/resources/news", locale),
-                    }}
-                  >
-                    {tNav("news")}
                   </Link>
                   <Link
                     block={""}
@@ -519,23 +513,25 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                   ))}
                 </Block>
                 <Block
-                  className={"footer_navigation_col width-20rem"}
+                  className={"footer_navigation_col footer_stories_col"}
                   tag={"div"}
                 >
                   <Paragraph className={"text-size-1rem text-weight-600"}>
-                    {tNav("news")}
+                    {tNav("customerStories")}
                   </Paragraph>
-                  {newsItems.map((item) => (
-                    <Link
-                      key={item.id}
-                      block={""}
-                      button={false}
-                      className={"link-size-1rem"}
-                      options={{ href: localizedCmsHref("/resources/news", item.slug, item.slug_fr, locale) }}
-                    >
-                      {item.name}
-                    </Link>
-                  ))}
+                  <div className={"footer_stories_links"}>
+                    {customerStories.map((story) => (
+                      <Link
+                        key={story.id}
+                        block={""}
+                        button={false}
+                        className={"link-size-1rem"}
+                        options={{ href: localizedCmsHref("/customer-stories", story.slug, story.slug_fr, locale) }}
+                      >
+                        {(story.entreprise && story.entreprise.trim()) || story.name}
+                      </Link>
+                    ))}
+                  </div>
                 </Block>
               </Block>
             </Block>
