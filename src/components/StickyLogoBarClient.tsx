@@ -15,15 +15,18 @@ export function StickyLogoBarClient({ logos }: { logos: CustomerLogo[] }) {
 
     let obs: IntersectionObserver | null = null;
 
-    // Hide the bar exactly when its top edge reaches the top of the first logo
-    // row. The bar sits at the bottom, so we shrink the viewport's bottom edge
-    // up by the bar's own height — then the observer fires the instant the
-    // row's top crosses the bar's top edge.
+    // Show the bar only while the first logo row is still BELOW the viewport.
+    // The bar sits at the bottom, so we shrink the viewport's bottom edge up by
+    // the bar's own height — the observer then fires the instant the row's top
+    // crosses the bar's top edge. Once the row has scrolled above the viewport
+    // (boundingClientRect.top <= 0) it is also non-intersecting, so we must
+    // additionally require the row to be below us — otherwise the bar wrongly
+    // reappears after you scroll past the logos.
     const attach = () => {
       obs?.disconnect();
       const barHeight = barRef.current?.offsetHeight ?? 0;
       obs = new IntersectionObserver(
-        ([entry]) => setVisible(!entry.isIntersecting),
+        ([entry]) => setVisible(!entry.isIntersecting && entry.boundingClientRect.top > 0),
         { threshold: 0, rootMargin: `0px 0px -${barHeight}px 0px` }
       );
       obs.observe(row);
