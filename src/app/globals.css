@@ -966,6 +966,19 @@ a {
     grid-column-gap: 1.5rem;
     grid-row-gap: 0.75rem;
   }
+
+  /* Customers column: industries flow across two sub-columns (spans 2 tracks). */
+  .footer_customers_col {
+    grid-column: span 2 !important;
+    width: auto !important;
+  }
+
+  .footer_customers_links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 0.75rem;
+  }
 }
 
 /* Featured article card (Resources) — image, tag, serif title, description;

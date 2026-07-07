@@ -395,31 +395,33 @@ export function FooterClient({ blogPosts: serverBlogPosts, customerStories: serv
                     {tNav("supplierEngagement")}
                   </Link>
                 </Block>
-                <Block className={"footer_navigation_col"} tag={"div"}>
+                <Block className={"footer_navigation_col footer_customers_col"} tag={"div"}>
                   <Paragraph className={"text-size-1rem text-weight-600"}>
                     {t("customers")}
                   </Paragraph>
-                  {CUSTOMER_INDUSTRIES.map((ind) => (
+                  <div className={"footer_customers_links"}>
+                    {CUSTOMER_INDUSTRIES.map((ind) => (
+                      <Link
+                        key={ind.slug}
+                        block={""}
+                        button={false}
+                        className={"link-size-1rem"}
+                        options={{ href: `${prefix}/industry/${ind.slug}` }}
+                      >
+                        {industryName(ind, locale)}
+                      </Link>
+                    ))}
                     <Link
-                      key={ind.slug}
                       block={""}
                       button={false}
                       className={"link-size-1rem"}
-                      options={{ href: `${prefix}/industry/${ind.slug}` }}
+                      options={{
+                        href: localizedHref("/customer-stories", locale),
+                      }}
                     >
-                      {industryName(ind, locale)}
+                      {t("allCaseStudies")}
                     </Link>
-                  ))}
-                  <Link
-                    block={""}
-                    button={false}
-                    className={"link-size-1rem"}
-                    options={{
-                      href: localizedHref("/customer-stories", locale),
-                    }}
-                  >
-                    {t("allCaseStudies")}
-                  </Link>
+                  </div>
                 </Block>
                 <Block className={"footer_navigation_col"} tag={"div"}>
                   <Paragraph className={"text-size-1rem text-weight-600"}>
