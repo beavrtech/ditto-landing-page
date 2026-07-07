@@ -928,6 +928,46 @@ a {
   opacity: 0.7;
 }
 
+/* ── Footer navigation ──────────────────────────────────────────────────────
+   The link columns were laid out with flex-wrap, which turned into an ugly
+   masonry once the Customers/Customer-stories lists grew. On desktop, lay them
+   out as a top-aligned grid; the customer-stories list becomes a full-width
+   band that flows across sub-columns instead of one very tall stack.
+   !important: devlink-bundle.css loads after this file in the cascade. */
+@media (min-width: 992px) {
+  .footer_navigation {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(8.5rem, 1fr)) !important;
+    align-items: start !important;
+    grid-column-gap: 1.5rem !important;
+    grid-row-gap: 2.5rem !important;
+  }
+
+  /* Let each column fill its grid track instead of its fixed flex width. */
+  .footer_navigation_col {
+    width: auto !important;
+  }
+
+  /* Blog keeps a wider track for its long article titles. */
+  .footer_navigation_col.width-20rem {
+    width: auto !important;
+    grid-column: span 2 !important;
+  }
+
+  /* Customer-stories band: full width, names flow across sub-columns. */
+  .footer_stories_col {
+    grid-column: 1 / -1 !important;
+    width: auto !important;
+  }
+
+  .footer_stories_links {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 0.75rem;
+  }
+}
+
 /* Featured article card (Resources) — image, tag, serif title, description;
    the whole card turns yellow on hover (matches the mockup). */
 .nav-mega_article {

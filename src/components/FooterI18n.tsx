@@ -511,23 +511,25 @@ export function FooterClient({ blogPosts: serverBlogPosts, customerStories: serv
                   ))}
                 </Block>
                 <Block
-                  className={"footer_navigation_col width-20rem"}
+                  className={"footer_navigation_col footer_stories_col"}
                   tag={"div"}
                 >
                   <Paragraph className={"text-size-1rem text-weight-600"}>
                     {tNav("customerStories")}
                   </Paragraph>
-                  {customerStories.map((story) => (
-                    <Link
-                      key={story.id}
-                      block={""}
-                      button={false}
-                      className={"link-size-1rem"}
-                      options={{ href: localizedCmsHref("/customer-stories", story.slug, story.slug_fr, locale) }}
-                    >
-                      {(story.entreprise && story.entreprise.trim()) || story.name}
-                    </Link>
-                  ))}
+                  <div className={"footer_stories_links"}>
+                    {customerStories.map((story) => (
+                      <Link
+                        key={story.id}
+                        block={""}
+                        button={false}
+                        className={"link-size-1rem"}
+                        options={{ href: localizedCmsHref("/customer-stories", story.slug, story.slug_fr, locale) }}
+                      >
+                        {(story.entreprise && story.entreprise.trim()) || story.name}
+                      </Link>
+                    ))}
+                  </div>
                 </Block>
               </Block>
             </Block>
