@@ -158,6 +158,12 @@ export function NavbarClient({
       ],
     },
     {
+      id: "customers",
+      label: t("customers"),
+      href: localizedHref("/customer-stories", locale),
+      groups: [],
+    },
+    {
       id: "resources",
       label: t("resources"),
       featured: { kind: "article", title: t("featuredReading") },
@@ -261,12 +267,6 @@ export function NavbarClient({
               </Link>
               <Block className={"navbar1_navigation-list"} tag={"div"}>
                 <MegaNav menus={megaMenus} previewPosts={previewPosts} locale={locale} />
-                <NavbarLink
-                  className={"navbar1_link"}
-                  options={{ href: localizedHref("/customer-stories", locale) }}
-                >
-                  {t("customers")}
-                </NavbarLink>
                 <NavbarLink
                   className={"navbar1_link"}
                   options={{ href: localizedHref("/plans", locale) }}

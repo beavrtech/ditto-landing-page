@@ -35,6 +35,8 @@ export type MegaMenu = {
   label: string;
   groups: MegaGroup[];
   featured?: MegaFeatured;
+  /** When set, the item is a plain top-level link (no dropdown panel). */
+  href?: string;
 };
 
 /** Lucide icon per industry, keyed by the `icon` string set on the link. */
@@ -301,6 +303,21 @@ export function MegaNav({
   return (
     <>
       {menus.map((menu) => {
+        // Link-type item: a plain top-level link with no dropdown panel.
+        if (menu.href) {
+          return (
+            <div key={menu.id} className={"meganav_item"}>
+              <Link
+                block={""}
+                button={false}
+                className={"navbar1_link meganav_trigger"}
+                options={{ href: menu.href }}
+              >
+                <div>{menu.label}</div>
+              </Link>
+            </div>
+          );
+        }
         const isActive = activeId === menu.id && open;
         return (
           <div
@@ -347,6 +364,8 @@ export function MegaNav({
           }}
         >
           {menus.map((menu, i) => {
+            // Link-type items have no panel content.
+            if (menu.href) return null;
             const isActive = i === activeIndex;
             // Hidden layers rest offset to the side they sit on relative to the
             // active one (left layers -> left, right layers -> right), so the
