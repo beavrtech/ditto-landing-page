@@ -680,6 +680,51 @@
       "button": "Commencer"
     }
   },
+  "frameworksCarbon": {
+    "breadcrumb": "Bilan carbone",
+    "hero": {
+      "title": "Répondez aux attentes carbone de vos clients, sans complexité",
+      "subtitle": "Vos donneurs d'ordre évaluent désormais leurs fournisseurs sur le climat, via EcoVadis, le CDP ou leurs appels d'offres. Ditto structure vos données d'émissions sur les scopes 1, 2 et 3, vous <beges>met en conformité</beges> et fait de votre <pillar>bilan carbone</pillar> un argument commercial. Un expert à vos côtés à chaque étape.",
+      "cta": "Commencer"
+    },
+    "approach": {
+      "title": "Notre approche du bilan carbone",
+      "subtitle": "Nous avons découpé le bilan carbone en étapes claires, de la définition du périmètre au pilotage de la réduction. Vous avancez pas à pas, avec une méthode éprouvée qui s'adapte à vos données et à votre organisation."
+    },
+    "step1": {
+      "label": "Étape 1",
+      "title": "Définissez votre périmètre",
+      "description": "On commence par cadrer le bilan : quelles entités, quels sites, quelle année de référence, et quels <scopes>scopes</scopes> vous devez couvrir. Votre coach Ditto vous aide à fixer un périmètre clair, condition d'un bilan juste et comparable d'une année sur l'autre."
+    },
+    "step2": {
+      "label": "Étape 2",
+      "title": "Collectez et centralisez vos données d'émissions",
+      "description": "Énergie, carburants, déplacements, achats, fret : Ditto centralise vos données d'activité et vos justificatifs dans un espace unique. La collecte, phase la plus longue d'un premier bilan, devient structurée et collaborative entre vos équipes."
+    },
+    "step3": {
+      "label": "Étape 3",
+      "title": "Calculez et hiérarchisez vos postes",
+      "description": "Ditto applique les facteurs d'émission de référence, convertit vos données en tonnes équivalent CO2 et fait ressortir les postes qui pèsent le plus. Vous savez enfin où concentrer vos efforts, au lieu d'avancer à l'aveugle."
+    },
+    "step4": {
+      "label": "Étape 4",
+      "title": "Réduisez et pilotez année après année",
+      "description": "Un bilan sans plan d'action reste un diagnostic sans traitement. Ditto relie vos émissions, vos actions de réduction et votre plan de transition sur une même feuille de route, et vous aide à progresser à chaque cycle. Un coach dédié vous transmet la méthode pour devenir autonome."
+    },
+    "carousel": {
+      "title": "Réutilisez vos données pour tous vos enjeux RSE et conformité"
+    },
+    "testimonials": {
+      "title": "Ditto s'adapte à toutes les équipes",
+      "subtitle": "Que ce soit votre premier bilan carbone ou une mise à jour réglementaire, Ditto s'adapte à votre organisation et vous aide à gagner en efficacité à chaque étape.",
+      "cta": "En savoir plus"
+    },
+    "cta": {
+      "title": "Prêt à vous mettre en conformité ? Ditto.",
+      "subtitle": "Faites de votre bilan carbone un atout commercial : mesurez, mettez-vous en conformité et prouvez-le à vos clients, avec un copilote expert à chaque étape.",
+      "button": "Commencer"
+    }
+  },
   "frameworksCdp": {
     "breadcrumb": "CDP",
     "hero": {
@@ -931,6 +976,10 @@
     "frameworksCsrd": {
       "title": "Conformité CSRD et VSME assistée par l'IA",
       "description": "Simplifiez votre reporting CSRD ou VSME grâce à l'IA, des données structurées et l'expertise Ditto."
+    },
+    "frameworksCarbon": {
+      "title": "Répondez aux attentes carbone de vos clients, sans complexité",
+      "description": "Vos clients réclament votre bilan carbone. Structurez vos scopes 1, 2 et 3, mettez-vous en conformité et gagnez des marchés, avec la plateforme et l'expertise Ditto."
     },
     "frameworksCdp": {
       "title": "Améliorez votre score CDP, sans complexité",

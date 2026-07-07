@@ -338,6 +338,16 @@ export function FooterClient({ blogPosts: serverBlogPosts, newsItems: serverNews
                   >
                     {"ISO 14001"}
                   </Link>
+                  <Link
+                    block={""}
+                    button={false}
+                    className={"link-size-1rem"}
+                    options={{
+                      href: `${prefix}/frameworks/carbon`,
+                    }}
+                  >
+                    {tNav("carbon")}
+                  </Link>
                 </Block>
                 <Block className={"footer_navigation_col"} tag={"div"}>
                   <Paragraph className={"text-size-1rem text-weight-600"}>

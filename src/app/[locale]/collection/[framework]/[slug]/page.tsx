@@ -120,7 +120,15 @@ export default async function CollectionArticlePage({
         authorName: item.author?.name,
       })} />
       <main className="main-wrapper">
-        <Navbar />
+        {/* Article slugs differ per locale, so hand the language switcher the
+            exact twin URL (carbon lives at /carbon/[slug], others under
+            /collection/[framework]/[slug]) instead of the parent-listing fallback. */}
+        <Navbar
+          alternateUrls={{
+            en: collectionPath(framework, "en", item.slug),
+            fr: collectionPath(framework, "fr", item.slug_fr || item.slug),
+          }}
+        />
 
         {/* Breadcrumbs: Resources > EcoVadis > Article */}
         <Breadcrumbs
@@ -230,7 +238,12 @@ export default async function CollectionArticlePage({
           buttonLink={{ href: localizedHref("/demo", locale) }}
         />
 
-        <Footer />
+        <Footer
+          alternateUrls={{
+            en: collectionPath(framework, "en", item.slug),
+            fr: collectionPath(framework, "fr", item.slug_fr || item.slug),
+          }}
+        />
       </main>
     </div>
   );

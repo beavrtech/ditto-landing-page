@@ -680,19 +680,38 @@ a {
   }
 }
 
-/* Log in button: neutral outlined pill — subtle border + primary (navy) text
-   on a transparent background, filling to a light tan surface on hover.
-   Uses semantic design tokens (overrides the Secondary variant's yellow fill). */
+/* Navbar CTAs (desktop) — matched to the mockup. The mobile primary button
+   (.navbar1_mobile_button) stays navy per the mobile mockup, so these override
+   only the desktop .navbar_button pair. !important because devlink-bundle.css
+   loads after this file. */
+
+/* Log in (Secondary): plain navy text, no border/fill, with a subtle navy-tint
+   wash on hover. */
 .navbar_button--login .button {
-  border-color: var(--_colors-•-semantic---border-medium) !important;
+  border-color: transparent !important;
   background-color: transparent !important;
-  color: var(--_colors-•-semantic---text-primary) !important;
+  color: var(--_colors-•-primitives---neutral--neutral-navy) !important;
+  font-weight: 500;
 }
 
 .navbar_button--login .button:hover {
-  border-color: var(--_colors-•-semantic---border-strong) !important;
-  background-color: var(--_colors-•-primitives---tan--tan-light) !important;
-  color: var(--_colors-•-semantic---text-primary) !important;
+  border-color: transparent !important;
+  background-color: rgba(19, 14, 48, 0.06) !important;
+  color: var(--_colors-•-primitives---neutral--neutral-navy) !important;
+}
+
+/* Let's talk (Primary): yellow pill with a navy label, darkening on hover. */
+.navbar_button:not(.navbar_button--login) .button {
+  border-color: var(--_colors-•-primitives---brand--yellow) !important;
+  background-color: var(--_colors-•-primitives---brand--yellow) !important;
+  color: var(--_colors-•-primitives---neutral--neutral-navy) !important;
+  font-weight: 500;
+}
+
+.navbar_button:not(.navbar_button--login) .button:hover {
+  border-color: #ffd400 !important;
+  background-color: #ffd400 !important;
+  color: var(--_colors-•-primitives---neutral--neutral-navy) !important;
 }
 
 /* ── Multi-column megamenu (Product / Solution / Resources) ──────────────────
@@ -763,6 +782,7 @@ a {
 
 .nav-mega_link-label {
   display: block;
+  white-space: nowrap; /* keep menu labels on a single line (matches the mockup) */
   font-size: 0.9375rem; /* 15px */
   font-weight: 600;
   letter-spacing: -0.02em;
@@ -959,12 +979,32 @@ a {
 }
 
 .meganav_trigger {
+  position: relative;
   margin: 0;
   border: none;
   background: transparent;
   color: inherit;
   font: inherit;
   cursor: pointer;
+}
+
+/* Underline the active menu title (navy bar just below the label), matching the
+   mockup. Pseudo-element so toggling it never shifts the navbar layout. */
+.meganav_trigger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.375rem;
+  height: 2px;
+  border-radius: 2px;
+  background-color: var(--_colors-•-primitives---neutral--neutral-navy);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.meganav_trigger.is-active::after {
+  opacity: 1;
 }
 
 .meganav_chevron {
@@ -1011,10 +1051,13 @@ a {
   width: min(60rem, 92vw);
   overflow: hidden;
   pointer-events: auto;
-  border: 1px solid #d9ddbc;
+  border: 1px solid rgba(19, 14, 48, 0.07);
   border-radius: 1.75rem; /* 28px */
   background-color: var(--_colors-•-primitives---tan--tan-light);
-  box-shadow: 0 40px 80px 0 rgba(64, 58, 45, 0.18);
+  /* Soft, cool, evenly-diffused shadow (matches the mockup) rather than a heavy
+     warm drop. Negative spread keeps it tight to the panel. */
+  box-shadow: 0 24px 64px -16px rgba(19, 14, 48, 0.14),
+    0 8px 24px -12px rgba(19, 14, 48, 0.08);
   transition: height 420ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 

@@ -78,10 +78,9 @@ export function collectionPath(
   locale: string,
   slug?: string
 ): string {
-  const base =
-    framework === "carbon"
-      ? `/${locale}/carbon`
-      : `/${locale}/collection/${framework}`;
+  // Every framework's collection lives at /{locale}/collection/{framework}
+  // (carbon included — there is no standalone /carbon page).
+  const base = `/${locale}/collection/${framework}`;
   return slug ? `${base}/${slug}` : base;
 }
 

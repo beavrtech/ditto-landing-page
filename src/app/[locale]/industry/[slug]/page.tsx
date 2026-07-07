@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { Navbar } from "../../../../components/NavbarServer";
@@ -17,6 +18,17 @@ import {
   industryIntro,
 } from "../../../../lib/customer-industries";
 import { getIndustryContent } from "../../../../lib/industry-content";
+
+// Industry slugs that have a hero illustration in /public/images/industries.
+const INDUSTRY_ILLUSTRATIONS = new Set([
+  "aerospace-defense",
+  "construction",
+  "electronics",
+  "manufacturing-equipment",
+  "retail",
+  "technology-software",
+  "transportation-logistics",
+]);
 
 export async function generateStaticParams() {
   const params: { locale: string; slug: string }[] = [];
@@ -154,27 +166,57 @@ export default async function IndustryPage({
                 <div className="spacer-component" data-wf--padding--space="small-3rem" />
               </div>
               <div className="container-80rem">
-                <div className="post-hero_content">
-                  <p className="label">{heroEyebrow}</p>
-                  <div className="spacer-1x5rem" />
-                  <h1 className="heading-size-3rem">{heroTitle}</h1>
-                  <div className="spacer-1x5rem" />
-                  <p className="text-size-1x375rem">{heroSubhead}</p>
-                  <div className="spacer-2rem" />
-                  <div className="button-group">
-                    <Button
-                      arrow={false}
-                      link={{ href: `${prefix}/demo` }}
-                      text={primaryCtaText}
-                      variant="Primary"
-                    />
-                    <Button
-                      arrow={false}
-                      link={{ href: `${prefix}/solutions/ai-solutions` }}
-                      text={secondaryCtaText}
-                      variant="Secondary"
-                    />
+                <div className="post-hero_component">
+                  <div className="post-hero_content">
+                    <p className="label">{heroEyebrow}</p>
+                    <div className="spacer-1x5rem" />
+                    <h1 className="heading-size-3rem">{heroTitle}</h1>
+                    <div className="spacer-1x5rem" />
+                    <p className="text-size-1x375rem">{heroSubhead}</p>
+                    <div className="spacer-2rem" />
+                    <div className="button-group">
+                      <Button
+                        arrow={false}
+                        link={{ href: `${prefix}/demo` }}
+                        text={primaryCtaText}
+                        variant="Primary"
+                      />
+                      <Button
+                        arrow={false}
+                        link={{ href: `${prefix}/solutions/ai-solutions` }}
+                        text={secondaryCtaText}
+                        variant="Secondary"
+                      />
+                    </div>
                   </div>
+                  {INDUSTRY_ILLUSTRATIONS.has(slug) && (
+                    // Decorative industry illustration filling the empty right
+                    // side of the hero on desktop (hidden on tablet/mobile).
+                    <div
+                      className="hide-tablet"
+                      style={{
+                        flex: 1,
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
+                      <Image
+                        src={`/images/industries/${slug}.png`}
+                        alt=""
+                        width={1024}
+                        height={1024}
+                        priority
+                        sizes="(min-width: 992px) 30rem, 0px"
+                        style={{
+                          width: "100%",
+                          maxWidth: "30rem",
+                          height: "auto",
+                          borderRadius: "var(--radius--radius-default)",
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="spacer-component" data-wf--padding--space="small-3rem" />
