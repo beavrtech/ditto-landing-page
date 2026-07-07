@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
+import { LEGAL_CONTENT } from "../../../../lib/legal-content";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -107,9 +108,10 @@ export default async function LegalNoticesPage({ params }: { params: Promise<{ l
                   <div className="post_main">
                     <div className="post_content">
                       <div id="company" className="post_chapter">
-                        <div className="text-rich-text w-richtext">
-                          <p>{t("legalNotices.cmsPlaceholder")}</p>
-                        </div>
+                        <div
+                          className="text-rich-text w-richtext"
+                          dangerouslySetInnerHTML={{ __html: LEGAL_CONTENT["legal-notices"] }}
+                        />
                       </div>
                     </div>
                   </div>
