@@ -9,6 +9,7 @@ import {
   Truck,
   ShoppingBag,
   Monitor,
+  Sparkles,
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
@@ -48,6 +49,7 @@ const ICONS: Record<string, LucideIcon> = {
   truck: Truck,
   "shopping-bag": ShoppingBag,
   monitor: Monitor,
+  sparkles: Sparkles,
 };
 
 const CHEVRON =

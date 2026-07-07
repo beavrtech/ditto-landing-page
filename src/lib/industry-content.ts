@@ -607,6 +607,90 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
       },
     },
   },
+
+  // 8. Cosmetics & Beauty ----------------------------------------------------
+  "cosmetics-beauty": {
+    en: {
+      eyebrow: "For cosmetics & beauty brands and suppliers",
+      h1: "The sustainability & compliance platform for cosmetics and beauty",
+      subhead:
+        "Retailers, marketplaces and regulators all want proof before your products reach the shelf. Ditto helps beauty brands stay listed and stay compliant: EcoVadis, ingredient and packaging rules, responsible sourcing, and carbon, with an expert coach built in.",
+      context: [
+        "Cosmetics and beauty companies answer to everyone at once. Retailers and marketplaces run supplier assessments, the EU Cosmetics Regulation governs every ingredient and claim, packaging and deforestation rules keep tightening, and shoppers reward brands that can back up 'clean', 'natural' and 'cruelty-free'. An EcoVadis rating, safe and compliant formulas, recyclable packaging and carbon data are becoming conditions of shelf space.",
+        "The hard part is holding it together across a fast-moving range, a long ingredient list and a global supplier base. Done well, credible sustainability is exactly what keeps you listed, keeps regulators satisfied, and sets your brand apart.",
+      ],
+      howHelpsIntro:
+        "Everything your retail partners and regulators check, in one platform, with an expert coach and AI that pre-fills the questionnaires.",
+      frameworks: [
+        { title: "EcoVadis", desc: "Earn the rating retailers and marketplaces expect in supplier assessments, guided by an approved EcoVadis training partner." },
+        { title: "CSRD / VSME", desc: "Answer the sustainability questionnaires your retail and distribution partners send you as a supplier, on the SME-ready standard." },
+        { title: "EU Cosmetics Regulation & ingredients", desc: "Keep formula, safety and ingredient-restriction records (REACH, allergens, microplastics) consistent and ready the moment a buyer or authority asks." },
+        { title: "PPWR (packaging)", desc: "Prepare for tightening packaging and EPR rules on bottles, jars and cartons with supplier evidence in hand." },
+        { title: "Green claims & responsible sourcing", desc: "Back your 'natural', 'clean' and 'cruelty-free' claims with evidence, and run due diligence on ingredients like palm oil and mica to meet EUDR and CSDDD expectations." },
+        { title: "Carbon & CDP", desc: "Measure product and value-chain emissions and disclose them credibly when a major account requests one." },
+      ],
+      outcomes: [
+        { strong: "Keep your listings", text: "by clearing retailer and marketplace supplier assessments." },
+        { strong: "Turn ESG into a selling point", text: "that shoppers and buyers reward." },
+        { strong: "Stay ahead of ingredient, packaging and claims rules", text: "instead of scrambling." },
+        { strong: "Answer buyer questionnaires in minutes", text: "from one source of truth." },
+        { strong: "Prove your claims", text: "with data, not marketing." },
+      ],
+      proof: {
+        heading: "Superga Beauty: structuring and promoting its CSR approach for sustainable leadership.",
+        quote:
+          "Ditto is the all-in-one tool that lets us turn our CSR compliance into a competitive advantage.",
+        author: "Sophie Wardan, Group CSR Manager, Superga Beauty",
+        ctaLabel: "Read the Superga Beauty case study",
+        caseStudySlug: "superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership",
+      },
+      finalCta: {
+        heading: "Turn beauty compliance into a competitive advantage.",
+        body: "Book a free strategy call. We'll map what your retail partners and regulators require, and show you how Ditto gets you there faster.",
+        button: "Book a demo",
+      },
+    },
+    fr: {
+      eyebrow: "Pour les marques et fournisseurs de cosmétiques et de beauté",
+      h1: "La plateforme durabilité & conformité pour les cosmétiques et la beauté",
+      subhead:
+        "Distributeurs, marketplaces et régulateurs veulent tous des preuves avant que vos produits n'atteignent le linéaire. Ditto aide les marques de beauté à rester référencées et conformes : EcoVadis, règles sur les ingrédients et les emballages, achats responsables et carbone, avec un coach expert intégré.",
+      context: [
+        "Les entreprises des cosmétiques et de la beauté rendent des comptes à tout le monde en même temps. Les distributeurs et les marketplaces mènent des évaluations fournisseurs, le règlement européen sur les cosmétiques encadre chaque ingrédient et chaque allégation, les règles sur les emballages et la déforestation se durcissent, et les consommateurs récompensent les marques capables de justifier « clean », « naturel » et « non testé sur les animaux ». Une note EcoVadis, des formules sûres et conformes, des emballages recyclables et des données carbone deviennent des conditions d'accès au linéaire.",
+        "Le plus dur, c'est de tout tenir ensemble sur une gamme qui évolue vite, une longue liste d'ingrédients et une base fournisseurs mondiale. Bien menée, une durabilité crédible est exactement ce qui vous garde référencé, satisfait les régulateurs et distingue votre marque.",
+      ],
+      howHelpsIntro:
+        "Tout ce que vos partenaires distributeurs et les régulateurs vérifient, dans une seule plateforme, avec un coach expert et une IA qui pré-remplit les questionnaires.",
+      frameworks: [
+        { title: "EcoVadis", desc: "Décrochez la note attendue par les distributeurs et les marketplaces dans leurs évaluations fournisseurs, guidé par un partenaire de formation agréé EcoVadis." },
+        { title: "CSRD / VSME", desc: "Répondez aux questionnaires durabilité que vos partenaires distributeurs vous envoient en tant que fournisseur, sur le standard adapté aux PME." },
+        { title: "Règlement Cosmétiques & ingrédients", desc: "Gardez vos dossiers formule, sécurité et restrictions d'ingrédients (REACH, allergènes, microplastiques) cohérents et prêts dès qu'un acheteur ou une autorité les demande." },
+        { title: "PPWR (emballages)", desc: "Préparez-vous au durcissement des règles sur les emballages et la REP pour les flacons, pots et étuis, preuves fournisseurs en main." },
+        { title: "Allégations vertes & achats responsables", desc: "Justifiez vos allégations « naturel », « clean » et « non testé sur les animaux » avec des preuves, et menez le devoir de vigilance sur des ingrédients comme l'huile de palme et le mica pour répondre aux attentes EUDR et CSDDD." },
+        { title: "Carbone & CDP", desc: "Mesurez les émissions produit et de chaîne de valeur et publiez-les de façon crédible quand un grand compte le demande." },
+      ],
+      outcomes: [
+        { strong: "Gardez vos référencements", text: "en passant les évaluations fournisseurs des distributeurs et des marketplaces." },
+        { strong: "Faites de la RSE un argument de vente", text: "que consommateurs et acheteurs récompensent." },
+        { strong: "Gardez une longueur d'avance sur les règles ingrédients, emballages et allégations", text: "au lieu de courir après." },
+        { strong: "Répondez aux questionnaires acheteurs en minutes", text: "depuis une source unique de vérité." },
+        { strong: "Prouvez vos allégations", text: "avec des données, pas du marketing." },
+      ],
+      proof: {
+        heading: "Superga Beauty : structurer et valoriser sa démarche RSE pour un leadership durable.",
+        quote:
+          "Ditto est l'outil tout-en-un qui nous permet de transformer notre conformité RSE en avantage concurrentiel.",
+        author: "Sophie Wardan, Responsable RSE Groupe, Superga Beauty",
+        ctaLabel: "Lire le cas Superga Beauty",
+        caseStudySlug: "superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership",
+      },
+      finalCta: {
+        heading: "Faites de la conformité beauté un avantage concurrentiel.",
+        body: "Réservez un appel stratégique gratuit. Nous cartographions les exigences de vos partenaires distributeurs et des régulateurs, et vous montrons comment Ditto vous y amène plus vite.",
+        button: "Réserver une démo",
+      },
+    },
+  },
 };
 
 export function getIndustryContent(

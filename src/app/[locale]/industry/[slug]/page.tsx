@@ -23,6 +23,7 @@ import { getIndustryContent } from "../../../../lib/industry-content";
 const INDUSTRY_ILLUSTRATIONS = new Set([
   "aerospace-defense",
   "construction",
+  "cosmetics-beauty",
   "electronics",
   "manufacturing-equipment",
   "retail",

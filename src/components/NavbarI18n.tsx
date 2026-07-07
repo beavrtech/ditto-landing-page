@@ -79,6 +79,7 @@ export function NavbarClient({
   const INDUSTRY_ICONS: Record<string, string> = {
     "aerospace-defense": "plane",
     construction: "hard-hat",
+    "cosmetics-beauty": "sparkles",
     electronics: "cpu",
     "manufacturing-equipment": "factory",
     retail: "shopping-bag",
