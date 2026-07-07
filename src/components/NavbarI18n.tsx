@@ -11,7 +11,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getBlogPosts, getCustomerStories } from "../lib/cms";
-import { localizedHref, localizedCmsHref, switchLocalePath } from "../lib/localized-paths";
+import { localizedHref, localizedCmsHref, switchLocalePath, collectionPath } from "../lib/localized-paths";
 import { CUSTOMER_INDUSTRIES, industryName } from "../lib/customer-industries";
 import { MegaNav, type MegaMenu } from "./MegaNav";
 import { useAlternateUrls } from "./AlternateUrlContext";
@@ -86,11 +86,38 @@ export function NavbarClient({
       ? "https://app.livestorm.co/trustditto?lang=fr"
       : "https://app.livestorm.co/trustditto?lang=en";
 
+  // Lucide icon key per industry (rendered as a yellow chip in Solution).
+  const INDUSTRY_ICONS: Record<string, string> = {
+    "aerospace-defense": "plane",
+    construction: "hard-hat",
+    electronics: "cpu",
+    "manufacturing-equipment": "factory",
+    retail: "shopping-bag",
+    "technology-software": "monitor",
+    "transportation-logistics": "truck",
+  };
+  const industryLinks = [...CUSTOMER_INDUSTRIES]
+    .map((industry) => ({
+      label: industryName(industry, locale),
+      href: localizedHref(`/industry/${industry.slug}`, locale),
+      icon: INDUSTRY_ICONS[industry.slug],
+    }))
+    .sort((a, b) => a.label.localeCompare(b.label, locale));
+
   // Single source of truth for the megamenus (Level 1 > Level 2 group > Level 3).
   const megaMenus: MegaMenu[] = [
     {
       id: "product",
       label: t("product"),
+      featured: {
+        kind: "promo",
+        promo: {
+          eyebrow: t("deadlineWatch"),
+          title: t("deadlineTitle"),
+          ctaLabel: t("startEarly"),
+          ctaHref: localizedHref("/frameworks/cdp", locale),
+        },
+      },
       groups: [
         {
           id: "byFramework",
@@ -98,6 +125,8 @@ export function NavbarClient({
           links: [
             { label: t("ecovadis"), href: localizedHref("/frameworks/ecovadis", locale) },
             { label: t("cdp"), href: localizedHref("/frameworks/cdp", locale) },
+            { label: t("csrd"), href: localizedHref("/frameworks/csrd", locale) },
+            { label: t("carbon"), href: localizedHref("/frameworks/carbon", locale) },
             { label: t("iso14001"), href: localizedHref("/frameworks/iso-14001", locale) },
           ],
         },
@@ -121,10 +150,8 @@ export function NavbarClient({
           id: "byIndustry",
           heading: t("byIndustry"),
           columns: 2,
-          links: CUSTOMER_INDUSTRIES.map((industry) => ({
-            label: industryName(industry, locale),
-            href: localizedHref(`/industry/${industry.slug}`, locale),
-          })),
+          variant: "icon",
+          links: industryLinks,
         },
         // Future: "By size" group — deferred.
       ],
@@ -132,7 +159,7 @@ export function NavbarClient({
     {
       id: "resources",
       label: t("resources"),
-      preview: "blog",
+      featured: { kind: "article", title: t("featuredReading") },
       groups: [
         {
           id: "customerStories",
@@ -147,29 +174,26 @@ export function NavbarClient({
           ],
         },
         {
-          id: "framework",
-          heading: t("framework"),
+          id: "perTopic",
+          heading: t("perTopic"),
           links: [
-            { label: t("ecovadis"), href: localizedHref("/collection/ecovadis", locale) },
-            { label: "VSME", href: localizedHref("/collection/vsme", locale) },
+            { label: t("ecovadis"), href: collectionPath("ecovadis", locale) },
+            { label: t("cdp"), href: collectionPath("cdp", locale) },
+            { label: "CSRD", href: collectionPath("csrd", locale) },
+            { label: "VSME", href: collectionPath("vsme", locale) },
+            { label: t("carbon"), href: collectionPath("carbon", locale) },
+            { label: t("iso14001"), href: collectionPath("iso-14001", locale) },
+            { label: "QHSE", href: collectionPath("qhse", locale) },
           ],
         },
         {
-          id: "otherResources",
-          heading: t("otherResources"),
+          id: "learn",
+          heading: t("learn"),
           links: [
             { label: t("blog"), href: localizedHref("/resources/blog", locale) },
             { label: t("guides"), href: localizedHref("/resources/guides", locale) },
             { label: t("webinars"), href: webinarsHref, target: "_blank" },
             { label: t("news"), href: localizedHref("/resources/news", locale) },
-          ],
-        },
-        {
-          id: "aboutUs",
-          heading: t("aboutUs"),
-          links: [
-            { label: t("manifesto"), href: localizedHref("/manifesto", locale) },
-            { label: t("careers"), href: localizedHref("/careers", locale) },
           ],
         },
       ],

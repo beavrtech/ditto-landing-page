@@ -1,19 +1,153 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import Block from "../../devlink/modules/Basic/components/Block";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
+import {
+  Cpu,
+  Plane,
+  Factory,
+  HardHat,
+  Truck,
+  ShoppingBag,
+  Monitor,
+  ArrowRight,
+  type LucideIcon,
+} from "lucide-react";
 import Link from "../../devlink/modules/Basic/components/Link";
-import Paragraph from "../../devlink/modules/Basic/components/Paragraph";
 import { articleHref } from "../lib/localized-paths";
 
-export type MegaLink = { label: string; href: string; desc?: string; target?: "_blank" | "_self" };
-export type MegaGroup = { id: string; heading: string; links: MegaLink[]; columns?: number };
-export type MegaMenu = { id: string; label: string; groups: MegaGroup[]; preview?: "blog" };
+export type MegaLink = { label: string; href: string; target?: "_blank" | "_self"; icon?: string };
+export type MegaGroup = { id: string; heading: string; links: MegaLink[]; columns?: number; variant?: "icon" };
+/** Yellow "deadline watch" promo card (Product), rendered inside the featured block. */
+export type MegaPromo = { eyebrow: string; title: string; ctaLabel: string; ctaHref: string };
+/**
+ * The right-hand featured block. `title` is the optional uppercase heading above
+ * the content; `kind` selects what fills it — a yellow promo card (Product) or
+ * the latest blog post as an article card (Resources).
+ */
+export type MegaFeatured =
+  | { kind: "promo"; title?: string; promo: MegaPromo }
+  | { kind: "article"; title?: string };
+export type MegaMenu = {
+  id: string;
+  label: string;
+  groups: MegaGroup[];
+  featured?: MegaFeatured;
+};
+
+/** Lucide icon per industry, keyed by the `icon` string set on the link. */
+const ICONS: Record<string, LucideIcon> = {
+  cpu: Cpu,
+  plane: Plane,
+  factory: Factory,
+  "hard-hat": HardHat,
+  truck: Truck,
+  "shopping-bag": ShoppingBag,
+  monitor: Monitor,
+};
 
 const CHEVRON =
   '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.5312 5.52729C3.79155 5.26694 4.21366 5.26694 4.47401 5.52729L8.0026 9.05589L11.5312 5.52729C11.7915 5.26694 12.2137 5.26694 12.474 5.52729C12.7344 5.78764 12.7344 6.20975 12.474 6.4701L8.47401 10.4701C8.21366 10.7305 7.79155 10.7305 7.5312 10.4701L3.5312 6.4701C3.27085 6.20975 3.27085 5.78764 3.5312 5.52729Z" fill="#130E30"/></svg>';
 
-/** The Level-2 columns (+ optional blog preview) for a single megamenu. */
+/** A single column: an uppercase heading above a vertical stack of links. */
+function NavColumn({ group }: { group: MegaGroup }) {
+  const isIcon = group.variant === "icon";
+  const cols = group.columns ?? 1;
+  const items = group.links.map((link, i) => {
+    const Icon = link.icon ? ICONS[link.icon] : null;
+    return (
+      <Link
+        key={`${group.id}-${i}`}
+        block={""}
+        button={false}
+        className={`nav-mega_link link-hover-parent${isIcon ? " nav-mega_link--icon" : ""}`}
+        options={{ href: link.href, ...(link.target ? { target: link.target } : {}) }}
+      >
+        {Icon ? (
+          <span className={"nav-mega_icon"} aria-hidden={"true"}>
+            <Icon width={20} height={20} strokeWidth={2} />
+          </span>
+        ) : null}
+        <span className={"nav-mega_link-label"}>{link.label}</span>
+      </Link>
+    );
+  });
+  return (
+    <div className={"nav-mega_col"}>
+      <div className={"nav-mega_heading"}>{group.heading}</div>
+      {cols > 1 ? (
+        <div
+          className={"nav-mega_links nav-mega_links--grid"}
+          style={{ gridTemplateRows: `repeat(${Math.ceil(group.links.length / cols)}, auto)` }}
+        >
+          {items}
+        </div>
+      ) : (
+        <div className={"nav-mega_links"}>{items}</div>
+      )}
+    </div>
+  );
+}
+
+/**
+ * The right-hand featured block, reused by Product and Resources. Renders an
+ * optional uppercase title above whatever content is passed in, and is pinned
+ * to the desktop panel only (hidden in the mobile accordion).
+ */
+function FeaturedBlock({
+  title,
+  variant,
+  children,
+}: {
+  title?: string;
+  variant: "fill" | "fixed";
+  children: ReactNode;
+}) {
+  return (
+    <div className={`nav-mega_featured nav-mega_featured--${variant} hide-tablet`}>
+      {title ? <div className={"nav-mega_heading"}>{title}</div> : null}
+      {children}
+    </div>
+  );
+}
+
+/** Yellow "deadline watch" promo card (Product). */
+function PromoCard({ promo }: { promo: MegaPromo }) {
+  return (
+    <Link block={""} button={false} className={"nav-mega_promo"} options={{ href: promo.ctaHref }}>
+      <span className={"nav-mega_promo-eyebrow"}>{promo.eyebrow}</span>
+      <span className={"nav-mega_promo-title"}>{promo.title}</span>
+      <span className={"nav-mega_promo-cta"}>
+        {promo.ctaLabel}
+        <ArrowRight width={15} height={15} strokeWidth={2.5} />
+      </span>
+    </Link>
+  );
+}
+
+/** Featured article card built from the latest blog post (Resources). */
+function FeaturedArticle({ post, locale }: { post: any; locale: string }) {
+  return (
+    <Link
+      block={""}
+      button={false}
+      className={"nav-mega_article link-hover-parent"}
+      options={{ href: articleHref(post, post.collectionTwin, locale) }}
+    >
+      <span
+        className={"nav-mega_article-image"}
+        style={post.banner_url ? { backgroundImage: `url('${post.banner_url}')` } : undefined}
+      />
+      <span className={"nav-mega_article-tag"}>
+        <span className={"nav-mega_article-dot"} />
+        {"Blog"}
+      </span>
+      <span className={"nav-mega_article-title text-style-2lines"}>{post.name}</span>
+      <span className={"nav-mega_article-desc text-style-2lines"}>{post.description}</span>
+    </Link>
+  );
+}
+
+/** The Level-2 columns (+ optional featured block) for a single megamenu. */
 function MegaContent({
   menu,
   previewPosts,
@@ -23,69 +157,25 @@ function MegaContent({
   previewPosts: any[];
   locale: string;
 }) {
+  const featured = menu.featured;
+  const post = featured?.kind === "article" ? previewPosts[0] : null;
+
   return (
     <div className={"nav-mega"}>
       <div className={"nav-mega_cols"}>
-        {menu.groups.map((group) => {
-          const cols = group.columns ?? 1;
-          const linkEls = group.links.map((link, i) => (
-            <Link
-              key={`${group.id}-${i}`}
-              block={""}
-              button={false}
-              className={"nav-mega_link link-hover-parent"}
-              options={{ href: link.href, ...(link.target ? { target: link.target } : {}) }}
-            >
-              <Block className={"nav-mega_link-label"} tag={"div"}>
-                {link.label}
-              </Block>
-              {link.desc ? (
-                <Paragraph className={"nav-mega_link-desc text-color-neutral hide-tablet"}>
-                  {link.desc}
-                </Paragraph>
-              ) : null}
-            </Link>
-          ));
-          return (
-            <div key={group.id} className={`nav-mega_col${cols > 1 ? " nav-mega_col--wide" : ""}`}>
-              <div className={"nav-mega_heading"}>{group.heading}</div>
-              {cols > 1 ? (
-                <div
-                  className={"nav-mega_links-grid"}
-                  style={{ gridTemplateRows: `repeat(${Math.ceil(group.links.length / cols)}, auto)` }}
-                >
-                  {linkEls}
-                </div>
-              ) : (
-                linkEls
-              )}
-            </div>
-          );
-        })}
+        {menu.groups.map((group) => (
+          <NavColumn key={group.id} group={group} />
+        ))}
       </div>
-      {menu.preview === "blog" && previewPosts.length > 0 ? (
-        <div className={"nav-mega_preview"}>
-          {previewPosts.map((post: any) => (
-            <Block key={post.slug} className={"dropdown1_card2"} tag={"div"}>
-              <Block className={"dropdown1_card2_content"} tag={"div"}>
-                <Paragraph className={"label"}>{"Blog"}</Paragraph>
-                <Block className={"spacer-0x5rem"} tag={"div"} />
-                <Link
-                  block={""}
-                  button={false}
-                  className={"heading-size-1x375rem link-hover-parent text-style-2lines"}
-                  options={{ href: articleHref(post, post.collectionTwin, locale) }}
-                >
-                  {post.name}
-                </Link>
-                <Block className={"spacer-0x5rem"} tag={"div"} />
-                <Paragraph className={"text-size-0x875rem text-style-3lines"}>
-                  {post.description}
-                </Paragraph>
-              </Block>
-            </Block>
-          ))}
-        </div>
+
+      {featured ? (
+        <FeaturedBlock title={featured.title} variant={featured.kind === "promo" ? "fill" : "fixed"}>
+          {featured.kind === "promo" ? (
+            <PromoCard promo={featured.promo} />
+          ) : post ? (
+            <FeaturedArticle post={post} locale={locale} />
+          ) : null}
+        </FeaturedBlock>
       ) : null}
     </div>
   );

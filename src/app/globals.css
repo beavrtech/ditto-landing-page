@@ -703,45 +703,46 @@ a {
 .nav-mega {
   display: flex;
   gap: 1.5rem;
-  align-items: flex-start;
+  align-items: stretch;
   width: 100%;
-  padding: 0.5rem;
+  padding: 2.25rem 2.5rem; /* 36px / 40px — matches the mockup panel padding */
 }
 
+/* The stack of Level-2 columns; sized to content so the featured block can take
+   the remaining width (Product) or sit right-aligned after a gap (Resources). */
 .nav-mega_cols {
   display: flex;
-  flex: 1 1 auto;
-  flex-wrap: wrap;
-  gap: 1rem 1.5rem;
+  flex: 0 1 auto;
+  gap: 1.5rem;
   align-items: flex-start;
 }
 
 .nav-mega_col {
   display: flex;
-  flex: 0 1 12rem;
-  min-width: 11rem;
   flex-direction: column;
-  gap: 0.125rem;
+  min-width: 10rem;
 }
 
 .nav-mega_heading {
-  padding: 0.5rem 0.75rem;
-  font-size: 0.75rem;
+  margin-bottom: 1rem;
+  font-size: 0.6875rem; /* 11px */
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--_colors-•-semantic---text-neutral);
+  color: #8a8896;
 }
 
-/* A group rendered across multiple columns (e.g. Solution > By industry). */
-.nav-mega_col--wide {
-  flex: 0 1 24rem;
+.nav-mega_links {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 
-.nav-mega_links-grid {
+/* A group laid out across multiple columns (e.g. Solution > By industry). */
+.nav-mega_links--grid {
   display: grid;
   grid-auto-flow: column;
-  column-gap: 1rem;
+  column-gap: 1.5rem;
 }
 
 .nav-mega_link {
@@ -750,34 +751,168 @@ a {
      dropdown wrapper and overlays the whole menu. */
   position: relative;
   display: block;
-  padding: 0.5rem 0.75rem;
-  border-radius: var(--radius--radius-default);
+  padding: 0.75rem;
+  border-radius: 0.75rem;
   text-decoration: none !important;
   transition: background-color 150ms ease;
 }
 
 .nav-mega_link:hover {
-  background-color: var(--_colors-•-primitives---tan--tan-light);
+  background-color: #eceee0;
 }
 
 .nav-mega_link-label {
-  font-size: var(--_paragraphs---text-size-1rem--font-size);
+  display: block;
+  font-size: 0.9375rem; /* 15px */
   font-weight: 600;
-  color: var(--_colors-•-semantic---text-primary);
+  letter-spacing: -0.02em;
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
 }
 
-.nav-mega_link-desc {
-  margin-top: 0.125rem;
-  font-size: var(--_paragraphs---text-size-0x875rem--font-size);
-}
-
-.nav-mega_preview {
+/* Industry links (Solution) — label preceded by a yellow icon chip. */
+.nav-mega_link--icon {
   display: flex;
-  flex: 0 0 17rem;
+  align-items: center;
+  gap: 0.8125rem;
+  padding: 0.625rem;
+}
+
+.nav-mega_icon {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.6875rem;
+  background-color: var(--_colors-•-primitives---brand--yellow);
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+/* ── Featured block (reused by Product + Resources) ─────────────────────────── */
+.nav-mega_featured {
+  display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding-left: 1.5rem;
-  border-left: 1px solid var(--_colors-•-semantic---border-subtle);
+}
+
+/* Product: block grows to fill the panel; the promo card stretches into it. */
+.nav-mega_featured--fill {
+  flex: 1 1 auto;
+  min-width: 16rem;
+}
+
+/* Resources: a fixed-width card pushed to the right edge, after a gap. */
+.nav-mega_featured--fixed {
+  flex: 0 0 20rem;
+  margin-left: auto;
+}
+
+/* Yellow "deadline watch" promo card (Product). */
+.nav-mega_promo {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1.5rem;
+  border-radius: 1.375rem; /* 22px */
+  background-color: var(--_colors-•-primitives---brand--yellow);
+  text-decoration: none !important;
+}
+
+.nav-mega_promo-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+.nav-mega_promo-title {
+  font-family: var(--font-family--headings);
+  font-size: 1.3125rem; /* 21px */
+  line-height: 1.18;
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+.nav-mega_promo-cta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  margin-top: auto;
+  padding: 0.6875rem 1.25rem;
+  border-radius: 999px;
+  background-color: var(--_colors-•-primitives---neutral--neutral-navy);
+  color: var(--_colors-•-primitives---tan--tan);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.nav-mega_promo:hover .nav-mega_promo-cta {
+  background-color: #1d1844;
+}
+
+/* Featured article card (Resources) — image, tag, serif title, description;
+   the whole card turns yellow on hover (matches the mockup). */
+.nav-mega_article {
+  position: relative;
+  display: block;
+  padding: 1.25rem;
+  margin: 0 -0.5rem;
+  border-radius: 1rem;
+  text-decoration: none !important;
+  background-color: var(--_colors-•-primitives---tan--tan);
+  transition: background-color 180ms ease;
+}
+
+.nav-mega_article:hover {
+  background-color: var(--_colors-•-primitives---brand--yellow);
+}
+
+.nav-mega_article-image {
+  display: block;
+  width: 100%;
+  height: 9.25rem; /* 148px */
+  margin-bottom: 0.8125rem;
+  border-radius: 0.75rem;
+  border: 1.5px solid var(--_colors-•-primitives---neutral--neutral-navy);
+  background-color: var(--_colors-•-primitives---tan--tan);
+  background-size: cover;
+  background-position: center;
+}
+
+.nav-mega_article-tag {
+  display: flex;
+  align-items: center;
+  gap: 0.4375rem;
+  margin-bottom: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--_colors-•-primitives---neutral--neutral-gray);
+}
+
+.nav-mega_article-dot {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 50%;
+  background-color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+.nav-mega_article-title {
+  display: block;
+  font-family: var(--font-family--headings);
+  font-size: 1.1875rem; /* 19px */
+  line-height: 1.22;
+  color: var(--_colors-•-primitives---neutral--neutral-navy);
+}
+
+.nav-mega_article-desc {
+  display: block;
+  margin-top: 0.375rem;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--_colors-•-primitives---neutral--neutral-gray);
 }
 
 @media (max-width: 991px) {
@@ -786,6 +921,7 @@ a {
     max-width: none;
     flex-direction: column;
     gap: 0.5rem;
+    padding: 0.5rem;
   }
 
   .nav-mega_cols {
@@ -795,22 +931,14 @@ a {
   }
 
   .nav-mega_col {
-    flex: none;
     min-width: 0;
     width: 100%;
   }
 
-  .nav-mega_links-grid {
+  .nav-mega_links--grid {
     grid-auto-flow: row;
     grid-template-rows: none !important;
     grid-template-columns: 1fr;
-  }
-
-  .nav-mega_preview {
-    flex: none;
-    width: 100%;
-    padding-left: 0;
-    border-left: none;
   }
 }
 
@@ -880,12 +1008,13 @@ a {
    (and never blocks the page behind it). */
 .meganav_panel {
   position: relative;
-  width: min(72rem, 92vw);
+  width: min(60rem, 92vw);
   overflow: hidden;
   pointer-events: auto;
-  border-radius: var(--radius--radius-default);
-  background-color: var(--_colors-•-semantic---surface-tertiary);
-  box-shadow: 0 48px 96px 0 rgba(64, 58, 45, 0.15);
+  border: 1px solid #d9ddbc;
+  border-radius: 1.75rem; /* 28px */
+  background-color: var(--_colors-•-primitives---tan--tan-light);
+  box-shadow: 0 40px 80px 0 rgba(64, 58, 45, 0.18);
   transition: height 420ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
