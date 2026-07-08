@@ -14,6 +14,7 @@ import { SectionCtaPill } from "../../../../components/SectionCtaPillI18n";
 import { SectionTestimonials } from "../../../../components/TestimonialsServer";
 import { SectionCta } from "../../../../../devlink/sections/SectionCta";
 import { Button } from "../../../../../devlink/elements/Button";
+import { collectionPath } from "../../../../lib/localized-paths";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -45,18 +46,19 @@ export default async function FrameworksCarbonPage({ params }: { params: Promise
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
-  // Internal maillage into the carbon article cluster (/[locale]/carbon/...).
-  // FR articles are live; only the EN pillar is published, so EN links only
-  // that one and the other tags render as plain text (no dead links).
+  // Internal maillage into the carbon article cluster
+  // (/[locale]/collection/carbon/...). FR articles are live; only the EN
+  // pillar is published, so EN links only that one and the other tags
+  // render as plain text (no dead links).
   const articles =
     locale === "fr"
       ? {
-          pillar: `${prefix}/carbon/bilan-carbone-entreprise`,
-          beges: `${prefix}/carbon/bilan-carbone-obligatoire-beges`,
-          scopes: `${prefix}/carbon/scopes-1-2-3`,
+          pillar: collectionPath("carbon", locale, "bilan-carbone-entreprise"),
+          beges: collectionPath("carbon", locale, "bilan-carbone-obligatoire-beges"),
+          scopes: collectionPath("carbon", locale, "scopes-1-2-3"),
         }
       : {
-          pillar: `${prefix}/carbon/carbon-footprint-company`,
+          pillar: collectionPath("carbon", locale, "carbon-footprint-company"),
           beges: null,
           scopes: null,
         };

@@ -1000,6 +1000,9 @@
     "error": "Oops! Something went wrong while submitting the form.",
     "placeholder": "ilove@compliance.com"
   },
+  "article": {
+    "publishedOn": "Published on {date}"
+  },
   "metadata": {
     "home": {
       "title": "Ditto – Your CSR copilot | More impact, less effort",

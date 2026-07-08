@@ -11,6 +11,7 @@ import { getNewsItemBySlug, getNews, getFeaturedGuide } from "../../../../../lib
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
+import { formatPublishedDate, toPublishedTimeIso } from "../../../../../lib/format-date";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
 
 export async function generateMetadata({
@@ -37,10 +38,14 @@ export async function generateMetadata({
       },
     },
     openGraph: {
+      type: "article",
       title: item.seo_title || item.name,
       description: item.seo_meta_desc || item.description || undefined,
       ...(item.banner_url && { images: [{ url: item.banner_url }] }),
       url: `https://www.trustditto.com/${locale}/resources/news/${slug}`,
+      ...(toPublishedTimeIso(item.published_date) && {
+        publishedTime: toPublishedTimeIso(item.published_date),
+      }),
     },
   };
 }
@@ -150,6 +155,14 @@ export default async function NewsDetailPage({
                             )}
                           </div>
                         </div>
+                      </>
+                    )}
+                    {item.published_date && (
+                      <>
+                        <div className="spacer-0x75rem" />
+                        <p className="text-size-0x875rem text-color-neutral">
+                          {t("article.publishedOn", { date: formatPublishedDate(item.published_date, locale) })}
+                        </p>
                       </>
                     )}
                   </div>
