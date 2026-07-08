@@ -257,7 +257,8 @@
     "feature2": {
       "label": "Suivi des progrès",
       "title": "Fixez des objectifs ambitieux et suivez vos progrès",
-      "paragraph": "Définissez des objectifs mesurables, planifiez vos échéances et mobilisez votre équipe pour les atteindre."
+      "paragraph": "Définissez des objectifs mesurables, planifiez vos échéances et mobilisez votre équipe pour les atteindre.",
+      "button": "Parler à un expert"
     },
     "feature3": {
       "label": "Base de données",
@@ -682,7 +683,8 @@
     "step3": {
       "label": "Étape 3",
       "title": "Structurez un programme RSE solide",
-      "description": "Ditto a intégré des modèles et des outils pour vous aider à poser les bases d'un programme durable, structuré et aligné avec les attentes EcoVadis."
+      "description": "Ditto a intégré des modèles et des outils pour vous aider à poser les bases d'un programme durable, structuré et aligné avec les attentes EcoVadis.",
+      "button": "Parler à un expert"
     },
     "step4": {
       "label": "Étape 4",
@@ -727,7 +729,8 @@
     "step3": {
       "label": "Étape 3",
       "title": "Calculez et hiérarchisez vos postes",
-      "description": "Ditto applique les facteurs d'émission de référence, convertit vos données en tonnes équivalent CO2 et fait ressortir les postes qui pèsent le plus. Vous savez enfin où concentrer vos efforts, au lieu d'avancer à l'aveugle."
+      "description": "Ditto applique les facteurs d'émission de référence, convertit vos données en tonnes équivalent CO2 et fait ressortir les postes qui pèsent le plus. Vous savez enfin où concentrer vos efforts, au lieu d'avancer à l'aveugle.",
+      "button": "Parler à un expert"
     },
     "step4": {
       "label": "Étape 4",
@@ -772,7 +775,8 @@
     "step3": {
       "label": "Étape 3",
       "title": "Construisez une réponse crédible et bien structurée",
-      "description": "Utilisez les modèles, les exemples et les recommandations de Ditto pour formuler des réponses solides, argumentées et alignées sur les attentes du CDP. Votre disclosure devient un levier, pas un fardeau."
+      "description": "Utilisez les modèles, les exemples et les recommandations de Ditto pour formuler des réponses solides, argumentées et alignées sur les attentes du CDP. Votre disclosure devient un levier, pas un fardeau.",
+      "button": "Parler à un expert"
     },
     "step4": {
       "label": "Étape 4",
@@ -817,7 +821,8 @@
     "step3": {
       "label": "Étape 3",
       "title": "Rédigez votre rapport avec l'aide de l'IA et d'experts",
-      "description": "À partir de vos données, Ditto génère un premier brouillon structuré et aligné sur les exigences."
+      "description": "À partir de vos données, Ditto génère un premier brouillon structuré et aligné sur les exigences.",
+      "button": "Parler à un expert"
     },
     "step4": {
       "label": "Étape 4",
@@ -862,7 +867,8 @@
     "step3": {
       "label": "Étape 3",
       "title": "Préparez votre audit sereinement",
-      "description": "Quand l'audit approche, vous savez où vous en êtes. Ditto centralise les preuves attendues, vous aide à identifier les manques éventuels et vous prépare à répondre aux questions de manière claire et structurée."
+      "description": "Quand l'audit approche, vous savez où vous en êtes. Ditto centralise les preuves attendues, vous aide à identifier les manques éventuels et vous prépare à répondre aux questions de manière claire et structurée.",
+      "button": "Parler à un expert"
     },
     "step4": {
       "label": "Étape 4",

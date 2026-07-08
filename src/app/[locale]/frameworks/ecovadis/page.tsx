@@ -126,14 +126,16 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
           buttonButtonVisibility={false}
         />
 
-        {/* 8. Feature Step 3 */}
+        {/* 8. Feature Step 3 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Base"
           labelLabelText={t("frameworksEcovadis.step3.label")}
           title={t("frameworksEcovadis.step3.title")}
           paragraph={t("frameworksEcovadis.step3.description")}
           image="/images/ecovadis-step-3.svg"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksEcovadis.step3.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 9. Feature Step 4 */}

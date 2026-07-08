@@ -105,14 +105,16 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
           buttonButtonVisibility={false}
         />
 
-        {/* 7. Feature Step 3 */}
+        {/* 7. Feature Step 3 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Base"
           labelLabelText={t("frameworksCsrd.step3.label")}
           title={t("frameworksCsrd.step3.title")}
           paragraph={t("frameworksCsrd.step3.description")}
           image="/images/home-feature-3.svg"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksCsrd.step3.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 8. Feature Step 4 */}

@@ -105,14 +105,16 @@ export default async function FrameworksCdpPage({ params }: { params: Promise<{ 
           buttonButtonVisibility={false}
         />
 
-        {/* 7. Feature Step 3 */}
+        {/* 7. Feature Step 3 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Base"
           labelLabelText={t("frameworksCdp.step3.label")}
           title={t("frameworksCdp.step3.title")}
           paragraph={t("frameworksCdp.step3.description")}
           image="/images/ecovadis-step-3_1.svg"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksCdp.step3.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 8. Feature Step 4 */}

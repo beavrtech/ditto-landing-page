@@ -82,7 +82,7 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
         heading: "Niedax France — from client pressure to a gold EcoVadis medal.",
         body: "Under growing demands from its clients, cable-management manufacturer Niedax France used Ditto to structure its CSR approach and earn a gold EcoVadis medal — turning a compliance obligation into a commercial asset.",
         quote:
-          "There was a loss of internal expertise, client pressure was real, and there was a fairly urgent need to get all these programmes back on track.",
+          "What we appreciated most was the method. Regular check-ins to move forward, a critical review of what we produced, and the ability to adjust when needed.",
         author: "Julie Gay, Quality Director, Niedax France",
         ctaLabel: "Read the Niedax case study",
         caseStudySlug: "niedax-client-pressure-gold-ecovadis-medal",
@@ -123,7 +123,7 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
         heading: "Niedax France — de la pression client à la médaille d'or EcoVadis.",
         body: "Face aux exigences croissantes de ses clients, le fabricant de chemins de câbles Niedax France a utilisé Ditto pour structurer sa démarche RSE et décrocher une médaille d'or EcoVadis — transformant une obligation de conformité en atout commercial.",
         quote:
-          "Il y avait une perte de compétences en interne, une pression client qui était là, et un besoin assez urgent de réactiver toutes ces démarches.",
+          "Ce qu'on a le plus apprécié, c'est la méthode. Des réunions régulières pour avancer, une analyse critique de ce qu'on produisait, et la capacité à se réajuster quand c'était nécessaire.",
         author: "Julie Gay, Directrice Qualité, Niedax France",
         ctaLabel: "Lire le cas Niedax",
         caseStudySlug: "niedax-client-pressure-gold-ecovadis-medal",
@@ -252,7 +252,8 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
       proof: {
         heading: "Trusted by carriers across the sector",
         body: "From national hauliers like Groupe Mauffrey and Jacky Perrenot to specialists like Chemship and Sénalia, Ditto helps transport and logistics operators of every size turn emissions reporting into contract wins.",
-        quote: "EcoVadis has become non-negotiable. You see it in every client request.",
+        quote:
+          "Ditto gave me rigor in structuring my responses, and a much deeper understanding of the methodology behind EcoVadis.",
         author: "Louis Gauthier, CSR Coordinator & Executive Assistant, Groupe Brangeon",
         ctaLabel: "Read the Groupe Brangeon case study",
         caseStudySlug: "groupe-brangeon-ecovadis-progression",
@@ -291,7 +292,8 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
       proof: {
         heading: "La confiance des transporteurs de tout le secteur",
         body: "Des transporteurs nationaux comme le Groupe Mauffrey et Jacky Perrenot aux spécialistes comme Chemship et Sénalia, Ditto aide les opérateurs du transport et de la logistique de toute taille à transformer le reporting d'émissions en contrats gagnés.",
-        quote: "EcoVadis est devenu incontournable. On le voit dans toutes les demandes clients.",
+        quote:
+          "Ditto m'a apporté de la rigueur dans la structuration des réponses, et une compréhension bien plus fine de la méthodologie qu'est EcoVadis.",
         author: "Louis Gauthier, Coordinateur RSE & Attaché de Direction Générale, Groupe Brangeon",
         ctaLabel: "Lire le cas Groupe Brangeon",
         caseStudySlug: "groupe-brangeon-ecovadis-progression",
@@ -491,13 +493,13 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
         { strong: "Keep every site audit-ready", text: "with organized ISO evidence." },
       ],
       proof: {
-        heading: "Aico — building a strong CSR framework to aim for excellence.",
-        body: "The building life-safety manufacturer used Ditto to structure a rigorous CSR framework and pursue top-tier ratings — showing how a construction-products company turns compliance into a mark of quality.",
+        heading: "Euromac — from Committed to Platinum EcoVadis with turnkey support.",
+        body: "The construction-equipment company used Ditto's turnkey support to move from a Committed rating to a Platinum EcoVadis medal — showing how a construction-sector supplier turns structured guidance into a top-tier result.",
         quote:
-          "Thanks again- your platform really made the process much easier and helped us achieve this result. We especially valued Ditto's templates, the quality of support, the simplicity of reporting, and the clarity of the validation process.",
-        author: "Daniel Rivers, Facilities & Compliance Lead, Aico",
-        ctaLabel: "Read the Aico case study",
-        caseStudySlug: "aico-building-a-strong-csr-framework-to-aim-for-excellence",
+          "One of the biggest advantages, in my opinion, was the prefilled templates for the four policies. It was a very solid starting point and significantly reduced the time needed to prepare the key documentation.",
+        author: "Robert Kropidłowski, EcoVadis Project Manager, Euromac",
+        ctaLabel: "Read the Euromac case study",
+        caseStudySlug: "euromac-committed-to-platinum-ecovadis",
       },
       finalCta: {
         heading: "Turn construction compliance into more won bids.",
@@ -532,13 +534,13 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
         { strong: "Gardez chaque site prêt pour l'audit", text: "avec des preuves ISO organisées." },
       ],
       proof: {
-        heading: "Aico — bâtir un cadre RSE solide pour viser l'excellence.",
-        body: "Ce fabricant de solutions de sécurité incendie pour le bâtiment a utilisé Ditto pour structurer un cadre RSE rigoureux et viser les meilleures notes — montrant comment une entreprise de produits de construction transforme la conformité en gage de qualité.",
+        heading: "Euromac — de Committed à Platinum EcoVadis grâce à un accompagnement clé en main.",
+        body: "Ce fabricant d'équipements pour la construction a utilisé l'accompagnement clé en main de Ditto pour passer d'une note Committed à une médaille Platinum EcoVadis — la preuve qu'un fournisseur du secteur de la construction peut transformer un accompagnement structuré en résultat de premier plan.",
         quote:
-          "Merci encore – votre plateforme a vraiment simplifié le processus et nous a permis d'atteindre ce résultat. Nous avons particulièrement apprécié les modèles proposés par Ditto, la qualité de l'accompagnement, la simplicité du reporting et la clarté du processus de validation.",
-        author: "Daniel Rivers, Facilities & Compliance Lead, Aico",
-        ctaLabel: "Lire le cas Aico",
-        caseStudySlug: "aico-building-a-strong-csr-framework-to-aim-for-excellence",
+          "L'un des plus grands avantages, selon moi, a été les templates pré-remplis pour les quatre politiques. C'était une base très solide et cela a considérablement réduit le temps nécessaire à la préparation de la documentation clé.",
+        author: "Robert Kropidłowski, Responsable projet EcoVadis, Euromac",
+        ctaLabel: "Lire le cas Euromac",
+        caseStudySlug: "euromac-committed-to-platinum-ecovadis",
       },
       finalCta: {
         heading: "Transformez la conformité construction en appels d'offres gagnés.",
@@ -577,12 +579,13 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
         { strong: "Prove your claims", text: "with data, not marketing." },
       ],
       proof: {
-        heading: "Superga Beauty — structuring and promoting its CSR approach for sustainable leadership.",
+        heading: "Aico — building a strong CSR framework to aim for excellence.",
+        body: "The building life-safety manufacturer used Ditto to structure a rigorous CSR framework and pursue top-tier ratings — showing how a distribution-facing supplier turns compliance into a mark of quality.",
         quote:
-          "Ditto is the all-in-one tool that lets us turn our CSR compliance into a competitive advantage.",
-        author: "Sophie Wardan, Group CSR Manager, Superga Beauty",
-        ctaLabel: "Read the Superga Beauty case study",
-        caseStudySlug: "superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership",
+          "Thanks again- your platform really made the process much easier and helped us achieve this result. We especially valued Ditto's templates, the quality of support, the simplicity of reporting, and the clarity of the validation process.",
+        author: "Daniel Rivers, Facilities & Compliance Lead, Aico",
+        ctaLabel: "Read the Aico case study",
+        caseStudySlug: "aico-building-a-strong-csr-framework-to-aim-for-excellence",
       },
       finalCta: {
         heading: "Turn retail compliance into a competitive advantage.",
@@ -617,12 +620,13 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
         { strong: "Prouvez vos allégations", text: "avec des données, pas du marketing." },
       ],
       proof: {
-        heading: "Superga Beauty — structurer et valoriser sa démarche RSE pour un leadership durable.",
+        heading: "Aico — bâtir un cadre RSE solide pour viser l'excellence.",
+        body: "Ce fabricant de solutions de sécurité incendie pour le bâtiment a utilisé Ditto pour structurer un cadre RSE rigoureux et viser les meilleures notes — montrant comment un fournisseur exposé à la distribution transforme la conformité en gage de qualité.",
         quote:
-          "Ditto est l'outil tout-en-un qui nous permet de transformer notre conformité RSE en avantage concurrentiel.",
-        author: "Sophie Wardan, Responsable RSE Groupe, Superga Beauty",
-        ctaLabel: "Lire le cas Superga Beauty",
-        caseStudySlug: "superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership",
+          "Merci encore – votre plateforme a vraiment simplifié le processus et nous a permis d'atteindre ce résultat. Nous avons particulièrement apprécié les modèles proposés par Ditto, la qualité de l'accompagnement, la simplicité du reporting et la clarté du processus de validation.",
+        author: "Daniel Rivers, Facilities & Compliance Lead, Aico",
+        ctaLabel: "Lire le cas Aico",
+        caseStudySlug: "aico-building-a-strong-csr-framework-to-aim-for-excellence",
       },
       finalCta: {
         heading: "Faites de la conformité retail un avantage concurrentiel.",

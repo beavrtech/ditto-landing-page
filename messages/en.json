@@ -257,7 +257,8 @@
     "feature2": {
       "label": "Progress tracking",
       "title": "Set big goals and track your progress toward them",
-      "paragraph": "Set measurable goals and realistic deadlines, then mobilize your team to make it happen. With Ditto, you'll have a clear view of each objective's status to keep you on track."
+      "paragraph": "Set measurable goals and realistic deadlines, then mobilize your team to make it happen. With Ditto, you'll have a clear view of each objective's status to keep you on track.",
+      "button": "Talk to an expert"
     },
     "feature3": {
       "label": "Knowledge base",
@@ -748,7 +749,8 @@
     "step3": {
       "label": "Step 3",
       "title": "Build a solid, structured CSR program",
-      "description": "Ditto has embedded templates and tools to help you build smarter policies and procedures. Our experts will help you adapt your content to the EcoVadis requirements and connect the dots between your documents and values."
+      "description": "Ditto has embedded templates and tools to help you build smarter policies and procedures. Our experts will help you adapt your content to the EcoVadis requirements and connect the dots between your documents and values.",
+      "button": "Talk to an expert"
     },
     "step4": {
       "label": "Step 4",
@@ -793,7 +795,8 @@
     "step3": {
       "label": "Step 3",
       "title": "Calculate and prioritize your hotspots",
-      "description": "Ditto applies reference emission factors, converts your data into tonnes of CO2 equivalent, and surfaces the items that weigh the most. You finally know where to focus, instead of working blind."
+      "description": "Ditto applies reference emission factors, converts your data into tonnes of CO2 equivalent, and surfaces the items that weigh the most. You finally know where to focus, instead of working blind.",
+      "button": "Talk to an expert"
     },
     "step4": {
       "label": "Step 4",
@@ -838,7 +841,8 @@
     "step3": {
       "label": "Step 3",
       "title": "Build a credible, well-structured disclosure",
-      "description": "Use Ditto's templates and AI-generated suggestions to accelerate your response drafting. From GHG inventories to transition plans, everything is aligned with CDP's expectations and built to support your score."
+      "description": "Use Ditto's templates and AI-generated suggestions to accelerate your response drafting. From GHG inventories to transition plans, everything is aligned with CDP's expectations and built to support your score.",
+      "button": "Talk to an expert"
     },
     "step4": {
       "label": "Step 4",
@@ -883,7 +887,8 @@
     "step3": {
       "label": "Step 3",
       "title": "Draft your report using AI and expert support",
-      "description": "Our embedded AI helps you write faster and smarter—suggesting content based on your documents, indicators, and frameworks. Then our coaches review and help finalize it, making sure every disclosure is compliant, auditable, and clear."
+      "description": "Our embedded AI helps you write faster and smarter—suggesting content based on your documents, indicators, and frameworks. Then our coaches review and help finalize it, making sure every disclosure is compliant, auditable, and clear.",
+      "button": "Talk to an expert"
     },
     "step4": {
       "label": "Step 4",
@@ -928,7 +933,8 @@
     "step3": {
       "label": "Step 3",
       "title": "Prepare your audit with confidence",
-      "description": "When it's time to audit, you won't be scrambling. Ditto helps you structure your audit folder, tag required documents, and assign reviewers. Internal and external audits are supported with live status tracking and smart checklists."
+      "description": "When it's time to audit, you won't be scrambling. Ditto helps you structure your audit folder, tag required documents, and assign reviewers. Internal and external audits are supported with live status tracking and smart checklists.",
+      "button": "Talk to an expert"
     },
     "step4": {
       "label": "Step 4",

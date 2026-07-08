@@ -95,8 +95,8 @@ export function NavbarClient({
       quote: {
         quote:
           locale === "fr"
-            ? "Il y avait une perte de compétences en interne, une pression client qui était là, et un besoin assez urgent de réactiver toutes ces démarches."
-            : "There was a loss of internal expertise, client pressure was real, and there was a fairly urgent need to get all these programmes back on track.",
+            ? "Ce qu'on a le plus apprécié, c'est la méthode. Des réunions régulières pour avancer, une analyse critique de ce qu'on produisait, et la capacité à se réajuster quand c'était nécessaire."
+            : "What we appreciated most was the method. Regular check-ins to move forward, a critical review of what we produced, and the ability to adjust when needed.",
         name: "Julie Gay",
         role:
           locale === "fr"
@@ -139,8 +139,8 @@ export function NavbarClient({
       quote: {
         quote:
           locale === "fr"
-            ? "EcoVadis est devenu incontournable. On le voit dans toutes les demandes clients."
-            : "EcoVadis has become non-negotiable. You see it in every client request.",
+            ? "Ditto m'a apporté de la rigueur dans la structuration des réponses, et une compréhension bien plus fine de la méthodologie qu'est EcoVadis."
+            : "Ditto gave me rigor in structuring my responses, and a much deeper understanding of the methodology behind EcoVadis.",
         name: "Louis Gauthier",
         role:
           locale === "fr"
@@ -161,16 +161,19 @@ export function NavbarClient({
       quote: {
         quote:
           locale === "fr"
-            ? "Merci encore – votre plateforme a vraiment simplifié le processus et nous a permis d'atteindre ce résultat. Nous avons particulièrement apprécié les modèles proposés par Ditto, la qualité de l'accompagnement, la simplicité du reporting et la clarté du processus de validation."
-            : "Thanks again- your platform really made the process much easier and helped us achieve this result. We especially valued Ditto's templates, the quality of support, the simplicity of reporting, and the clarity of the validation process.",
-        name: "Daniel Rivers",
-        role: "Facilities & Compliance Lead, Aico",
+            ? "L'un des plus grands avantages, selon moi, a été les templates pré-remplis pour les quatre politiques. C'était une base très solide et cela a considérablement réduit le temps nécessaire à la préparation de la documentation clé."
+            : "One of the biggest advantages, in my opinion, was the prefilled templates for the four policies. It was a very solid starting point and significantly reduced the time needed to prepare the key documentation.",
+        name: "Robert Kropidłowski",
+        role:
+          locale === "fr"
+            ? "Responsable projet EcoVadis, Euromac"
+            : "EcoVadis Project Manager, Euromac",
         imageUrl:
-          "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/customer_stories/aico-building-a-strong-csr-framework-to-aim-for-excellence/business_logo_url.avif",
+          "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/customer_stories/euromac-committed-to-platinum-ecovadis/business_logo_url.png",
         href: localizedCmsHref(
           "/customer-stories",
-          "aico-building-a-strong-csr-framework-to-aim-for-excellence",
-          "aico-construire-un-cadre-rse-solide-pour-viser-excellence",
+          "euromac-committed-to-platinum-ecovadis",
+          "euromac-committed-platinum-ecovadis",
           locale
         ),
       },
@@ -216,9 +219,28 @@ export function NavbarClient({
       },
     },
   };
-  // Retail and cosmetics-beauty share the same Superga Beauty quote (same
-  // attributed source used on both industry pages).
+  // Retail uses the Aico quote (same attributed source shown on the retail
+  // industry page). Cosmetics-beauty keeps its own Superga Beauty quote.
   INDUSTRY_QUOTES.retail = {
+    kind: "quote",
+    quote: {
+      quote:
+        locale === "fr"
+          ? "Merci encore – votre plateforme a vraiment simplifié le processus et nous a permis d'atteindre ce résultat. Nous avons particulièrement apprécié les modèles proposés par Ditto, la qualité de l'accompagnement, la simplicité du reporting et la clarté du processus de validation."
+          : "Thanks again- your platform really made the process much easier and helped us achieve this result. We especially valued Ditto's templates, the quality of support, the simplicity of reporting, and the clarity of the validation process.",
+      name: "Daniel Rivers",
+      role: "Facilities & Compliance Lead, Aico",
+      imageUrl:
+        "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/customer_stories/aico-building-a-strong-csr-framework-to-aim-for-excellence/business_logo_url.avif",
+      href: localizedCmsHref(
+        "/customer-stories",
+        "aico-building-a-strong-csr-framework-to-aim-for-excellence",
+        "aico-construire-un-cadre-rse-solide-pour-viser-excellence",
+        locale
+      ),
+    },
+  };
+  INDUSTRY_QUOTES["cosmetics-beauty"] = {
     kind: "quote",
     quote: {
       quote:
@@ -238,7 +260,6 @@ export function NavbarClient({
           : `${p}/customer-stories/superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership`,
     },
   };
-  INDUSTRY_QUOTES["cosmetics-beauty"] = INDUSTRY_QUOTES.retail;
 
   const industryLinks = [...CUSTOMER_INDUSTRIES]
     .map((industry) => ({

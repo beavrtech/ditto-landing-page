@@ -109,14 +109,16 @@ export default async function FrameworksIso14001Page({ params }: { params: Promi
           buttonButtonVisibility={false}
         />
 
-        {/* 7. Feature Step 3 */}
+        {/* 7. Feature Step 3 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Base"
           labelLabelText={t("frameworksIso14001.step3.label")}
           title={t("frameworksIso14001.step3.title")}
           paragraph={t("frameworksIso14001.step3.description")}
           image="/images/ecovadis-step-2_5.avif"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksIso14001.step3.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 8. Feature Step 4 */}

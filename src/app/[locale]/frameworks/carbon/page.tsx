@@ -136,14 +136,16 @@ export default async function FrameworksCarbonPage({ params }: { params: Promise
           buttonButtonVisibility={false}
         />
 
-        {/* 7. Feature Step 3 */}
+        {/* 7. Feature Step 3 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Base"
           labelLabelText={t("frameworksCarbon.step3.label")}
           title={t("frameworksCarbon.step3.title")}
           paragraph={t("frameworksCarbon.step3.description")}
           image="/images/ecovadis-step-3_1.svg"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksCarbon.step3.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 8. Feature Step 4 */}

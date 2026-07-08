@@ -86,14 +86,16 @@ export default async function ManagementSystemPage({ params }: { params: Promise
           buttonButtonVisibility={false}
         />
 
-        {/* 5. Feature 2: Progress tracking */}
+        {/* 5. Feature 2: Progress tracking — CTA button under this block */}
         <SectionFeature
           variant="Layout • Reversed"
           labelLabelText={t("solutionsManagement.feature2.label")}
           title={t("solutionsManagement.feature2.title")}
           paragraph={t("solutionsManagement.feature2.paragraph")}
           image="/images/management-feature-2_2.avif"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("solutionsManagement.feature2.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 6. Feature 3: Knowledge base */}
