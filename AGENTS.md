@@ -20,6 +20,7 @@ This is a Next.js 16 (Turbopack) marketing site for "Ditto" (trustditto.com) wit
 ### Optional env (feature-specific, not needed to render the site)
 - `SUPABASE_SERVICE_ROLE_KEY` + `ADMIN_PASSWORD` — the `/admin` CMS editor (`src/app/admin`).
 - `SLACK_WEBHOOK_URL` — lead notifications; `POST /api/lead` returns `{ok:true}` even without it (Slack step skipped silently).
+- `REVALIDATE_SECRET` — bearer token required by `POST /api/revalidate` (on-demand ISR invalidation of `/[locale]/collection/[framework]` landing pages, meant to be called by a CMS "on publish" webhook). Without it the route always returns 500; page rendering is unaffected — collection edits made through `/admin` already self-revalidate without this.
 - `NEXT_PUBLIC_POSTHOG_*`, `NEXT_PUBLIC_HUBSPOT_*` — analytics and the HubSpot contact/newsletter forms.
 
 ### Running / checks

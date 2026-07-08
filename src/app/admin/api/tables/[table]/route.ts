@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "../../../../../lib/supabase-admin";
 import { getTableConfig } from "../../../../../lib/admin-tables";
+import { revalidateFrameworkCollection } from "../../../../../lib/revalidate-collection";
 
 export async function GET(
   _req: NextRequest,
@@ -38,5 +39,20 @@ export async function POST(
     .single();
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (config.table === "collection_items") {
+    const frameworkId = (data as { framework_id?: unknown }).framework_id;
+    if (frameworkId) {
+      try {
+        const { data: fw } = await getSupabaseAdmin()
+          .from("frameworks")
+          .select("slug")
+          .eq("id", frameworkId)
+          .single();
+        if (fw?.slug) revalidateFrameworkCollection(fw.slug);
+      } catch {
+        // Non-fatal — the page still refreshes on its own within the hour.
+      }
+    }
+  }
   return NextResponse.json(data);
 }
