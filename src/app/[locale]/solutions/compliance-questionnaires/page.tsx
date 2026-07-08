@@ -87,14 +87,16 @@ export default async function ComplianceQuestionnairesPage({ params }: { params:
           buttonButtonVisibility={false}
         />
 
-        {/* 5. Feature 2: AI-powered answers */}
+        {/* 5. Feature 2: AI-powered answers — CTA button under this block */}
         <SectionFeature
           variant="Layout • Reversed"
           labelLabelText={t("solutionsCompliance.feature2.label")}
           title={t("solutionsCompliance.feature2.title")}
           paragraph={t("solutionsCompliance.feature2.paragraph")}
           image="/images/management-feature-1_3.svg"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("solutionsCompliance.feature2.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 6. Feature 3: Intelligent knowledge base */}

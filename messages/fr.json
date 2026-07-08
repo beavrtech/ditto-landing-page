@@ -300,7 +300,8 @@
     "feature2": {
       "label": "Suggestions IA",
       "title": "Laissez l'IA générer vos réponses à partir de sources vérifiées",
-      "paragraph": "Notre moteur rédige des réponses à partir de vos documents validés — politiques, KPIs, certifications — puis vous assignez le bon collaborateur pour relecture et validation."
+      "paragraph": "Notre moteur rédige des réponses à partir de vos documents validés — politiques, KPIs, certifications — puis vous assignez le bon collaborateur pour relecture et validation.",
+      "button": "Prendre rendez-vous"
     },
     "feature3": {
       "label": "Base de données intelligente",
@@ -398,7 +399,8 @@
     "feature2": {
       "label": "Questionnaires fournisseurs",
       "title": "Créez et envoyez facilement des questionnaires personnalisés",
-      "paragraph": "Créez des questionnaires multilingues et alignés sur les standards. L'interface intuitive, le support expert et la possibilité pour vos fournisseurs de réutiliser leurs données facilitent la collecte."
+      "paragraph": "Créez des questionnaires multilingues et alignés sur les standards. L'interface intuitive, le support expert et la possibilité pour vos fournisseurs de réutiliser leurs données facilitent la collecte.",
+      "button": "Parler à un expert"
     },
     "feature3": {
       "label": "Suivi de l'engagement",
@@ -678,18 +680,19 @@
     "step2": {
       "label": "Étape 2",
       "title": "Organisez vos données",
-      "description": "Centralisez vos politiques, données et documents. Ditto vous guide pour regrouper l'essentiel, comprendre ce qui manque, et avancer plus vite."
+      "description": "Centralisez vos politiques, données et documents. Ditto vous guide pour regrouper l'essentiel, comprendre ce qui manque, et avancer plus vite.",
+      "button": "Parler à un expert"
     },
     "step3": {
       "label": "Étape 3",
       "title": "Structurez un programme RSE solide",
-      "description": "Ditto a intégré des modèles et des outils pour vous aider à poser les bases d'un programme durable, structuré et aligné avec les attentes EcoVadis.",
-      "button": "Parler à un expert"
+      "description": "Ditto a intégré des modèles et des outils pour vous aider à poser les bases d'un programme durable, structuré et aligné avec les attentes EcoVadis."
     },
     "step4": {
       "label": "Étape 4",
       "title": "Améliorez ou maintenez vos résultats, année après année",
-      "description": "D'année en année, Ditto vous aide à maintenir votre contenu à jour et organisé, à progresser, identifier les axes d'amélioration, et viser une performance durable sur EcoVadis."
+      "description": "D'année en année, Ditto vous aide à maintenir votre contenu à jour et organisé, à progresser, identifier les axes d'amélioration, et viser une performance durable sur EcoVadis.",
+      "button": "Prendre rendez-vous"
     },
     "carousel": {
       "title": "Réutilisez vos données pour tous vos enjeux RSE et conformité"
@@ -724,18 +727,19 @@
     "step2": {
       "label": "Étape 2",
       "title": "Collectez et centralisez vos données d'émissions",
-      "description": "Énergie, carburants, déplacements, achats, fret : Ditto centralise vos données d'activité et vos justificatifs dans un espace unique. La collecte, phase la plus longue d'un premier bilan, devient structurée et collaborative entre vos équipes."
+      "description": "Énergie, carburants, déplacements, achats, fret : Ditto centralise vos données d'activité et vos justificatifs dans un espace unique. La collecte, phase la plus longue d'un premier bilan, devient structurée et collaborative entre vos équipes.",
+      "button": "Parler à un expert"
     },
     "step3": {
       "label": "Étape 3",
       "title": "Calculez et hiérarchisez vos postes",
-      "description": "Ditto applique les facteurs d'émission de référence, convertit vos données en tonnes équivalent CO2 et fait ressortir les postes qui pèsent le plus. Vous savez enfin où concentrer vos efforts, au lieu d'avancer à l'aveugle.",
-      "button": "Parler à un expert"
+      "description": "Ditto applique les facteurs d'émission de référence, convertit vos données en tonnes équivalent CO2 et fait ressortir les postes qui pèsent le plus. Vous savez enfin où concentrer vos efforts, au lieu d'avancer à l'aveugle."
     },
     "step4": {
       "label": "Étape 4",
       "title": "Réduisez et pilotez année après année",
-      "description": "Un bilan sans plan d'action reste un diagnostic sans traitement. Ditto relie vos émissions, vos actions de réduction et votre plan de transition sur une même feuille de route, et vous aide à progresser à chaque cycle. Un coach dédié vous transmet la méthode pour devenir autonome."
+      "description": "Un bilan sans plan d'action reste un diagnostic sans traitement. Ditto relie vos émissions, vos actions de réduction et votre plan de transition sur une même feuille de route, et vous aide à progresser à chaque cycle. Un coach dédié vous transmet la méthode pour devenir autonome.",
+      "button": "Prendre rendez-vous"
     },
     "carousel": {
       "title": "Réutilisez vos données pour tous vos enjeux RSE et conformité"
@@ -770,18 +774,19 @@
     "step2": {
       "label": "Étape 2",
       "title": "Organisez vos données et mobilisez votre équipe",
-      "description": "Centralisez vos données d'émissions, vos documents internes et vos politiques climatiques dans un espace unique. Collaborez facilement entre équipes pour assurer une réponse cohérente et structurée à travers toute l'organisation."
+      "description": "Centralisez vos données d'émissions, vos documents internes et vos politiques climatiques dans un espace unique. Collaborez facilement entre équipes pour assurer une réponse cohérente et structurée à travers toute l'organisation.",
+      "button": "Parler à un expert"
     },
     "step3": {
       "label": "Étape 3",
       "title": "Construisez une réponse crédible et bien structurée",
-      "description": "Utilisez les modèles, les exemples et les recommandations de Ditto pour formuler des réponses solides, argumentées et alignées sur les attentes du CDP. Votre disclosure devient un levier, pas un fardeau.",
-      "button": "Parler à un expert"
+      "description": "Utilisez les modèles, les exemples et les recommandations de Ditto pour formuler des réponses solides, argumentées et alignées sur les attentes du CDP. Votre disclosure devient un levier, pas un fardeau."
     },
     "step4": {
       "label": "Étape 4",
       "title": "Améliorez votre performance année après année",
-      "description": "Ditto vous permet de suivre votre progression dans le temps, d'identifier les axes d'amélioration et de renforcer vos pratiques. Préparez vos prochaines réponses au CDP plus rapidement et plus efficacement."
+      "description": "Ditto vous permet de suivre votre progression dans le temps, d'identifier les axes d'amélioration et de renforcer vos pratiques. Préparez vos prochaines réponses au CDP plus rapidement et plus efficacement.",
+      "button": "Prendre rendez-vous"
     },
     "carousel": {
       "title": "Réutilisez vos données pour tous vos enjeux RSE et conformité"
@@ -816,18 +821,19 @@
     "step2": {
       "label": "Étape 2",
       "title": "Structurez vos déclarations selon les thèmes ESRS",
-      "description": "Une fois vos données consolidées, vous pouvez organiser vos contenus selon les thématiques des normes ESRS."
+      "description": "Une fois vos données consolidées, vous pouvez organiser vos contenus selon les thématiques des normes ESRS.",
+      "button": "Parler à un expert"
     },
     "step3": {
       "label": "Étape 3",
       "title": "Rédigez votre rapport avec l'aide de l'IA et d'experts",
-      "description": "À partir de vos données, Ditto génère un premier brouillon structuré et aligné sur les exigences.",
-      "button": "Parler à un expert"
+      "description": "À partir de vos données, Ditto génère un premier brouillon structuré et aligné sur les exigences."
     },
     "step4": {
       "label": "Étape 4",
       "title": "Validez, publiez et progressez chaque année",
-      "description": "Votre rapport est validé, structuré et archivé dans un format conforme."
+      "description": "Votre rapport est validé, structuré et archivé dans un format conforme.",
+      "button": "Prendre rendez-vous"
     },
     "carousel": {
       "title": "Réutilisez vos données pour tous vos enjeux RSE et conformité"
@@ -862,18 +868,19 @@
     "step2": {
       "label": "Étape 2",
       "title": "Couvrez les exigences ISO 14001",
-      "description": "Une fois le système en place, Ditto vous guide pour couvrir chaque exigence de la norme. Vous accédez à des contenus pré-structurés, à des modèles personnalisables et à une expertise intégrée pour vous aider à tout documenter."
+      "description": "Une fois le système en place, Ditto vous guide pour couvrir chaque exigence de la norme. Vous accédez à des contenus pré-structurés, à des modèles personnalisables et à une expertise intégrée pour vous aider à tout documenter.",
+      "button": "Parler à un expert"
     },
     "step3": {
       "label": "Étape 3",
       "title": "Préparez votre audit sereinement",
-      "description": "Quand l'audit approche, vous savez où vous en êtes. Ditto centralise les preuves attendues, vous aide à identifier les manques éventuels et vous prépare à répondre aux questions de manière claire et structurée.",
-      "button": "Parler à un expert"
+      "description": "Quand l'audit approche, vous savez où vous en êtes. Ditto centralise les preuves attendues, vous aide à identifier les manques éventuels et vous prépare à répondre aux questions de manière claire et structurée."
     },
     "step4": {
       "label": "Étape 4",
       "title": "Maintenez votre conformité dans le temps",
-      "description": "Une fois l'audit réussi, Ditto vous aide à maintenir votre conformité année après année. Suivez vos plans d'action, mettez à jour vos documents, améliorez vos indicateurs — et restez prêt pour le prochain audit à tout moment."
+      "description": "Une fois l'audit réussi, Ditto vous aide à maintenir votre conformité année après année. Suivez vos plans d'action, mettez à jour vos documents, améliorez vos indicateurs — et restez prêt pour le prochain audit à tout moment.",
+      "button": "Prendre rendez-vous"
     },
     "carousel": {
       "title": "Réutilisez vos données pour tous vos enjeux RSE et conformité"

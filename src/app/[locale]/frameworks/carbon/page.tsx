@@ -126,36 +126,38 @@ export default async function FrameworksCarbonPage({ params }: { params: Promise
           buttonButtonVisibility={false}
         />
 
-        {/* 6. Feature Step 2 */}
+        {/* 6. Feature Step 2 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Reversed"
           labelLabelText={t("frameworksCarbon.step2.label")}
           title={t("frameworksCarbon.step2.title")}
           paragraph={t("frameworksCarbon.step2.description")}
           image="/images/ecovadis-step-2_2.avif"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksCarbon.step2.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
-        {/* 7. Feature Step 3 — CTA button under this step */}
+        {/* 7. Feature Step 3 */}
         <SectionFeature
           variant="Layout • Base"
           labelLabelText={t("frameworksCarbon.step3.label")}
           title={t("frameworksCarbon.step3.title")}
           paragraph={t("frameworksCarbon.step3.description")}
           image="/images/ecovadis-step-3_1.svg"
-          buttonButtonVisibility={true}
-          buttonButtonText={t("frameworksCarbon.step3.button")}
-          buttonButtonLink={{ href: `${prefix}/demo` }}
+          buttonButtonVisibility={false}
         />
 
-        {/* 8. Feature Step 4 */}
+        {/* 8. Feature Step 4 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Reversed"
           labelLabelText={t("frameworksCarbon.step4.label")}
           title={t("frameworksCarbon.step4.title")}
           paragraph={t("frameworksCarbon.step4.description")}
           image="/images/ecovadis-step-4_1.svg"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksCarbon.step4.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 9. Cross-framework carousel (reuse your data) */}

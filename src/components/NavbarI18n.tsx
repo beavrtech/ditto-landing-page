@@ -270,31 +270,36 @@ export function NavbarClient({
     }))
     .sort((a, b) => a.label.localeCompare(b.label, locale));
 
+  // Generic Superga Beauty quote — the original, pre-per-industry default.
+  // Used as the "Product" menu's default featured block, and as the
+  // "Solution" menu's default (shown until a specific industry is hovered).
+  const DEFAULT_QUOTE_FEATURED: MegaFeatured = {
+    kind: "quote",
+    quote: {
+      quote:
+        locale === "fr"
+          ? "Ditto est l'outil tout-en-un qui nous permet de transformer notre conformité RSE en avantage concurrentiel."
+          : "Ditto is the all-in-one tool that enables us to turn our CSR compliance into a competitive advantage.",
+      name: "Sophie Wardan",
+      role:
+        locale === "fr"
+          ? "Responsable RSE Groupe, Superga Beauty"
+          : "Group CSR manager, Superga Beauty",
+      imageUrl:
+        "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/testimonials/superga-beauty/profile_picture_url.jpeg",
+      href:
+        locale === "fr"
+          ? `${p}/cas-clients/superga-beauty-leadership-durable`
+          : `${p}/customer-stories/superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership`,
+    },
+  };
+
   // Single source of truth for the megamenus (Level 1 > Level 2 group > Level 3).
   const megaMenus: MegaMenu[] = [
     {
       id: "product",
       label: t("product"),
-      featured: {
-        kind: "quote",
-        quote: {
-          quote:
-            locale === "fr"
-              ? "Ditto est l'outil tout-en-un qui nous permet de transformer notre conformité RSE en avantage concurrentiel."
-              : "Ditto is the all-in-one tool that enables us to turn our CSR compliance into a competitive advantage.",
-          name: "Sophie Wardan",
-          role:
-            locale === "fr"
-              ? "Responsable RSE Groupe, Superga Beauty"
-              : "Group CSR manager, Superga Beauty",
-          imageUrl:
-            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/testimonials/superga-beauty/profile_picture_url.jpeg",
-          href:
-            locale === "fr"
-              ? `${p}/cas-clients/superga-beauty-leadership-durable`
-              : `${p}/customer-stories/superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership`,
-        },
-      },
+      featured: DEFAULT_QUOTE_FEATURED,
       groups: [
         {
           id: "byFramework",
@@ -323,6 +328,10 @@ export function NavbarClient({
     {
       id: "solution",
       label: t("solution"),
+      // Default (no industry hovered yet) shows the generic Superga Beauty
+      // quote; hovering an industry link swaps in its own real quote via
+      // MegaLink.featured (see industryLinks above).
+      featured: DEFAULT_QUOTE_FEATURED,
       groups: [
         {
           id: "byIndustry",
