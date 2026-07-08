@@ -60,15 +60,6 @@ export function SectionTestimonialsI18n({
               <Paragraph className={"text-size-1x375rem text-wrap-balance"}>
                 {text}
               </Paragraph>
-              <Block className={"spacer-1x5rem"} tag={"div"} />
-              <Block tag={"div"}>
-                <Button
-                  arrow={false}
-                  link={buttonLink}
-                  text={buttonText}
-                  variant={"Secondary"}
-                />
-              </Block>
             </Block>
           </Block>
           <Block className={"spacer-3rem"} tag={"div"} />
@@ -93,6 +84,19 @@ export function SectionTestimonialsI18n({
               </div>
             </div>
           )}
+          <Block className={"spacer-3rem"} tag={"div"} />
+          <Block className={"container-48rem"} tag={"div"}>
+            <Block className={"header"} style={{ textAlign: "center" }} tag={"div"}>
+              <Block tag={"div"}>
+                <Button
+                  arrow={false}
+                  link={buttonLink}
+                  text={buttonText}
+                  variant={"Secondary"}
+                />
+              </Block>
+            </Block>
+          </Block>
           <Padding space={"Medium (6rem)"} />
         </Block>
         <Block className={"layer-4"} tag={"div"}>
