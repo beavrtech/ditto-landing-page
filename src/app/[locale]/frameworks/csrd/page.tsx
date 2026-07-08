@@ -95,14 +95,16 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
           buttonButtonVisibility={false}
         />
 
-        {/* 6. Feature Step 2 */}
+        {/* 6. Feature Step 2 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Reversed"
           labelLabelText={t("frameworksCsrd.step2.label")}
           title={t("frameworksCsrd.step2.title")}
           paragraph={t("frameworksCsrd.step2.description")}
           image="/images/ecovadis-step-2_4.avif"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksCsrd.step2.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 7. Feature Step 3 */}
@@ -115,14 +117,16 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
           buttonButtonVisibility={false}
         />
 
-        {/* 8. Feature Step 4 */}
+        {/* 8. Feature Step 4 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Reversed"
           labelLabelText={t("frameworksCsrd.step4.label")}
           title={t("frameworksCsrd.step4.title")}
           paragraph={t("frameworksCsrd.step4.description")}
           image="/images/management-feature-1.svg"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksCsrd.step4.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 9. Compliant carousel */}

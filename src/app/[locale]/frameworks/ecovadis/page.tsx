@@ -116,14 +116,16 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
           buttonButtonVisibility={false}
         />
 
-        {/* 7. Feature Step 2 */}
+        {/* 7. Feature Step 2 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Reversed"
           labelLabelText={t("frameworksEcovadis.step2.label")}
           title={t("frameworksEcovadis.step2.title")}
           paragraph={t("frameworksEcovadis.step2.description")}
           image="/images/ecovadis-step-2_1.avif"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksEcovadis.step2.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 8. Feature Step 3 */}
@@ -136,14 +138,16 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
           buttonButtonVisibility={false}
         />
 
-        {/* 9. Feature Step 4 */}
+        {/* 9. Feature Step 4 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Reversed"
           labelLabelText={t("frameworksEcovadis.step4.label")}
           title={t("frameworksEcovadis.step4.title")}
           paragraph={t("frameworksEcovadis.step4.description")}
           image="/images/ecovadis-step-4.svg"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksEcovadis.step4.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 10. Compliant carousel */}

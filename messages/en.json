@@ -257,12 +257,18 @@
     "feature2": {
       "label": "Progress tracking",
       "title": "Set big goals and track your progress toward them",
-      "paragraph": "Set measurable goals and realistic deadlines, then mobilize your team to make it happen. With Ditto, you'll have a clear view of each objective's status to keep you on track."
+      "paragraph": "Set measurable goals and realistic deadlines, then mobilize your team to make it happen. With Ditto, you'll have a clear view of each objective's status to keep you on track.",
+      "button": "Talk to an expert"
     },
     "feature3": {
       "label": "Knowledge base",
       "title": "Keep a record of all your important information",
       "paragraph": "Ditto is your living history of past assessments and actions. Need to know when a policy changed or a process was implemented? Just ask Ditto."
+    },
+    "midCta": {
+      "title": "See it in action",
+      "paragraph": "Book a demo and see how Ditto centralizes your compliance program.",
+      "button": "Book a demo"
     },
     "testimonials": {
       "title": "Hear it from our customers",
@@ -294,7 +300,8 @@
     "feature2": {
       "label": "AI-powered answers",
       "title": "Let AI draft your answers from verified sources",
-      "paragraph": "Our engine pulls from your validated content—policies, KPIs, certifications—and drafts first responses automatically. Then you can assign to the right team member for review and sign-off."
+      "paragraph": "Our engine pulls from your validated content—policies, KPIs, certifications—and drafts first responses automatically. Then you can assign to the right team member for review and sign-off.",
+      "button": "Book a demo"
     },
     "feature3": {
       "label": "Intelligent knowledge base",
@@ -305,6 +312,11 @@
       "label": "Instant help, anywhere",
       "title": "Can't upload your questionnaire? No problem.",
       "paragraph": "Use our browser extension to get contextual answers wherever you are—client portals, shared folders, or inboxes. Or just ask a question in the Ditto workspace."
+    },
+    "midCta": {
+      "title": "Not sure where to start?",
+      "paragraph": "Talk to an expert and see how Ditto fits your compliance workflow.",
+      "button": "Talk to an expert"
     },
     "testimonials": {
       "title": "Don't take our word for it. Take theirs.",
@@ -387,12 +399,18 @@
     "feature2": {
       "label": "Supplier questionnaires",
       "title": "Build and send custom questionnaires effortlessly",
-      "paragraph": "Create multilingual, standards-aligned questionnaires tailored to your suppliers. Suppliers get an intuitive interface, smart AI support, and the ability to reuse their data—so they engage faster and with fewer questions."
+      "paragraph": "Create multilingual, standards-aligned questionnaires tailored to your suppliers. Suppliers get an intuitive interface, smart AI support, and the ability to reuse their data—so they engage faster and with fewer questions.",
+      "button": "Talk to an expert"
     },
     "feature3": {
       "label": "Engagement tracking",
       "title": "Track responses and identify where to follow up",
       "paragraph": "Follow completions live, send reminders in one click, and segment your view by region, category, or maturity, so no supplier falls through the cracks."
+    },
+    "midCta": {
+      "title": "Let's talk about your supplier program",
+      "paragraph": "Tell us about your suppliers and we'll show you how Ditto can help.",
+      "button": "Let's talk"
     },
     "testimonials": {
       "title": "Make it easier for your suppliers to work with you",
@@ -610,15 +628,21 @@
     },
     "allFrameworks": {
       "title": "All frameworks",
-      "tab1": "Security",
-      "tab2": "Privacy",
-      "tab3": "Others",
-      "category1": "Assessment, Certification & Compliance",
-      "category2": "ISO Management Systems",
-      "category3": "Sustainability Reporting & Disclosure"
+      "tab1": "Certifications & Ratings",
+      "tab2": "Reporting & Regulation",
+      "tab3": "ISO Standards",
+      "category1": "Certifications & Ratings",
+      "category2": "Reporting & Regulation",
+      "category3": "ISO Standards"
     },
     "readMore": "Read more",
-    "resources": "Resources"
+    "resources": "Resources",
+    "vsmeCsrdLink": "Learn more",
+    "cta": {
+      "title": "Ready to simplify your compliance?",
+      "paragraph": "Book a demo and see how Ditto helps you manage every framework from one place.",
+      "button": "Book a demo"
+    }
   },
   "aiAgents": {
     "hero": {
@@ -722,7 +746,8 @@
     "step2": {
       "label": "Step 2",
       "title": "Organize your data—and your team",
-      "description": "Bring all of your documents, data, and evidence onto a single platform that your stakeholders can access and update over time. Monitor your progress across frameworks on a central dashboard to keep everything on track."
+      "description": "Bring all of your documents, data, and evidence onto a single platform that your stakeholders can access and update over time. Monitor your progress across frameworks on a central dashboard to keep everything on track.",
+      "button": "Talk to an expert"
     },
     "step3": {
       "label": "Step 3",
@@ -732,7 +757,8 @@
     "step4": {
       "label": "Step 4",
       "title": "Maintain or improve your performance, year after year",
-      "description": "Use Ditto to keep your content up to date and organized over time. With a unified document base, you'll be ahead of the game for your EcoVadis assessment each year."
+      "description": "Use Ditto to keep your content up to date and organized over time. With a unified document base, you'll be ahead of the game for your EcoVadis assessment each year.",
+      "button": "Book a demo"
     },
     "carousel": {
       "title": "Reuse your data for all of your CSR and compliance needs"
@@ -767,7 +793,8 @@
     "step2": {
       "label": "Step 2",
       "title": "Collect and centralize your emissions data",
-      "description": "Energy, fuel, travel, purchases, freight: Ditto centralizes your activity data and supporting documents in one place. Data collection, the longest phase of a first assessment, becomes structured and collaborative across your teams."
+      "description": "Energy, fuel, travel, purchases, freight: Ditto centralizes your activity data and supporting documents in one place. Data collection, the longest phase of a first assessment, becomes structured and collaborative across your teams.",
+      "button": "Talk to an expert"
     },
     "step3": {
       "label": "Step 3",
@@ -777,7 +804,8 @@
     "step4": {
       "label": "Step 4",
       "title": "Reduce and steer, year after year",
-      "description": "An assessment without an action plan is a diagnosis without treatment. Ditto connects your emissions, your reduction actions, and your transition plan on a single roadmap, and helps you progress each cycle. A dedicated coach passes on the method so you become autonomous."
+      "description": "An assessment without an action plan is a diagnosis without treatment. Ditto connects your emissions, your reduction actions, and your transition plan on a single roadmap, and helps you progress each cycle. A dedicated coach passes on the method so you become autonomous.",
+      "button": "Book a demo"
     },
     "carousel": {
       "title": "Reuse your data for all of your CSR and compliance needs"
@@ -812,7 +840,8 @@
     "step2": {
       "label": "Step 2",
       "title": "Organize your data and your team",
-      "description": "Centralize your emissions data, internal documents, and climate policies on a single platform. Your team can contribute asynchronously, while AI helps surface missing pieces and track readiness across CDP sections."
+      "description": "Centralize your emissions data, internal documents, and climate policies on a single platform. Your team can contribute asynchronously, while AI helps surface missing pieces and track readiness across CDP sections.",
+      "button": "Talk to an expert"
     },
     "step3": {
       "label": "Step 3",
@@ -822,7 +851,8 @@
     "step4": {
       "label": "Step 4",
       "title": "Improve your performance, every year",
-      "description": "Keep your documentation up to date and versioned with Ditto. Reuse and adapt your content easily with AI support. With one unified workspace, your CDP submission becomes faster and easier year after year."
+      "description": "Keep your documentation up to date and versioned with Ditto. Reuse and adapt your content easily with AI support. With one unified workspace, your CDP submission becomes faster and easier year after year.",
+      "button": "Book a demo"
     },
     "carousel": {
       "title": "Reuse your data for all of your CSR and compliance needs"
@@ -857,7 +887,8 @@
     "step2": {
       "label": "Step 2",
       "title": "Structure your disclosures across ESRS topics",
-      "description": "Once your topics are defined, Ditto gives you a clean, guided structure to work through each ESRS standard. Your team can contribute asynchronously, while our platform helps you align answers, source evidence, and avoid inconsistencies. Live dashboards track your progress across environmental, social, and governance sections."
+      "description": "Once your topics are defined, Ditto gives you a clean, guided structure to work through each ESRS standard. Your team can contribute asynchronously, while our platform helps you align answers, source evidence, and avoid inconsistencies. Live dashboards track your progress across environmental, social, and governance sections.",
+      "button": "Talk to an expert"
     },
     "step3": {
       "label": "Step 3",
@@ -867,7 +898,8 @@
     "step4": {
       "label": "Step 4",
       "title": "Validate, publish, and improve every year",
-      "description": "Your report is versioned, structured, and ready to be audited. We help you stay ready for third-party assurance, reuse your data each year, and evolve your sustainability narrative over time."
+      "description": "Your report is versioned, structured, and ready to be audited. We help you stay ready for third-party assurance, reuse your data each year, and evolve your sustainability narrative over time.",
+      "button": "Book a demo"
     },
     "carousel": {
       "title": "Reuse your data for all of your CSR and compliance needs"
@@ -902,7 +934,8 @@
     "step2": {
       "label": "Step 2",
       "title": "Meet ISO 14001 requirements",
-      "description": "Once your system is structured, we help you fill the gaps. With AI suggestions and expert validation, you'll ensure your procedures, documentation, and controls meet ISO 14001 expectations across all clauses."
+      "description": "Once your system is structured, we help you fill the gaps. With AI suggestions and expert validation, you'll ensure your procedures, documentation, and controls meet ISO 14001 expectations across all clauses.",
+      "button": "Talk to an expert"
     },
     "step3": {
       "label": "Step 3",
@@ -912,7 +945,8 @@
     "step4": {
       "label": "Step 4",
       "title": "Maintain your compliance year after year",
-      "description": "ISO 14001 is not a one-off project. Ditto helps you update your EMS as your business evolves. Keep policies current, track objectives, and document improvements automatically over time so you're always ready for what's next."
+      "description": "ISO 14001 is not a one-off project. Ditto helps you update your EMS as your business evolves. Keep policies current, track objectives, and document improvements automatically over time so you're always ready for what's next.",
+      "button": "Book a demo"
     },
     "carousel": {
       "title": "Reuse your data for all of your CSR and compliance needs"

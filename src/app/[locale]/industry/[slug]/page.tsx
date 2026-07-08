@@ -139,8 +139,8 @@ export default async function IndustryPage({
   const heroSubhead = content?.subhead ?? industryIntro(industry, locale);
 
   const primaryCtaText = isFr
-    ? "Réserver un appel stratégique gratuit"
-    : "Book a free strategy call";
+    ? "Parler avec un expert"
+    : "Talk to an expert";
   const secondaryCtaText = isFr ? "Voir comment ça marche" : "See how it works";
 
   return (
@@ -408,6 +408,26 @@ export default async function IndustryPage({
                 <div className="spacer-component" data-wf--padding--space="small-3rem" />
               </div>
             </section>
+
+            {/* Mid-page CTA — a second, lighter call-to-action between the
+                proof section and the final CTA, using different copy than
+                both the hero ("Talk to an expert") and the final CTA
+                ("Book a demo") so the page doesn't repeat the same phrase
+                everywhere. */}
+            <SectionCta
+              title={
+                isFr
+                  ? "Des questions sur les exigences de votre secteur ?"
+                  : "Have questions about your industry's requirements?"
+              }
+              paragraph={
+                isFr
+                  ? "Discutons-en — nous vous montrerons comment Ditto s'intègre à votre démarche de conformité."
+                  : "Let's talk — we'll show you exactly how Ditto fits your compliance workflow."
+              }
+              buttonText={isFr ? "Parlons-en" : "Let's talk"}
+              buttonLink={{ href: `${prefix}/demo` }}
+            />
           </div>
         )}
 

@@ -16,7 +16,19 @@ import {
 import Link from "../../devlink/modules/Basic/components/Link";
 import { articleHref } from "../lib/localized-paths";
 
-export type MegaLink = { label: string; href: string; target?: "_blank" | "_self"; icon?: string };
+export type MegaLink = {
+  label: string;
+  href: string;
+  target?: "_blank" | "_self";
+  icon?: string;
+  /**
+   * Optional per-link override for the right-hand featured block: when set,
+   * hovering this link shows this featured content instead of the menu's
+   * default `featured` (if any). Used by the "By industry" group to show a
+   * real customer quote for the industries that have one.
+   */
+  featured?: MegaFeatured;
+};
 export type MegaGroup = { id: string; heading: string; links: MegaLink[]; columns?: number; variant?: "icon" };
 /** Yellow "deadline watch" promo card (Product), rendered inside the featured block. */
 export type MegaPromo = { eyebrow: string; title: string; ctaLabel: string; ctaHref: string };
@@ -56,12 +68,19 @@ const CHEVRON =
   '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M3.5312 5.52729C3.79155 5.26694 4.21366 5.26694 4.47401 5.52729L8.0026 9.05589L11.5312 5.52729C11.7915 5.26694 12.2137 5.26694 12.474 5.52729C12.7344 5.78764 12.7344 6.20975 12.474 6.4701L8.47401 10.4701C8.21366 10.7305 7.79155 10.7305 7.5312 10.4701L3.5312 6.4701C3.27085 6.20975 3.27085 5.78764 3.5312 5.52729Z" fill="#130E30"/></svg>';
 
 /** A single column: an uppercase heading above a vertical stack of links. */
-function NavColumn({ group }: { group: MegaGroup }) {
+function NavColumn({
+  group,
+  onLinkHover,
+}: {
+  group: MegaGroup;
+  /** Called with a link's `featured` override on hover, or `undefined` on hover-out. */
+  onLinkHover?: (featured: MegaFeatured | undefined) => void;
+}) {
   const isIcon = group.variant === "icon";
   const cols = group.columns ?? 1;
   const items = group.links.map((link, i) => {
     const Icon = link.icon ? ICONS[link.icon] : null;
-    return (
+    const linkEl = (
       <Link
         key={`${group.id}-${i}`}
         block={""}
@@ -76,6 +95,17 @@ function NavColumn({ group }: { group: MegaGroup }) {
         ) : null}
         <span className={"nav-mega_link-label"}>{link.label}</span>
       </Link>
+    );
+    if (!onLinkHover) return linkEl;
+    return (
+      <div
+        key={`${group.id}-${i}-hover`}
+        style={{ display: "contents" }}
+        onMouseEnter={() => onLinkHover(link.featured)}
+        onMouseLeave={() => onLinkHover(undefined)}
+      >
+        {linkEl}
+      </div>
     );
   });
   return (
@@ -184,14 +214,22 @@ function MegaContent({
   previewPosts: any[];
   locale: string;
 }) {
-  const featured = menu.featured;
+  // A hovered link's `featured` override takes priority over the menu's own
+  // default `featured` (if any); hovering away falls back to the default.
+  const [hoveredFeatured, setHoveredFeatured] = useState<MegaFeatured | undefined>(undefined);
+  const featured = hoveredFeatured ?? menu.featured;
   const post = featured?.kind === "article" ? previewPosts[0] : null;
+  const hasPerLinkFeatured = menu.groups.some((g) => g.links.some((l) => l.featured));
 
   return (
     <div className={"nav-mega"}>
       <div className={"nav-mega_cols"}>
         {menu.groups.map((group) => (
-          <NavColumn key={group.id} group={group} />
+          <NavColumn
+            key={group.id}
+            group={group}
+            onLinkHover={hasPerLinkFeatured ? setHoveredFeatured : undefined}
+          />
         ))}
       </div>
 

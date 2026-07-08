@@ -36,6 +36,19 @@ type CategoryDef = {
   heading: { en: string; fr: string };
 };
 
+/**
+ * A hero image can be a single URL shared across locales, or an
+ * `{ en, fr }` pair when the source artwork itself differs by locale (e.g.
+ * "Bilan Carbone" vs. "Carbon Footprint"). Use `resolveHeroImage` to read it.
+ */
+export type HeroImage = string | { en: string; fr: string };
+
+/** Resolves a `HeroImage` to the URL for a given locale. */
+export function resolveHeroImage(heroImage: HeroImage, locale: string): string {
+  if (typeof heroImage === "string") return heroImage;
+  return locale === "fr" ? heroImage.fr : heroImage.en;
+}
+
 // Default icon reused for categories that don't have a dedicated one
 // (e.g. dynamically-appended CMS categories not covered by a config's
 // curated `categories` list).
@@ -50,7 +63,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
   // absent (see generateMetadata in collection/[framework]/page.tsx) — used
   // when the on-page intro copy and the <meta description> need to differ.
   metaDescription?: { en: string; fr: string };
-  heroImage: string;
+  heroImage: HeroImage;
   sectionTitle: { en: string; fr: string };
   categories: CategoryDef[];
 }> = {
@@ -99,7 +112,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
       en: "Structure your ESG reporting with the VSME standard. Resources for SMEs navigating European sustainability requirements.",
       fr: "Structurez votre reporting ESG avec le standard VSME. Ressources pour les PME face aux exigences européennes de durabilité.",
     },
-    heroImage: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6a0b26331cfe4fd628ae2f4d_csrd-hero.webp",
+    heroImage: "/images/csrd-hero.png",
     sectionTitle: { en: "Explore VSME articles", fr: "Explorez les articles VSME" },
     categories: [
       { name: "Introduction to VSME", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_icon-4.png", heading: { en: "Introduction to VSME", fr: "Introduction au VSME" } },
@@ -118,7 +131,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
       en: "Build a robust environmental management system with ISO 14001.",
       fr: "Construisez un système de management environnemental robuste avec l'ISO 14001.",
     },
-    heroImage: "",
+    heroImage: "/images/iso-14001-hero.png",
     sectionTitle: { en: "Explore ISO 14001 articles", fr: "Explorez les articles ISO 14001" },
     categories: [],
   },
@@ -133,7 +146,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
       en: "Understand the CSRD directive, ESRS standards and double materiality, and structure your European sustainability reporting step by step, with Ditto's platform and expertise.",
       fr: "Comprenez la directive CSRD, les normes ESRS et la double matérialité, et structurez votre reporting de durabilité européen étape par étape, avec la plateforme et l'expertise Ditto.",
     },
-    heroImage: "",
+    heroImage: "/images/csrd-hero.png",
     sectionTitle: { en: "Explore CSRD articles", fr: "Explorez les articles CSRD" },
     // Category `name` matches the `categorie` string stored on CSRD
     // collection_items/guides in the CMS (see `category_translations`).
@@ -157,7 +170,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
       en: "Measure, report and reduce your carbon footprint. Resources to help you build a carbon assessment (Bilan Carbone) and decarbonize across your value chain.",
       fr: "Mesurez, déclarez et réduisez votre empreinte carbone. Des ressources pour vous aider à réaliser votre bilan carbone et à décarboner toute votre chaîne de valeur.",
     },
-    heroImage: "",
+    heroImage: { en: "/images/carbon-hero-en.png", fr: "/images/carbon-hero-fr.png" },
     sectionTitle: { en: "Explore Carbon articles", fr: "Explorez les articles Bilan Carbone" },
     // Category `name` is a stable slug tagged on each article's `categorie`
     // field in the CMS; the EN/FR headings are hardcoded here.
@@ -176,7 +189,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
       en: "Structure your Quality, Health, Safety and Environment (QHSE) management. Resources to help you build and improve your QHSE program.",
       fr: "Structurez votre démarche QHSE (Qualité, Hygiène, Sécurité, Environnement). Des ressources pour construire et améliorer votre système de management QHSE.",
     },
-    heroImage: "",
+    heroImage: "/images/qhse-hero.png",
     sectionTitle: { en: "Explore QHSE articles", fr: "Explorez les articles QHSE" },
     categories: [],
   },

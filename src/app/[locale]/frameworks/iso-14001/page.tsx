@@ -99,14 +99,16 @@ export default async function FrameworksIso14001Page({ params }: { params: Promi
           buttonButtonVisibility={false}
         />
 
-        {/* 6. Feature Step 2 */}
+        {/* 6. Feature Step 2 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Reversed"
           labelLabelText={t("frameworksIso14001.step2.label")}
           title={t("frameworksIso14001.step2.title")}
           paragraph={t("frameworksIso14001.step2.description")}
           image="/images/ecovadis-step-3_2.svg"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksIso14001.step2.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 7. Feature Step 3 */}
@@ -119,14 +121,16 @@ export default async function FrameworksIso14001Page({ params }: { params: Promi
           buttonButtonVisibility={false}
         />
 
-        {/* 8. Feature Step 4 */}
+        {/* 8. Feature Step 4 — CTA button under this step */}
         <SectionFeature
           variant="Layout • Reversed"
           labelLabelText={t("frameworksIso14001.step4.label")}
           title={t("frameworksIso14001.step4.title")}
           paragraph={t("frameworksIso14001.step4.description")}
           image="/images/management-feature-1_2.svg"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("frameworksIso14001.step4.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 9. Compliant carousel */}

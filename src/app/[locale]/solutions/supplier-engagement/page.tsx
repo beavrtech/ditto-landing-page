@@ -87,14 +87,16 @@ export default async function SupplierEngagementPage({ params }: { params: Promi
           buttonButtonVisibility={false}
         />
 
-        {/* 5. Feature 2: Supplier questionnaires */}
+        {/* 5. Feature 2: Supplier questionnaires — CTA button under this block */}
         <SectionFeature
           variant="Layout • Reversed"
           labelLabelText={t("solutionsSupplier.feature2.label")}
           title={t("solutionsSupplier.feature2.title")}
           paragraph={t("solutionsSupplier.feature2.paragraph")}
           image="/images/management-feature-2_4.avif"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("solutionsSupplier.feature2.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 6. Feature 3: Engagement tracking */}
@@ -107,7 +109,15 @@ export default async function SupplierEngagementPage({ params }: { params: Promi
           buttonButtonVisibility={false}
         />
 
-        {/* 7. Testimonials carousel */}
+        {/* 7. Mid-page CTA */}
+        <SectionCta
+          title={t("solutionsSupplier.midCta.title")}
+          paragraph={t("solutionsSupplier.midCta.paragraph")}
+          buttonText={t("solutionsSupplier.midCta.button")}
+          buttonLink={{ href: `${prefix}/demo` }}
+        />
+
+        {/* 8. Testimonials carousel */}
         <SectionTestimonials
           locale={locale}
           title={t("solutionsSupplier.testimonials.title")}
@@ -116,7 +126,7 @@ export default async function SupplierEngagementPage({ params }: { params: Promi
           buttonLink={{ href: `${prefix}/customer-stories` }}
         />
 
-        {/* 8. CTA */}
+        {/* 9. Final CTA */}
         <SectionCta
           title={t("solutionsSupplier.cta.title")}
           paragraph={t("solutionsSupplier.cta.paragraph")}

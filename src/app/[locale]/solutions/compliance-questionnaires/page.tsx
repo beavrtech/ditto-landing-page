@@ -87,14 +87,16 @@ export default async function ComplianceQuestionnairesPage({ params }: { params:
           buttonButtonVisibility={false}
         />
 
-        {/* 5. Feature 2: AI-powered answers */}
+        {/* 5. Feature 2: AI-powered answers — CTA button under this block */}
         <SectionFeature
           variant="Layout • Reversed"
           labelLabelText={t("solutionsCompliance.feature2.label")}
           title={t("solutionsCompliance.feature2.title")}
           paragraph={t("solutionsCompliance.feature2.paragraph")}
           image="/images/management-feature-1_3.svg"
-          buttonButtonVisibility={false}
+          buttonButtonVisibility={true}
+          buttonButtonText={t("solutionsCompliance.feature2.button")}
+          buttonButtonLink={{ href: `${prefix}/demo` }}
         />
 
         {/* 6. Feature 3: Intelligent knowledge base */}
@@ -117,7 +119,15 @@ export default async function ComplianceQuestionnairesPage({ params }: { params:
           buttonButtonVisibility={false}
         />
 
-        {/* 8. Testimonials carousel */}
+        {/* 8. Mid-page CTA */}
+        <SectionCta
+          title={t("solutionsCompliance.midCta.title")}
+          paragraph={t("solutionsCompliance.midCta.paragraph")}
+          buttonText={t("solutionsCompliance.midCta.button")}
+          buttonLink={{ href: `${prefix}/demo` }}
+        />
+
+        {/* 9. Testimonials carousel */}
         <SectionTestimonials
           locale={locale}
           title={t("solutionsCompliance.testimonials.title")}
@@ -126,7 +136,7 @@ export default async function ComplianceQuestionnairesPage({ params }: { params:
           buttonLink={{ href: `${prefix}/customer-stories` }}
         />
 
-        {/* 9. CTA */}
+        {/* 10. Final CTA */}
         <SectionCta
           title={t("solutionsCompliance.cta.title")}
           paragraph={t("solutionsCompliance.cta.paragraph")}

@@ -11,9 +11,9 @@ import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getBlogPosts } from "../lib/cms";
-import { localizedHref, switchLocalePath, collectionPath } from "../lib/localized-paths";
+import { localizedHref, switchLocalePath, collectionPath, localizedCmsHref } from "../lib/localized-paths";
 import { CUSTOMER_INDUSTRIES, industryName } from "../lib/customer-industries";
-import { MegaNav, type MegaMenu } from "./MegaNav";
+import { MegaNav, type MegaMenu, type MegaFeatured } from "./MegaNav";
 import { useAlternateUrls } from "./AlternateUrlContext";
 import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
 import Block from "../../devlink/modules/Basic/components/Block";
@@ -86,39 +86,220 @@ export function NavbarClient({
     "technology-software": "monitor",
     "transportation-logistics": "truck",
   };
+  // Real, attributed customer quotes exist for all 8 industries (sourced
+  // from `industry-content.ts` proof.quote/author, same wording shown on
+  // each /industry/[slug] page).
+  const INDUSTRY_QUOTES: Record<string, MegaFeatured> = {
+    electronics: {
+      kind: "quote",
+      quote: {
+        quote:
+          locale === "fr"
+            ? "Ce qu'on a le plus apprécié, c'est la méthode. Des réunions régulières pour avancer, une analyse critique de ce qu'on produisait, et la capacité à se réajuster quand c'était nécessaire."
+            : "What we appreciated most was the method. Regular check-ins to move forward, a critical review of what we produced, and the ability to adjust when needed.",
+        name: "Julie Gay",
+        role:
+          locale === "fr"
+            ? "Directrice Qualité, Niedax France"
+            : "Quality Director, Niedax France",
+        imageUrl:
+          "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/customer_stories/niedax-client-pressure-gold-ecovadis-medal/quote_author_picture_url.jpeg",
+        href: localizedCmsHref(
+          "/customer-stories",
+          "niedax-client-pressure-gold-ecovadis-medal",
+          "niedax-client-pressure-gold-ecovadis-medal",
+          locale
+        ),
+      },
+    },
+    "manufacturing-equipment": {
+      kind: "quote",
+      quote: {
+        quote:
+          locale === "fr"
+            ? "Pour nous, Ditto a vraiment été un partenaire clé, à mi-chemin entre l'outil structurant et le regard extérieur bienveillant des coachs. Ça nous a permis d'y voir plus clair, de poser les bases solides de notre démarche RSE et de mieux comprendre les attentes d'Ecovadis."
+            : "Ditto has truly been a key partner - part structured tool, part supportive outside perspective. It helped us gain clarity, lay solid foundations for our CSR approach, and better understand what EcoVadis expects.",
+        name: "Camille Bernard",
+        role:
+          locale === "fr"
+            ? "Chargée de mission RSE, Émile Maurin"
+            : "CSR Project Manager, Émile Maurin",
+        imageUrl:
+          "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/customer_stories/emile-maurin-a-family-business-strengthening-its-csr-strategy-with-ditto/business_logo_url.avif",
+        href: localizedCmsHref(
+          "/customer-stories",
+          "emile-maurin-a-family-business-strengthening-its-csr-strategy-with-ditto",
+          "emile-maurin-une-entreprise-familiale-qui-intensifie-sa-strategie-rse-avec-ditto",
+          locale
+        ),
+      },
+    },
+    "transportation-logistics": {
+      kind: "quote",
+      quote: {
+        quote:
+          locale === "fr"
+            ? "Ditto m'a apporté de la rigueur dans la structuration des réponses, et une compréhension bien plus fine de la méthodologie qu'est EcoVadis."
+            : "Ditto gave me rigor in structuring my responses, and a much deeper understanding of the methodology behind EcoVadis.",
+        name: "Louis Gauthier",
+        role:
+          locale === "fr"
+            ? "Coordinateur RSE & Attaché de Direction Générale, Groupe Brangeon"
+            : "CSR Coordinator & Executive Assistant, Groupe Brangeon",
+        imageUrl:
+          "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/uploads/1781181815318-louis-gauthier.jpeg",
+        href: localizedCmsHref(
+          "/customer-stories",
+          "groupe-brangeon-ecovadis-progression",
+          "groupe-brangeon-ecovadis-progression",
+          locale
+        ),
+      },
+    },
+    construction: {
+      kind: "quote",
+      quote: {
+        quote:
+          locale === "fr"
+            ? "L'un des plus grands avantages, selon moi, a été les templates pré-remplis pour les quatre politiques. C'était une base très solide et cela a considérablement réduit le temps nécessaire à la préparation de la documentation clé."
+            : "One of the biggest advantages, in my opinion, was the prefilled templates for the four policies. It was a very solid starting point and significantly reduced the time needed to prepare the key documentation.",
+        name: "Robert Kropidłowski",
+        role:
+          locale === "fr"
+            ? "Responsable projet EcoVadis, Euromac"
+            : "EcoVadis Project Manager, Euromac",
+        imageUrl:
+          "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/customer_stories/euromac-committed-to-platinum-ecovadis/business_logo_url.png",
+        href: localizedCmsHref(
+          "/customer-stories",
+          "euromac-committed-to-platinum-ecovadis",
+          "euromac-committed-platinum-ecovadis",
+          locale
+        ),
+      },
+    },
+    "technology-software": {
+      kind: "quote",
+      quote: {
+        quote:
+          locale === "fr"
+            ? "Avant Ditto, nous avions testé une autre solution, mais elle ne répondait pas à nos attentes en termes de rapidité, d'autonomie et de valeur ajoutée. Avec Ditto, c'est l'inverse : nous avons trouvé un vrai partenaire RSE qui nous aide à structurer notre démarche tout en nous faisant gagner beaucoup de temps."
+            : "Before Ditto, we tested another solution, but it didn't meet our expectations in terms of speed, autonomy, and added value. With Ditto, it's the opposite: we've found a true CSR partner that helps us structure our approach while saving us a lot of time.",
+        name: "Audrey Evin",
+        role:
+          locale === "fr"
+            ? "Directrice Marketing & Communication et Responsable RSE, WAAT"
+            : "Marketing & Communications Director and CSR Manager, WAAT",
+        imageUrl:
+          "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/testimonials/waat/profile_picture_url.jpeg",
+        href:
+          locale === "fr"
+            ? `${p}/cas-clients/waat-et-beavr-une-collaboration-au-service-de-la-performance-rse-et-de-la-croissance`
+            : `${p}/customer-stories/waat-and-ditto-a-collaboration-at-the-service-of-csr-performance-and-growth`,
+      },
+    },
+    "aerospace-defense": {
+      kind: "quote",
+      quote: {
+        quote:
+          locale === "fr"
+            ? "Nous sommes ravis de notre collaboration avec Ditto et de l'implication de notre coach : vous nous avez permis d'avancer rapidement et structurellement sur notre feuille de route RSE ! Un beau mélange d'expertise et d'énergie joyeuse."
+            : "We are delighted with our collaboration with Ditto and the involvement of our coach: you have enabled us to make rapid and structural progress on our ESG roadmap! A great mix of expertise and cheerful energy.",
+        name: "Laurence Sauphanor",
+        role:
+          locale === "fr"
+            ? "Directrice Développement Durable, Communication & Impact, Quito Aero"
+            : "Director of Sustainable Development, Communication & Impact, Quito Aero",
+        imageUrl:
+          "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/testimonials/quito-aero/profile_picture_url.jpeg",
+        href:
+          locale === "fr"
+            ? `${p}/cas-clients/quito-aero-accelerer-la-transformation-rse-avec-ditto-copilote-strategique-et-operationnel`
+            : `${p}/customer-stories/quito-aero-accelerating-csr-transformation-with-ditto-strategic-and-operational-co-pilot`,
+      },
+    },
+  };
+  // Retail uses the Aico quote (same attributed source shown on the retail
+  // industry page). Cosmetics-beauty keeps its own Superga Beauty quote.
+  INDUSTRY_QUOTES.retail = {
+    kind: "quote",
+    quote: {
+      quote:
+        locale === "fr"
+          ? "Merci encore – votre plateforme a vraiment simplifié le processus et nous a permis d'atteindre ce résultat. Nous avons particulièrement apprécié les modèles proposés par Ditto, la qualité de l'accompagnement, la simplicité du reporting et la clarté du processus de validation."
+          : "Thanks again- your platform really made the process much easier and helped us achieve this result. We especially valued Ditto's templates, the quality of support, the simplicity of reporting, and the clarity of the validation process.",
+      name: "Daniel Rivers",
+      role: "Facilities & Compliance Lead, Aico",
+      imageUrl:
+        "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/customer_stories/aico-building-a-strong-csr-framework-to-aim-for-excellence/business_logo_url.avif",
+      href: localizedCmsHref(
+        "/customer-stories",
+        "aico-building-a-strong-csr-framework-to-aim-for-excellence",
+        "aico-construire-un-cadre-rse-solide-pour-viser-excellence",
+        locale
+      ),
+    },
+  };
+  INDUSTRY_QUOTES["cosmetics-beauty"] = {
+    kind: "quote",
+    quote: {
+      quote:
+        locale === "fr"
+          ? "Ditto est l'outil tout-en-un qui nous permet de transformer notre conformité RSE en avantage concurrentiel."
+          : "Ditto is the all-in-one tool that lets us turn our CSR compliance into a competitive advantage.",
+      name: "Sophie Wardan",
+      role:
+        locale === "fr"
+          ? "Responsable RSE Groupe, Superga Beauty"
+          : "Group CSR Manager, Superga Beauty",
+      imageUrl:
+        "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/testimonials/superga-beauty/profile_picture_url.jpeg",
+      href:
+        locale === "fr"
+          ? `${p}/cas-clients/superga-beauty-leadership-durable`
+          : `${p}/customer-stories/superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership`,
+    },
+  };
+
   const industryLinks = [...CUSTOMER_INDUSTRIES]
     .map((industry) => ({
       label: industryName(industry, locale),
       href: localizedHref(`/industry/${industry.slug}`, locale),
       icon: INDUSTRY_ICONS[industry.slug],
+      featured: INDUSTRY_QUOTES[industry.slug],
     }))
     .sort((a, b) => a.label.localeCompare(b.label, locale));
+
+  // Generic Superga Beauty quote — the original, pre-per-industry default.
+  // Used as the "Product" menu's default featured block, and as the
+  // "Solution" menu's default (shown until a specific industry is hovered).
+  const DEFAULT_QUOTE_FEATURED: MegaFeatured = {
+    kind: "quote",
+    quote: {
+      quote:
+        locale === "fr"
+          ? "Ditto est l'outil tout-en-un qui nous permet de transformer notre conformité RSE en avantage concurrentiel."
+          : "Ditto is the all-in-one tool that enables us to turn our CSR compliance into a competitive advantage.",
+      name: "Sophie Wardan",
+      role:
+        locale === "fr"
+          ? "Responsable RSE Groupe, Superga Beauty"
+          : "Group CSR manager, Superga Beauty",
+      imageUrl:
+        "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/testimonials/superga-beauty/profile_picture_url.jpeg",
+      href:
+        locale === "fr"
+          ? `${p}/cas-clients/superga-beauty-leadership-durable`
+          : `${p}/customer-stories/superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership`,
+    },
+  };
 
   // Single source of truth for the megamenus (Level 1 > Level 2 group > Level 3).
   const megaMenus: MegaMenu[] = [
     {
       id: "product",
       label: t("product"),
-      featured: {
-        kind: "quote",
-        quote: {
-          quote:
-            locale === "fr"
-              ? "Ditto est l'outil tout-en-un qui nous permet de transformer notre conformité RSE en avantage concurrentiel."
-              : "Ditto is the all-in-one tool that enables us to turn our CSR compliance into a competitive advantage.",
-          name: "Sophie Wardan",
-          role:
-            locale === "fr"
-              ? "Responsable RSE Groupe, Superga Beauty"
-              : "Group CSR manager, Superga Beauty",
-          imageUrl:
-            "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/testimonials/superga-beauty/profile_picture_url.jpeg",
-          href:
-            locale === "fr"
-              ? `${p}/cas-clients/superga-beauty-leadership-durable`
-              : `${p}/customer-stories/superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership`,
-        },
-      },
+      featured: DEFAULT_QUOTE_FEATURED,
       groups: [
         {
           id: "byFramework",
@@ -147,6 +328,10 @@ export function NavbarClient({
     {
       id: "solution",
       label: t("solution"),
+      // Default (no industry hovered yet) shows the generic Superga Beauty
+      // quote; hovering an industry link swaps in its own real quote via
+      // MegaLink.featured (see industryLinks above).
+      featured: DEFAULT_QUOTE_FEATURED,
       groups: [
         {
           id: "byIndustry",
