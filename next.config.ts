@@ -125,6 +125,16 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/fr/collection/vsme/csrsd-impact-materiality",
+        destination: "/fr/collection/csrd/csrd-materialite-impact",
+        permanent: true,
+      },
+      {
+        source: "/en/collection/vsme/csrsd-impact-materiality",
+        destination: "/en/collection/csrd/csrd-impact-materiality",
+        permanent: true,
+      },
+      {
         source: "/en/get-started",
         destination: "/en/demo",
         permanent: true,

@@ -25,7 +25,7 @@ export async function generateMetadata({
   }
   const lang = locale === "fr" ? "fr" : "en";
   const title = `${config.heroTitle[lang]} | Ditto`;
-  const description = config.heroDesc[lang];
+  const description = config.metaDescription?.[lang] || config.heroDesc[lang];
   const origin = "https://www.trustditto.com";
   return {
     title,
