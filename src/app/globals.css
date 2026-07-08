@@ -66,13 +66,14 @@ a {
    in the DOM (inside <body>, ahead of page content) it silently won equal-
    specificity ties over these rules, making every CMS article table render
    as a boxed "encart" widget instead of a plain inline table. That legacy
-   block has been removed — these rules are now the only definition. */
+   block has been removed. Per follow-up feedback, .table-wrap itself is kept
+   as a plain, unstyled scroll container (no border/radius/background) so the
+   table renders inline with no card/box look at all — only the internal
+   .blog-table cell borders below remain visible. */
 .table-wrap {
   overflow-x: auto;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
-  border-radius: var(--radius--radius-default, 0.5rem);
-  border: 1px solid var(--_colors-\•-semantic---border-medium, #e5e5e5);
 }
 
 .blog-table {
