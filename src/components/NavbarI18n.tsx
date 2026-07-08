@@ -11,7 +11,7 @@ import { useTranslations, useLocale } from "next-intl";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getBlogPosts } from "../lib/cms";
-import { localizedHref, switchLocalePath, collectionPath } from "../lib/localized-paths";
+import { localizedHref, switchLocalePath, collectionPath, localizedCmsHref } from "../lib/localized-paths";
 import { CUSTOMER_INDUSTRIES, industryName } from "../lib/customer-industries";
 import { MegaNav, type MegaMenu, type MegaFeatured } from "./MegaNav";
 import { useAlternateUrls } from "./AlternateUrlContext";
@@ -86,14 +86,95 @@ export function NavbarClient({
     "technology-software": "monitor",
     "transportation-logistics": "truck",
   };
-  // Real, attributed customer quotes exist for exactly these 4 industries
-  // (sourced from `industry-content.ts` proof.quote/author, same wording
-  // shown on each /industry/[slug] page). The other 4 industries have no
-  // real quote available, so they intentionally get no `featured` override —
-  // hovering them shows no featured panel at all (simpler than rigging up
-  // the generic Product quote as a fallback for industries it wasn't
-  // written for).
+  // Real, attributed customer quotes exist for all 8 industries (sourced
+  // from `industry-content.ts` proof.quote/author, same wording shown on
+  // each /industry/[slug] page).
   const INDUSTRY_QUOTES: Record<string, MegaFeatured> = {
+    electronics: {
+      kind: "quote",
+      quote: {
+        quote:
+          locale === "fr"
+            ? "Il y avait une perte de compétences en interne, une pression client qui était là, et un besoin assez urgent de réactiver toutes ces démarches."
+            : "There was a loss of internal expertise, client pressure was real, and there was a fairly urgent need to get all these programmes back on track.",
+        name: "Julie Gay",
+        role:
+          locale === "fr"
+            ? "Directrice Qualité, Niedax France"
+            : "Quality Director, Niedax France",
+        imageUrl:
+          "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/customer_stories/niedax-client-pressure-gold-ecovadis-medal/quote_author_picture_url.jpeg",
+        href: localizedCmsHref(
+          "/customer-stories",
+          "niedax-client-pressure-gold-ecovadis-medal",
+          "niedax-client-pressure-gold-ecovadis-medal",
+          locale
+        ),
+      },
+    },
+    "manufacturing-equipment": {
+      kind: "quote",
+      quote: {
+        quote:
+          locale === "fr"
+            ? "Pour nous, Ditto a vraiment été un partenaire clé, à mi-chemin entre l'outil structurant et le regard extérieur bienveillant des coachs. Ça nous a permis d'y voir plus clair, de poser les bases solides de notre démarche RSE et de mieux comprendre les attentes d'Ecovadis."
+            : "Ditto has truly been a key partner - part structured tool, part supportive outside perspective. It helped us gain clarity, lay solid foundations for our CSR approach, and better understand what EcoVadis expects.",
+        name: "Camille Bernard",
+        role:
+          locale === "fr"
+            ? "Chargée de mission RSE, Émile Maurin"
+            : "CSR Project Manager, Émile Maurin",
+        imageUrl:
+          "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/customer_stories/emile-maurin-a-family-business-strengthening-its-csr-strategy-with-ditto/business_logo_url.avif",
+        href: localizedCmsHref(
+          "/customer-stories",
+          "emile-maurin-a-family-business-strengthening-its-csr-strategy-with-ditto",
+          "emile-maurin-une-entreprise-familiale-qui-intensifie-sa-strategie-rse-avec-ditto",
+          locale
+        ),
+      },
+    },
+    "transportation-logistics": {
+      kind: "quote",
+      quote: {
+        quote:
+          locale === "fr"
+            ? "EcoVadis est devenu incontournable. On le voit dans toutes les demandes clients."
+            : "EcoVadis has become non-negotiable. You see it in every client request.",
+        name: "Louis Gauthier",
+        role:
+          locale === "fr"
+            ? "Coordinateur RSE & Attaché de Direction Générale, Groupe Brangeon"
+            : "CSR Coordinator & Executive Assistant, Groupe Brangeon",
+        imageUrl:
+          "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/uploads/1781181815318-louis-gauthier.jpeg",
+        href: localizedCmsHref(
+          "/customer-stories",
+          "groupe-brangeon-ecovadis-progression",
+          "groupe-brangeon-ecovadis-progression",
+          locale
+        ),
+      },
+    },
+    construction: {
+      kind: "quote",
+      quote: {
+        quote:
+          locale === "fr"
+            ? "Merci encore – votre plateforme a vraiment simplifié le processus et nous a permis d'atteindre ce résultat. Nous avons particulièrement apprécié les modèles proposés par Ditto, la qualité de l'accompagnement, la simplicité du reporting et la clarté du processus de validation."
+            : "Thanks again- your platform really made the process much easier and helped us achieve this result. We especially valued Ditto's templates, the quality of support, the simplicity of reporting, and the clarity of the validation process.",
+        name: "Daniel Rivers",
+        role: "Facilities & Compliance Lead, Aico",
+        imageUrl:
+          "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/customer_stories/aico-building-a-strong-csr-framework-to-aim-for-excellence/business_logo_url.avif",
+        href: localizedCmsHref(
+          "/customer-stories",
+          "aico-building-a-strong-csr-framework-to-aim-for-excellence",
+          "aico-construire-un-cadre-rse-solide-pour-viser-excellence",
+          locale
+        ),
+      },
+    },
     "technology-software": {
       kind: "quote",
       quote: {

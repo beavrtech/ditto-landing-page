@@ -186,7 +186,7 @@ export default async function FrameworksPage({
                                     </p>
                                   )}
                                   <div className="spacer-auto" />
-                                  {(pageHref || collectionHref) && (
+                                  {(pageHref || collectionHref || fw.slug === "vsme") && (
                                     <div className="button-group" style={{ marginTop: "1.5rem" }}>
                                       {pageHref && (
                                         <a href={pageHref} className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 is--small">
@@ -198,19 +198,19 @@ export default async function FrameworksPage({
                                           {t("frameworksIndex.resources")}
                                         </a>
                                       )}
+                                      {/* VSME <-> CSRD cross-link: the two are closely related EU
+                                          reporting standards, so surface a quick pointer from the
+                                          VSME card to the CSRD framework page — styled as the same
+                                          yellow button used for "Read more" elsewhere on this page. */}
+                                      {fw.slug === "vsme" && (
+                                        <a
+                                          href={`${prefix}/frameworks/csrd`}
+                                          className="button w-variant-65493725-7ae1-e50b-73f7-cdb2cb7a8365 is--small"
+                                        >
+                                          {t("frameworksIndex.vsmeCsrdLink")}
+                                        </a>
+                                      )}
                                     </div>
-                                  )}
-                                  {/* VSME <-> CSRD cross-link: the two are closely related EU
-                                      reporting standards, so surface a quick pointer from the
-                                      VSME card to the CSRD framework page. */}
-                                  {fw.slug === "vsme" && (
-                                    <a
-                                      href={`${prefix}/frameworks/csrd`}
-                                      className="link-size-1rem"
-                                      style={{ marginTop: "0.75rem", display: "inline-block" }}
-                                    >
-                                      {t("frameworksIndex.vsmeCsrdLink")}
-                                    </a>
                                   )}
                                 </div>
                               </div>
