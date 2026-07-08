@@ -49,10 +49,20 @@ export function resolveHeroImage(heroImage: HeroImage, locale: string): string {
   return locale === "fr" ? heroImage.fr : heroImage.en;
 }
 
+// Default icon reused for categories that don't have a dedicated one
+// (e.g. dynamically-appended CMS categories not covered by a config's
+// curated `categories` list).
+const DEFAULT_CATEGORY_ICON =
+  "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_icon-4.png";
+
 export const FRAMEWORK_CONFIG: Record<string, {
   title: string;
   heroTitle: { en: string; fr: string };
   heroDesc: { en: string; fr: string };
+  // Optional SEO meta description override. Falls back to `heroDesc` when
+  // absent (see generateMetadata in collection/[framework]/page.tsx) — used
+  // when the on-page intro copy and the <meta description> need to differ.
+  metaDescription?: { en: string; fr: string };
   heroImage: HeroImage;
   sectionTitle: { en: string; fr: string };
   categories: CategoryDef[];
@@ -129,12 +139,29 @@ export const FRAMEWORK_CONFIG: Record<string, {
     title: "CSRD",
     heroTitle: { en: "CSRD Resources", fr: "Ressources CSRD" },
     heroDesc: {
-      en: "Simplify EU sustainability reporting with our CSRD resources.",
-      fr: "Simplifiez votre reporting de durabilité européen avec nos ressources CSRD.",
+      en: "CSRD is more than producing a report: it's a process that shapes your entire sustainability strategy. This collection helps you understand the directive, the ESRS standards and double materiality, then build solid reporting, step by step — with the Ditto platform and an expert by your side.",
+      fr: "La CSRD ne se résume pas à produire un rapport : c'est une démarche qui structure toute votre stratégie de durabilité. Cette collection vous aide à comprendre la directive, les normes ESRS et la double matérialité, puis à construire un reporting solide — avec la plateforme Ditto et un expert à vos côtés à chaque étape.",
+    },
+    metaDescription: {
+      en: "Understand the CSRD directive, ESRS standards and double materiality, and structure your European sustainability reporting step by step, with Ditto's platform and expertise.",
+      fr: "Comprenez la directive CSRD, les normes ESRS et la double matérialité, et structurez votre reporting de durabilité européen étape par étape, avec la plateforme et l'expertise Ditto.",
     },
     heroImage: "/images/csrd-hero.png",
     sectionTitle: { en: "Explore CSRD articles", fr: "Explorez les articles CSRD" },
-    categories: [],
+    // Category `name` matches the `categorie` string stored on CSRD
+    // collection_items/guides in the CMS (see `category_translations`).
+    // Order here drives the on-page section order; FR headings are
+    // overridden by CMS translations when available (see categoryDefs
+    // below), EN headings are hardcoded as the CMS category name itself.
+    categories: [
+      { name: "Understand CSRD", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_icon-4.png", heading: { en: "Understand CSRD", fr: "Comprendre la CSRD" } },
+      { name: "Master the ESRS standards", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152c34ca7caf3a490b8_icon-1.png", heading: { en: "Master the ESRS standards", fr: "Maîtriser les normes ESRS" } },
+      { name: "Conduct double materiality", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152cad37b73c312337f_icon-12.png", heading: { en: "Conduct double materiality", fr: "Réaliser sa double matérialité" } },
+      { name: "Take action on CSRD", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152cf1d54d25b2a5ff2_icon-2.png", heading: { en: "Take action on CSRD", fr: "Passer à l'action" } },
+      { name: "Compare CSRD with other frameworks", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152405312512f5d8b66_icon-5.png", heading: { en: "Compare CSRD with other frameworks", fr: "Comparer la CSRD aux autres référentiels" } },
+      { name: "Break down CSRD by size and industry", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1528594922b61752e25_icon-6.png", heading: { en: "Break down CSRD by size and industry", fr: "Décliner la CSRD par taille et secteur" } },
+      { name: "Additional CSRD resources", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_icon-4.png", heading: { en: "Additional CSRD resources", fr: "Aller plus loin" } },
+    ],
   },
   carbon: {
     title: "Bilan Carbone",
@@ -195,22 +222,28 @@ export async function ExploreArticlesSection({
     grouped[cat].push(item);
   }
 
-  // Build category defs: use config for icons/order, translations from Supabase
-  const categoryDefs = config.categories.length > 0
-    ? config.categories
-        .filter((c) => grouped[c.name]?.length > 0)
-        .map((c) => ({
-          ...c,
-          heading: {
-            en: c.heading.en,
-            fr: catTranslations[c.name] || c.heading.fr,
-          },
-        }))
-    : Object.keys(grouped).map((name) => ({
-        name,
-        icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_icon-4.png",
-        heading: { en: name, fr: catTranslations[name] || name },
-      }));
+  // Build category defs: use config for icons/order, translations from Supabase.
+  // Any CMS category not covered by the curated `categories` list is appended
+  // afterwards (in the order it appears from the CMS) rather than dropped, so
+  // new/unlisted categories still render instead of silently disappearing.
+  const knownNames = new Set(config.categories.map((c) => c.name));
+  const curatedDefs = config.categories
+    .filter((c) => grouped[c.name]?.length > 0)
+    .map((c) => ({
+      ...c,
+      heading: {
+        en: c.heading.en,
+        fr: catTranslations[c.name] || c.heading.fr,
+      },
+    }));
+  const extraDefs = Object.keys(grouped)
+    .filter((name) => !knownNames.has(name))
+    .map((name) => ({
+      name,
+      icon: DEFAULT_CATEGORY_ICON,
+      heading: { en: name, fr: catTranslations[name] || name },
+    }));
+  const categoryDefs = [...curatedDefs, ...extraDefs];
 
   if (categoryDefs.length === 0) return null;
 
