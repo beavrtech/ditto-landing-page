@@ -4,12 +4,23 @@ import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
 import { SectionContactSidebar } from "../../../components/SectionContactSidebarI18n";
 import { SectionCtaPill } from "../../../components/SectionCtaPillI18n";
+import { SectionCta } from "../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../devlink/devlinkScope";
 import { supabase } from "../../../lib/supabase";
 
 // Frameworks that have a /collection/{slug} page
 const COLLECTION_SLUGS = new Set(["ecovadis", "cdp", "vsme", "csrd"]);
 
+// Internal group keys — used only as the `frameworks_type` DB values and as
+// JS object keys below. User-facing labels come from the `frameworksIndex`
+// translations (tab1/2/3, category1/2/3), not from these identifiers.
+// - Certifications: third-party ratings, certifications & CSR labels
+//   (EcoVadis, CDP, MSCI, Sustainalytics, B Corp, Label Engagé RSE, Positive
+//   Company Label).
+// - Reporting: EU/regulatory sustainability reporting & disclosure
+//   (VSME, CSRD, Bilan carbone, Mid Cap Standards, UN Global Compact,
+//   Sapin II Law, GDPR).
+// - ISO: ISO management-system standards.
 async function getFrameworksByType() {
   const { data, error } = await supabase
     .from("frameworks")
@@ -19,9 +30,9 @@ async function getFrameworksByType() {
   if (error) throw error;
 
   const groups: Record<string, typeof data> = {
-    Security: [],
-    Privacy: [],
-    Others: [],
+    Certifications: [],
+    Reporting: [],
+    ISO: [],
   };
 
   for (const fw of data || []) {
@@ -31,12 +42,16 @@ async function getFrameworksByType() {
     }
   }
 
-  // Sort: items with page_url or collection come first
+  // Sort purely by the stakeholder-given manual order (`sort_order` column,
+  // ascending), with name as a stable tiebreak when sort_order is equal or
+  // unset — this replaces the previous "has-link-first, then alphabetical"
+  // sort, which doesn't reflect the intended manual ordering.
   for (const key of Object.keys(groups)) {
     groups[key].sort((a: any, b: any) => {
-      const aHasLink = (a.page_url || COLLECTION_SLUGS.has(a.slug)) ? 1 : 0;
-      const bHasLink = (b.page_url || COLLECTION_SLUGS.has(b.slug)) ? 1 : 0;
-      return bHasLink - aHasLink;
+      const aOrder = a.sort_order ?? Number.MAX_SAFE_INTEGER;
+      const bOrder = b.sort_order ?? Number.MAX_SAFE_INTEGER;
+      if (aOrder !== bOrder) return aOrder - bOrder;
+      return String(a.name).localeCompare(String(b.name));
     });
   }
 
@@ -78,15 +93,15 @@ export default async function FrameworksPage({
   const prefix = `/${locale}`;
 
   const groups = await getFrameworksByType().catch(() => ({
-    Security: [],
-    Privacy: [],
-    Others: [],
+    Certifications: [],
+    Reporting: [],
+    ISO: [],
   }));
 
   const categories = [
-    { id: "security", tab: t("frameworksIndex.allFrameworks.tab1"), heading: t("frameworksIndex.allFrameworks.category1"), items: groups.Security },
-    { id: "privacy", tab: t("frameworksIndex.allFrameworks.tab2"), heading: t("frameworksIndex.allFrameworks.category2"), items: groups.Privacy },
-    { id: "others", tab: t("frameworksIndex.allFrameworks.tab3"), heading: t("frameworksIndex.allFrameworks.category3"), items: groups.Others },
+    { id: "certifications", tab: t("frameworksIndex.allFrameworks.tab1"), heading: t("frameworksIndex.allFrameworks.category1"), items: groups.Certifications },
+    { id: "reporting", tab: t("frameworksIndex.allFrameworks.tab2"), heading: t("frameworksIndex.allFrameworks.category2"), items: groups.Reporting },
+    { id: "iso", tab: t("frameworksIndex.allFrameworks.tab3"), heading: t("frameworksIndex.allFrameworks.category3"), items: groups.ISO },
   ];
 
   return (
@@ -185,6 +200,18 @@ export default async function FrameworksPage({
                                       )}
                                     </div>
                                   )}
+                                  {/* VSME <-> CSRD cross-link: the two are closely related EU
+                                      reporting standards, so surface a quick pointer from the
+                                      VSME card to the CSRD framework page. */}
+                                  {fw.slug === "vsme" && (
+                                    <a
+                                      href={`${prefix}/frameworks/csrd`}
+                                      className="link-size-1rem"
+                                      style={{ marginTop: "0.75rem", display: "inline-block" }}
+                                    >
+                                      {t("frameworksIndex.vsmeCsrdLink")}
+                                    </a>
+                                  )}
                                 </div>
                               </div>
                             );
@@ -204,6 +231,15 @@ export default async function FrameworksPage({
             </div>
           </section>
         </div>
+
+        {/* CTA banner — the frameworks index previously had no dedicated
+            call-to-action of its own before the closing CTA pill. */}
+        <SectionCta
+          title={t("frameworksIndex.cta.title")}
+          paragraph={t("frameworksIndex.cta.paragraph")}
+          buttonText={t("frameworksIndex.cta.button")}
+          buttonLink={{ href: `${prefix}/demo` }}
+        />
 
         {/* CTA Pill */}
         <SectionCtaPill />

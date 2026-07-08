@@ -107,7 +107,15 @@ export default async function SupplierEngagementPage({ params }: { params: Promi
           buttonButtonVisibility={false}
         />
 
-        {/* 7. Testimonials carousel */}
+        {/* 7. Mid-page CTA */}
+        <SectionCta
+          title={t("solutionsSupplier.midCta.title")}
+          paragraph={t("solutionsSupplier.midCta.paragraph")}
+          buttonText={t("solutionsSupplier.midCta.button")}
+          buttonLink={{ href: `${prefix}/demo` }}
+        />
+
+        {/* 8. Testimonials carousel */}
         <SectionTestimonials
           locale={locale}
           title={t("solutionsSupplier.testimonials.title")}
@@ -116,7 +124,7 @@ export default async function SupplierEngagementPage({ params }: { params: Promi
           buttonLink={{ href: `${prefix}/customer-stories` }}
         />
 
-        {/* 8. CTA */}
+        {/* 9. Final CTA */}
         <SectionCta
           title={t("solutionsSupplier.cta.title")}
           paragraph={t("solutionsSupplier.cta.paragraph")}

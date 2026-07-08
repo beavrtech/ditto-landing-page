@@ -9,7 +9,7 @@ import { SectionCta } from "../../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
 import { Label } from "../../../../../devlink/elements/Label";
 import { localizedHref, collectionPath } from "../../../../lib/localized-paths";
-import { ExploreArticlesSection, FRAMEWORK_CONFIG } from "../../../../components/ExploreArticlesSection";
+import { ExploreArticlesSection, FRAMEWORK_CONFIG, resolveHeroImage } from "../../../../components/ExploreArticlesSection";
 
 const VALID_FRAMEWORKS = Object.keys(FRAMEWORK_CONFIG);
 
@@ -27,6 +27,7 @@ export async function generateMetadata({
   const title = `${config.heroTitle[lang]} | Ditto`;
   const description = config.heroDesc[lang];
   const origin = "https://www.trustditto.com";
+  const heroImage = resolveHeroImage(config.heroImage, locale);
   return {
     title,
     description,
@@ -43,8 +44,8 @@ export async function generateMetadata({
       description,
       images: [
         {
-          url: config.heroImage
-            ? `https://www.trustditto.com${config.heroImage}`
+          url: heroImage
+            ? `https://www.trustditto.com${heroImage}`
             : "https://www.trustditto.com/images/og-default.jpg",
         },
       ],
@@ -73,6 +74,7 @@ export default async function CollectionPage({
   const t = await getTranslations();
   const prefix = `/${locale}`;
   const config = FRAMEWORK_CONFIG[framework];
+  const heroImage = resolveHeroImage(config.heroImage, locale);
 
   return (
     <div className="page-wrapper">
@@ -108,14 +110,14 @@ export default async function CollectionPage({
                       {locale === "fr" ? config.heroDesc.fr : config.heroDesc.en}
                     </p>
                   </div>
-                  {config.heroImage && (
+                  {heroImage && (
                     <div className="hero3_image_wrapper">
                       <Image
                         width={1920}
                         height={1080}
                         sizes="100vw"
                         alt=""
-                        src={config.heroImage}
+                        src={heroImage}
                         className="hero_image"
                       />
                     </div>

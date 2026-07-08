@@ -113,8 +113,8 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
         { strong: "Restez sur les listes de fournisseurs référencés", text: "qui font votre chiffre d'affaires." },
         { strong: "Gagnez des appels d'offres sur la RSE, pas seulement sur le prix", text: "— transformez une exigence en argument commercial." },
         { strong: "Obtenez une meilleure note", text: "— une démarche structurée et un vrai coach, pas un modèle vierge." },
-        { strong: "Réduisez le temps de questionnaire de jours à minutes", text: "grâce à l'IA et à une source unique de vérité." },
-        { strong: "Donnez à vos commerciaux un récit", text: "à porter auprès des comptes clés." },
+        { strong: "Réduisez le temps de traitement des questionnaires", text: "de plusieurs jours à quelques minutes grâce à l'IA et à une source unique de vérité." },
+        { strong: "Donnez à vos commerciaux un argumentaire", text: "à porter auprès des comptes clés." },
       ],
       proof: {
         heading: "Niedax France — de la pression client à la médaille d'or EcoVadis.",
@@ -193,7 +193,7 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
         { strong: "Gagnez les appels d'offres", text: "où la médaille EcoVadis et les données carbone décident de la short-list." },
         { strong: "Gardez une longueur d'avance sur les audits", text: "— preuves ISO et données énergie prêtes quand l'auditeur arrive." },
         { strong: "Réduisez vos coûts d'énergie", text: "en transformant le travail ISO 50001 en gains d'efficacité réels." },
-        { strong: "Répondez aux questionnaires acheteurs en minutes", text: ", pas en jours, depuis une source unique de vérité." },
+        { strong: "Répondez aux questionnaires acheteurs", text: "en quelques minutes, pas en jours, depuis une source unique de vérité." },
         { strong: "Différenciez-vous au-delà du prix", text: "avec des preuves que vos concurrents ne peuvent pas montrer." },
       ],
       proof: {
@@ -344,7 +344,7 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
         { title: "ISO 14001", desc: "Mettez en place un système de management environnemental crédible et gardez les preuves organisées." },
       ],
       outcomes: [
-        { strong: "Raccourcissez le cycle de vente", text: "— passez la barrière RSE des achats du premier coup." },
+        { strong: "Raccourcissez le cycle de vente", text: "— franchissez la barrière RSE des achats du premier coup." },
         { strong: "Gagnez des appels d'offres grands comptes et publics", text: "où la note EcoVadis est désormais un prérequis." },
         { strong: "Répondez aux questionnaires sécurité et RSE en minutes", text: "grâce à l'IA et une source unique de vérité." },
         { strong: "Montrez de vrais chiffres carbone", text: "pour votre empreinte cloud, pas des estimations." },
@@ -357,8 +357,8 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
         ctaLabel: "Voir les témoignages clients",
       },
       finalCta: {
-        heading: "Faites de la RSE un accélérateur de deals, plus un frein.",
-        body: "Réservez un appel stratégique gratuit. Nous cartographions ce que vos acheteurs demandent aux achats et vous montrons comment Ditto vous fait passer plus vite.",
+        heading: "Faites de la RSE un accélérateur de deals, et non plus un frein.",
+        body: "Réservez un appel stratégique gratuit. Nous cartographions ce que le service achats de vos clients exige et vous montrons comment Ditto vous fait passer plus vite.",
         button: "Réserver une démo",
       },
     },
@@ -424,11 +424,11 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
         { title: "ISO 14001", desc: "Gardez votre système de management environnemental prêt pour l'audit, avec des preuves défendables." },
       ],
       outcomes: [
-        { strong: "Restez qualifié", text: "sur les panels fournisseurs des donneurs d'ordre et rang 1." },
+        { strong: "Restez qualifié", text: "sur les panels fournisseurs des donneurs d'ordre et de rang 1." },
         { strong: "Défendez chaque déclaration", text: "avec des preuves organisées et prêtes pour l'audit." },
-        { strong: "Remportez le prochain programme", text: "avec un profil RSE que vos concurrents ne peuvent pas égaler." },
-        { strong: "Répondez aux questionnaires fournisseurs en minutes", text: ", pas en semaines, depuis une source unique de vérité." },
-        { strong: "Faites de la rigueur de conformité", text: "une raison d'être retenu dès la conception." },
+        { strong: "Remportez le prochain appel d'offres", text: "avec un profil RSE que vos concurrents ne peuvent pas égaler." },
+        { strong: "Répondez aux questionnaires fournisseurs", text: "en quelques minutes, pas en semaines, depuis une source unique de vérité." },
+        { strong: "Faites de votre rigueur de conformité", text: "une raison d'être retenu dès la conception." },
       ],
       proof: {
         quote:
@@ -437,7 +437,7 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
         ctaLabel: "Voir les témoignages clients",
       },
       finalCta: {
-        heading: "Faites de la conformité aéronautique votre prochain programme gagné.",
+        heading: "Faites de la conformité aéronautique votre prochain contrat gagné.",
         body: "Réservez un appel stratégique gratuit. Nous cartographions les exigences de vos donneurs d'ordre et vous montrons comment Ditto vous y amène plus vite.",
         button: "Réserver une démo",
       },
@@ -505,7 +505,7 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
       ],
       outcomes: [
         { strong: "Gagnez plus d'appels d'offres", text: "où la notation RSE décide de l'attribution." },
-        { strong: "Répondez en minutes aux questionnaires clients et de la commande publique", text: "depuis une source unique de vérité." },
+        { strong: "Répondez en minutes aux questionnaires des clients et de la commande publique", text: "depuis une source unique de vérité." },
         { strong: "Montrez les données de carbone incorporé", text: "de plus en plus exigées par les promoteurs." },
         { strong: "Gardez une longueur d'avance sur CBAM et EUDR", text: "au lieu de courir à l'échéance." },
         { strong: "Gardez chaque site prêt pour l'audit", text: "avec des preuves ISO organisées." },
@@ -588,7 +588,7 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
       outcomes: [
         { strong: "Gardez vos référencements", text: "— passez les évaluations fournisseurs des distributeurs et des marketplaces." },
         { strong: "Faites de la RSE un argument de vente", text: "que consommateurs et acheteurs récompensent." },
-        { strong: "Gardez une longueur d'avance sur les règles emballages et déforestation", text: "au lieu de courir après." },
+        { strong: "Gardez une longueur d'avance sur les règles emballages et déforestation", text: "au lieu de courir après les délais." },
         { strong: "Répondez aux questionnaires acheteurs en minutes", text: "depuis une source unique de vérité." },
         { strong: "Prouvez vos allégations", text: "avec des données, pas du marketing." },
       ],
@@ -672,7 +672,7 @@ export const INDUSTRY_CONTENT: Record<string, IndustryContent> = {
       outcomes: [
         { strong: "Gardez vos référencements", text: "en passant les évaluations fournisseurs des distributeurs et des marketplaces." },
         { strong: "Faites de la RSE un argument de vente", text: "que consommateurs et acheteurs récompensent." },
-        { strong: "Gardez une longueur d'avance sur les règles ingrédients, emballages et allégations", text: "au lieu de courir après." },
+        { strong: "Gardez une longueur d'avance sur les règles ingrédients, emballages et allégations", text: "au lieu de courir après les délais." },
         { strong: "Répondez aux questionnaires acheteurs en minutes", text: "depuis une source unique de vérité." },
         { strong: "Prouvez vos allégations", text: "avec des données, pas du marketing." },
       ],

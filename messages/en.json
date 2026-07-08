@@ -264,6 +264,11 @@
       "title": "Keep a record of all your important information",
       "paragraph": "Ditto is your living history of past assessments and actions. Need to know when a policy changed or a process was implemented? Just ask Ditto."
     },
+    "midCta": {
+      "title": "See it in action",
+      "paragraph": "Book a demo and see how Ditto centralizes your compliance program.",
+      "button": "Book a demo"
+    },
     "testimonials": {
       "title": "Hear it from our customers",
       "text": "Customers of all sizes love Ditto for its simplicity, smarts, and impact, above all.",
@@ -305,6 +310,11 @@
       "label": "Instant help, anywhere",
       "title": "Can't upload your questionnaire? No problem.",
       "paragraph": "Use our browser extension to get contextual answers wherever you are—client portals, shared folders, or inboxes. Or just ask a question in the Ditto workspace."
+    },
+    "midCta": {
+      "title": "Not sure where to start?",
+      "paragraph": "Talk to an expert and see how Ditto fits your compliance workflow.",
+      "button": "Talk to an expert"
     },
     "testimonials": {
       "title": "Don't take our word for it. Take theirs.",
@@ -393,6 +403,11 @@
       "label": "Engagement tracking",
       "title": "Track responses and identify where to follow up",
       "paragraph": "Follow completions live, send reminders in one click, and segment your view by region, category, or maturity, so no supplier falls through the cracks."
+    },
+    "midCta": {
+      "title": "Let's talk about your supplier program",
+      "paragraph": "Tell us about your suppliers and we'll show you how Ditto can help.",
+      "button": "Let's talk"
     },
     "testimonials": {
       "title": "Make it easier for your suppliers to work with you",
@@ -610,15 +625,21 @@
     },
     "allFrameworks": {
       "title": "All frameworks",
-      "tab1": "Security",
-      "tab2": "Privacy",
-      "tab3": "Others",
-      "category1": "Assessment, Certification & Compliance",
-      "category2": "ISO Management Systems",
-      "category3": "Sustainability Reporting & Disclosure"
+      "tab1": "Certifications & Ratings",
+      "tab2": "Reporting & Regulation",
+      "tab3": "ISO Standards",
+      "category1": "Certifications & Ratings",
+      "category2": "Reporting & Regulation",
+      "category3": "ISO Standards"
     },
     "readMore": "Read more",
-    "resources": "Resources"
+    "resources": "Resources",
+    "vsmeCsrdLink": "See how this relates to CSRD",
+    "cta": {
+      "title": "Ready to simplify your compliance?",
+      "paragraph": "Book a demo and see how Ditto helps you manage every framework from one place.",
+      "button": "Book a demo"
+    }
   },
   "aiAgents": {
     "hero": {

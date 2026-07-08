@@ -117,7 +117,15 @@ export default async function ComplianceQuestionnairesPage({ params }: { params:
           buttonButtonVisibility={false}
         />
 
-        {/* 8. Testimonials carousel */}
+        {/* 8. Mid-page CTA */}
+        <SectionCta
+          title={t("solutionsCompliance.midCta.title")}
+          paragraph={t("solutionsCompliance.midCta.paragraph")}
+          buttonText={t("solutionsCompliance.midCta.button")}
+          buttonLink={{ href: `${prefix}/demo` }}
+        />
+
+        {/* 9. Testimonials carousel */}
         <SectionTestimonials
           locale={locale}
           title={t("solutionsCompliance.testimonials.title")}
@@ -126,7 +134,7 @@ export default async function ComplianceQuestionnairesPage({ params }: { params:
           buttonLink={{ href: `${prefix}/customer-stories` }}
         />
 
-        {/* 9. CTA */}
+        {/* 10. Final CTA */}
         <SectionCta
           title={t("solutionsCompliance.cta.title")}
           paragraph={t("solutionsCompliance.cta.paragraph")}

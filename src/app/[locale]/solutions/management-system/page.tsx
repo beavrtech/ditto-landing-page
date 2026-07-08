@@ -108,7 +108,15 @@ export default async function ManagementSystemPage({ params }: { params: Promise
 
         {/* 7. Empty generic section (spacer) - SKIP: contains only a zero-width space */}
 
-        {/* 8. Testimonials carousel */}
+        {/* 8. Mid-page CTA */}
+        <SectionCta
+          title={t("solutionsManagement.midCta.title")}
+          paragraph={t("solutionsManagement.midCta.paragraph")}
+          buttonText={t("solutionsManagement.midCta.button")}
+          buttonLink={{ href: `${prefix}/demo` }}
+        />
+
+        {/* 9. Testimonials carousel */}
         <SectionTestimonials
           locale={locale}
           title={t("solutionsManagement.testimonials.title")}
@@ -117,7 +125,7 @@ export default async function ManagementSystemPage({ params }: { params: Promise
           buttonLink={{ href: `${prefix}/customer-stories` }}
         />
 
-        {/* 9. CTA */}
+        {/* 10. Final CTA */}
         <SectionCta
           title={t("solutionsManagement.cta.title")}
           paragraph={t("solutionsManagement.cta.paragraph")}

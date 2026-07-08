@@ -264,6 +264,11 @@
       "title": "Gardez une trace de toutes vos informations importantes",
       "paragraph": "Ditto conserve l'historique vivant de vos politiques, évaluations et plans d'action."
     },
+    "midCta": {
+      "title": "Voyez Ditto en action",
+      "paragraph": "Prenez rendez-vous pour découvrir comment Ditto centralise votre programme de conformité.",
+      "button": "Prendre rendez-vous"
+    },
     "testimonials": {
       "title": "Ils en parlent mieux que nous.",
       "text": "Des entreprises de toutes tailles choisissent Ditto pour sa clarté, son expertise et son impact.",
@@ -305,6 +310,11 @@
       "label": "Réponse instantanée, où que vous soyez",
       "title": "Vous n'arrivez pas à télécharger votre questionnaire ? Pas de problème.",
       "paragraph": "Utilisez notre extension de navigateur pour obtenir des réponses contextuelles où que vous soyez — portails clients, dossiers partagés ou boîtes de réception. Ou posez simplement votre question dans l'espace de travail Ditto."
+    },
+    "midCta": {
+      "title": "Vous ne savez pas par où commencer ?",
+      "paragraph": "Parlez à un expert et découvrez comment Ditto s'intègre à votre processus de conformité.",
+      "button": "Parler à un expert"
     },
     "testimonials": {
       "title": "Ce que disent nos clients",
@@ -393,6 +403,11 @@
       "label": "Suivi de l'engagement",
       "title": "Suivez les réponses et relancez facilement",
       "paragraph": "Visualisez les réponses en temps réel, envoyez des rappels en un clic, segmentez vos fournisseurs par région, catégorie ou niveau de maturité."
+    },
+    "midCta": {
+      "title": "Parlons de votre programme fournisseurs",
+      "paragraph": "Parlez-nous de vos fournisseurs, nous vous montrerons comment Ditto peut vous aider.",
+      "button": "Parlons-en"
     },
     "testimonials": {
       "title": "Offrez à vos fournisseurs l'expérience qu'ils méritent",
@@ -618,15 +633,21 @@
     },
     "allFrameworks": {
       "title": "Tous les frameworks",
-      "tab1": "Sécurité",
-      "tab2": "Confidentialité",
-      "tab3": "Autres",
-      "category1": "Évaluations, certifications et notations",
-      "category2": "Normes ISO",
-      "category3": "Transparence et reporting de durabilité"
+      "tab1": "Certifications",
+      "tab2": "Reporting",
+      "tab3": "Normes ISO",
+      "category1": "Évaluations, certifications & labels RSE",
+      "category2": "Reporting & réglementation RSE",
+      "category3": "Normes ISO (systèmes de management)"
     },
     "readMore": "En savoir plus",
-    "resources": "Ressources"
+    "resources": "Ressources",
+    "vsmeCsrdLink": "Voir le lien avec la CSRD",
+    "cta": {
+      "title": "Prêt à simplifier votre conformité ?",
+      "paragraph": "Prenez rendez-vous et découvrez comment Ditto centralise tous vos référentiels.",
+      "button": "Prendre rendez-vous"
+    }
   },
   "frameworksEcovadis": {
     "breadcrumb": "EcoVadis",
