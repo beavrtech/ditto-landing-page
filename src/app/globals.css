@@ -59,7 +59,14 @@ a {
   opacity: 0.7;
 }
 
-/* CMS rich-text table styles (blog-table / table-wrap from the original design) */
+/* CMS rich-text table styles (blog-table / table-wrap from the original design).
+   A legacy duplicate of these selectors used to live in a raw custom-code
+   <style> block embedded via devlink/GlobalStyles.tsx (rounded 16px card,
+   alternating row stripes, sticky header). Because that block rendered later
+   in the DOM (inside <body>, ahead of page content) it silently won equal-
+   specificity ties over these rules, making every CMS article table render
+   as a boxed "encart" widget instead of a plain inline table. That legacy
+   block has been removed — these rules are now the only definition. */
 .table-wrap {
   overflow-x: auto;
   margin-top: 1.5rem;
