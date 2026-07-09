@@ -32,6 +32,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export const revalidate = 3600;
 
+// Pricing page intentionally lives at /plans (not /pricing), matching Vanta's naming — don't "fix" the slug.
 export default async function PlansPage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   setRequestLocale(locale);
