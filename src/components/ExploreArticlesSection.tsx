@@ -114,14 +114,18 @@ export const FRAMEWORK_CONFIG: Record<string, {
     },
     heroImage: "/images/csrd-hero.png",
     sectionTitle: { en: "Explore VSME articles", fr: "Explorez les articles VSME" },
+    // Category `name` matches the `categorie` string stored on VSME
+    // collection_items in the CMS (see `category_translations`). Order here
+    // drives the on-page section order; FR headings are overridden by CMS
+    // translations when available (see categoryDefs below), EN headings are
+    // hardcoded as the CMS category name itself.
     categories: [
-      { name: "Introduction to VSME", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_icon-4.png", heading: { en: "Introduction to VSME", fr: "Introduction au VSME" } },
-      { name: "Preparing for VSME", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152c34ca7caf3a490b8_icon-1.png", heading: { en: "Preparing for VSME", fr: "Se préparer au VSME" } },
-      { name: "Succeeding with VSME", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152cad37b73c312337f_icon-12.png", heading: { en: "Succeeding with VSME", fr: "Réussir avec le VSME" } },
-      { name: "VSME performance & results", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152cf1d54d25b2a5ff2_icon-2.png", heading: { en: "VSME performance & results", fr: "Performance et résultats VSME" } },
-      { name: "VSME compared to other frameworks", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152405312512f5d8b66_icon-5.png", heading: { en: "VSME compared to other frameworks", fr: "VSME comparé aux autres référentiels" } },
-      { name: "VSME by company size and industry", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1528594922b61752e25_icon-6.png", heading: { en: "VSME by company size and industry", fr: "VSME par taille d'entreprise et secteur" } },
-      { name: "Additional VSME resources", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_icon-4.png", heading: { en: "Additional VSME resources", fr: "Ressources VSME supplémentaires" } },
+      { name: "Understand VSME", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_icon-4.png", heading: { en: "Understand VSME", fr: "Comprendre le VSME" } },
+      { name: "Produce your VSME report", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152c34ca7caf3a490b8_icon-1.png", heading: { en: "Produce your VSME report", fr: "Produire son rapport VSME" } },
+      { name: "Get tools & support", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152cad37b73c312337f_icon-12.png", heading: { en: "Get tools & support", fr: "S'outiller et se faire accompagner" } },
+      { name: "Compare VSME with other frameworks", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152405312512f5d8b66_icon-5.png", heading: { en: "Compare VSME with other frameworks", fr: "Comparer le VSME aux autres référentiels" } },
+      { name: "VSME by industry and size", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1528594922b61752e25_icon-6.png", heading: { en: "VSME by industry and size", fr: "VSME par secteur et taille" } },
+      { name: "Additional VSME resources", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_icon-4.png", heading: { en: "Additional VSME resources", fr: "Pour aller plus loin" } },
     ],
   },
   "iso-14001": {
@@ -159,7 +163,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
       { name: "Conduct double materiality", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152cad37b73c312337f_icon-12.png", heading: { en: "Conduct double materiality", fr: "Réaliser sa double matérialité" } },
       { name: "Take action on CSRD", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152cf1d54d25b2a5ff2_icon-2.png", heading: { en: "Take action on CSRD", fr: "Passer à l'action" } },
       { name: "Compare CSRD with other frameworks", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c152405312512f5d8b66_icon-5.png", heading: { en: "Compare CSRD with other frameworks", fr: "Comparer la CSRD aux autres référentiels" } },
-      { name: "Break down CSRD by size and industry", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1528594922b61752e25_icon-6.png", heading: { en: "Break down CSRD by size and industry", fr: "Décliner la CSRD par taille et secteur" } },
+      { name: "CSRD by industry and size", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1528594922b61752e25_icon-6.png", heading: { en: "CSRD by industry and size", fr: "CSRD par secteur et taille" } },
       { name: "Additional CSRD resources", icon: "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_icon-4.png", heading: { en: "Additional CSRD resources", fr: "Aller plus loin" } },
     ],
   },
