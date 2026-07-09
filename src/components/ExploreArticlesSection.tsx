@@ -56,7 +56,7 @@ const DEFAULT_CATEGORY_ICON =
   "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/static/6887c1520f8ba57b7a6b29c2_icon-4.png";
 
 export const FRAMEWORK_CONFIG: Record<string, {
-  title: string;
+  title: { en: string; fr: string };
   heroTitle: { en: string; fr: string };
   heroDesc: { en: string; fr: string };
   // Optional SEO meta description override. Falls back to `heroDesc` when
@@ -68,7 +68,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
   categories: CategoryDef[];
 }> = {
   ecovadis: {
-    title: "EcoVadis",
+    title: { en: "EcoVadis", fr: "EcoVadis" },
     heroTitle: { en: "EcoVadis Resources", fr: "Ressources EcoVadis" },
     heroDesc: {
       en: "Achieving a strong EcoVadis score is not only about the actions you take, but about how effectively you structure and demonstrate them. This collection helps you understand the EcoVadis methodology and sustainably improve your score.",
@@ -87,7 +87,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
     ],
   },
   cdp: {
-    title: "CDP",
+    title: { en: "CDP", fr: "CDP" },
     heroTitle: { en: "CDP Resources", fr: "Ressources CDP" },
     heroDesc: {
       en: "Master your CDP assessment with our dedicated resources. From questionnaire preparation to score optimization.",
@@ -106,7 +106,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
     ],
   },
   vsme: {
-    title: "VSME",
+    title: { en: "VSME", fr: "VSME" },
     heroTitle: { en: "VSME Resources", fr: "Ressources VSME" },
     heroDesc: {
       en: "Structure your ESG reporting with the VSME standard. Resources for SMEs navigating European sustainability requirements.",
@@ -125,7 +125,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
     ],
   },
   "iso-14001": {
-    title: "ISO 14001",
+    title: { en: "ISO 14001", fr: "ISO 14001" },
     heroTitle: { en: "ISO 14001 Resources", fr: "Ressources ISO 14001" },
     heroDesc: {
       en: "Build a robust environmental management system with ISO 14001.",
@@ -136,7 +136,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
     categories: [],
   },
   csrd: {
-    title: "CSRD",
+    title: { en: "CSRD", fr: "CSRD" },
     heroTitle: { en: "CSRD Resources", fr: "Ressources CSRD" },
     heroDesc: {
       en: "CSRD is more than producing a report: it's a process that shapes your entire sustainability strategy. This collection helps you understand the directive, the ESRS standards and double materiality, then build solid reporting, step by step — with the Ditto platform and an expert by your side.",
@@ -164,7 +164,10 @@ export const FRAMEWORK_CONFIG: Record<string, {
     ],
   },
   carbon: {
-    title: "Bilan Carbone",
+    // Breadcrumb/label: differs by locale, unlike the other frameworks'
+    // acronym-style titles (see Alexis's report — EN breadcrumb showed
+    // "Bilan Carbone" instead of "Carbon Footprint").
+    title: { en: "Carbon Footprint", fr: "Bilan Carbone" },
     heroTitle: { en: "Carbon Footprint Resources", fr: "Ressources Bilan Carbone" },
     heroDesc: {
       en: "Measure, report and reduce your carbon footprint. Resources to help you build a carbon assessment (Bilan Carbone) and decarbonize across your value chain.",
@@ -183,7 +186,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
     ],
   },
   qhse: {
-    title: "QHSE",
+    title: { en: "QHSE", fr: "QHSE" },
     heroTitle: { en: "QHSE Resources", fr: "Ressources QHSE" },
     heroDesc: {
       en: "Structure your Quality, Health, Safety and Environment (QHSE) management. Resources to help you build and improve your QHSE program.",

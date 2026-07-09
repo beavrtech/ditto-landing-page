@@ -12,7 +12,7 @@ import { getCollectionItemBySlug, getCollectionItems, getCategoryTranslations, g
 import { localizedHref, collectionPath } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
-import { ExploreArticlesSection, categoryLabelFor } from "../../../../../components/ExploreArticlesSection";
+import { ExploreArticlesSection, categoryLabelFor, FRAMEWORK_CONFIG } from "../../../../../components/ExploreArticlesSection";
 
 export async function generateMetadata({
   params,
@@ -49,16 +49,18 @@ export async function generateMetadata({
   };
 }
 
-const FRAMEWORK_TITLES: Record<string, string> = {
-  ecovadis: "EcoVadis",
-  cdp: "CDP",
-  vsme: "VSME",
-  "iso-14001": "ISO 14001",
-  csrd: "CSRD",
-  carbon: "Bilan Carbone",
-  qhse: "QHSE",
-};
-
+/**
+ * Breadcrumb label for the framework. Sourced from `FRAMEWORK_CONFIG` (the
+ * same config the collection listing page and hero use) instead of a
+ * locally hardcoded, locale-agnostic map — that duplicate map used to
+ * always show "Bilan Carbone" for the carbon framework, even on the EN
+ * article page, because it had no `en`/`fr` split.
+ */
+function frameworkTitleFor(framework: string, locale: string): string | null {
+  const title = FRAMEWORK_CONFIG[framework]?.title;
+  if (!title) return null;
+  return locale === "fr" ? title.fr : title.en;
+}
 
 export async function generateStaticParams() {
   const frameworks = ["ecovadis", "cdp", "csrd", "iso-14001", "vsme", "carbon", "qhse"];
@@ -85,7 +87,7 @@ export default async function CollectionArticlePage({
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
-  const fwTitle = FRAMEWORK_TITLES[framework];
+  const fwTitle = frameworkTitleFor(framework, locale);
   if (!fwTitle) notFound();
 
   const [item, catTranslations] = await Promise.all([
