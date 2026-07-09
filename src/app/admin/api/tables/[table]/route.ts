@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "../../../../../lib/supabase-admin";
 import { getTableConfig } from "../../../../../lib/admin-tables";
+import { revalidateCollectionItem } from "../../../../../lib/admin-revalidate";
 
 export async function GET(
   _req: NextRequest,
@@ -38,5 +39,10 @@ export async function POST(
     .single();
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  if (tableSlug === "collection_items") {
+    await revalidateCollectionItem(data).catch(() => {});
+  }
+
   return NextResponse.json(data);
 }

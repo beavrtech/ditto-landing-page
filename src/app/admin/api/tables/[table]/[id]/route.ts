@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "../../../../../../lib/supabase-admin";
 import { getTableConfig } from "../../../../../../lib/admin-tables";
+import { revalidateCollectionItem } from "../../../../../../lib/admin-revalidate";
 
 export async function GET(
   _req: NextRequest,
@@ -41,6 +42,15 @@ export async function PUT(
     .single();
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+
+  // Push the change to the public site immediately — ISR (revalidate = 3600
+  // on the collection article/listing routes) has no on-demand hook, so a
+  // low-traffic page could otherwise sit stale until a visitor happens to
+  // hit it again after the window elapses.
+  if (tableSlug === "collection_items") {
+    await revalidateCollectionItem(data).catch(() => {});
+  }
+
   return NextResponse.json(data);
 }
 
