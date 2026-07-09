@@ -171,7 +171,7 @@ export const FRAMEWORK_CONFIG: Record<string, {
       fr: "Mesurez, déclarez et réduisez votre empreinte carbone. Des ressources pour vous aider à réaliser votre bilan carbone et à décarboner toute votre chaîne de valeur.",
     },
     heroImage: { en: "/images/carbon-hero-en.png", fr: "/images/carbon-hero-fr.png" },
-    sectionTitle: { en: "Explore Carbon articles", fr: "Explorez les articles Bilan Carbone" },
+    sectionTitle: { en: "Explore the carbon footprint articles", fr: "Explorez les articles sur le bilan carbone" },
     // Category `name` is a stable slug tagged on each article's `categorie`
     // field in the CMS; the EN/FR headings are hardcoded here.
     categories: [
