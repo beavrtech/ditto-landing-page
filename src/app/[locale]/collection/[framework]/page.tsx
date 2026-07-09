@@ -87,7 +87,7 @@ export default async function CollectionPage({
           item1Item1Text={locale === "fr" ? "Ressources" : "Resources"}
           item1Item1Link={{ href: localizedHref("/resources", locale) }}
           item2Item2Visibility={true}
-          item2Item2Text={config.title}
+          item2Item2Text={locale === "fr" ? config.title.fr : config.title.en}
           item2Item2Link={{ href: collectionPath(framework, locale) }}
           item3Item3Visibility={false}
         />
