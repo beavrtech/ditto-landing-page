@@ -11,6 +11,7 @@ import { getBlogPostBySlug, getBlogPosts, getGuideByFrameworkId, getFeaturedGuid
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
+import { formatPublishedDate, toPublishedTimeIso } from "../../../../../lib/format-date";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
 
 export async function generateMetadata({
@@ -46,10 +47,14 @@ export async function generateMetadata({
       },
     },
     openGraph: {
+      type: "article",
       title: item.seo_title || item.name,
       description: item.seo_meta_desc || item.description || undefined,
       ...(item.banner_url && { images: [{ url: item.banner_url }] }),
       url: `https://www.trustditto.com/${locale}/resources/blog/${slug}`,
+      ...(toPublishedTimeIso(item.date_de_publication) && {
+        publishedTime: toPublishedTimeIso(item.date_de_publication),
+      }),
     },
   };
 }
@@ -175,6 +180,14 @@ export default async function BlogPostPage({
                             )}
                           </div>
                         </div>
+                      </>
+                    )}
+                    {item.date_de_publication && (
+                      <>
+                        <div className="spacer-0x75rem" />
+                        <p className="text-size-0x875rem text-color-neutral">
+                          {t("article.publishedOn", { date: formatPublishedDate(item.date_de_publication, locale) })}
+                        </p>
                       </>
                     )}
                   </div>

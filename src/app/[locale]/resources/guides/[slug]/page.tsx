@@ -10,6 +10,7 @@ import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
 import { getGuideBySlug, getGuides } from "../../../../../lib/cms";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
+import { formatPublishedDate, toPublishedTimeIso } from "../../../../../lib/format-date";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
 import GuideFormEmbed from "../../../../../components/GuideFormEmbed";
 
@@ -37,10 +38,14 @@ export async function generateMetadata({
       },
     },
     openGraph: {
+      type: "article",
       title: item.seo_title || item.name,
       description: item.seo_meta_desc || item.description || undefined,
       ...(item.banner_url && { images: [{ url: item.banner_url }] }),
       url: `https://www.trustditto.com/${locale}/resources/guides/${slug}`,
+      ...(toPublishedTimeIso(item.date) && {
+        publishedTime: toPublishedTimeIso(item.date),
+      }),
     },
   };
 }
@@ -180,6 +185,14 @@ export default async function GuideDetailPage({
                     <p className="label">Guide</p>
                     <div className="spacer-1x5rem" />
                     <h1 className="heading-size-3rem">{item.name}</h1>
+                    {item.date && (
+                      <>
+                        <div className="spacer-0x75rem" />
+                        <p className="text-size-0x875rem text-color-neutral">
+                          {t("article.publishedOn", { date: formatPublishedDate(item.date, locale) })}
+                        </p>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>

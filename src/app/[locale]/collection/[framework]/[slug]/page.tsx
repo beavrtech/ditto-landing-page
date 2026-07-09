@@ -11,6 +11,7 @@ import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
 import { getCollectionItemBySlug, getCollectionItems, getCategoryTranslations, getGuideByFrameworkId, getFeaturedGuide } from "../../../../../lib/cms";
 import { localizedHref, collectionPath } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
+import { formatPublishedDate, toPublishedTimeIso } from "../../../../../lib/format-date";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
 import { ExploreArticlesSection, categoryLabelFor, FRAMEWORK_CONFIG } from "../../../../../components/ExploreArticlesSection";
 
@@ -41,10 +42,14 @@ export async function generateMetadata({
       },
     },
     openGraph: {
+      type: "article",
       title: item.seo_title || item.name,
       description: item.seo_meta_desc || item.description || undefined,
       ...(item.banner_url && { images: [{ url: item.banner_url }] }),
       url: `https://www.trustditto.com${collectionPath(framework, locale, slug)}`,
+      ...(toPublishedTimeIso(item.date_de_publication) && {
+        publishedTime: toPublishedTimeIso(item.date_de_publication),
+      }),
     },
   };
 }
@@ -123,8 +128,8 @@ export default async function CollectionArticlePage({
       })} />
       <main className="main-wrapper">
         {/* Article slugs differ per locale, so hand the language switcher the
-            exact twin URL (carbon lives at /carbon/[slug], others under
-            /collection/[framework]/[slug]) instead of the parent-listing fallback. */}
+            exact twin URL (/collection/[framework]/[slug]) instead of the
+            parent-listing fallback. */}
         <Navbar
           alternateUrls={{
             en: collectionPath(framework, "en", item.slug),
@@ -187,6 +192,14 @@ export default async function CollectionArticlePage({
                             )}
                           </div>
                         </div>
+                      </>
+                    )}
+                    {item.date_de_publication && (
+                      <>
+                        <div className="spacer-0x75rem" />
+                        <p className="text-size-0x875rem text-color-neutral">
+                          {t("article.publishedOn", { date: formatPublishedDate(item.date_de_publication, locale) })}
+                        </p>
                       </>
                     )}
                   </div>

@@ -1000,6 +1000,9 @@
     "error": "Oups ! Une erreur est survenue lors de l'envoi du formulaire.",
     "placeholder": "jaimela@conformite.fr"
   },
+  "article": {
+    "publishedOn": "Publié le {date}"
+  },
   "metadata": {
     "home": {
       "title": "Ditto – Le copilote RSE | Multipliez votre impact, pas vos efforts",

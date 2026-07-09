@@ -46,21 +46,6 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  // Carbon collection is served at the clean /[locale]/carbon path but reuses
-  // the generic /collection/[framework] route internally. The URL bar keeps
-  // /carbon; canonical links are emitted as /carbon via collectionPath().
-  async rewrites() {
-    return [
-      {
-        source: "/:locale(en|fr)/carbon",
-        destination: "/:locale/collection/carbon",
-      },
-      {
-        source: "/:locale(en|fr)/carbon/:slug",
-        destination: "/:locale/collection/carbon/:slug",
-      },
-    ];
-  },
   // Legacy URL structure (pre-migration) → current localized routes.
   // These run before the i18n middleware.
   async redirects() {
@@ -82,12 +67,10 @@ const nextConfig: NextConfig = {
             .filter((i) => i.framework?.slug)
             .map((i) => [i.slug, i])
         );
-        // Carbon lives at the clean top-level /[locale]/carbon path; every
-        // other framework under /[locale]/collection/[framework].
+        // Every framework — carbon included — lives under
+        // /[locale]/collection/[framework].
         const collectionUrl = (locale: string, framework: string, slug: string) =>
-          framework === "carbon"
-            ? `/${locale}/carbon/${slug}`
-            : `/${locale}/collection/${framework}/${slug}`;
+          `/${locale}/collection/${framework}/${slug}`;
         for (const post of posts as { slug: string; slug_fr: string | null }[]) {
           const twin = collectionBySlug.get(post.slug);
           if (!twin) continue;
