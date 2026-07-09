@@ -93,7 +93,7 @@ export default async function FrameworksCarbonPage({ params }: { params: Promise
             pillar: link(articles.pillar),
             beges: link(articles.beges),
           })}
-          image="/images/cdp-hero.avif"
+          image={locale === "fr" ? "/images/carbon-hero-fr.png" : "/images/carbon-hero-en.png"}
           paddingBottom="Small (3rem)"
           buttonsVisibility={true}
           buttonLeft={
