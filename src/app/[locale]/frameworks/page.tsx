@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../components/NavbarServer";
 import { Footer } from "../../../components/FooterServer";
-import { SectionContactSidebar } from "../../../components/SectionContactSidebarI18n";
 import { SectionCtaPill } from "../../../components/SectionCtaPillI18n";
 import { SectionCta } from "../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../devlink/devlinkScope";
 import { supabase } from "../../../lib/supabase";
 
 // Frameworks that have a /collection/{slug} page
-const COLLECTION_SLUGS = new Set(["ecovadis", "cdp", "vsme", "csrd"]);
+const COLLECTION_SLUGS = new Set(["ecovadis", "cdp", "vsme", "csrd", "carbon", "iso-14001"]);
 
 // Internal group keys — used only as the `frameworks_type` DB values and as
 // JS object keys below. User-facing labels come from the `frameworksIndex`
@@ -126,13 +125,6 @@ export default async function FrameworksPage({
             </div>
           </section>
         </div>
-
-        {/* Contact section with form */}
-        <SectionContactSidebar
-          title={t("frameworksIndex.hero.title")}
-          subtitle={t("frameworksIndex.hero.subtitle")}
-          hubspotFormId={process.env.NEXT_PUBLIC_HUBSPOT_CONTACT_FORM_ID!}
-        />
 
         {/* All frameworks */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>

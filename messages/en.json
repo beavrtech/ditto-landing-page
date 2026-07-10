@@ -628,12 +628,12 @@
     },
     "allFrameworks": {
       "title": "All frameworks",
-      "tab1": "Certifications & Ratings",
-      "tab2": "Reporting & Regulation",
+      "tab1": "Certifications",
+      "tab2": "Reporting",
       "tab3": "ISO Standards",
-      "category1": "Certifications & Ratings",
-      "category2": "Reporting & Regulation",
-      "category3": "ISO Standards"
+      "category1": "CSR Assessments, Certifications, and Labels",
+      "category2": "CSR Reporting & Compliance",
+      "category3": "ISO Standards (Management Systems)"
     },
     "readMore": "Read more",
     "resources": "Resources",
