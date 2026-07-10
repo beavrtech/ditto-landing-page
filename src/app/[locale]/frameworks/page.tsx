@@ -8,7 +8,7 @@ import { DEVLINK_SCOPE_CLASS } from "../../../../devlink/devlinkScope";
 import { supabase } from "../../../lib/supabase";
 
 // Frameworks that have a /collection/{slug} page
-const COLLECTION_SLUGS = new Set(["ecovadis", "cdp", "vsme", "csrd", "carbon"]);
+const COLLECTION_SLUGS = new Set(["ecovadis", "cdp", "vsme", "csrd", "carbon", "iso-14001"]);
 
 // Internal group keys — used only as the `frameworks_type` DB values and as
 // JS object keys below. User-facing labels come from the `frameworksIndex`

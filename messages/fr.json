@@ -635,7 +635,7 @@
       "subtitle": "Ditto simplifie la mise en conformité et vous aide à le rester avec des référentiels comme EcoVadis, ISO, CSRD ou CDP."
     },
     "allFrameworks": {
-      "title": "Tous les frameworks",
+      "title": "Tous les référentiels",
       "tab1": "Certifications",
       "tab2": "Reporting",
       "tab3": "Normes ISO",
@@ -1029,8 +1029,8 @@
       "description": "Préparez votre certification ISO 14001 sans stress grâce à l'IA et aux experts Ditto."
     },
     "frameworksIndex": {
-      "title": "Frameworks",
-      "description": "Explorez les frameworks RSE de Ditto pour simplifier vos reportings, centraliser vos données et valoriser vos engagements durables."
+      "title": "Référentiels",
+      "description": "Explorez les référentiels RSE de Ditto pour simplifier vos reportings, centraliser vos données et valoriser vos engagements durables."
     },
     "solutionsManagement": {
       "title": "Votre source de référence pour la RSE et la conformité",
