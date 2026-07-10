@@ -294,10 +294,11 @@ export function NavbarClient({
   };
 
   // "Solution" menu's default (shown until a specific industry is hovered).
-  // Reuses the Émile Maurin quote (also shown on hover for the
-  // manufacturing-equipment industry link) so it's a distinct, real,
-  // fully-attributed quote from the Product menu's Sophie Wardan default.
-  const SOLUTION_DEFAULT_QUOTE_FEATURED: MegaFeatured = INDUSTRY_QUOTES["manufacturing-equipment"];
+  // Reuses the Laurence Sauphanor / Quito Aero quote (also shown on hover
+  // for the aerospace-defense industry link) — it has an actual person's
+  // photo (not a company logo) and is a distinct, real, fully-attributed
+  // quote from the Product menu's Sophie Wardan default.
+  const SOLUTION_DEFAULT_QUOTE_FEATURED: MegaFeatured = INDUSTRY_QUOTES["aerospace-defense"];
 
   // Single source of truth for the megamenus (Level 1 > Level 2 group > Level 3).
   const megaMenus: MegaMenu[] = [
@@ -333,11 +334,11 @@ export function NavbarClient({
     {
       id: "solution",
       label: t("solution"),
-      // Default (no industry hovered yet) shows the Émile Maurin quote;
-      // hovering an industry link swaps in its own real quote via
-      // MegaLink.featured (see industryLinks above). Kept distinct from the
-      // Product menu's default (Sophie Wardan) so the two menus don't show
-      // the same testimonial.
+      // Default (no industry hovered yet) shows the Laurence Sauphanor /
+      // Quito Aero quote; hovering an industry link swaps in its own real
+      // quote via MegaLink.featured (see industryLinks above). Kept distinct
+      // from the Product menu's default (Sophie Wardan) so the two menus
+      // don't show the same testimonial.
       featured: SOLUTION_DEFAULT_QUOTE_FEATURED,
       groups: [
         {
