@@ -271,8 +271,7 @@ export function NavbarClient({
     .sort((a, b) => a.label.localeCompare(b.label, locale));
 
   // Generic Superga Beauty quote — the original, pre-per-industry default.
-  // Used as the "Product" menu's default featured block, and as the
-  // "Solution" menu's default (shown until a specific industry is hovered).
+  // Used as the "Product" menu's default featured block.
   const DEFAULT_QUOTE_FEATURED: MegaFeatured = {
     kind: "quote",
     quote: {
@@ -293,6 +292,13 @@ export function NavbarClient({
           : `${p}/customer-stories/superga-beauty-structuring-and-promoting-its-csr-approach-for-sustainable-leadership`,
     },
   };
+
+  // "Solution" menu's default (shown until a specific industry is hovered).
+  // Reuses the Laurence Sauphanor / Quito Aero quote (also shown on hover
+  // for the aerospace-defense industry link) — it has an actual person's
+  // photo (not a company logo) and is a distinct, real, fully-attributed
+  // quote from the Product menu's Sophie Wardan default.
+  const SOLUTION_DEFAULT_QUOTE_FEATURED: MegaFeatured = INDUSTRY_QUOTES["aerospace-defense"];
 
   // Single source of truth for the megamenus (Level 1 > Level 2 group > Level 3).
   const megaMenus: MegaMenu[] = [
@@ -328,10 +334,12 @@ export function NavbarClient({
     {
       id: "solution",
       label: t("solution"),
-      // Default (no industry hovered yet) shows the generic Superga Beauty
-      // quote; hovering an industry link swaps in its own real quote via
-      // MegaLink.featured (see industryLinks above).
-      featured: DEFAULT_QUOTE_FEATURED,
+      // Default (no industry hovered yet) shows the Laurence Sauphanor /
+      // Quito Aero quote; hovering an industry link swaps in its own real
+      // quote via MegaLink.featured (see industryLinks above). Kept distinct
+      // from the Product menu's default (Sophie Wardan) so the two menus
+      // don't show the same testimonial.
+      featured: SOLUTION_DEFAULT_QUOTE_FEATURED,
       groups: [
         {
           id: "byIndustry",
