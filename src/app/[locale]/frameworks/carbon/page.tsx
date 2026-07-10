@@ -124,7 +124,7 @@ export default async function FrameworksCarbonPage({ params }: { params: Promise
           paragraph={t.rich("frameworksCarbon.step1.description", {
             scopes: link(articles.scopes),
           })}
-          image="/images/management-feature-2_1.avif"
+          image="/images/carbon-step-1.png"
           buttonButtonVisibility={false}
         />
 
@@ -134,7 +134,7 @@ export default async function FrameworksCarbonPage({ params }: { params: Promise
           labelLabelText={t("frameworksCarbon.step2.label")}
           title={t("frameworksCarbon.step2.title")}
           paragraph={t("frameworksCarbon.step2.description")}
-          image="/images/ecovadis-step-2_2.avif"
+          image="/images/carbon-step-2.png"
           buttonButtonVisibility={true}
           buttonButtonText={t("frameworksCarbon.step2.button")}
           buttonButtonLink={{ href: `${prefix}/demo` }}
@@ -146,7 +146,7 @@ export default async function FrameworksCarbonPage({ params }: { params: Promise
           labelLabelText={t("frameworksCarbon.step3.label")}
           title={t("frameworksCarbon.step3.title")}
           paragraph={t("frameworksCarbon.step3.description")}
-          image="/images/ecovadis-step-3_1.svg"
+          image="/images/carbon-step-3.png"
           buttonButtonVisibility={false}
         />
 
@@ -156,7 +156,7 @@ export default async function FrameworksCarbonPage({ params }: { params: Promise
           labelLabelText={t("frameworksCarbon.step4.label")}
           title={t("frameworksCarbon.step4.title")}
           paragraph={t("frameworksCarbon.step4.description")}
-          image="/images/ecovadis-step-4_1.svg"
+          image="/images/carbon-step-4.png"
           buttonButtonVisibility={true}
           buttonButtonText={t("frameworksCarbon.step4.button")}
           buttonButtonLink={{ href: `${prefix}/demo` }}
