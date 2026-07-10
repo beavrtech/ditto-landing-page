@@ -2,6 +2,12 @@ import { revalidatePath } from "next/cache";
 import { getSupabaseAdmin } from "./supabase-admin";
 import { collectionPath } from "./localized-paths";
 
+export type CollectionItemRow = {
+  framework_id?: string | null;
+  slug?: string | null;
+  slug_fr?: string | null;
+};
+
 /**
  * Collection article pages are ISR (`revalidate = 3600` in
  * app/[locale]/collection/[framework]/[slug]/page.tsx) with no on-demand
@@ -17,7 +23,7 @@ import { collectionPath } from "./localized-paths";
  * immediately instead of waiting on organic traffic.
  */
 export async function revalidateCollectionItem(
-  row: { framework_id?: string | null; slug?: string | null; slug_fr?: string | null } | null | undefined
+  row: CollectionItemRow | null | undefined
 ): Promise<void> {
   if (!row?.framework_id || !row?.slug) return;
 
@@ -34,4 +40,29 @@ export async function revalidateCollectionItem(
   revalidatePath(collectionPath(framework.slug, "fr", row.slug_fr || row.slug));
   revalidatePath(collectionPath(framework.slug, "en"));
   revalidatePath(collectionPath(framework.slug, "fr"));
+}
+
+/**
+ * Same as `revalidateCollectionItem`, but also covers the row's *previous*
+ * state — needed for changes that don't originate from the `/admin` save
+ * routes (e.g. a direct Supabase edit delivered via database webhook),
+ * where a slug rename or a delete would otherwise leave the old article
+ * path serving a now-orphaned stale page forever (nothing about the old
+ * path changes to trigger its own ISR regeneration once the row it read is
+ * gone or renamed).
+ *
+ * - INSERT: pass `record`, no `oldRecord` — revalidates the new paths.
+ * - UPDATE: pass both — revalidates new paths, and old paths too if the
+ *   slug (either locale) or the owning framework changed.
+ * - DELETE: pass `oldRecord` only (`record` is null) — revalidates the
+ *   deleted item's paths so it stops being served from cache.
+ */
+export async function revalidateCollectionItemChange(
+  record: CollectionItemRow | null | undefined,
+  oldRecord: CollectionItemRow | null | undefined
+): Promise<void> {
+  await Promise.all([
+    revalidateCollectionItem(record),
+    revalidateCollectionItem(oldRecord),
+  ]);
 }

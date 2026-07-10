@@ -21,6 +21,7 @@ This is a Next.js 16 (Turbopack) marketing site for "Ditto" (trustditto.com) wit
 - `SUPABASE_SERVICE_ROLE_KEY` + `ADMIN_PASSWORD` — the `/admin` CMS editor (`src/app/admin`).
 - `SLACK_WEBHOOK_URL` — lead notifications; `POST /api/lead` returns `{ok:true}` even without it (Slack step skipped silently).
 - `NEXT_PUBLIC_POSTHOG_*`, `NEXT_PUBLIC_HUBSPOT_*` — analytics and the HubSpot contact/newsletter forms.
+- `REVALIDATE_SECRET` — shared secret required by `POST /api/revalidate` (Supabase database webhook on `collection_items`, on-demand ISR invalidation of article + framework listing pages so a direct DB edit goes live without waiting on the hour-long ISR window or a redeploy). Without it the route always returns 500; page rendering is unaffected — `/admin` saves already self-revalidate without this via `src/lib/admin-revalidate.ts`.
 
 ### Running / checks
 - Dev server: `npm run dev` (port 3000). Root `/` 307-redirects to `/en`; locales live under `/[locale]`.
