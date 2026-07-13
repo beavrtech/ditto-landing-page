@@ -26,7 +26,7 @@ function ResourceCard({ item, type, locale }: { item: any; type: string; locale:
           <p className="label">{type === "blog" ? "Blog" : type === "news" ? "News" : "Guide"}</p>
           <div className="spacer-0x75rem" />
           <div className="card-image_link_wrapper">
-            <p className="heading-size-2rem link-hover-parent text-style-2lines">{item.name}</p>
+            <p className="heading-size-1x75rem link-hover-parent text-style-2lines">{item.name}</p>
           </div>
           <div className="spacer-0x75rem" />
           <p className="text-size-1rem text-style-3lines">{item.description}</p>

@@ -96,7 +96,7 @@ export function SectionResources({
                             <Link
                               block=""
                               button={false}
-                              className="heading-size-2rem link-hover-parent"
+                              className="heading-size-1x75rem link-hover-parent"
                               options={{ href: articleHref(post, post.collectionTwin, locale) }}
                             >
                               {post.name}
