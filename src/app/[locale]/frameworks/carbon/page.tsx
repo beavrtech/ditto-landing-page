@@ -58,7 +58,7 @@ export default async function FrameworksCarbonPage({ params }: { params: Promise
           scopes: collectionPath("carbon", locale, "scopes-1-2-3"),
         }
       : {
-          pillar: collectionPath("carbon", locale, "carbon-footprint-company"),
+          pillar: collectionPath("carbon", locale, "company-carbon-footprint"),
           beges: null,
           scopes: null,
         };
