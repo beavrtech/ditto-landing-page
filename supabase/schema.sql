@@ -348,6 +348,9 @@ CREATE INDEX idx_frameworks_is_filter ON frameworks(is_filter);
 CREATE INDEX idx_frameworks_order ON frameworks(sort_order);
 CREATE INDEX idx_frameworks_featured_guide ON frameworks(featured_guide_id);
 
+-- Enforces "at most one guide is the global default" at the DB level.
+CREATE UNIQUE INDEX idx_guides_is_default_unique ON guides (is_default) WHERE is_default;
+
 -- Industries
 CREATE INDEX idx_industries_slug ON industries(slug);
 

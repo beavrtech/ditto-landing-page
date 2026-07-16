@@ -18,6 +18,12 @@ ALTER TABLE guides ADD COLUMN IF NOT EXISTS is_default BOOLEAN DEFAULT FALSE;
 
 CREATE INDEX IF NOT EXISTS idx_frameworks_featured_guide ON frameworks(featured_guide_id);
 
+-- is_default is a singleton flag ("the one global fallback guide"). A partial
+-- unique index enforces that at most one guide can have is_default = true at
+-- the DB level, so a future admin edit can't silently create two defaults
+-- (getFeaturedGuide() would otherwise pick one arbitrarily via .limit(1)).
+CREATE UNIQUE INDEX IF NOT EXISTS idx_guides_is_default_unique ON guides (is_default) WHERE is_default;
+
 -- ------------------------------------------------------------------
 -- Data seeding: theme -> featured guide mapping (keyed by slug, data-safe).
 -- ------------------------------------------------------------------
