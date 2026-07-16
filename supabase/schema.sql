@@ -37,6 +37,9 @@ CREATE TABLE frameworks (
   collection_url TEXT,             -- Link
   page_url TEXT,                   -- Link
   sort_order INTEGER DEFAULT 0,   -- Number: "order"
+  -- featured_guide_id (UUID REFERENCES guides(id)) added below, after the
+  -- guides table, via ALTER TABLE — guides is defined later in this file and
+  -- Postgres requires the referenced table to exist first (see migration 0002).
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -225,6 +228,9 @@ CREATE TABLE guides (
   form_en TEXT,                    -- RichText: sidebar form content
   form_fr TEXT,
   display_on_collection_page_category TEXT, -- Option
+  -- Marks the single guide used as the global sidebar fallback (uncategorized
+  -- blog posts, all news articles, customer stories). Added by migration 0002.
+  is_default BOOLEAN DEFAULT FALSE,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
@@ -235,6 +241,13 @@ CREATE TABLE guide_display_frameworks (
   framework_id UUID REFERENCES frameworks(id) ON DELETE CASCADE,
   PRIMARY KEY (guide_id, framework_id)
 );
+
+-- The guide shown in the sidebar guide-promo card for articles tagged with a
+-- given theme/framework. Distinct from guide_display_frameworks above
+-- (many-to-many, powers the multi-guide resource listing on collection
+-- pages) — this is a single, directly-settable guide per framework. Added
+-- (with the guides.is_default column above) by migration 0002.
+ALTER TABLE frameworks ADD COLUMN featured_guide_id UUID REFERENCES guides(id);
 
 -- ============================================================
 -- EVENTS (slug: events)
@@ -333,6 +346,7 @@ CREATE INDEX idx_authors_slug ON authors(slug);
 CREATE INDEX idx_frameworks_slug ON frameworks(slug);
 CREATE INDEX idx_frameworks_is_filter ON frameworks(is_filter);
 CREATE INDEX idx_frameworks_order ON frameworks(sort_order);
+CREATE INDEX idx_frameworks_featured_guide ON frameworks(featured_guide_id);
 
 -- Industries
 CREATE INDEX idx_industries_slug ON industries(slug);

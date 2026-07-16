@@ -7,7 +7,8 @@ import { Footer } from "../../../../components/FooterServer";
 import { Breadcrumbs } from "../../../../components/BreadcrumbsWithSchema";
 import { SectionCta } from "../../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
-import { getCustomerStoryBySlug, getCustomerStories } from "../../../../lib/cms";
+import { getCustomerStoryBySlug, getCustomerStories, getFeaturedGuide } from "../../../../lib/cms";
+import { GuideCard } from "../../../../components/ArticleSidebar";
 import { localizedCmsHref, localizedHref } from "../../../../lib/localized-paths";
 import { transformRichText, QUOTE_OPEN_SVG, QUOTE_CLOSE_SVG } from "../../../../lib/rich-text";
 import { industryLabel } from "../../../../lib/industry-fr";
@@ -92,6 +93,8 @@ export default async function CustomerStoryPage({
   if (!story) {
     notFound();
   }
+
+  const guide = await getFeaturedGuide(locale as "en" | "fr").catch(() => null);
 
   const enSlug = story.slug;
   const frSlug = story.slug_fr || story.slug;
@@ -368,26 +371,7 @@ export default async function CustomerStoryPage({
                       </div>
                     </div>
                     <div className="spacer-1x5rem hide-tablet" />
-                    <div className="post_sidebar_guide">
-                      <div className="post_sidebar_guide_content">
-                        <div className="post_sidebar_guide_thumbnail">
-                          <Image src="/images/The-Complete-EcoVadis-Guide---Cover-Website-EN.avif" alt="" width={800} height={450} className="media-full-size" />
-                        </div>
-                        <div className="spacer-1x5rem hide-tablet" />
-                        <div>
-                          <p className="label">{locale === "fr" ? "Guide EcoVadis" : "EcoVadis Guide"}</p>
-                          <div className="spacer-0x75rem" />
-                          <p className="heading-size-2rem">{locale === "fr" ? "3 semaines pour réussir votre évaluation RSE" : "3 weeks to succeed in your CSR assessment"}</p>
-                          <div className="spacer-0x75rem" />
-                          <p className="text-size-1rem text-style-3lines">{locale === "fr" ? "Une méthode éprouvée, étape par étape, pour maximiser votre score et transformer l'évaluation en véritable avantage." : "A proven, step-by-step method to maximize your score and turn the evaluation into a real advantage."}</p>
-                        </div>
-                      </div>
-                      <div className="spacer-1x5rem" />
-                      <a data-wf--button--variant="primary" href={localizedHref("/resources/guides/ecovadis-guide-3-weeks-to-succeed-in-your-csr-assessment", locale)} className="button w-inline-block">
-                        <div>{locale === "fr" ? "Télécharger le guide" : "Download Guide"}</div>
-                      </a>
-                    </div>
-                    <div className="spacer-1x5rem spacer-mob-1rem" />
+                    <GuideCard guide={guide} locale={locale} />
                     <div className="post_sidebar_cta">
                       <p className="heading-size-1x375rem">{locale === "fr" ? "Conformité RSE : on vous accompagne (CSRD, EcoVadis, etc.) !" : "CSR compliance: we'll guide you (CSRD, EcoVadis, etc.)!"}</p>
                       <div className="spacer-0x75rem" />

@@ -793,37 +793,25 @@ export async function getCollectionItemBySlug(
 // ============================================================
 
 export async function getGuideByFrameworkId(frameworkId: string, locale: Locale) {
-  // First try via tag_id direct FK
-  let { data } = await supabase
-    .from("guides")
-    .select("*, tag:frameworks!guides_tag_id_fkey(*)")
-    .eq("published", true)
-    .eq("archived", false)
-    .eq("tag_id", frameworkId)
-    .order("date", { ascending: false })
-    .limit(1)
+  // Each framework/theme has a single dedicated sidebar guide, set via
+  // frameworks.featured_guide_id. This is deliberately separate from the
+  // guide_display_frameworks junction table, which powers the (unrelated)
+  // multi-guide resource listing on collection pages.
+  const { data: framework } = await supabase
+    .from("frameworks")
+    .select("featured_guide_id")
+    .eq("id", frameworkId)
     .single();
 
-  // If no direct match, try via guide_display_frameworks junction
-  if (!data) {
-    const { data: junction } = await supabase
-      .from("guide_display_frameworks")
-      .select("guide_id")
-      .eq("framework_id", frameworkId)
-      .limit(1)
-      .single();
+  if (!framework?.featured_guide_id) return null;
 
-    if (junction) {
-      const { data: guide } = await supabase
-        .from("guides")
-        .select("*, tag:frameworks!guides_tag_id_fkey(*)")
-        .eq("id", junction.guide_id)
-        .eq("published", true)
-        .eq("archived", false)
-        .single();
-      data = guide;
-    }
-  }
+  const { data } = await supabase
+    .from("guides")
+    .select("*, tag:frameworks!guides_tag_id_fkey(*)")
+    .eq("id", framework.featured_guide_id)
+    .eq("published", true)
+    .eq("archived", false)
+    .single();
 
   if (!data) return null;
 
@@ -835,13 +823,14 @@ export async function getGuideByFrameworkId(frameworkId: string, locale: Locale)
   };
 }
 
-const DEFAULT_GUIDE_SLUG = "ecovadis-guide-3-weeks-to-succeed-in-your-csr-assessment";
-
 export async function getFeaturedGuide(locale: Locale) {
   const { data } = await supabase
     .from("guides")
     .select("*, tag:frameworks!guides_tag_id_fkey(*)")
-    .eq("slug", DEFAULT_GUIDE_SLUG)
+    .eq("is_default", true)
+    .eq("published", true)
+    .eq("archived", false)
+    .limit(1)
     .single();
 
   if (!data) return null;
