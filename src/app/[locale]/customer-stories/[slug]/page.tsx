@@ -88,13 +88,15 @@ export default async function CustomerStoryPage({
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
-  const story = await getCustomerStoryBySlug(slug, locale as "en" | "fr");
+  // Independent fetches — run in parallel rather than back-to-back.
+  const [story, guide] = await Promise.all([
+    getCustomerStoryBySlug(slug, locale as "en" | "fr"),
+    getFeaturedGuide(locale as "en" | "fr").catch(() => null),
+  ]);
 
   if (!story) {
     notFound();
   }
-
-  const guide = await getFeaturedGuide(locale as "en" | "fr").catch(() => null);
 
   const enSlug = story.slug;
   const frSlug = story.slug_fr || story.slug;

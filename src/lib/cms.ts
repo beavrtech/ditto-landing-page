@@ -797,6 +797,13 @@ export async function getGuideByFrameworkId(frameworkId: string, locale: Locale)
   // frameworks.featured_guide_id. This is deliberately separate from the
   // guide_display_frameworks junction table, which powers the (unrelated)
   // multi-guide resource listing on collection pages.
+  //
+  // Two lookups (both single, indexed primary-key reads): resolve the FK,
+  // then fetch the guide. A single embedded-select query was tried instead
+  // (`guides!frameworks_featured_guide_id_fkey!inner(...)`), but without
+  // generated Database types for this client it produces confusing/incorrect
+  // TS inference, and its runtime behavior can't be verified without a live
+  // Supabase connection — not worth the risk for two cheap PK lookups.
   const { data: framework } = await supabase
     .from("frameworks")
     .select("featured_guide_id")

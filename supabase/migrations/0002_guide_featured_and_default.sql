@@ -57,8 +57,6 @@ WHERE slug = 'iso-14001';
 -- applies: uncategorized blog posts, news articles, customer stories).
 -- ------------------------------------------------------------------
 
-UPDATE guides SET is_default = FALSE WHERE is_default = TRUE;
-
 UPDATE guides
 SET is_default = TRUE
 WHERE slug = '17-documents-csr-program-formalization';
