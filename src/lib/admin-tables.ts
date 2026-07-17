@@ -99,6 +99,7 @@ export const TABLES: TableConfig[] = [
       { name: "seo_meta_desc", label: "Meta Description", type: "textarea", locale: true },
       { name: "published", label: "Published", type: "boolean" },
       { name: "archived", label: "Archived", type: "boolean" },
+      { name: "is_default", label: "Default guide (global sidebar fallback)", type: "boolean" },
     ],
   },
   {
@@ -243,6 +244,11 @@ export const TABLES: TableConfig[] = [
       { name: "collection_url", label: "Collection URL (no locale prefix, e.g. /collection/carbon)", type: "text" },
       { name: "page_url", label: "Page URL (no locale prefix, e.g. /frameworks/carbon)", type: "text" },
       { name: "sort_order", label: "Sort Order", type: "text" },
+      {
+        name: "featured_guide_id",
+        label: "Featured Guide ID (UUID) — guide shown in the sidebar card for articles on this theme. Copy the ID from the Guides table.",
+        type: "text",
+      },
     ],
   },
   {

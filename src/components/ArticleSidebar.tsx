@@ -41,7 +41,7 @@ export function injectHeadingIds(html: string): string {
   });
 }
 
-type GuideData = {
+export type GuideData = {
   name: string;
   slug: string;
   slug_fr?: string | null;
@@ -49,6 +49,51 @@ type GuideData = {
   banner_url?: string;
   tag?: { name?: string } | null;
 } | null;
+
+/**
+ * The sidebar guide-promo card (banner/tag/title/description/download link).
+ * Shared by every article-type page (blog, news, collection items,
+ * customer stories) so the guide card always looks and behaves the same
+ * regardless of where the guide came from (theme-specific or default).
+ */
+export function GuideCard({ guide, locale }: { guide: GuideData; locale: string }) {
+  const isFr = locale === "fr";
+  if (!guide) return null;
+
+  return (
+    <>
+      <div className="post_sidebar_guide">
+        <div className="post_sidebar_guide_content">
+          {guide.banner_url && (
+            <div className="post_sidebar_guide_thumbnail">
+              <Image alt="" className="media-full-size" src={guide.banner_url} width={800} height={450} />
+            </div>
+          )}
+          <div className="spacer-1x5rem hide-tablet" />
+          <div>
+            {guide.tag?.name && <div className="label">{guide.tag.name}</div>}
+            <div className="spacer-0x75rem" />
+            <p className="heading-size-2rem">{guide.name}</p>
+            {guide.description && (
+              <>
+                <div className="spacer-0x75rem" />
+                <p className="text-size-1rem text-style-3lines">{guide.description}</p>
+              </>
+            )}
+          </div>
+        </div>
+        <div className="spacer-1x5rem" />
+        <a
+          href={localizedCmsHref("/resources/guides", guide.slug, guide.slug_fr, locale)}
+          className="button w-inline-block"
+        >
+          <div>{isFr ? "Télécharger le guide" : "Download guide"}</div>
+        </a>
+      </div>
+      <div className="spacer-1x5rem spacer-mob-1rem" />
+    </>
+  );
+}
 
 export function ArticleSidebar({
   body,
@@ -60,7 +105,6 @@ export function ArticleSidebar({
   locale: string;
 }) {
   const toc = extractToc(body);
-  const isFr = locale === "fr";
 
   return (
     <div className="post_sidebar">
@@ -68,39 +112,7 @@ export function ArticleSidebar({
       <CollapsibleToc items={toc} locale={locale} />
 
       {/* Guide promo card */}
-      {guide && (
-        <>
-          <div className="post_sidebar_guide">
-            <div className="post_sidebar_guide_content">
-              {guide.banner_url && (
-                <div className="post_sidebar_guide_thumbnail">
-                  <Image alt="" className="media-full-size" src={guide.banner_url} width={800} height={450} />
-                </div>
-              )}
-              <div className="spacer-1x5rem hide-tablet" />
-              <div>
-                {guide.tag?.name && <div className="label">{guide.tag.name}</div>}
-                <div className="spacer-0x75rem" />
-                <p className="heading-size-2rem">{guide.name}</p>
-                {guide.description && (
-                  <>
-                    <div className="spacer-0x75rem" />
-                    <p className="text-size-1rem text-style-3lines">{guide.description}</p>
-                  </>
-                )}
-              </div>
-            </div>
-            <div className="spacer-1x5rem" />
-            <a
-              href={localizedCmsHref("/resources/guides", guide.slug, guide.slug_fr, locale)}
-              className="button w-inline-block"
-            >
-              <div>{isFr ? "Télécharger le guide" : "Download guide"}</div>
-            </a>
-          </div>
-          <div className="spacer-1x5rem spacer-mob-1rem" />
-        </>
-      )}
+      <GuideCard guide={guide} locale={locale} />
 
       {/* Newsletter CTA */}
       <SidebarNewsletter locale={locale} />
