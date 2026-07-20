@@ -1660,7 +1660,7 @@ a {
   border-radius: 999px;
   padding: 0.125rem 0.625rem;
   background: var(--_colors-•-semantic---button-primary--surface, #130e30);
-  color: var(--_colors-•-primitives---brand--yellow, #ffe228);
+  color: var(--_colors-•-primitives---neutral--neutral-white, #fff);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.02em;
