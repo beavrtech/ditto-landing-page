@@ -1622,8 +1622,8 @@ a {
 .announcement-bar {
   position: relative;
   width: 100%;
-  background: var(--_colors-•-semantic---button-primary--surface, #130e30);
-  color: var(--_colors-•-primitives---neutral--neutral-white, #fff);
+  background: var(--_colors-•-primitives---brand--yellow, #ffe228);
+  color: var(--_colors-•-semantic---text-primary, #130e30);
 }
 
 .announcement-bar_inner {
@@ -1650,7 +1650,7 @@ a {
 
 .announcement-bar_link:hover .announcement-bar_text {
   text-decoration: underline;
-  text-decoration-color: var(--_colors-•-primitives---brand--yellow, #ffe228);
+  text-decoration-color: var(--_colors-•-semantic---text-primary, #130e30);
 }
 
 .announcement-bar_tag {
@@ -1659,8 +1659,8 @@ a {
   align-items: center;
   border-radius: 999px;
   padding: 0.125rem 0.625rem;
-  background: var(--_colors-•-primitives---brand--yellow, #ffe228);
-  color: var(--_colors-•-semantic---text-primary, #130e30);
+  background: var(--_colors-•-semantic---button-primary--surface, #130e30);
+  color: var(--_colors-•-primitives---brand--yellow, #ffe228);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.02em;
@@ -1670,34 +1670,20 @@ a {
 
 .announcement-bar_text {
   font-size: 0.875rem;
+  font-weight: 500;
   line-height: 1.4;
 }
 
 .announcement-bar_arrow {
-  color: var(--_colors-•-primitives---brand--yellow, #ffe228);
-  font-weight: 600;
+  display: inline-block;
+  color: var(--_colors-•-semantic---button-primary--surface, #130e30);
+  font-size: 1.125rem;
+  font-weight: 800;
+  transition: transform 150ms ease;
 }
 
-.announcement-bar_close {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.75rem;
-  height: 1.75rem;
-  margin-left: 0.25rem;
-  padding: 0;
-  border: none;
-  border-radius: 999px;
-  background: transparent;
-  color: var(--_colors-•-primitives---neutral--neutral-white, #fff);
-  cursor: pointer;
-  transition: background-color 150ms ease;
-}
-
-.announcement-bar_close:hover,
-.announcement-bar_close:focus-visible {
-  background: rgba(255, 255, 255, 0.15);
+.announcement-bar_link:hover .announcement-bar_arrow {
+  transform: translateX(0.25rem);
 }
 
 @media (max-width: 600px) {
