@@ -13,6 +13,7 @@ import { GoogleTagManager, GoogleTagManagerNoScript } from "../../components/Goo
 import { Analytics } from "@vercel/analytics/next";
 import { PostHogInit } from "../../components/PostHogInit";
 import { DemoCTATracker } from "../../components/DemoCTATracker";
+import { AnnouncementBar } from "../../components/AnnouncementBar";
 import "../globals.css";
 
 const inter = Inter({
@@ -91,6 +92,7 @@ export default async function LocaleLayout({
           <AlternateUrlProvider>
             <SafeDevLinkProvider>
               <GlobalStyles />
+              <AnnouncementBar />
               {children}
             </SafeDevLinkProvider>
           </AlternateUrlProvider>

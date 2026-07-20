@@ -80,6 +80,12 @@
     "industryIndustrialEquipment": "Industrial Equipment & Systems",
     "industryTransportationLogistics": "Transportation & Logistics"
   },
+  "announcementBar": {
+    "tag": "BAROMÈTRE",
+    "message": "L'IA en RSE : participez à notre étude annuelle ! 5 min pour donner votre avis",
+    "href": "https://tally.so/r/EkaP5A?utm_source=site&utm_medium=banner",
+    "dismiss": "Fermer l'annonce"
+  },
   "hero": {
     "title": "Votre plateforme conformité & durabilité,<br></br>et l'expert qui la pilote avec vous.",
     "subtitle": "Sécurisez l'accès au marché, signez plus de contrats et réduisez vos risques, tout en allégeant vos coûts de conformité.",

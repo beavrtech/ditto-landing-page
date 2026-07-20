@@ -1617,3 +1617,95 @@ a {
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Sitewide announcement bar (above the navbar, every page) ───────────── */
+.announcement-bar {
+  position: relative;
+  width: 100%;
+  background: var(--_colors-•-semantic---button-primary--surface, #130e30);
+  color: var(--_colors-•-primitives---neutral--neutral-white, #fff);
+}
+
+.announcement-bar_inner {
+  width: 100%;
+  max-width: 80rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.5rem 3rem;
+}
+
+.announcement-bar_link {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.announcement-bar_link:hover .announcement-bar_text {
+  text-decoration: underline;
+  text-decoration-color: var(--_colors-•-primitives---brand--yellow, #ffe228);
+}
+
+.announcement-bar_tag {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.125rem 0.625rem;
+  background: var(--_colors-•-primitives---brand--yellow, #ffe228);
+  color: var(--_colors-•-semantic---text-primary, #130e30);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.announcement-bar_text {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.announcement-bar_arrow {
+  color: var(--_colors-•-primitives---brand--yellow, #ffe228);
+  font-weight: 600;
+}
+
+.announcement-bar_close {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-left: 0.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--_colors-•-primitives---neutral--neutral-white, #fff);
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.announcement-bar_close:hover,
+.announcement-bar_close:focus-visible {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 600px) {
+  .announcement-bar_inner {
+    padding: 0.5rem 1rem;
+  }
+
+  .announcement-bar_text {
+    font-size: 0.8125rem;
+  }
+}

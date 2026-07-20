@@ -80,6 +80,12 @@
     "industryIndustrialEquipment": "Industrial Equipment & Systems",
     "industryTransportationLogistics": "Transportation & Logistics"
   },
+  "announcementBar": {
+    "tag": "BAROMETER",
+    "message": "AI in ESG: join our annual study! 5 min to share your perspective",
+    "href": "https://tally.so/forms/vGW6bA?utm_source=site&utm_medium=banner",
+    "dismiss": "Dismiss announcement"
+  },
   "hero": {
     "title": "Your compliance & sustainability platform,<br></br>and the expert who runs it with you.",
     "subtitle": "Protect market access, win more deals and reduce risk while lowering compliance costs.",
