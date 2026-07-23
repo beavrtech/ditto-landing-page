@@ -288,6 +288,38 @@ export const TABLES: TableConfig[] = [
     ],
   },
   {
+    slug: "press-mentions",
+    table: "press_mentions",
+    displayName: "Press Mentions",
+    listColumns: [
+      { key: "outlet_name", label: "Outlet" },
+      { key: "article_title", label: "Article" },
+      { key: "published_date", label: "Date" },
+      { key: "published", label: "Status" },
+    ],
+    orderBy: { column: "published_date", ascending: false },
+    fields: [
+      { name: "outlet_name", label: "Outlet Name", type: "text", required: true },
+      { name: "outlet_logo_url", label: "Outlet Logo", type: "image" },
+      { name: "article_title", label: "Article Title", type: "text", required: true },
+      { name: "article_url", label: "Article URL", type: "text", required: true },
+      {
+        name: "article_language",
+        label: "Article Language",
+        type: "select",
+        required: true,
+        options: [
+          { value: "en", label: "English" },
+          { value: "fr", label: "French" },
+        ],
+      },
+      { name: "published_date", label: "Published Date", type: "date", required: true },
+      { name: "excerpt", label: "Excerpt", type: "textarea" },
+      { name: "sort_order", label: "Sort Order", type: "text" },
+      { name: "published", label: "Published", type: "boolean" },
+    ],
+  },
+  {
     slug: "events",
     table: "events",
     displayName: "Events",

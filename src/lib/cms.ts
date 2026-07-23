@@ -142,6 +142,21 @@ export async function getCustomersByIndustry(industrySlug: string) {
 }
 
 // ============================================================
+// PRESS MENTIONS ("In the media" page)
+// ============================================================
+
+export async function getPressMentions() {
+  const { data, error } = await supabase
+    .from("press_mentions")
+    .select("*")
+    .eq("published", true)
+    .order("published_date", { ascending: false });
+
+  if (error) throw error;
+  return data;
+}
+
+// ============================================================
 // CUSTOMER STORIES
 // ============================================================
 
