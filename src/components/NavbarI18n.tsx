@@ -391,6 +391,7 @@ export function NavbarClient({
           links: [
             { label: t("manifesto"), href: localizedHref("/manifesto", locale) },
             { label: t("careers"), href: localizedHref("/careers", locale) },
+            { label: t("press"), href: localizedHref("/press", locale) },
           ],
         },
       ],

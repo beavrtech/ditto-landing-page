@@ -87,6 +87,55 @@ export const ORGANIZATION_JSONLD = {
   ],
 };
 
+/**
+ * CollectionPage/ItemList JSON-LD for the /press ("in the media") page.
+ * Each mention is emitted as a NewsArticle that both `mentions` and is
+ * `about` the Ditto Organization, reinforcing the Ditto <-> CSR-proof /
+ * EcoVadis / CDP / ISO entity association for search engines and LLM
+ * crawlers. Mirrors the style of {@link articleJsonLd}.
+ */
+export function pressMentionsJsonLd(
+  mentions: {
+    outlet_name: string;
+    article_title: string;
+    article_url: string;
+    published_date?: string | null;
+  }[],
+  locale: string
+) {
+  const organization = {
+    "@type": "Organization",
+    name: ORGANIZATION_JSONLD.name,
+    url: ORGANIZATION_JSONLD.url,
+    knowsAbout: ORGANIZATION_JSONLD.knowsAbout,
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url: `https://www.trustditto.com/${locale}/press`,
+    about: organization,
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: mentions.map((mention, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        item: {
+          "@type": "NewsArticle",
+          headline: mention.article_title,
+          url: mention.article_url,
+          ...(mention.published_date && { datePublished: mention.published_date }),
+          publisher: {
+            "@type": "Organization",
+            name: mention.outlet_name,
+          },
+          mentions: organization,
+        },
+      })),
+    },
+  };
+}
+
 export function articleJsonLd({
   title,
   description,

@@ -44,6 +44,7 @@
     "news": "News",
     "manifesto": "Manifesto",
     "careers": "Careers",
+    "press": "Press",
     "company": "Company",
     "sme": "SME",
     "largeCompanies": "Large Companies",
@@ -591,6 +592,13 @@
       "step6": "Offer"
     }
   },
+  "press": {
+    "breadcrumb": "Press",
+    "hero": {
+      "title": "Ditto in the media",
+      "subtitle": "See where Ditto's approach to proving your CSR commitments—EcoVadis, CDP, ISO, CSRD—is making the news."
+    }
+  },
   "pricing": {
     "breadcrumb": "Plans",
     "hero": {
@@ -1088,6 +1096,10 @@
     "careers": {
       "title": "Careers at Ditto – Great businesses aren't built alone",
       "description": "That's the idea at the heart of Ditto. We're here to help people do their best work together, and that starts with our team."
+    },
+    "press": {
+      "title": "Press: Ditto in the media",
+      "description": "Press coverage featuring Ditto, the CSR platform and expert coaching for your ESG frameworks: EcoVadis, CDP, ISO, CSRD."
     },
     "legalTerms": {
       "title": "Terms and Conditions",

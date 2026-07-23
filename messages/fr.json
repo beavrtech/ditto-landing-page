@@ -44,6 +44,7 @@
     "news": "Actualités",
     "manifesto": "Manifeste",
     "careers": "Carrières",
+    "press": "Presse",
     "company": "Entreprise",
     "sme": "PME",
     "largeCompanies": "Grandes entreprises",
@@ -599,6 +600,13 @@
       "step6": "Offre"
     }
   },
+  "press": {
+    "breadcrumb": "Presse",
+    "hero": {
+      "title": "Ditto dans les médias",
+      "subtitle": "Découvrez comment l'approche de Ditto pour prouver vos engagements RSE — EcoVadis, CDP, ISO, CSRD — fait parler d'elle."
+    }
+  },
   "pricing": {
     "breadcrumb": "Tarifs",
     "hero": {
@@ -1088,6 +1096,10 @@
     "careers": {
       "title": "Carrières chez Ditto – Les grandes entreprises ne se construisent pas seules",
       "description": "C'est l'idée qui est au cœur de Ditto. Nous sommes là pour aider chacun à donner le meilleur de soi-même, et cela commence par notre équipe."
+    },
+    "press": {
+      "title": "Presse : Ditto dans les médias",
+      "description": "Retrouvez les articles de presse qui citent Ditto, plateforme et accompagnement expert pour vos démarches RSE : EcoVadis, CDP, ISO, CSRD."
     },
     "legalTerms": {
       "title": "Conditions générales d'utilisation",
