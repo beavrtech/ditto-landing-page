@@ -1,10 +1,7 @@
 -- Press mentions ("In the media" page: /press).
 --
--- NOT YET APPLIED to the live database -- this migration is pending
--- explicit approval from Etienne Dejoie before it is run. Until it's
--- applied, the /press page falls back to a small hardcoded list of the
--- 2 known seed articles (see src/components/PressServer.tsx) so the page
--- can ship ahead of the schema change.
+-- Applied to the live database on 2026-07-23 (approved by Etienne Dejoie),
+-- along with the 2 initial seed rows (Mediavenir, Le Mémento).
 --
 -- Modeled on testimonials / company_logos (see supabase/schema.sql): a
 -- simple published + sort_order CMS table, public-read via RLS, service

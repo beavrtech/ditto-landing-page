@@ -14,42 +14,6 @@ export type PressMention = {
   excerpt?: string | null;
 };
 
-/**
- * Hardcoded fallback, in the exact shape getPressMentions() returns.
- *
- * The `press_mentions` table doesn't exist in the live database yet --
- * the migration that creates it (supabase/migrations/0003_press_mentions.sql)
- * is pending Etienne's approval. Until it's applied (or once applied but
- * still empty), these 2 known articles keep the page live; real CMS rows
- * take over automatically the moment the table exists and has published rows.
- */
-const FALLBACK_PRESS_MENTIONS: PressMention[] = [
-  {
-    id: "fallback-mediavenir",
-    outlet_name: "Mediavenir",
-    outlet_logo_url: null,
-    article_title:
-      "La nouvelle pression des grands groupes oblige leurs fournisseurs à prouver qu'ils font bien",
-    article_url:
-      "https://www.mediavenir.fr/la-nouvelle-pression-des-grands-groupes-oblige-leurs-fournisseurs-a-prouver-quils-font-bien/",
-    article_language: "fr",
-    published_date: "2026-07-22",
-    excerpt: null,
-  },
-  {
-    id: "fallback-lememento",
-    outlet_name: "Le Mémento",
-    outlet_logo_url: null,
-    article_title:
-      "Entreprises : la preuve des engagements RSE devient un critère de sélection des fournisseurs",
-    article_url:
-      "https://www.memento.fr/memento-paris/article_22-07-2026-entreprises-la-preuve-des-engagements-rse-devient-un-critere-de-selection-des-fournisseurs",
-    article_language: "fr",
-    published_date: "2026-07-22",
-    excerpt: null,
-  },
-];
-
 function formatMentionDate(dateStr: string, locale: string): string {
   const date = new Date(dateStr);
   if (Number.isNaN(date.getTime())) return dateStr;
@@ -101,15 +65,9 @@ function PressMentionCard({ mention, locale }: { mention: PressMention; locale: 
   );
 }
 
-/** Fetches published press mentions, falling back to the 2 seed articles when empty/errored. */
-export async function getPressMentionsOrFallback(): Promise<PressMention[]> {
-  const mentions = await getPressMentions().catch(() => []);
-  return mentions && mentions.length > 0 ? (mentions as PressMention[]) : FALLBACK_PRESS_MENTIONS;
-}
-
-/** Server wrapper: fetches (with fallback), emits JSON-LD, and renders the press mentions grid. */
+/** Server wrapper: fetches published mentions, emits JSON-LD, and renders the press mentions grid. */
 export async function PressMentions({ locale }: { locale: string }) {
-  const mentions = await getPressMentionsOrFallback();
+  const mentions = ((await getPressMentions().catch(() => [])) ?? []) as PressMention[];
 
   return (
     <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
