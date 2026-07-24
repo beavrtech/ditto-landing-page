@@ -130,6 +130,29 @@ export function GenericEditForm({
             />
           </div>
         );
+      case "multiselect": {
+        const selected: string[] = Array.isArray(val) ? val : [];
+        const toggle = (value: string, checked: boolean) =>
+          set(key, checked ? [...selected, value] : selected.filter((v) => v !== value));
+        return (
+          <div key={key} style={fieldStyle}>
+            <label style={labelStyle}>{field.label}</label>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem 1.25rem", padding: "0.625rem 0.75rem", border: "1px solid #ddd", borderRadius: "6px" }}>
+              {(field.options || []).map((opt) => (
+                <label key={opt.value} style={{ display: "flex", alignItems: "center", gap: "0.375rem", fontSize: "0.875rem", cursor: "pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={selected.includes(opt.value)}
+                    onChange={(e) => toggle(opt.value, e.target.checked)}
+                    style={{ width: "16px", height: "16px" }}
+                  />
+                  {opt.label}
+                </label>
+              ))}
+            </div>
+          </div>
+        );
+      }
       case "boolean":
         return (
           <div key={key} style={{ ...fieldStyle, display: "flex", alignItems: "center", gap: "0.5rem" }}>

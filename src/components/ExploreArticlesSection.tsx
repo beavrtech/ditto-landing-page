@@ -290,9 +290,11 @@ export async function ExploreArticlesSection({
                   <Block className={"spacer-1x5rem"} tag={"div"} />
                   {(grouped[cat.name] || []).map((item: any) => {
                     const slug = locale === "fr" && item.slug_fr ? item.slug_fr : item.slug;
+                    // Guest items (listed here via `also_appears_in`) link to
+                    // their home collection, where the article actually lives.
                     const href = item._type === "guide"
                       ? localizedHref(`/resources/guides/${slug}`, locale)
-                      : collectionPath(framework, locale, slug);
+                      : collectionPath(item.home_framework_slug || framework, locale, slug);
                     return (
                       <ElementCollectionArticleLink
                         key={item.slug}

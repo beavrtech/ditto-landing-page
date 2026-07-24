@@ -47,7 +47,7 @@ export async function PUT(
   // on the collection article/listing routes) has no on-demand hook, so a
   // low-traffic page could otherwise sit stale until a visitor happens to
   // hit it again after the window elapses.
-  if (tableSlug === "collection_items") {
+  if (config.table === "collection_items") {
     await revalidateCollectionItem(data).catch(() => {});
   }
 
