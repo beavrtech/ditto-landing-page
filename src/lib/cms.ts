@@ -694,13 +694,16 @@ export async function getCollectionItems(
 
   if (!fw) return [];
 
-  // 1. Native collection items
+  // 1. Native collection items, plus guest items from other frameworks that
+  // list this collection in `also_appears_in` (array of framework slugs).
+  // Guest items keep linking to their home collection URL — see
+  // `home_framework_slug` usage in ExploreArticlesSection.
   const { data, error } = await supabase
     .from("collection_items")
-    .select("*, author:authors(*)")
+    .select("*, author:authors(*), framework:frameworks(slug)")
     .eq("published", true)
     .eq("archived", false)
-    .eq("framework_id", fw.id)
+    .or(`framework_id.eq.${fw.id},also_appears_in.cs.{${frameworkSlug}}`)
     .order("ordre");
 
   if (error) throw error;
@@ -712,6 +715,7 @@ export async function getCollectionItems(
     seo_meta_desc: localized(item, "seo_meta_desc", locale),
     description: localized(item, "description", locale),
     body: localized(item, "body", locale),
+    home_framework_slug: (item as any).framework?.slug || frameworkSlug,
     _type: "collection_item" as const,
   }));
 

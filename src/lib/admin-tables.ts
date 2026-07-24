@@ -1,13 +1,25 @@
-export type FieldType = "text" | "textarea" | "richtext" | "date" | "boolean" | "select" | "readonly" | "image";
+export type FieldType = "text" | "textarea" | "richtext" | "date" | "boolean" | "select" | "multiselect" | "readonly" | "image";
 
 export type FieldDef = {
   name: string;
   label: string;
   type: FieldType;
   locale?: boolean; // if true, field has _en/_fr variants
-  options?: { value: string; label: string }[]; // for select
+  options?: { value: string; label: string }[]; // for select / multiselect
   required?: boolean;
 };
+
+// Frameworks that have a public /collection/[framework] page. Must stay in
+// sync with FRAMEWORK_CONFIG in src/components/ExploreArticlesSection.tsx.
+const COLLECTION_FRAMEWORK_OPTIONS = [
+  { value: "ecovadis", label: "EcoVadis" },
+  { value: "cdp", label: "CDP" },
+  { value: "vsme", label: "VSME" },
+  { value: "iso-14001", label: "ISO 14001" },
+  { value: "csrd", label: "CSRD" },
+  { value: "carbon", label: "Carbon Footprint" },
+  { value: "qhse", label: "QHSE" },
+];
 
 export type TableConfig = {
   slug: string; // URL slug: "blog-posts"
@@ -169,6 +181,12 @@ export const TABLES: TableConfig[] = [
       { name: "banner_url", label: "Banner", type: "image" },
       { name: "banner_alt_desc", label: "Banner Alt", type: "text" },
       { name: "categorie", label: "Category", type: "text" },
+      {
+        name: "also_appears_in",
+        label: "Also appears in (other collections this article is listed in)",
+        type: "multiselect",
+        options: COLLECTION_FRAMEWORK_OPTIONS,
+      },
       { name: "ordre", label: "Sort Order", type: "text" },
       { name: "date_de_publication", label: "Publication Date", type: "date" },
       { name: "seo_title", label: "SEO Title", type: "text", locale: true },
