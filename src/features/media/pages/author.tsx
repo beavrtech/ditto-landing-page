@@ -6,7 +6,7 @@ import { MediaShell } from "../components/MediaShell";
 import { MediaBreadcrumbs } from "../components/MediaBreadcrumbs";
 import { ArticleGrid } from "../components/ArticleCard";
 import { getAllArticles } from "../lib/articles";
-import { MEDIA_AUTHORS, getAuthor } from "../data/authors";
+import { getAuthor, getAuthorSlugs } from "../lib/authors";
 import { authorProfileJsonLd } from "../lib/jsonld";
 import { mediaAlternates, SITE_URL } from "../lib/urls";
 import { t } from "../dictionary";
@@ -18,12 +18,12 @@ export function createAuthorRoute(locale: MediaLocale) {
   const copy = t(locale);
 
   async function generateStaticParams() {
-    return MEDIA_AUTHORS.map((author) => ({ slug: author.slug }));
+    return (await getAuthorSlugs()).map((slug) => ({ slug }));
   }
 
   async function generateMetadata({ params }: Params): Promise<Metadata> {
     const { slug } = await params;
-    const author = getAuthor(slug);
+    const author = await getAuthor(slug);
     if (!author) return {};
     return {
       title: author.name,
@@ -34,7 +34,7 @@ export function createAuthorRoute(locale: MediaLocale) {
 
   async function Page({ params }: Params) {
     const { slug } = await params;
-    const author = getAuthor(slug);
+    const author = await getAuthor(slug);
     if (!author) notFound();
 
     const articles = (await getAllArticles(locale)).filter((a) => a.author === slug);

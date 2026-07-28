@@ -1,12 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
-import { MEDIA_AUTHORS } from "../data/authors";
+import { getAllAuthors } from "../lib/authors";
 import { mediaPath } from "../lib/urls";
 import { t } from "../dictionary";
 import type { MediaLocale } from "../data/taxonomy";
 
-export function AuthorsSection({ locale }: { locale: MediaLocale }) {
+export async function AuthorsSection({ locale }: { locale: MediaLocale }) {
   const copy = t(locale);
+  const authors = await getAllAuthors();
   return (
     <section className="ns-section" id="authors">
       <div className="ns-wrap">
@@ -14,7 +15,7 @@ export function AuthorsSection({ locale }: { locale: MediaLocale }) {
           <h2 className="ns-section-title">{copy.authors}</h2>
         </div>
         <div className="ns-grid is-two">
-          {MEDIA_AUTHORS.map((author) => (
+          {authors.map((author) => (
             <div className="ns-author-card" key={author.slug}>
               <span className="ns-avatar">
                 <Image src={author.avatar} alt="" width={64} height={64} />

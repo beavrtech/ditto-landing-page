@@ -8,7 +8,7 @@ import { VideoSection } from "../components/VideoSection";
 import { AuthorsSection } from "../components/AuthorsSection";
 import { Byline } from "../components/Byline";
 import { getAllArticles } from "../lib/articles";
-import { getAuthor } from "../data/authors";
+import { getAuthor } from "../lib/authors";
 import { mediaPath, mediaAlternates } from "../lib/urls";
 import { t } from "../dictionary";
 import type { MediaLocale } from "../data/taxonomy";
@@ -30,7 +30,7 @@ export function createHomeRoute(locale: MediaLocale) {
   async function Page() {
     const articles = await getAllArticles(locale);
     const [latest, ...rest] = articles;
-    const latestAuthor = latest ? getAuthor(latest.author) : null;
+    const latestAuthor = latest ? await getAuthor(latest.author) : null;
 
     return (
       <MediaShell locale={locale} mirrorPath="">

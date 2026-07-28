@@ -14,7 +14,7 @@ import {
   relatedArticles,
 } from "../lib/articles";
 import { renderArticleBody } from "../lib/mdx";
-import { getAuthor } from "../data/authors";
+import { getAuthor } from "../lib/authors";
 import { mediaAlternates, mediaUrl, SITE_URL } from "../lib/urls";
 import { mediaArticleJsonLd } from "../lib/jsonld";
 import { t } from "../dictionary";
@@ -38,7 +38,7 @@ export function createArticleRoute(locale: MediaLocale) {
     const { slug } = await params;
     const article = await getArticle(slug, locale);
     if (!article) return {};
-    const author = getAuthor(article.author);
+    const author = await getAuthor(article.author);
     return {
       title: article.title,
       description: article.description,
@@ -60,7 +60,7 @@ export function createArticleRoute(locale: MediaLocale) {
     const article = await getArticle(slug, locale);
     if (!article) notFound();
 
-    const author = getAuthor(article.author);
+    const author = await getAuthor(article.author);
     if (!author) notFound();
 
     const themeSlugs = article.section;

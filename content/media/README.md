@@ -2,7 +2,17 @@
 
 Northstar is the media at `trustditto.com/media` (English) and `trustditto.com/fr/media` (French). It is file-based: articles are MDX files in this folder, not CMS entries. Publishing means merging to `main` and deploying.
 
-Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial contract.
+Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial contract. The technical detail lives in [authoring/](./authoring/):
+
+| Document | Covers |
+|---|---|
+| [authoring/FILE-FORMAT.md](./authoring/FILE-FORMAT.md) | The frontmatter contract, the locale markers, every validation error |
+| [authoring/TAXONOMY.md](./authoring/TAXONOMY.md) | Choosing `section`, `alsoIn` and `industries` |
+| [authoring/COMPONENTS.md](./authoring/COMPONENTS.md) | The MDX components and the rules for each |
+| [authoring/SEO-AEO.md](./authoring/SEO-AEO.md) | What the code emits, what the writer controls, known gaps |
+| [authoring/ILLUSTRATIONS.md](./authoring/ILLUSTRATIONS.md) | The artwork spec |
+
+Working with Claude Code, the `northstar-article` skill loads all of this automatically when you ask for an article.
 
 ## Where things live
 
@@ -10,8 +20,8 @@ Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial 
 |---|---|
 | Articles | `content/media/articles/<url>.mdx` (one file, both languages) |
 | Illustrations | `public/media/illustrations/<slug>.svg` |
-| Authors | `src/features/media/data/authors.ts` |
-| Videos (home page) | `src/features/media/data/videos.ts` |
+| Authors | `content/media/authors/<slug>.mdx` (one file per author) |
+| Videos (home page) | `content/media/videos.json` |
 | Taxonomy and industries | `src/features/media/data/taxonomy.ts` |
 | Design system | `src/features/media/styles/` |
 | Everything else (components, routes) | `src/features/media/` |
@@ -112,13 +122,44 @@ Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial 
 
 ## Adding an author
 
-Add an entry to `MEDIA_AUTHORS` in `src/features/media/data/authors.ts`. Real people only: each author becomes a `Person` entity in structured data with a profile page at `/media/authors/<slug>`.
+Create `content/media/authors/<slug>.mdx`. It works like an article: shared frontmatter, a per-language `title` (their job title), and the biography as prose in the two locale bodies.
 
-Authors are mirrored by hand from the Supabase `authors` table the main site uses, so keep the slug, title and photo identical to the CMS record. `avatar` accepts either a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows, so pointing at the existing CMS photo is the simplest option. Set `dittoAuthorSlug` to their slug on the main site to link the two profiles.
+```mdx
+---
+slug: alexis-de-taillac
+name: Alexis de Taillac
+avatar: https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/authors/alexis-de-taillac/picture_url.jpeg
+linkedin: https://www.linkedin.com/in/alexis-bartouilh-de-taillac/
+dittoAuthorSlug: alexis-de-taillac
+en:
+  title: Head of Compliance
+fr:
+  title: Head of Compliance
+---
+
+<!-- locale:en -->
+
+A graduate of CentraleSupélec, Alexis…
+
+<!-- locale:fr -->
+
+Diplômé de CentraleSupélec, Alexis…
+```
+
+Real people only: each author becomes a `Person` entity in structured data with a profile page at `/media/authors/<slug>`. Authors are mirrored by hand from the Supabase `authors` table the main site uses, so keep the slug, name and photo identical to the CMS record. `avatar` takes a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows, so pointing at the existing CMS photo is simplest. `dittoAuthorSlug` links the two profiles together.
 
 ## Adding a video
 
-Add an entry to `MEDIA_VIDEOS` in `src/features/media/data/videos.ts` with the YouTube ID and a bilingual title. They render on the home page in order.
+Add an entry to `content/media/videos.json` with the YouTube ID and a bilingual title (`description` optional). They render on the home page in order.
+
+```json
+{
+  "youtubeId": "dQw4w9WgXcQ",
+  "publishedAt": "2026-05-12",
+  "en": { "title": "CSRD in 12 minutes", "description": "…" },
+  "fr": { "title": "La CSRD en 12 minutes", "description": "…" }
+}
+```
 
 ## Changing the taxonomy
 

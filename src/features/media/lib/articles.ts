@@ -2,19 +2,16 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
 import { findTaxonomyPath, findIndustry, type MediaLocale } from "../data/taxonomy";
-import { getAuthor } from "../data/authors";
+import { getAuthorSlugs } from "./authors";
+import { splitByLocale, MEDIA_LOCALES } from "./locale-blocks";
 
 const ARTICLES_DIR = path.join(process.cwd(), "content/media/articles");
-const LOCALES: MediaLocale[] = ["en", "fr"];
 
 /**
  * One file per article holds both languages. Shared facts live in the
- * frontmatter; each language contributes a title, a description and a body.
- * Bodies are separated by a locale marker, which is an HTML comment on
- * purpose: MDX rejects HTML comments, so a marker can never collide with
- * article content.
+ * frontmatter; each language contributes a title, a description and a body,
+ * the bodies being separated by the locale markers in ./locale-blocks.
  */
-const LOCALE_MARKER = /^<!--\s*locale:(en|fr)\s*-->$/gm;
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -57,32 +54,11 @@ export interface Article extends ArticleFrontmatter, ArticleLocaleFields {
   body: string;
 }
 
-function splitByLocale(content: string, file: string): Record<MediaLocale, string> {
-  const markers = [...content.matchAll(LOCALE_MARKER)];
-  if (!markers.length) {
-    throw new Error(
-      `Invalid article ${file}: no locale markers. Each body must be introduced by "<!-- locale:en -->" or "<!-- locale:fr -->".`
-    );
-  }
-  const bodies = {} as Record<MediaLocale, string>;
-  markers.forEach((marker, index) => {
-    const locale = marker[1] as MediaLocale;
-    const start = marker.index! + marker[0].length;
-    const end = index + 1 < markers.length ? markers[index + 1].index! : content.length;
-    bodies[locale] = content.slice(start, end).trim();
-  });
-  for (const locale of LOCALES) {
-    if (!bodies[locale]) {
-      throw new Error(`Invalid article ${file}: missing or empty "<!-- locale:${locale} -->" body.`);
-    }
-  }
-  return bodies;
-}
-
 function assertFrontmatter(
   data: Record<string, unknown>,
   file: string,
-  expectedUrl: string
+  expectedUrl: string,
+  knownAuthors: Set<string>
 ): { shared: ArticleFrontmatter; perLocale: Record<MediaLocale, ArticleLocaleFields> } {
   const fail = (msg: string): never => {
     throw new Error(`Invalid frontmatter in ${file}: ${msg}`);
@@ -151,10 +127,10 @@ function assertFrontmatter(
   if (updated && !ISO_DATE.test(updated)) fail(`updated "${updated}" must be YYYY-MM-DD`);
 
   const author = str("author", data.author)!;
-  if (!getAuthor(author)) fail(`unknown author "${author}" (see src/features/media/data/authors.ts)`);
+  if (!knownAuthors.has(author)) fail(`unknown author "${author}" (see content/media/authors/)`);
 
   const perLocale = {} as Record<MediaLocale, ArticleLocaleFields>;
-  for (const locale of LOCALES) {
+  for (const locale of MEDIA_LOCALES) {
     const block = data[locale];
     if (!block || typeof block !== "object") {
       fail(`missing "${locale}:" block with a title and a description`);
@@ -210,7 +186,8 @@ export async function getArticle(slug: string, locale: MediaLocale): Promise<Art
   }
   const relative = `content/media/articles/${slug}.mdx`;
   const { data, content } = matter(raw);
-  const { shared, perLocale } = assertFrontmatter(data, relative, slug);
+  const knownAuthors = new Set(await getAuthorSlugs());
+  const { shared, perLocale } = assertFrontmatter(data, relative, slug, knownAuthors);
   if (shared.draft && process.env.NODE_ENV === "production") return null;
 
   const body = splitByLocale(content, relative)[locale];

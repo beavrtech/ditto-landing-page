@@ -1,6 +1,6 @@
 import type { Article } from "./articles";
 import { mediaUrl, SITE_URL } from "./urls";
-import type { MediaAuthor } from "../data/authors";
+import type { MediaAuthor } from "./authors";
 import {
   findTaxonomyPath,
   findIndustry,

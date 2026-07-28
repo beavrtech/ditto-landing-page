@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import type { MediaAuthor } from "../data/authors";
+import type { MediaAuthor } from "../lib/authors";
 import { mediaPath } from "../lib/urls";
 import { t, formatDate } from "../dictionary";
 import type { MediaLocale } from "../data/taxonomy";
