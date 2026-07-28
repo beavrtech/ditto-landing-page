@@ -32,6 +32,9 @@ Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial 
    date: "2026-07-15"               # YYYY-MM-DD, true publication date
    updated: "2026-08-02"            # optional, only when the substance changed
    section: [supply-chain, normes-et-regulations, reach]
+   alsoIn:                          # optional, up to 3 secondary placements
+     - [rse, normes-et-regulations]
+     - [qhse, environnement]
    industries: [electronique]       # omit or leave empty to mean all industries
    draft: true                      # optional, hides the article in production
 
@@ -49,6 +52,18 @@ Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial 
    `section` is the taxonomy path: two entries (`[level1, level2]`) or three when the
    piece is about one named framework (`[level1, level2, level3]`). Valid slugs come
    from `src/features/media/data/taxonomy.ts`.
+
+   `alsoIn` is for an article that lives in one section but is genuinely useful to
+   readers of another. Each entry is a path of one to three slugs, so `- [rse]` (the
+   whole CSR pillar) and `- [rse, carbone]` are both valid. The article then appears
+   on those theme pages and their parents, but **not** on their sibling or child
+   pages: `- [rse]` reaches `/media/theme/rse`, not `/media/theme/rse/carbone`.
+
+   Cross-filing changes where an article is listed, nothing else. Its URL, breadcrumb,
+   card kicker and primary topic all stay those of `section`, so a cross-filed piece
+   shows its home section on the card and reads as a cross-reference wherever else it
+   appears. The build rejects more than three entries, duplicates, and any entry on
+   the primary's own branch, which would be redundant.
 
    Everything is validated at build time. A url that does not match the filename, an unknown author, section, or industry, a malformed date, or a missing language block fails the build with the file path and the reason, on purpose: bad frontmatter should not reach production.
 

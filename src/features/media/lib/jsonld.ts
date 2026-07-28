@@ -69,16 +69,24 @@ export function authorProfileJsonLd(author: MediaAuthor, locale: MediaLocale) {
   };
 }
 
-function articleTopics(article: Article, locale: MediaLocale): string[] {
-  const chain = findTaxonomyPath(article.section) ?? [];
-  const themes = chain.map((node) => taxonomyLabel(node, locale));
+function pathLabels(path: string[], locale: MediaLocale): string[] {
+  return (findTaxonomyPath(path) ?? []).map((node) => taxonomyLabel(node, locale));
+}
+
+function articleTopics(article: Article, locale: MediaLocale) {
   // An article with no industries is not about any particular one, so it
   // contributes no industry topics rather than all eight.
   const industries = article.industries
     .map((slug) => findIndustry(slug))
     .filter(Boolean)
     .map((industry) => taxonomyLabel(industry!, locale));
-  return [...themes, ...industries];
+
+  // Only the canonical section becomes `about`: claiming an article is about
+  // every branch it is cross-filed into weakens the signal. Secondary
+  // placements still surface as keywords.
+  const primary = [...pathLabels(article.section, locale), ...industries];
+  const secondary = article.alsoIn.flatMap((path) => pathLabels(path, locale));
+  return { primary, all: [...new Set([...primary, ...secondary])] };
 }
 
 export function mediaArticleJsonLd(
@@ -103,8 +111,8 @@ export function mediaArticleJsonLd(
     author: authorPersonJsonLd(author, locale),
     publisher: { "@id": NORTHSTAR_ID },
     isPartOf: { "@id": NORTHSTAR_SITE_ID },
-    about: topics.map((name) => ({ "@type": "Thing", name })),
-    keywords: topics.join(", "),
+    about: topics.primary.map((name) => ({ "@type": "Thing", name })),
+    keywords: topics.all.join(", "),
   };
 }
 

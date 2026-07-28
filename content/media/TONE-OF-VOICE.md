@@ -146,7 +146,9 @@ Northstar emits structured data from frontmatter and MDX components. Getting the
 
 **FAQ.** `FAQPage` structured data is emitted **only** by the `<FAQ>` MDX component, and only from questions that are visible on the page. Never mark up an answer that is not on-page. Answers must stand alone, must not begin with "As we saw above", and must not be marketing copy. If there are no real questions, omit the FAQ.
 
-**Breadcrumbs.** Generated automatically from the taxonomy (Northstar, level 1, level 2, level 3, article). Consequence: putting an article in the wrong branch produces a wrong breadcrumb and a wrong `about`. Classify carefully.
+**Breadcrumbs.** Generated automatically from `section` (Northstar, level 1, level 2, level 3, article). Consequence: putting an article in the wrong branch produces a wrong breadcrumb and a wrong `about`. Classify carefully.
+
+**One home, several shelves.** `section` is where an article lives: one path, driving its breadcrumb, its card kicker and its `about`. `alsoIn` is where else it is worth reading, and only adds it to those listing pages. Use it when a reader of another pillar would genuinely want the piece, not to widen reach. Three secondary placements is the hard limit, and an article that seems to need more is usually two articles.
 
 ---
 

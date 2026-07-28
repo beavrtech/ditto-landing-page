@@ -34,12 +34,20 @@ export interface ArticleFrontmatter {
   illustration: string;
   date: string;
   updated?: string;
-  /** Taxonomy path: [level1, level2] or [level1, level2, level3]. */
+  /** Canonical taxonomy path: [level1, level2] or [level1, level2, level3]. */
   section: string[];
+  /**
+   * Secondary placements. The article also appears on these theme pages, but
+   * its breadcrumb, card kicker and primary topic stay those of `section`.
+   * Entries may be shallower than `section` (a bare [level1] is allowed).
+   */
+  alsoIn: string[][];
   /** Industry slugs. Empty means the article applies to every industry. */
   industries: string[];
   draft?: boolean;
 }
+
+const MAX_ALSO_IN = 3;
 
 /** An article resolved for one language. */
 export interface Article extends ArticleFrontmatter, ArticleLocaleFields {
@@ -100,6 +108,33 @@ function assertFrontmatter(
     fail(`unknown section "${section.join("/")}" (see src/features/media/data/taxonomy.ts)`);
   }
 
+  const rawAlsoIn = data.alsoIn ?? [];
+  if (!Array.isArray(rawAlsoIn)) fail(`field "alsoIn" must be a list of taxonomy paths`);
+  const alsoIn = rawAlsoIn as string[][];
+  if (alsoIn.length > MAX_ALSO_IN) {
+    fail(
+      `field "alsoIn" has ${alsoIn.length} entries, at most ${MAX_ALSO_IN} are allowed (an article relevant everywhere is filed nowhere)`
+    );
+  }
+  const seenPaths = new Set<string>();
+  for (const entry of alsoIn) {
+    if (!Array.isArray(entry) || entry.length < 1 || entry.length > 3) {
+      fail(`each "alsoIn" entry must be a list of 1 to 3 taxonomy slugs, e.g. - [rse, carbone]`);
+    }
+    if (!findTaxonomyPath(entry)) {
+      fail(`unknown alsoIn section "${entry.join("/")}" (see src/features/media/data/taxonomy.ts)`);
+    }
+    const key = entry.join("/");
+    if (seenPaths.has(key)) fail(`duplicate alsoIn section "${key}"`);
+    seenPaths.add(key);
+    // A secondary that sits on the primary's own branch adds nothing: theme
+    // pages already match by prefix in both directions.
+    const shorter = Math.min(entry.length, section.length);
+    if (entry.slice(0, shorter).join("/") === section.slice(0, shorter).join("/")) {
+      fail(`alsoIn section "${key}" is already covered by section "${section.join("/")}"`);
+    }
+  }
+
   // Absent or empty means every industry.
   const rawIndustries = data.industries ?? [];
   if (!Array.isArray(rawIndustries)) {
@@ -140,6 +175,7 @@ function assertFrontmatter(
       date,
       updated,
       section,
+      alsoIn,
       industries,
       draft: data.draft === true,
     },
@@ -194,10 +230,23 @@ export async function getAllArticles(locale: MediaLocale): Promise<Article[]> {
   return (articles.filter(Boolean) as Article[]).sort((a, b) => b.date.localeCompare(a.date));
 }
 
-/** Filter by taxonomy path prefix: [l1], [l1, l2] or [l1, l2, l3]. */
+/** Every taxonomy path an article is filed under, canonical one first. */
+export function articleSections(article: Article): string[][] {
+  return [article.section, ...article.alsoIn];
+}
+
+function isPrefix(prefix: string[], full: string[]): boolean {
+  return prefix.length <= full.length && prefix.every((segment, i) => full[i] === segment);
+}
+
+/**
+ * Filter by taxonomy path prefix: [l1], [l1, l2] or [l1, l2, l3].
+ * Matches the canonical section or any secondary placement, so a theme page
+ * lists both its own articles and the ones cross-filed into it.
+ */
 export function filterByTheme(articles: Article[], themePath: string[]): Article[] {
   return articles.filter((article) =>
-    themePath.every((segment, index) => article.section[index] === segment)
+    articleSections(article).some((section) => isPrefix(themePath, section))
   );
 }
 
@@ -206,14 +255,34 @@ export function filterByIndustry(articles: Article[], industry: string): Article
   return articles.filter((a) => a.industries.length === 0 || a.industries.includes(industry));
 }
 
-/** Related articles: same level 2 first, then same level 1, excluding self. */
+/** How many leading segments two taxonomy paths share. */
+function sharedDepth(a: string[], b: string[]): number {
+  let depth = 0;
+  while (depth < a.length && depth < b.length && a[depth] === b[depth]) depth++;
+  return depth;
+}
+
+/**
+ * Related articles, closest first: the deepest taxonomy overlap wins, counting
+ * secondary placements as well as canonical ones, so a cross-filed article is
+ * related to both of its sections. Articles sharing nothing are excluded.
+ */
 export function relatedArticles(all: Article[], current: Article, max = 3): Article[] {
-  const others = all.filter((a) => a.slug !== current.slug);
-  const sameL2 = others.filter(
-    (a) => a.section[0] === current.section[0] && a.section[1] === current.section[1]
-  );
-  const sameL1 = others.filter(
-    (a) => a.section[0] === current.section[0] && a.section[1] !== current.section[1]
-  );
-  return [...sameL2, ...sameL1].slice(0, max);
+  const mine = articleSections(current);
+  return all
+    .filter((a) => a.slug !== current.slug)
+    .map((article) => ({
+      article,
+      score: Math.max(
+        ...articleSections(article).flatMap((theirs) =>
+          mine.map((ours) => sharedDepth(ours, theirs))
+        )
+      ),
+    }))
+    .filter((entry) => entry.score > 0)
+    // `all` arrives newest first, and sort is stable, so equal scores stay in
+    // date order.
+    .sort((a, b) => b.score - a.score)
+    .slice(0, max)
+    .map((entry) => entry.article);
 }
