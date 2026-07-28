@@ -814,13 +814,16 @@
 .ns-author-bio {
   border-top: var(--ns-rule-heavy);
   margin-top: 3.5rem;
-  padding-top: 1.5rem;
+  padding-top: 2.5rem;
+  /* The related-articles rule follows immediately, so the block needs its own
+     bottom space or the links sit flush against it. */
+  padding-bottom: 3rem;
 }
 
 .ns-author-bio-body {
   display: flex;
   gap: 1.25rem;
-  margin-top: 1rem;
+  margin-top: 1.25rem;
 }
 
 .ns-article-foot {
