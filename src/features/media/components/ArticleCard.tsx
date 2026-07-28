@@ -15,7 +15,7 @@ export function ArticleCard({
   showThumb?: boolean;
 }) {
   const copy = t(locale);
-  const chain = findTaxonomyPath([article.level1, article.level2].filter(Boolean) as string[]);
+  const chain = findTaxonomyPath(article.section.slice(0, 2));
   const kicker = chain ? chain.map((n) => taxonomyLabel(n, locale)).join(" · ") : "";
 
   return (

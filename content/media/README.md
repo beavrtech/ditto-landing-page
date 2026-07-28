@@ -8,7 +8,7 @@ Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial 
 
 | What | Where |
 |---|---|
-| Articles | `content/media/articles/<slug>/en.mdx` and `fr.mdx` |
+| Articles | `content/media/articles/<url>.mdx` (one file, both languages) |
 | Illustrations | `public/media/illustrations/<slug>.svg` |
 | Authors | `src/features/media/data/authors.ts` |
 | Videos (home page) | `src/features/media/data/videos.ts` |
@@ -18,34 +18,58 @@ Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial 
 
 ## Adding an article
 
-1. **Pick a slug.** Lowercase, hyphenated, English, stable. It becomes the URL in both languages: `/media/<slug>` and `/fr/media/<slug>`. Changing it later breaks links.
+1. **Pick a url.** Lowercase, hyphenated, English, stable. It is the article's address in both languages: `/media/<url>` and `/fr/media/<url>`. Changing it later breaks links.
 
-2. **Create the folder** `content/media/articles/<slug>/` with two files, `en.mdx` and `fr.mdx`.
+2. **Create one file**, `content/media/articles/<url>.mdx`. It holds both languages. The filename must match the `url` field.
 
-3. **Write the frontmatter.** Both files carry identical values except `title` and `description`.
+3. **Write the frontmatter.** Facts that hold in both languages sit at the top level; anything that differs by language goes in the `en:` and `fr:` blocks.
 
    ```yaml
    ---
-   title: "REACH in 2026: the checklist electronics manufacturers actually need"
-   description: "One to three sentences stating the core answer. Doubles as the meta description and the card dek."
-   author: "alexis-de-taillac"        # slug from data/authors.ts
-   illustration: "/media/illustrations/reach-2026-checklist.svg"
-   illustrationAlt: "Describe the image, not the article"
-   date: "2026-07-15"                 # YYYY-MM-DD, true publication date
-   updated: "2026-08-02"              # optional, only when the substance changed
-   level1: "supply-chain"             # required, slug from data/taxonomy.ts
-   level2: "normes-et-regulations"    # required
-   level3: "reach"                    # optional, only under a "normes" branch
-   industries: ["electronique"]       # one or more slugs from INDUSTRIES
-   draft: true                        # optional, hides the article in production
+   url: reach-2026-checklist        # must match the filename
+   author: alexis-de-taillac        # slug from data/authors.ts
+   illustration: /media/illustrations/reach-2026-checklist.svg
+   date: "2026-07-15"               # YYYY-MM-DD, true publication date
+   updated: "2026-08-02"            # optional, only when the substance changed
+   section: [supply-chain, normes-et-regulations, reach]
+   industries: [electronique]       # omit or leave empty to mean all industries
+   draft: true                      # optional, hides the article in production
+
+   en:
+     title: "REACH in 2026: the checklist electronics manufacturers actually need"
+     description: "One to three sentences stating the core answer. Doubles as the meta description and the card dek."
+     alt: "Describe the illustration, not the article"   # optional; empty means decorative
+   fr:
+     title: "REACH en 2026 : la checklist dont les fabricants d'électronique ont vraiment besoin"
+     description: "Une à trois phrases qui donnent la réponse tout de suite."
+     alt: "Décrire l'illustration, pas l'article"
    ---
    ```
 
-   Everything is validated at build time. A wrong author, taxonomy path, industry, or date format fails the build with the file path and the reason, on purpose: bad frontmatter should not reach production.
+   `section` is the taxonomy path: two entries (`[level1, level2]`) or three when the
+   piece is about one named framework (`[level1, level2, level3]`). Valid slugs come
+   from `src/features/media/data/taxonomy.ts`.
+
+   Everything is validated at build time. A url that does not match the filename, an unknown author, section, or industry, a malformed date, or a missing language block fails the build with the file path and the reason, on purpose: bad frontmatter should not reach production.
 
 4. **Add the illustration** to `public/media/illustrations/`. Flat, geometric, sharp-cornered, in the Northstar palette (navy `#130e30`, yellow `#ffe228`, blue `#3a93ff` on white).
 
-5. **Write the body** in MDX. Markdown plus these components:
+5. **Write both bodies** in the same file, each introduced by a locale marker:
+
+   ```mdx
+   <!-- locale:en -->
+
+   English body...
+
+   <!-- locale:fr -->
+
+   Corps en français...
+   ```
+
+   The markers are HTML comments, which MDX itself rejects, so they can never be
+   confused with article content. Both are required.
+
+6. **Use the components** where they earn their place. Both bodies are MDX, so markdown plus:
 
    ```mdx
    <KeyTakeaways title="À retenir">   {/* title is optional; default "Key takeaways" */}
@@ -69,7 +93,7 @@ Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial 
 
    `<FAQ>` emits FAQPage structured data. Only use it for real questions, and keep answers self-contained: they get read out of context.
 
-6. **Check both pages** with `npm run dev` (port 3456): `http://localhost:3456/media/<slug>` and `http://localhost:3456/fr/media/<slug>`.
+7. **Check both pages** with `npm run dev` (port 3456): `http://localhost:3456/media/<url>` and `http://localhost:3456/fr/media/<url>`.
 
 ## Adding an author
 

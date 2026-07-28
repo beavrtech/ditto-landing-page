@@ -63,7 +63,7 @@ export function createArticleRoute(locale: MediaLocale) {
     const author = getAuthor(article.author);
     if (!author) notFound();
 
-    const themeSlugs = [article.level1, article.level2, article.level3].filter(Boolean) as string[];
+    const themeSlugs = article.section;
     const chain = findTaxonomyPath(themeSlugs) ?? [];
     const crumbs: Crumb[] = chain.map((node, index) => ({
       name: taxonomyLabel(node, locale),
@@ -86,11 +86,13 @@ export function createArticleRoute(locale: MediaLocale) {
                 only states the target industries. */}
             <p className="ns-article-industries">
               <span className="ns-kicker">{copy.industries}</span>{" "}
-              {article.industries
-                .map((slug) => findIndustry(slug))
-                .filter(Boolean)
-                .map((industry) => taxonomyLabel(industry!, locale))
-                .join(", ")}
+              {article.industries.length
+                ? article.industries
+                    .map((slug) => findIndustry(slug))
+                    .filter(Boolean)
+                    .map((industry) => taxonomyLabel(industry!, locale))
+                    .join(", ")
+                : copy.allIndustries}
             </p>
             <h1 className="ns-article-title">{article.title}</h1>
             <p className="ns-dek">{article.description}</p>
@@ -110,7 +112,7 @@ export function createArticleRoute(locale: MediaLocale) {
             <div className="ns-article-illustration">
               <Image
                 src={article.illustration}
-                alt={article.illustrationAlt}
+                alt={article.alt}
                 width={1200}
                 height={600}
                 priority

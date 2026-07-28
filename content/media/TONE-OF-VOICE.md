@@ -125,10 +125,10 @@ The shape follows the title, and these are shapes, not templates.
 
 ## 6. Bilingual rules
 
-Every article ships in English and French, sharing one slug, as `content/media/articles/<slug>/en.mdx` and `fr.mdx`.
+Every article ships in English and French in a single file, `content/media/articles/<url>.mdx`, with one `url` serving both languages.
 
 - French is a **true editorial translation, not a literal one**. Sentences may be restructured, examples may be swapped for ones a French reader recognizes, and the register must read as if written in French.
-- The two versions must carry the **same facts, figures, and taxonomy**. Frontmatter (`level1`, `level2`, `level3`, `industries`, `date`, `author`, `illustration`) must match exactly. Only `title`, `description`, and the body differ.
+- The two versions must carry the **same facts, figures, and taxonomy**. That is structural now: `section`, `industries`, `date`, `author` and `illustration` are declared once at the top of the file and cannot diverge. Only the title, the description, the illustration's alt text and the body differ by language.
 - Regulation names stay in their official form (REACH, CSRD, EUDR, ISO 45001). French articles keep French common-noun usage around them.
 - Do not machine-translate and ship. A human reads both.
 
@@ -161,7 +161,7 @@ Northstar emits structured data from frontmatter and MDX components. Getting the
 - [ ] No banned AI-tell word or pattern survived the edit.
 - [ ] One vivid turn of phrase at most; the rest is plain.
 - [ ] `<KeyTakeaways>` are genuinely actionable; `<FAQ>` answers stand alone (or the FAQ is absent).
-- [ ] Frontmatter matches between `en.mdx` and `fr.mdx` except title, description, and body.
+- [ ] Both `<!-- locale:en -->` and `<!-- locale:fr -->` bodies say the same things, with no section left untranslated.
 - [ ] Taxonomy and industries are correct: they drive breadcrumbs, listing pages, and structured data.
 - [ ] The author exists in `data/authors.ts` and is a real person.
 - [ ] A human has read the French version as French.

@@ -70,9 +70,10 @@ export function authorProfileJsonLd(author: MediaAuthor, locale: MediaLocale) {
 }
 
 function articleTopics(article: Article, locale: MediaLocale): string[] {
-  const themePath = [article.level1, article.level2, article.level3].filter(Boolean) as string[];
-  const chain = findTaxonomyPath(themePath) ?? [];
+  const chain = findTaxonomyPath(article.section) ?? [];
   const themes = chain.map((node) => taxonomyLabel(node, locale));
+  // An article with no industries is not about any particular one, so it
+  // contributes no industry topics rather than all eight.
   const industries = article.industries
     .map((slug) => findIndustry(slug))
     .filter(Boolean)
