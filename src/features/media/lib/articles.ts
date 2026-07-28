@@ -51,6 +51,7 @@ export interface Article extends ArticleFrontmatter, ArticleLocaleFields {
   slug: string;
   locale: MediaLocale;
   readTimeMinutes: number;
+  wordCount: number;
   body: string;
 }
 
@@ -159,13 +160,13 @@ function assertFrontmatter(
   };
 }
 
-function readTime(body: string): number {
-  const words = body
+/** Words of prose, ignoring code fences and component tags. */
+function countWords(body: string): number {
+  return body
     .replace(/```[\s\S]*?```/g, " ")
     .replace(/<[^>]+>/g, " ")
     .split(/\s+/)
     .filter(Boolean).length;
-  return Math.max(1, Math.ceil(words / 200));
 }
 
 export async function getArticleSlugs(): Promise<string[]> {
@@ -191,12 +192,14 @@ export async function getArticle(slug: string, locale: MediaLocale): Promise<Art
   if (shared.draft && process.env.NODE_ENV === "production") return null;
 
   const body = splitByLocale(content, relative)[locale];
+  const wordCount = countWords(body);
   return {
     ...shared,
     ...perLocale[locale],
     slug,
     locale,
-    readTimeMinutes: readTime(body),
+    readTimeMinutes: Math.max(1, Math.ceil(wordCount / 200)),
+    wordCount,
     body,
   };
 }

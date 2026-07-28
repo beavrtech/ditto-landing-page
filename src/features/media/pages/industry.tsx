@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/JsonLd";
 import { MediaShell } from "../components/MediaShell";
 import { MediaBreadcrumbs } from "../components/MediaBreadcrumbs";
 import { ArticleGrid } from "../components/ArticleCard";
 import { getAllArticles, filterByIndustry } from "../lib/articles";
-import { mediaAlternates } from "../lib/urls";
+import { mediaAlternates, mediaUrl } from "../lib/urls";
+import { articleCollectionJsonLd } from "../lib/jsonld";
 import { t } from "../dictionary";
 import {
   INDUSTRIES,
@@ -52,6 +54,15 @@ export function createIndustryRoute(locale: MediaLocale) {
           </div>
           <ArticleGrid articles={articles} locale={locale} />
         </div>
+        <JsonLd
+          data={articleCollectionJsonLd({
+            url: mediaUrl(locale, `/industry/${slug}`),
+            name: label,
+            description: copy.articlesIn(label),
+            articles,
+            locale,
+          })}
+        />
       </MediaShell>
     );
   }

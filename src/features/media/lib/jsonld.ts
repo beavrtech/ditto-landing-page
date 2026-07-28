@@ -113,6 +113,59 @@ export function mediaArticleJsonLd(
     isPartOf: { "@id": NORTHSTAR_SITE_ID },
     about: topics.primary.map((name) => ({ "@type": "Thing", name })),
     keywords: topics.all.join(", "),
+    articleSection: pathLabels(article.section, locale),
+    wordCount: article.wordCount,
+    // ISO 8601 duration, from the same read time shown in the byline.
+    timeRequired: `PT${article.readTimeMinutes}M`,
+    isAccessibleForFree: true,
+  };
+}
+
+/** A listing page: what it is, and the articles on it, in order. */
+export function articleCollectionJsonLd({
+  url,
+  name,
+  description,
+  articles,
+  locale,
+}: {
+  url: string;
+  name: string;
+  description?: string;
+  articles: Article[];
+  locale: MediaLocale;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    url,
+    name,
+    ...(description ? { description } : {}),
+    inLanguage: locale,
+    isPartOf: { "@id": NORTHSTAR_SITE_ID },
+    mainEntity: articleItemList(articles, locale, name),
+  };
+}
+
+/**
+ * Standalone list of articles, for a page that is already something else —
+ * an author page is a ProfilePage, so its article list is its own node.
+ */
+export function articleItemListJsonLd(articles: Article[], locale: MediaLocale, name: string) {
+  return { "@context": "https://schema.org", ...articleItemList(articles, locale, name) };
+}
+
+function articleItemList(articles: Article[], locale: MediaLocale, name: string) {
+  return {
+    "@type": "ItemList" as const,
+    name,
+    numberOfItems: articles.length,
+    itemListElement: articles.map((article, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      url: mediaUrl(locale, `/${article.slug}`),
+      name: article.title,
+    })),
   };
 }
 

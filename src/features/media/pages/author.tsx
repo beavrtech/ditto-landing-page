@@ -7,7 +7,7 @@ import { MediaBreadcrumbs } from "../components/MediaBreadcrumbs";
 import { ArticleGrid } from "../components/ArticleCard";
 import { getAllArticles } from "../lib/articles";
 import { getAuthor, getAuthorSlugs } from "../lib/authors";
-import { authorProfileJsonLd } from "../lib/jsonld";
+import { authorProfileJsonLd, articleItemListJsonLd } from "../lib/jsonld";
 import { mediaAlternates, SITE_URL } from "../lib/urls";
 import { t } from "../dictionary";
 import type { MediaLocale } from "../data/taxonomy";
@@ -76,6 +76,9 @@ export function createAuthorRoute(locale: MediaLocale) {
           <ArticleGrid articles={articles} locale={locale} />
         </div>
         <JsonLd data={authorProfileJsonLd(author, locale)} />
+        {articles.length ? (
+          <JsonLd data={articleItemListJsonLd(articles, locale, author.name)} />
+        ) : null}
       </MediaShell>
     );
   }

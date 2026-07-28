@@ -15,9 +15,12 @@ You do not hand-write any of this.
 **Article pages**
 
 - `Article` with `headline`, `description`, `image`, `datePublished`, `dateModified`, `inLanguage`, `mainEntityOfPage`, `url`, an `author` `Person` (with their LinkedIn as `sameAs`), `publisher` and `isPartOf` pointing at the Northstar nodes, `about` from the canonical section plus industries, and `keywords` including secondary placements.
+- Also `articleSection` (the canonical taxonomy labels), `wordCount`, `timeRequired` as an ISO 8601 duration matching the byline's read time, and `isAccessibleForFree`. All derived, none authored.
 - Open Graph: `og:type=article`, title, description, `publishedTime`, `modifiedTime`, author, image.
 
-**Author pages** — `ProfilePage` wrapping a `Person` with the bio and photo.
+**Listing pages** — the home page, theme pages and industry pages emit a `CollectionPage` whose `mainEntity` is an ordered `ItemList` of the articles shown, so an engine sees a structured list rather than a page of links. A theme page's list includes articles cross-filed in via `alsoIn`, exactly as the page does.
+
+**Author pages** — `ProfilePage` wrapping a `Person` with the bio and photo, plus a standalone `ItemList` of that author's articles. It is a separate node rather than part of the ProfilePage, because an `ItemList` is not a `CreativeWork` and cannot be a `hasPart`.
 
 **FAQ blocks** — `FAQPage`, only from the `<FAQ>` component, only from questions visible on the page.
 
@@ -49,12 +52,8 @@ Be honest about these rather than assuming the section is fully optimised.
 
 3. **The publisher has no logo.** `Article` rich results expect `publisher.logo` as an `ImageObject`. The Northstar `Organization` node has none.
 
-4. **Listing pages carry no `CollectionPage` or `ItemList`.** Theme, industry and author pages emit only breadcrumbs, so an engine sees a page of links with no declared structure.
+4. **No Twitter card tags**, so link previews fall back to Open Graph, which mostly works but is not controlled.
 
-5. **Easy `Article` properties are unset**, though the data already exists: `articleSection` (from `section`), `wordCount` and `timeRequired` (read time is already computed), `isAccessibleForFree`.
-
-6. **No Twitter card tags**, so link previews fall back to Open Graph, which mostly works but is not controlled.
-
-7. **Heading anchors exist but nothing uses them.** There is no table of contents and no visible anchor links, so the ids are dead weight rather than navigation.
+5. **Heading anchors exist but nothing uses them.** There is no table of contents and no visible anchor links, so the ids are dead weight rather than navigation.
 
 None of these are blocking for writing. Items 2 and 3 are blocking for rich results, and item 1 is blocking for everything.

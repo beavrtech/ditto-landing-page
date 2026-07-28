@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/JsonLd";
 import { MediaShell } from "../components/MediaShell";
 import { MediaBreadcrumbs, type Crumb } from "../components/MediaBreadcrumbs";
 import { ArticleGrid } from "../components/ArticleCard";
 import { getAllArticles, filterByTheme } from "../lib/articles";
-import { mediaAlternates, mediaPath } from "../lib/urls";
+import { mediaAlternates, mediaPath, mediaUrl } from "../lib/urls";
+import { articleCollectionJsonLd } from "../lib/jsonld";
 import { t } from "../dictionary";
 import {
   findTaxonomyPath,
@@ -74,6 +76,15 @@ export function createThemeRoute(locale: MediaLocale) {
 
           <ArticleGrid articles={articles} locale={locale} />
         </div>
+        <JsonLd
+          data={articleCollectionJsonLd({
+            url: mediaUrl(locale, `/theme/${path.join("/")}`),
+            name: label,
+            description: copy.articlesIn(label),
+            articles,
+            locale,
+          })}
+        />
       </MediaShell>
     );
   }

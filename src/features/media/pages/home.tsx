@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { JsonLd } from "@/components/JsonLd";
 import { MediaShell } from "../components/MediaShell";
 import { ArticleGrid } from "../components/ArticleCard";
 import { NewsletterBox } from "../components/NewsletterBox";
@@ -9,7 +10,8 @@ import { AuthorsSection } from "../components/AuthorsSection";
 import { Byline } from "../components/Byline";
 import { getAllArticles } from "../lib/articles";
 import { getAuthor } from "../lib/authors";
-import { mediaPath, mediaAlternates } from "../lib/urls";
+import { mediaPath, mediaAlternates, mediaUrl } from "../lib/urls";
+import { articleCollectionJsonLd } from "../lib/jsonld";
 import { t } from "../dictionary";
 import type { MediaLocale } from "../data/taxonomy";
 
@@ -82,6 +84,15 @@ export function createHomeRoute(locale: MediaLocale) {
 
         <VideoSection locale={locale} />
         <AuthorsSection locale={locale} />
+        <JsonLd
+          data={articleCollectionJsonLd({
+            url: mediaUrl(locale),
+            name: "Northstar",
+            description: copy.tagline,
+            articles,
+            locale,
+          })}
+        />
       </MediaShell>
     );
   }
