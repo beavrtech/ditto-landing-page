@@ -28,7 +28,7 @@ Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial 
    ---
    title: "REACH in 2026: the checklist electronics manufacturers actually need"
    description: "One to three sentences stating the core answer. Doubles as the meta description and the card dek."
-   author: "thomas-berger"            # slug from data/authors.ts
+   author: "alexis-de-taillac"        # slug from data/authors.ts
    illustration: "/media/illustrations/reach-2026-checklist.svg"
    illustrationAlt: "Describe the image, not the article"
    date: "2026-07-15"                 # YYYY-MM-DD, true publication date
@@ -73,7 +73,9 @@ Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial 
 
 ## Adding an author
 
-Add an entry to `MEDIA_AUTHORS` in `src/features/media/data/authors.ts` and drop an avatar in `public/media/authors/`. Real people only: each author becomes a `Person` entity in structured data with a profile page at `/media/authors/<slug>`. Set `dittoAuthorSlug` if they also have a page on the main Ditto site.
+Add an entry to `MEDIA_AUTHORS` in `src/features/media/data/authors.ts`. Real people only: each author becomes a `Person` entity in structured data with a profile page at `/media/authors/<slug>`.
+
+Authors are mirrored by hand from the Supabase `authors` table the main site uses, so keep the slug, title and photo identical to the CMS record. `avatar` accepts either a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows, so pointing at the existing CMS photo is the simplest option. Set `dittoAuthorSlug` to their slug on the main site to link the two profiles.
 
 ## Adding a video
 

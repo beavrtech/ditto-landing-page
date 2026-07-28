@@ -8,7 +8,7 @@ import { ArticleGrid } from "../components/ArticleCard";
 import { getAllArticles } from "../lib/articles";
 import { MEDIA_AUTHORS, getAuthor } from "../data/authors";
 import { authorProfileJsonLd } from "../lib/jsonld";
-import { mediaAlternates } from "../lib/urls";
+import { mediaAlternates, SITE_URL } from "../lib/urls";
 import { t } from "../dictionary";
 import type { MediaLocale } from "../data/taxonomy";
 
@@ -54,13 +54,21 @@ export function createAuthorRoute(locale: MediaLocale) {
                 <p className="ns-meta" style={{ marginTop: "0.5rem" }}>
                   {author.title[locale]}
                 </p>
-                {author.linkedin ? (
-                  <p className="ns-meta" style={{ marginTop: "0.5rem" }}>
+                <p className="ns-meta ns-author-links">
+                  {author.linkedin ? (
                     <a href={author.linkedin} rel="noopener noreferrer" target="_blank">
                       LinkedIn
                     </a>
-                  </p>
-                ) : null}
+                  ) : null}
+                  {author.dittoAuthorSlug ? (
+                    <a
+                      href={`${SITE_URL}/${locale}/authors/${author.dittoAuthorSlug}`}
+                      rel="noopener noreferrer"
+                    >
+                      {copy.profileOnDitto}
+                    </a>
+                  ) : null}
+                </p>
               </div>
             </div>
             <p className="ns-bio">{author.bio[locale]}</p>

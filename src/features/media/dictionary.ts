@@ -37,6 +37,7 @@ export interface MediaDict {
   legal: string;
   privacy: string;
   aboutLine: string;
+  profileOnDitto: string;
 }
 
 const dict: Record<MediaLocale, MediaDict> = {
@@ -75,6 +76,7 @@ const dict: Record<MediaLocale, MediaDict> = {
     legal: "Legal notices",
     privacy: "Privacy policy",
     aboutLine: "Northstar is published by Ditto, the compliance platform.",
+    profileOnDitto: "Profile on trustditto.com",
   },
   fr: {
     tagline: "Le média QHSE, RSE & Supply Chain par Ditto",
@@ -111,6 +113,7 @@ const dict: Record<MediaLocale, MediaDict> = {
     legal: "Mentions légales",
     privacy: "Politique de confidentialité",
     aboutLine: "Northstar est édité par Ditto, la plateforme de conformité.",
+    profileOnDitto: "Profil sur trustditto.com",
   },
 };
 

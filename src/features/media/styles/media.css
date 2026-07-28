@@ -288,10 +288,6 @@
   padding-bottom: 3.5rem;
 }
 
-.ns-hero-title {
-  font-size: var(--ns-h2);
-}
-
 .ns-hero-illustration {
   display: block;
   border: var(--ns-rule);
@@ -308,6 +304,7 @@
 }
 
 .ns-hero-title {
+  font-size: var(--ns-h2);
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
@@ -950,4 +947,11 @@
 .ns-notfound {
   padding: 6rem 0;
   text-align: center;
+}
+
+.ns-author-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
 }

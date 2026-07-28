@@ -1,4 +1,6 @@
-// Northstar authors — file-based, independent from the Supabase `authors` table.
+// Northstar authors — file-based, independent from the Supabase `authors` table,
+// but kept in sync with it by hand: same slugs, titles and photos as the Ditto
+// site, so a byline followed from either place lands on the same person.
 // Every article frontmatter `author` field must reference a slug in this list.
 
 export interface MediaAuthor {
@@ -6,41 +8,45 @@ export interface MediaAuthor {
   name: string;
   title: { en: string; fr: string };
   bio: { en: string; fr: string };
-  /** Path under /public, e.g. "/media/authors/marie-lefevre.svg" */
+  /** Path under /public, or an absolute URL on a host allowed in next.config.ts. */
   avatar: string;
   linkedin?: string;
-  /** Optional bridge to the Ditto site author page at /en/authors/[slug]. */
+  /** Bridge to the Ditto site author page at /[locale]/authors/[slug]. */
   dittoAuthorSlug?: string;
 }
 
 export const MEDIA_AUTHORS: MediaAuthor[] = [
   {
-    slug: "marie-lefevre",
-    name: "Marie Lefèvre",
+    slug: "pierre-poirmeur",
+    name: "Pierre Poirmeur",
     title: {
-      en: "QHSE & Compliance Editor",
-      fr: "Rédactrice QHSE & Conformité",
+      en: "Co-founder and CEO of Ditto",
+      fr: "Cofondateur et PDG de Ditto",
     },
     bio: {
-      en: "Marie spent ten years running QHSE programs in industrial mid-caps before turning to writing. She covers quality systems, workplace safety and the regulations that keep plant managers up at night.",
-      fr: "Marie a piloté pendant dix ans des programmes QHSE dans des ETI industrielles avant de passer à l'écriture. Elle couvre les systèmes qualité, la sécurité au travail et les réglementations qui empêchent les directeurs de site de dormir.",
+      en: "A graduate of HEC Paris, Pierre started his career in strategy consulting at BCG, where he spent five years. As co-founder and CEO of Ditto, he leads the teams building CSR and compliance solutions. He likes complex subjects, and likes making them accessible even more.",
+      fr: "Diplômé d'HEC Paris, Pierre a débuté sa carrière dans le conseil en stratégie au BCG, où il a passé cinq ans. Cofondateur et PDG de Ditto, il dirige les équipes qui construisent les solutions RSE et conformité. Il aime les sujets complexes, et plus encore les rendre accessibles.",
     },
-    avatar: "/media/authors/marie-lefevre.svg",
-    linkedin: "https://www.linkedin.com/company/trustditto",
+    avatar:
+      "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/authors/pierre-poirmeur/picture_url.avif",
+    linkedin: "https://www.linkedin.com/in/pierre-poirmeur-21036382/",
+    dittoAuthorSlug: "pierre-poirmeur",
   },
   {
-    slug: "thomas-berger",
-    name: "Thomas Berger",
+    slug: "alexis-de-taillac",
+    name: "Alexis de Taillac",
     title: {
-      en: "Sustainability & Supply Chain Editor",
-      fr: "Rédacteur RSE & Supply Chain",
+      en: "Head of Compliance",
+      fr: "Head of Compliance",
     },
     bio: {
-      en: "Thomas writes about CSR reporting, carbon accounting and supply-chain regulation. Former sustainability consultant, he has filed more EcoVadis questionnaires than he cares to count.",
-      fr: "Thomas écrit sur le reporting RSE, la comptabilité carbone et la réglementation des chaînes d'approvisionnement. Ancien consultant en développement durable, il a rempli plus de questionnaires EcoVadis qu'il ne veut bien l'admettre.",
+      en: "A graduate of CentraleSupélec, Alexis spent the first years of his career building products and services in an innovation studio, then set up the CSRD practice at the R3 firm. At Ditto he runs the expertise team, and in particular the work of bringing frameworks into the platform.",
+      fr: "Diplômé de CentraleSupélec, Alexis a passé les premières années de sa carrière à créer des produits et services au sein d'un studio d'innovation, puis a monté la practice CSRD du cabinet R3. Chez Ditto, il dirige l'équipe expertise, et en particulier l'intégration des référentiels dans la plateforme.",
     },
-    avatar: "/media/authors/thomas-berger.svg",
-    linkedin: "https://www.linkedin.com/company/trustditto",
+    avatar:
+      "https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/authors/alexis-de-taillac/picture_url.jpeg",
+    linkedin: "https://www.linkedin.com/in/alexis-bartouilh-de-taillac/",
+    dittoAuthorSlug: "alexis-de-taillac",
   },
 ];
 

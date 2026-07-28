@@ -51,6 +51,11 @@ export function authorPersonJsonLd(author: MediaAuthor, locale: MediaLocale) {
   };
 }
 
+/** Avatars may be local paths or absolute URLs on an allowed remote host. */
+export function absoluteAssetUrl(src: string): string {
+  return src.startsWith("http") ? src : `${SITE_URL}${src}`;
+}
+
 export function authorProfileJsonLd(author: MediaAuthor, locale: MediaLocale) {
   return {
     "@context": "https://schema.org",
@@ -59,7 +64,7 @@ export function authorProfileJsonLd(author: MediaAuthor, locale: MediaLocale) {
     mainEntity: {
       ...authorPersonJsonLd(author, locale),
       description: author.bio[locale],
-      image: `${SITE_URL}${author.avatar}`,
+      image: absoluteAssetUrl(author.avatar),
     },
   };
 }
