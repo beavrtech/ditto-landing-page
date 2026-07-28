@@ -45,7 +45,7 @@ Use it when a reader of the other pillar would genuinely want the piece. Not to 
 
 ## `industries` — who it is for
 
-A flat, multi-select list of industry slugs, shown at the top of the article and driving `/en/media/industry/<slug>` pages.
+A flat, multi-select list of industry slugs. It shows at the top of the article, drives the eight `/en/media/industry/<slug>` pages, and drives the `?industry=` filter that narrows the home page and any theme page in place.
 
 - **Omit the field, or leave it empty, to mean every industry.** That is the honest value for a piece that applies regardless of sector, and the header then reads "All industries".
 - An empty list contributes **no** industry keywords to structured data. An article that is not about a particular industry should not claim all eight.

@@ -20,6 +20,8 @@ You do not hand-write any of this.
 
 **Listing pages** — the home page, theme pages and industry pages emit a `CollectionPage` whose `mainEntity` is an ordered `ItemList` of the articles shown, so an engine sees a structured list rather than a page of links. A theme page's list includes articles cross-filed in via `alsoIn`, exactly as the page does.
 
+**The industry filter is deliberately not a page.** `?industry=` narrows the home page and theme pages, and it is read on the client so those pages stay static. That means a filtered view is never indexed, which is the point: theme × industry is 58 × 8 combinations, and generating a listing page for each would be textbook faceted-navigation clutter. The eight industry pages remain as real destinations for the single-facet browse. When a theme-and-industry combination is worth ranking for, write the article: `section` files it under the theme, `industries` under the sector, and it then appears on both pages and under both filters.
+
 **Author pages** — `ProfilePage` wrapping a `Person` with the bio and photo, plus a standalone `ItemList` of that author's articles. It is a separate node rather than part of the ProfilePage, because an `ItemList` is not a `CreativeWork` and cannot be a `hasPart`.
 
 **FAQ blocks** — `FAQPage`, only from the `<FAQ>` component, only from questions visible on the page.

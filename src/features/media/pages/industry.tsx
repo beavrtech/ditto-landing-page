@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { MediaShell } from "../components/MediaShell";
 import { MediaBreadcrumbs } from "../components/MediaBreadcrumbs";
 import { ArticleGrid } from "../components/ArticleCard";
-import { getAllArticles, filterByIndustry } from "../lib/articles";
+import { getAllArticles, filterByIndustry, toCards } from "../lib/articles";
 import { mediaAlternates, mediaUrl } from "../lib/urls";
 import { articleCollectionJsonLd } from "../lib/jsonld";
 import { t } from "../dictionary";
@@ -52,7 +52,7 @@ export function createIndustryRoute(locale: MediaLocale) {
             <p className="ns-kicker">{copy.industryKicker}</p>
             <h1>{label}</h1>
           </div>
-          <ArticleGrid articles={articles} locale={locale} />
+          <ArticleGrid articles={toCards(articles)} locale={locale} />
         </div>
         <JsonLd
           data={articleCollectionJsonLd({

@@ -18,6 +18,8 @@ export interface MediaDict {
   newsletterThemes: string;
   newsletterIndustry: string;
   allIndustries: string;
+  clearFilter: string;
+  emptyFiltered: string;
   readTime: (min: number) => string;
   publishedOn: string;
   updatedOn: string;
@@ -64,6 +66,8 @@ const dict: Record<MediaLocale, MediaDict> = {
     newsletterThemes: "What do you want to read about?",
     newsletterIndustry: "Your industry",
     allIndustries: "All industries",
+    clearFilter: "Clear",
+    emptyFiltered: "Nothing here for that industry yet.",
     readTime: (min: number) => `${min} min read`,
     publishedOn: "Published on",
     updatedOn: "Updated on",
@@ -108,6 +112,8 @@ const dict: Record<MediaLocale, MediaDict> = {
     newsletterThemes: "Que souhaitez-vous lire ?",
     newsletterIndustry: "Votre industrie",
     allIndustries: "Toutes les industries",
+    clearFilter: "Retirer",
+    emptyFiltered: "Rien ici pour cette industrie pour le moment.",
     readTime: (min: number) => `${min} min de lecture`,
     publishedOn: "Publié le",
     updatedOn: "Mis à jour le",

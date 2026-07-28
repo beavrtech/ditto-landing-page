@@ -17,6 +17,7 @@ import {
   getArticleSlugs,
   getAllArticles,
   relatedArticles,
+  toCards,
 } from "../lib/articles";
 import { renderArticleBody } from "../lib/mdx";
 import { getAuthor } from "../lib/authors";
@@ -162,7 +163,7 @@ export function createArticleRoute(locale: MediaLocale) {
                   {copy.moreIn(level1Node ? taxonomyLabel(level1Node, locale) : "Northstar")}
                 </h2>
               </div>
-              <ArticleGrid articles={related} locale={locale} />
+              <ArticleGrid articles={toCards(related)} locale={locale} />
             </div>
           </section>
         ) : null}

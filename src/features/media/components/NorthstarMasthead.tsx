@@ -22,6 +22,9 @@ export function NorthstarMasthead({
   const segments = mirrorPath.split("/").filter(Boolean);
   const activeTheme = segments[0] === "theme" ? segments[1] : undefined;
   const activeIndustry = segments[0] === "industry" ? segments[1] : undefined;
+  // The home page and theme pages carry a filterable list; everywhere else the
+  // picker navigates instead.
+  const pickerMode = mirrorPath === "" || segments[0] === "theme" ? "filter" : "navigate";
 
   return (
     <header className="ns-masthead">
@@ -56,7 +59,7 @@ export function NorthstarMasthead({
               </Link>
             ))}
           </nav>
-          <IndustryDropdown locale={locale} current={activeIndustry ?? ""} />
+          <IndustryDropdown locale={locale} mode={pickerMode} current={activeIndustry ?? ""} />
         </div>
       </div>
     </header>

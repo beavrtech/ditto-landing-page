@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { MediaShell } from "../components/MediaShell";
 import { MediaBreadcrumbs, type Crumb } from "../components/MediaBreadcrumbs";
 import { ArticleGrid } from "../components/ArticleCard";
-import { getAllArticles, filterByTheme } from "../lib/articles";
+import { getAllArticles, filterByTheme, toCards } from "../lib/articles";
 import { mediaAlternates, mediaPath, mediaUrl } from "../lib/urls";
 import { articleCollectionJsonLd } from "../lib/jsonld";
 import { t } from "../dictionary";
@@ -75,14 +75,9 @@ export function createThemeRoute(locale: MediaLocale) {
             </div>
           ) : null}
 
-          {/* Every taxonomy node has a page from day one, so most of them are
-              empty until the topic is written. Say so rather than showing an
-              empty grid. */}
-          {articles.length ? (
-            <ArticleGrid articles={articles} locale={locale} />
-          ) : (
-            <p className="ns-empty">{copy.emptyTheme}</p>
-          )}
+          {/* Every taxonomy node has a page from day one, so most start empty;
+              the grid says so itself. `?industry=` narrows it in place. */}
+          <ArticleGrid articles={toCards(articles)} locale={locale} filterable />
         </div>
         <JsonLd
           data={articleCollectionJsonLd({

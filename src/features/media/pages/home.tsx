@@ -3,12 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { JsonLd } from "@/components/JsonLd";
 import { MediaShell } from "../components/MediaShell";
-import { ArticleGrid } from "../components/ArticleCard";
+import { HomeFeed } from "../components/HomeFeed";
 import { NewsletterBox } from "../components/NewsletterBox";
 import { VideoSection } from "../components/VideoSection";
 import { AuthorsSection } from "../components/AuthorsSection";
 import { Byline } from "../components/Byline";
-import { getAllArticles } from "../lib/articles";
+import { getAllArticles, toCards } from "../lib/articles";
 import { getAuthor } from "../lib/authors";
 import { mediaPath, mediaAlternates, mediaUrl } from "../lib/urls";
 import { articleCollectionJsonLd } from "../lib/jsonld";
@@ -31,7 +31,7 @@ export function createHomeRoute(locale: MediaLocale) {
 
   async function Page() {
     const articles = await getAllArticles(locale);
-    const [latest, ...rest] = articles;
+    const [latest] = articles;
     const latestAuthor = latest ? await getAuthor(latest.author) : null;
 
     return (
@@ -71,13 +71,13 @@ export function createHomeRoute(locale: MediaLocale) {
           </div>
         </section>
 
-        {rest.length ? (
+        {articles.length ? (
           <section className="ns-section">
             <div className="ns-wrap">
               <div className="ns-section-head">
                 <h2 className="ns-section-title">{copy.allArticles}</h2>
               </div>
-              <ArticleGrid articles={rest.slice(0, 6)} locale={locale} />
+              <HomeFeed cards={toCards(articles)} locale={locale} />
             </div>
           </section>
         ) : null}

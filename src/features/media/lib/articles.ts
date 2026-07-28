@@ -3,6 +3,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import { findTaxonomyPath, findIndustry, type MediaLocale } from "../data/taxonomy";
 import { getAuthorSlugs } from "./authors";
+import { matchesIndustry } from "./industry-filter";
 import { splitByLocale, MEDIA_LOCALES } from "./locale-blocks";
 
 const ARTICLES_DIR = path.join(process.cwd(), "content/media/articles");
@@ -232,7 +233,22 @@ export function filterByTheme(articles: Article[], themePath: string[]): Article
 
 /** An article with no industries applies to all of them. */
 export function filterByIndustry(articles: Article[], industry: string): Article[] {
-  return articles.filter((a) => a.industries.length === 0 || a.industries.includes(industry));
+  return articles.filter((a) => matchesIndustry(a.industries, industry));
+}
+
+/**
+ * An article without its body, which is what a card needs. Grids are client
+ * components so they can filter on `?industry=`; passing whole articles would
+ * serialise every MDX body into the payload.
+ */
+export type CardArticle = Omit<Article, "body">;
+
+export function toCards(articles: Article[]): CardArticle[] {
+  return articles.map((article) => {
+    const card: Partial<Article> = { ...article };
+    delete card.body;
+    return card as CardArticle;
+  });
 }
 
 /** How many leading segments two taxonomy paths share. */

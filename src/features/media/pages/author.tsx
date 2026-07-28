@@ -5,7 +5,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { MediaShell } from "../components/MediaShell";
 import { MediaBreadcrumbs } from "../components/MediaBreadcrumbs";
 import { ArticleGrid } from "../components/ArticleCard";
-import { getAllArticles } from "../lib/articles";
+import { getAllArticles, toCards } from "../lib/articles";
 import { getAuthor, getAuthorSlugs } from "../lib/authors";
 import { authorProfileJsonLd, articleItemListJsonLd } from "../lib/jsonld";
 import { mediaAlternates, SITE_URL } from "../lib/urls";
@@ -73,7 +73,7 @@ export function createAuthorRoute(locale: MediaLocale) {
             </div>
             <p className="ns-bio">{author.bio[locale]}</p>
           </div>
-          <ArticleGrid articles={articles} locale={locale} />
+          <ArticleGrid articles={toCards(articles)} locale={locale} />
         </div>
         <JsonLd data={authorProfileJsonLd(author, locale)} />
         {articles.length ? (

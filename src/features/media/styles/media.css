@@ -1160,3 +1160,29 @@
     padding: 0.75rem 0;
   }
 }
+
+/* Active ?industry= filter on a listing. */
+.ns-filter-note {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 1.5rem;
+  font-size: var(--ns-small);
+}
+.ns-filter-clear {
+  appearance: none;
+  background: var(--ns-paper);
+  color: inherit;
+  font-family: var(--ns-font-body);
+  cursor: pointer;
+  border: var(--ns-rule);
+  padding: 0.125rem 0.5rem;
+  font-size: var(--ns-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.ns-filter-clear:hover {
+  background: var(--ns-ink);
+  color: var(--ns-paper);
+}
