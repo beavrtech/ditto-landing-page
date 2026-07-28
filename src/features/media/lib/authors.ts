@@ -62,11 +62,18 @@ function parseAuthor(raw: string, expectedSlug: string): MediaAuthor {
 }
 
 // Every article resolves its author, so the directory is read once per build
-// rather than once per article.
+// rather than once per article. Not in development: the cache would outlive an
+// edit, and someone changing a bio would see nothing change until a restart.
 let cache: Promise<MediaAuthor[]> | null = null;
 
 function loadAuthors(): Promise<MediaAuthor[]> {
-  cache ??= (async () => {
+  if (process.env.NODE_ENV === "development") return readAuthors();
+  cache ??= readAuthors();
+  return cache;
+}
+
+function readAuthors(): Promise<MediaAuthor[]> {
+  return (async () => {
     const entries = await fs.readdir(AUTHORS_DIR, { withFileTypes: true });
     const files = entries.filter((e) => e.isFile() && e.name.endsWith(".mdx"));
     const authors = await Promise.all(
@@ -77,7 +84,6 @@ function loadAuthors(): Promise<MediaAuthor[]> {
     );
     return authors.sort((a, b) => a.name.localeCompare(b.name));
   })();
-  return cache;
 }
 
 export async function getAllAuthors(): Promise<MediaAuthor[]> {
