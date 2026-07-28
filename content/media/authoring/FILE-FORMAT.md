@@ -13,9 +13,9 @@ author: alexis-de-taillac
 illustration: /media/illustrations/reach-2026-checklist.svg
 date: "2026-07-15"
 updated: "2026-08-02"
-section: [supply-chain, normes-et-regulations, reach]
+section: [supply-chain, reglementations-produit-et-chaine, reach]
 alsoIn:
-  - [rse, normes-et-regulations]
+  - [qhse, environnement-et-excellence-operationnelle]
 industries: [electronique, cosmetiques-beaute]
 draft: false
 
@@ -49,7 +49,7 @@ Anything true of the article regardless of language sits at the top level. It ca
 | `illustration` | yes | Path under `/public`, e.g. `/media/illustrations/<url>.svg`. See [ILLUSTRATIONS.md](./ILLUSTRATIONS.md). |
 | `date` | yes | `"YYYY-MM-DD"`, quoted. The true first-publication date. Drives ordering everywhere and `datePublished`. |
 | `updated` | no | `"YYYY-MM-DD"`. Set it when the substance changed, never for a typo. Drives `dateModified` and the "Updated on" line. |
-| `section` | yes | Two or three taxonomy slugs, `[level1, level2]` or `[level1, level2, level3]`. The canonical home: breadcrumb, card kicker, primary `about`. |
+| `section` | yes | Two or three taxonomy slugs, `[level1, level2]` or `[level1, level2, level3]`. Every theme has level-3 topics. The canonical home: breadcrumb, card kicker, primary `about`. |
 | `alsoIn` | no | Up to three secondary placements, each one to three slugs. Listing only. See [TAXONOMY.md](./TAXONOMY.md). |
 | `industries` | no | Slugs from `INDUSTRIES`. Omit or leave empty to mean **all industries**. |
 | `draft` | no | `true` hides the article in production builds. It still renders in `npm run dev`. |

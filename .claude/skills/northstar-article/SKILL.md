@@ -58,8 +58,10 @@ Read an existing article, for example
    filename. It is permanent once published.
 
 4. **File it**: `section` (2 or 3 taxonomy slugs), optional `alsoIn` (up to 3),
-   `industries` (omit or leave empty for all). Validate the slugs against
-   `src/features/media/data/taxonomy.ts` rather than assuming.
+   `industries` (omit or leave empty for all). Every theme has level-3 topics, so
+   reach for one when the piece is about a single framework or practice. Validate
+   the slugs against `src/features/media/data/taxonomy.ts` rather than assuming:
+   the vocabulary was replaced wholesale and older slugs no longer exist.
 
 5. **Write English and French.** French is a true editorial translation, not a
    literal one, and both languages carry the same facts and figures. Remember

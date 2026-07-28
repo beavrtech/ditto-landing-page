@@ -1,88 +1,193 @@
-// Northstar editorial taxonomy.
-// Level 1 = pillar (QHSE / RSE / Supply Chain), Level 2 = theme, Level 3 = named
-// framework or regulation. Depth is variable by design: only "Normes et
-// régulations" branches carry a level 3. Every article must have level1 +
-// level2; level3 only when the piece is about one named framework.
+// Northstar editorial taxonomy, as defined by the editorial team.
+//
+// Level 1 = pillar, level 2 = theme, level 3 = the named framework, regulation
+// or practice. Every theme carries level-3 topics. Every article declares a
+// `section` of two or three slugs; see content/media/authoring/TAXONOMY.md.
+//
+// Slugs are ASCII and French-derived, matching the site's existing convention.
+// French-specific schemes (MASE, ICPE, RFAR, QVT) keep their French names in
+// English too, because they have no English equivalent.
 
 export type MediaLocale = "en" | "fr";
 
 export interface TaxonomyNode {
   slug: string;
   label: { en: string; fr: string };
+  /** One line on what the pillar covers. Shown on its listing page. */
+  blurb?: { en: string; fr: string };
   children?: TaxonomyNode[];
-  /** Proposed by us to balance the branch — not user-validated yet. Remove the line to drop it. */
-  suggested?: true;
 }
 
 export const TAXONOMY: TaxonomyNode[] = [
   {
     slug: "qhse",
     label: { en: "QHSE", fr: "QHSE" },
+    blurb: {
+      en: "The management system and the shop floor",
+      fr: "Le système de management et le terrain",
+    },
     children: [
-      { slug: "qualite", label: { en: "Quality", fr: "Qualité" } },
-      { slug: "sst", label: { en: "Health & Safety", fr: "SST" } },
-      { slug: "environnement", label: { en: "Environment", fr: "Environnement" } },
-      { slug: "outils", label: { en: "Tools", fr: "Outils" } },
+      {
+        slug: "normes-et-systemes-de-management",
+        label: { en: "Standards & management systems", fr: "Normes et systèmes de management" },
+        children: [
+          { slug: "iso-9001", label: { en: "ISO 9001", fr: "ISO 9001" } },
+          { slug: "iso-14001", label: { en: "ISO 14001", fr: "ISO 14001" } },
+          { slug: "iso-45001", label: { en: "ISO 45001", fr: "ISO 45001" } },
+          { slug: "mase", label: { en: "MASE", fr: "MASE" } },
+        ],
+      },
+      {
+        slug: "sante-securite-et-qvt",
+        label: { en: "Health, safety & QVT", fr: "Santé, sécurité et QVT" },
+        children: [
+          { slug: "prevention", label: { en: "Prevention", fr: "Prévention" } },
+          { slug: "culture-securite", label: { en: "Safety culture", fr: "Culture sécurité" } },
+          { slug: "facteur-humain", label: { en: "Human factors", fr: "Facteur humain" } },
+        ],
+      },
+      {
+        slug: "environnement-et-excellence-operationnelle",
+        label: {
+          en: "Environment & operational excellence",
+          fr: "Environnement et excellence opérationnelle",
+        },
+        children: [
+          { slug: "icpe", label: { en: "ICPE", fr: "ICPE" } },
+          { slug: "dechets", label: { en: "Waste", fr: "Déchets" } },
+          { slug: "energie", label: { en: "Energy", fr: "Énergie" } },
+          { slug: "lean", label: { en: "Lean", fr: "Lean" } },
+          {
+            slug: "amelioration-continue",
+            label: { en: "Continuous improvement", fr: "Amélioration continue" },
+          },
+        ],
+      },
+      {
+        slug: "audits-et-certification",
+        label: { en: "Audits & certification", fr: "Audits et certification" },
+        children: [
+          { slug: "preparation", label: { en: "Preparation", fr: "Préparation" } },
+          {
+            slug: "choix-organisme",
+            label: { en: "Choosing a certification body", fr: "Choix d'organisme" },
+          },
+          { slug: "temoignages", label: { en: "Case studies", fr: "Témoignages" } },
+        ],
+      },
     ],
   },
   {
     slug: "rse",
     label: { en: "CSR", fr: "RSE" },
+    blurb: {
+      en: "The performance you have to prove to the outside world",
+      fr: "La performance à démontrer vers l'extérieur",
+    },
     children: [
       {
-        slug: "normes-et-regulations",
-        label: { en: "Standards & Regulations", fr: "Normes et régulations" },
+        slug: "notations-et-evaluations",
+        label: { en: "Ratings & assessments", fr: "Notations et évaluations" },
         children: [
           { slug: "ecovadis", label: { en: "EcoVadis", fr: "EcoVadis" } },
           { slug: "cdp", label: { en: "CDP", fr: "CDP" } },
-          { slug: "csrd", label: { en: "CSRD", fr: "CSRD" } },
-          { slug: "iso-27001", label: { en: "ISO 27001", fr: "ISO 27001" } },
-          { slug: "iso-50001", label: { en: "ISO 50001", fr: "ISO 50001" } },
-          { slug: "autres-normes", label: { en: "Other standards", fr: "Autres normes" } },
+          {
+            slug: "questionnaires-donneurs-ordre",
+            label: { en: "Customer questionnaires", fr: "Questionnaires donneurs d'ordre" },
+          },
         ],
       },
-      { slug: "carbone", label: { en: "Carbon", fr: "Carbone" } },
       {
-        slug: "strategie-et-bonnes-pratiques",
-        label: { en: "Strategy & Best Practices", fr: "Stratégie et bonnes pratiques" },
+        slug: "reporting-et-cadres",
+        label: { en: "Reporting & frameworks", fr: "Reporting et cadres" },
+        children: [
+          { slug: "csrd", label: { en: "CSRD", fr: "CSRD" } },
+          { slug: "vsme", label: { en: "VSME", fr: "VSME" } },
+          { slug: "gri", label: { en: "GRI", fr: "GRI" } },
+          { slug: "odd", label: { en: "SDGs", fr: "ODD" } },
+        ],
       },
       {
-        slug: "innovations-et-technologies",
-        label: { en: "Innovation & Technology", fr: "Innovations et Technologies" },
+        slug: "climat-et-carbone",
+        label: { en: "Climate & carbon", fr: "Climat et carbone" },
+        children: [
+          { slug: "bilan-carbone", label: { en: "Carbon footprint", fr: "Bilan carbone" } },
+          { slug: "scopes", label: { en: "Scopes 1, 2, 3", fr: "Scopes" } },
+          { slug: "decarbonation", label: { en: "Decarbonization", fr: "Décarbonation" } },
+        ],
       },
-      { slug: "outils-et-solutions", label: { en: "Tools & Solutions", fr: "Outils et Solutions" } },
-      { slug: "mesures-et-performances", label: { en: "Measurement & Performance", fr: "Mesures et Performances" } },
+      {
+        slug: "strategie-gouvernance-et-acces-marche",
+        label: {
+          en: "Strategy, governance & market access",
+          fr: "Stratégie, gouvernance et accès marché",
+        },
+        children: [
+          {
+            slug: "double-materialite",
+            label: { en: "Double materiality", fr: "Double matérialité" },
+          },
+          { slug: "politiques", label: { en: "Policies", fr: "Politiques" } },
+          {
+            slug: "pression-donneurs-ordre",
+            label: { en: "Customer pressure", fr: "Pression donneurs d'ordre" },
+          },
+        ],
+      },
     ],
   },
   {
     slug: "supply-chain",
     label: { en: "Supply Chain", fr: "Supply Chain" },
+    blurb: {
+      en: "Suppliers and the products upstream",
+      fr: "Les fournisseurs et les produits en amont",
+    },
     children: [
       {
-        slug: "normes-et-regulations",
-        label: { en: "Standards & Regulations", fr: "Normes et régulations" },
+        slug: "reglementations-produit-et-chaine",
+        label: { en: "Product & chain regulations", fr: "Réglementations produit et chaîne" },
         children: [
-          { slug: "reach", label: { en: "REACH", fr: "REACH" } },
           { slug: "eudr", label: { en: "EUDR", fr: "EUDR" } },
           { slug: "ppwr", label: { en: "PPWR", fr: "PPWR" } },
+          { slug: "reach", label: { en: "REACH", fr: "REACH" } },
           { slug: "pfas", label: { en: "PFAS", fr: "PFAS" } },
-          { slug: "rohs", label: { en: "RoHS", fr: "RoHS" } },
+          { slug: "cbam", label: { en: "CBAM", fr: "CBAM" } },
+          { slug: "cs3d", label: { en: "CS3D", fr: "CS3D" } },
         ],
       },
       {
-        slug: "tracabilite-et-transparence",
-        label: { en: "Traceability & Transparency", fr: "Traçabilité et Transparence" },
-        suggested: true,
+        slug: "engagement-et-evaluation-fournisseurs",
+        label: {
+          en: "Supplier engagement & assessment",
+          fr: "Engagement et évaluation fournisseurs",
+        },
+        children: [
+          { slug: "campagnes", label: { en: "Campaigns", fr: "Campagnes" } },
+          { slug: "questionnaires", label: { en: "Questionnaires", fr: "Questionnaires" } },
+          { slug: "scoring", label: { en: "Scoring", fr: "Scoring" } },
+        ],
       },
       {
         slug: "achats-responsables",
-        label: { en: "Responsible Sourcing", fr: "Achats responsables" },
-        suggested: true,
+        label: { en: "Responsible sourcing", fr: "Achats responsables" },
+        children: [
+          { slug: "iso-20400", label: { en: "ISO 20400", fr: "ISO 20400" } },
+          { slug: "label-rfar", label: { en: "RFAR label", fr: "Label RFAR" } },
+          { slug: "politique-achats", label: { en: "Procurement policy", fr: "Politique achats" } },
+        ],
       },
       {
-        slug: "outils-et-solutions",
-        label: { en: "Tools & Solutions", fr: "Outils et Solutions" },
-        suggested: true,
+        slug: "tracabilite-donnees-et-risques",
+        label: { en: "Traceability, data & risk", fr: "Traçabilité, données et risques" },
+        children: [
+          { slug: "collecte", label: { en: "Data collection", fr: "Collecte" } },
+          { slug: "preuve", label: { en: "Evidence", fr: "Preuve" } },
+          {
+            slug: "cartographie-des-risques",
+            label: { en: "Risk mapping", fr: "Cartographie des risques" },
+          },
+        ],
       },
     ],
   },
@@ -116,6 +221,8 @@ export function findTaxonomyPath(path: string[]): TaxonomyNode[] | null {
   const chain: TaxonomyNode[] = [];
   let nodes: TaxonomyNode[] | undefined = TAXONOMY;
   for (const segment of path) {
+    // Annotated because `nodes` is reassigned from `node.children` below, and
+    // the inference would otherwise be circular.
     const node: TaxonomyNode | undefined = nodes?.find((n) => n.slug === segment);
     if (!node) return null;
     chain.push(node);

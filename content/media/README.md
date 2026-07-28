@@ -41,10 +41,9 @@ Working with Claude Code, the `northstar-article` skill loads all of this automa
    illustration: /media/illustrations/reach-2026-checklist.svg
    date: "2026-07-15"               # YYYY-MM-DD, true publication date
    updated: "2026-08-02"            # optional, only when the substance changed
-   section: [supply-chain, normes-et-regulations, reach]
+   section: [supply-chain, reglementations-produit-et-chaine, reach]
    alsoIn:                          # optional, up to 3 secondary placements
-     - [rse, normes-et-regulations]
-     - [qhse, environnement]
+     - [qhse, environnement-et-excellence-operationnelle]
    industries: [electronique]       # omit or leave empty to mean all industries
    draft: true                      # optional, hides the article in production
 
@@ -60,14 +59,15 @@ Working with Claude Code, the `northstar-article` skill loads all of this automa
    ```
 
    `section` is the taxonomy path: two entries (`[level1, level2]`) or three when the
-   piece is about one named framework (`[level1, level2, level3]`). Valid slugs come
-   from `src/features/media/data/taxonomy.ts`.
+   piece is about one named framework, regulation or practice. Every theme has
+   level-3 topics. Valid slugs come from `src/features/media/data/taxonomy.ts`, and
+   [authoring/TAXONOMY.md](./authoring/TAXONOMY.md) explains how to choose.
 
    `alsoIn` is for an article that lives in one section but is genuinely useful to
    readers of another. Each entry is a path of one to three slugs, so `- [rse]` (the
-   whole CSR pillar) and `- [rse, carbone]` are both valid. The article then appears
+   whole CSR pillar) and `- [rse, climat-et-carbone]` are both valid. The article then appears
    on those theme pages and their parents, but **not** on their sibling or child
-   pages: `- [rse]` reaches `/en/media/theme/rse`, not `/en/media/theme/rse/carbone`.
+   pages: `- [rse]` reaches `/en/media/theme/rse`, not `/en/media/theme/rse/climat-et-carbone`.
 
    Cross-filing changes where an article is listed, nothing else. Its URL, breadcrumb,
    card kicker and primary topic all stay those of `section`, so a cross-filed piece
@@ -139,14 +139,14 @@ fr:
 
 <!-- locale:en -->
 
-A graduate of CentraleSupélec, Alexis…
+Alexis leads compliance at Ditto, where he…
 
 <!-- locale:fr -->
 
-Diplômé de CentraleSupélec, Alexis…
+Alexis dirige la conformité chez Ditto, où il…
 ```
 
-Real people only: each author becomes a `Person` entity in structured data with a profile page at `/en/media/authors/<slug>`. Authors are mirrored by hand from the Supabase `authors` table the main site uses, so keep the slug, name and photo identical to the CMS record. `avatar` takes a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows, so pointing at the existing CMS photo is simplest. `dittoAuthorSlug` links the two profiles together.
+Real people only: each author becomes a `Person` entity in structured data with a profile page at `/en/media/authors/<slug>`. Authors are mirrored by hand from the Supabase `authors` table the main site uses, so keep the slug, name and photo identical to the CMS record. `avatar` takes a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows. A local file under `public/media/authors/` is preferable where possible: the Supabase host is unreachable from sandboxed dev environments, so remote avatars render broken locally. `dittoAuthorSlug` links the two profiles together.
 
 ## Adding a video
 
@@ -163,9 +163,7 @@ Add an entry to `content/media/videos.json` with the YouTube ID and a bilingual 
 
 ## Changing the taxonomy
 
-Edit `TAXONOMY` in `src/features/media/data/taxonomy.ts`. Each node needs a `slug` (ASCII, no accents) and `en`/`fr` labels. Adding a node creates its listing page at `/en/media/theme/<path>` automatically. Removing a node breaks any article that references it, and the build will say so.
-
-Nodes marked `suggested: true` were proposed rather than specified. Delete the line once a node is confirmed, or delete the node.
+Edit `TAXONOMY` in `src/features/media/data/taxonomy.ts`. Each node needs a `slug` (ASCII, no accents) and `en`/`fr` labels. Adding a node creates its listing page at `/en/media/theme/<path>` automatically; a node with no articles yet shows an empty state rather than 404ing. Removing a node breaks any article that references it, and the build will say so.
 
 ## Notes
 

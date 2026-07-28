@@ -8,11 +8,11 @@ The vocabulary lives in `src/features/media/data/taxonomy.ts`. Slugs there are t
 
 One path, two or three levels deep:
 
-- **Level 1** is the pillar: `qhse`, `rse`, `supply-chain`.
-- **Level 2** is the theme: `sst`, `carbone`, `normes-et-regulations`, …
-- **Level 3** is a named framework or regulation: `reach`, `csrd`, `ecovadis`, … It exists only under the "normes et régulations" branches, and only when the article really is about that one framework.
+- **Level 1** is the pillar: `qhse` (the management system and the shop floor), `rse` (the performance you have to prove to the outside world), `supply-chain` (suppliers and the products upstream).
+- **Level 2** is the theme: `notations-et-evaluations`, `climat-et-carbone`, `achats-responsables`, …
+- **Level 3** is the named framework, regulation or practice: `ecovadis`, `csrd`, `reach`, `iso-45001`, `facteur-humain`, … **Every theme has level-3 topics**, so reach for one whenever the article really is about that one thing.
 
-An article about EcoVadis scoring is `[rse, normes-et-regulations, ecovadis]`. An article about getting started with ISO 45001 is `[qhse, sst]` — ISO 45001 has no level-3 node, and inventing one to file a single article is the wrong instinct. Add nodes when a theme has articles, not in anticipation.
+An article about EcoVadis scoring is `[rse, notations-et-evaluations, ecovadis]`. An article about getting started with ISO 45001 is `[qhse, normes-et-systemes-de-management, iso-45001]`. Stop at level 2 when the piece spans several topics under that theme rather than sitting in one.
 
 `section` decides:
 
@@ -27,16 +27,16 @@ So it must be the single best answer to "what is this article about". If two ans
 An article often lives in one pillar but is genuinely useful to readers of another. `alsoIn` lists up to three secondary placements:
 
 ```yaml
-section: [supply-chain, normes-et-regulations, reach]
+section: [supply-chain, reglementations-produit-et-chaine, reach]
 alsoIn:
-  - [rse, normes-et-regulations]
-  - [qhse, environnement]
+  - [qhse, environnement-et-excellence-operationnelle]
+  - [supply-chain, tracabilite-donnees-et-risques]
 ```
 
 Rules and behavior:
 
-- Each entry is a path of **one to three** slugs. A bare `- [rse]` files the piece under the whole CSR pillar, which is a legitimate and common statement.
-- A placement reaches **its own page and its parents, never its children**. `- [rse]` puts the article on `/en/media/theme/rse` but not on `/en/media/theme/rse/carbone`. This is the same rule `section` follows.
+- Each entry is a path of **one to three** slugs. A bare `- [rse]` files the piece under the whole CSR pillar, which is a legitimate and common statement. A different theme inside the article's own pillar is allowed too, as the REACH example above does.
+- A placement reaches **its own page and its parents, never its children**. `- [rse]` puts the article on `/en/media/theme/rse` but not on `/en/media/theme/rse/climat-et-carbone`. This is the same rule `section` follows.
 - Cross-filing changes **listing only**. The URL, breadcrumb, card kicker and primary `about` all stay those of `section`. Because cards always show the canonical path, a cross-filed piece displays its home section wherever else it appears and reads as a cross-reference without needing a badge.
 - Secondary placements join `keywords` in structured data but never `about`.
 - The build rejects more than three entries, duplicates, unknown paths, and any entry on the primary's own branch (redundant, since prefix matching already covers it).
@@ -53,8 +53,10 @@ A flat, multi-select list of industry slugs, shown at the top of the article and
 
 ## Adding to the vocabulary
 
-Edit `TAXONOMY` or `INDUSTRIES` in `src/features/media/data/taxonomy.ts`. Each node needs an ASCII slug and `en`/`fr` labels. A new node creates its listing page automatically.
+Edit `TAXONOMY` or `INDUSTRIES` in `src/features/media/data/taxonomy.ts`. Each node needs an ASCII slug and `en`/`fr` labels; the three pillars also carry a `blurb`, shown under the heading on their listing page. A new node creates its listing page automatically.
+
+French-specific schemes keep their French name in English too (MASE, ICPE, RFAR, QVT), because there is no English equivalent to translate to. Everything else gets a real English label.
+
+Every node has a page from the day it exists, so a topic nobody has written about yet shows an empty state rather than 404ing. That keeps internal links and breadcrumbs honest, and it means an unused node is visible rather than hidden: delete the ones that stay empty.
 
 Two cautions. A new slug mints a new public URL, so it is a routing decision, not just a label. And removing a node breaks every article that references it, which the build will tell you about immediately.
-
-Nodes marked `suggested: true` were proposed rather than specified by the team. Delete the marker once confirmed, or delete the node.

@@ -58,6 +58,7 @@ export function createThemeRoute(locale: MediaLocale) {
           <div className="ns-page-head">
             <p className="ns-kicker">{copy.themeKicker}</p>
             <h1>{label}</h1>
+            {node.blurb ? <p className="ns-dek">{node.blurb[locale]}</p> : null}
           </div>
 
           {node.children?.length ? (
@@ -74,7 +75,14 @@ export function createThemeRoute(locale: MediaLocale) {
             </div>
           ) : null}
 
-          <ArticleGrid articles={articles} locale={locale} />
+          {/* Every taxonomy node has a page from day one, so most of them are
+              empty until the topic is written. Say so rather than showing an
+              empty grid. */}
+          {articles.length ? (
+            <ArticleGrid articles={articles} locale={locale} />
+          ) : (
+            <p className="ns-empty">{copy.emptyTheme}</p>
+          )}
         </div>
         <JsonLd
           data={articleCollectionJsonLd({
