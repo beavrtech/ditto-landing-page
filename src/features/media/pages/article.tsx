@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { MediaShell } from "../components/MediaShell";
 import { MediaBreadcrumbs, type Crumb } from "../components/MediaBreadcrumbs";
 import { Byline } from "../components/Byline";
+import { ArticleActions } from "../components/ArticleActions";
 import { ArticleGrid } from "../components/ArticleCard";
 import {
   getArticle,
@@ -15,7 +15,7 @@ import {
 } from "../lib/articles";
 import { renderArticleBody } from "../lib/mdx";
 import { getAuthor } from "../data/authors";
-import { mediaAlternates, mediaPath, SITE_URL } from "../lib/urls";
+import { mediaAlternates, mediaUrl, SITE_URL } from "../lib/urls";
 import { mediaArticleJsonLd } from "../lib/jsonld";
 import { t } from "../dictionary";
 import {
@@ -82,8 +82,15 @@ export function createArticleRoute(locale: MediaLocale) {
 
         <article>
           <header className="ns-wrap ns-article-head">
-            <p className="ns-kicker">
-              {chain.map((node) => taxonomyLabel(node, locale)).join(" · ")}
+            {/* The theme trail is already the breadcrumb above, so the head
+                only states the target industries. */}
+            <p className="ns-article-industries">
+              <span className="ns-kicker">{copy.industries}</span>{" "}
+              {article.industries
+                .map((slug) => findIndustry(slug))
+                .filter(Boolean)
+                .map((industry) => taxonomyLabel(industry!, locale))
+                .join(", ")}
             </p>
             <h1 className="ns-article-title">{article.title}</h1>
             <p className="ns-dek">{article.description}</p>
@@ -95,6 +102,11 @@ export function createArticleRoute(locale: MediaLocale) {
                 readTimeMinutes={article.readTimeMinutes}
               />
             </div>
+            <ArticleActions
+              locale={locale}
+              url={mediaUrl(locale, `/${slug}`)}
+              title={article.title}
+            />
             <div className="ns-article-illustration">
               <Image
                 src={article.illustration}
@@ -109,29 +121,13 @@ export function createArticleRoute(locale: MediaLocale) {
           <div className="ns-wrap ns-article-body">
             <div className="ns-prose">{body}</div>
 
-            <footer className="ns-article-foot">
-              {article.updated ? (
-                <p className="ns-meta" style={{ marginBottom: "1rem" }}>
+            {article.updated ? (
+              <footer className="ns-article-foot">
+                <p className="ns-meta">
                   {copy.updatedOn} {article.updated}
                 </p>
-              ) : null}
-              <div className="ns-tags">
-                <span className="ns-kicker">{copy.industries}</span>
-                {article.industries.map((slug) => {
-                  const industry = findIndustry(slug);
-                  if (!industry) return null;
-                  return (
-                    <Link
-                      key={slug}
-                      href={mediaPath(locale, `/industry/${slug}`)}
-                      className="ns-chip"
-                    >
-                      {taxonomyLabel(industry, locale)}
-                    </Link>
-                  );
-                })}
-              </div>
-            </footer>
+              </footer>
+            ) : null}
           </div>
         </article>
 

@@ -2,18 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { MediaShell } from "../components/MediaShell";
-import { ThemeSelector } from "../components/ThemeSelector";
 import { ArticleGrid } from "../components/ArticleCard";
 import { NewsletterBox } from "../components/NewsletterBox";
 import { VideoSection } from "../components/VideoSection";
 import { AuthorsSection } from "../components/AuthorsSection";
 import { Byline } from "../components/Byline";
-import { getAllArticles, filterByTheme } from "../lib/articles";
+import { getAllArticles } from "../lib/articles";
 import { getAuthor } from "../data/authors";
-import { mediaPath } from "../lib/urls";
-import { mediaAlternates } from "../lib/urls";
+import { mediaPath, mediaAlternates } from "../lib/urls";
 import { t } from "../dictionary";
-import { TAXONOMY, taxonomyLabel, type MediaLocale } from "../data/taxonomy";
+import type { MediaLocale } from "../data/taxonomy";
 
 export function createHomeRoute(locale: MediaLocale) {
   const copy = t(locale);
@@ -33,21 +31,6 @@ export function createHomeRoute(locale: MediaLocale) {
     const articles = await getAllArticles(locale);
     const [latest, ...rest] = articles;
     const latestAuthor = latest ? getAuthor(latest.author) : null;
-
-    const tabs = TAXONOMY.map((node) => ({
-      slug: node.slug,
-      label: taxonomyLabel(node, locale),
-      panel: (
-        <>
-          <ArticleGrid articles={filterByTheme(articles, [node.slug]).slice(0, 6)} locale={locale} />
-          <p className="ns-tab-footer">
-            <Link href={mediaPath(locale, `/theme/${node.slug}`)}>
-              {copy.allArticles} · {taxonomyLabel(node, locale)}
-            </Link>
-          </p>
-        </>
-      ),
-    }));
 
     return (
       <MediaShell locale={locale} mirrorPath="">
@@ -96,15 +79,6 @@ export function createHomeRoute(locale: MediaLocale) {
             </div>
           </section>
         ) : null}
-
-        <section className="ns-section">
-          <div className="ns-wrap">
-            <div className="ns-section-head">
-              <h2 className="ns-section-title">{copy.themes}</h2>
-            </div>
-            <ThemeSelector tabs={tabs} />
-          </div>
-        </section>
 
         <VideoSection locale={locale} />
         <AuthorsSection locale={locale} />
