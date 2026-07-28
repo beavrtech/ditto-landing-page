@@ -171,20 +171,89 @@
   color: var(--ns-ink-soft);
 }
 
-.ns-masthead-nav {
+.ns-masthead-identity {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  font-size: var(--ns-small);
+  align-items: baseline;
+  gap: 1.25rem;
+  flex-wrap: wrap;
 }
 
-.ns-masthead-nav a {
+.ns-masthead-bottom {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-top: var(--ns-rule-soft);
+}
+
+.ns-masthead-nav {
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+}
+
+.ns-nav-theme {
+  display: flex;
+  align-items: center;
+  padding: 0.875rem 0;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  font-family: var(--ns-font-display);
+  font-size: var(--ns-h5);
+  line-height: 1;
+  letter-spacing: -0.01em;
+  color: var(--ns-ink-soft);
   text-decoration: none;
 }
-.ns-masthead-nav a:hover {
-  text-decoration: underline;
-  text-decoration-color: var(--ns-accent);
-  text-decoration-thickness: 20%;
+.ns-nav-theme:hover {
+  color: var(--ns-ink);
+  border-bottom-color: var(--ns-accent);
+}
+.ns-nav-theme[aria-current="page"] {
+  color: var(--ns-ink);
+  border-bottom-color: var(--ns-ink);
+}
+
+/* ---------- select control ---------- */
+
+.ns-select-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ns-select-label {
+  font-size: var(--ns-micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ns-ink-soft);
+  white-space: nowrap;
+}
+
+.ns-select {
+  appearance: none;
+  border: var(--ns-rule);
+  background: var(--ns-paper);
+  color: var(--ns-ink);
+  font-family: var(--ns-font-body);
+  font-size: var(--ns-small);
+  padding: 0.375rem 2rem 0.375rem 0.625rem;
+  cursor: pointer;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ns-ink) 50%),
+    linear-gradient(135deg, var(--ns-ink) 50%, transparent 50%);
+  background-position: calc(100% - 1rem) 55%, calc(100% - 0.65rem) 55%;
+  background-size: 0.35rem 0.35rem, 0.35rem 0.35rem;
+  background-repeat: no-repeat;
+}
+.ns-select:focus-visible {
+  outline: 2px solid var(--ns-accent-link);
+  outline-offset: -2px;
+}
+.ns-select.is-block {
+  width: 100%;
+  font-size: var(--ns-body);
+  padding: 0.625rem 2rem 0.625rem 0.75rem;
 }
 
 .ns-locale-switch {
@@ -201,68 +270,30 @@
 }
 
 .ns-tagline {
-  border-top: var(--ns-rule-soft);
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  font-size: var(--ns-small);
-  color: var(--ns-ink-soft);
-}
-
-/* ---------- industry selector ---------- */
-
-.ns-industries {
-  border-bottom: var(--ns-rule);
-  overflow-x: auto;
-}
-
-.ns-industries-inner {
-  display: flex;
-  align-items: stretch;
-  min-width: max-content;
-}
-
-.ns-industry-label {
   display: flex;
   align-items: center;
-  padding: 0.75rem 1rem 0.75rem 0;
-  font-size: var(--ns-micro);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ns-ink-soft);
-  white-space: nowrap;
-}
-
-.ns-industry-link {
-  display: flex;
-  align-items: center;
-  padding: 0.75rem 1rem;
-  border-left: var(--ns-rule-soft);
   font-size: var(--ns-small);
-  text-decoration: none;
-  white-space: nowrap;
-}
-.ns-industry-link:hover {
-  background: var(--ns-accent);
-  color: var(--ns-ink);
-}
-.ns-industry-link[aria-current="page"] {
-  background: var(--ns-ink);
-  color: var(--ns-paper);
+  color: var(--ns-ink-soft);
+  margin: 0;
 }
 
 /* ---------- hero ---------- */
 
 .ns-hero {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 3rem;
-  align-items: center;
-  padding-top: 3.5rem;
+  align-items: start;
+  padding-top: 3rem;
   padding-bottom: 3.5rem;
 }
 
+.ns-hero-title {
+  font-size: var(--ns-h2);
+}
+
 .ns-hero-illustration {
+  display: block;
   border: var(--ns-rule);
   aspect-ratio: 3 / 2;
   position: relative;
@@ -299,6 +330,15 @@
 @media (max-width: 991px) {
   .ns-hero {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .ns-masthead-bottom {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+  .ns-masthead-nav {
     gap: 1.5rem;
   }
 }
@@ -390,19 +430,24 @@
   appearance: none;
   background: transparent;
   border: none;
-  border-bottom: 2px solid transparent;
+  border-bottom: 4px solid transparent;
   margin-bottom: -1px;
-  padding: 0.75rem 1.25rem 0.75rem 0;
-  margin-right: 1.5rem;
-  font-family: var(--ns-font-body);
-  font-size: var(--ns-body);
+  padding: 0.75rem 0;
+  margin-right: 2.5rem;
+  font-family: var(--ns-font-display);
+  font-size: var(--ns-h3);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
   color: var(--ns-ink-soft);
   cursor: pointer;
+}
+.ns-tab:hover {
+  color: var(--ns-ink);
+  border-bottom-color: var(--ns-accent);
 }
 .ns-tab[aria-selected="true"] {
   color: var(--ns-ink);
   border-bottom-color: var(--ns-ink);
-  font-weight: 600;
 }
 
 .ns-tab-footer {
@@ -433,16 +478,69 @@
 
 .ns-newsletter {
   border: var(--ns-rule-heavy);
-  padding: 2.5rem;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 2rem;
-  align-items: center;
+  padding: 2rem;
+  background: var(--ns-paper-tint);
+}
+
+.ns-newsletter-title {
+  font-size: var(--ns-h4);
+}
+
+.ns-newsletter-body {
+  margin-top: 0.75rem;
+  font-size: var(--ns-body);
+  color: var(--ns-ink-soft);
+}
+
+.ns-field {
+  margin-top: 1.5rem;
+  border: none;
+  padding: 0;
+  min-width: 0;
+}
+
+.ns-field-label {
+  display: block;
+  padding: 0;
+  margin-bottom: 0.625rem;
+  font-size: var(--ns-micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ns-ink-soft);
+}
+
+.ns-toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ns-toggle {
+  appearance: none;
+  border: var(--ns-rule);
+  background: var(--ns-paper);
+  color: var(--ns-ink-soft);
+  font-family: var(--ns-font-body);
+  font-size: var(--ns-small);
+  padding: 0.5rem 0.875rem;
+  cursor: pointer;
+  transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
+}
+.ns-toggle:hover {
+  background: var(--ns-accent);
+  color: var(--ns-ink);
+}
+.ns-toggle[aria-pressed="true"] {
+  background: var(--ns-ink);
+  color: var(--ns-paper);
+  font-weight: 600;
 }
 
 .ns-newsletter-form {
   display: flex;
   gap: 0;
+  margin-top: 1.5rem;
 }
 
 .ns-input {
@@ -490,7 +588,6 @@
 
 @media (max-width: 991px) {
   .ns-newsletter {
-    grid-template-columns: 1fr;
     padding: 1.5rem;
   }
 }

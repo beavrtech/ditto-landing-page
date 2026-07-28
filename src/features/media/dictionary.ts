@@ -15,6 +15,9 @@ export interface MediaDict {
   newsletterPlaceholder: string;
   newsletterCta: string;
   newsletterSoon: string;
+  newsletterThemes: string;
+  newsletterIndustry: string;
+  allIndustries: string;
   readTime: (min: number) => string;
   publishedOn: string;
   updatedOn: string;
@@ -50,6 +53,9 @@ const dict: Record<MediaLocale, MediaDict> = {
     newsletterPlaceholder: "you@company.com",
     newsletterCta: "Subscribe",
     newsletterSoon: "Coming soon",
+    newsletterThemes: "What do you want to read about?",
+    newsletterIndustry: "Your industry",
+    allIndustries: "All industries",
     readTime: (min: number) => `${min} min read`,
     publishedOn: "Published on",
     updatedOn: "Updated on",
@@ -83,6 +89,9 @@ const dict: Record<MediaLocale, MediaDict> = {
     newsletterPlaceholder: "vous@entreprise.com",
     newsletterCta: "S'abonner",
     newsletterSoon: "Bientôt disponible",
+    newsletterThemes: "Que souhaitez-vous lire ?",
+    newsletterIndustry: "Votre industrie",
+    allIndustries: "Toutes les industries",
     readTime: (min: number) => `${min} min de lecture`,
     publishedOn: "Publié le",
     updatedOn: "Mis à jour le",

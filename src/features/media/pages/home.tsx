@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { MediaShell } from "../components/MediaShell";
-import { IndustrySelector } from "../components/IndustrySelector";
 import { ThemeSelector } from "../components/ThemeSelector";
 import { ArticleGrid } from "../components/ArticleCard";
 import { NewsletterBox } from "../components/NewsletterBox";
@@ -52,13 +51,19 @@ export function createHomeRoute(locale: MediaLocale) {
 
     return (
       <MediaShell locale={locale} mirrorPath="">
-        <IndustrySelector locale={locale} />
-
-        {latest ? (
-          <section className="ns-wrap">
-            <div className="ns-hero">
-              <div>
+        <section className="ns-wrap">
+          <div className="ns-hero">
+            {latest ? (
+              <div className="ns-hero-lede">
                 <p className="ns-kicker">{copy.latest}</p>
+                <Link
+                  href={mediaPath(locale, `/${latest.slug}`)}
+                  className="ns-hero-illustration"
+                  aria-hidden
+                  tabIndex={-1}
+                >
+                  <Image src={latest.illustration} alt="" width={900} height={600} priority />
+                </Link>
                 <h1 className="ns-hero-title">
                   <Link href={mediaPath(locale, `/${latest.slug}`)}>{latest.title}</Link>
                 </h1>
@@ -74,12 +79,12 @@ export function createHomeRoute(locale: MediaLocale) {
                   </div>
                 ) : null}
               </div>
-              <Link href={mediaPath(locale, `/${latest.slug}`)} className="ns-hero-illustration" aria-hidden tabIndex={-1}>
-                <Image src={latest.illustration} alt="" width={900} height={600} priority />
-              </Link>
-            </div>
-          </section>
-        ) : null}
+            ) : (
+              <div />
+            )}
+            <NewsletterBox locale={locale} />
+          </div>
+        </section>
 
         {rest.length ? (
           <section className="ns-section">
@@ -98,12 +103,6 @@ export function createHomeRoute(locale: MediaLocale) {
               <h2 className="ns-section-title">{copy.themes}</h2>
             </div>
             <ThemeSelector tabs={tabs} />
-          </div>
-        </section>
-
-        <section className="ns-section">
-          <div className="ns-wrap">
-            <NewsletterBox locale={locale} />
           </div>
         </section>
 

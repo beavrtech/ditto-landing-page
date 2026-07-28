@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { t } from "../dictionary";
 import { mediaPath } from "../lib/urls";
-import type { MediaLocale } from "../data/taxonomy";
-import { TAXONOMY, taxonomyLabel } from "../data/taxonomy";
+import { IndustryDropdown } from "./IndustryDropdown";
+import { TAXONOMY, taxonomyLabel, type MediaLocale } from "../data/taxonomy";
 
 /**
  * @param mirrorPath path of the current page relative to the media root
- *   (e.g. "/reach-2026" or ""), used to point the locale switch at the twin URL.
+ *   (e.g. "/reach-2026" or ""), used for the locale switch and to work out
+ *   which level-1 theme and which industry are currently selected.
  */
 export function NorthstarMasthead({
   locale,
@@ -18,31 +19,45 @@ export function NorthstarMasthead({
   const copy = t(locale);
   const other: MediaLocale = locale === "fr" ? "en" : "fr";
 
+  const segments = mirrorPath.split("/").filter(Boolean);
+  const activeTheme = segments[0] === "theme" ? segments[1] : undefined;
+  const activeIndustry = segments[0] === "industry" ? segments[1] : undefined;
+
   return (
     <header className="ns-masthead">
       <div className="ns-wrap">
         <div className="ns-masthead-top">
-          <Link href={mediaPath(locale)} className="ns-wordmark">
-            <span className="ns-wordmark-name">Northstar</span>
-            <span className="ns-wordmark-by">by Ditto</span>
+          <div className="ns-masthead-identity">
+            <Link href={mediaPath(locale)} className="ns-wordmark">
+              <span className="ns-wordmark-name">Northstar</span>
+              <span className="ns-wordmark-by">by Ditto</span>
+            </Link>
+            <p className="ns-tagline">{copy.tagline}</p>
+          </div>
+          <Link
+            href={mediaPath(other, mirrorPath)}
+            className="ns-locale-switch"
+            hrefLang={other}
+            aria-label={copy.switchLocaleLabel}
+          >
+            {copy.switchLocale}
           </Link>
-          <nav className="ns-masthead-nav">
+        </div>
+        <div className="ns-masthead-bottom">
+          <nav className="ns-masthead-nav" aria-label={copy.themes}>
             {TAXONOMY.map((node) => (
-              <Link key={node.slug} href={mediaPath(locale, `/theme/${node.slug}`)}>
+              <Link
+                key={node.slug}
+                href={mediaPath(locale, `/theme/${node.slug}`)}
+                className="ns-nav-theme"
+                aria-current={activeTheme === node.slug ? "page" : undefined}
+              >
                 {taxonomyLabel(node, locale)}
               </Link>
             ))}
-            <Link
-              href={mediaPath(other, mirrorPath)}
-              className="ns-locale-switch"
-              hrefLang={other}
-              aria-label={copy.switchLocaleLabel}
-            >
-              {copy.switchLocale}
-            </Link>
           </nav>
+          <IndustryDropdown locale={locale} current={activeIndustry ?? ""} />
         </div>
-        <p className="ns-tagline">{copy.tagline}</p>
       </div>
     </header>
   );

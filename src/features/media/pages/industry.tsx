@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MediaShell } from "../components/MediaShell";
-import { IndustrySelector } from "../components/IndustrySelector";
 import { MediaBreadcrumbs } from "../components/MediaBreadcrumbs";
 import { ArticleGrid } from "../components/ArticleCard";
 import { getAllArticles, filterByIndustry } from "../lib/articles";
@@ -45,7 +44,6 @@ export function createIndustryRoute(locale: MediaLocale) {
 
     return (
       <MediaShell locale={locale} mirrorPath={`/industry/${slug}`}>
-        <IndustrySelector locale={locale} current={slug} />
         <MediaBreadcrumbs locale={locale} crumbs={[{ name: label }]} />
         <div className="ns-wrap">
           <div className="ns-page-head">
