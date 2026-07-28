@@ -2,10 +2,14 @@ import type { MediaLocale } from "../data/taxonomy";
 
 export const SITE_URL = "https://www.trustditto.com";
 
-/** Locale-aware media path: mediaPath("en", "/x") → "/media/x", mediaPath("fr", "/x") → "/fr/media/x". */
+/**
+ * Locale-aware media path: mediaPath("en", "/x") → "/en/media/x".
+ * Both languages carry their prefix, like the rest of the site. Bare /media/*
+ * redirects here (see next.config.ts).
+ */
 export function mediaPath(locale: MediaLocale, path: string = ""): string {
   const suffix = path === "/" ? "" : path;
-  return locale === "fr" ? `/fr/media${suffix}` : `/media${suffix}`;
+  return `/${locale}/media${suffix}`;
 }
 
 export function mediaUrl(locale: MediaLocale, path: string = ""): string {

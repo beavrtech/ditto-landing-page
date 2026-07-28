@@ -1,6 +1,6 @@
 # Northstar — how to add an article
 
-Northstar is the media at `trustditto.com/media` (English) and `trustditto.com/fr/media` (French). It is file-based: articles are MDX files in this folder, not CMS entries. Publishing means merging to `main` and deploying.
+Northstar is the media at `trustditto.com/en/media` (English) and `trustditto.com/fr/media` (French); bare `/media` redirects to the English home. It is file-based: articles are MDX files in this folder, not CMS entries. Publishing means merging to `main` and deploying.
 
 Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial contract. The technical detail lives in [authoring/](./authoring/):
 
@@ -28,7 +28,7 @@ Working with Claude Code, the `northstar-article` skill loads all of this automa
 
 ## Adding an article
 
-1. **Pick a url.** Lowercase, hyphenated, English, stable. It is the article's address in both languages: `/media/<url>` and `/fr/media/<url>`. Changing it later breaks links.
+1. **Pick a url.** Lowercase, hyphenated, English, stable. It is the article's address in both languages: `/en/media/<url>` and `/fr/media/<url>`. Changing it later breaks links.
 
 2. **Create one file**, `content/media/articles/<url>.mdx`. It holds both languages. The filename must match the `url` field.
 
@@ -67,7 +67,7 @@ Working with Claude Code, the `northstar-article` skill loads all of this automa
    readers of another. Each entry is a path of one to three slugs, so `- [rse]` (the
    whole CSR pillar) and `- [rse, carbone]` are both valid. The article then appears
    on those theme pages and their parents, but **not** on their sibling or child
-   pages: `- [rse]` reaches `/media/theme/rse`, not `/media/theme/rse/carbone`.
+   pages: `- [rse]` reaches `/en/media/theme/rse`, not `/en/media/theme/rse/carbone`.
 
    Cross-filing changes where an article is listed, nothing else. Its URL, breadcrumb,
    card kicker and primary topic all stay those of `section`, so a cross-filed piece
@@ -118,7 +118,7 @@ Working with Claude Code, the `northstar-article` skill loads all of this automa
 
    `<FAQ>` emits FAQPage structured data. Only use it for real questions, and keep answers self-contained: they get read out of context.
 
-7. **Check both pages** with `npm run dev` (port 3456): `http://localhost:3456/media/<url>` and `http://localhost:3456/fr/media/<url>`.
+7. **Check both pages** with `npm run dev` (port 3456): `http://localhost:3456/en/media/<url>` and `http://localhost:3456/fr/media/<url>`.
 
 ## Adding an author
 
@@ -146,7 +146,7 @@ A graduate of CentraleSupélec, Alexis…
 Diplômé de CentraleSupélec, Alexis…
 ```
 
-Real people only: each author becomes a `Person` entity in structured data with a profile page at `/media/authors/<slug>`. Authors are mirrored by hand from the Supabase `authors` table the main site uses, so keep the slug, name and photo identical to the CMS record. `avatar` takes a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows, so pointing at the existing CMS photo is simplest. `dittoAuthorSlug` links the two profiles together.
+Real people only: each author becomes a `Person` entity in structured data with a profile page at `/en/media/authors/<slug>`. Authors are mirrored by hand from the Supabase `authors` table the main site uses, so keep the slug, name and photo identical to the CMS record. `avatar` takes a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows, so pointing at the existing CMS photo is simplest. `dittoAuthorSlug` links the two profiles together.
 
 ## Adding a video
 
@@ -163,12 +163,12 @@ Add an entry to `content/media/videos.json` with the YouTube ID and a bilingual 
 
 ## Changing the taxonomy
 
-Edit `TAXONOMY` in `src/features/media/data/taxonomy.ts`. Each node needs a `slug` (ASCII, no accents) and `en`/`fr` labels. Adding a node creates its listing page at `/media/theme/<path>` automatically. Removing a node breaks any article that references it, and the build will say so.
+Edit `TAXONOMY` in `src/features/media/data/taxonomy.ts`. Each node needs a `slug` (ASCII, no accents) and `en`/`fr` labels. Adding a node creates its listing page at `/en/media/theme/<path>` automatically. Removing a node breaks any article that references it, and the build will say so.
 
 Nodes marked `suggested: true` were proposed rather than specified. Delete the line once a node is confirmed, or delete the node.
 
 ## Notes
 
-- Northstar is **not indexed yet**. `src/app/robots.ts` disallows `/media` and `/fr/media`, and both media layouts set `robots: { index: false, follow: false }`. To launch: remove those two disallow entries, remove the `robots` block from `src/app/media/layout.tsx` and `src/app/fr/media/layout.tsx`, and add the media URLs to `src/app/sitemap.ts`.
+- Northstar is **not indexed yet**. `src/app/robots.ts` disallows `/media`, `/en/media` and `/fr/media`, and both media layouts set `robots: { index: false, follow: false }`. To launch: remove those two disallow entries, remove the `robots` block from `src/app/en/media/layout.tsx` and `src/app/fr/media/layout.tsx`, and add the media URLs to `src/app/sitemap.ts`.
 - Media pages are fully static and never touch Supabase, so they render without any environment variables.
-- Filter URLs are path-based (`/media/theme/…`, `/media/industry/…`) because `robots.ts` disallows every query-string URL.
+- Filter URLs are path-based (`/en/media/theme/…`, `/en/media/industry/…`) because `robots.ts` disallows every query-string URL.

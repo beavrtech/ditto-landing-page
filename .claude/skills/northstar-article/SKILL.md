@@ -2,7 +2,7 @@
 name: northstar-article
 description: >
   Use this skill whenever the user wants to write, draft, translate, restructure
-  or review an article for Northstar, the Ditto media at trustditto.com/media.
+  or review an article for Northstar, the Ditto media at trustditto.com/en/media.
   Triggers include "write an article about EcoVadis for Northstar", "draft a
   Northstar piece on the EUDR", "add an article to the media", "translate this
   article into French for Northstar", "review this draft against our tone of
@@ -74,7 +74,7 @@ Read an existing article, for example
    significance, no em dashes.
 
 8. **Verify it renders.** Run the dev server (`npm run dev`, port 3456) and load
-   both `/media/<url>` and `/fr/media/<url>`. A frontmatter violation shows as a
+   both `/en/media/<url>` and `/fr/media/<url>`. A frontmatter violation shows as a
    500 with the exact reason. Do not report an article as done without this.
 
 ## Things that are true and easy to get wrong

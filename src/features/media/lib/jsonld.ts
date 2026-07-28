@@ -8,8 +8,12 @@ import {
   type MediaLocale,
 } from "../data/taxonomy";
 
+// Locale-neutral identifiers: they name the publication, they are never
+// fetched. The url properties below point at the default-locale home, which
+// resolves without going through the /media redirect.
 const NORTHSTAR_ID = `${SITE_URL}/media#organization`;
 const NORTHSTAR_SITE_ID = `${SITE_URL}/media#website`;
+const NORTHSTAR_HOME = `${SITE_URL}/en/media`;
 
 /** Northstar is a media published by Ditto — never an independent entity. */
 export const NORTHSTAR_PUBLISHER_JSONLD = {
@@ -19,7 +23,7 @@ export const NORTHSTAR_PUBLISHER_JSONLD = {
       "@type": "Organization",
       "@id": NORTHSTAR_ID,
       name: "Northstar",
-      url: `${SITE_URL}/media`,
+      url: NORTHSTAR_HOME,
       description:
         "Northstar is the QHSE, CSR and supply chain magazine published by Ditto.",
       parentOrganization: {
@@ -33,7 +37,7 @@ export const NORTHSTAR_PUBLISHER_JSONLD = {
       "@type": "WebSite",
       "@id": NORTHSTAR_SITE_ID,
       name: "Northstar",
-      url: `${SITE_URL}/media`,
+      url: NORTHSTAR_HOME,
       inLanguage: ["en", "fr"],
       publisher: { "@id": NORTHSTAR_ID },
     },

@@ -36,7 +36,7 @@ alsoIn:
 Rules and behavior:
 
 - Each entry is a path of **one to three** slugs. A bare `- [rse]` files the piece under the whole CSR pillar, which is a legitimate and common statement.
-- A placement reaches **its own page and its parents, never its children**. `- [rse]` puts the article on `/media/theme/rse` but not on `/media/theme/rse/carbone`. This is the same rule `section` follows.
+- A placement reaches **its own page and its parents, never its children**. `- [rse]` puts the article on `/en/media/theme/rse` but not on `/en/media/theme/rse/carbone`. This is the same rule `section` follows.
 - Cross-filing changes **listing only**. The URL, breadcrumb, card kicker and primary `about` all stay those of `section`. Because cards always show the canonical path, a cross-filed piece displays its home section wherever else it appears and reads as a cross-reference without needing a badge.
 - Secondary placements join `keywords` in structured data but never `about`.
 - The build rejects more than three entries, duplicates, unknown paths, and any entry on the primary's own branch (redundant, since prefix matching already covers it).
@@ -45,7 +45,7 @@ Use it when a reader of the other pillar would genuinely want the piece. Not to 
 
 ## `industries` — who it is for
 
-A flat, multi-select list of industry slugs, shown at the top of the article and driving `/media/industry/<slug>` pages.
+A flat, multi-select list of industry slugs, shown at the top of the article and driving `/en/media/industry/<slug>` pages.
 
 - **Omit the field, or leave it empty, to mean every industry.** That is the honest value for a piece that applies regardless of sector, and the header then reads "All industries".
 - An empty list contributes **no** industry keywords to structured data. An article that is not about a particular industry should not claim all eight.

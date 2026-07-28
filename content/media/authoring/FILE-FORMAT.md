@@ -44,7 +44,7 @@ Anything true of the article regardless of language sits at the top level. It ca
 
 | Field | Required | Rules |
 |---|---|---|
-| `url` | yes | Lowercase, hyphenated, ASCII. **Must equal the filename** without `.mdx`, so an article can never have two addresses. Serves `/media/<url>` and `/fr/media/<url>`. Changing it breaks inbound links; don't, after publication. |
+| `url` | yes | Lowercase, hyphenated, ASCII. **Must equal the filename** without `.mdx`, so an article can never have two addresses. Serves `/en/media/<url>` and `/fr/media/<url>`. Changing it breaks inbound links; don't, after publication. |
 | `author` | yes | A slug from `content/media/authors/`. The author file must exist first. |
 | `illustration` | yes | Path under `/public`, e.g. `/media/illustrations/<url>.svg`. See [ILLUSTRATIONS.md](./ILLUSTRATIONS.md). |
 | `date` | yes | `"YYYY-MM-DD"`, quoted. The true first-publication date. Drives ordering everywhere and `datePublished`. |
@@ -101,4 +101,4 @@ Both markers are required, in either order, and neither body may be empty. Every
 npm run dev          # port 3456
 ```
 
-Then load `/media/<url>` and `/fr/media/<url>`. A frontmatter problem shows as a 500 with the exact message, not a silent fallback.
+Then load `/en/media/<url>` and `/fr/media/<url>`. A frontmatter problem shows as a 500 with the exact message, not a silent fallback.

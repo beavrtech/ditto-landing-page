@@ -46,7 +46,7 @@ Structured data is only as good as the text it wraps.
 
 Be honest about these rather than assuming the section is fully optimised.
 
-1. **Nothing is indexable yet.** Both media layouts send `noindex, nofollow`, `robots.ts` disallows `/media` and `/fr/media`, and no media URL is in the sitemap. That is deliberate pre-launch, and it means none of the above has any effect in search or answer engines until it is switched off. The flip is documented in [../README.md](../README.md).
+1. **Nothing is indexable yet.** Both media layouts send `noindex, nofollow`, `robots.ts` disallows `/media`, `/en/media` and `/fr/media`, and no media URL is in the sitemap. That is deliberate pre-launch, and it means none of the above has any effect in search or answer engines until it is switched off. The flip is documented in [../README.md](../README.md).
 
 2. **Illustrations are SVG.** Google's structured-data image requirements do not accept SVG, and several social and chat platforms will not render an SVG preview. Both `Article.image` and `og:image` currently point at one. Raster exports (1200×630 PNG or WebP) are needed before launch, either alongside the SVG or instead of it.
 
