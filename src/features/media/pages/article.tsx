@@ -7,6 +7,11 @@ import { MediaBreadcrumbs, type Crumb } from "../components/MediaBreadcrumbs";
 import { Byline } from "../components/Byline";
 import { ArticleActions } from "../components/ArticleActions";
 import { ArticleGrid } from "../components/ArticleCard";
+import { ArticleToc, ArticleTocCollapsible } from "../components/ArticleToc";
+import { RailNewsletter } from "../components/RailNewsletter";
+import { AuthorBio } from "../components/AuthorBio";
+import { ReadingProgress } from "../components/ReadingProgress";
+import { extractToc } from "../lib/toc";
 import {
   getArticle,
   getArticleSlugs,
@@ -72,12 +77,14 @@ export function createArticleRoute(locale: MediaLocale) {
     crumbs.push({ name: article.title });
 
     const body = await renderArticleBody(article.body, locale);
+    const toc = extractToc(article.body, locale);
     const all = await getAllArticles(locale);
     const related = relatedArticles(all, article);
     const level1Node = chain[0];
 
     return (
       <MediaShell locale={locale} mirrorPath={`/${slug}`}>
+        <ReadingProgress />
         <MediaBreadcrumbs locale={locale} crumbs={crumbs} />
 
         <article>
@@ -120,16 +127,30 @@ export function createArticleRoute(locale: MediaLocale) {
             </div>
           </header>
 
-          <div className="ns-wrap ns-article-body">
-            <div className="ns-prose">{body}</div>
+          <div className="ns-wrap ns-article-layout">
+            <div className="ns-article-main">
+              <ArticleTocCollapsible entries={toc} locale={locale} />
+              <div className="ns-prose">{body}</div>
 
-            {article.updated ? (
-              <footer className="ns-article-foot">
-                <p className="ns-meta">
-                  {copy.updatedOn} {article.updated}
-                </p>
-              </footer>
-            ) : null}
+              {article.updated ? (
+                <footer className="ns-article-foot">
+                  <p className="ns-meta">
+                    {copy.updatedOn} {article.updated}
+                  </p>
+                </footer>
+              ) : null}
+
+              <AuthorBio author={author} locale={locale} />
+            </div>
+
+            {/* The reading column is narrower than the page, so the rail fills
+                space that was empty rather than taking any from the text. */}
+            <aside className="ns-rail">
+              <div className="ns-rail-sticky">
+                <ArticleToc entries={toc} locale={locale} />
+                <RailNewsletter locale={locale} />
+              </div>
+            </aside>
           </div>
         </article>
 

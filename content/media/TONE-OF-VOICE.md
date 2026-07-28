@@ -108,7 +108,7 @@ The one allowed antithesis is the fixed brand line: "compliance is an opportunit
 4. **`<KeyTakeaways>` near the top.** Three to five bullets a reader could act on without reading further.
 5. **Body.** H2 sections, answer-first. H3s and numbered steps where the content is procedural. "Good to know:" asides for the sharp, non-obvious, practical fact.
 6. **`<FAQ>` at the end, only when practitioners genuinely ask those questions.** Answers must be self-contained (they are eligible for structured data, so they get read out of context).
-7. **Close on what to do next**, not on a metaphor. No mandatory CTA block: Northstar is a magazine, and the footer already says who publishes it.
+7. **Close on what to do next**, not on a metaphor. The body carries no CTA: the only standing offer is the newsletter card in the article's side rail, which the page adds for you. Never write a "book a demo" line into an article.
 
 Target length: roughly 1,200 to 2,200 words. Shorter is fine if the topic is genuinely small; padding is not.
 

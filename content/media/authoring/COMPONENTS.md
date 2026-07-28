@@ -4,6 +4,8 @@ Article bodies are MDX: markdown plus the components below. They are defined in 
 
 Plain markdown covers the rest: `##` and `###` headings, lists, `**bold**`, links, blockquotes, and GitHub-flavored tables.
 
+Your `##` headings become the article's table of contents, in the side rail on desktop and an accordion on narrow screens, so write them as scannable statements rather than labels. A `<FAQ>` block is added to that list automatically.
+
 ## `<KeyTakeaways>`
 
 Three to five bullets a reader could act on without reading further. Goes near the top, after the first paragraph or before it.

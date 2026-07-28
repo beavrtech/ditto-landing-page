@@ -89,6 +89,9 @@ Read an existing article, for example
   in plain text, never marketing copy, and never a question whose answer is not
   on the page.
 - Northstar articles rarely mention Ditto. When they do, they offer the
-  non-product fallback. There is no CTA block: this is a magazine, not a funnel.
+  non-product fallback. Never write a CTA into the body: the article page adds a
+  newsletter card in its side rail, and that is the only ask an article makes.
+- The page builds a table of contents from your `##` headings, so headings are
+  navigation as well as structure. Write them as statements a reader could scan.
 - Target roughly 1,200 to 2,200 words. Shorter is fine if the topic is genuinely
   small; padding is not.

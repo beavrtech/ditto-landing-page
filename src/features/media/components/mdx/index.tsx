@@ -50,7 +50,8 @@ export function FAQ({ title, items }: { title?: string; items: FaqEntry[] }) {
   if (!items?.length) return null;
   return (
     <section className="ns-faq">
-      <h2>{title ?? "FAQ"}</h2>
+      {/* Fixed id: this heading never passes through rehype-slug. */}
+      <h2 id="faq">{title ?? "FAQ"}</h2>
       {items.map((item) => (
         <div className="ns-faq-item" key={item.question}>
           <p className="ns-faq-q">{item.question}</p>

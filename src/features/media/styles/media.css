@@ -687,10 +687,140 @@
   object-fit: cover;
 }
 
-/* Reading column, centered under the full-width article header. */
-.ns-article-body {
-  max-width: var(--ns-prose-width);
-  margin: 0 auto;
+/*
+ * Reading column plus a rail. The prose keeps its measure; the rail occupies
+ * space that was empty gutter, so the reading experience does not move.
+ */
+.ns-article-layout {
+  display: grid;
+  grid-template-columns: minmax(0, var(--ns-prose-width)) var(--ns-rail-width);
+  gap: 4rem;
+  justify-content: center;
+  align-items: start;
+}
+
+.ns-article-main {
+  min-width: 0;
+}
+
+.ns-rail {
+  position: relative;
+  /* The grid is align-items:start, which would size this item to its content
+     and leave the sticky child nothing to travel inside. */
+  align-self: stretch;
+}
+
+.ns-rail-sticky {
+  position: sticky;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  /* Never taller than the viewport, or the bottom of the rail is unreachable. */
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+/* ---------- table of contents ---------- */
+
+.ns-toc-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  border-left: var(--ns-rule-soft);
+}
+
+.ns-toc-list li + li {
+  margin-top: 0.5rem;
+}
+
+.ns-toc-list a {
+  display: block;
+  padding: 0.125rem 0 0.125rem 0.875rem;
+  margin-left: -1px;
+  border-left: 2px solid transparent;
+  font-size: var(--ns-small);
+  line-height: 1.3;
+  color: var(--ns-ink-soft);
+  text-decoration: none;
+}
+.ns-toc-list a:hover {
+  color: var(--ns-ink);
+  border-left-color: var(--ns-ink);
+}
+
+.ns-toc-collapsible {
+  display: none;
+  border-top: var(--ns-rule);
+  border-bottom: var(--ns-rule);
+  padding: 0.875rem 0;
+  margin-bottom: 2.5rem;
+}
+.ns-toc-collapsible > summary {
+  cursor: pointer;
+  font-size: var(--ns-micro);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ns-ink-soft);
+}
+
+/* ---------- rail CTA ---------- */
+
+.ns-rail-cta {
+  border: var(--ns-rule-heavy);
+  padding: 1.25rem;
+  background: var(--ns-paper-tint);
+}
+
+.ns-rail-cta-body {
+  margin: 0.5rem 0 1rem;
+  font-size: var(--ns-small);
+  color: var(--ns-ink-soft);
+}
+
+.ns-input.is-block,
+.ns-button.is-block {
+  display: block;
+  width: 100%;
+  border: var(--ns-rule);
+}
+.ns-input.is-block {
+  margin-bottom: 0.5rem;
+}
+.ns-button.is-block {
+  justify-content: center;
+  text-align: center;
+}
+
+/* ---------- reading progress ---------- */
+
+.ns-progress {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 3px;
+  background: transparent;
+}
+.ns-progress-bar {
+  height: 100%;
+  background: var(--ns-accent);
+  transform-origin: 0 50%;
+  transition: transform 80ms linear;
+}
+
+/* ---------- author bio ---------- */
+
+.ns-author-bio {
+  border-top: var(--ns-rule-heavy);
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+}
+
+.ns-author-bio-body {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 1rem;
 }
 
 .ns-article-foot {
@@ -713,13 +843,20 @@
 
 .ns-prose h2 {
   font-size: var(--ns-h3);
-  margin-top: 3rem;
+  /* Space above a heading belongs to the break, not to the heading: roughly
+     four times the space below it, so sections read as separate. */
+  margin-top: 4.5rem;
   margin-bottom: 1rem;
+  scroll-margin-top: 2rem;
+}
+.ns-prose h2:first-child {
+  margin-top: 0;
 }
 .ns-prose h3 {
   font-size: var(--ns-h4);
-  margin-top: 2.5rem;
+  margin-top: 3rem;
   margin-bottom: 0.75rem;
+  scroll-margin-top: 2rem;
 }
 
 .ns-prose ul,
@@ -972,4 +1109,51 @@
   background: var(--ns-ink);
   color: var(--ns-paper);
   text-decoration: none;
+}
+
+/* ---------- article layout: narrow screens ---------- */
+
+@media (max-width: 1099px) {
+  /* The rail has nowhere to go, so the TOC becomes an accordion above the
+     article and the CTA moves below it rather than shrinking into a column. */
+  .ns-article-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+    max-width: var(--ns-prose-width);
+    margin: 0 auto;
+  }
+  .ns-rail-sticky {
+    position: static;
+    max-height: none;
+    overflow: visible;
+  }
+  .ns-toc {
+    display: none;
+  }
+  .ns-toc-collapsible {
+    display: block;
+  }
+}
+
+@media (max-width: 767px) {
+  .ns-article-title {
+    /* Large serif headlines can overflow before they wrap on long words. */
+    hyphens: auto;
+    overflow-wrap: break-word;
+    max-width: none;
+  }
+  .ns-author-bio-body {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .ns-actions {
+    gap: 1rem;
+  }
+  .ns-action {
+    /* Comfortable tap target. */
+    padding: 0.625rem 0.875rem;
+  }
+  .ns-nav-theme {
+    padding: 0.75rem 0;
+  }
 }

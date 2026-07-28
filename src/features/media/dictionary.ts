@@ -38,6 +38,10 @@ export interface MediaDict {
   privacy: string;
   aboutLine: string;
   profileOnDitto: string;
+  onThisPage: string;
+  writtenBy: string;
+  allArticlesBy: string;
+  railNewsletterBody: string;
   share: string;
   linkCopied: string;
   summarizeWithAi: string;
@@ -80,6 +84,10 @@ const dict: Record<MediaLocale, MediaDict> = {
     privacy: "Privacy policy",
     aboutLine: "Northstar is published by Ditto, the compliance platform.",
     profileOnDitto: "Profile on trustditto.com",
+    onThisPage: "On this page",
+    writtenBy: "Written by",
+    allArticlesBy: "All their articles",
+    railNewsletterBody: "One long-form read a month. No noise.",
     share: "Copy link",
     linkCopied: "Link copied",
     summarizeWithAi: "Summarize with AI",
@@ -120,6 +128,10 @@ const dict: Record<MediaLocale, MediaDict> = {
     privacy: "Politique de confidentialité",
     aboutLine: "Northstar est édité par Ditto, la plateforme de conformité.",
     profileOnDitto: "Profil sur trustditto.com",
+    onThisPage: "Sur cette page",
+    writtenBy: "Écrit par",
+    allArticlesBy: "Tous ses articles",
+    railNewsletterBody: "Une lecture de fond par mois. Sans bruit.",
     share: "Copier le lien",
     linkCopied: "Lien copié",
     summarizeWithAi: "Résumer avec l'IA",
