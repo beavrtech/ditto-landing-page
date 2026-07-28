@@ -1,0 +1,92 @@
+---
+title: "REACH in 2026: the checklist electronics manufacturers actually need"
+description: "REACH obliges you to know, and to declare, what is inside the components you buy. Here is what auditors ask for first, and how to have it ready."
+author: "thomas-berger"
+illustration: "/media/illustrations/reach-2026-checklist.svg"
+illustrationAlt: "Flat geometric illustration of stacked layers crossed by a diagonal rule"
+date: "2026-07-15"
+level1: "supply-chain"
+level2: "normes-et-regulations"
+level3: "reach"
+industries: ["electronique", "cosmetiques-beaute"]
+---
+
+<KeyTakeaways>
+- REACH applies to you as an importer even when you manufacture nothing: buying a finished component from outside the EU makes you responsible for what is in it.
+- The obligation that catches most mid-sized companies is Article 33: you have 45 days to tell a customer whether an article contains a Candidate List substance above 0.1% by weight.
+- You cannot answer Article 33 requests from a spreadsheet of supplier names. You need substance data per part number.
+- The Candidate List is updated roughly twice a year. A declaration collected two years ago has probably expired.
+- Start with the parts you sell the most of, not the parts with the most suppliers.
+</KeyTakeaways>
+
+REACH, the European regulation on the Registration, Evaluation, Authorisation and Restriction of Chemicals, has been in force since 2007. What changed for mid-sized electronics manufacturers is not the text. It is that customers now ask for proof, and that the SCIP database made the answers public.
+
+If you assemble boards, import enclosures, or resell equipment under your own brand, you are almost certainly a downstream user and often an importer. Both roles carry obligations. This piece covers the ones that come up in customer audits.
+
+## What REACH asks of you, in practice
+
+Three obligations account for most of the work.
+
+**Article 33, communication down the chain.** If an article you supply contains a substance from the Candidate List above 0.1% by weight, you must pass that information to your business customer without being asked, and to a consumer within 45 days of a request. The 0.1% threshold applies to each article, not to the whole assembly. That distinction is where most declarations go wrong.
+
+**SCIP notification.** Since January 2021, the same articles must be notified to the European Chemicals Agency's SCIP database. The data is public, which means your customers can check your declarations without asking you.
+
+**Restrictions under Annex XVII.** Some substances are simply not allowed above a given concentration in given uses. This is not a disclosure obligation. It is a market-access one.
+
+Good to know: an "article" under REACH is defined by its shape and function, not by how you buy it. A cable assembly is not one article. It is a set of articles, and the 0.1% threshold is applied to each of them.
+
+## The five documents auditors ask for first
+
+| Document | What it proves | Where it usually breaks |
+|---|---|---|
+| Bill of materials with part numbers | You know what you are selling | Free-text descriptions instead of stable part numbers |
+| Supplier declarations per part | Substance content is documented | Declarations addressed to "our products", not to a part |
+| Candidate List version reference | Your data matches a known state of the law | No version or date recorded |
+| Article 33 response procedure | You can answer within 45 days | No named owner, no template |
+| SCIP submission records | You notified what you had to notify | Submitted once, never updated |
+
+Auditors rarely start with chemistry. They start with whether your data is attached to something stable. A supplier declaration that says "all our products comply with REACH" proves nothing, because it names no substance, no part, and no version of the Candidate List.
+
+## A sequence that works
+
+1. **Freeze your part numbers.** Everything downstream attaches to them. If the same component appears under three internal references, fix that first.
+2. **Rank parts by volume and by exposure.** The parts you ship the most of, and the parts that go to customers with the strictest procurement rules, are worth the effort. The long tail can wait.
+3. **Ask suppliers per part, with a deadline and a version.** "Does part 4471-B contain any substance on the Candidate List as published on [date], above 0.1% w/w? If yes, name it and give the concentration." A specific question gets a specific answer.
+4. **Record the answer, the date, and the Candidate List version.** Without the version, you cannot tell later whether the answer is stale.
+5. **Set a review trigger on Candidate List updates.** Twice a year, check the new entries against your substance data rather than re-canvassing every supplier.
+6. **Write the Article 33 response procedure down.** One named owner, one template, one place the data lives.
+
+## Mistakes to avoid
+
+**Treating REACH as a purchasing questionnaire.** Collecting signed statements is not the same as knowing what is in your parts. The statement is evidence; the substance data is the answer.
+
+**Applying 0.1% to the finished product.** This under-declares, and it is the error most often found in audits.
+
+**Collecting once.** The Candidate List grows. A 2024 declaration describes a shorter list than the one you are held to today.
+
+**Waiting for a customer to ask.** Article 33 gives you 45 days. Building the data set from scratch inside 45 days is not realistic for a catalog of any size.
+
+## Where to keep the data
+
+Somewhere queryable by part number, with a date and a source document per answer. A compliance platform does this and keeps the review triggers; a well-structured shared drive with a strict naming convention also works if someone owns it. What does not work is a mailbox folder, because nobody can answer "which of our parts contain this newly listed substance?" from a mailbox.
+
+<FAQ
+  items={[
+    {
+      question: "Does REACH apply if we only import finished components and assemble them?",
+      answer: "Yes. Importing an article into the EU makes you responsible for Candidate List communication under Article 33 and for SCIP notification, even if you carry out no chemical process yourself. Assembly does not transfer the obligation to your supplier."
+    },
+    {
+      question: "How is the 0.1% threshold calculated?",
+      answer: "It is calculated per article, based on the weight of that article, not on the weight of the finished assembly. A screw containing a Candidate List substance above 0.1% of the screw's weight triggers the obligation, regardless of how small the screw is relative to the product."
+    },
+    {
+      question: "How long do we have to answer a request about a substance of very high concern?",
+      answer: "For a consumer request, 45 days from the date of the request, free of charge. For business customers, the information must be provided when the article is supplied, without waiting for a request."
+    },
+    {
+      question: "How often is the Candidate List updated?",
+      answer: "Typically twice a year. Each update can add substances that were not covered by declarations you collected earlier, which is why declarations should record the Candidate List version they refer to."
+    }
+  ]}
+/>

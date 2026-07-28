@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img">
+  <rect width="1200" height="630" fill="#ffffff"/>
+  <rect x="0" y="0" width="1200" height="16" fill="#130e30"/>
+  <rect x="0" y="614" width="1200" height="16" fill="#130e30"/>
+  <text x="80" y="300" font-family="Georgia, 'Times New Roman', serif" font-size="120" fill="#130e30">Northstar</text>
+  <text x="80" y="370" font-family="Helvetica, Arial, sans-serif" font-size="32" fill="#5f5c6e">The QHSE, CSR &amp; Supply Chain magazine by Ditto</text>
+  <rect x="80" y="420" width="220" height="12" fill="#ffe228"/>
+</svg>
