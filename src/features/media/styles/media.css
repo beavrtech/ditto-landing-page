@@ -956,6 +956,7 @@
   appearance: none;
   display: inline-flex;
   align-items: center;
+  gap: 0.4rem;
   border: var(--ns-rule);
   background: var(--ns-paper);
   color: var(--ns-ink);

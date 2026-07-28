@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { t } from "../dictionary";
+import { MistralLogo, OpenAiLogo, ClaudeLogo } from "./AiLogos";
 import type { MediaLocale } from "../data/taxonomy";
 
 /**
@@ -9,9 +10,9 @@ import type { MediaLocale } from "../data/taxonomy";
  * If one of them changes its deep-link format, only this list needs editing.
  */
 const ASSISTANTS = [
-  { name: "Le Chat", base: "https://chat.mistral.ai/chat" },
-  { name: "ChatGPT", base: "https://chatgpt.com/" },
-  { name: "Claude", base: "https://claude.ai/new" },
+  { name: "Le Chat", base: "https://chat.mistral.ai/chat", Logo: MistralLogo },
+  { name: "ChatGPT", base: "https://chatgpt.com/", Logo: OpenAiLogo },
+  { name: "Claude", base: "https://claude.ai/new", Logo: ClaudeLogo },
 ];
 
 export function ArticleActions({
@@ -51,15 +52,16 @@ export function ArticleActions({
       </div>
       <div className="ns-action-group">
         <span className="ns-action-label">{copy.summarizeWithAi}</span>
-        {ASSISTANTS.map((assistant) => (
+        {ASSISTANTS.map(({ name, base, Logo }) => (
           <a
-            key={assistant.name}
+            key={name}
             className="ns-action"
-            href={`${assistant.base}?q=${encodeURIComponent(prompt)}`}
+            href={`${base}?q=${encodeURIComponent(prompt)}`}
             target="_blank"
             rel="noopener noreferrer"
           >
-            {assistant.name}
+            <Logo />
+            {name}
           </a>
         ))}
       </div>
