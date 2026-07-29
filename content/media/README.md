@@ -146,7 +146,9 @@ Alexis leads compliance at Ditto, where he…
 Alexis dirige la conformité chez Ditto, où il…
 ```
 
-Real people only: each author becomes a `Person` entity in structured data with a profile page at `/en/media/authors/<slug>`. Authors are mirrored by hand from the Supabase `authors` table the main site uses, so keep the slug, name and photo identical to the CMS record. `avatar` takes a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows. Prefer a local file: drop a square crop (512×512 is plenty, the largest rendering is 64px) in `public/media/authors/<slug>.webp`. The Supabase host is unreachable from sandboxed dev environments, so remote avatars render broken locally. `dittoAuthorSlug` links the two profiles together.
+Real people only: each author becomes a `Person` entity in structured data with a profile page at `/en/media/authors/<slug>`. Authors are mirrored by hand from the Supabase `authors` table the main site uses, so keep the slug and name identical to the CMS record. `dittoAuthorSlug` links the two profiles together; omit it for someone who has no CMS record, or the link 404s.
+
+The photo does **not** have to match the CMS record. Northstar runs its own portrait of the same person, in the house style described in [authoring/ILLUSTRATIONS.md](./authoring/ILLUSTRATIONS.md), and the rest of the site keeps whatever `authors.picture_url` holds. Editing one never touches the other. `avatar` takes a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows; prefer a local file, a 512×512 crop at `public/media/authors/<slug>.webp` (the largest rendering is 64px). The Supabase host is unreachable from sandboxed dev environments, so remote avatars render broken locally.
 
 ## Adding a video
 

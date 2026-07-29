@@ -1,26 +1,80 @@
 [
   {
-    "youtubeId": "dQw4w9WgXcQ",
-    "publishedAt": "2026-05-12",
+    "youtubeId": "PhxdVNPgah0",
+    "author": "pierre-poirmeur",
+    "publishedAt": "2026-07-24",
     "en": {
-      "title": "CSRD in 12 minutes: what changes for mid-caps",
-      "description": "A walkthrough of the double-materiality assessment and the first reporting deadlines."
+      "title": "What counts as an essential criterion in a CDP assessment?",
+      "description": "A criterion CDP treats as non-negotiable for a score level. Leave it unmet and it caps your grade whatever you do elsewhere."
     },
     "fr": {
-      "title": "La CSRD en 12 minutes : ce qui change pour les ETI",
-      "description": "Un tour d'horizon de l'analyse de double matérialité et des premières échéances de reporting."
+      "title": "C'est quoi un critère essentiel dans l'évaluation CDP ?",
+      "description": "Un élément que le CDP juge indispensable pour atteindre un niveau de score. Non rempli, il plafonne la note quoi que vous fassiez ailleurs."
     }
   },
   {
-    "youtubeId": "dQw4w9WgXcQ",
-    "publishedAt": "2026-06-03",
+    "youtubeId": "0Md1Cd71jLY",
+    "author": "pierre-poirmeur",
+    "publishedAt": "2026-07-24",
     "en": {
-      "title": "Inside an EcoVadis assessment",
-      "description": "How the scoring works, and where most companies lose points."
+      "title": "What is the VSME?",
+      "description": "A voluntary reporting standard built for SMEs, and a way to answer large customers without carrying the weight of the CSRD."
     },
     "fr": {
-      "title": "Dans les coulisses d'une évaluation EcoVadis",
-      "description": "Comment fonctionne la notation, et où la plupart des entreprises perdent des points."
+      "title": "C'est quoi le VSME ?",
+      "description": "Un standard de reporting volontaire conçu pour les PME, et un moyen de répondre aux grands donneurs d'ordre sans la lourdeur de la CSRD."
+    }
+  },
+  {
+    "youtubeId": "dEMQxbQ-7F4",
+    "author": "pierre-poirmeur",
+    "publishedAt": "2026-07-24",
+    "en": {
+      "title": "PDCA: what it is, and why it turns up everywhere in CSR",
+      "description": "Plan, Do, Check, Act is the improvement cycle underneath EcoVadis and the ISO standards alike. A credible approach closes the loop instead of stopping at intent."
+    },
+    "fr": {
+      "title": "Le PDCA, c'est quoi et pourquoi c'est partout en RSE ?",
+      "description": "Plan, Do, Check, Act est le cycle d'amélioration continue qu'on retrouve aussi bien dans EcoVadis que dans les normes ISO. Une démarche crédible boucle ce cycle au lieu de s'arrêter à l'intention."
+    }
+  },
+  {
+    "youtubeId": "p-xotMHpmBg",
+    "author": "pierre-poirmeur",
+    "publishedAt": "2026-07-24",
+    "en": {
+      "title": "What does EcoVadis check in your documents?",
+      "description": "Not only whether the document exists, but its format, its content and how recent it is. Too generic, unclear scope and no proof of deployment are the usual losses."
+    },
+    "fr": {
+      "title": "Que vérifie EcoVadis dans vos documents ?",
+      "description": "Pas seulement si le document existe, mais son format, son contenu et sa fraîcheur. Trop générique, périmètre flou et absence de preuve de déploiement sont les pertes habituelles."
+    }
+  },
+  {
+    "youtubeId": "LxgkbGHaJVg",
+    "author": "pierre-poirmeur",
+    "publishedAt": "2026-07-24",
+    "en": {
+      "title": "What is EcoVadis?",
+      "description": "A platform that scores CSR practice out of 100, from Bronze to Platinum, on evidence: what you document counts as much as what you do."
+    },
+    "fr": {
+      "title": "C'est quoi EcoVadis ?",
+      "description": "Une plateforme qui note les pratiques RSE sur 100, du Bronze au Platinum, sur preuves : ce que vous documentez compte autant que ce que vous faites."
+    }
+  },
+  {
+    "youtubeId": "FhJ-6fucCZE",
+    "author": "pierre-poirmeur",
+    "publishedAt": "2026-07-24",
+    "en": {
+      "title": "What is CDP?",
+      "description": "An annual questionnaire on climate transparency, graded D to A, covering water and forests as well. Increasingly expected by buyers and investors."
+    },
+    "fr": {
+      "title": "C'est quoi CDP ?",
+      "description": "Un questionnaire annuel sur la transparence climatique, noté de D à A, qui couvre aussi l'eau et les forêts. De plus en plus attendu par les donneurs d'ordre et les investisseurs."
     }
   }
 ]

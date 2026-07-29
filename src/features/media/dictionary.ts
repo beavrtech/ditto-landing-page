@@ -9,7 +9,13 @@ export interface MediaDict {
   themes: string;
   industries: string;
   videos: string;
+  allVideos: string;
+  videosTitle: string;
+  videosDek: string;
+  emptyVideos: string;
   authors: string;
+  previousAuthors: string;
+  nextAuthors: string;
   newsletterTitle: string;
   newsletterBody: string;
   newsletterPlaceholder: string;
@@ -56,7 +62,14 @@ const dict: Record<MediaLocale, MediaDict> = {
     themes: "Themes",
     industries: "Industries",
     videos: "Videos",
+    allVideos: "All videos",
+    videosTitle: "One minute on one idea",
+    videosDek:
+      "RSEstretto: Pierre Poirmeur takes a single QHSE, CSR or supply chain term and explains it in about a minute.",
+    emptyVideos: "No videos here yet.",
     authors: "Our authors",
+    previousAuthors: "Previous authors",
+    nextAuthors: "Next authors",
     newsletterTitle: "The Northstar letter",
     newsletterBody:
       "One long-form read on QHSE, CSR or supply-chain regulation, once a month. No noise.",
@@ -102,7 +115,14 @@ const dict: Record<MediaLocale, MediaDict> = {
     themes: "Thématiques",
     industries: "Industries",
     videos: "Vidéos",
+    allVideos: "Toutes les vidéos",
+    videosTitle: "Une minute, une notion",
+    videosDek:
+      "RSEstretto : Pierre Poirmeur prend un terme QHSE, RSE ou supply chain et l'explique en une minute environ.",
+    emptyVideos: "Pas encore de vidéos ici.",
     authors: "Nos auteurs",
+    previousAuthors: "Auteurs précédents",
+    nextAuthors: "Auteurs suivants",
     newsletterTitle: "La lettre Northstar",
     newsletterBody:
       "Une lecture de fond sur la QHSE, la RSE ou la réglementation supply chain, une fois par mois. Sans bruit.",
