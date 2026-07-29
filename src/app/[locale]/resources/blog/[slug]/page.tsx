@@ -13,6 +13,7 @@ import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
 import { formatPublishedDate, toPublishedTimeIso } from "../../../../../lib/format-date";
 import { JsonLd, articleJsonLd } from "../../../../../components/JsonLd";
+import { blogListPath, categoryName } from "../../../../../lib/blog-listing";
 
 export async function generateMetadata({
   params,
@@ -106,7 +107,10 @@ export default async function BlogPostPage({
     guide = await getFeaturedGuide(locale as "en" | "fr").catch(() => null);
   }
 
-  const categoryLabel = item.category?.name ?? null;
+  const categoryLabel = item.category ? categoryName(item.category, locale) : null;
+  const categoryHref = item.category?.slug
+    ? blogListPath(locale, { category: item.category.slug })
+    : null;
   const bodyHtml = item.body ? injectHeadingIds(transformRichText(item.body, locale)) : "";
 
   return (
@@ -150,7 +154,11 @@ export default async function BlogPostPage({
                   <div className="post-hero_content">
                     {categoryLabel && (
                       <>
-                        <p className="label">{categoryLabel}</p>
+                        {categoryHref ? (
+                          <a href={categoryHref} className="label" style={{ textDecoration: "none" }}>{categoryLabel}</a>
+                        ) : (
+                          <p className="label">{categoryLabel}</p>
+                        )}
                         <div className="spacer-1x5rem" />
                       </>
                     )}

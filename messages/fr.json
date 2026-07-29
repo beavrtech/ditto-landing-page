@@ -128,10 +128,10 @@
       "urgency": "Audit en vue ? Centralisez vos preuves dès maintenant.",
       "cta": "Préparer mon audit ISO"
     },
-    "iso50001": {
-      "name": "ISO 50001",
-      "urgency": "Audit de management de l'énergie en vue ? Constituez vos preuves.",
-      "cta": "Préparer mon audit ISO 50001"
+    "other": {
+      "name": "Autres référentiels",
+      "urgency": "Un autre référentiel ? Importez n'importe quel questionnaire, Ditto s'adapte.",
+      "cta": "Explorer tous les référentiels"
     }
   },
   "socialProof": {
@@ -463,7 +463,9 @@
     "viewAllGuides": "Voir tous les guides"
   },
   "resourcesBlog": {
-    "heading": "Ressources & Blog"
+    "heading": "Ressources & Blog",
+    "categoryHeading": "Articles {name}",
+    "allCategories": "Tous"
   },
   "resourcesGuides": {
     "heading": "Ressources & Guides"
@@ -1071,7 +1073,9 @@
     },
     "resourcesBlog": {
       "title": "Blog – conseils, bonnes pratiques et actualités",
-      "description": "Suivez les dernières tendances RSE et conformité, inspirez-vous des bonnes pratiques et découvrez les conseils d'experts sur le blog Ditto."
+      "description": "Suivez les dernières tendances RSE et conformité, inspirez-vous des bonnes pratiques et découvrez les conseils d'experts sur le blog Ditto.",
+      "categoryTitle": "Articles {name} – Blog Ditto",
+      "categoryDescription": "Tous les articles Ditto sur {name} : guides pratiques, définitions et conseils d'experts pour structurer votre démarche RSE et conformité."
     },
     "resourcesNews": {
       "title": "Vos news RSE : les dernières actualités ESG et durabilité",

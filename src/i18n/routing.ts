@@ -39,6 +39,10 @@ export const routing = defineRouting({
       en: "/resources/blog/[slug]",
       fr: "/ressources/blog/[slug]",
     },
+    "/resources/blog/category/[category]": {
+      en: "/resources/blog/category/[category]",
+      fr: "/ressources/blog/categorie/[category]",
+    },
     "/resources/guides": {
       en: "/resources/guides",
       fr: "/ressources/guides",
