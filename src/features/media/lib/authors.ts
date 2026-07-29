@@ -7,6 +7,14 @@ import type { MediaLocale } from "../data/taxonomy";
 const AUTHORS_DIR = path.join(process.cwd(), "content/media/authors");
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
+/**
+ * Authors who lead the list, in this order; everyone else follows by name. The
+ * masthead opens on the person who publishes the magazine rather than on
+ * whoever happens to sort first. A slug listed here that has no file is
+ * harmless: it simply never matches.
+ */
+const PINNED = ["pierre-poirmeur"];
+
 export interface MediaAuthor {
   slug: string;
   name: string;
@@ -82,7 +90,12 @@ function readAuthors(): Promise<MediaAuthor[]> {
         return parseAuthor(await fs.readFile(path.join(AUTHORS_DIR, entry.name), "utf8"), slug);
       })
     );
-    return authors.sort((a, b) => a.name.localeCompare(b.name));
+    // Unpinned authors rank after every pinned one, then sort by name.
+    const rank = (slug: string) => {
+      const at = PINNED.indexOf(slug);
+      return at === -1 ? PINNED.length : at;
+    };
+    return authors.sort((a, b) => rank(a.slug) - rank(b.slug) || a.name.localeCompare(b.name));
   })();
 }
 
