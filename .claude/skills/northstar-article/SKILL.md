@@ -37,7 +37,9 @@ change.
    rules for each, particularly `<FAQ>`.
 5. `content/media/authoring/SEO-AEO.md` — what the code emits and what the writer
    controls.
-6. `content/media/authoring/ILLUSTRATIONS.md` — only when creating the artwork.
+6. `content/media/authoring/ILLUSTRATIONS.md` — the house photography style and
+   the generator. Read it before making any artwork; the hero image is a
+   generated photograph, not the flat SVG the older articles carry.
 
 Read an existing article, for example
 `content/media/articles/reach-2026-checklist.mdx`, to see the shape in practice.
@@ -67,8 +69,23 @@ Read an existing article, for example
    literal one, and both languages carry the same facts and figures. Remember
    `<KeyTakeaways title="À retenir">` in the French body.
 
-6. **Create the illustration** at `public/media/illustrations/<url>.svg` following
-   ILLUSTRATIONS.md, and write the `alt` in each language.
+6. **Generate the hero photograph.** Every new article gets one, in the house
+   style, at `public/media/illustrations/<url>.webp`:
+
+   ```bash
+   npm run illustration -- <url> "<one or two sentences naming what is in the frame>"
+   ```
+
+   Write only the scene; the style, the lens and the prohibitions are in the
+   script. Photograph the circumstances of the subject, not the subject: the
+   room the audit happens in, not the audit. People are welcome, absorbed in
+   their work and unaware of the camera, never posing. Then **look at the
+   result** before accepting it — the model does not reliably obey "no text",
+   and legible lettering is disqualifying. Regenerate with `--force` if it did
+   not. Point
+   `illustration` at the `.webp` and write the `alt` in each language,
+   describing the photograph rather than the article. ILLUSTRATIONS.md has the
+   full contract and worked examples.
 
 7. **Self-check against the checklist** at the end of TONE-OF-VOICE.md, honestly.
    The anti-slop rules are the point of that file, not decoration: no banned

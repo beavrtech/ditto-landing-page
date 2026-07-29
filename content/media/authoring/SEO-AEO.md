@@ -50,7 +50,7 @@ Be honest about these rather than assuming the section is fully optimised.
 
 1. **Nothing is indexable yet.** Both media layouts send `noindex, nofollow`, `robots.ts` disallows `/media`, `/en/media` and `/fr/media`, and no media URL is in the sitemap. That is deliberate pre-launch, and it means none of the above has any effect in search or answer engines until it is switched off. The flip is documented in [../README.md](../README.md).
 
-2. **Illustrations are SVG.** Google's structured-data image requirements do not accept SVG, and several social and chat platforms will not render an SVG preview. Both `Article.image` and `og:image` currently point at one. Raster exports (1200×630 PNG or WebP) are needed before launch, either alongside the SVG or instead of it.
+2. **~~Illustrations are SVG.~~ Resolved.** Every article now carries a 1536×1024 WebP photograph, so `Article.image` and `og:image` point at a raster Google and the social platforms will actually use. The generator and the style contract are in [ILLUSTRATIONS.md](./ILLUSTRATIONS.md).
 
 3. **The publisher has no logo.** `Article` rich results expect `publisher.logo` as an `ImageObject`. The Northstar `Organization` node has none.
 
@@ -58,4 +58,4 @@ Be honest about these rather than assuming the section is fully optimised.
 
 5. **Heading anchors exist but nothing uses them.** There is no table of contents and no visible anchor links, so the ids are dead weight rather than navigation.
 
-None of these are blocking for writing. Items 2 and 3 are blocking for rich results, and item 1 is blocking for everything.
+None of these are blocking for writing. Item 3 is blocking for rich results, and item 1 is blocking for everything.

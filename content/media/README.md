@@ -10,7 +10,7 @@ Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial 
 | [authoring/TAXONOMY.md](./authoring/TAXONOMY.md) | Choosing `section`, `alsoIn` and `industries` |
 | [authoring/COMPONENTS.md](./authoring/COMPONENTS.md) | The MDX components and the rules for each |
 | [authoring/SEO-AEO.md](./authoring/SEO-AEO.md) | What the code emits, what the writer controls, known gaps |
-| [authoring/ILLUSTRATIONS.md](./authoring/ILLUSTRATIONS.md) | The artwork spec |
+| [authoring/ILLUSTRATIONS.md](./authoring/ILLUSTRATIONS.md) | The house photography style, the generator, and the in-body diagram rules |
 
 Working with Claude Code, the `northstar-article` skill loads all of this automatically when you ask for an article.
 
@@ -19,7 +19,7 @@ Working with Claude Code, the `northstar-article` skill loads all of this automa
 | What | Where |
 |---|---|
 | Articles | `content/media/articles/<url>.mdx` (one file, both languages) |
-| Illustrations | `public/media/illustrations/<slug>.svg` |
+| Hero photographs | `public/media/illustrations/<slug>.webp`, generated with `npm run illustration` |
 | Authors | `content/media/authors/<slug>.mdx` (one file per author) |
 | Videos (home page) | `content/media/videos.json` |
 | Taxonomy and industries | `src/features/media/data/taxonomy.ts` |
@@ -38,7 +38,7 @@ Working with Claude Code, the `northstar-article` skill loads all of this automa
    ---
    url: reach-2026-checklist        # must match the filename
    author: alexis-de-taillac        # slug from data/authors.ts
-   illustration: /media/illustrations/reach-2026-checklist.svg
+   illustration: /media/illustrations/reach-2026-checklist.webp
    date: "2026-07-15"               # YYYY-MM-DD, true publication date
    updated: "2026-08-02"            # optional, only when the substance changed
    section: [supply-chain, reglementations-produit-et-chaine, reach]
@@ -50,11 +50,11 @@ Working with Claude Code, the `northstar-article` skill loads all of this automa
    en:
      title: "REACH in 2026: the checklist electronics manufacturers actually need"
      description: "One to three sentences stating the core answer. Doubles as the meta description and the card dek."
-     alt: "Describe the illustration, not the article"   # optional; empty means decorative
+     alt: "Describe the photograph, not the article"     # optional; empty means decorative
    fr:
      title: "REACH en 2026 : la checklist dont les fabricants d'électronique ont vraiment besoin"
      description: "Une à trois phrases qui donnent la réponse tout de suite."
-     alt: "Décrire l'illustration, pas l'article"
+     alt: "Décrire la photographie, pas l'article"
    ---
    ```
 
@@ -77,7 +77,7 @@ Working with Claude Code, the `northstar-article` skill loads all of this automa
 
    Everything is validated at build time. A url that does not match the filename, an unknown author, section, or industry, a malformed date, or a missing language block fails the build with the file path and the reason, on purpose: bad frontmatter should not reach production.
 
-4. **Add the illustration** to `public/media/illustrations/`. Flat, geometric, sharp-cornered, in the Northstar palette (navy `#130e30`, yellow `#ffe228`, blue `#3a93ff` on white).
+4. **Generate the hero photograph**: `npm run illustration -- <url> "<what is in the frame>"`. It writes `public/media/illustrations/<url>.webp` in the house style — natural light, shallow focus, a real European workplace, no faces and no text. [authoring/ILLUSTRATIONS.md](./authoring/ILLUSTRATIONS.md) has the contract and worked examples. In-body `<ArticleImage>` figures are a separate thing and stay flat SVG.
 
 5. **Write both bodies** in the same file, each introduced by a locale marker:
 
@@ -128,7 +128,7 @@ Create `content/media/authors/<slug>.mdx`. It works like an article: shared fron
 ---
 slug: alexis-de-taillac
 name: Alexis de Taillac
-avatar: https://xrbgrzbifkchbjimewvu.supabase.co/storage/v1/object/public/cms-images/authors/alexis-de-taillac/picture_url.jpeg
+avatar: /media/authors/alexis-de-taillac.webp
 linkedin: https://www.linkedin.com/in/alexis-bartouilh-de-taillac/
 dittoAuthorSlug: alexis-de-taillac
 en:
@@ -146,7 +146,7 @@ Alexis leads compliance at Ditto, where he…
 Alexis dirige la conformité chez Ditto, où il…
 ```
 
-Real people only: each author becomes a `Person` entity in structured data with a profile page at `/en/media/authors/<slug>`. Authors are mirrored by hand from the Supabase `authors` table the main site uses, so keep the slug, name and photo identical to the CMS record. `avatar` takes a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows. A local file under `public/media/authors/` is preferable where possible: the Supabase host is unreachable from sandboxed dev environments, so remote avatars render broken locally. `dittoAuthorSlug` links the two profiles together.
+Real people only: each author becomes a `Person` entity in structured data with a profile page at `/en/media/authors/<slug>`. Authors are mirrored by hand from the Supabase `authors` table the main site uses, so keep the slug, name and photo identical to the CMS record. `avatar` takes a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows. Prefer a local file: drop a square crop (512×512 is plenty, the largest rendering is 64px) in `public/media/authors/<slug>.webp`. The Supabase host is unreachable from sandboxed dev environments, so remote avatars render broken locally. `dittoAuthorSlug` links the two profiles together.
 
 ## Adding a video
 

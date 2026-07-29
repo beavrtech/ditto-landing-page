@@ -10,7 +10,7 @@ The loader is `src/features/media/lib/articles.ts`. Everything below is enforced
 ---
 url: reach-2026-checklist
 author: alexis-de-taillac
-illustration: /media/illustrations/reach-2026-checklist.svg
+illustration: /media/illustrations/reach-2026-checklist.webp
 date: "2026-07-15"
 updated: "2026-08-02"
 section: [supply-chain, reglementations-produit-et-chaine, reach]
@@ -46,7 +46,7 @@ Anything true of the article regardless of language sits at the top level. It ca
 |---|---|---|
 | `url` | yes | Lowercase, hyphenated, ASCII. **Must equal the filename** without `.mdx`, so an article can never have two addresses. Serves `/en/media/<url>` and `/fr/media/<url>`. Changing it breaks inbound links; don't, after publication. |
 | `author` | yes | A slug from `content/media/authors/`. The author file must exist first. |
-| `illustration` | yes | Path under `/public`, e.g. `/media/illustrations/<url>.svg`. See [ILLUSTRATIONS.md](./ILLUSTRATIONS.md). |
+| `illustration` | yes | Path under `/public`, e.g. `/media/illustrations/<url>.webp`. A generated photograph in the house style; see [ILLUSTRATIONS.md](./ILLUSTRATIONS.md). |
 | `date` | yes | `"YYYY-MM-DD"`, quoted. The true first-publication date. Drives ordering everywhere and `datePublished`. |
 | `updated` | no | `"YYYY-MM-DD"`. Set it when the substance changed, never for a typo. Drives `dateModified` and the "Updated on" line. |
 | `section` | yes | Two or three taxonomy slugs, `[level1, level2]` or `[level1, level2, level3]`. Every theme has level-3 topics. The canonical home: breadcrumb, card kicker, primary `about`. |
