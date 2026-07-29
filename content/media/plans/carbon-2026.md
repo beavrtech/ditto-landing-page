@@ -4,10 +4,10 @@ Twelve articles repurposed from Ditto's carbon content, filed under `rse > clima
 Dates run weekly on Thursdays from 2026-04-30 to 2026-07-23, with a two-week gap before the
 closing feature.
 
-**Bylines.** The method track and the feature are signed by `alexis-de-taillac`. The eight
-industry pieces carry sector-credible authors from the real roster: `pierre-masse`
-(industrial, construction), `tristan-salaun` (transport, aerospace), `ugo-le-borgne`
-(retail, cosmetics), `will-hepworth` (electronics, software).
+**Bylines.** The method track, the feature and the software piece are signed by
+`alexis-de-taillac`. The other industry pieces carry sector-credible authors from the real
+roster: `pierre-masse` (industrial, construction), `tristan-salaun` (transport, aerospace,
+electronics), `ugo-le-borgne` (retail, cosmetics).
 
 Governed by [EDITORIAL-LINE.md](../EDITORIAL-LINE.md). Every slug below is validated against
 `src/features/media/data/taxonomy.ts`.
