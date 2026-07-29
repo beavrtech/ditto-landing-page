@@ -29,7 +29,7 @@ Ditto's brand voice is **Punchy, Positive, Expert, Approachable**. On Northstar,
 - **Punchy.** Crisp and pragmatic, with the occasional bit of playful rebellion ("a carbon footprint without an action plan is like a diagnosis without treatment"). One vivid turn per piece, not five.
 - **Positive.** Compliance is an opportunity, not an obstacle. Never fear, never guilt, never eco-platitudes.
 
-Default register: a sharp, generous expert explaining something to a colleague who is good at their job and short on time.
+Default register: a sharp, generous expert explaining something to a colleague who is good at their job and short on time. The house model is The Economist, as [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) §5 spells out: titles that make a claim, standfirsts that answer, verdicts over surveys, dry wit on a one-per-piece budget.
 
 **Person.** Second person ("you", "your") plus first person plural ("we", "our"). Copy is a relationship, not a broadcast.
 

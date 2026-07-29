@@ -126,6 +126,28 @@ still do this quarter." "EcoVadis medals are a procurement signal, not a perform
 measure." "What three years of duty-of-vigilance case law actually established." Each needs
 a name attached, and would be a different piece from a different author.
 
+### The register
+
+Write like The Economist. In practice that means:
+
+- **Titles make a claim.** A reader should be able to disagree with a Northstar headline.
+  "Carbon footprint for a retailer: purchased goods and freight are the whole picture" is
+  arguable; "Everything about retail carbon footprints" is not.
+- **The standfirst answers the question**; the piece then earns the answer. Nothing is
+  withheld for a reveal.
+- **Plain declarative prose, numbers over adjectives, verdicts over surveys.** When the
+  evidence supports a position, take it; when it does not, say so in one sentence and move
+  on.
+- **Wit is dry, load-bearing and rare.** One turn of phrase per piece, doing argumentative
+  work, never decoration. This is the same budget TONE-OF-VOICE.md already sets.
+- **A short piece is a finished piece.** The Economist prints a page where a page is what
+  the subject deserves. So do we; padding to look thorough is the tell we edit against.
+
+Two things we deliberately do not borrow: the anonymity (Northstar bylines are real people,
+and on features the byline is the point) and the British English (EN articles are US
+English, per the tone of voice). Where this section and TONE-OF-VOICE.md seem to disagree
+on a writing question, the tone of voice wins, as always.
+
 ---
 
 ## 6. Where a piece goes
