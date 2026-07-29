@@ -100,9 +100,12 @@ const nextConfig: NextConfig = {
         destination: "/en/media",
         permanent: false,
       },
+      // Anything with a file extension is a static asset served from
+      // public/media (illustrations, author photos, the logo), not a page —
+      // redirecting those into /en/media would 404 them.
       {
-        source: "/media/:path*",
-        destination: "/en/media/:path*",
+        source: "/media/:path((?!.*\\.[a-zA-Z0-9]+$).*)",
+        destination: "/en/media/:path",
         permanent: false,
       },
       {
