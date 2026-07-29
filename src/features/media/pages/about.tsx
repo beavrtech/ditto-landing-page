@@ -9,25 +9,25 @@ import type { MediaLocale } from "../data/taxonomy";
 
 const about = {
   en: {
-    title: "What Northstar is",
+    title: "What The Scope is",
     intro:
-      "Northstar is a magazine for the people who own QHSE, CSR and supply-chain compliance inside mid-sized companies. Often that is one person, juggling several frameworks at once, accountable to clients, buyers and auditors. We write for that person.",
+      "The Scope is a magazine for the people who own QHSE, CSR and supply-chain compliance in mid-sized companies. Usually that is one person, several frameworks, and no budget line. We write for that person.",
     body: [
-      "Articles are long-form, edited and verified. We name the version of every framework we describe and the date it was true, we never invent a statistic, and when something is contested we say so. If a piece only restates the official text, we do not publish it.",
-      "Northstar is published by the team at Ditto, the compliance platform, and says so plainly. The articles themselves do not sell anything: the only thing we ever ask of a reader is a newsletter subscription. We cover what practitioners have to deal with, whether or not Ditto has a product for it.",
+      "Articles are long-form, edited and verified. Frameworks are named with their version and their date. Statistics are real or absent. Where a question is genuinely unsettled, we say so and present both sides; where the evidence supports a verdict, we give one. A piece that merely restates the official text does not run.",
+      "The Scope is published by the team at Ditto, the compliance platform, and says so plainly. The articles sell nothing. The only thing we offer is a free newsletter subscription, one long read a month. We cover what practitioners have to deal with, whether or not Ditto sells anything for it, and that is what makes the coverage worth a busy person's lunch break.",
     ],
-    newsletterLine: "The best way to follow along is the monthly letter, on the home page.",
+    newsletterLine: "The letter lives on the home page. That is the whole pitch.",
     homeLink: "Back to the magazine",
   },
   fr: {
     title: "Qui sommes-nous",
     intro:
-      "Northstar est un magazine pour celles et ceux qui portent la conformité QHSE, RSE et supply chain dans les entreprises de taille intermédiaire. Souvent une seule personne, qui jongle avec plusieurs référentiels à la fois, comptable devant ses clients, ses donneurs d'ordre et ses auditeurs. C'est pour cette personne que nous écrivons.",
+      "The Scope est un magazine pour celles et ceux qui portent la conformité QHSE, RSE et supply chain dans les entreprises de taille intermédiaire. Le plus souvent, une personne, plusieurs référentiels, pas de ligne de budget. C'est pour cette personne que nous écrivons.",
     body: [
-      "Les articles sont longs, édités et vérifiés. Nous nommons la version de chaque référentiel décrit et la date à laquelle c'était vrai, nous n'inventons jamais une statistique, et quand un sujet est contesté nous le disons. Un article qui ne fait que reformuler le texte officiel n'est pas publié.",
-      "Northstar est édité par l'équipe de Ditto, la plateforme de conformité, et le dit simplement. Les articles eux-mêmes ne vendent rien : la seule chose que nous demandons à un lecteur est un abonnement à la newsletter. Nous couvrons ce que les praticiens doivent traiter, que Ditto ait un produit pour cela ou non.",
+      "Les articles sont longs, édités et vérifiés. Chaque référentiel est nommé avec sa version et sa date. Les statistiques sont réelles ou absentes. Quand une question n'est pas tranchée, nous le disons et présentons les deux camps ; quand les faits permettent un verdict, nous le donnons. Un article qui se contente de reformuler le texte officiel ne paraît pas.",
+      "The Scope est édité par l'équipe de Ditto, la plateforme de conformité, et le dit simplement. Les articles ne vendent rien. La seule chose que nous offrons est un abonnement gratuit à la newsletter, une lecture de fond par mois. Nous couvrons ce que les praticiens doivent traiter, que Ditto vende quelque chose pour cela ou non, et c'est ce qui rend la lecture digne de la pause déjeuner d'une personne occupée.",
     ],
-    newsletterLine: "La meilleure façon de nous suivre est la lettre mensuelle, sur la page d'accueil.",
+    newsletterLine: "La lettre est sur la page d'accueil. C'est tout notre argumentaire.",
     homeLink: "Retour au magazine",
   },
 } as const;

@@ -160,7 +160,7 @@ export function createArticleRoute(locale: MediaLocale) {
             <div className="ns-wrap">
               <div className="ns-section-head">
                 <h2 className="ns-section-title">
-                  {copy.moreIn(level1Node ? taxonomyLabel(level1Node, locale) : "Northstar")}
+                  {copy.moreIn(level1Node ? taxonomyLabel(level1Node, locale) : "The Scope")}
                 </h2>
               </div>
               <ArticleGrid articles={toCards(related)} locale={locale} />

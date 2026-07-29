@@ -1,4 +1,4 @@
-// Northstar editorial taxonomy, as defined by the editorial team.
+// The Scope editorial taxonomy, as defined by the editorial team.
 //
 // Level 1 = pillar, level 2 = theme, level 3 = the named framework, regulation
 // or practice. Every theme carries level-3 topics. Every article declares a

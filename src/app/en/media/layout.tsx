@@ -8,17 +8,17 @@ import "@/features/media/styles/media.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.trustditto.com"),
   title: {
-    default: "Northstar — the QHSE, CSR & Supply Chain magazine by Ditto",
-    template: "%s | Northstar",
+    default: "The Scope — the QHSE, CSR & Supply Chain magazine by Ditto",
+    template: "%s | The Scope",
   },
   description:
-    "Northstar is Ditto's magazine for the people who own QHSE, CSR and supply chain compliance.",
-  // Northstar is not indexed until launch. Remove this block and the two
+    "The Scope is Ditto's magazine for the people who own QHSE, CSR and supply chain compliance.",
+  // The Scope is not indexed until launch. Remove this block and the two
   // /media entries in src/app/robots.ts to go live.
   robots: { index: false, follow: false },
   openGraph: {
     type: "website",
-    siteName: "Northstar",
+    siteName: "The Scope",
     images: [{ url: "/media/og-default.svg", width: 1200, height: 630 }],
   },
 };

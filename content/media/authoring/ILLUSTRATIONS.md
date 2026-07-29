@@ -3,7 +3,7 @@
 Three different things, with three different rule sets.
 
 - **The hero image** — one per article, referenced by `illustration` in the frontmatter. It is a **photograph**, generated with the OpenAI image API and stored at `public/media/illustrations/<url>.webp`, same name as the article's `url`.
-- **In-body figures** — optional, placed with `<ArticleImage>`. These are **flat SVG diagrams** in the Northstar palette. They explain something; a photograph cannot.
+- **In-body figures** — optional, placed with `<ArticleImage>`. These are **flat SVG diagrams** in the The Scope palette. They explain something; a photograph cannot.
 - **Author portraits** — one per author, at `public/media/authors/<slug>.webp`. Always a photograph of the real person. Never an invented face.
 
 ## The hero photograph
@@ -25,7 +25,7 @@ Add `--dry` to print the composed prompt without calling the API, which is the c
 
 ### The style
 
-Every Northstar photograph is shot as if by the same photographer on the same afternoon. The reference is the Ditto team portraits in `public/media/authors/`: a Paris courtyard, pale stone, dense green, no artifice.
+Every The Scope photograph is shot as if by the same photographer on the same afternoon. The reference is the Ditto team portraits in `public/media/authors/`: a Paris courtyard, pale stone, dense green, no artifice.
 
 - **Natural daylight only.** Overcast, open shade, or late-afternoon sun that has lost its hardness. No flash, no studio lighting, no colored light.
 - **Shallow depth of field.** Subject sharp, background dissolved into soft bokeh, as from a 50–85 mm lens at f/2.

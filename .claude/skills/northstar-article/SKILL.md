@@ -2,21 +2,21 @@
 name: northstar-article
 description: >
   Use this skill whenever the user wants to write, draft, translate, restructure
-  or review an article for Northstar, the Ditto media at trustditto.com/en/media.
-  Triggers include "write an article about EcoVadis for Northstar", "draft a
-  Northstar piece on the EUDR", "add an article to the media", "translate this
-  article into French for Northstar", "review this draft against our tone of
+  or review an article for The Scope, the Ditto media at trustditto.com/en/media.
+  Triggers include "write an article about EcoVadis for The Scope", "draft a
+  The Scope piece on the EUDR", "add an article to the media", "translate this
+  article into French for The Scope", "review this draft against our tone of
   voice", or any request to add or edit files under content/media/. It carries
-  Northstar's editorial contract (tone of voice, anti-AI-slop rules), the exact
+  The Scope's editorial contract (tone of voice, anti-AI-slop rules), the exact
   file format and frontmatter contract, the available MDX components, the
-  taxonomy filing rules, and the SEO/AEO requirements. Do not write a Northstar
+  taxonomy filing rules, and the SEO/AEO requirements. Do not write an article for The Scope
   article from memory or by copying an existing one without loading this skill:
   the frontmatter is validated at build time and a violation fails the build.
 ---
 
-# Writing a Northstar article
+# Writing an article for The Scope
 
-Northstar is Ditto's magazine for the people who own QHSE, CSR and supply-chain
+The Scope is Ditto's magazine for the people who own QHSE, CSR and supply-chain
 compliance. It is file-based MDX, bilingual, and validated at build time.
 
 ## Read these first, every time
@@ -24,9 +24,9 @@ compliance. It is file-based MDX, bilingual, and validated at build time.
 Do not skip these because a request looks small. They are the contract, and they
 change.
 
-1. `content/media/EDITORIAL-LINE.md` — **what Northstar publishes and why**: the promise,
+1. `content/media/EDITORIAL-LINE.md` — **what The Scope publishes and why**: the promise,
    the beat, the refusals list, the reference-versus-feature split (which sets the length
-   and who signs the piece), and the test for Northstar versus the Ditto blog. Read it
+   and who signs the piece), and the test for The Scope versus the Ditto blog. Read it
    first: it decides whether the article should exist before the tone of voice decides how
    it reads.
 2. `content/media/TONE-OF-VOICE.md` — **the editorial contract**: audience, voice,
@@ -112,7 +112,7 @@ Read an existing article, for example
 - `<FAQ>` emits structured data. Only real questions, answers self-contained and
   in plain text, never marketing copy, and never a question whose answer is not
   on the page.
-- Northstar articles rarely mention Ditto. When they do, they offer the
+- The Scope articles rarely mention Ditto. When they do, they offer the
   non-product fallback. Never write a CTA into the body: the article page adds a
   newsletter card in its side rail, and that is the only ask an article makes.
 - The page builds a table of contents from your `##` headings, so headings are

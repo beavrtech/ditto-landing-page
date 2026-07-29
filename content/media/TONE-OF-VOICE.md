@@ -1,10 +1,10 @@
-# Northstar — tone of voice and writing guidelines
+# The Scope — tone of voice and writing guidelines
 
-Northstar is Ditto's media. It is not the Ditto blog with a new coat of paint: it is a magazine for the people who own QHSE, CSR, and supply-chain compliance inside mid-sized companies. Articles are long, edited, and worth someone's lunch break.
+The Scope is Ditto's media. It is not the Ditto blog with a new coat of paint: it is a magazine for the people who own QHSE, CSR, and supply-chain compliance inside mid-sized companies. Articles are long, edited, and worth someone's lunch break.
 
-This document is the source of truth for how Northstar articles are written. It merges three things: Ditto's brand voice, Ditto's resource-writing rules, and a hard anti-AI-slop standard. When two rules collide, the guardrails in "Non-negotiables" win.
+This document is the source of truth for how The Scope articles are written. It merges three things: Ditto's brand voice, Ditto's resource-writing rules, and a hard anti-AI-slop standard. When two rules collide, the guardrails in "Non-negotiables" win.
 
-What Northstar publishes and why, which pieces belong here rather than on the Ditto blog, and the reference-versus-feature split are in [EDITORIAL-LINE.md](./EDITORIAL-LINE.md). Read it first when the question is whether an article should exist; read this one when the question is how to write it.
+What The Scope publishes and why, which pieces belong here rather than on the Ditto blog, and the reference-versus-feature split are in [EDITORIAL-LINE.md](./EDITORIAL-LINE.md). Read it first when the question is whether an article should exist; read this one when the question is how to write it.
 
 ---
 
@@ -16,13 +16,13 @@ What Northstar publishes and why, which pieces belong here rather than on the Di
 
 Write to that person. Credit their work, respect their time, tell them what to know and what to do next.
 
-**What Northstar is not.** Not a product blog. Not thought leadership about the future of sustainability. Not a press release. Ditto pays for Northstar and publishes it, and that is stated plainly in the footer, but articles earn their place by being useful, not by selling.
+**What The Scope is not.** Not a product blog. Not thought leadership about the future of sustainability. Not a press release. Ditto pays for The Scope and publishes it, and that is stated plainly in the footer, but articles earn their place by being useful, not by selling.
 
 ---
 
 ## 2. Voice
 
-Ditto's brand voice is **Punchy, Positive, Expert, Approachable**. On Northstar, **Expert and Approachable lead**; Punchy and Positive are the spice, used in intros, how-to steps, and closes.
+Ditto's brand voice is **Punchy, Positive, Expert, Approachable**. On The Scope, **Expert and Approachable lead**; Punchy and Positive are the spice, used in intros, how-to steps, and closes.
 
 - **Expert.** Knowledgeable, confident, unpretentious. Correct mechanics, real specifics, named regulations, real dates.
 - **Approachable.** Plain and human. No acronym soup, no consultant-ese. Short sentences. Explain the thing.
@@ -40,9 +40,9 @@ Default register: a sharp, generous expert explaining something to a colleague w
 These override everything else.
 
 1. **Never invent statistics, percentages, scores, dates, client counts, or study findings.** Use a number only if it is verified. Otherwise write `[STAT: verify]` and do not publish until it is resolved.
-2. **Never fabricate URLs, sources, or slugs.** Name an outlet only if the piece links a real URL, otherwise write `[SOURCE: outlet, headline]`. Internal links use real Northstar or trustditto.com paths, otherwise `[INTERNAL LINK: topic]`.
+2. **Never fabricate URLs, sources, or slugs.** Name an outlet only if the piece links a real URL, otherwise write `[SOURCE: outlet, headline]`. Internal links use real The Scope or trustditto.com paths, otherwise `[INTERNAL LINK: topic]`.
 3. **No greenwashing, no overpromising.** Never guarantee scores, medals, or audit outcomes. Benefits follow from structured work. Own the imperfections and the road ahead.
-4. **Stay humble about the product.** Northstar articles may mention Ditto where it is genuinely relevant, and when they do they offer the non-product fallback ("a platform like Ditto, or at minimum a well-organized drive"). Never hard-sell. Most articles should not mention Ditto at all.
+4. **Stay humble about the product.** The Scope articles may mention Ditto where it is genuinely relevant, and when they do they offer the non-product fallback ("a platform like Ditto, or at minimum a well-organized drive"). Never hard-sell. Most articles should not mention Ditto at all.
 5. **Spell out every acronym on first use** (CSR, ESG, QHSE, GHG, KPI, LCA, EMS, QMS, SST, and so on), in both languages.
 6. **Regulatory claims must be accurate and current.** If something recently changed or is contested (CSRD/Omnibus scope, thresholds, data-point counts), say so and present it fairly rather than asserting.
 7. **Cite the version and the date.** Frameworks move. Say which version of a standard, and as of when.
@@ -51,7 +51,7 @@ These override everything else.
 
 ## 4. Anti-slop standard
 
-Compliance content that reads as machine-written undercuts the trust the whole thing depends on. Every Northstar article is edited against the patterns below.
+Compliance content that reads as machine-written undercuts the trust the whole thing depends on. Every The Scope article is edited against the patterns below.
 
 ### Banned words and phrases
 
@@ -106,7 +106,7 @@ The one allowed antithesis is the fixed brand line: "compliance is an opportunit
 
 1. **Headline.** A statement or a real question, not clickbait. Front-load the subject. It renders in serif at the top of the page, so it can be long enough to say something.
 2. **Standfirst (the `description` frontmatter field).** One to three sentences that state the core answer immediately, keyword front-loaded. It doubles as the meta description and the card dek, so it must read standalone. Keep it under about 155 characters where possible.
-3. **Illustration.** One per article, geometric and flat, in the Northstar palette. Alt text describes the image, not the article.
+3. **Illustration.** One per article, geometric and flat, in the The Scope palette. Alt text describes the image, not the article.
 4. **`<KeyTakeaways>` near the top.** Three to five bullets a reader could act on without reading further.
 5. **Body.** H2 sections, answer-first. H3s and numbered steps where the content is procedural. "Good to know:" asides for the sharp, non-obvious, practical fact.
 6. **`<FAQ>` at the end, only when practitioners genuinely ask those questions.** Answers must be self-contained (they are eligible for structured data, so they get read out of context).
@@ -138,17 +138,17 @@ Every article ships in English and French in a single file, `content/media/artic
 
 ## 7. Entities and structured data
 
-Northstar emits structured data from frontmatter and MDX components. Getting the entities right is an editorial responsibility, not just a developer one.
+The Scope emits structured data from frontmatter and MDX components. Getting the entities right is an editorial responsibility, not just a developer one.
 
 **Article.** Every article page emits an `Article` entity built from frontmatter: `title` becomes the headline, `description` the description, `date` and `updated` the publication and modification dates, `illustration` the image, taxonomy and industry labels the `about` and `keywords`. Consequence: `description` must be a real summary, not a teaser, and `date` must be the true publication date. Bump `updated` whenever the substance changes, never for a typo fix.
 
-**Author (Person).** Every article has exactly one author, referenced by slug from `src/features/media/data/authors.ts`, and that author gets a `Person` entity with a URL on Northstar and a `sameAs` link to their LinkedIn. Rules: real people only, no house pseudonyms, no "the Northstar team". If a piece is genuinely collective, publish it under the editor who owns it. Authors must exist in the data file before the article references them.
+**Author (Person).** Every article has exactly one author, referenced by slug from `src/features/media/data/authors.ts`, and that author gets a `Person` entity with a URL on The Scope and a `sameAs` link to their LinkedIn. Rules: real people only, no house pseudonyms, no "the The Scope team". If a piece is genuinely collective, publish it under the editor who owns it. Authors must exist in the data file before the article references them.
 
-**Organization.** The publisher is **Northstar**, an `Organization` whose `parentOrganization` is Ditto. That relationship is declared once in `src/features/media/lib/jsonld.ts`. Never introduce another publisher entity, never present a partner or a customer as the publisher, and never describe Northstar as independent from Ditto: it is Ditto's media and says so.
+**Organization.** The publisher is **The Scope**, an `Organization` whose `parentOrganization` is Ditto. That relationship is declared once in `src/features/media/lib/jsonld.ts`. Never introduce another publisher entity, never present a partner or a customer as the publisher, and never describe The Scope as independent from Ditto: it is Ditto's media and says so.
 
 **FAQ.** `FAQPage` structured data is emitted **only** by the `<FAQ>` MDX component, and only from questions that are visible on the page. Never mark up an answer that is not on-page. Answers must stand alone, must not begin with "As we saw above", and must not be marketing copy. If there are no real questions, omit the FAQ.
 
-**Breadcrumbs.** Generated automatically from `section` (Northstar, level 1, level 2, level 3, article). Consequence: putting an article in the wrong branch produces a wrong breadcrumb and a wrong `about`. Classify carefully.
+**Breadcrumbs.** Generated automatically from `section` (The Scope, level 1, level 2, level 3, article). Consequence: putting an article in the wrong branch produces a wrong breadcrumb and a wrong `about`. Classify carefully.
 
 **One home, several shelves.** `section` is where an article lives: one path, driving its breadcrumb, its card kicker and its `about`. `alsoIn` is where else it is worth reading, and only adds it to those listing pages. Use it when a reader of another pillar would genuinely want the piece, not to widen reach. Three secondary placements is the hard limit, and an article that seems to need more is usually two articles.
 

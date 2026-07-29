@@ -9,7 +9,7 @@ import { TAXONOMY, taxonomyLabel, type MediaLocale } from "../data/taxonomy";
  *   (e.g. "/reach-2026" or ""), used for the locale switch and to work out
  *   which level-1 theme and which industry are currently selected.
  */
-export function NorthstarMasthead({
+export function ScopeMasthead({
   locale,
   mirrorPath = "",
 }: {
@@ -31,8 +31,12 @@ export function NorthstarMasthead({
       <div className="ns-wrap">
         <div className="ns-masthead-top">
           <div className="ns-masthead-identity">
+            {/* Stacked two-line nameplate on the yellow plate, The Economist way. */}
             <Link href={mediaPath(locale)} className="ns-wordmark">
-              <span className="ns-wordmark-name">Northstar</span>
+              <span className="ns-wordmark-name">
+                <span className="ns-wordmark-line">The</span>
+                <span className="ns-wordmark-line">Scope</span>
+              </span>
             </Link>
             <p className="ns-tagline">{copy.tagline}</p>
           </div>

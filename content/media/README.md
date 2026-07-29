@@ -1,12 +1,12 @@
-# Northstar — how to add an article
+# The Scope — how to add an article
 
-Northstar is the media at `trustditto.com/en/media` (English) and `trustditto.com/fr/media` (French); bare `/media` redirects to the English home. It is file-based: articles are MDX files in this folder, not CMS entries. Publishing means merging to `main` and deploying.
+The Scope is the media at `trustditto.com/en/media` (English) and `trustditto.com/fr/media` (French); bare `/media` redirects to the English home. It is file-based: articles are MDX files in this folder, not CMS entries. Publishing means merging to `main` and deploying.
 
-Read [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) to decide whether a piece belongs on Northstar at all, then [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. Together they are the editorial contract. The technical detail lives in [authoring/](./authoring/):
+Read [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) to decide whether a piece belongs on The Scope at all, then [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. Together they are the editorial contract. The technical detail lives in [authoring/](./authoring/):
 
 | Document | Covers |
 |---|---|
-| [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) | What Northstar publishes and refuses, the reference/feature split, Northstar vs the Ditto blog |
+| [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) | What The Scope publishes and refuses, the reference/feature split, The Scope vs the Ditto blog |
 | [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) | Voice, non-negotiables, the anti-slop standard, mechanics |
 | [authoring/FILE-FORMAT.md](./authoring/FILE-FORMAT.md) | The frontmatter contract, the locale markers, every validation error |
 | [authoring/TAXONOMY.md](./authoring/TAXONOMY.md) | Choosing `section`, `alsoIn` and `industries` |
@@ -150,7 +150,7 @@ Alexis dirige la conformité chez Ditto, où il…
 
 Real people only: each author becomes a `Person` entity in structured data with a profile page at `/en/media/authors/<slug>`. Authors are mirrored by hand from the Supabase `authors` table the main site uses, so keep the slug and name identical to the CMS record. `dittoAuthorSlug` links the two profiles together; omit it for someone who has no CMS record, or the link 404s.
 
-The photo does **not** have to match the CMS record. Northstar runs its own portrait of the same person, in the house style described in [authoring/ILLUSTRATIONS.md](./authoring/ILLUSTRATIONS.md), and the rest of the site keeps whatever `authors.picture_url` holds. Editing one never touches the other. `avatar` takes a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows; prefer a local file, a 512×512 crop at `public/media/authors/<slug>.webp` (the largest rendering is 64px). The Supabase host is unreachable from sandboxed dev environments, so remote avatars render broken locally.
+The photo does **not** have to match the CMS record. The Scope runs its own portrait of the same person, in the house style described in [authoring/ILLUSTRATIONS.md](./authoring/ILLUSTRATIONS.md), and the rest of the site keeps whatever `authors.picture_url` holds. Editing one never touches the other. `avatar` takes a path under `/public` or an absolute URL on the Supabase storage host, which `next.config.ts` already allows; prefer a local file, a 512×512 crop at `public/media/authors/<slug>.webp` (the largest rendering is 64px). The Supabase host is unreachable from sandboxed dev environments, so remote avatars render broken locally.
 
 ## Adding a video
 
@@ -171,6 +171,6 @@ Edit `TAXONOMY` in `src/features/media/data/taxonomy.ts`. Each node needs a `slu
 
 ## Notes
 
-- Northstar is **not indexed yet**. `src/app/robots.ts` disallows `/media`, `/en/media` and `/fr/media`, and both media layouts set `robots: { index: false, follow: false }`. To launch: remove those two disallow entries, remove the `robots` block from `src/app/en/media/layout.tsx` and `src/app/fr/media/layout.tsx`, and add the media URLs to `src/app/sitemap.ts`.
+- The Scope is **not indexed yet**. `src/app/robots.ts` disallows `/media`, `/en/media` and `/fr/media`, and both media layouts set `robots: { index: false, follow: false }`. To launch: remove those two disallow entries, remove the `robots` block from `src/app/en/media/layout.tsx` and `src/app/fr/media/layout.tsx`, and add the media URLs to `src/app/sitemap.ts`.
 - Media pages are fully static and never touch Supabase, so they render without any environment variables.
 - Filter URLs are path-based (`/en/media/theme/…`, `/en/media/industry/…`) because `robots.ts` disallows every query-string URL.

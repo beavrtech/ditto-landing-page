@@ -1,6 +1,6 @@
-# Northstar — editorial line
+# The Scope — editorial line
 
-This document governs **what Northstar publishes and why**. It is the companion to
+This document governs **what The Scope publishes and why**. It is the companion to
 [TONE-OF-VOICE.md](./TONE-OF-VOICE.md), which governs **how a piece is written**, and to
 [authoring/TAXONOMY.md](./authoring/TAXONOMY.md), which governs **where it is filed**. When
 this document and the tone of voice disagree on a writing question, the tone of voice wins.
@@ -10,7 +10,7 @@ When they disagree on whether a piece should exist at all, this document wins.
 
 ## 1. The promise
 
-> Northstar covers the whole job of the person who owns compliance, including the parts
+> The Scope covers the whole job of the person who owns compliance, including the parts
 > Ditto doesn't sell.
 
 Everything below defends that sentence. It is what makes the EcoVadis and CSRD coverage
@@ -33,7 +33,7 @@ decision below:
 **Who it is not for.** The CSO of a listed group with a team of twelve and three
 consultancies on retainer. Students. Investors. The sustainability commentariat.
 
-This decides real cases. "The future of CSRD in Europe" is not a Northstar piece. "What to
+This decides real cases. "The future of CSRD in Europe" is not a piece for The Scope. "What to
 do about ESRS 1 before December" is.
 
 ---
@@ -51,7 +51,7 @@ The commitment that gives the promise teeth:
 > We cover a framework because practitioners have to deal with it, not because Ditto
 > supports it.
 
-In practice that means Northstar covers ISO 45001, ISO 9001, MASE, ICPE, REACH, EUDR, the
+In practice that means The Scope covers ISO 45001, ISO 9001, MASE, ICPE, REACH, EUDR, the
 duty of vigilance, workplace safety and human factors. None of those are in Ditto's product
 scope. All of them are in the reader's job.
 
@@ -73,7 +73,7 @@ The list that actually defines the line.
 - **Advocacy.** We explain what a rule requires. We do not campaign for or against it.
 - **Fear.** Never lead with the fine. Compliance is an opportunity, not an obstacle.
 - **Pieces whose only reason to exist is a keyword.** Written down deliberately, because
-  Northstar is the destination SEO surface and this is the failure mode that comes with it.
+  The Scope is the destination SEO surface and this is the failure mode that comes with it.
 - **Anything we cannot source.** If a fact is not verifiable, the piece runs without it or
   does not run.
 
@@ -130,7 +130,7 @@ a name attached, and would be a different piece from a different author.
 
 Write like The Economist. In practice that means:
 
-- **Titles make a claim.** A reader should be able to disagree with a Northstar headline.
+- **Titles make a claim.** A reader should be able to disagree with a headline in The Scope.
   "Carbon footprint for a retailer: purchased goods and freight are the whole picture" is
   arguable; "Everything about retail carbon footprints" is not.
 - **The standfirst answers the question**; the piece then earns the answer. Nothing is
@@ -143,7 +143,7 @@ Write like The Economist. In practice that means:
 - **A short piece is a finished piece.** The Economist prints a page where a page is what
   the subject deserves. So do we; padding to look thorough is the tell we edit against.
 
-Two things we deliberately do not borrow: the anonymity (Northstar bylines are real people,
+Two things we deliberately do not borrow: the anonymity (The Scope bylines are real people,
 and on features the byline is the point) and the British English (EN articles are US
 English, per the tone of voice). Where this section and TONE-OF-VOICE.md seem to disagree
 on a writing question, the tone of voice wins, as always.
@@ -158,15 +158,15 @@ Ditto runs three content surfaces. Applied in order, first match wins.
    blog**. No exceptions.
 2. **Does the advice only work if you have the product?** → **Ditto blog**.
 3. **Is the topic outside the five frameworks Ditto sells against** (EcoVadis, CSRD, CDP,
-   carbon, VSME)? → **Northstar**.
+   carbon, VSME)? → **The Scope**.
 4. **Overlap zone.** Split by the shape of the question, not the topic:
    - "What is X, who is in scope, what are the thresholds, how does scoring work" —
      definitional and stable → **collection**, until the collection is migrated.
    - "X changed and here is what it means, how to do X this quarter, X versus Y with a
-     position" — timing, judgment, craft → **Northstar**.
-5. Still tied? **Would a competitor's customer read it?** Yes → **Northstar**.
+     position" — timing, judgment, craft → **The Scope**.
+5. Still tied? **Would a competitor's customer read it?** Yes → **The Scope**.
 
-Shorthand: the collection answers what someone typed into Google. Northstar answers what
+Shorthand: the collection answers what someone typed into Google. The Scope answers what
 they asked their peer over lunch. The blog is Ditto speaking as Ditto.
 
 Two pages only compete when they answer the same query, not when they share a topic. "What
@@ -177,7 +177,7 @@ can win. Rule 4 is the whole of the anti-cannibalization policy.
 
 ## 7. What we are accountable for
 
-At the scale Northstar is heading for, this section is what separates a media property from
+At the scale The Scope is heading for, this section is what separates a media property from
 a content farm.
 
 - Every piece names the version of the framework it describes and the date it was true.
@@ -202,7 +202,7 @@ One metric from each family. Reach alone collapses the line into keyword chasing
   matter if Google vanished.
 - **Quality.** A monthly sample of published pieces read against the checklist in
   TONE-OF-VOICE.md, with the failure rate tracked over time. At the planned cadence this is
-  the only thing standing between Northstar and several hundred pages of slop.
+  the only thing standing between The Scope and several hundred pages of slop.
 
 > **TODO:** set the reach target and the review sample size. Something on the order of
 > "rank for 30 of the 40 combinations within 12 months" and "5 pieces a month", but the
@@ -212,9 +212,9 @@ One metric from each family. Reach alone collapses the line into keyword chasing
 
 ## 9. The relationship to Ditto
 
-Northstar is Ditto's media. It says so in the footer and never pretends otherwise. Articles
+The Scope is Ditto's media. It says so in the footer and never pretends otherwise. Articles
 rarely mention Ditto, and when they do they offer the non-product fallback. No article
 carries a call to action in its body: the newsletter card in the side rail is the only ask
-Northstar makes.
+The Scope makes.
 
 The independence is not a pose. It is what makes the framework coverage worth reading.

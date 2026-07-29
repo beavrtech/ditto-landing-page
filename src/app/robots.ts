@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      // /media + /fr/media (Northstar) are hidden from search until launch —
+      // /media + /fr/media (The Scope) are hidden from search until launch —
       // remove these two entries (and the noindex in the media layouts) to go live.
       disallow: ["/api/", "/admin/", "/media", "/en/media", "/fr/media", "/*?*", "/404", "/500"],
     },

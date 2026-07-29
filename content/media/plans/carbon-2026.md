@@ -322,7 +322,7 @@ None of these can ship from the source as written.
 | 2 | "Allow 2 to 3 months minimum for data collection" | No source. Attribute honestly to Ditto's own observation, or cut. |
 | 3 | "Costs can reach several tens of thousands of euros" (consultancy) | Needs a real, sourced range or it goes. |
 | 4 | "Over 100,000 emission factors" | Vendor claim about a tool. Cut. |
-| 5 | The "Carbo" SaaS platform, named twice as a recommendation | Remove entirely. Northstar does not recommend vendors. Replace with the neutral three-options framing. |
+| 5 | The "Carbo" SaaS platform, named twice as a recommendation | Remove entirely. The Scope does not recommend vendors. Replace with the neutral three-options framing. |
 | 6 | Trailing "Prepare your EcoVadis assessment" call to action | Remove. No article carries a CTA in its body. |
 
 Also confirm before the industry pieces: the emission-profile claims per industry are

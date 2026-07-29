@@ -23,8 +23,8 @@ export function createHomeRoute(locale: MediaLocale) {
     return {
       title:
         locale === "fr"
-          ? "Northstar — le média QHSE, RSE & Supply Chain par Ditto"
-          : "Northstar — the QHSE, CSR & Supply Chain magazine by Ditto",
+          ? "The Scope — le média QHSE, RSE & Supply Chain par Ditto"
+          : "The Scope — the QHSE, CSR & Supply Chain magazine by Ditto",
       description: copy.tagline,
       alternates: mediaAlternates(locale, ""),
     };
@@ -93,7 +93,7 @@ export function createHomeRoute(locale: MediaLocale) {
         <JsonLd
           data={articleCollectionJsonLd({
             url: mediaUrl(locale),
-            name: "Northstar",
+            name: "The Scope",
             description: copy.tagline,
             articles,
             locale,

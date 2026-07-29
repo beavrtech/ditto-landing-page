@@ -1,4 +1,4 @@
-// Northstar UI strings — the media section lives outside next-intl on purpose,
+// The Scope UI strings — the media section lives outside next-intl on purpose,
 // so its handful of chrome strings are managed here.
 
 import type { MediaLocale } from "./data/taxonomy";
@@ -38,7 +38,7 @@ export interface MediaDict {
   industryKicker: string;
   themeKicker: string;
   emptyTheme: string;
-  backToNorthstar: string;
+  backToScope: string;
   backToDitto: string;
   switchLocale: string;
   switchLocaleLabel: string;
@@ -73,7 +73,7 @@ const dict: Record<MediaLocale, MediaDict> = {
     authors: "Our authors",
     previousAuthors: "Previous authors",
     nextAuthors: "Next authors",
-    newsletterTitle: "The Northstar letter",
+    newsletterTitle: "The Scope letter",
     newsletterBody:
       "One long-form read on QHSE, CSR or supply-chain regulation, once a month. No noise.",
     newsletterPlaceholder: "you@company.com",
@@ -96,7 +96,7 @@ const dict: Record<MediaLocale, MediaDict> = {
     industryKicker: "Industry",
     themeKicker: "Theme",
     emptyTheme: "No articles here yet — they're being written.",
-    backToNorthstar: "Northstar",
+    backToScope: "The Scope",
     backToDitto: "trustditto.com",
     switchLocale: "FR",
     switchLocaleLabel: "Lire en français",
@@ -105,7 +105,7 @@ const dict: Record<MediaLocale, MediaDict> = {
     notFoundBody: "This page doesn't exist. Head back to the magazine.",
     legal: "Legal notices",
     privacy: "Privacy policy",
-    aboutLine: "Northstar is published by Ditto, the compliance platform.",
+    aboutLine: "The Scope is published by Ditto, the compliance platform.",
     profileOnDitto: "Profile on trustditto.com",
     onThisPage: "On this page",
     writtenBy: "Written by",
@@ -129,7 +129,7 @@ const dict: Record<MediaLocale, MediaDict> = {
     authors: "Nos auteurs",
     previousAuthors: "Auteurs précédents",
     nextAuthors: "Auteurs suivants",
-    newsletterTitle: "La lettre Northstar",
+    newsletterTitle: "La lettre du Scope",
     newsletterBody:
       "Une lecture de fond sur la QHSE, la RSE ou la réglementation supply chain, une fois par mois. Sans bruit.",
     newsletterPlaceholder: "vous@entreprise.com",
@@ -152,7 +152,7 @@ const dict: Record<MediaLocale, MediaDict> = {
     industryKicker: "Industrie",
     themeKicker: "Thématique",
     emptyTheme: "Pas encore d'articles ici — ils sont en cours d'écriture.",
-    backToNorthstar: "Northstar",
+    backToScope: "The Scope",
     backToDitto: "trustditto.com",
     switchLocale: "EN",
     switchLocaleLabel: "Read in English",
@@ -161,7 +161,7 @@ const dict: Record<MediaLocale, MediaDict> = {
     notFoundBody: "Cette page n'existe pas. Retournez au magazine.",
     legal: "Mentions légales",
     privacy: "Politique de confidentialité",
-    aboutLine: "Northstar est édité par Ditto, la plateforme de conformité.",
+    aboutLine: "The Scope est édité par Ditto, la plateforme de conformité.",
     profileOnDitto: "Profil sur trustditto.com",
     onThisPage: "Sur cette page",
     writtenBy: "Écrit par",

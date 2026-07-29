@@ -1,6 +1,6 @@
 # SEO and answer-engine optimisation
 
-Northstar's job is to be the thing a practitioner finds and a machine can quote correctly. Most of that is automatic; this document says what the code does for you, what you control while writing, and what is still missing.
+The Scope's job is to be the thing a practitioner finds and a machine can quote correctly. Most of that is automatic; this document says what the code does for you, what you control while writing, and what is still missing.
 
 ## What is emitted automatically
 
@@ -8,13 +8,13 @@ You do not hand-write any of this.
 
 **Every page**
 
-- `Organization` for Northstar, with `parentOrganization` pointing at Ditto, plus a `WebSite` node. Northstar is never presented as independent from Ditto.
+- `Organization` for The Scope, with `parentOrganization` pointing at Ditto, plus a `WebSite` node. The Scope is never presented as independent from Ditto.
 - `BreadcrumbList`, built from the taxonomy. The last crumb carries no URL, per Google's guidance.
 - `<html lang>` matching the page's language, one canonical URL, and `hreflang` linking the EN and FR twins with an `x-default`.
 
 **Article pages**
 
-- `Article` with `headline`, `description`, `image`, `datePublished`, `dateModified`, `inLanguage`, `mainEntityOfPage`, `url`, an `author` `Person` (with their LinkedIn as `sameAs`), `publisher` and `isPartOf` pointing at the Northstar nodes, `about` from the canonical section plus industries, and `keywords` including secondary placements.
+- `Article` with `headline`, `description`, `image`, `datePublished`, `dateModified`, `inLanguage`, `mainEntityOfPage`, `url`, an `author` `Person` (with their LinkedIn as `sameAs`), `publisher` and `isPartOf` pointing at the The Scope nodes, `about` from the canonical section plus industries, and `keywords` including secondary placements.
 - Also `articleSection` (the canonical taxonomy labels), `wordCount`, `timeRequired` as an ISO 8601 duration matching the byline's read time, and `isAccessibleForFree`. All derived, none authored.
 - Open Graph: `og:type=article`, title, description, `publishedTime`, `modifiedTime`, author, image.
 
@@ -52,7 +52,7 @@ Be honest about these rather than assuming the section is fully optimised.
 
 2. **~~Illustrations are SVG.~~ Resolved.** Every article now carries a 1536×1024 WebP photograph, so `Article.image` and `og:image` point at a raster Google and the social platforms will actually use. The generator and the style contract are in [ILLUSTRATIONS.md](./ILLUSTRATIONS.md).
 
-3. **The publisher has no logo.** `Article` rich results expect `publisher.logo` as an `ImageObject`. The Northstar `Organization` node has none.
+3. **The publisher has no logo.** `Article` rich results expect `publisher.logo` as an `ImageObject`. The Scope `Organization` node has none.
 
 4. **No Twitter card tags**, so link previews fall back to Open Graph, which mostly works but is not controlled.
 
