@@ -1,0 +1,126 @@
+---
+url: physical-vs-monetary-carbon-method
+author: alexis-de-taillac
+illustration: /media/illustrations/physical-vs-monetary-carbon-method.webp
+date: "2026-05-14"
+section: [rse, climat-et-carbone, bilan-carbone]
+alsoIn:
+  - [supply-chain, tracabilite-donnees-et-risques]
+
+en:
+  title: "Physical or monetary method: choose per emission source, not per company"
+  description: "The physical method is more accurate, the monetary method is available. Most solid footprints use both. How to decide, emission source by emission source."
+  alt: "A woman weighing a cardboard box on a workshop scale, a clipboard beside her on the bench, storage shelving soft in the background"
+fr:
+  title: "Méthode physique ou monétaire : choisir par poste d'émission, pas par entreprise"
+  description: "La méthode physique est plus juste, la méthode monétaire est disponible. Les bilans solides combinent les deux. Comment trancher, poste par poste."
+  alt: "Une femme pèse un carton sur une balance d'atelier, un porte-bloc posé à côté sur l'établi, rayonnages de stockage flous en arrière-plan"
+---
+
+<!-- locale:en -->
+
+<KeyTakeaways>
+- The physical method multiplies quantities (liters, kWh, kilometers, tonnes) by a physical emission factor. The monetary method multiplies euros spent by a factor per euro.
+- Physical wins on accuracy and tracks real reductions. Monetary wins on availability and covers everything accounting can see.
+- Choose per emission source: physical wherever quantities exist (energy, fuel, freight), monetary where only spend exists (most purchases, services).
+- A monetary line cannot show progress from buying better, only from buying less. Every year, move your biggest lines from monetary to physical.
+- In France, the reference database is ADEME's Base Empreinte. Ecoinvent covers international supply chains; Agribalyse covers food and agriculture.
+</KeyTakeaways>
+
+Behind every carbon footprint sits one multiplication, repeated a few hundred times: activity data times emission factor. What varies is the kind of activity data you feed it, and that choice, physical units or euros, decides how much your footprint can actually tell you. Framing it as a company-level decision is the classic first-year mistake. It is a line-by-line decision, and the good footprints mix both methods deliberately.
+
+## What each method actually does
+
+The **physical method** starts from a quantity: liters of diesel, kilowatt-hours of electricity, tonne-kilometers of freight, kilograms of aluminum. Each quantity is multiplied by a physical emission factor, the kilograms of CO2-equivalent per unit, drawn from a recognized database.
+
+The **monetary method** starts from spend: euros of IT services, euros of office furniture, euros of subcontracted machining. Each amount is multiplied by a monetary factor, the kilograms of CO2-equivalent per euro spent in that category, derived from national economic statistics.
+
+The physical method describes what you actually consumed. The monetary method describes what an average euro in that category consumed, across the whole economy. That difference is the entire trade-off.
+
+## Where each method is the honest choice
+
+**Physical, wherever a quantity exists.** Energy, fleet fuel, refrigerants, freight, waste, water, and any purchased material you buy by weight or volume. The data is in invoices and statements, the factors are well established, and the result responds to real changes: switch a route from road to rail and the number moves.
+
+**Monetary, where only spend exists.** Services, IT, marketing, insurance, maintenance contracts, and the long tail of purchases too diverse to weigh. For these, the accounting export is the only complete data source you have, and a monetary estimate covers them all at once.
+
+The weakness of the monetary method deserves to be stated plainly: it cannot register improvement in what you buy, only in how much you spend. Buy the same steel from a low-carbon producer and a monetary line does not move. Negotiate a discount and your reported emissions fall while reality is unchanged. Inflation pushes the line the other way. A footprint built entirely on monetary factors is a spend analysis wearing a carbon costume.
+
+**Good to know:** the two methods also fail differently. Physical-method errors are usually small and traceable (a missed site, a unit mixup). Monetary-method errors are structural: the factor is an economy-wide average that may describe your specific supplier badly, in either direction. Treat monetary lines as estimates with wide error bars, and say so in the report.
+
+## The databases that supply the factors
+
+A factor is only as good as its source, and the sources to name are few:
+
+- **Base Empreinte** (ADEME) is the French public reference, born from the merger of Base Carbone and Base IMPACTS. It carries both physical and monetary factors, adapted to the French energy mix.
+- **Ecoinvent** is the international life cycle inventory database, the usual choice when your supply chain crosses borders and the French averages stop being representative.
+- **Agribalyse** (ADEME) covers food and agricultural products, essential for anyone with a canteen or an agri-food supply chain.
+
+Whichever tool or consultant you use, ask which database each factor comes from and which year it was updated. Factors are revised as energy mixes change; a footprint computed on stale factors drifts without anyone touching the data.
+
+## A ratchet, not a religion
+
+The practical policy fits in one sentence: use physical data wherever a quantity exists, monetary factors for the rest, and every year convert your largest monetary lines to physical or supplier-specific data.
+
+That last clause is the one that matters. Rank your monetary lines by size, take the top two or three, and ask what quantity data would replace them: tonnages from your main material suppliers, real server counts from your IT provider, actual tonne-kilometers from your forwarder. The previous article in this series, on [getting carbon data out of your departments](/en/media/carbon-data-collection-departments), covers where those documents live.
+
+The direction of travel is one-way. Each line moved from monetary to physical makes the footprint more sensitive to real decisions, which is the entire point of measuring: a number that cannot move when you improve is not measuring your improvement.
+
+<FAQ items={[
+  { question: "What is the difference between the physical and monetary method in carbon accounting?", answer: "The physical method multiplies quantities consumed (liters, kWh, tonnes, kilometers) by an emission factor per unit. The monetary method multiplies spend by an average emission factor per euro for that expense category. Physical data reflects what you actually consumed; monetary factors reflect the economy-wide average for that kind of spending." },
+  { question: "Why not build the whole footprint with monetary factors?", answer: "Because a monetary line only responds to spend, not to what you buy. Choosing a lower-carbon supplier changes nothing in the result, a price discount lowers reported emissions without lowering real ones, and inflation raises them. Monetary factors are legitimate for the diverse long tail of purchases, but the biggest lines deserve physical or supplier data." },
+  { question: "Which emission factor databases should a French company use?", answer: "ADEME's Base Empreinte is the public French reference, resulting from the merger of Base Carbone and Base IMPACTS. Ecoinvent is the usual complement for international supply chains, and Agribalyse covers food and agricultural products. Always note which database and which update year each factor comes from." }
+]} />
+
+<!-- locale:fr -->
+
+<KeyTakeaways title="À retenir">
+- La méthode physique multiplie des quantités (litres, kWh, kilomètres, tonnes) par un facteur d'émission physique. La méthode monétaire multiplie des euros dépensés par un facteur par euro.
+- La physique gagne en justesse et enregistre les vraies réductions. La monétaire gagne en disponibilité et couvre tout ce que la comptabilité voit.
+- Choisissez poste par poste : physique partout où une quantité existe (énergie, carburant, fret), monétaire là où seule la dépense existe (la plupart des achats, les services).
+- Une ligne monétaire ne peut pas montrer le progrès d'un meilleur achat, seulement d'un achat moindre. Chaque année, faites passer vos plus grosses lignes du monétaire au physique.
+- En France, la référence est la Base Empreinte de l'ADEME. Ecoinvent couvre les chaînes internationales ; Agribalyse l'alimentaire et l'agricole.
+</KeyTakeaways>
+
+Derrière tout bilan carbone se cache une multiplication, répétée quelques centaines de fois : donnée d'activité fois facteur d'émission. Ce qui varie, c'est la nature de la donnée d'activité, et ce choix, unités physiques ou euros, décide de ce que votre bilan pourra vraiment vous dire. En faire une décision d'entreprise est l'erreur classique de l'année une. C'est une décision ligne à ligne, et les bons bilans combinent les deux méthodes délibérément.
+
+## Ce que chaque méthode fait réellement
+
+La **méthode physique** part d'une quantité : litres de gazole, kilowattheures d'électricité, tonnes-kilomètres de fret, kilogrammes d'aluminium. Chaque quantité est multipliée par un facteur d'émission physique, les kilogrammes de CO2-équivalent par unité, tiré d'une base reconnue.
+
+La **méthode monétaire** part d'une dépense : euros de prestations informatiques, euros de mobilier, euros d'usinage sous-traité. Chaque montant est multiplié par un facteur monétaire, les kilogrammes de CO2-équivalent par euro dépensé dans cette catégorie, dérivé des statistiques économiques nationales.
+
+La méthode physique décrit ce que vous avez réellement consommé. La méthode monétaire décrit ce qu'un euro moyen de cette catégorie a consommé, à l'échelle de toute l'économie. Cette différence contient tout l'arbitrage.
+
+## Là où chaque méthode est le choix honnête
+
+**Physique, partout où une quantité existe.** Énergie, carburant de flotte, fluides frigorigènes, fret, déchets, eau, et tout achat de matière acheté au poids ou au volume. La donnée est dans les factures et les relevés, les facteurs sont bien établis, et le résultat réagit aux vrais changements : basculez une liaison de la route vers le rail et le chiffre bouge.
+
+**Monétaire, là où seule la dépense existe.** Prestations, informatique, marketing, assurances, contrats de maintenance, et la longue traîne d'achats trop divers pour être pesés. Pour ces lignes, l'export comptable est la seule source complète dont vous disposez, et une estimation monétaire les couvre toutes d'un coup.
+
+La faiblesse de la méthode monétaire mérite d'être dite sans détour : elle ne peut pas enregistrer une amélioration de ce que vous achetez, seulement de combien vous dépensez. Achetez le même acier chez un producteur bas-carbone, la ligne monétaire ne bouge pas. Négociez une remise, vos émissions déclarées baissent alors que la réalité n'a pas changé. L'inflation pousse la ligne dans l'autre sens. Un bilan entièrement monétaire est une analyse de dépenses déguisée en bilan carbone.
+
+**Bon à savoir :** les deux méthodes échouent aussi différemment. Les erreurs de la méthode physique sont en général petites et traçables (un site oublié, une confusion d'unité). Celles de la méthode monétaire sont structurelles : le facteur est une moyenne d'économie entière qui peut mal décrire votre fournisseur précis, dans un sens comme dans l'autre. Traitez les lignes monétaires comme des estimations à large marge d'erreur, et dites-le dans le rapport.
+
+## Les bases qui fournissent les facteurs
+
+Un facteur ne vaut que par sa source, et les sources à connaître sont peu nombreuses :
+
+- La **Base Empreinte** (ADEME) est la référence publique française, née de la fusion de la Base Carbone et de la Base IMPACTS. Elle porte des facteurs physiques et monétaires, adaptés au mix énergétique français.
+- **Ecoinvent** est la base internationale d'inventaires de cycle de vie, le choix habituel quand votre chaîne d'approvisionnement traverse les frontières et que les moyennes françaises cessent d'être représentatives.
+- **Agribalyse** (ADEME) couvre les produits alimentaires et agricoles, indispensable dès qu'il y a une cantine ou une chaîne agroalimentaire.
+
+Quel que soit l'outil ou le cabinet, demandez de quelle base vient chaque facteur et de quelle année date sa mise à jour. Les facteurs sont révisés à mesure que les mix énergétiques évoluent ; un bilan calculé sur des facteurs périmés dérive sans que personne n'ait touché aux données.
+
+## Un cliquet, pas une religion
+
+La politique praticable tient en une phrase : données physiques partout où une quantité existe, facteurs monétaires pour le reste, et chaque année, conversion des plus grosses lignes monétaires vers du physique ou du spécifique fournisseur.
+
+C'est la dernière proposition qui compte. Classez vos lignes monétaires par taille, prenez les deux ou trois premières, et demandez-vous quelle donnée de quantité les remplacerait : tonnages de vos principaux fournisseurs de matière, nombre réel de serveurs chez votre prestataire informatique, tonnes-kilomètres réelles chez votre transitaire. L'article précédent de cette série, sur [la collecte des données par service](/fr/media/carbon-data-collection-departments), indique où vivent ces documents.
+
+Le sens du mouvement est unique. Chaque ligne passée du monétaire au physique rend le bilan plus sensible aux décisions réelles, ce qui est le but même de la mesure : un chiffre qui ne peut pas bouger quand vous vous améliorez ne mesure pas votre amélioration.
+
+<FAQ items={[
+  { question: "Quelle est la différence entre méthode physique et méthode monétaire en comptabilité carbone ?", answer: "La méthode physique multiplie des quantités consommées (litres, kWh, tonnes, kilomètres) par un facteur d'émission par unité. La méthode monétaire multiplie une dépense par un facteur moyen par euro pour cette catégorie. La donnée physique reflète ce que vous avez réellement consommé ; le facteur monétaire reflète la moyenne de l'économie pour ce type de dépense." },
+  { question: "Pourquoi ne pas faire tout le bilan avec des facteurs monétaires ?", answer: "Parce qu'une ligne monétaire ne réagit qu'à la dépense, pas à ce que vous achetez. Choisir un fournisseur bas-carbone ne change rien au résultat, une remise fait baisser les émissions déclarées sans baisser les émissions réelles, et l'inflation les fait monter. Les facteurs monétaires sont légitimes pour la longue traîne d'achats divers, mais les grosses lignes méritent des données physiques ou fournisseurs." },
+  { question: "Quelles bases de facteurs d'émission utiliser pour une entreprise française ?", answer: "La Base Empreinte de l'ADEME est la référence publique française, issue de la fusion de la Base Carbone et de la Base IMPACTS. Ecoinvent est le complément habituel pour les chaînes d'approvisionnement internationales, et Agribalyse couvre l'alimentaire et l'agricole. Notez toujours la base et l'année de mise à jour de chaque facteur." }
+]} />

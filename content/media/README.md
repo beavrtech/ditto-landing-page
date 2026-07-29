@@ -2,10 +2,12 @@
 
 Northstar is the media at `trustditto.com/en/media` (English) and `trustditto.com/fr/media` (French); bare `/media` redirects to the English home. It is file-based: articles are MDX files in this folder, not CMS entries. Publishing means merging to `main` and deploying.
 
-Read [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. It is the editorial contract. The technical detail lives in [authoring/](./authoring/):
+Read [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) to decide whether a piece belongs on Northstar at all, then [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) before writing. Together they are the editorial contract. The technical detail lives in [authoring/](./authoring/):
 
 | Document | Covers |
 |---|---|
+| [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) | What Northstar publishes and refuses, the reference/feature split, Northstar vs the Ditto blog |
+| [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) | Voice, non-negotiables, the anti-slop standard, mechanics |
 | [authoring/FILE-FORMAT.md](./authoring/FILE-FORMAT.md) | The frontmatter contract, the locale markers, every validation error |
 | [authoring/TAXONOMY.md](./authoring/TAXONOMY.md) | Choosing `section`, `alsoIn` and `industries` |
 | [authoring/COMPONENTS.md](./authoring/COMPONENTS.md) | The MDX components and the rules for each |

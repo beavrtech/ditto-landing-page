@@ -24,20 +24,25 @@ compliance. It is file-based MDX, bilingual, and validated at build time.
 Do not skip these because a request looks small. They are the contract, and they
 change.
 
-1. `content/media/TONE-OF-VOICE.md` — **the editorial contract**: audience, voice,
+1. `content/media/EDITORIAL-LINE.md` — **what Northstar publishes and why**: the promise,
+   the beat, the refusals list, the reference-versus-feature split (which sets the length
+   and who signs the piece), and the test for Northstar versus the Ditto blog. Read it
+   first: it decides whether the article should exist before the tone of voice decides how
+   it reads.
+2. `content/media/TONE-OF-VOICE.md` — **the editorial contract**: audience, voice,
    non-negotiables (no invented statistics, no fabricated sources, no
    greenwashing, no guaranteed outcomes), the banned-word and banned-pattern
    lists, mechanics (no em dashes, US English in EN), bilingual rules, and the
    structured-data entity conventions.
-2. `content/media/authoring/FILE-FORMAT.md` — the exact frontmatter contract and
+3. `content/media/authoring/FILE-FORMAT.md` — the exact frontmatter contract and
    the locale-marker body format.
-3. `content/media/authoring/TAXONOMY.md` — how to choose `section`, `alsoIn` and
+4. `content/media/authoring/TAXONOMY.md` — how to choose `section`, `alsoIn` and
    `industries`.
-4. `content/media/authoring/COMPONENTS.md` — the MDX components available and the
+5. `content/media/authoring/COMPONENTS.md` — the MDX components available and the
    rules for each, particularly `<FAQ>`.
-5. `content/media/authoring/SEO-AEO.md` — what the code emits and what the writer
+6. `content/media/authoring/SEO-AEO.md` — what the code emits and what the writer
    controls.
-6. `content/media/authoring/ILLUSTRATIONS.md` — the house photography style and
+7. `content/media/authoring/ILLUSTRATIONS.md` — the house photography style and
    the generator. Read it before making any artwork; the hero image is a
    generated photograph, not the flat SVG the older articles carry.
 
@@ -112,5 +117,7 @@ Read an existing article, for example
   newsletter card in its side rail, and that is the only ask an article makes.
 - The page builds a table of contents from your `##` headings, so headings are
   navigation as well as structure. Write them as statements a reader could scan.
-- Target roughly 1,200 to 2,200 words. Shorter is fine if the topic is genuinely
-  small; padding is not.
+- Length follows the format set in EDITORIAL-LINE.md: roughly 600 to 1,200 words
+  for a **reference** piece, 1,200 to 2,200 for a **feature**. Decide which one
+  the piece is before writing. Padding a reference piece up to feature length is
+  the most reliable slop tell there is.

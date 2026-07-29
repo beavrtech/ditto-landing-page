@@ -1,0 +1,142 @@
+---
+url: carbon-data-collection-departments
+author: alexis-de-taillac
+illustration: /media/illustrations/carbon-data-collection-departments.webp
+date: "2026-05-07"
+section: [rse, climat-et-carbone, bilan-carbone]
+alsoIn:
+  - [supply-chain, tracabilite-donnees-et-risques, collecte]
+
+en:
+  title: "Getting carbon data out of accounting, HR and purchasing"
+  description: "Data collection is the longest phase of a carbon footprint. Which department holds which data, what to ask for, and when an export beats a questionnaire."
+  alt: "A woman at an office desk resting a hand on a thick stack of paper invoices, a monitor turned away from the camera, box files on shelves behind"
+fr:
+  title: "Obtenir ses données carbone auprès de la compta, des RH et des achats"
+  description: "La collecte est la phase la plus longue d'un bilan carbone. Quel service détient quelle donnée, quoi demander, et quand un export vaut mieux qu'un questionnaire."
+  alt: "Une femme à un bureau pose la main sur une épaisse pile de factures papier, un écran tourné dos à l'objectif, classeurs sur des étagères derrière"
+---
+
+<!-- locale:en -->
+
+<KeyTakeaways>
+- Ask each department for documents it already produces: invoices, accounting exports, payroll counts. A new report is a favor; an existing one is a habit.
+- Energy comes from invoices in kWh and cubic meters. Fleet fuel comes from fuel cards. Neither needs a questionnaire.
+- Commuting is the one topic where a short employee questionnaire is the right tool. Keep it under five questions.
+- Purchases are the hardest and usually the largest source. Start from an accounting export by expense category, not from supplier outreach.
+- Track collection like a dependency list: what was asked, from whom, promised when, received or not.
+</KeyTakeaways>
+
+Every carbon footprint stands on data that belongs to someone else. The project succeeds or stalls on how you ask, and the asking has a rule that saves weeks: request documents the department already produces in the normal course of business. An accounting export exists. An energy invoice exists. A payroll headcount exists. The moment you ask someone to build a new document for you, you have joined the queue behind their actual job.
+
+## Map the sources before sending anything
+
+For each emission source, name the department that holds the data and the document that carries it. The map for a typical mid-sized company is short:
+
+| Emission source | Who holds it | The document to ask for |
+|---|---|---|
+| Electricity, gas, heat | Facilities or accounting | Supplier invoices (kWh, m³) |
+| Company vehicles | Fleet manager | Fuel card statements, liters |
+| Refrigerants | Maintenance provider | Service reports with recharge quantities |
+| Business travel | Travel agency or expenses | Bookings export, expense lines |
+| Commuting | HR, then employees | A short questionnaire |
+| Purchases | Purchasing or finance | Accounting export by expense category |
+| Freight | Logistics or the forwarder | Shipment volumes and modes |
+
+The point of writing the map down is that it turns a vague campaign into a finite list, and a finite list can be tracked.
+
+## Energy and fuel: invoices, not estimates
+
+Electricity and gas are the easy win. The invoices state consumption in kilowatt-hours and cubic meters, and for a multi-site company the only real work is consolidation: one line per site, one column per energy, a full year. Resist the temptation to convert from euros; prices move, physical units do not.
+
+Fleet fuel behaves the same way. Fuel card statements give liters by vehicle, which is exactly the activity data the calculation needs. Refrigerants hide in maintenance reports: the quantity recharged into an air-conditioning or cold-storage circuit over the year is the quantity that leaked, and for some companies it is a larger line than anyone expects.
+
+## Commuting: the questionnaire that earns its place
+
+Commuting data does not exist in any system, so this is the one source where asking employees directly is the right tool. Keep the questionnaire to what the calculation actually uses: usual mode of transport, one-way distance, days on site per week. Three questions, five at most, answerable in a minute. Response rates fall with every question added, and a 30% response rate extrapolated honestly beats a 5% rate on a beautiful survey.
+
+**Good to know:** remote work belongs in this questionnaire. A day at home removes a commute but adds home energy, and asking "days on site per week" captures both sides in one number.
+
+## Purchases: start from accounting, not from suppliers
+
+Purchased goods and services are usually the largest scope 3 line and always the least tractable, because the underlying data belongs to hundreds of suppliers who mostly do not have it either. The workable first-year method starts from your own accounting: an export of spend by expense category, mapped to monetary emission factors.
+
+That approach has a known weakness, monetary factors are averages, and a companion article in this series, [physical or monetary method](/en/media/physical-vs-monetary-carbon-method), covers when to replace them with physical data. For collection purposes the instruction is simpler: get the full-year export, at the finest category level the chart of accounts supports, with intercompany flows excluded. One file from one department, covering what may be more than half of your footprint.
+
+Freight sits between worlds. If you buy transport as a service, ask logistics or your forwarder for tonnage shipped, distances or lanes, and mode. Forwarders field this request routinely now, and many can return emissions figures directly.
+
+## Run the collection like a dependency list
+
+With the map done and the requests out, the remaining work is follow-through, and follow-through is a table: source, owner, document requested, date promised, date received, gaps noted. Review it weekly. Escalate through the sponsor when a source is two weeks late, not two months.
+
+Expect gaps, and record how each one was filled: a missing quarter extrapolated from three others, a site estimated from a comparable one. The footnote matters more than the fix. Next year's footprint will be built by someone who needs to know what was measured and what was assumed, and that someone may be you.
+
+When the table is full, the hard part of the footprint is over. The multiplication is waiting, and it is the fast part.
+
+<FAQ items={[
+  { question: "What data do you need for a carbon footprint?", answer: "Activity data per emission source: energy consumption from invoices (kWh, m³), fuel from fleet card statements, refrigerant recharges from maintenance reports, travel from booking exports, commuting from a short employee questionnaire, purchases from an accounting export by expense category, and freight volumes by mode from logistics or the forwarder." },
+  { question: "Why is purchase data the hardest part of a carbon footprint?", answer: "Because the underlying emissions data belongs to hundreds of suppliers, most of whom do not have it. A first footprint therefore starts from the company's own accounting export, mapped to monetary emission factors, and improves specific categories with physical or supplier data in later years." },
+  { question: "How do you collect commuting data?", answer: "With a short employee questionnaire, since commuting exists in no company system. Ask usual transport mode, one-way distance, and days on site per week, and keep it under five questions. A modest response rate extrapolated transparently is enough for a first footprint." }
+]} />
+
+<!-- locale:fr -->
+
+<KeyTakeaways title="À retenir">
+- Demandez à chaque service des documents qu'il produit déjà : factures, exports comptables, effectifs paie. Un nouveau document est une faveur ; un document existant est une habitude.
+- L'énergie vient des factures en kWh et en m³. Le carburant vient des cartes carburant. Ni l'un ni l'autre ne justifie un questionnaire.
+- Les trajets domicile-travail sont le seul sujet où un court questionnaire aux salariés est le bon outil. Cinq questions maximum.
+- Les achats sont le poste le plus difficile et souvent le plus lourd. Partez d'un export comptable par catégorie de dépense, pas d'une campagne fournisseurs.
+- Suivez la collecte comme une liste de dépendances : demandé quoi, à qui, promis pour quand, reçu ou non.
+</KeyTakeaways>
+
+Tout bilan carbone repose sur des données qui appartiennent à quelqu'un d'autre. Le projet avance ou s'enlise selon la façon de demander, et la demande obéit à une règle qui économise des semaines : réclamez des documents que le service produit déjà dans le cours normal de son activité. Un export comptable existe. Une facture d'énergie existe. Un effectif paie existe. À l'instant où vous demandez à quelqu'un de fabriquer un document pour vous, vous prenez la file derrière son vrai travail.
+
+## Cartographier les sources avant d'envoyer quoi que ce soit
+
+Pour chaque poste d'émission, nommez le service qui détient la donnée et le document qui la porte. Pour une ETI type, la carte est courte :
+
+| Poste d'émission | Qui détient | Le document à demander |
+|---|---|---|
+| Électricité, gaz, chaleur | Services généraux ou compta | Factures fournisseurs (kWh, m³) |
+| Véhicules de société | Gestionnaire de flotte | Relevés cartes carburant, litres |
+| Fluides frigorigènes | Prestataire de maintenance | Rapports d'intervention avec quantités rechargées |
+| Déplacements professionnels | Agence de voyage ou notes de frais | Export des réservations, lignes de frais |
+| Domicile-travail | RH, puis salariés | Un questionnaire court |
+| Achats | Achats ou finance | Export comptable par catégorie de dépense |
+| Fret | Logistique ou le transitaire | Volumes expédiés et modes |
+
+L'intérêt d'écrire la carte est qu'elle transforme une campagne vague en liste finie, et une liste finie se pilote.
+
+## Énergie et carburant : des factures, pas des estimations
+
+L'électricité et le gaz sont le gain facile. Les factures donnent la consommation en kilowattheures et en mètres cubes, et pour une entreprise multi-sites le seul vrai travail est la consolidation : une ligne par site, une colonne par énergie, une année pleine. Résistez à la tentation de convertir depuis les euros ; les prix bougent, les unités physiques non.
+
+Le carburant de la flotte se comporte pareil. Les relevés de cartes carburant donnent les litres par véhicule, exactement la donnée d'activité dont le calcul a besoin. Les fluides frigorigènes se cachent dans les rapports de maintenance : la quantité rechargée dans un circuit de climatisation ou de froid sur l'année est la quantité qui a fui, et pour certaines entreprises c'est une ligne plus lourde que prévu.
+
+## Domicile-travail : le questionnaire qui mérite sa place
+
+La donnée de trajet domicile-travail n'existe dans aucun système, c'est donc la seule source où interroger directement les salariés est le bon outil. Limitez le questionnaire à ce que le calcul utilise vraiment : mode de transport habituel, distance aller, jours sur site par semaine. Trois questions, cinq au plus, une minute pour répondre. Le taux de réponse chute à chaque question ajoutée, et 30 % de réponses extrapolées honnêtement valent mieux que 5 % sur une belle enquête.
+
+**Bon à savoir :** le télétravail a sa place dans ce questionnaire. Une journée à la maison supprime un trajet mais ajoute de l'énergie domestique, et la question « jours sur site par semaine » capture les deux effets en un seul chiffre.
+
+## Achats : partir de la comptabilité, pas des fournisseurs
+
+Les achats de biens et de services sont en général la première ligne du scope 3 et toujours la moins docile, parce que la donnée sous-jacente appartient à des centaines de fournisseurs qui, pour la plupart, ne l'ont pas non plus. La méthode praticable en année une part de votre propre comptabilité : un export des dépenses par catégorie, rapproché de facteurs d'émission monétaires.
+
+Cette approche a une faiblesse connue, les facteurs monétaires sont des moyennes, et un article compagnon de cette série, [méthode physique ou monétaire](/fr/media/physical-vs-monetary-carbon-method), traite du moment où les remplacer par des données physiques. Pour la collecte, la consigne est plus simple : obtenez l'export sur l'année pleine, au niveau de catégorie le plus fin que le plan comptable permet, flux intragroupe exclus. Un fichier, un service, pour ce qui peut représenter plus de la moitié de votre bilan.
+
+Le fret se tient entre deux mondes. Si vous achetez le transport comme un service, demandez à la logistique ou à votre transitaire les tonnages, les distances ou les liaisons, et les modes. Les transitaires reçoivent cette demande couramment désormais, et beaucoup savent renvoyer directement des chiffres d'émissions.
+
+## Piloter la collecte comme une liste de dépendances
+
+La carte faite et les demandes parties, le travail restant est du suivi, et le suivi est un tableau : source, responsable, document demandé, date promise, date de réception, manques constatés. Passez-le en revue chaque semaine. Faites remonter par le sponsor quand une source a deux semaines de retard, pas deux mois.
+
+Attendez-vous à des trous, et notez comment chacun a été comblé : un trimestre manquant extrapolé des trois autres, un site estimé à partir d'un site comparable. La note de bas de page compte plus que la rustine. Le bilan de l'an prochain sera construit par quelqu'un qui doit savoir ce qui a été mesuré et ce qui a été supposé, et ce quelqu'un sera peut-être vous.
+
+Quand le tableau est plein, le plus dur du bilan est derrière vous. La multiplication attend, et c'est la partie rapide.
+
+<FAQ items={[
+  { question: "Quelles données faut-il pour un bilan carbone ?", answer: "Des données d'activité par poste : consommations d'énergie sur factures (kWh, m³), carburant sur relevés de cartes, recharges de fluides frigorigènes sur rapports de maintenance, déplacements sur exports de réservations, domicile-travail par questionnaire court, achats par export comptable par catégorie, et volumes de fret par mode auprès de la logistique ou du transitaire." },
+  { question: "Pourquoi les achats sont-ils la partie la plus difficile d'un bilan carbone ?", answer: "Parce que la donnée d'émissions sous-jacente appartient à des centaines de fournisseurs, dont la plupart ne la possèdent pas. Un premier bilan part donc de l'export comptable de l'entreprise, rapproché de facteurs monétaires, puis améliore certaines catégories avec des données physiques ou fournisseurs les années suivantes." },
+  { question: "Comment collecter les données de trajets domicile-travail ?", answer: "Par un questionnaire court aux salariés, car cette donnée n'existe dans aucun système de l'entreprise. Demandez le mode de transport habituel, la distance aller et les jours sur site par semaine, sans dépasser cinq questions. Un taux de réponse modeste, extrapolé de façon transparente, suffit pour un premier bilan." }
+]} />

@@ -4,6 +4,8 @@ Northstar is Ditto's media. It is not the Ditto blog with a new coat of paint: i
 
 This document is the source of truth for how Northstar articles are written. It merges three things: Ditto's brand voice, Ditto's resource-writing rules, and a hard anti-AI-slop standard. When two rules collide, the guardrails in "Non-negotiables" win.
 
+What Northstar publishes and why, which pieces belong here rather than on the Ditto blog, and the reference-versus-feature split are in [EDITORIAL-LINE.md](./EDITORIAL-LINE.md). Read it first when the question is whether an article should exist; read this one when the question is how to write it.
+
 ---
 
 ## 1. Mission and audience
@@ -110,7 +112,7 @@ The one allowed antithesis is the fixed brand line: "compliance is an opportunit
 6. **`<FAQ>` at the end, only when practitioners genuinely ask those questions.** Answers must be self-contained (they are eligible for structured data, so they get read out of context).
 7. **Close on what to do next**, not on a metaphor. The body carries no CTA: the only standing offer is the newsletter card in the article's side rail, which the page adds for you. Never write a "book a demo" line into an article.
 
-Target length: roughly 1,200 to 2,200 words. Shorter is fine if the topic is genuinely small; padding is not.
+Length follows the format, and the format is set by [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) §5: roughly 600 to 1,200 words for a **reference** piece, 1,200 to 2,200 for a **feature**. These are the ranges the job usually needs, not targets to hit. Padding a reference piece up to feature length is the most reliable slop tell there is.
 
 ### Shapes
 
