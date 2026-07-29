@@ -10,6 +10,8 @@ export interface MediaDict {
   industries: string;
   videos: string;
   authors: string;
+  previousAuthors: string;
+  nextAuthors: string;
   newsletterTitle: string;
   newsletterBody: string;
   newsletterPlaceholder: string;
@@ -57,6 +59,8 @@ const dict: Record<MediaLocale, MediaDict> = {
     industries: "Industries",
     videos: "Videos",
     authors: "Our authors",
+    previousAuthors: "Previous authors",
+    nextAuthors: "Next authors",
     newsletterTitle: "The Northstar letter",
     newsletterBody:
       "One long-form read on QHSE, CSR or supply-chain regulation, once a month. No noise.",
@@ -103,6 +107,8 @@ const dict: Record<MediaLocale, MediaDict> = {
     industries: "Industries",
     videos: "Vidéos",
     authors: "Nos auteurs",
+    previousAuthors: "Auteurs précédents",
+    nextAuthors: "Auteurs suivants",
     newsletterTitle: "La lettre Northstar",
     newsletterBody:
       "Une lecture de fond sur la QHSE, la RSE ou la réglementation supply chain, une fois par mois. Sans bruit.",

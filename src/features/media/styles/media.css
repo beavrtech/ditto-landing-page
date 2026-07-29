@@ -585,6 +585,92 @@
   border-bottom: var(--ns-rule-soft);
 }
 
+/*
+ * Two cards fill the row and the third is left half-showing, so the row reads as
+ * continuing. --ns-peek is that sliver; the card width is what remains, halved.
+ */
+.ns-carousel {
+  --ns-peek: 15%;
+  position: relative;
+}
+
+.ns-carousel-track {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: auto;
+  /*
+   * proximity, not mandatory: the cards are wider than the leftover scroll at
+   * the end of the track, so mandatory would refuse to settle past the last
+   * snap point and strand the final card half off-screen.
+   */
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  border-top: var(--ns-rule-soft);
+  border-left: var(--ns-rule-soft);
+  /* The half-visible card fades out rather than being cut off by the edge. */
+  mask-image: linear-gradient(to right, transparent 0, #000 var(--ns-peek), #000 calc(100% - var(--ns-peek)), transparent 100%);
+}
+.ns-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+/* No fade on a side you cannot scroll towards; the first card starts flush. */
+.ns-carousel[data-at-start="true"] .ns-carousel-track {
+  mask-image: linear-gradient(to right, #000 calc(100% - var(--ns-peek)), transparent 100%);
+}
+.ns-carousel[data-at-end="true"] .ns-carousel-track {
+  mask-image: linear-gradient(to right, transparent 0, #000 var(--ns-peek));
+}
+.ns-carousel[data-at-start="true"][data-at-end="true"] .ns-carousel-track {
+  mask-image: none;
+}
+
+.ns-carousel-track > .ns-author-card {
+  flex: 0 0 calc((100% - var(--ns-peek)) / 2);
+  scroll-snap-align: start;
+}
+
+.ns-carousel-nav {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.ns-carousel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  color: var(--ns-ink);
+  background: var(--ns-paper);
+  border: var(--ns-rule);
+  cursor: pointer;
+  transition:
+    background-color 150ms ease-in-out,
+    opacity 150ms ease-in-out;
+}
+.ns-carousel-arrow:hover:not(:disabled) {
+  background: var(--ns-accent);
+}
+.ns-carousel-arrow:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+/* One card at a time on a narrow screen, with the same sliver of the next. */
+@media (max-width: 767px) {
+  .ns-carousel {
+    --ns-peek: 18%;
+  }
+  .ns-carousel-track > .ns-author-card {
+    flex: 0 0 calc(100% - var(--ns-peek));
+  }
+}
+
 .ns-avatar {
   width: 4rem;
   height: 4rem;
