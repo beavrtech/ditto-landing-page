@@ -1,0 +1,62 @@
+/*
+ * Northstar design tokens.
+ * Adapted from the Ditto design system (devlink/css/variables.css): same ink,
+ * same accents, same type scale. What changes: the ground is white instead of
+ * tan, and every corner is square.
+ */
+
+:root {
+  /* Color */
+  --ns-ink: #130e30;
+  --ns-ink-soft: #5f5c6e;
+  --ns-ink-a12: rgba(19, 14, 48, 0.12);
+  --ns-paper: #ffffff;
+  --ns-paper-tint: #f9fbf2;
+  --ns-accent: #ffe228;
+  --ns-accent-deep: #efd624;
+  --ns-accent-link: #3a93ff;
+  --ns-danger: #c23604;
+
+  /* Structure: no radius, no shadow. Rules do the work. */
+  --ns-radius: 0;
+  --ns-rule: 1px solid var(--ns-ink);
+  --ns-rule-soft: 1px solid var(--ns-ink-a12);
+  --ns-rule-heavy: 2px solid var(--ns-ink);
+
+  --ns-max-width: 80rem;
+  --ns-prose-width: 44rem;
+  --ns-rail-width: 17rem;
+  --ns-pad: 3rem;
+
+  /* Type */
+  --ns-font-body: var(--ns-font-inter), Inter, Arial, sans-serif;
+  --ns-font-display: var(--ns-font-hedvig), "Hedvig Letters Serif", "Times New Roman", serif;
+
+  --ns-h1: 4rem;
+  --ns-h2: 3rem;
+  --ns-h3: 2rem;
+  --ns-h4: 1.75rem;
+  --ns-h5: 1.375rem;
+  --ns-body-lg: 1.375rem;
+  --ns-body: 1rem;
+  --ns-small: 0.875rem;
+  --ns-micro: 0.75rem;
+}
+
+@media (max-width: 991px) {
+  :root {
+    --ns-h1: 3rem;
+    --ns-h2: 2rem;
+    --ns-h3: 1.75rem;
+    --ns-pad: 2rem;
+  }
+}
+
+@media (max-width: 479px) {
+  :root {
+    --ns-h1: 2rem;
+    --ns-h2: 1.75rem;
+    --ns-body-lg: 1.125rem;
+    --ns-pad: 1rem;
+  }
+}

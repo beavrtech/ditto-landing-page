@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" role="img">
+  <rect width="900" height="600" fill="#ffffff"/>
+  <g stroke="#130e30" stroke-width="3" fill="none">
+    <rect x="150" y="100" width="150" height="100"/><rect x="300" y="100" width="150" height="100"/>
+    <rect x="450" y="100" width="150" height="100"/><rect x="600" y="100" width="150" height="100"/>
+    <rect x="150" y="200" width="150" height="100"/><rect x="450" y="200" width="150" height="100"/>
+    <rect x="600" y="200" width="150" height="100"/>
+    <rect x="150" y="300" width="150" height="100"/><rect x="300" y="300" width="150" height="100"/>
+    <rect x="450" y="300" width="150" height="100"/><rect x="600" y="300" width="150" height="100"/>
+    <rect x="150" y="400" width="150" height="100"/><rect x="300" y="400" width="150" height="100"/>
+    <rect x="450" y="400" width="150" height="100"/><rect x="600" y="400" width="150" height="100"/>
+  </g>
+  <rect x="300" y="200" width="150" height="100" fill="#ffe228" stroke="#130e30" stroke-width="3"/>
+</svg>
