@@ -14,7 +14,7 @@ export function MediaNotFound({ locale }: { locale: MediaLocale }) {
           {copy.notFoundBody}
         </p>
         <p style={{ marginTop: "1.5rem" }}>
-          <Link href={mediaPath(locale)}>{copy.backToNorthstar}</Link>
+          <Link href={mediaPath(locale)}>{copy.backToScope}</Link>
         </p>
       </div>
     </MediaShell>

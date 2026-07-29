@@ -2,7 +2,7 @@ import { t } from "../dictionary";
 import type { MediaLocale } from "../data/taxonomy";
 
 /**
- * The article rail's standing offer. Northstar is a magazine, so the ask is to
+ * The article rail's standing offer. The Scope is a magazine, so the ask is to
  * keep reading rather than to book a demo: the newsletter is the only CTA an
  * article carries. Design-only until a list is wired up.
  */

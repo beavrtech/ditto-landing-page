@@ -27,6 +27,7 @@ export function AuthorBio({
         <div>
           <p className="ns-author-name">
             <Link href={mediaPath(locale, `/authors/${author.slug}`)}>{author.name}</Link>
+            {author.invited ? <span className="ns-invited">{copy.byInvitation}</span> : null}
           </p>
           <p className="ns-meta">{author.title[locale]}</p>
           <p className="ns-card-dek" style={{ marginTop: "0.75rem" }}>
@@ -34,6 +35,11 @@ export function AuthorBio({
           </p>
           <p className="ns-meta ns-author-links">
             <Link href={mediaPath(locale, `/authors/${author.slug}`)}>{copy.allArticlesBy}</Link>
+            {author.website ? (
+              <a href={author.website} rel="noopener noreferrer" target="_blank">
+                {copy.website}
+              </a>
+            ) : null}
             {author.linkedin ? (
               <a href={author.linkedin} rel="noopener noreferrer" target="_blank">
                 LinkedIn

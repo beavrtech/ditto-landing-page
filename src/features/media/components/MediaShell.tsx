@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { NorthstarMasthead } from "./NorthstarMasthead";
-import { NorthstarFooter } from "./NorthstarFooter";
+import { ScopeMasthead } from "./ScopeMasthead";
+import { ScopeFooter } from "./ScopeFooter";
 import type { MediaLocale } from "../data/taxonomy";
 
 export function MediaShell({
@@ -14,9 +14,9 @@ export function MediaShell({
 }) {
   return (
     <div className="ns-shell">
-      <NorthstarMasthead locale={locale} mirrorPath={mirrorPath} />
+      <ScopeMasthead locale={locale} mirrorPath={mirrorPath} />
       <main className="ns-main">{children}</main>
-      <NorthstarFooter locale={locale} />
+      <ScopeFooter locale={locale} />
     </div>
   );
 }

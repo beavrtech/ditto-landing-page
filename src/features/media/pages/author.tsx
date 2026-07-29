@@ -49,12 +49,17 @@ export function createAuthorRoute(locale: MediaLocale) {
                 <Image src={author.avatar} alt="" width={64} height={64} />
               </span>
               <div>
-                <p className="ns-kicker">{copy.authors}</p>
+                <p className="ns-kicker">{author.invited ? copy.byInvitation : copy.authors}</p>
                 <h1>{author.name}</h1>
                 <p className="ns-meta" style={{ marginTop: "0.5rem" }}>
                   {author.title[locale]}
                 </p>
                 <p className="ns-meta ns-author-links">
+                  {author.website ? (
+                    <a href={author.website} rel="noopener noreferrer" target="_blank">
+                      {copy.website}
+                    </a>
+                  ) : null}
                   {author.linkedin ? (
                     <a href={author.linkedin} rel="noopener noreferrer" target="_blank">
                       LinkedIn

@@ -3,7 +3,7 @@ import { t } from "../dictionary";
 import { mediaPath, SITE_URL } from "../lib/urls";
 import { TAXONOMY, taxonomyLabel, type MediaLocale } from "../data/taxonomy";
 
-export function NorthstarFooter({ locale }: { locale: MediaLocale }) {
+export function ScopeFooter({ locale }: { locale: MediaLocale }) {
   const copy = t(locale);
   const sitePrefix = locale === "fr" ? "/fr" : "/en";
 
@@ -12,7 +12,7 @@ export function NorthstarFooter({ locale }: { locale: MediaLocale }) {
       <div className="ns-wrap">
         <div className="ns-footer-grid">
           <div>
-            <p className="ns-wordmark-name">Northstar</p>
+            <p className="ns-wordmark-name">The Scope</p>
             <p className="ns-meta" style={{ marginTop: "0.5rem" }}>
               {copy.aboutLine}
             </p>
@@ -33,7 +33,7 @@ export function NorthstarFooter({ locale }: { locale: MediaLocale }) {
           </div>
         </div>
         <p className="ns-footer-bottom">
-          © {new Date().getFullYear()} Ditto. Northstar.
+          © {new Date().getFullYear()} Ditto. The Scope.
         </p>
       </div>
     </footer>

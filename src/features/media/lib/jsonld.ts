@@ -15,17 +15,17 @@ const NORTHSTAR_ID = `${SITE_URL}/media#organization`;
 const NORTHSTAR_SITE_ID = `${SITE_URL}/media#website`;
 const NORTHSTAR_HOME = `${SITE_URL}/en/media`;
 
-/** Northstar is a media published by Ditto — never an independent entity. */
+/** The Scope is a media published by Ditto — never an independent entity. */
 export const NORTHSTAR_PUBLISHER_JSONLD = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
       "@id": NORTHSTAR_ID,
-      name: "Northstar",
+      name: "The Scope",
       url: NORTHSTAR_HOME,
       description:
-        "Northstar is the QHSE, CSR and supply chain magazine published by Ditto.",
+        "The Scope is the QHSE, CSR and supply chain magazine published by Ditto.",
       parentOrganization: {
         "@type": "Organization",
         "@id": "https://www.trustditto.com/#organization",
@@ -36,7 +36,7 @@ export const NORTHSTAR_PUBLISHER_JSONLD = {
     {
       "@type": "WebSite",
       "@id": NORTHSTAR_SITE_ID,
-      name: "Northstar",
+      name: "The Scope",
       url: NORTHSTAR_HOME,
       inLanguage: ["en", "fr"],
       publisher: { "@id": NORTHSTAR_ID },
@@ -51,7 +51,9 @@ export function authorPersonJsonLd(author: MediaAuthor, locale: MediaLocale) {
     name: author.name,
     jobTitle: author.title[locale],
     url: mediaUrl(locale, `/authors/${author.slug}`),
-    ...(author.linkedin ? { sameAs: [author.linkedin] } : {}),
+    ...(author.linkedin || author.website
+      ? { sameAs: [author.linkedin, author.website].filter(Boolean) }
+      : {}),
   };
 }
 

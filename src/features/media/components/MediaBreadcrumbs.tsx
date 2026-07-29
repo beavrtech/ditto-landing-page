@@ -20,7 +20,7 @@ export function MediaBreadcrumbs({
   crumbs: Crumb[];
 }) {
   const copy = t(locale);
-  const all: Crumb[] = [{ name: copy.backToNorthstar, path: "" }, ...crumbs];
+  const all: Crumb[] = [{ name: copy.backToScope, path: "" }, ...crumbs];
 
   return (
     <nav className="ns-breadcrumbs" aria-label="Breadcrumb">
