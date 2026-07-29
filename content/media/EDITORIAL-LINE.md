@@ -148,6 +148,22 @@ and on features the byline is the point) and the British English (EN articles ar
 English, per the tone of voice). Where this section and TONE-OF-VOICE.md seem to disagree
 on a writing question, the tone of voice wins, as always.
 
+### By invitation
+
+One borrowing we do make outright: outside contributors publish "By invitation", tagged as
+such on the byline and their profile. The rules:
+
+- An invited author is a real practitioner with real standing on the subject, and their
+  piece clears the same bar as everyone else's: sourced facts, the anti-slop standard, no
+  selling, ours or theirs. Their own venture is named and linked once, as identity, not as
+  promotion.
+- The tag is the disclosure. A reader must be able to tell a guest's judgment from the
+  house's without reading the footer.
+- Invited authors keep their own portrait as supplied, not restyled into the house
+  photography. The picture is theirs the way the opinion is.
+- Every framework rule still applies: verified figures or none, the refusals list, and no
+  guaranteed outcomes. An invitation is a byline, not an exemption.
+
 ---
 
 ## 6. Where a piece goes

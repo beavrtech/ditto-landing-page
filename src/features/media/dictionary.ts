@@ -35,6 +35,8 @@ export interface MediaDict {
   articlesIn: (label: string) => string;
   loadMore: string;
   aboutUs: string;
+  byInvitation: string;
+  website: string;
   industryKicker: string;
   themeKicker: string;
   emptyTheme: string;
@@ -93,6 +95,8 @@ const dict: Record<MediaLocale, MediaDict> = {
     articlesIn: (label: string) => `Articles on ${label}`,
     loadMore: "More articles",
     aboutUs: "About us",
+    byInvitation: "By invitation",
+    website: "Website",
     industryKicker: "Industry",
     themeKicker: "Theme",
     emptyTheme: "No articles here yet — they're being written.",
@@ -149,6 +153,8 @@ const dict: Record<MediaLocale, MediaDict> = {
     articlesIn: (label: string) => `Articles sur ${label}`,
     loadMore: "Plus d'articles",
     aboutUs: "Qui sommes-nous",
+    byInvitation: "Sur invitation",
+    website: "Site web",
     industryKicker: "Industrie",
     themeKicker: "Thématique",
     emptyTheme: "Pas encore d'articles ici — ils sont en cours d'écriture.",

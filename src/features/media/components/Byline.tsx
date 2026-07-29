@@ -24,6 +24,7 @@ export function Byline({
       </span>
       <span>
         <Link href={mediaPath(locale, `/authors/${author.slug}`)}>{author.name}</Link>
+        {author.invited ? <span className="ns-invited">{copy.byInvitation}</span> : null}
         <span className="ns-byline-meta">
           <span className="ns-dot" />
           {formatDate(date, locale)}

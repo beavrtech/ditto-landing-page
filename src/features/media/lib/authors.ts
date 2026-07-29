@@ -25,8 +25,16 @@ export interface MediaAuthor {
   /** Path under /public, or an absolute URL on a host allowed in next.config.ts. */
   avatar: string;
   linkedin?: string;
+  /** The author's own site, shown alongside LinkedIn. Mostly for invited authors. */
+  website?: string;
   /** Bridge to the Ditto site author page at /[locale]/authors/[slug]. */
   dittoAuthorSlug?: string;
+  /**
+   * An outside contributor writing "By invitation", The Economist's term for a
+   * signed guest piece. Displayed on the byline and the profile; invited
+   * authors keep their own portrait rather than the house style.
+   */
+  invited?: boolean;
 }
 
 function parseAuthor(raw: string, expectedSlug: string): MediaAuthor {
@@ -58,6 +66,10 @@ function parseAuthor(raw: string, expectedSlug: string): MediaAuthor {
     bio[locale] = bodies[locale];
   }
 
+  if (data.invited !== undefined && typeof data.invited !== "boolean") {
+    fail(`field "invited" must be true or false`);
+  }
+
   return {
     slug,
     name: str("name", data.name)!,
@@ -65,7 +77,9 @@ function parseAuthor(raw: string, expectedSlug: string): MediaAuthor {
     bio,
     avatar: str("avatar", data.avatar)!,
     linkedin: str("linkedin", data.linkedin, true),
+    website: str("website", data.website, true),
     dittoAuthorSlug: str("dittoAuthorSlug", data.dittoAuthorSlug, true),
+    invited: data.invited === true,
   };
 }
 

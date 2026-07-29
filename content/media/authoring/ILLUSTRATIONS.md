@@ -94,6 +94,8 @@ A portrait is always the real person. When someone's usable photograph was taken
 
 Never generate a portrait from a name and a description. An image model given "Tristan Salaün, account manager" returns a stranger, and publishing that stranger under a real colleague's byline misrepresents them. No photograph, no avatar: leave the file missing and get one taken.
 
+**Invited authors are the exception to the house edit.** A "By invitation" contributor's portrait is used exactly as they supplied it, no background swap, no regrade. The picture is theirs the way the opinion is, and restyling it would dress an outside voice in house clothes.
+
 ## In-body diagrams
 
 `<ArticleImage>` figures stay flat SVG in the design system: white ground, navy ink, square corners, structure drawn with rules rather than shadows.

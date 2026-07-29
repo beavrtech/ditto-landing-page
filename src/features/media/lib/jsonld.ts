@@ -51,7 +51,9 @@ export function authorPersonJsonLd(author: MediaAuthor, locale: MediaLocale) {
     name: author.name,
     jobTitle: author.title[locale],
     url: mediaUrl(locale, `/authors/${author.slug}`),
-    ...(author.linkedin ? { sameAs: [author.linkedin] } : {}),
+    ...(author.linkedin || author.website
+      ? { sameAs: [author.linkedin, author.website].filter(Boolean) }
+      : {}),
   };
 }
 
