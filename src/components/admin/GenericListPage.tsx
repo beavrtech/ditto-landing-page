@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
   useReactTable,
@@ -18,6 +18,8 @@ import type { TableConfig } from "../../lib/admin-tables";
 
 type Row = Record<string, unknown> & { id: string };
 
+type DateRange = { from?: string; to?: string };
+
 const isDateKey = (key: string) =>
   key.includes("date") || key === "publish_date";
 
@@ -33,6 +35,15 @@ const cellText = (val: unknown, key: string): string => {
 const columnFilterFn: FilterFn<Row> = (row, columnId, filterValue) => {
   if (filterValue === "" || filterValue == null) return true;
   const val = row.getValue(columnId);
+  if (typeof filterValue === "object") {
+    const { from, to } = filterValue as DateRange;
+    if (!from && !to) return true;
+    const t = val ? new Date(val as string).getTime() : NaN;
+    if (isNaN(t)) return false;
+    if (from && t < new Date(from).getTime()) return false;
+    if (to && t > new Date(to).getTime() + 86_399_999) return false;
+    return true;
+  }
   if (typeof val === "boolean") return filterValue === (val ? "true" : "false");
   const q = String(filterValue).toLowerCase();
   const raw = val === null || val === undefined ? "" : String(val).toLowerCase();
@@ -53,39 +64,164 @@ const globalFilterFn: FilterFn<Row> = (row, _columnId, filterValue) => {
   });
 };
 
-function ColumnFilter({ column, rows }: { column: Column<Row, unknown>; rows: Row[] }) {
-  const value = (column.getFilterValue() ?? "") as string;
-  const isBoolean = rows.some((r) => typeof r[column.id] === "boolean");
-
-  if (isBoolean) {
-    const isStatus = column.id === "published";
-    return (
-      <select
-        value={value}
-        onChange={(e) => column.setFilterValue(e.target.value || undefined)}
-        style={{
-          width: "100%", padding: "0.25rem 0.4rem", border: "1px solid #ddd", borderRadius: "4px",
-          fontSize: "0.75rem", fontWeight: 400, color: "#333", background: "white", textTransform: "none",
-        }}
-      >
-        <option value="">All</option>
-        <option value="true">{isStatus ? "Published" : "Yes"}</option>
-        <option value="false">{isStatus ? "Draft" : "No"}</option>
-      </select>
-    );
+const hasActiveFilter = (value: unknown): boolean => {
+  if (value == null || value === "") return false;
+  if (typeof value === "object") {
+    const { from, to } = value as DateRange;
+    return Boolean(from || to);
   }
+  return true;
+};
+
+const popoverInputStyle: React.CSSProperties = {
+  width: "100%", padding: "0.4rem 0.5rem", border: "1px solid #ddd", borderRadius: "6px",
+  fontSize: "0.8rem", fontWeight: 400, color: "#333", background: "white",
+  textTransform: "none", boxSizing: "border-box",
+};
+
+const popoverLabelStyle: React.CSSProperties = {
+  display: "block", fontSize: "0.65rem", fontWeight: 600, color: "#999",
+  textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: "0.25rem",
+};
+
+function SortIcon({ sorted }: { sorted: false | "asc" | "desc" }) {
+  const activeColor = "#130E30";
+  const idleColor = "#c4c4cc";
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" style={{ flexShrink: 0 }} aria-hidden="true">
+      <path
+        d="M7 1.5 L10.5 5.5 L3.5 5.5 Z"
+        fill={sorted === "asc" ? activeColor : idleColor}
+      />
+      <path
+        d="M7 12.5 L3.5 8.5 L10.5 8.5 Z"
+        fill={sorted === "desc" ? activeColor : idleColor}
+      />
+    </svg>
+  );
+}
+
+function FilterIcon({ active }: { active: boolean }) {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+      <path
+        d="M1.5 2 H12.5 L8.5 7 V11.5 L5.5 12.5 V7 Z"
+        fill={active ? "#130E30" : "none"}
+        stroke={active ? "#130E30" : "#999"}
+        strokeWidth="1.3"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
+
+function FilterPopover({ column, rows, onClose }: {
+  column: Column<Row, unknown>;
+  rows: Row[];
+  onClose: () => void;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const value = column.getFilterValue();
+  const isDate = isDateKey(column.id);
+  const isBoolean = !isDate && rows.some((r) => typeof r[column.id] === "boolean");
+  const isStatus = column.id === "published";
+
+  useEffect(() => {
+    const onMouseDown = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) onClose();
+    };
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("mousedown", onMouseDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onMouseDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onClose]);
+
+  const range = (typeof value === "object" && value !== null ? value : {}) as DateRange;
+  const setRange = (patch: DateRange) => {
+    const next = { ...range, ...patch };
+    column.setFilterValue(next.from || next.to ? next : undefined);
+  };
 
   return (
-    <input
-      type="text"
-      value={value}
-      placeholder="Filter..."
-      onChange={(e) => column.setFilterValue(e.target.value || undefined)}
+    <div
+      ref={ref}
       style={{
-        width: "100%", padding: "0.25rem 0.4rem", border: "1px solid #ddd", borderRadius: "4px",
-        fontSize: "0.75rem", fontWeight: 400, color: "#333", textTransform: "none", boxSizing: "border-box",
+        position: "absolute", top: "calc(100% + 6px)", left: 0, zIndex: 20,
+        minWidth: isDate ? "220px" : "180px", padding: "0.75rem",
+        background: "white", border: "1px solid #e5e5e5", borderRadius: "8px",
+        boxShadow: "0 4px 16px rgba(0,0,0,0.12)", textAlign: "left",
       }}
-    />
+    >
+      {isDate ? (
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+          <div>
+            <label style={popoverLabelStyle}>From</label>
+            <input
+              type="date"
+              value={range.from ?? ""}
+              onChange={(e) => setRange({ from: e.target.value || undefined })}
+              style={popoverInputStyle}
+            />
+          </div>
+          <div>
+            <label style={popoverLabelStyle}>To</label>
+            <input
+              type="date"
+              value={range.to ?? ""}
+              onChange={(e) => setRange({ to: e.target.value || undefined })}
+              style={popoverInputStyle}
+            />
+          </div>
+        </div>
+      ) : isBoolean ? (
+        <select
+          value={(value ?? "") as string}
+          onChange={(e) => column.setFilterValue(e.target.value || undefined)}
+          style={popoverInputStyle}
+        >
+          <option value="">All</option>
+          <option value="true">{isStatus ? "Published" : "Yes"}</option>
+          <option value="false">{isStatus ? "Draft" : "No"}</option>
+        </select>
+      ) : (
+        <input
+          type="text"
+          autoFocus
+          value={(value ?? "") as string}
+          placeholder="Filter..."
+          onChange={(e) => column.setFilterValue(e.target.value || undefined)}
+          style={popoverInputStyle}
+        />
+      )}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "0.75rem" }}>
+        <button
+          onClick={() => { column.setFilterValue(undefined); onClose(); }}
+          disabled={!hasActiveFilter(value)}
+          style={{
+            background: "none", border: "none", padding: 0, cursor: hasActiveFilter(value) ? "pointer" : "default",
+            fontSize: "0.75rem", fontWeight: 500, textTransform: "none",
+            color: hasActiveFilter(value) ? "#dc2626" : "#ccc",
+          }}
+        >
+          Clear
+        </button>
+        <button
+          onClick={onClose}
+          style={{
+            background: "#130E30", color: "white", border: "none", borderRadius: "6px",
+            padding: "0.3rem 0.75rem", cursor: "pointer", fontSize: "0.75rem", fontWeight: 500,
+            textTransform: "none",
+          }}
+        >
+          Done
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -99,6 +235,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   );
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
+  const [openFilter, setOpenFilter] = useState<string | null>(null);
 
   const fetchRows = async () => {
     const res = await fetch(`/admin/api/tables/${config.slug}`);
@@ -203,35 +340,56 @@ export function GenericListPage({ config }: { config: TableConfig }) {
         </Link>
         </div>
       </div>
-      <table style={{ width: "100%", borderCollapse: "collapse", background: "white", borderRadius: "8px", overflow: "hidden", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>
+      <table style={{ width: "100%", borderCollapse: "collapse", background: "white", borderRadius: "8px", overflow: "visible", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id} style={{ background: "#f9fafb", borderBottom: "1px solid #eee" }}>
               {headerGroup.headers.map((header) => {
                 const isActions = header.column.id === "actions";
                 const sorted = header.column.getIsSorted();
+                const filterActive = hasActiveFilter(header.column.getFilterValue());
                 return (
                   <th
                     key={header.id}
                     style={{
-                      padding: "0.75rem 1rem", textAlign: isActions ? "right" : "left", fontSize: "0.75rem",
-                      fontWeight: 600, color: "#666", textTransform: "uppercase", verticalAlign: "top",
+                      padding: "0.65rem 1rem", textAlign: isActions ? "right" : "left", fontSize: "0.75rem",
+                      fontWeight: 600, color: "#666", textTransform: "uppercase",
+                      position: "relative", whiteSpace: "nowrap",
                     }}
                   >
-                    <span
-                      onClick={header.column.getToggleSortingHandler()}
-                      style={{
-                        cursor: header.column.getCanSort() ? "pointer" : undefined,
-                        userSelect: "none", display: "inline-flex", alignItems: "center", gap: "0.25rem",
-                      }}
-                    >
-                      {flexRender(header.column.columnDef.header, header.getContext())}
-                      {sorted && <span style={{ fontSize: "0.65rem" }}>{sorted === "asc" ? "▲" : "▼"}</span>}
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
+                      <span
+                        onClick={header.column.getToggleSortingHandler()}
+                        style={{
+                          cursor: header.column.getCanSort() ? "pointer" : undefined,
+                          userSelect: "none", display: "inline-flex", alignItems: "center", gap: "0.3rem",
+                          color: sorted ? "#130E30" : undefined,
+                        }}
+                      >
+                        {flexRender(header.column.columnDef.header, header.getContext())}
+                        {header.column.getCanSort() && <SortIcon sorted={sorted} />}
+                      </span>
+                      {header.column.getCanFilter() && !isActions && (
+                        <button
+                          onClick={() => setOpenFilter(openFilter === header.column.id ? null : header.column.id)}
+                          title="Filter"
+                          style={{
+                            display: "inline-flex", alignItems: "center", justifyContent: "center",
+                            width: "22px", height: "22px", padding: 0,
+                            background: filterActive || openFilter === header.column.id ? "#eceafb" : "none",
+                            border: "none", borderRadius: "5px", cursor: "pointer",
+                          }}
+                        >
+                          <FilterIcon active={filterActive} />
+                        </button>
+                      )}
                     </span>
-                    {header.column.getCanFilter() && !isActions && (
-                      <div style={{ marginTop: "0.4rem" }}>
-                        <ColumnFilter column={header.column} rows={rows} />
-                      </div>
+                    {openFilter === header.column.id && (
+                      <FilterPopover
+                        column={header.column}
+                        rows={rows}
+                        onClose={() => setOpenFilter(null)}
+                      />
                     )}
                   </th>
                 );
