@@ -6,6 +6,7 @@ export type CollectionItemRow = {
   framework_id?: string | null;
   slug?: string | null;
   slug_fr?: string | null;
+  also_appears_in?: string[] | null;
 };
 
 /**
@@ -40,6 +41,14 @@ export async function revalidateCollectionItem(
   revalidatePath(collectionPath(framework.slug, "fr", row.slug_fr || row.slug));
   revalidatePath(collectionPath(framework.slug, "en"));
   revalidatePath(collectionPath(framework.slug, "fr"));
+
+  // Guest listings: the item is also surfaced on every collection named in
+  // `also_appears_in` (framework slugs), so those listing pages go stale too.
+  for (const guestSlug of row.also_appears_in || []) {
+    if (guestSlug === framework.slug) continue;
+    revalidatePath(collectionPath(guestSlug, "en"));
+    revalidatePath(collectionPath(guestSlug, "fr"));
+  }
 }
 
 /**

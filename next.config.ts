@@ -92,6 +92,22 @@ const nextConfig: NextConfig = {
     }
     return [
       ...duplicateRedirects,
+      // Northstar lives at /en/media and /fr/media, like every other localized
+      // route. The unprefixed form points at the default locale. Temporary for
+      // now, so nothing caches a 308 for a section that has not launched.
+      {
+        source: "/media",
+        destination: "/en/media",
+        permanent: false,
+      },
+      // Anything with a file extension is a static asset served from
+      // public/media (illustrations, author photos, the logo), not a page —
+      // redirecting those into /en/media would 404 them.
+      {
+        source: "/media/:path((?!.*\\.[a-zA-Z0-9]+$).*)",
+        destination: "/en/media/:path",
+        permanent: false,
+      },
       {
         source: "/blog/:slug",
         destination: "/en/resources/blog/:slug",

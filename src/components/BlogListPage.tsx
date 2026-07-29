@@ -1,0 +1,179 @@
+import Image from "next/image";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { Navbar } from "./NavbarServer";
+import { Footer } from "./FooterServer";
+import { DEVLINK_SCOPE_CLASS } from "../../devlink/devlinkScope";
+import { getBlogPosts, withCollectionTwins } from "../lib/cms";
+import { localizedHref, articleHref } from "../lib/localized-paths";
+import { blogListPath, categoriesFromPosts } from "../lib/blog-listing";
+
+function ResourceCard({ item, locale }: { item: any; locale: string }) {
+  const href = articleHref(item, item.collectionTwin, locale);
+  return (
+    <div className="blog_list_item" role="listitem">
+      <a href={href} className="card-image w-inline-block">
+        {item.banner_url && (
+          <div className="card-image_thumbnail">
+            <Image src={item.banner_url} alt={item.banner_alt_desc || ""} width={1200} height={630} className="media-full-size" />
+          </div>
+        )}
+        <div className="card-image_content">
+          <div className="spacer-1x5rem spacer-mob-1rem" />
+          <p className="label">Blog</p>
+          <div className="spacer-0x75rem" />
+          <div className="card-image_link_wrapper">
+            <p className="heading-size-1x75rem link-hover-parent text-style-2lines">{item.name}</p>
+          </div>
+          <div className="spacer-0x75rem" />
+          <p className="text-size-1rem text-style-3lines">{item.description}</p>
+        </div>
+      </a>
+    </div>
+  );
+}
+
+export async function BlogListPage({
+  locale,
+  categorySlug = null,
+}: {
+  locale: string;
+  categorySlug?: string | null;
+}) {
+  setRequestLocale(locale);
+  const t = await getTranslations();
+  const prefix = `/${locale}`;
+
+  const allItems = await getBlogPosts(locale as "en" | "fr").then(withCollectionTwins).catch(() => []);
+  const categories = categoriesFromPosts(allItems, locale);
+
+  const activeCategory = categorySlug
+    ? categories.find((c) => c.slug === categorySlug)
+    : null;
+  if (categorySlug && !activeCategory) notFound();
+
+  const pageItems = activeCategory
+    ? allItems.filter((p: any) => p.category?.slug === categorySlug)
+    : allItems;
+
+  const heading = activeCategory
+    ? t("resourcesBlog.categoryHeading", { name: activeCategory.name })
+    : t("resourcesBlog.heading");
+
+  return (
+    <div className="page-wrapper">
+      <main className="main-wrapper">
+        <Navbar />
+
+        <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
+          {/* Breadcrumbs */}
+          <section className="breadcrumbs_section">
+            <div className="padding-global">
+              <div className="spacer-1x5rem"></div>
+              <div className="container-80rem">
+                <div className="breadcrumbs_list">
+                  <a href={`${prefix}/resources`} className="link-size-1rem">{t("resourcesPage.breadcrumb")}</a>
+                  <div className="icon-wrapper">
+                    <div className="icon w-embed">
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M5.5312 3.52729C5.79155 3.26694 6.21366 3.26694 6.47401 3.52729L10.474 7.52729C10.7344 7.78764 10.7344 8.20975 10.474 8.4701L6.47401 12.4701C6.21366 12.7305 5.79155 12.7305 5.5312 12.4701C5.27085 12.2098 5.27085 11.7876 5.5312 11.5273L9.0598 7.9987L5.5312 4.4701C5.27085 4.20975 5.27085 3.78764 5.5312 3.52729Z" fill="#5F5C6E"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <a href={blogListPath(locale)} className="link-size-1rem">{t("resourcesPage.blog")}</a>
+                  {activeCategory && (
+                    <>
+                      <div className="icon-wrapper">
+                        <div className="icon w-embed">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fillRule="evenodd" clipRule="evenodd" d="M5.5312 3.52729C5.79155 3.26694 6.21366 3.26694 6.47401 3.52729L10.474 7.52729C10.7344 7.78764 10.7344 8.20975 10.474 8.4701L6.47401 12.4701C6.21366 12.7305 5.79155 12.7305 5.5312 12.4701C5.27085 12.2098 5.27085 11.7876 5.5312 11.5273L9.0598 7.9987L5.5312 4.4701C5.27085 4.20975 5.27085 3.78764 5.5312 3.52729Z" fill="#5F5C6E"></path>
+                          </svg>
+                        </div>
+                      </div>
+                      <a href={blogListPath(locale, { category: activeCategory.slug })} className="link-size-1rem">{activeCategory.name}</a>
+                    </>
+                  )}
+                </div>
+              </div>
+              <div className="spacer-1x5rem"></div>
+            </div>
+            <div className="layer-4">
+              <div data-wf--background--color="primary" className="background"></div>
+            </div>
+          </section>
+
+          {/* Filter UI / Header */}
+          <section className="filterui_section">
+            <div className="padding-global">
+              <div data-wf--padding--space="small-3rem" className="spacer-component"></div>
+              <div className="container-55rem">
+                <div className="header">
+                  <h1 className="heading-size-4rem">{heading}</h1>
+                </div>
+                <div className="spacer-3rem"></div>
+                <div className="blogui_block">
+                  <div className="blogui_list">
+                    <a href={`${prefix}/resources`} className="blogui_link">{t("resourcesPage.all")}</a>
+                    <a href={blogListPath(locale)} className={`blogui_link${!activeCategory ? " w--current" : ""}`}>{t("resourcesPage.blog")}</a>
+                    <a href={localizedHref("/resources/news", locale)} className="blogui_link">{t("resourcesPage.news")}</a>
+                    <a href={localizedHref("/resources/guides", locale)} className="blogui_link">{t("resourcesPage.guide")}</a>
+                  </div>
+                </div>
+                {categories.length > 0 && (
+                  <>
+                    <div className="spacer-1x5rem"></div>
+                    <div className="blogui_block">
+                      <div className="blogui_list">
+                        <a href={blogListPath(locale)} className={`blogui_link${!activeCategory ? " w--current" : ""}`}>
+                          {t("resourcesBlog.allCategories")}
+                        </a>
+                        {categories.map((cat) => (
+                          <a
+                            key={cat.slug}
+                            href={blogListPath(locale, { category: cat.slug })}
+                            className={`blogui_link${activeCategory?.slug === cat.slug ? " w--current" : ""}`}
+                          >
+                            {cat.name} ({cat.count})
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+              <div data-wf--padding--space="small-3rem" className="spacer-component"></div>
+            </div>
+            <div className="layer-4">
+              <div data-wf--background--color="primary" className="background"></div>
+            </div>
+          </section>
+
+          {/* Blog list */}
+          <section className="blog-preview_section">
+            <div className="padding-global">
+              <div className="container-80rem">
+                {pageItems.length > 0 ? (
+                  <div className="blog_list_wrapper">
+                    <div className="blog_list" role="list">
+                      {pageItems.map((post: any) => (
+                        <ResourceCard key={post.slug} item={post} locale={locale} />
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="w-dyn-empty"><div>No items found.</div></div>
+                )}
+              </div>
+              <div data-wf--padding--space="medium-6rem" className="spacer-component w-variant-4e707de5-bf1e-dd42-7fb6-ac24ce686a4c"></div>
+            </div>
+            <div className="layer-4">
+              <div data-wf--background--color="primary" className="background"></div>
+            </div>
+          </section>
+        </div>
+
+        <Footer />
+      </main>
+    </div>
+  );
+}

@@ -492,6 +492,16 @@ export function FooterClient({ blogPosts: serverBlogPosts, customerStories: serv
                   >
                     {tNav("careers")}
                   </DOM>
+                  <Link
+                    block={""}
+                    button={false}
+                    className={"link-size-1rem"}
+                    options={{
+                      href: localizedHref("/press", locale),
+                    }}
+                  >
+                    {tNav("press")}
+                  </Link>
                 </Block>
                 <Block
                   className={"footer_navigation_col width-20rem"}

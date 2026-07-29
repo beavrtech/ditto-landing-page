@@ -30,6 +30,7 @@ const STATIC_PAGES: { en: string; fr: string; changeFrequency: MetadataRoute.Sit
   { en: "/demo", fr: "/demo", changeFrequency: "monthly", priority: 0.9 },
   { en: "/manifesto", fr: "/manifesto", changeFrequency: "yearly", priority: 0.4 },
   { en: "/careers", fr: "/careers", changeFrequency: "monthly", priority: 0.5 },
+  { en: "/press", fr: "/press", changeFrequency: "weekly", priority: 0.5 },
   { en: "/collection/ecovadis", fr: "/collection/ecovadis", changeFrequency: "monthly", priority: 0.7 },
   { en: "/collection/cdp", fr: "/collection/cdp", changeFrequency: "monthly", priority: 0.7 },
   { en: "/legal/terms-and-conditions", fr: "/legal/conditions-generales-dutilisation", changeFrequency: "yearly", priority: 0.2 },
@@ -136,6 +137,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     } else {
       urls.push({ url: `${BASE_URL}/en/resources/blog/${post.slug}`, ...opts });
     }
+  }
+
+  // Blog category hubs (one per category that actually carries posts)
+  const categorySlugs = new Set<string>();
+  for (const post of posts || []) {
+    if ((post as any).category?.slug) categorySlugs.add((post as any).category.slug);
+  }
+  for (const slug of categorySlugs) {
+    urls.push(
+      ...localizedPair(
+        `/resources/blog/category/${slug}`,
+        `/ressources/blog/categorie/${slug}`,
+        { changeFrequency: "weekly", priority: 0.6 }
+      )
+    );
   }
 
   // News

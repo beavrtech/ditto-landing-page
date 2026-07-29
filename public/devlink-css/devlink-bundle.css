@@ -4099,7 +4099,7 @@
     flex-wrap: nowrap;
     align-items: center;
     border-radius: var(--radius--radius-default);
-    background-color: var(--_colors-•-semantic---surface-secondary);
+    background-color: var(--_colors-•-primitives---brand--yellow);
     text-align: center;
   }
   .blogui_block {
@@ -9462,7 +9462,7 @@ figcaption {
 
 .post_richtext_cta {
   border-radius: var(--radius--radius-default);
-  background-color: var(--_colors-•-semantic---surface-secondary);
+  background-color: var(--_colors-•-primitives---brand--yellow);
   text-align: center;
   flex-flow: column;
   justify-content: center;

@@ -40,7 +40,7 @@ export async function POST(
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
 
-  if (tableSlug === "collection_items") {
+  if (config.table === "collection_items") {
     await revalidateCollectionItem(data).catch(() => {});
   }
 

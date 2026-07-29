@@ -142,6 +142,21 @@ export async function getCustomersByIndustry(industrySlug: string) {
 }
 
 // ============================================================
+// PRESS MENTIONS ("In the media" page)
+// ============================================================
+
+export async function getPressMentions() {
+  const { data, error } = await supabase
+    .from("press_mentions")
+    .select("*")
+    .eq("published", true)
+    .order("published_date", { ascending: false });
+
+  if (error) throw error;
+  return data;
+}
+
+// ============================================================
 // CUSTOMER STORIES
 // ============================================================
 
@@ -679,13 +694,16 @@ export async function getCollectionItems(
 
   if (!fw) return [];
 
-  // 1. Native collection items
+  // 1. Native collection items, plus guest items from other frameworks that
+  // list this collection in `also_appears_in` (array of framework slugs).
+  // Guest items keep linking to their home collection URL — see
+  // `home_framework_slug` usage in ExploreArticlesSection.
   const { data, error } = await supabase
     .from("collection_items")
-    .select("*, author:authors(*)")
+    .select("*, author:authors(*), framework:frameworks(slug)")
     .eq("published", true)
     .eq("archived", false)
-    .eq("framework_id", fw.id)
+    .or(`framework_id.eq.${fw.id},also_appears_in.cs.{${frameworkSlug}}`)
     .order("ordre");
 
   if (error) throw error;
@@ -697,6 +715,7 @@ export async function getCollectionItems(
     seo_meta_desc: localized(item, "seo_meta_desc", locale),
     description: localized(item, "description", locale),
     body: localized(item, "body", locale),
+    home_framework_slug: (item as any).framework?.slug || frameworkSlug,
     _type: "collection_item" as const,
   }));
 
@@ -793,37 +812,32 @@ export async function getCollectionItemBySlug(
 // ============================================================
 
 export async function getGuideByFrameworkId(frameworkId: string, locale: Locale) {
-  // First try via tag_id direct FK
-  let { data } = await supabase
-    .from("guides")
-    .select("*, tag:frameworks!guides_tag_id_fkey(*)")
-    .eq("published", true)
-    .eq("archived", false)
-    .eq("tag_id", frameworkId)
-    .order("date", { ascending: false })
-    .limit(1)
+  // Each framework/theme has a single dedicated sidebar guide, set via
+  // frameworks.featured_guide_id. This is deliberately separate from the
+  // guide_display_frameworks junction table, which powers the (unrelated)
+  // multi-guide resource listing on collection pages.
+  //
+  // Two lookups (both single, indexed primary-key reads): resolve the FK,
+  // then fetch the guide. A single embedded-select query was tried instead
+  // (`guides!frameworks_featured_guide_id_fkey!inner(...)`), but without
+  // generated Database types for this client it produces confusing/incorrect
+  // TS inference, and its runtime behavior can't be verified without a live
+  // Supabase connection — not worth the risk for two cheap PK lookups.
+  const { data: framework } = await supabase
+    .from("frameworks")
+    .select("featured_guide_id")
+    .eq("id", frameworkId)
     .single();
 
-  // If no direct match, try via guide_display_frameworks junction
-  if (!data) {
-    const { data: junction } = await supabase
-      .from("guide_display_frameworks")
-      .select("guide_id")
-      .eq("framework_id", frameworkId)
-      .limit(1)
-      .single();
+  if (!framework?.featured_guide_id) return null;
 
-    if (junction) {
-      const { data: guide } = await supabase
-        .from("guides")
-        .select("*, tag:frameworks!guides_tag_id_fkey(*)")
-        .eq("id", junction.guide_id)
-        .eq("published", true)
-        .eq("archived", false)
-        .single();
-      data = guide;
-    }
-  }
+  const { data } = await supabase
+    .from("guides")
+    .select("*, tag:frameworks!guides_tag_id_fkey(*)")
+    .eq("id", framework.featured_guide_id)
+    .eq("published", true)
+    .eq("archived", false)
+    .single();
 
   if (!data) return null;
 
@@ -835,13 +849,14 @@ export async function getGuideByFrameworkId(frameworkId: string, locale: Locale)
   };
 }
 
-const DEFAULT_GUIDE_SLUG = "ecovadis-guide-3-weeks-to-succeed-in-your-csr-assessment";
-
 export async function getFeaturedGuide(locale: Locale) {
   const { data } = await supabase
     .from("guides")
     .select("*, tag:frameworks!guides_tag_id_fkey(*)")
-    .eq("slug", DEFAULT_GUIDE_SLUG)
+    .eq("is_default", true)
+    .eq("published", true)
+    .eq("archived", false)
+    .limit(1)
     .single();
 
   if (!data) return null;

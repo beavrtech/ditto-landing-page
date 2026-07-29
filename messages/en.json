@@ -44,6 +44,7 @@
     "news": "News",
     "manifesto": "Manifesto",
     "careers": "Careers",
+    "press": "Press",
     "company": "Company",
     "sme": "SME",
     "largeCompanies": "Large Companies",
@@ -79,6 +80,11 @@
     "industryDistributionWholesale": "Distribution & Wholesale",
     "industryIndustrialEquipment": "Industrial Equipment & Systems",
     "industryTransportationLogistics": "Transportation & Logistics"
+  },
+  "announcementBar": {
+    "tag": "BAROMETER",
+    "message": "AI in ESG: join our annual study! 5 min to share your perspective",
+    "href": "https://tally.so/r/vGW6bA?utm_source=site&utm_medium=banner"
   },
   "hero": {
     "title": "Your compliance & sustainability platform,<br></br>and the expert who runs it with you.",
@@ -122,10 +128,10 @@
       "urgency": "Audit on the horizon? Organize your evidence now.",
       "cta": "Prep my ISO audit"
     },
-    "iso50001": {
-      "name": "ISO 50001",
-      "urgency": "Energy management audit ahead? Build your evidence now.",
-      "cta": "Prep my ISO 50001 audit"
+    "other": {
+      "name": "Other frameworks",
+      "urgency": "Working with another standard? Upload any framework, Ditto adapts.",
+      "cta": "Explore all frameworks"
     }
   },
   "socialProof": {
@@ -457,7 +463,9 @@
     "viewAllGuides": "View all guides"
   },
   "resourcesBlog": {
-    "heading": "Resources & Blog"
+    "heading": "Resources & Blog",
+    "categoryHeading": "{name} articles",
+    "allCategories": "All"
   },
   "resourcesGuides": {
     "heading": "Resources & Guides"
@@ -584,6 +592,13 @@
       "step4": "On site interviews (4-5 across teams)",
       "step5": "Reference call",
       "step6": "Offer"
+    }
+  },
+  "press": {
+    "breadcrumb": "Press",
+    "hero": {
+      "title": "Ditto in the media",
+      "subtitle": "See where Ditto's approach to proving your CSR commitments—EcoVadis, CDP, ISO, CSRD—is making the news."
     }
   },
   "pricing": {
@@ -1058,10 +1073,12 @@
     },
     "resourcesBlog": {
       "title": "Blog – resources, tips, best practices, and news",
-      "description": "Read the latest industry insights on CSR and compliance news and trends, learn best practices, and get insight from experts on the Ditto blog."
+      "description": "Read the latest industry insights on CSR and compliance news and trends, learn best practices, and get insight from experts on the Ditto blog.",
+      "categoryTitle": "{name} articles – Ditto Blog",
+      "categoryDescription": "All Ditto articles on {name}: practical guides, definitions, and expert advice to structure your CSR and compliance work."
     },
     "resourcesNews": {
-      "title": "CSR & CSRD News Hub",
+      "title": "Your CSR News: Latest ESG & Sustainability Business Updates",
       "description": "Stay up to date with Ditto's latest news, partnerships, and insights on sustainability reporting and corporate transparency."
     },
     "resourcesGuides": {
@@ -1083,6 +1100,10 @@
     "careers": {
       "title": "Careers at Ditto – Great businesses aren't built alone",
       "description": "That's the idea at the heart of Ditto. We're here to help people do their best work together, and that starts with our team."
+    },
+    "press": {
+      "title": "Press: Ditto in the media",
+      "description": "Press coverage featuring Ditto, the CSR platform and expert coaching for your ESG frameworks: EcoVadis, CDP, ISO, CSRD."
     },
     "legalTerms": {
       "title": "Terms and Conditions",

@@ -1,13 +1,25 @@
-export type FieldType = "text" | "textarea" | "richtext" | "date" | "boolean" | "select" | "readonly" | "image";
+export type FieldType = "text" | "textarea" | "richtext" | "date" | "boolean" | "select" | "multiselect" | "readonly" | "image";
 
 export type FieldDef = {
   name: string;
   label: string;
   type: FieldType;
   locale?: boolean; // if true, field has _en/_fr variants
-  options?: { value: string; label: string }[]; // for select
+  options?: { value: string; label: string }[]; // for select / multiselect
   required?: boolean;
 };
+
+// Frameworks that have a public /collection/[framework] page. Must stay in
+// sync with FRAMEWORK_CONFIG in src/components/ExploreArticlesSection.tsx.
+const COLLECTION_FRAMEWORK_OPTIONS = [
+  { value: "ecovadis", label: "EcoVadis" },
+  { value: "cdp", label: "CDP" },
+  { value: "vsme", label: "VSME" },
+  { value: "iso-14001", label: "ISO 14001" },
+  { value: "csrd", label: "CSRD" },
+  { value: "carbon", label: "Carbon Footprint" },
+  { value: "qhse", label: "QHSE" },
+];
 
 export type TableConfig = {
   slug: string; // URL slug: "blog-posts"
@@ -99,6 +111,7 @@ export const TABLES: TableConfig[] = [
       { name: "seo_meta_desc", label: "Meta Description", type: "textarea", locale: true },
       { name: "published", label: "Published", type: "boolean" },
       { name: "archived", label: "Archived", type: "boolean" },
+      { name: "is_default", label: "Default guide (global sidebar fallback)", type: "boolean" },
     ],
   },
   {
@@ -168,6 +181,12 @@ export const TABLES: TableConfig[] = [
       { name: "banner_url", label: "Banner", type: "image" },
       { name: "banner_alt_desc", label: "Banner Alt", type: "text" },
       { name: "categorie", label: "Category", type: "text" },
+      {
+        name: "also_appears_in",
+        label: "Also appears in (other collections this article is listed in)",
+        type: "multiselect",
+        options: COLLECTION_FRAMEWORK_OPTIONS,
+      },
       { name: "ordre", label: "Sort Order", type: "text" },
       { name: "date_de_publication", label: "Publication Date", type: "date" },
       { name: "seo_title", label: "SEO Title", type: "text", locale: true },
@@ -243,6 +262,11 @@ export const TABLES: TableConfig[] = [
       { name: "collection_url", label: "Collection URL (no locale prefix, e.g. /collection/carbon)", type: "text" },
       { name: "page_url", label: "Page URL (no locale prefix, e.g. /frameworks/carbon)", type: "text" },
       { name: "sort_order", label: "Sort Order", type: "text" },
+      {
+        name: "featured_guide_id",
+        label: "Featured Guide ID (UUID) — guide shown in the sidebar card for articles on this theme. Copy the ID from the Guides table.",
+        type: "text",
+      },
     ],
   },
   {
@@ -277,6 +301,38 @@ export const TABLES: TableConfig[] = [
       { name: "logo_url", label: "Logo", type: "image", required: true },
       { name: "industry", label: "Industry", type: "text" },
       { name: "case_study_url", label: "Case Study URL", type: "text" },
+      { name: "sort_order", label: "Sort Order", type: "text" },
+      { name: "published", label: "Published", type: "boolean" },
+    ],
+  },
+  {
+    slug: "press-mentions",
+    table: "press_mentions",
+    displayName: "Press Mentions",
+    listColumns: [
+      { key: "outlet_name", label: "Outlet" },
+      { key: "article_title", label: "Article" },
+      { key: "published_date", label: "Date" },
+      { key: "published", label: "Status" },
+    ],
+    orderBy: { column: "published_date", ascending: false },
+    fields: [
+      { name: "outlet_name", label: "Outlet Name", type: "text", required: true },
+      { name: "outlet_logo_url", label: "Outlet Logo", type: "image" },
+      { name: "article_title", label: "Article Title", type: "text", required: true },
+      { name: "article_url", label: "Article URL", type: "text", required: true },
+      {
+        name: "article_language",
+        label: "Article Language",
+        type: "select",
+        required: true,
+        options: [
+          { value: "en", label: "English" },
+          { value: "fr", label: "French" },
+        ],
+      },
+      { name: "published_date", label: "Published Date", type: "date", required: true },
+      { name: "excerpt", label: "Excerpt", type: "textarea" },
       { name: "sort_order", label: "Sort Order", type: "text" },
       { name: "published", label: "Published", type: "boolean" },
     ],
