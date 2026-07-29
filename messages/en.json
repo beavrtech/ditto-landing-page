@@ -128,10 +128,10 @@
       "urgency": "Audit on the horizon? Organize your evidence now.",
       "cta": "Prep my ISO audit"
     },
-    "iso50001": {
-      "name": "ISO 50001",
-      "urgency": "Energy management audit ahead? Build your evidence now.",
-      "cta": "Prep my ISO 50001 audit"
+    "other": {
+      "name": "Other frameworks",
+      "urgency": "Working with another standard? Upload any framework, Ditto adapts.",
+      "cta": "Explore all frameworks"
     }
   },
   "socialProof": {
@@ -463,7 +463,9 @@
     "viewAllGuides": "View all guides"
   },
   "resourcesBlog": {
-    "heading": "Resources & Blog"
+    "heading": "Resources & Blog",
+    "categoryHeading": "{name} articles",
+    "allCategories": "All"
   },
   "resourcesGuides": {
     "heading": "Resources & Guides"
@@ -1071,7 +1073,9 @@
     },
     "resourcesBlog": {
       "title": "Blog – resources, tips, best practices, and news",
-      "description": "Read the latest industry insights on CSR and compliance news and trends, learn best practices, and get insight from experts on the Ditto blog."
+      "description": "Read the latest industry insights on CSR and compliance news and trends, learn best practices, and get insight from experts on the Ditto blog.",
+      "categoryTitle": "{name} articles – Ditto Blog",
+      "categoryDescription": "All Ditto articles on {name}: practical guides, definitions, and expert advice to structure your CSR and compliance work."
     },
     "resourcesNews": {
       "title": "Your CSR News: Latest ESG & Sustainability Business Updates",
