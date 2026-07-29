@@ -31,7 +31,10 @@ export interface MediaDict {
   updatedOn: string;
   moreIn: (label: string) => string;
   allArticles: string;
+  latestArticles: string;
   articlesIn: (label: string) => string;
+  loadMore: string;
+  aboutUs: string;
   industryKicker: string;
   themeKicker: string;
   emptyTheme: string;
@@ -57,7 +60,7 @@ export interface MediaDict {
 
 const dict: Record<MediaLocale, MediaDict> = {
   en: {
-    tagline: "The QHSE, CSR & Supply Chain magazine by Ditto",
+    tagline: "The QHSE, CSR & Supply Chain magazine",
     latest: "Latest",
     themes: "Themes",
     industries: "Industries",
@@ -86,7 +89,10 @@ const dict: Record<MediaLocale, MediaDict> = {
     updatedOn: "Updated on",
     moreIn: (label: string) => `More in ${label}`,
     allArticles: "All articles",
+    latestArticles: "Latest articles",
     articlesIn: (label: string) => `Articles on ${label}`,
+    loadMore: "More articles",
+    aboutUs: "About us",
     industryKicker: "Industry",
     themeKicker: "Theme",
     emptyTheme: "No articles here yet — they're being written.",
@@ -110,7 +116,7 @@ const dict: Record<MediaLocale, MediaDict> = {
     summarizeWithAi: "Summarize with AI",
   },
   fr: {
-    tagline: "Le média QHSE, RSE & Supply Chain par Ditto",
+    tagline: "Le média QHSE, RSE & Supply Chain",
     latest: "À la une",
     themes: "Thématiques",
     industries: "Industries",
@@ -139,7 +145,10 @@ const dict: Record<MediaLocale, MediaDict> = {
     updatedOn: "Mis à jour le",
     moreIn: (label: string) => `À lire aussi en ${label}`,
     allArticles: "Tous les articles",
+    latestArticles: "Derniers articles",
     articlesIn: (label: string) => `Articles sur ${label}`,
+    loadMore: "Plus d'articles",
+    aboutUs: "Qui sommes-nous",
     industryKicker: "Industrie",
     themeKicker: "Thématique",
     emptyTheme: "Pas encore d'articles ici — ils sont en cours d'écriture.",

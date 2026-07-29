@@ -170,11 +170,19 @@
   letter-spacing: -0.02em;
 }
 
-.ns-wordmark-by {
-  font-size: var(--ns-micro);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ns-ink-soft);
+.ns-masthead-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  white-space: nowrap;
+}
+
+.ns-about-link {
+  font-size: var(--ns-small);
+  text-decoration: none;
+}
+.ns-about-link:hover {
+  text-decoration: underline;
 }
 
 .ns-masthead-identity {
@@ -369,6 +377,10 @@
   border-bottom: var(--ns-rule-soft);
   transition: background-color 150ms ease-in-out;
 }
+/* display:flex would otherwise defeat the hidden attribute the reveal grid uses. */
+.ns-card[hidden] {
+  display: none;
+}
 .ns-card:hover {
   background: var(--ns-paper-tint);
 }
@@ -436,6 +448,35 @@
   border-color: var(--ns-ink);
   background: var(--ns-accent);
   color: var(--ns-ink);
+}
+
+/* ---------- about page ---------- */
+
+.ns-about-body {
+  max-width: 42rem;
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* ---------- progressive reveal ---------- */
+
+.ns-load-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+/* The industry filter shows every match, so the reveal button bows out. The
+   filter note is rendered only while a filter is active, which makes it the
+   state signal CSS can see. */
+.ns-reveal:has(.ns-filter-note) .ns-load-more {
+  display: none;
+}
+.ns-load-more .ns-chip {
+  background: none;
+  font: inherit;
+  font-size: var(--ns-small);
+  cursor: pointer;
 }
 
 /* ---------- newsletter ---------- */

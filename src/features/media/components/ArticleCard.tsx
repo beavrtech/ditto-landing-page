@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -19,17 +19,20 @@ export function ArticleCard({
   article,
   locale,
   showThumb = true,
+  hidden = false,
 }: {
   article: CardArticle;
   locale: MediaLocale;
   showThumb?: boolean;
+  /** Rendered into the HTML but not displayed; the reveal grid's collapsed cards. */
+  hidden?: boolean;
 }) {
   const copy = t(locale);
   const chain = findTaxonomyPath(article.section.slice(0, 2));
   const kicker = chain ? chain.map((n) => taxonomyLabel(n, locale)).join(" · ") : "";
 
   return (
-    <article className="ns-card">
+    <article className="ns-card" hidden={hidden}>
       {showThumb ? (
         <Link href={mediaPath(locale, `/${article.slug}`)} className="ns-card-thumb" tabIndex={-1} aria-hidden>
           <Image src={article.illustration} alt="" width={600} height={400} />
@@ -59,20 +62,47 @@ interface GridProps {
    * author page, where the list is the person's own work.
    */
   filterable?: boolean;
+  /**
+   * Progressive reveal: show this many cards, with a "More articles" button
+   * revealing another batch per click. Every card is server-rendered into the
+   * HTML (the hidden ones carry the `hidden` attribute), so crawlers see every
+   * article link without pagination URLs. Omit to show everything at once.
+   */
+  pageSize?: number;
 }
 
-function Grid({ articles, locale, columns }: Omit<GridProps, "filterable">) {
+function Grid({
+  articles,
+  locale,
+  columns,
+  limit = Infinity,
+}: {
+  articles: CardArticle[];
+  locale: MediaLocale;
+  columns?: 2 | 3;
+  limit?: number;
+}) {
   if (!articles.length) return null;
   return (
     <div className={columns === 2 ? "ns-grid is-two" : "ns-grid"}>
-      {articles.map((article) => (
-        <ArticleCard key={article.slug} article={article} locale={locale} />
+      {articles.map((article, index) => (
+        <ArticleCard key={article.slug} article={article} locale={locale} hidden={index >= limit} />
       ))}
     </div>
   );
 }
 
-function FilterableGrid({ articles, locale, columns }: Omit<GridProps, "filterable">) {
+function FilterableGrid({
+  articles,
+  locale,
+  columns,
+  limit,
+}: {
+  articles: CardArticle[];
+  locale: MediaLocale;
+  columns?: 2 | 3;
+  limit?: number;
+}) {
   const copy = t(locale);
   const router = useRouter();
   const pathname = usePathname();
@@ -99,7 +129,10 @@ function FilterableGrid({ articles, locale, columns }: Omit<GridProps, "filterab
         </p>
       ) : null}
       {shown.length ? (
-        <Grid articles={shown} locale={locale} columns={columns} />
+        // A filtered list shows everything it matched: it is already narrow,
+        // and burying a match behind "More articles" would read as "not found".
+        // The filter note above doubles as the CSS hook that hides the button.
+        <Grid articles={shown} locale={locale} columns={columns} limit={node ? Infinity : limit} />
       ) : (
         <p className="ns-empty">{node ? copy.emptyFiltered : copy.emptyTheme}</p>
       )}
@@ -107,28 +140,41 @@ function FilterableGrid({ articles, locale, columns }: Omit<GridProps, "filterab
   );
 }
 
-export function ArticleGrid({ articles, locale, columns = 3, filterable = false }: GridProps) {
-  if (!filterable) {
-    return articles.length ? (
-      <Grid articles={articles} locale={locale} columns={columns} />
-    ) : (
-      <p className="ns-empty">{t(locale).emptyTheme}</p>
-    );
-  }
+export function ArticleGrid({ articles, locale, columns = 3, filterable = false, pageSize }: GridProps) {
+  // The reveal state lives HERE, outside the Suspense boundary below: content
+  // under that boundary is prerendered as the fallback and may never hydrate
+  // on a static page, so a button inside it would be inert HTML. Out here the
+  // component hydrates with the page and the button works.
+  const [limit, setLimit] = useState(pageSize ?? Infinity);
+
+  const empty = <p className="ns-empty">{t(locale).emptyTheme}</p>;
+  const grid = articles.length ? (
+    <Grid articles={articles} locale={locale} columns={columns} limit={limit} />
+  ) : (
+    empty
+  );
+
   // useSearchParams needs a boundary or the whole route drops out of static
   // rendering. The fallback is the unfiltered grid, which is also what gets
   // prerendered into the HTML.
-  return (
-    <Suspense
-      fallback={
-        articles.length ? (
-          <Grid articles={articles} locale={locale} columns={columns} />
-        ) : (
-          <p className="ns-empty">{t(locale).emptyTheme}</p>
-        )
-      }
-    >
-      <FilterableGrid articles={articles} locale={locale} columns={columns} />
+  const content = filterable ? (
+    <Suspense fallback={grid}>
+      <FilterableGrid articles={articles} locale={locale} columns={columns} limit={limit} />
     </Suspense>
+  ) : (
+    grid
+  );
+
+  return (
+    <div className="ns-reveal">
+      {content}
+      {pageSize && articles.length > limit ? (
+        <div className="ns-load-more">
+          <button type="button" className="ns-chip" onClick={() => setLimit((l) => l + pageSize)}>
+            {t(locale).loadMore}
+          </button>
+        </div>
+      ) : null}
+    </div>
   );
 }

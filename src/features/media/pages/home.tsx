@@ -9,6 +9,7 @@ import { VideoSection } from "../components/VideoSection";
 import { AuthorsSection } from "../components/AuthorsSection";
 import { Byline } from "../components/Byline";
 import { getAllArticles, toCards } from "../lib/articles";
+import { ARTICLES_PER_PAGE } from "../lib/pagination";
 import { getAuthor } from "../lib/authors";
 import { mediaPath, mediaAlternates, mediaUrl } from "../lib/urls";
 import { articleCollectionJsonLd } from "../lib/jsonld";
@@ -75,7 +76,12 @@ export function createHomeRoute(locale: MediaLocale) {
           <section className="ns-section">
             <div className="ns-wrap">
               <div className="ns-section-head">
-                <h2 className="ns-section-title">{copy.allArticles}</h2>
+                <h2 className="ns-section-title">{copy.latestArticles}</h2>
+                {articles.length > ARTICLES_PER_PAGE + 1 ? (
+                  <Link className="ns-section-link" href={mediaPath(locale, "/articles")}>
+                    {copy.allArticles}
+                  </Link>
+                ) : null}
               </div>
               <HomeFeed cards={toCards(articles)} locale={locale} />
             </div>

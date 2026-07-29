@@ -33,18 +33,22 @@ export function NorthstarMasthead({
           <div className="ns-masthead-identity">
             <Link href={mediaPath(locale)} className="ns-wordmark">
               <span className="ns-wordmark-name">Northstar</span>
-              <span className="ns-wordmark-by">by Ditto</span>
             </Link>
             <p className="ns-tagline">{copy.tagline}</p>
           </div>
-          <Link
-            href={mediaPath(other, mirrorPath)}
-            className="ns-locale-switch"
-            hrefLang={other}
-            aria-label={copy.switchLocaleLabel}
-          >
-            {copy.switchLocale}
-          </Link>
+          <div className="ns-masthead-actions">
+            <Link href={mediaPath(locale, "/about")} className="ns-about-link">
+              {copy.aboutUs}
+            </Link>
+            <Link
+              href={mediaPath(other, mirrorPath)}
+              className="ns-locale-switch"
+              hrefLang={other}
+              aria-label={copy.switchLocaleLabel}
+            >
+              {copy.switchLocale}
+            </Link>
+          </div>
         </div>
         <div className="ns-masthead-bottom">
           <nav className="ns-masthead-nav" aria-label={copy.themes}>

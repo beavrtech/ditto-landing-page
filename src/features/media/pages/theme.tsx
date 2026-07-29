@@ -6,6 +6,7 @@ import { MediaShell } from "../components/MediaShell";
 import { MediaBreadcrumbs, type Crumb } from "../components/MediaBreadcrumbs";
 import { ArticleGrid } from "../components/ArticleCard";
 import { getAllArticles, filterByTheme, toCards } from "../lib/articles";
+import { ARTICLES_PER_PAGE } from "../lib/pagination";
 import { mediaAlternates, mediaPath, mediaUrl } from "../lib/urls";
 import { articleCollectionJsonLd } from "../lib/jsonld";
 import { t } from "../dictionary";
@@ -77,7 +78,12 @@ export function createThemeRoute(locale: MediaLocale) {
 
           {/* Every taxonomy node has a page from day one, so most start empty;
               the grid says so itself. `?industry=` narrows it in place. */}
-          <ArticleGrid articles={toCards(articles)} locale={locale} filterable />
+          <ArticleGrid
+            articles={toCards(articles)}
+            locale={locale}
+            filterable
+            pageSize={ARTICLES_PER_PAGE}
+          />
         </div>
         <JsonLd
           data={articleCollectionJsonLd({
