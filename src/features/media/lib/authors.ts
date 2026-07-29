@@ -104,12 +104,18 @@ function readAuthors(): Promise<MediaAuthor[]> {
         return parseAuthor(await fs.readFile(path.join(AUTHORS_DIR, entry.name), "utf8"), slug);
       })
     );
-    // Unpinned authors rank after every pinned one, then sort by name.
+    // Pinned authors lead, house authors follow by name, and invited
+    // contributors close the list: guests are billed after the house.
     const rank = (slug: string) => {
       const at = PINNED.indexOf(slug);
       return at === -1 ? PINNED.length : at;
     };
-    return authors.sort((a, b) => rank(a.slug) - rank(b.slug) || a.name.localeCompare(b.name));
+    return authors.sort(
+      (a, b) =>
+        Number(a.invited ?? false) - Number(b.invited ?? false) ||
+        rank(a.slug) - rank(b.slug) ||
+        a.name.localeCompare(b.name)
+    );
   })();
 }
 
