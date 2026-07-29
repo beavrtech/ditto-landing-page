@@ -23,6 +23,9 @@ function getEnglishPaths(): Record<string, string> {
 const FRENCH_PATHS: Record<string, string> = {
   "/customer-stories": "/cas-clients",
   "/resources": "/ressources",
+  // NB: listed before "/resources/blog" — localizedHref takes the first
+  // prefix match, and category URLs must map to /categorie, not pass through.
+  "/resources/blog/category": "/ressources/blog/categorie",
   "/resources/blog": "/ressources/blog",
   "/resources/guides": "/ressources/guides",
   "/resources/news": "/ressources/news",
