@@ -1,9 +1,10 @@
 # Artwork
 
-Two different things, with two different rule sets.
+Three different things, with three different rule sets.
 
 - **The hero image** — one per article, referenced by `illustration` in the frontmatter. It is a **photograph**, generated with the OpenAI image API and stored at `public/media/illustrations/<url>.webp`, same name as the article's `url`.
 - **In-body figures** — optional, placed with `<ArticleImage>`. These are **flat SVG diagrams** in the Northstar palette. They explain something; a photograph cannot.
+- **Author portraits** — one per author, at `public/media/authors/<slug>.webp`. Always a photograph of the real person. Never an invented face.
 
 ## The hero photograph
 
@@ -84,6 +85,14 @@ If the image is purely decorative, omit `alt`. An empty value is treated as deco
 ### Disclosure
 
 These are generated images, not photojournalism. Never present one as documentation of a real event, place or person, and never caption it as though it were. The `alt` describes what is depicted; it does not claim the depiction happened.
+
+## Author portraits
+
+512×512 webp at `public/media/authors/<slug>.webp`, referenced by `avatar` in the author file. Shot outdoors: the person head-and-shoulders and looking at the camera, dense green foliage and a pale stone building behind them, dissolved into soft bokeh. Natural daylight, muted true-to-life colour, camera at eye level. Same afternoon, same photographer as everything else on the site.
+
+A portrait is always the real person. When someone's usable photograph was taken somewhere else — a white studio wall, a coloured backdrop, black and white — it gets **edited** into the house background with the OpenAI image API (`images/edits`, `input_fidelity: high`), which keeps the face, hair, glasses, expression and clothing and changes the setting and the grade around them. That is the only generation allowed here.
+
+Never generate a portrait from a name and a description. An image model given "Tristan Salaün, account manager" returns a stranger, and publishing that stranger under a real colleague's byline misrepresents them. No photograph, no avatar: leave the file missing and get one taken.
 
 ## In-body diagrams
 
