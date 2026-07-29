@@ -6,11 +6,14 @@ export interface MediaVideo {
   title: Record<MediaLocale, string>;
   description?: Record<MediaLocale, string>;
   publishedAt?: string;
+  /** Slug from content/media/authors/, resolved by the caller. */
+  author?: string;
 }
 
 interface RawVideo {
   youtubeId: string;
   publishedAt?: string;
+  author?: string;
   en: { title: string; description?: string };
   fr: { title: string; description?: string };
 }
@@ -30,6 +33,7 @@ export function getVideos(): MediaVideo[] {
     return {
       youtubeId: video.youtubeId,
       publishedAt: video.publishedAt,
+      author: video.author,
       title: { en: video.en.title, fr: video.fr.title },
       description:
         video.en.description && video.fr.description

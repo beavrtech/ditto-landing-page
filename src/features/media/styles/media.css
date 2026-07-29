@@ -127,6 +127,12 @@
   font-size: var(--ns-h4);
 }
 
+/* "All videos" and the like: sits opposite the section title on the same baseline. */
+.ns-section-link {
+  font-size: var(--ns-small);
+  white-space: nowrap;
+}
+
 .ns-meta {
   font-size: var(--ns-small);
   color: var(--ns-ink-soft);
