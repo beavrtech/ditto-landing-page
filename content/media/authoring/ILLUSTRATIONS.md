@@ -3,7 +3,7 @@
 Three different things, with three different rule sets.
 
 - **The hero image** — one per article, referenced by `illustration` in the frontmatter. It is a **photograph**, generated with the OpenAI image API and stored at `public/media/illustrations/<url>.webp`, same name as the article's `url`.
-- **In-body figures** — optional, placed with `<ArticleImage>`. These are **flat SVG diagrams** in the The Scope palette. They explain something; a photograph cannot.
+- **In-body figures** — one or two per article are worth considering, placed with `<ArticleImage>`. These are **flat SVG charts and diagrams** in the The Scope palette; charts ship one file per language. They explain something a photograph cannot.
 - **Author portraits** — one per author, at `public/media/authors/<slug>.webp`. Always a photograph of the real person. Never an invented face.
 
 ## The hero photograph
@@ -96,15 +96,32 @@ Never generate a portrait from a name and a description. An image model given "T
 
 **Invited authors are the exception to the house edit.** A "By invitation" contributor's portrait is used exactly as they supplied it, no background swap, no regrade. The picture is theirs the way the opinion is, and restyling it would dress an outside voice in house clothes.
 
-## In-body diagrams
+## In-body figures
 
-`<ArticleImage>` figures stay flat SVG in the design system: white ground, navy ink, square corners, structure drawn with rules rather than shadows.
+When writing an article, consider one or two in-body figures. Not a quota: a figure must show a relationship the prose cannot (unequal bars, layers, a grid with one cell filled), and if it only decorates, cut it. But an article whose argument is quantitative usually deserves at least one.
+
+Common rules for everything placed with `<ArticleImage>`:
 
 - **Palette, and nothing else**: navy `#130e30`, yellow `#ffe228`, blue `#3a93ff`, white `#ffffff`. Optionally the paper tint `#f9fbf2`.
 - **Flat and geometric.** Rectangles, lines, grids, hard diagonals. No gradients, no drop shadows, no rounded corners, no 3D, no stock-illustration people.
-- **It must earn its place.** A diagram shows a relationship the prose cannot: layers, a grid with one cell filled, unequal bars. If it only decorates, cut it.
-- **No text inside the image.** It cannot be translated. Put the labelling in the `caption`.
-- Include `role="img"`. The accessible name comes from the `alt` prop.
+- **Every figure is sourced.** The non-negotiables in [TONE-OF-VOICE.md](../TONE-OF-VOICE.md) apply to pixels as much as prose: never chart a number you could not print.
+- Include `role="img"` on the SVG. The accessible name comes from the `alt` prop.
+- `<ArticleImage>` serves `.svg` files unoptimized, so plain static SVG is all that is needed.
+
+### Data charts, the house style
+
+Charts carry their own text, in the register of The Economist. The reference implementations are `public/media/illustrations/cheese-footprint-stages.*.svg` and `cheese-milk-per-kilogram.*.svg`.
+
+- **One file per language.** Text cannot be machine-translated inside an image, so a chart ships as `<name>.en.svg` and `<name>.fr.svg`, and each locale body references its own file. The two files carry the same data and geometry; only the words differ.
+- **Anatomy, top to bottom**: a yellow tag block (64×12) at the top left; a short bold title that makes a claim ("Mostly milk"), not a label; a muted subtitle naming the unit and scope; the chart; a muted source line at the bottom.
+- **Bars over slices.** Horizontal bars, category labels above each bar, bold value labels at the bar end. A full-length bar takes its value label inside the bar, in white, right-aligned, so nothing sits at the crop-prone right edge. Prefer one bar per category to a stacked bar: a 4% sliver is invisible inside a stack and obvious as its own bar.
+- **Navy is the ink, yellow is the story.** All bars navy; the one bar the argument turns on may be yellow. No third color unless it encodes something.
+- **Geometry that stays readable**: 900×500 viewBox rendered at roughly 700px in the article, so title 34, subtitle 19, category and value labels 17, source 14. Bars about 30px tall. Font stack `'Helvetica Neue', Arial, sans-serif`; anything fancier will not load inside an `<img>`.
+- **Captions stay short.** The chart carries its own title and source, so the `caption` adds one sentence of reading guidance at most, and the `alt` describes the chart for someone who cannot see it.
+
+### Diagrams without data
+
+A structural diagram (layers, flows, a grid) that needs no numbers follows the same palette and flatness, and stays wordless where it can, with the labelling in the `caption`:
 
 ```svg
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" role="img">
@@ -115,3 +132,5 @@ Never generate a portrait from a name and a description. An image model given "T
   <rect x="80" y="140" width="740" height="300" fill="none" stroke="#130e30" stroke-width="4"/>
 </svg>
 ```
+
+If a wordless diagram would force the caption to decode colors and positions, treat it as a chart instead and label it per locale.
