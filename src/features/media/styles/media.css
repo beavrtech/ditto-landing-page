@@ -1078,6 +1078,20 @@
   width: 100%;
   border: var(--ns-rule-soft);
 }
+
+/* A data chart is set narrower than the text column and centered, the way a
+   newspaper sets one. Its SVG is authored at this width, so the type inside
+   renders at the size it was drawn at rather than being scaled down. */
+.ns-figure-chart img {
+  display: block;
+  max-width: 480px;
+  margin-inline: auto;
+  border: none;
+}
+.ns-figure-chart .ns-figcaption {
+  max-width: 480px;
+  margin-inline: auto;
+}
 .ns-figcaption {
   margin-top: 0.5rem;
   font-size: var(--ns-small);

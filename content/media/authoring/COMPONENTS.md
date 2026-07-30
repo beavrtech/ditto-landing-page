@@ -76,6 +76,21 @@ An inline figure with an optional caption.
 
 `alt` describes the image for someone who cannot see it. `caption` adds information for everyone. They should not be the same sentence.
 
+Pass `chart` for a data chart. It drops the border and sets the figure in a narrower centered column, the way a newspaper sets one beside its text. Charts are authored at that width and carry their own title and source, so the `caption` only adds a line of reading guidance:
+
+```mdx
+<ArticleImage
+  src="/media/illustrations/cheese-footprint-stages.en.svg"
+  alt="Bar chart of a hard cheese's emissions by life-cycle stage"
+  caption="Transport, the stage everyone points at, is the yellow bar."
+  width={480}
+  height={316}
+  chart
+/>
+```
+
+A chart carries text, so it ships one file per language and each locale body points at its own. [ILLUSTRATIONS.md](./ILLUSTRATIONS.md) has the drawing rules and the canvas.
+
 ## `<YouTube>`
 
 ```mdx

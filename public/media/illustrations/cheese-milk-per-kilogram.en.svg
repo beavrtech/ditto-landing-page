@@ -1,28 +1,28 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 434" width="900" height="434" role="img" font-family="'Helvetica Neue', Arial, sans-serif">
-  <rect width="900" height="434" fill="#ffffff"/>
-  <rect x="10" y="0" width="64" height="12" fill="#ffe228"/>
-  <text x="10" y="54" font-size="34" font-weight="700" fill="#130e30">A cheese is milk, concentrated</text>
-  <text x="10" y="86" font-size="19" fill="#130e30" opacity="0.7">Liters of milk per kilogram of cheese</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 316" width="480" height="316" role="img" font-family="'Helvetica Neue', Arial, sans-serif">
+  <rect width="480" height="316" fill="#f9fbf2"/>
+  <rect x="16" y="0" width="36" height="7" fill="#ffe228"/>
+  <text x="16" y="34" font-size="20" font-weight="700" fill="#130e30">A cheese is milk, concentrated</text>
+  <text x="16" y="54" font-size="13" fill="#130e30" opacity="0.7">Liters of milk per kilogram of cheese</text>
 
-  <text x="10" y="126" font-size="17" fill="#130e30">Comté or Beaufort</text>
-  <rect x="10" y="134" width="860" height="30" fill="#130e30"/>
-  <text x="856" y="155" font-size="17" font-weight="700" fill="#ffffff" text-anchor="end">10 L</text>
+  <text x="16" y="82" font-size="13" fill="#130e30">Comté or Beaufort</text>
+  <rect x="16" y="88" width="448" height="20" fill="#130e30"/>
+  <text x="456" y="102" font-size="13" font-weight="700" fill="#f9fbf2" text-anchor="end">10 L</text>
 
-  <text x="10" y="184" font-size="17" fill="#130e30">Bleu d'Auvergne</text>
-  <rect x="10" y="192" width="860" height="30" fill="#130e30"/>
-  <text x="856" y="213" font-size="17" font-weight="700" fill="#ffffff" text-anchor="end">10</text>
+  <text x="16" y="124" font-size="13" fill="#130e30">Bleu d'Auvergne</text>
+  <rect x="16" y="130" width="448" height="20" fill="#130e30"/>
+  <text x="456" y="144" font-size="13" font-weight="700" fill="#f9fbf2" text-anchor="end">10</text>
 
-  <text x="10" y="242" font-size="17" fill="#130e30">Maroilles</text>
-  <rect x="10" y="250" width="802" height="30" fill="#130e30"/>
-  <text x="824" y="271" font-size="17" font-weight="700" fill="#130e30">9</text>
+  <text x="16" y="166" font-size="13" fill="#130e30">Maroilles</text>
+  <rect x="16" y="172" width="403" height="20" fill="#130e30"/>
+  <text x="427" y="186" font-size="13" font-weight="700" fill="#130e30">9</text>
 
-  <text x="10" y="300" font-size="17" fill="#130e30">Camembert de Normandie</text>
-  <rect x="10" y="308" width="688" height="30" fill="#130e30"/>
-  <text x="710" y="329" font-size="17" font-weight="700" fill="#130e30">8</text>
+  <text x="16" y="208" font-size="13" fill="#130e30">Camembert de Normandie</text>
+  <rect x="16" y="214" width="358" height="20" fill="#130e30"/>
+  <text x="382" y="228" font-size="13" font-weight="700" fill="#130e30">8</text>
 
-  <text x="10" y="358" font-size="17" fill="#130e30">Brie de Meaux</text>
-  <rect x="10" y="366" width="614" height="30" fill="#130e30"/>
-  <text x="636" y="387" font-size="17" font-weight="700" fill="#130e30">7</text>
+  <text x="16" y="250" font-size="13" fill="#130e30">Brie de Meaux</text>
+  <rect x="16" y="256" width="314" height="20" fill="#130e30"/>
+  <text x="338" y="270" font-size="13" font-weight="700" fill="#130e30">7</text>
 
-  <text x="10" y="424" font-size="14" fill="#130e30" opacity="0.6">Source: produits-laitiers.com; per-kilogram figures computed from per-cheese data</text>
+  <text x="16" y="300" font-size="11" fill="#130e30" opacity="0.6">Source: produits-laitiers.com, computed per kilogram</text>
 </svg>

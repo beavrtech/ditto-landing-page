@@ -69,15 +69,21 @@ export function ArticleImage({
   caption,
   width = 1200,
   height = 800,
+  chart = false,
 }: {
   src: string;
   alt: string;
   caption?: string;
   width?: number;
   height?: number;
+  /**
+   * A data chart rather than a photograph or diagram: sits in a narrower
+   * centered column, the way a newspaper sets one beside its text.
+   */
+  chart?: boolean;
 }) {
   return (
-    <figure className="ns-figure">
+    <figure className={chart ? "ns-figure ns-figure-chart" : "ns-figure"}>
       {/* SVG figures are static assets; the optimizer rejects them without dangerouslyAllowSVG. */}
       <Image src={src} alt={alt} width={width} height={height} unoptimized={src.endsWith(".svg")} />
       {caption ? <figcaption className="ns-figcaption">{caption}</figcaption> : null}
