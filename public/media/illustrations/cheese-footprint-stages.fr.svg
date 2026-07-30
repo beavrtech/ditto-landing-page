@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="900" height="500" role="img" font-family="'Helvetica Neue', Arial, sans-serif">
+  <rect width="900" height="500" fill="#ffffff"/>
+  <rect x="10" y="0" width="64" height="12" fill="#ffe228"/>
+  <text x="10" y="58" font-size="34" font-weight="700" fill="#130e30">Le lait, surtout</text>
+  <text x="10" y="92" font-size="19" fill="#130e30" opacity="0.7">Fromage à pâte dure français, % des 6,28 kg de CO2e émis par kg</text>
+
+  <text x="10" y="146" font-size="17" fill="#130e30">Agriculture (le lait surtout)</text>
+  <rect x="10" y="154" width="860" height="30" fill="#130e30"/>
+  <text x="856" y="175" font-size="17" font-weight="700" fill="#ffffff" text-anchor="end">83 %</text>
+
+  <text x="10" y="214" font-size="17" fill="#130e30">Emballage</text>
+  <rect x="10" y="222" width="73" height="30" fill="#130e30"/>
+  <text x="95" y="243" font-size="17" font-weight="700" fill="#130e30">7</text>
+
+  <text x="10" y="282" font-size="17" fill="#130e30">Transformation</text>
+  <rect x="10" y="290" width="62" height="30" fill="#130e30"/>
+  <text x="84" y="311" font-size="17" font-weight="700" fill="#130e30">6</text>
+
+  <text x="10" y="350" font-size="17" fill="#130e30">Transport</text>
+  <rect x="10" y="358" width="41" height="30" fill="#ffe228"/>
+  <text x="63" y="379" font-size="17" font-weight="700" fill="#130e30">4</text>
+
+  <text x="10" y="418" font-size="17" fill="#130e30">Distribution et consommation</text>
+  <rect x="10" y="426" width="10" height="30" fill="#130e30"/>
+  <text x="32" y="447" font-size="17" font-weight="700" fill="#130e30">1</text>
+
+  <text x="10" y="490" font-size="14" fill="#130e30" opacity="0.6">Source : Impact CO2 (ADEME), Agribalyse 3.2</text>
+</svg>

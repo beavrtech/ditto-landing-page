@@ -78,7 +78,8 @@ export function ArticleImage({
 }) {
   return (
     <figure className="ns-figure">
-      <Image src={src} alt={alt} width={width} height={height} />
+      {/* SVG figures are static assets; the optimizer rejects them without dangerouslyAllowSVG. */}
+      <Image src={src} alt={alt} width={width} height={height} unoptimized={src.endsWith(".svg")} />
       {caption ? <figcaption className="ns-figcaption">{caption}</figcaption> : null}
     </figure>
   );
