@@ -21,6 +21,14 @@ export const metadata: Metadata = {
     siteName: "The Scope",
     images: [{ url: "/media/og-default.svg", width: 1200, height: 630 }],
   },
+  icons: {
+    icon: [
+      { url: "/media/favicon.svg", type: "image/svg+xml" },
+      { url: "/media/icon-512.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: "/media/apple-icon.png",
+    shortcut: "/media/favicon.svg",
+  },
 };
 
 export default function MediaLayoutFr({ children }: { children: React.ReactNode }) {
