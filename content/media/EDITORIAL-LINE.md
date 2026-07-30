@@ -75,7 +75,8 @@ The list that actually defines the line.
 - **Pieces whose only reason to exist is a keyword.** Written down deliberately, because
   The Scope is the destination SEO surface and this is the failure mode that comes with it.
 - **Anything we cannot source.** If a fact is not verifiable, the piece runs without it or
-  does not run.
+  does not run. The author's own expertise is the exception, and it is a real one: see
+  [The author is a source](#the-author-is-a-source).
 
 ---
 
@@ -163,6 +164,29 @@ such on the byline and their profile. The rules:
   photography. The picture is theirs the way the opinion is.
 - Every framework rule still applies: verified figures or none, the refusals list, and no
   guaranteed outcomes. An invitation is a byline, not an exemption.
+
+### The author is a source
+
+What the bylined author knows from doing the work does not need a citation. They are the
+expert, the byline is the attribution, and the piece says so in the first person: "I", "the
+last time I", "in the plants I have walked". A feature exists because of that judgment, so
+demanding a footnote for it is both impossible and beside the point.
+
+This is not a loophole for facts that happen to be inconvenient to source. The line:
+
+- **Testimony, no citation needed.** What the author observed, was told, tried, or concluded
+  from practice. Scenes, reactions in a room, what a client asked for, what usually breaks,
+  where they have landed on a judgment call after doing it for years. Write it as "I".
+- **External claims, cited as ever.** Figures, percentages, study findings, regulatory
+  requirements, dates, anything about a named third party. A first-person frame does not
+  convert an unsourced number into a sourced one: "in my experience about 40% of suppliers"
+  is an invented statistic wearing a byline, and it fails non-negotiable 1 of the tone of
+  voice.
+
+Practically: an author may assert professional judgment plainly, including where the
+published numbers stop short. "The studies do not settle it; on the farms I have visited it
+lands close enough that I stop worrying about the species" is exactly the sentence a feature
+is for. Hedging that into anonymity is the failure mode to avoid, not the safe option.
 
 ---
 
