@@ -31,9 +31,12 @@ export function ScopeMasthead({
       <div className="ns-wrap">
         <div className="ns-masthead-top">
           <div className="ns-masthead-identity">
-            {/* Nameplate on the yellow plate, The Economist way. */}
+            {/* Stacked two-line nameplate on the yellow plate, The Economist way. */}
             <Link href={mediaPath(locale)} className="ns-wordmark">
-              <span className="ns-wordmark-name">The Scope</span>
+              <span className="ns-wordmark-name">
+                <span className="ns-wordmark-line">The</span>
+                <span className="ns-wordmark-line">Scope</span>
+              </span>
             </Link>
             <p className="ns-tagline">{copy.tagline}</p>
           </div>
