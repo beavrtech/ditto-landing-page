@@ -1,5 +1,5 @@
 ---
-name: northstar-article
+name: scope-article
 description: >
   Use this skill whenever the user wants to write, draft, translate, restructure
   or review an article for The Scope, the Ditto media at trustditto.com/en/media.
@@ -47,6 +47,10 @@ change.
 7. `content/media/authoring/ILLUSTRATIONS.md` — the house photography style and
    the generator. Read it before making any artwork; the hero image is a
    generated photograph, not the flat SVG the older articles carry.
+8. `content/media/authoring/AUTHOR-STYLES.md` — the per-author byline registers:
+   each author's journalistic role, rhythm, signature moves and off-limits. A
+   thin layer applied on top of the tone of voice, which always wins on
+   conflict.
 
 Read an existing article, for example
 `content/media/articles/reach-2026-checklist.mdx`, to see the shape in practice.
@@ -58,10 +62,15 @@ Read an existing article, for example
    a study, a source or a URL to fill a gap: write `[STAT: verify]` and say so.
    This outranks every other instruction here.
 
-2. **Confirm the author.** `author` must be an existing slug in
-   `content/media/authors/`. Authors are real people who become `Person` entities
-   in structured data, so never invent one. If the user has not said who is
-   writing, ask rather than guessing.
+2. **Confirm the author, then write in their register.** `author` must be an
+   existing slug in `content/media/authors/`. Authors are real people who become
+   `Person` entities in structured data, so never invent one. A reference piece
+   is signed by the section editor of its theme: the table lives in
+   `content/media/EDITORIAL-LINE.md` ("The section editors"). A feature is signed
+   by whoever's judgment it is; if the user has not said who, propose the byline
+   whose role in AUTHOR-STYLES.md matches the shape and ask rather than
+   guessing. Once the byline is set, apply that author's block from
+   AUTHOR-STYLES.md throughout the draft, in both languages.
 
 3. **Pick the `url`** — lowercase, hyphenated, English, stable, and equal to the
    filename. It is permanent once published.
