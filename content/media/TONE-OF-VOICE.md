@@ -122,7 +122,7 @@ The shape follows the title, and these are shapes, not templates.
 - **Explainer** ("What is X?"): the title's question becomes the first H2 and is answered in the first paragraph. Foundational to applied: what it is, why it matters to the business, how to measure, which frameworks touch it, how to improve. A comparison table is common.
 - **How-to / steps**: short intro framing the pain and the payoff, then each step as an H2 with a problem, consequence, solution rhythm. A short "Mistakes to avoid" near the end. Concrete and lightly punchy.
 - **Data / research**: every section anchored on a real, attributed figure. Bold the key stat per section. Small tables. Never a figure that is not sourced.
-- **Analysis**: a live debate presented fairly with real named positions on both sides, then consequences, then a reasoned position that is evidenced. Ends with a "Sources consulted" list of real links.
+- **Analysis**: a live debate presented fairly with real named positions on both sides, then consequences, then a reasoned position that is evidenced. Ends with a "Sources" list of real links.
 
 ---
 
