@@ -95,6 +95,31 @@ The axis is not length. It is whether the byline is load-bearing.
 Length follows from the job rather than setting it. A reference piece padded to hit a word
 count is the most reliable slop tell there is.
 
+### The section editors
+
+Every theme has a section editor, and a reference piece is signed by the editor of the
+theme it is filed under. A feature is signed by whoever's judgment it is, which may be
+someone else; invited authors sit outside this table entirely.
+
+| Pillar | Theme | Section editor |
+|---|---|---|
+| `qhse` | `normes-et-systemes-de-management` | `alexis-de-taillac` |
+| `qhse` | `sante-securite-et-qvt` | `alexis-de-taillac` |
+| `qhse` | `environnement-et-excellence-operationnelle` | `alexis-de-taillac` |
+| `qhse` | `audits-et-certification` | `alexis-de-taillac` |
+| `rse` | `notations-et-evaluations` | `ugo-le-borgne` |
+| `rse` | `reporting-et-cadres` | `julie-declerck` |
+| `rse` | `climat-et-carbone` | `julie-declerck` |
+| `rse` | `strategie-gouvernance-et-acces-marche` | split by topic, below |
+| `supply-chain` | `reglementations-produit-et-chaine` | `pierre-masse` |
+| `supply-chain` | `engagement-et-evaluation-fournisseurs` | `ugo-le-borgne` |
+| `supply-chain` | `achats-responsables` | `ugo-le-borgne` |
+| `supply-chain` | `tracabilite-donnees-et-risques` | `ugo-le-borgne` |
+
+`strategie-gouvernance-et-acces-marche` is the one theme split at topic level:
+`double-materialite` and `politiques` are `julie-declerck`, `pression-donneurs-ordre` is
+`ugo-le-borgne`.
+
 ### The bar
 
 A **feature** runs if it does at least one of these:
