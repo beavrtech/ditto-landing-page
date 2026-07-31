@@ -146,7 +146,10 @@ export const TAXONOMY: TaxonomyNode[] = [
     children: [
       {
         slug: "reglementations-produit-et-chaine",
-        label: { en: "Product & chain regulations", fr: "Réglementations produit et chaîne" },
+        label: {
+          en: "Product & supply chain regulations",
+          fr: "Réglementations produit et chaîne d'approvisionnement",
+        },
         children: [
           { slug: "eudr", label: { en: "EUDR", fr: "EUDR" } },
           { slug: "ppwr", label: { en: "PPWR", fr: "PPWR" } },
