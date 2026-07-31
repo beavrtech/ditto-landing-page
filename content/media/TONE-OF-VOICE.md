@@ -152,6 +152,8 @@ The shape follows the title, and these are shapes, not templates.
 
 Every article ships in English and French in a single file, `content/media/articles/<url>.mdx`, with one `url` serving both languages.
 
+- **English is written first and finished first**, then translated. It is the source text: settling the argument once, in one language, beats editing the same sentence twice in two.
+- The translation instruction, used as written: *"Translate the following text into French for a professional journalistic audience. Do not translate word-for-word, prioritize natural, idiomatic French that a native French journalist would actually write."*
 - French is a **true editorial translation, not a literal one**. Sentences may be restructured, examples may be swapped for ones a French reader recognizes, and the register must read as if written in French.
 - The two versions must carry the **same facts, figures, and taxonomy**. That is structural now: `section`, `industries`, `date`, `author` and `illustration` are declared once at the top of the file and cannot diverge. Only the title, the description, the illustration's alt text and the body differ by language.
 - Regulation names stay in their official form (REACH, CSRD, EUDR, ISO 45001). French articles keep French common-noun usage around them.
