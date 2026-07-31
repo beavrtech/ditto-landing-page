@@ -70,22 +70,26 @@ Read an existing article, for example
    the slugs against `src/features/media/data/taxonomy.ts` rather than assuming:
    the vocabulary was replaced wholesale and older slugs no longer exist.
 
-5. **Write the English first, in full.** Finish it: structure, edit, self-check.
-   The English is the source text, and translating a draft you have not settled
-   means editing the same sentence twice in two languages.
+5. **Write the French first, in full.** French is the source text: most of the
+   readership and most of the authors work in it, and the regulatory vocabulary
+   is French before it is anything else. Finish it before translating, structure,
+   edit and self-check included. Translating a draft you have not settled means
+   editing the same sentence twice in two languages.
 
-6. **Then translate it into French**, working from the finished English with this
+6. **Then translate it into English**, working from the finished French with this
    instruction:
 
-   > Translate the following text into French for a professional journalistic
+   > Translate the following text into English for a professional journalistic
    > audience. Do not translate word-for-word, prioritize natural, idiomatic
-   > French that a native French journalist would actually write.
+   > English that a native English-speaking journalist would actually write.
 
    Translate the body, the `title`, the `description` and the illustration `alt`.
-   Both languages carry the same facts and figures. Remember
-   `<KeyTakeaways title="À retenir">` in the French body, French typography, and
-   that regulation names keep their official form. The full bilingual rules are
-   in [TONE-OF-VOICE.md](../../../content/media/TONE-OF-VOICE.md) §6.
+   Both languages carry the same facts and figures. The English is **US English**
+   (organize, behavior, color, truck rather than lorry), takes the default
+   `<KeyTakeaways>` title, and spells out French-specific terms on first use: AOP
+   becomes "PDO (Protected Designation of Origin, AOP in French)", and the same
+   for any acronym a reader outside France would not carry. The full bilingual
+   rules are in [TONE-OF-VOICE.md](../../../content/media/TONE-OF-VOICE.md) §6.
 
 7. **Generate the hero photograph.** Every new article gets one, in the house
    style, at `public/media/illustrations/<url>.webp`:
