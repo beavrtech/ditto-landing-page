@@ -14,7 +14,7 @@ Read [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) to decide whether a piece belongs 
 | [authoring/SEO-AEO.md](./authoring/SEO-AEO.md) | What the code emits, what the writer controls, known gaps |
 | [authoring/ILLUSTRATIONS.md](./authoring/ILLUSTRATIONS.md) | The house photography style, the generator, and the in-body diagram rules |
 
-Working with Claude Code, the `northstar-article` skill loads all of this automatically when you ask for an article.
+Working with Claude Code, the `scope-article` skill loads all of this automatically when you ask for an article.
 
 ## Where things live
 
@@ -60,9 +60,10 @@ Working with Claude Code, the `northstar-article` skill loads all of this automa
    ---
    ```
 
-   `section` is the taxonomy path: two entries (`[level1, level2]`) or three when the
-   piece is about one named framework, regulation or practice. Every theme has
-   level-3 topics. Valid slugs come from `src/features/media/data/taxonomy.ts`, and
+   `section` is the taxonomy path, exactly two entries (`[level1, level2]`): the
+   tree stops at the theme. The named framework, regulation or practice goes in
+   `tags`, which are flat and global. Valid slugs come from
+   `src/features/media/data/taxonomy.ts`, and
    [authoring/TAXONOMY.md](./authoring/TAXONOMY.md) explains how to choose.
 
    `alsoIn` is for an article that lives in one section but is genuinely useful to

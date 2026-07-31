@@ -3,60 +3,63 @@ url: carbon-footprint-software-company
 author: julie-declerck
 illustration: /media/illustrations/carbon-footprint-software-company.webp
 date: "2026-06-04"
-section: [rse, climat-et-carbone, scopes]
+section: [rse, climat-et-carbone]
+tags: [scopes]
 industries: [technologie-logiciels]
 
 en:
   title: "Carbon footprint for a software company: travel, commuting and cloud"
-  description: "A software company's footprint is almost entirely scope 3: business travel, commuting, purchased services and cloud. Where to look and what data you can really get."
+  description: "A software company's footprint is almost entirely scope 3: travel, commuting, purchased services and cloud. Where to look, and which data you can really get."
   alt: "An office at eight in the morning, empty desks with monitors off, one person hanging a coat by the window"
 fr:
   title: "Bilan carbone d'un éditeur de logiciels : déplacements, domicile-travail et cloud"
-  description: "Le bilan d'un éditeur est presque entièrement en scope 3 : déplacements, trajets des salariés, achats de services et cloud. Où chercher, et quelles données sont vraiment accessibles."
+  description: "Le bilan d'un éditeur est presque entièrement en scope 3 : déplacements, trajets, achats de services et cloud. Où chercher, et quelles données sont vraiment accessibles."
   alt: "Un bureau à huit heures du matin, postes vides aux écrans éteints, une personne accroche son manteau près de la fenêtre"
 ---
 
 <!-- locale:en -->
 
 <KeyTakeaways>
-- Scopes 1 and 2 are a footnote for a software company: some office energy, perhaps a few company cars. The footprint is scope 3 or it is nothing.
-- Business travel comes out of the booking tool and expense lines, flight by flight. It is usually the best-documented big line.
-- Commuting and remote work need a short employee questionnaire; "days on site per week" captures both sides of the balance.
-- Cloud is real but murky: provider dashboards use different methods and boundaries, so treat their figures as ranges and say which method they used.
-- Purchased services, the SaaS stack, agencies, hardware, usually outweigh the office. Laptops and screens carry most of their emissions from manufacturing, not use.
+- Scopes 1 and 2 are a footnote here. The footprint is scope 3, or it is nothing.
+- Business travel is usually the biggest line and the best documented, because it already passes through a booking tool.
+- Ask employees one question that does double duty: days on site per week. It captures the commute and the home office at once.
+- Report cloud as a range and name the method behind it. Provider figures are real but built on different boundaries, so they cannot be compared.
+- Laptops and screens emit most of their carbon before the box is opened, which makes lifespan the lever, not the purchasing policy.
 </KeyTakeaways>
 
-Ask a software company for its carbon footprint and the first draft often comes back reassuringly small: an office lease, some electricity, no factory, no fleet. That draft is measuring the wrong thing. It captures scopes 1 and 2, which for a services business are a rounding error, and misses scope 3, which is the business: people moving, people commuting, services purchased, hardware replaced, and workloads running in someone else's data center. Done honestly, the footprint is several times the office number, and every interesting decision lives in the gap.
+The laptop on the desk emitted most of what it will ever emit before the box was opened. So did the monitor beside it and the phone in the drawer.
 
-## Travel: the best data you own
+That single fact is the best way into a software company's carbon footprint, because almost everything about it works the same way: it happened elsewhere, earlier, on someone else's site. An office lease, an electricity bill and a year of hardware invoices are the whole of scopes 1 and 2, and for a services business they are a rounding error. What matters is scope 3, which is not an accounting abstraction here but simply the business: people moving, people commuting, services purchased, hardware replaced, and workloads running in a data center you will never visit.
 
-Business travel is typically among the largest lines, and it is also the easiest to document well, because it flows through a booking tool or expense claims. Pull the year's flights with origin and destination, rail journeys, hotel nights, and reimbursed car kilometers. Flight emissions dominate the category, and the long-haul flights dominate the flights: a handful of intercontinental round trips can outweigh the entire rail total for the year.
+## Travel is the best data you own
 
-This is also where policy connects directly to the number. A travel policy that shifts short-haul flights to rail and asks one question before intercontinental trips ("does this meeting need a body?") moves the footprint the same quarter it is signed.
+Business travel is usually among the largest lines and is also the easiest to document properly, because it already flows through a booking tool or expense claims. Pull the year's flights with origin and destination, rail journeys, hotel nights and reimbursed car kilometers.
 
-## Commuting and the remote-work balance
+Flights dominate the category and long-haul dominates the flights: a handful of intercontinental round trips can outweigh the entire rail total for the year. This is also the line where policy connects to the number without waiting for anything. A travel policy that moves short-haul to rail, and asks one question before intercontinental trips, changes the footprint in the quarter it is signed.
 
-Nothing in your systems knows how employees get to work, so this is the one place a questionnaire earns its keep: usual mode, one-way distance, days on site per week. Keep it under five questions and extrapolate the non-responses transparently.
+## One question about commuting
 
-The "days on site" question quietly does double duty. A remote day removes a commute and adds home office energy, heating in winter above all, so remote work shrinks this line without zeroing it. Count both sides with standard factors rather than declaring victory on the commute alone.
+Nothing in your systems knows how employees get to work, so this is the one place a questionnaire earns its keep: usual mode, one-way distance, days on site per week. Keep it under five questions and extrapolate non-responses transparently.
+
+That third question quietly does double duty. A remote day removes a commute and adds home-office energy, heating in winter above all, so remote work shrinks the line without zeroing it. Count both sides with standard factors rather than declaring victory on the commute alone.
 
 ## Cloud: real emissions, unfinished measurement
 
-Your product runs on servers you will never see, and their emissions are genuinely yours in the scope 3 sense, in the "use of purchased services" drawer. The difficulty is that measurement here is younger than the rest of carbon accounting. The major cloud providers all publish customer carbon figures, but their tools differ on method and boundary: market-based or location-based electricity accounting, inclusion or not of the embodied emissions of the servers themselves. Two providers can report figures for identical workloads that differ by a large factor, and both are defensible under their own method.
+Your product runs on servers you will never see, and their emissions are genuinely yours in the scope 3 sense. The difficulty is that measurement here is younger than the rest of carbon accounting. The major providers all publish customer carbon figures, but their tools differ on method and boundary: market-based or location-based electricity accounting, and whether the embodied emissions of the servers themselves are included. Two providers can report figures for identical workloads that differ by a large factor, and both are defensible under their own method.
 
-The practical position for a first footprint: take your providers' reported figures, record which method each uses, present the cloud line as a range rather than a point, and do not compare providers on these numbers. What you control regardless of methodology is real: region choice (grid carbon intensity varies enormously between countries), rightsizing, and deleting the workloads nobody remembers deploying.
+So take your providers' reported figures, record which method each one uses, present the line as a range rather than a point, and do not compare providers on these numbers. What you control is method-independent and real: region choice, since grid carbon intensity varies enormously between countries, rightsizing, and deleting the workloads nobody remembers deploying.
 
-**Good to know:** for the hardware you do own, laptops, screens, phones, most of the lifetime emissions were emitted before the box was opened, in manufacturing. The lever is therefore lifespan: a laptop kept four years instead of three cuts that line by a quarter, before any purchasing policy changes.
+**Good to know:** for the hardware you own, the lever is lifespan rather than purchasing policy. A laptop kept four years instead of three cuts that line by a quarter, and no procurement negotiation will do as much.
 
-## The rest of scope 3: the invisible stack
+## The invisible stack
 
-The remaining lines come off the accounting export with monetary factors: the SaaS subscriptions the company runs on, agencies and contractors, recruitment, marketing, insurance, the office fit-out. Individually small, together they usually beat the office energy comfortably. This is the long tail where monetary estimation is the honest method, per the [physical-versus-monetary rule](/en/media/physical-vs-monetary-carbon-method) covered earlier in this series: physical data where quantities exist, spend-based factors for the rest.
+The remaining lines come off the accounting export with monetary factors: the SaaS subscriptions the company runs on, agencies and contractors, recruitment, marketing, insurance, the office fit-out. Individually small, together they comfortably beat the office energy. This is the long tail where monetary estimation is the honest method, per the [physical-versus-monetary rule](/en/media/physical-vs-monetary-carbon-method): physical data where quantities exist, spend-based factors for the rest.
 
 ## What a good software footprint looks like
 
-It fits on a page. Travel, commuting plus home office, cloud as a range with the method named, hardware on a lifespan basis, purchased services from accounting, and the office at the bottom where it belongs. Each line names its data source and its factor database, ADEME's Base Empreinte for the French averages, provider data where it exists.
+It fits on a page. Travel, commuting plus home office, cloud as a range with the method named, hardware on a lifespan basis, purchased services from accounting, and the office at the bottom where it belongs. Each line names its data source and its factor database.
 
-The reduction plan follows the same order: a travel policy with teeth, a hardware lifespan decision, a cloud region and housekeeping review, and the office last, not because it is unimportant but because it is small. A software company that starts with the office is polishing the visible spoon while the kitchen runs elsewhere.
+So rank the scope 3 lines and take the top two to the people who own them, which usually means a travel policy and a hardware lifespan decision. Leave the office lighting for the year the bigger lines are already moving; it is not unimportant, it is just small, and saying so out loud is what keeps the effort where the tonnes are.
 
 <FAQ items={[
   { question: "What are the main emission sources for a software company?", answer: "Almost everything sits in scope 3: business travel (flights above all), employee commuting and home-office energy, cloud infrastructure, purchased hardware whose emissions are mostly from manufacturing, and purchased services. Office energy in scopes 1 and 2 is usually a minor line." },
@@ -67,44 +70,46 @@ The reduction plan follows the same order: a travel policy with teeth, a hardwar
 <!-- locale:fr -->
 
 <KeyTakeaways title="À retenir">
-- Les scopes 1 et 2 sont une note de bas de page pour un éditeur : un peu d'énergie de bureaux, quelques voitures peut-être. Le bilan est en scope 3 ou il n'est rien.
-- Les déplacements professionnels sortent de l'outil de réservation et des notes de frais, vol par vol. C'est en général la grosse ligne la mieux documentée.
-- Domicile-travail et télétravail passent par un questionnaire court ; « jours sur site par semaine » capture les deux côtés de la balance.
-- Le cloud est réel mais trouble : les tableaux de bord des fournisseurs diffèrent en méthode et en périmètre. Traitez leurs chiffres comme des fourchettes et nommez la méthode.
-- Les services achetés, la pile SaaS, les agences, le matériel, pèsent en général plus que les bureaux. Portables et écrans émettent l'essentiel à la fabrication, pas à l'usage.
+- Les scopes 1 et 2 sont ici une note de bas de page. Le bilan est en scope 3, ou il n'est rien.
+- Les déplacements professionnels forment en général la première ligne et la mieux documentée, parce qu'ils passent déjà par un outil de réservation.
+- Posez aux salariés une question à double effet : le nombre de jours sur site par semaine. Elle capture le trajet et le télétravail d'un coup.
+- Publiez le cloud en fourchette et nommez la méthode. Les chiffres des fournisseurs sont réels mais bâtis sur des périmètres différents : ils ne se comparent pas.
+- Portables et écrans émettent l'essentiel avant l'ouverture du carton, ce qui fait de la durée de vie le levier, et non de la politique d'achat.
 </KeyTakeaways>
 
-Demandez son bilan carbone à un éditeur de logiciels et le premier jet revient souvent rassurant de petitesse : un bail de bureaux, de l'électricité, pas d'usine, pas de flotte. Ce jet mesure la mauvaise chose. Il capture les scopes 1 et 2, qui pour une entreprise de services sont une erreur d'arrondi, et manque le scope 3, qui est le métier : des gens qui se déplacent, des gens qui viennent travailler, des services achetés, du matériel remplacé, et des charges qui tournent dans le centre de données de quelqu'un d'autre. Fait honnêtement, le bilan vaut plusieurs fois le chiffre des bureaux, et toutes les décisions intéressantes vivent dans l'écart.
+Le portable posé sur le bureau a émis l'essentiel de ce qu'il émettra avant même que le carton soit ouvert. L'écran à côté aussi, et le téléphone dans le tiroir.
 
-## Les déplacements : la meilleure donnée que vous possédez
+Ce seul fait est la meilleure porte d'entrée dans le bilan carbone d'un éditeur de logiciels, parce que presque tout y fonctionne de la même façon : cela s'est passé ailleurs, avant, sur le site de quelqu'un d'autre. Un bail de bureaux, une facture d'électricité et une année de factures de matériel, voilà tout le scope 1 et le scope 2, et pour une entreprise de services c'est une erreur d'arrondi. Ce qui compte est le scope 3, qui n'est pas ici une abstraction comptable mais simplement le métier : des gens qui se déplacent, des gens qui viennent travailler, des services achetés, du matériel remplacé, et des charges qui tournent dans un centre de données que vous ne visiterez jamais.
 
-Les déplacements professionnels comptent en général parmi les premières lignes, et ce sont aussi les mieux documentables, parce qu'ils passent par un outil de réservation ou des notes de frais. Sortez les vols de l'année avec origine et destination, les trajets en train, les nuits d'hôtel, les kilomètres remboursés. L'avion domine la catégorie, et les long-courriers dominent l'avion : une poignée d'allers-retours intercontinentaux peut peser plus que tout le train de l'année.
+## Les déplacements sont la meilleure donnée que vous possédez
 
-C'est aussi l'endroit où la politique interne se connecte directement au chiffre. Une politique de déplacement qui bascule les courts trajets vers le rail et pose une question avant chaque intercontinental (« cette réunion a-t-elle besoin d'un corps ? ») fait bouger le bilan le trimestre même de sa signature.
+Les déplacements professionnels comptent en général parmi les premières lignes, et ce sont aussi les plus faciles à documenter correctement, parce qu'ils passent déjà par un outil de réservation ou des notes de frais. Sortez les vols de l'année avec origine et destination, les trajets en train, les nuits d'hôtel et les kilomètres remboursés.
 
-## Domicile-travail et la balance du télétravail
+L'avion domine la catégorie et le long-courrier domine l'avion : une poignée d'allers-retours intercontinentaux peut peser plus que tout le train de l'année. C'est aussi la ligne où la politique interne rejoint le chiffre sans rien attendre. Une politique de déplacement qui bascule le court-courrier vers le rail, et pose une question avant chaque intercontinental, fait bouger le bilan dans le trimestre de sa signature.
 
-Rien dans vos systèmes ne sait comment les salariés viennent travailler : c'est le seul endroit où un questionnaire gagne sa place. Mode habituel, distance aller, jours sur site par semaine. Moins de cinq questions, et une extrapolation transparente des non-réponses.
+## Une seule question sur le domicile-travail
 
-La question « jours sur site » fait discrètement double emploi. Une journée à distance supprime un trajet et ajoute l'énergie du bureau à domicile, le chauffage l'hiver surtout : le télétravail réduit cette ligne sans l'annuler. Comptez les deux côtés avec des facteurs standards plutôt que de déclarer victoire sur le seul trajet.
+Aucun de vos systèmes ne sait comment les salariés viennent travailler : c'est le seul endroit où un questionnaire gagne sa place. Mode habituel, distance aller, jours sur site par semaine. Moins de cinq questions, et une extrapolation transparente des non-réponses.
+
+La troisième question fait discrètement double emploi. Une journée à distance supprime un trajet et ajoute l'énergie du bureau à domicile, le chauffage l'hiver surtout : le télétravail réduit la ligne sans l'annuler. Comptez les deux côtés avec des facteurs standards plutôt que de déclarer victoire sur le seul trajet.
 
 ## Le cloud : émissions réelles, mesure inachevée
 
-Votre produit tourne sur des serveurs que vous ne verrez jamais, et leurs émissions sont authentiquement les vôtres au sens du scope 3, dans le tiroir « usage des services achetés ». La difficulté est que la mesure y est plus jeune que le reste de la comptabilité carbone. Les grands fournisseurs de cloud publient tous des chiffres carbone clients, mais leurs outils diffèrent en méthode et en périmètre : comptabilité électricité market-based ou location-based, inclusion ou non des émissions incorporées des serveurs eux-mêmes. Deux fournisseurs peuvent renvoyer, pour des charges identiques, des chiffres écartés d'un facteur important, chacun défendable dans sa propre méthode.
+Votre produit tourne sur des serveurs que vous ne verrez jamais, et leurs émissions sont authentiquement les vôtres au sens du scope 3. La difficulté est que la mesure y est plus jeune que le reste de la comptabilité carbone. Les grands fournisseurs publient tous des chiffres carbone clients, mais leurs outils diffèrent en méthode et en périmètre : comptabilité électricité market-based ou location-based, inclusion ou non des émissions incorporées des serveurs eux-mêmes. Deux fournisseurs peuvent renvoyer, pour des charges identiques, des chiffres écartés d'un facteur important, chacun défendable dans sa propre méthode.
 
-La position praticable pour un premier bilan : prenez les chiffres publiés par vos fournisseurs, notez la méthode de chacun, présentez la ligne cloud comme une fourchette plutôt qu'un point, et ne comparez pas les fournisseurs sur ces chiffres. Ce que vous contrôlez indépendamment de la méthode est réel : le choix de région (l'intensité carbone du réseau varie énormément selon les pays), le dimensionnement, et la suppression des charges que personne ne se rappelle avoir déployées.
+Prenez donc les chiffres publiés par vos fournisseurs, notez la méthode de chacun, présentez la ligne en fourchette plutôt qu'en point, et ne comparez pas les fournisseurs sur ces chiffres. Ce que vous contrôlez ne dépend pas de la méthode et reste bien réel : le choix de région, l'intensité carbone des réseaux variant énormément d'un pays à l'autre, le dimensionnement, et la suppression des charges que personne ne se rappelle avoir déployées.
 
-**Bon à savoir :** pour le matériel que vous possédez, portables, écrans, téléphones, l'essentiel des émissions de la vie de l'objet a été émis avant l'ouverture du carton, à la fabrication. Le levier est donc la durée de vie : un portable gardé quatre ans au lieu de trois réduit cette ligne d'un quart, avant tout changement de politique d'achat.
+**Bon à savoir :** pour le matériel que vous possédez, le levier est la durée de vie, pas la politique d'achat. Un portable gardé quatre ans au lieu de trois réduit cette ligne d'un quart, et aucune négociation fournisseur n'en fera autant.
 
-## Le reste du scope 3 : la pile invisible
+## La pile invisible
 
-Les lignes restantes sortent de l'export comptable avec des facteurs monétaires : les abonnements SaaS qui font tourner l'entreprise, les agences et sous-traitants, le recrutement, le marketing, les assurances, l'aménagement des bureaux. Petites une à une, elles battent ensemble confortablement l'énergie des bureaux. C'est la longue traîne où l'estimation monétaire est la méthode honnête, selon la [règle physique contre monétaire](/fr/media/physical-vs-monetary-carbon-method) vue plus tôt dans cette série : données physiques là où des quantités existent, facteurs par euro pour le reste.
+Les lignes restantes sortent de l'export comptable avec des facteurs monétaires : les abonnements SaaS qui font tourner l'entreprise, les agences et sous-traitants, le recrutement, le marketing, les assurances, l'aménagement des bureaux. Petites une à une, elles battent confortablement l'énergie des bureaux une fois réunies. C'est la longue traîne où l'estimation monétaire est la méthode honnête, selon [la règle physique contre monétaire](/fr/media/physical-vs-monetary-carbon-method) : données physiques là où des quantités existent, facteurs par euro pour le reste.
 
 ## À quoi ressemble un bon bilan d'éditeur
 
-Il tient sur une page. Les déplacements, le domicile-travail avec le bureau à domicile, le cloud en fourchette avec la méthode nommée, le matériel raisonné en durée de vie, les services achetés depuis la comptabilité, et les bureaux en bas, à leur place. Chaque ligne nomme sa source de données et sa base de facteurs, la Base Empreinte de l'ADEME pour les moyennes françaises, les données fournisseurs quand elles existent.
+Il tient sur une page. Les déplacements, le domicile-travail avec le bureau à domicile, le cloud en fourchette avec la méthode nommée, le matériel raisonné en durée de vie, les services achetés depuis la comptabilité, et les bureaux en bas, à leur place. Chaque ligne nomme sa source de données et sa base de facteurs.
 
-Le plan de réduction suit le même ordre : une politique de déplacement qui engage, une décision de durée de vie du matériel, une revue des régions cloud et du ménage à y faire, et les bureaux en dernier, non qu'ils soient sans importance, mais parce qu'ils sont petits. Un éditeur qui commence par les bureaux astique la cuillère visible pendant que la cuisine tourne ailleurs.
+Classez donc les lignes du scope 3 et portez les deux premières à ceux qui en décident : en pratique, une politique de déplacement et une durée de vie du matériel. Gardez l'éclairage des bureaux pour l'année où les grosses lignes bougent déjà. Il n'est pas sans importance, il est petit, et le dire garde l'effort là où sont les tonnes.
 
 <FAQ items={[
   { question: "Quels sont les principaux postes d'émission d'un éditeur de logiciels ?", answer: "Presque tout est en scope 3 : les déplacements professionnels (l'avion surtout), les trajets domicile-travail et l'énergie du télétravail, l'infrastructure cloud, le matériel acheté dont les émissions viennent surtout de la fabrication, et les services achetés. L'énergie des bureaux, en scopes 1 et 2, est en général une ligne mineure." },

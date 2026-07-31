@@ -3,9 +3,10 @@ url: cheese-carbon-footprint
 author: claire-sikorav
 illustration: /media/illustrations/cheese-carbon-footprint.webp
 date: "2026-07-30"
-section: [rse, climat-et-carbone, bilan-carbone]
+section: [rse, climat-et-carbone]
 alsoIn:
   - [supply-chain, achats-responsables]
+tags: [bilan-carbone]
 
 en:
   title: "The carbon footprint of cheese is decided in the milking parlor, not the truck"
@@ -20,20 +21,31 @@ fr:
 <!-- locale:en -->
 
 <KeyTakeaways>
-- The farm stage, milk above all, carries most of a cheese's carbon footprint: around 83% for French hard cheese in the public Agribalyse database, 86% in a published cheddar study.
-- Milk intensity is the master variable. A pressed cooked wheel such as Comté takes 10 to 12 liters of milk per kilogram; soft cheeses take markedly less.
-- Ripening, packaging and transport matter operationally, but they are small lines beside the milk. A local high-milk cheese usually out-emits an imported soft one.
-- The levers that move the number live on the farm: feed, herd management, manure, grazing. Downstream, the biggest lever is wasting less of what was made.
-- For a buyer or a fromagerie, the honest comparison is per cheese family, not per kilometer traveled.
+- Milk carries most of a cheese's carbon footprint, around 83% of it for a hard cheese. The levers that move it all live on the farm: feed, herd management, manure, grazing.
+- Milk intensity is the master variable. A pressed cooked wheel such as Comté takes 10 to 12 liters of milk per kilogram, a soft cheese markedly less.
+- Local and low-carbon are not synonyms. A high-milk wheel from the next valley usually out-emits a soft cheese that crossed the country.
+- Compare per kilogram of finished cheese, never per liter of milk. Ewe and goat milk emit more per liter but need far fewer liters, and the two effects largely cancel.
+- Waste is a carbon line, not just a margin line. Every kilogram binned throws away the 10 liters of milk that went into it.
 </KeyTakeaways>
 
-Ask people where a cheese's carbon footprint comes from and most will point at the truck that delivered it. It is an understandable guess, refrigerated transport is the part of the chain we see, and it is wrong by roughly an order of magnitude. The footprint of a cheese is mostly the footprint of its milk, and the milk was emitted, so to speak, long before the wheel left the farm.
+The last time I said out loud that cheese is not vegetarian, six people who make and sell cheese for a living looked at me as though I had picked the wrong word. The fromagère on my street was kinder about it. "You mean vegan?" she asked. No: vegetarian. Most French cheese is set with rennet, rennet is an extract of the fourth stomach of an unweaned calf or kid, and you cannot get it without slaughtering the animal.
 
-Mapping several hundred French cheeses and their producers teaches you one structural fact early: every family of cheese is a different quantity of milk in disguise. That quantity, more than anything that happens afterward, sets the carbon number.
+Cheese is full of gaps like that, and the one that matters for anyone counting carbon is a number. A 40-kilogram wheel of Comté is 400 liters of milk, and that milk was emitted, so to speak, long before the wheel left the farm. Beside it, the refrigerated truck that delivered the wheel is a rounding error.
+
+I mapped the 58 AOP, AOC and IGP appellations and several hundred French producers by hand, and learned the structural fact the slow way: every family of cheese is a different quantity of milk in disguise. That quantity, more than anything that happens afterward, sets the carbon number.
 
 ## The milk does the emitting
 
 The public French database Agribalyse (version 3.2, maintained by ADEME) puts hard cheese at 6.28 kg of CO2-equivalent per kilogram, and attributes about 83% of that to the farm stage. A peer-reviewed study of cheddar found the same shape: 14.02 kg CO2-equivalent per kilogram over the full life cycle, with milk production responsible for 86% of it. An Italian assessment of Grana Padano, a long-ripened hard wheel, landed between 16.96 and 23.07 kg CO2-equivalent per kilogram depending on scenario. The absolute numbers differ, methodologies and farms differ, but the proportion barely moves: the farm dominates everything.
+
+<ArticleImage
+  src="/media/illustrations/cheese-footprint-stages.en.svg"
+  alt="Bar chart of a hard cheese's emissions by life-cycle stage, the farming bar dwarfing packaging, processing, transport, and distribution"
+  caption="Transport is the yellow bar."
+  width={480}
+  height={316}
+  chart
+/>
 
 The reasons are biological rather than industrial. Cows, goats and ewes are ruminants, and rumination produces methane; growing and buying their feed carries its own emissions; manure adds more. In the cheddar study those three lines, enteric fermentation, feed, and manure management, are nearly the whole farm stage. None of them can be engineered away in the dairy; they can only be improved on the farm, through feed choices, herd health and longevity, manure handling and grazing practice.
 
@@ -43,7 +55,36 @@ The reasons are biological rather than industrial. Cows, goats and ewes are rumi
 
 Concentration is what cheesemaking is. It takes 10 to 12 liters of milk to make one kilogram of a pressed cooked cheese, a 40-kilogram wheel of Comté represents around 400 liters, while fresh and soft cheeses, which keep much more of their water, need markedly less milk per kilogram. Since the milk carries the emissions, the carbon ranking of cheese families follows the milk ranking almost mechanically: fresh and soft cheeses at the low end, pressed and long-ripened wheels at the top, with blues and washed rinds in between.
 
+<ArticleImage
+  src="/media/illustrations/cheese-milk-per-kilogram.en.svg"
+  alt="Bar chart of liters of milk per kilogram for five French cheeses, from Comté at ten liters down to Brie de Meaux at seven"
+  caption="Per kilogram, the pressed cooked family runs 10 to 12 liters; the chart shows the sourced per-cheese figures."
+  width={480}
+  height={316}
+  chart
+/>
+
 Nothing in that ranking is a verdict on what anyone should eat or sell. A Comté concentrates more milk per kilogram in the same way it concentrates more of everything else per kilogram; it is also eaten in smaller portions than fresh cheese. But for anyone doing carbon accounting on a dairy portfolio, the practical rule is plain: classify by cheese family first. Two suppliers of the same family differ by farm practice; two families differ by construction.
+
+## The animal matters less than the yield
+
+The obvious next question is whether the species changes the answer. Per liter, small ruminants look worse than cows. A 2022 study in Animals of dairy sheep and goat flocks in Castilla-La Mancha put Manchega sheep at 3.78 kg CO2-equivalent per liter of fat- and protein-corrected milk, Lacaune and Assaf at 2.77, and Florida goats at 3.06, with simulated scenarios spanning 2.01 to 5.62. Cow milk sits well below that range.
+
+Then the yield runs the other way. Ewe milk is far richer in fat and protein, and since cheese is essentially the dry matter of milk, a kilogram of it takes much less. Roquefort takes about 13 liters of ewe milk for a three-kilogram loaf, a little over four liters per kilogram, against 10 to 12 for a pressed cooked cow's cheese. Goat cheese generally lands between five and seven.
+
+So the ranking per liter and the ranking per kilogram of cheese are not the same ranking, and the two effects push against each other. The published figures cannot tell you precisely how much of the gap they close, because multiplying one study's liter by another study's yield is not a life-cycle result. My own answer, after several hundred producers, is that they close far more of it than anyone expects. By the time you are holding a kilogram of finished cheese, the species is almost never what separates two products. The family and the farm are.
+
+That gives the working rule. Compare per kilogram of finished cheese, and inside the same family. A per-liter figure tells you about a farm, not about a product on a shelf, and a buyer choosing goat over cow on carbon grounds is optimizing a number that will not survive the conversion.
+
+## Rennet, and why cheese is not vegetarian
+
+Back to the conversation I lose friends with. Yogurt is the one dairy product set without a coagulant, by lactic fermentation alone. Everything else uses one, and in France that usually means rennet. French law still defines it by a decree of 25 March 1924, as an extract of the abomasum, the fourth stomach, of young bovids. The specification for most French PDO cheeses (Protected Designation of Origin, AOP in French) requires that animal rennet specifically, so it is a rule of the appellation rather than a choice the cheesemaker makes. Pressed cheeses are rennet-set and take a far larger dose than a lactic curd, which coagulates mostly on its own acidity. So the cheeses that carry the most milk are also the ones that carry the most rennet, which is a coincidence I have never found a cheesemonger eager to discuss.
+
+Microbial and plant coagulants exist, and industrial cheesemaking uses them widely, which is what makes a vegetarian cheddar possible. PDO specifications generally exclude them, and the makers' argument is that they ripen differently. One consequence is worth sitting with: Swiss public broadcaster RTS reported in 2026 that Swiss PDO specifications mandate animal rennet which can be, and often is, imported from New Zealand calves. The milk must come from the next valley. The coagulant may cross the planet.
+
+For carbon accounting the point is not the rennet itself, which is a rounding error by mass. It is that the calf is not a byproduct of nothing. Keeping a cow in milk means a calf every year, and dairy life-cycle assessment has to decide how much of the herd's emissions belong to milk and how much to the meat that leaves with that calf. Allocation choices of exactly that kind are why two credible studies of the same cheese can disagree by several kilograms, and why a supplier's number is only readable next to the method that produced it.
+
+**Good to know:** if a client or a tender asks whether your dairy range is suitable for vegetarians, animal rennet is the blocking question, not the milk. Microbial coagulant is the answer, and it will usually rule out the PDO version of the same cheese.
 
 ## What the dairy and the cave actually control
 
@@ -51,64 +92,114 @@ Once milk arrives at the dairy, the remaining emissions are conventional industr
 
 A long affinage extends the electricity bill, which is why a 9-month wheel like Grana Padano sits where it does in the studies. The energy levers are the familiar ones, heat recovery on the vats, cellar insulation, refrigerant maintenance, and they are worth taking, while remembering their ceiling: run a perfect dairy on renewable electricity and the cheese still carries its milk.
 
-## The downstream lever nobody prices: waste
+## Waste is a carbon line, not just a margin line
 
 For distribution, the arithmetic has a sharp consequence. Every kilogram of cheese thrown away wasted 10 liters of milk's worth of emissions upstream, so shrink is a carbon line, not just a margin line. Cutting waste at the counter, portioning to real demand, and selling the heel of the wheel do more for a fromagerie's footprint than any delivery-route optimization, and they are decisions a shop actually controls. The same holds one step further down: the cheese that reaches a fridge and gets eaten has, in carbon terms, succeeded; the one scraped into the bin has not.
 
-For CSR teams with dairy in the portfolio, the reporting translation is straightforward: put your effort into supplier data for the milk, classify products by family, and count waste rates as a first-class metric. For the rest of us, the comfort is real: the best thing to do with a cheese's carbon footprint, once the milk has been honored properly from farm to cellar, is to eat the cheese.
+For CSR teams with dairy in the portfolio, the reporting translation is straightforward: put your effort into supplier data for the milk, classify products by family, and count waste rates as a first-class metric.
 
-## Sources consulted
+For the rest of us, the comfort is real. Once the milk has been honored properly from farm to cellar, the best thing to do with a cheese's carbon footprint is to eat the cheese.
+
+## Sources
 
 - [Impact CO2 (ADEME), hard cheese, Agribalyse 3.2](https://impactco2.fr/outils/alimentation/fromagedure)
 - [Energy demand and carbon footprint of cheddar cheese, Energy Procedia](https://www.sciencedirect.com/science/article/pii/S1876610219311312/pdf?md5=eb702c0f9dd59221dea789da2768c48b&pid=1-s2.0-S1876610219311312-main.pdf)
 - [Carbon footprint of dairy milk and Grana Padano PDO cheese, Animals (MDPI)](https://www.mdpi.com/2076-2615/15/6/811)
 - [Quantité de lait par fromage, produits-laitiers.com](https://www.produits-laitiers.com/combien-faut-il-de-litres-de-lait-pour-fabriquer-un-fromage/)
+- [GHG emissions from dairy small ruminants in Castilla-La Mancha, Animals (MDPI), 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC8944496/)
+- [Roquefort, le Guide du Fromage](https://www.leguidedufromage.com/roquefort-io319.html)
+- [Swiss PDO cheeses made with New Zealand rennet, RTS](https://www.rts.ch/info/suisse/2026/article/les-fromages-aop-suisses-fabriques-avec-de-la-presure-neo-zelandaise-29169042.html)
 - [Les Fromages du Bonheur, the interactive map of French cheeses](https://lesfromagesdubonheur.com/)
 
 <!-- locale:fr -->
 
 <KeyTakeaways title="À retenir">
-- L'étape agricole, le lait avant tout, porte l'essentiel de l'empreinte d'un fromage : environ 83 % pour la pâte dure française dans la base publique Agribalyse, 86 % dans une étude publiée sur le cheddar.
-- L'intensité laitière est la variable maîtresse. Une pâte pressée cuite comme le comté demande 10 à 12 litres de lait par kilogramme ; les pâtes molles nettement moins.
-- Affinage, emballage et transport comptent au quotidien, mais ce sont de petites lignes à côté du lait. Un fromage local riche en lait émet souvent plus qu'une pâte molle venue de loin.
-- Les leviers qui font bouger le chiffre vivent à la ferme : alimentation, conduite du troupeau, effluents, pâturage. En aval, le premier levier est de moins gaspiller ce qui a été fabriqué.
-- Pour un acheteur ou une fromagerie, la comparaison honnête se fait par famille de fromage, pas par kilomètre parcouru.
+- Le lait porte l'essentiel de l'empreinte carbone d'un fromage, environ 83 % pour une pâte dure. Les leviers qui la font bouger sont tous à la ferme : alimentation, conduite du troupeau, effluents, pâturage.
+- L'intensité laitière est la variable maîtresse. Une pâte pressée cuite comme le comté demande 10 à 12 litres de lait par kilogramme, une pâte molle nettement moins.
+- « Local » et « bas-carbone » ne sont pas synonymes. Une meule riche en lait venue de la vallée voisine émet souvent plus qu'une pâte molle qui a traversé le pays.
+- On compare au kilogramme de fromage fini, jamais au litre de lait. Le lait de brebis et de chèvre émet plus au litre, mais il en faut bien moins de litres, et les deux effets se compensent en grande partie.
+- Le gaspillage est une ligne carbone autant qu'une ligne de marge. Chaque kilogramme jeté jette aussi les 10 litres de lait qui sont dedans.
 </KeyTakeaways>
 
-Demandez autour de vous d'où vient l'empreinte carbone d'un fromage : la plupart désigneront le camion qui l'a livré. L'intuition se comprend, le transport frigorifique est la partie visible de la chaîne, et elle se trompe d'à peu près un ordre de grandeur. L'empreinte d'un fromage est pour l'essentiel celle de son lait, et ce lait a été émis, si l'on peut dire, bien avant que la meule ne quitte la ferme.
+La dernière fois que j'ai dit à voix haute qu'un fromage n'est pas végétarien, six personnes qui en fabriquent et en vendent pour vivre m'ont regardée comme si je m'étais trompée de mot. La fromagère de ma rue y a mis les formes : « Tu veux dire végan ? » Non, végétarien. La plupart des fromages français sont emprésurés, la présure s'extrait de la quatrième poche stomacale d'un veau ou d'un chevreau non sevré, et on ne l'obtient pas sans abattre l'animal.
 
-Cartographier plusieurs centaines de fromages français et leurs producteurs enseigne tôt un fait de structure : chaque famille de fromage est une quantité de lait déguisée. Cette quantité, plus que tout ce qui se passe ensuite, fixe le chiffre carbone.
+Le fromage est plein d'angles morts de ce genre, et celui qui compte pour le carbone tient dans un chiffre. Une meule de comté de 40 kilogrammes, c'est 400 litres de lait, et ce lait a été émis, si l'on peut dire, bien avant que la meule ne quitte la ferme. À côté, le camion frigorifique qui l'a livrée fait figure d'erreur d'arrondi.
+
+J'ai cartographié à la main les 58 appellations AOP, AOC et IGP et plusieurs centaines de producteurs français, et il m'a fallu du temps pour en tirer le fait qui commande tout le reste : chaque famille de fromage est une quantité de lait déguisée. Cette quantité, plus que tout ce qui vient après, fixe le chiffre carbone.
 
 ## C'est le lait qui émet
 
-La base publique française Agribalyse (version 3.2, maintenue par l'ADEME) situe le fromage à pâte dure à 6,28 kg de CO2-équivalent par kilogramme, et en attribue environ 83 % à l'étape agricole. Une étude publiée sur le cheddar dessine la même silhouette : 14,02 kg de CO2-équivalent par kilogramme sur le cycle de vie complet, dont 86 % pour la production du lait. Une évaluation italienne du Grana Padano, meule dure longuement affinée, aboutit entre 16,96 et 23,07 kg de CO2-équivalent par kilogramme selon les scénarios. Les valeurs absolues diffèrent, les méthodes et les fermes diffèrent, mais la proportion bouge à peine : la ferme domine tout.
+La base publique française Agribalyse (version 3.2, maintenue par l'ADEME) situe le fromage à pâte dure à 6,28 kg de CO2-équivalent par kilogramme, dont environ 83 % pour la seule étape agricole. Une étude publiée sur le cheddar aboutit au même profil : 14,02 kg de CO2-équivalent par kilogramme sur l'ensemble du cycle de vie, dont 86 % pour la production du lait. Une évaluation italienne du Grana Padano, meule dure longuement affinée, donne une fourchette de 16,96 à 23,07 kg selon les scénarios. Les valeurs absolues varient, les méthodes et les fermes aussi, mais la proportion ne bouge quasiment pas : la ferme domine tout.
 
-Les raisons sont biologiques plus qu'industrielles. Vaches, chèvres et brebis sont des ruminants, et la rumination produit du méthane ; cultiver et acheter leur alimentation émet à son tour ; les effluents ajoutent le reste. Dans l'étude sur le cheddar, ces trois lignes, fermentation entérique, alimentation, gestion des effluents, font presque toute l'étape agricole. Aucune ne se corrige en fromagerie ; elles ne s'améliorent qu'à la ferme, par les choix d'alimentation, la santé et la longévité du troupeau, la conduite des effluents et le pâturage.
+<ArticleImage
+  src="/media/illustrations/cheese-footprint-stages.fr.svg"
+  alt="Graphique en barres des émissions d'un fromage à pâte dure par étape du cycle de vie, la barre agriculture écrasant emballage, transformation, transport et distribution"
+  caption="Le transport est la barre jaune."
+  width={480}
+  height={316}
+  chart
+/>
 
-**Bon à savoir :** voilà pourquoi « local » et « bas-carbone » ne sont pas synonymes pour un fromage. Le transport est une tranche mince du total : une meule riche en lait venue de la vallée voisine peut porter plusieurs fois l'empreinte d'une pâte molle qui a traversé le pays. La distance se voit ; l'intensité laitière non ; c'est l'intensité laitière qui gagne.
+Les raisons sont biologiques plus qu'industrielles. Vaches, chèvres et brebis sont des ruminants, et la rumination produit du méthane ; cultiver ou acheter leur alimentation émet à son tour ; les effluents ajoutent le reste. Dans l'étude sur le cheddar, ces trois postes, fermentation entérique, alimentation et gestion des effluents, représentent presque toute l'étape agricole. Aucun ne se corrige en fromagerie : ils ne s'améliorent qu'à la ferme, par les choix d'alimentation, la santé et la longévité du troupeau, la conduite des effluents et le pâturage.
+
+**Bon à savoir :** c'est pour cela que « local » et « bas-carbone » ne sont pas synonymes en fromage. Le transport ne pèse qu'une tranche mince du total : une meule riche en lait venue de la vallée voisine peut porter plusieurs fois l'empreinte d'une pâte molle qui a traversé le pays. La distance se voit, l'intensité laitière non, et c'est l'intensité laitière qui l'emporte.
 
 ## Un fromage est une quantité de lait déguisée
 
-Concentrer, c'est tout l'art fromager. Il faut 10 à 12 litres de lait pour un kilogramme de pâte pressée cuite, une meule de comté de 40 kilogrammes représente environ 400 litres, tandis que les fromages frais et les pâtes molles, qui gardent bien plus d'eau, demandent nettement moins de lait au kilogramme. Le lait portant les émissions, le classement carbone des familles suit presque mécaniquement le classement laitier : frais et pâtes molles en bas, pâtes pressées et longues meules en haut, bleus et croûtes lavées entre les deux.
+Concentrer, c'est tout l'art fromager. Il faut 10 à 12 litres de lait pour un kilogramme de pâte pressée cuite, et une meule de comté de 40 kilogrammes représente environ 400 litres, quand les fromages frais et les pâtes molles, qui retiennent bien plus d'eau, en demandent nettement moins au kilogramme. Comme c'est le lait qui porte les émissions, le classement carbone des familles suit presque mécaniquement le classement laitier : frais et pâtes molles en bas, pâtes pressées et longues meules en haut, bleus et croûtes lavées entre les deux.
 
-Rien dans ce classement ne juge ce qu'il faut manger ou vendre. Un comté concentre plus de lait au kilogramme comme il y concentre tout le reste ; il se mange aussi en portions plus petites qu'un fromage frais. Mais pour qui fait de la comptabilité carbone sur un portefeuille laitier, la règle pratique est simple : classer d'abord par famille. Deux fournisseurs d'une même famille diffèrent par leurs pratiques d'élevage ; deux familles diffèrent par construction.
+<ArticleImage
+  src="/media/illustrations/cheese-milk-per-kilogram.fr.svg"
+  alt="Graphique en barres des litres de lait par kilogramme pour cinq fromages français, du comté à dix litres au brie de Meaux à sept"
+  caption="Au kilogramme, la famille des pâtes pressées cuites demande 10 à 12 litres ; le graphique reprend les chiffres publiés par fromage."
+  width={480}
+  height={316}
+  chart
+/>
+
+Rien dans ce classement ne dit ce qu'il faut manger ou vendre. Un comté concentre plus de lait au kilogramme comme il y concentre tout le reste, et il se mange en portions plus petites qu'un fromage frais. Mais pour qui fait de la comptabilité carbone sur un portefeuille laitier, la règle pratique est simple : classer d'abord par famille. Deux fournisseurs d'une même famille se distinguent par leurs pratiques d'élevage ; deux familles se distinguent par construction.
+
+## L'animal compte moins que le rendement
+
+La question suivante vient toute seule : l'espèce change-t-elle la donne ? Au litre, les petits ruminants font moins bien que la vache. Une étude parue en 2022 dans Animals, portant sur des troupeaux ovins et caprins laitiers de Castille-La Manche, situe la brebis manchega à 3,78 kg de CO2-équivalent par litre de lait corrigé en matières grasses et en protéines, les Lacaune et Assaf à 2,77 et les chèvres Florida à 3,06, les scénarios simulés s'étalant de 2,01 à 5,62. Le lait de vache se situe nettement en dessous de cette fourchette.
+
+Puis le rendement joue en sens inverse. Le lait de brebis est bien plus riche en matières grasses et en protéines, et comme un fromage n'est guère que la matière sèche du lait, il en faut beaucoup moins au kilogramme. Un pain de roquefort de trois kilogrammes demande environ 13 litres de lait de brebis, soit un peu plus de quatre litres au kilogramme, contre 10 à 12 pour une pâte pressée cuite au lait de vache. Le fromage de chèvre se situe le plus souvent entre cinq et sept.
+
+Le classement au litre et le classement au kilogramme de fromage ne sont donc pas le même, et les deux effets se contrarient. De combien exactement, les chiffres publiés ne le disent pas : multiplier le litre d'une étude par le rendement d'une autre ne fait pas une analyse de cycle de vie. Ma réponse, après plusieurs centaines de producteurs, est qu'ils comblent l'écart bien plus qu'on ne l'imagine. Au kilogramme de fromage fini, l'espèce n'est presque jamais ce qui sépare deux produits. La famille et la ferme, si.
+
+D'où la règle de travail : comparer au kilogramme de fromage fini, et à l'intérieur d'une même famille. Un chiffre au litre renseigne sur une ferme, pas sur un produit en rayon, et l'acheteur qui préfère la chèvre à la vache pour des raisons carbone optimise un chiffre qui ne survivra pas à la conversion.
+
+## La présure, et pourquoi le fromage n'est pas végétarien
+
+Revenons à la conversation qui me fait perdre des amis. Le yaourt est le seul produit laitier obtenu sans coagulant, par la seule fermentation lactique. Tous les autres en emploient un, et en France c'est le plus souvent la présure. Le droit français la définit toujours par un décret du 25 mars 1924 : un extrait de caillette, la quatrième poche stomacale, de jeunes bovidés. Le cahier des charges de la plupart des AOP fromagères françaises (appellation d'origine protégée) impose cette présure animale ; c'est donc une règle de l'appellation, pas un choix du fromager. Les pâtes pressées sont emprésurées et en demandent une dose bien supérieure à celle d'un caillé lactique, qui coagule surtout par sa propre acidité. Les fromages qui portent le plus de lait sont donc aussi ceux qui portent le plus de présure, coïncidence dont je n'ai jamais vu un fromager pressé de discuter.
+
+Des coagulants microbiens et végétaux existent, largement employés dans le fromage industriel, et c'est ce qui rend possible un cheddar végétarien. Les cahiers des charges AOP les excluent en général, leurs défenseurs faisant valoir qu'ils n'affinent pas de la même façon. Une conséquence mérite qu'on s'y arrête : la RTS rapportait en 2026 que les cahiers des charges AOP suisses imposent une présure animale qui peut venir, et vient souvent, de veaux néo-zélandais. Le lait doit venir de la vallée d'à côté. Le coagulant, lui, peut traverser la planète.
+
+Pour la comptabilité carbone, l'important n'est pas la présure elle-même, négligeable en masse. C'est que le veau ne sort pas de nulle part. Garder une vache en lait suppose un veau par an, et l'analyse de cycle de vie laitière doit trancher : quelle part des émissions du troupeau revient au lait, quelle part à la viande qui part avec ce veau. Ce genre de choix d'allocation explique que deux études sérieuses du même fromage s'écartent de plusieurs kilogrammes, et pourquoi le chiffre d'un fournisseur ne se lit qu'à côté de la méthode qui l'a produit.
+
+**Bon à savoir :** si un client ou un appel d'offres demande si votre gamme laitière convient aux végétariens, la question bloquante est la présure animale, pas le lait. Le coagulant microbien est la réponse, et il écarte le plus souvent la version AOP du même fromage.
 
 ## Ce que la fromagerie et la cave contrôlent vraiment
 
-Une fois le lait arrivé en fromagerie, les émissions restantes sont des lignes industrielles classiques, réelles, améliorables, et petites à côté de l'étape agricole. La chaleur des cuves et la pasteurisation quand elle s'applique. Le froid, partout et en permanence : caves d'affinage, stockage, et chaîne du froid jusqu'à l'étal, avec l'électricité et les fuites de fluides frigorigènes que [tout site industriel reconnaîtrait](/fr/media/carbon-footprint-industrial-manufacturer). Le lactosérum, le liquide que laisse le caillé, mérite sa propre ligne : vendu ou transformé en ingrédient, il devient un coproduit qui porte une part de l'allocation ; rejeté, c'est à la fois un problème de pollution et une perte comptable.
+Une fois le lait arrivé en fromagerie, les émissions restantes relèvent de lignes industrielles classiques : réelles, améliorables, et petites à côté de l'étape agricole. La chaleur des cuves, et la pasteurisation quand elle s'applique. Le froid, partout et en permanence : caves d'affinage, stockage, chaîne du froid jusqu'à l'étal, avec l'électricité et les fuites de fluides frigorigènes que [tout site industriel reconnaîtrait](/fr/media/carbon-footprint-industrial-manufacturer). Le lactosérum, ce liquide que laisse le caillé, mérite sa propre ligne : vendu ou transformé en ingrédient, il devient un coproduit qui absorbe une part de l'allocation ; rejeté, c'est à la fois une pollution et une perte comptable.
 
-Un long affinage allonge la facture d'électricité, et c'est pourquoi une meule de neuf mois comme le Grana Padano se situe là où les études la placent. Les leviers énergétiques sont les leviers familiers, récupération de chaleur sur les cuves, isolation des caves, maintenance des circuits de froid, et ils valent d'être pris, en gardant leur plafond en tête : faites tourner une fromagerie parfaite à l'électricité renouvelable, le fromage porte toujours son lait.
+Un long affinage allonge la facture d'électricité, et c'est pourquoi une meule de neuf mois comme le Grana Padano se situe là où les études la placent. Les leviers énergétiques sont les leviers connus : récupération de chaleur sur les cuves, isolation des caves, maintenance des circuits de froid. Ils valent d'être pris, à condition de garder leur plafond en tête. Faites tourner une fromagerie parfaite à l'électricité renouvelable : le fromage portera toujours son lait.
 
-## Le levier aval que personne ne chiffre : le gaspillage
+## Le gaspillage est une ligne carbone, pas seulement une ligne de marge
 
-Pour la distribution, l'arithmétique a une conséquence tranchante. Chaque kilogramme de fromage jeté a gaspillé en amont l'équivalent d'une dizaine de litres de lait d'émissions : la démarque est une ligne carbone, pas seulement une ligne de marge. Réduire la casse au comptoir, portionner selon la demande réelle, vendre le talon de la meule font plus pour l'empreinte d'une fromagerie que n'importe quelle optimisation de tournée, et ce sont des décisions qu'une boutique contrôle vraiment. Un cran plus loin, même logique : le fromage qui atteint un réfrigérateur et se fait manger a, en termes de carbone, réussi ; celui qu'on racle dans la poubelle, non.
+Pour la distribution, l'arithmétique a une conséquence tranchante. Chaque kilogramme de fromage jeté a gaspillé en amont l'équivalent d'une dizaine de litres de lait : la démarque est une ligne carbone autant qu'une ligne de marge. Réduire la casse au comptoir, portionner selon la demande réelle, vendre le talon de la meule font plus pour l'empreinte d'une fromagerie que n'importe quelle optimisation de tournée, et ce sont des décisions qu'une boutique contrôle vraiment. Un cran plus loin, même logique : le fromage qui atteint un réfrigérateur et se fait manger a réussi, en termes de carbone ; celui qu'on racle dans la poubelle, non.
 
-Pour les équipes RSE qui ont du laitier en portefeuille, la traduction reporting est directe : mettez l'effort sur la donnée fournisseur du lait, classez les produits par famille, et comptez les taux de gaspillage comme un indicateur de premier rang. Pour les autres, la consolation est réelle : la meilleure chose à faire de l'empreinte carbone d'un fromage, une fois le lait honoré correctement de la ferme à la cave, c'est de manger le fromage.
+Pour les équipes RSE qui ont du laitier en portefeuille, la traduction en termes de reporting est directe : mettez l'effort sur la donnée fournisseur du lait, classez les produits par famille, et traitez les taux de gaspillage comme un indicateur de premier rang.
 
-## Sources consultées
+Pour les autres, la consolation est réelle. Une fois le lait honoré correctement de la ferme à la cave, la meilleure chose à faire de l'empreinte carbone d'un fromage, c'est de manger le fromage.
+
+## Sources
 
 - [Impact CO2 (ADEME), fromage à pâte dure, Agribalyse 3.2](https://impactco2.fr/outils/alimentation/fromagedure)
 - [Energy demand and carbon footprint of cheddar cheese, Energy Procedia](https://www.sciencedirect.com/science/article/pii/S1876610219311312/pdf?md5=eb702c0f9dd59221dea789da2768c48b&pid=1-s2.0-S1876610219311312-main.pdf)
 - [Carbon footprint of dairy milk and Grana Padano PDO cheese, Animals (MDPI)](https://www.mdpi.com/2076-2615/15/6/811)
 - [Quantité de lait par fromage, produits-laitiers.com](https://www.produits-laitiers.com/combien-faut-il-de-litres-de-lait-pour-fabriquer-un-fromage/)
+- [GHG emissions from dairy small ruminants in Castilla-La Mancha, Animals (MDPI), 2022](https://pmc.ncbi.nlm.nih.gov/articles/PMC8944496/)
+- [Le roquefort, le Guide du Fromage](https://www.leguidedufromage.com/roquefort-io319.html)
+- [Les fromages AOP suisses fabriqués avec de la présure néo-zélandaise, RTS](https://www.rts.ch/info/suisse/2026/article/les-fromages-aop-suisses-fabriques-avec-de-la-presure-neo-zelandaise-29169042.html)
 - [Les Fromages du Bonheur, la carte interactive des fromages de France](https://lesfromagesdubonheur.com/)

@@ -153,7 +153,8 @@
   padding-bottom: 1.25rem;
 }
 
-/* The Economist move: a nameplate on a plate of the Ditto yellow. */
+/* The Economist move: a stacked two-line nameplate on a plate of the Ditto
+   yellow, text centered, tight leading. */
 .ns-wordmark {
   display: inline-flex;
   justify-content: center;
@@ -167,13 +168,18 @@
 }
 
 .ns-wordmark-name {
-  display: block;
-  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   font-family: var(--ns-font-display);
   font-size: 1.375rem;
   line-height: 1;
   letter-spacing: -0.01em;
+}
+
+.ns-wordmark-line {
+  display: block;
 }
 
 .ns-masthead-actions {
@@ -1022,6 +1028,58 @@
   margin-top: 0.5rem;
 }
 
+/* Tags sit between the prose and the byline, as apparatus: what the piece is
+   about, in the reader's own words, each one a way out to the other articles
+   on the same framework. */
+.ns-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+}
+.ns-tag {
+  border: var(--ns-rule-soft);
+  padding: 0.35rem 0.75rem;
+  font-size: var(--ns-micro);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ns-ink-soft);
+  text-decoration: none;
+  background-image: none;
+}
+.ns-tag:hover {
+  border-color: var(--ns-ink);
+  color: var(--ns-ink);
+}
+
+/* The sources list is apparatus rather than argument, so it closes the article
+   quietly: a hairline, a small label instead of a section heading, and the list
+   itself at footnote size. Keyed off the slug rehype-slug gives "## Sources",
+   which is the same word in both languages. */
+.ns-prose h2#sources {
+  margin-top: 3.5rem;
+  padding-top: 1.25rem;
+  border-top: var(--ns-rule-soft);
+  font-family: var(--ns-font-body);
+  font-size: var(--ns-micro);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ns-ink-soft);
+}
+.ns-prose h2#sources + ul {
+  margin-top: 0.75rem;
+  padding-left: 0;
+  list-style: none;
+  font-size: var(--ns-small);
+  line-height: 1.45;
+  color: var(--ns-ink-soft);
+}
+.ns-prose h2#sources + ul li + li {
+  margin-top: 0.35rem;
+}
+
 .ns-prose blockquote {
   margin: 2rem 0;
   padding-left: 1.5rem;
@@ -1071,6 +1129,20 @@
 .ns-figure img {
   width: 100%;
   border: var(--ns-rule-soft);
+}
+
+/* A data chart is set narrower than the text column and centered, the way a
+   newspaper sets one. Its SVG is authored at this width, so the type inside
+   renders at the size it was drawn at rather than being scaled down. */
+.ns-figure-chart img {
+  display: block;
+  max-width: 480px;
+  margin-inline: auto;
+  border: none;
+}
+.ns-figure-chart .ns-figcaption {
+  max-width: 480px;
+  margin-inline: auto;
 }
 .ns-figcaption {
   margin-top: 0.5rem;
