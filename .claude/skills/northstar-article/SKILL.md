@@ -36,8 +36,10 @@ change.
    structured-data entity conventions.
 3. `content/media/authoring/FILE-FORMAT.md` — the exact frontmatter contract and
    the locale-marker body format.
-4. `content/media/authoring/TAXONOMY.md` — how to choose `section`, `alsoIn` and
-   `industries`.
+4. `content/media/authoring/TAXONOMY.md` — how to choose `section`, `tags`,
+   `alsoIn` and `industries`. The tree is two levels deep and the named
+   frameworks are tags, which is recent: do not copy the filing of an article
+   you remember.
 5. `content/media/authoring/COMPONENTS.md` — the MDX components available and the
    rules for each, particularly `<FAQ>`.
 6. `content/media/authoring/SEO-AEO.md` — what the code emits and what the writer
@@ -64,11 +66,12 @@ Read an existing article, for example
 3. **Pick the `url`** — lowercase, hyphenated, English, stable, and equal to the
    filename. It is permanent once published.
 
-4. **File it**: `section` (2 or 3 taxonomy slugs), optional `alsoIn` (up to 3),
-   `industries` (omit or leave empty for all). Every theme has level-3 topics, so
-   reach for one when the piece is about a single framework or practice. Validate
-   the slugs against `src/features/media/data/taxonomy.ts` rather than assuming:
-   the vocabulary was replaced wholesale and older slugs no longer exist.
+4. **File it**: `section` (exactly 2 taxonomy slugs, `[pillar, theme]`), `tags`
+   (up to 5 named frameworks or practices, e.g. `reach`, `bilan-carbone`),
+   optional `alsoIn` (up to 3 placements of 1 or 2 slugs), and `industries`
+   (omit or leave empty for all). The tree is two levels deep: anything that
+   feels like a third level is a tag. Validate every slug against
+   `src/features/media/data/taxonomy.ts` rather than assuming.
 
 5. **Write the French first, in full.** French is the source text: most of the
    readership and most of the authors work in it, and the regulatory vocabulary

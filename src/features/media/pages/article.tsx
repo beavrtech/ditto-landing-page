@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { JsonLd } from "@/components/JsonLd";
 import { MediaShell } from "../components/MediaShell";
@@ -21,11 +22,12 @@ import {
 } from "../lib/articles";
 import { renderArticleBody } from "../lib/mdx";
 import { getAuthor } from "../lib/authors";
-import { mediaAlternates, mediaUrl, SITE_URL } from "../lib/urls";
+import { mediaAlternates, mediaPath, mediaUrl, SITE_URL } from "../lib/urls";
 import { mediaArticleJsonLd } from "../lib/jsonld";
 import { t } from "../dictionary";
 import {
   findTaxonomyPath,
+  findTag,
   findIndustry,
   taxonomyLabel,
   type MediaLocale,
@@ -76,6 +78,8 @@ export function createArticleRoute(locale: MediaLocale) {
       path: `/theme/${themeSlugs.slice(0, index + 1).join("/")}`,
     }));
     crumbs.push({ name: article.title });
+
+    const tags = article.tags.map((slug) => findTag(slug)).filter((tag) => tag !== null);
 
     const body = await renderArticleBody(article.body, locale);
     const toc = extractToc(article.body, locale);
@@ -132,6 +136,20 @@ export function createArticleRoute(locale: MediaLocale) {
             <div className="ns-article-main">
               <ArticleTocCollapsible entries={toc} locale={locale} />
               <div className="ns-prose">{body}</div>
+
+              {tags.length > 0 ? (
+                <nav className="ns-tags" aria-label={copy.tagKicker}>
+                  {tags.map((tag) => (
+                    <Link
+                      key={tag.slug}
+                      className="ns-tag"
+                      href={mediaPath(locale, `/tag/${tag.slug}`)}
+                    >
+                      {taxonomyLabel(tag, locale)}
+                    </Link>
+                  ))}
+                </nav>
+              ) : null}
 
               {article.updated ? (
                 <footer className="ns-article-foot">

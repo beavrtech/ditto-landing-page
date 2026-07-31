@@ -1028,6 +1028,31 @@
   margin-top: 0.5rem;
 }
 
+/* Tags sit between the prose and the byline, as apparatus: what the piece is
+   about, in the reader's own words, each one a way out to the other articles
+   on the same framework. */
+.ns-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 2.5rem;
+}
+.ns-tag {
+  border: var(--ns-rule-soft);
+  padding: 0.35rem 0.75rem;
+  font-size: var(--ns-micro);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ns-ink-soft);
+  text-decoration: none;
+  background-image: none;
+}
+.ns-tag:hover {
+  border-color: var(--ns-ink);
+  color: var(--ns-ink);
+}
+
 /* The sources list is apparatus rather than argument, so it closes the article
    quietly: a hairline, a small label instead of a section heading, and the list
    itself at footnote size. Keyed off the slug rehype-slug gives "## Sources",

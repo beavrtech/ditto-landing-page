@@ -1,7 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import matter from "gray-matter";
-import { findTaxonomyPath, findIndustry, type MediaLocale } from "../data/taxonomy";
+import { findTaxonomyPath, findIndustry, findTag, type MediaLocale } from "../data/taxonomy";
 import { getAuthorSlugs } from "./authors";
 import { matchesIndustry } from "./industry-filter";
 import { splitByLocale, MEDIA_LOCALES } from "./locale-blocks";
@@ -32,7 +32,7 @@ export interface ArticleFrontmatter {
   illustration: string;
   date: string;
   updated?: string;
-  /** Canonical taxonomy path: [level1, level2] or [level1, level2, level3]. */
+  /** Canonical taxonomy path, exactly [level1, level2]. The tree stops there. */
   section: string[];
   /**
    * Secondary placements. The article also appears on these theme pages, but
@@ -40,12 +40,18 @@ export interface ArticleFrontmatter {
    * Entries may be shallower than `section` (a bare [level1] is allowed).
    */
   alsoIn: string[][];
+  /**
+   * The named frameworks, regulations and practices the article is about.
+   * Flat and global: a tag is not tied to the article's theme.
+   */
+  tags: string[];
   /** Industry slugs. Empty means the article applies to every industry. */
   industries: string[];
   draft?: boolean;
 }
 
 const MAX_ALSO_IN = 3;
+const MAX_TAGS = 5;
 
 /** An article resolved for one language. */
 export interface Article extends ArticleFrontmatter, ArticleLocaleFields {
@@ -78,8 +84,10 @@ function assertFrontmatter(
   if (!SLUG.test(url)) fail(`url "${url}" must be a lowercase, hyphenated slug`);
   if (url !== expectedUrl) fail(`url "${url}" must match the filename "${expectedUrl}.mdx"`);
 
-  if (!Array.isArray(data.section) || data.section.length < 2 || data.section.length > 3) {
-    fail(`field "section" must be a list of 2 or 3 taxonomy slugs: [level1, level2, level3?]`);
+  if (!Array.isArray(data.section) || data.section.length !== 2) {
+    fail(
+      `field "section" must be exactly 2 taxonomy slugs: [level1, level2]. Named frameworks and regulations go in "tags"`
+    );
   }
   const section = data.section as string[];
   if (!findTaxonomyPath(section)) {
@@ -96,8 +104,8 @@ function assertFrontmatter(
   }
   const seenPaths = new Set<string>();
   for (const entry of alsoIn) {
-    if (!Array.isArray(entry) || entry.length < 1 || entry.length > 3) {
-      fail(`each "alsoIn" entry must be a list of 1 to 3 taxonomy slugs, e.g. - [rse, carbone]`);
+    if (!Array.isArray(entry) || entry.length < 1 || entry.length > 2) {
+      fail(`each "alsoIn" entry must be a list of 1 or 2 taxonomy slugs, e.g. - [rse, climat-et-carbone]`);
     }
     if (!findTaxonomyPath(entry)) {
       fail(`unknown alsoIn section "${entry.join("/")}" (see src/features/media/data/taxonomy.ts)`);
@@ -111,6 +119,20 @@ function assertFrontmatter(
     if (entry.slice(0, shorter).join("/") === section.slice(0, shorter).join("/")) {
       fail(`alsoIn section "${key}" is already covered by section "${section.join("/")}"`);
     }
+  }
+
+  const rawTags = data.tags ?? [];
+  if (!Array.isArray(rawTags)) fail(`field "tags" must be a list of tag slugs (omit it for none)`);
+  const tags = rawTags as string[];
+  if (tags.length > MAX_TAGS) {
+    fail(`field "tags" has ${tags.length} entries, at most ${MAX_TAGS} are allowed`);
+  }
+  const seenTags = new Set<string>();
+  for (const tag of tags) {
+    if (typeof tag !== "string") fail(`each "tags" entry must be a tag slug`);
+    if (!findTag(tag)) fail(`unknown tag "${tag}" (see TAGS in src/features/media/data/taxonomy.ts)`);
+    if (seenTags.has(tag)) fail(`duplicate tag "${tag}"`);
+    seenTags.add(tag);
   }
 
   // Absent or empty means every industry.
@@ -154,6 +176,7 @@ function assertFrontmatter(
       updated,
       section,
       alsoIn,
+      tags,
       industries,
       draft: data.draft === true,
     },
@@ -234,6 +257,11 @@ export function filterByTheme(articles: Article[], themePath: string[]): Article
 /** An article with no industries applies to all of them. */
 export function filterByIndustry(articles: Article[], industry: string): Article[] {
   return articles.filter((a) => matchesIndustry(a.industries, industry));
+}
+
+/** Every article carrying a tag, regardless of the theme it is filed under. */
+export function filterByTag(articles: Article[], tag: string): Article[] {
+  return articles.filter((a) => a.tags.includes(tag));
 }
 
 /**

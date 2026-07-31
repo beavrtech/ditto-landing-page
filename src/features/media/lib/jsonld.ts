@@ -4,6 +4,7 @@ import type { MediaAuthor } from "./authors";
 import {
   findTaxonomyPath,
   findIndustry,
+  findTag,
   taxonomyLabel,
   type MediaLocale,
 } from "../data/taxonomy";
@@ -87,10 +88,18 @@ function articleTopics(article: Article, locale: MediaLocale) {
     .filter(Boolean)
     .map((industry) => taxonomyLabel(industry!, locale));
 
+  // Tags name the framework or regulation the piece is actually about, which
+  // is the strongest `about` signal the article carries, so they join the
+  // canonical section there.
+  const tags = article.tags
+    .map((slug) => findTag(slug))
+    .filter(Boolean)
+    .map((tag) => taxonomyLabel(tag!, locale));
+
   // Only the canonical section becomes `about`: claiming an article is about
   // every branch it is cross-filed into weakens the signal. Secondary
   // placements still surface as keywords.
-  const primary = [...pathLabels(article.section, locale), ...industries];
+  const primary = [...pathLabels(article.section, locale), ...tags, ...industries];
   const secondary = article.alsoIn.flatMap((path) => pathLabels(path, locale));
   return { primary, all: [...new Set([...primary, ...secondary])] };
 }
