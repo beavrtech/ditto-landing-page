@@ -14,7 +14,7 @@ Read [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) to decide whether a piece belongs 
 | [authoring/SEO-AEO.md](./authoring/SEO-AEO.md) | What the code emits, what the writer controls, known gaps |
 | [authoring/ILLUSTRATIONS.md](./authoring/ILLUSTRATIONS.md) | The house photography style, the generator, and the in-body diagram rules |
 
-Working with Claude Code, the `northstar-article` skill loads all of this automatically when you ask for an article.
+Working with Claude Code, the `scope-article` skill loads all of this automatically when you ask for an article.
 
 ## Where things live
 
