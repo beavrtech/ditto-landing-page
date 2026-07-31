@@ -172,6 +172,19 @@ expert, the byline is the attribution, and the piece says so in the first person
 last time I", "in the plants I have walked". A feature exists because of that judgment, so
 demanding a footnote for it is both impossible and beside the point.
 
+**Say "I did", not "one learns".** Experience written in the impersonal voice turns into
+lecturing, and it throws away the only thing the guest byline was for. Name the work, its
+scale, and what it cost.
+
+| Instead of | Write |
+|---|---|
+| "Mapping several hundred producers teaches you one structural fact early" | "I mapped several hundred producers by hand, and learned one structural fact the hard way" |
+| "It becomes clear that suppliers rarely hold this data" | "Every supplier I asked came back empty" |
+| "One quickly realizes the deadline is unrealistic" | "We missed it, and here is what I would do differently" |
+
+The register is a practitioner talking to a peer about work they actually did. Not a
+consultant explaining the obvious, and not a narrator who knows things from nowhere.
+
 This is not a loophole for facts that happen to be inconvenient to source. The line:
 
 - **Testimony, no citation needed.** What the author observed, was told, tried, or concluded

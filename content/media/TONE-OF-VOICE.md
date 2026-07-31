@@ -70,6 +70,8 @@ Kept on purpose: **showcase** is a core Ditto word and stays.
 | Colon reveal | "The best part: it updates itself." | Rewrite as a plain sentence. |
 | Importance puffery | "marks a pivotal moment for the industry" | Give the concrete consequence instead. |
 | Weasel attribution | "experts agree", "studies show" | Name the source or cut the claim. |
+| Invented consensus | "Ask people where a cheese's footprint comes from and most will point at the truck" | Nobody was asked. Cut the imaginary poll and state the fact. See [Openers](#openers). |
+| Condescending omniscience | "Mapping several hundred producers teaches you one structural fact early" | Say who did the mapping and what it cost them: "I mapped several hundred producers, and learned this the hard way". |
 | Fake-strong verbs | "serves as a centralized hub" | "is". |
 | Synonym cycling | rotating "the regulation" / "the text" / "the directive" | Pick one term and repeat it. |
 | Negative listing | "Not a form. Not a survey. An assessment." | One accurate description. |
@@ -80,6 +82,26 @@ Kept on purpose: **showcase** is a core Ditto word and stays.
 | "Challenges and future outlook" | the section itself | Cut it. |
 
 The one allowed antithesis is the fixed brand line: "compliance is an opportunity, not an obstacle."
+
+### Openers
+
+The first sentence is where a piece most reliably gives itself away as machine-written. The tell is the **invented straw man**: a claim about what "most people" believe, followed by the correction. Nobody was surveyed, the belief is a guess, and the reader is told they were wrong before the article has earned anything.
+
+> Ask people where a cheese's carbon footprint comes from and most will point at the truck that delivered it. It is an understandable guess, and it is wrong by roughly an order of magnitude.
+
+That whole shape is banned: "most people think", "the conventional wisdom says", "you would assume", "contrary to popular belief", and any opener whose second clause is "but actually". Correcting a real, attributable belief is fine, an anecdote in which a named or witnessed person held it is better, an imaginary consensus is not.
+
+**Open on something specific instead: a scene, a place, a number, a date, or an odd concrete detail.** The reader should be somewhere in the first sentence. Study how magazine features do it:
+
+> When Anthony Fauci arrives on Capitol Hill tomorrow to testify before Congress, he will be trailed by a security detail he's paying for himself.
+
+> If Isabel Allende's office needs to be painted, it has to be done by January 8 or put on hold. Every year, that's the day she starts writing.
+
+> In 1943, while the world's brightest physicists split atoms for the Manhattan Project, the American psychologist B.F. Skinner led his own secret government project to win World War II.
+
+The compliance equivalents are not harder, they are just concrete. A number with a thing attached to it: "A 40-kilogram wheel of Comté is 400 liters of milk, and the milk was emitted long before the wheel left the farm." Or the author's own vantage point, if the piece has one: "I have mapped the 58 AOP, AOC and IGP appellations and several hundred producers, and the thing that predicts a cheese's carbon footprint is not on the map." Or the room the work happens in, the document that landed, the question a client actually asked.
+
+Then get to the point immediately. A scene earns one or two sentences, not four paragraphs, and the core answer still belongs in the standfirst and the first paragraph.
 
 ### Fundamentals
 
