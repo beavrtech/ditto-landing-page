@@ -36,8 +36,10 @@ change.
    structured-data entity conventions.
 3. `content/media/authoring/FILE-FORMAT.md` — the exact frontmatter contract and
    the locale-marker body format.
-4. `content/media/authoring/TAXONOMY.md` — how to choose `section`, `alsoIn` and
-   `industries`.
+4. `content/media/authoring/TAXONOMY.md` — how to choose `section`, `tags`,
+   `alsoIn` and `industries`. The tree is two levels deep and the named
+   frameworks are tags, which is recent: do not copy the filing of an article
+   you remember.
 5. `content/media/authoring/COMPONENTS.md` — the MDX components available and the
    rules for each, particularly `<FAQ>`.
 6. `content/media/authoring/SEO-AEO.md` — what the code emits and what the writer
@@ -73,17 +75,35 @@ Read an existing article, for example
 3. **Pick the `url`** — lowercase, hyphenated, English, stable, and equal to the
    filename. It is permanent once published.
 
-4. **File it**: `section` (2 or 3 taxonomy slugs), optional `alsoIn` (up to 3),
-   `industries` (omit or leave empty for all). Every theme has level-3 topics, so
-   reach for one when the piece is about a single framework or practice. Validate
-   the slugs against `src/features/media/data/taxonomy.ts` rather than assuming:
-   the vocabulary was replaced wholesale and older slugs no longer exist.
+4. **File it**: `section` (exactly 2 taxonomy slugs, `[pillar, theme]`), `tags`
+   (up to 5 named frameworks or practices, e.g. `reach`, `bilan-carbone`),
+   optional `alsoIn` (up to 3 placements of 1 or 2 slugs), and `industries`
+   (omit or leave empty for all). The tree is two levels deep: anything that
+   feels like a third level is a tag. Validate every slug against
+   `src/features/media/data/taxonomy.ts` rather than assuming.
 
-5. **Write English and French.** French is a true editorial translation, not a
-   literal one, and both languages carry the same facts and figures. Remember
-   `<KeyTakeaways title="À retenir">` in the French body.
+5. **Write the French first, in full.** French is the source text: most of the
+   readership and most of the authors work in it, and the regulatory vocabulary
+   is French before it is anything else. Finish it before translating, structure,
+   edit and self-check included. Translating a draft you have not settled means
+   editing the same sentence twice in two languages.
 
-6. **Generate the hero photograph.** Every new article gets one, in the house
+6. **Then translate it into English**, working from the finished French with this
+   instruction:
+
+   > Translate the following text into English for a professional journalistic
+   > audience. Do not translate word-for-word, prioritize natural, idiomatic
+   > English that a native English-speaking journalist would actually write.
+
+   Translate the body, the `title`, the `description` and the illustration `alt`.
+   Both languages carry the same facts and figures. The English is **US English**
+   (organize, behavior, color, truck rather than lorry), takes the default
+   `<KeyTakeaways>` title, and spells out French-specific terms on first use: AOP
+   becomes "PDO (Protected Designation of Origin, AOP in French)", and the same
+   for any acronym a reader outside France would not carry. The full bilingual
+   rules are in [TONE-OF-VOICE.md](../../../content/media/TONE-OF-VOICE.md) §6.
+
+7. **Generate the hero photograph.** Every new article gets one, in the house
    style, at `public/media/illustrations/<url>.webp`:
 
    ```bash
@@ -101,12 +121,12 @@ Read an existing article, for example
    describing the photograph rather than the article. ILLUSTRATIONS.md has the
    full contract and worked examples.
 
-7. **Self-check against the checklist** at the end of TONE-OF-VOICE.md, honestly.
+8. **Self-check against the checklist** at the end of TONE-OF-VOICE.md, honestly.
    The anti-slop rules are the point of that file, not decoration: no banned
    words, no "it's not X, it's Y", no throat-clearing, no unexplained
    significance, no em dashes.
 
-8. **Verify it renders.** Run the dev server (`npm run dev`, port 3456) and load
+9. **Verify it renders.** Run the dev server (`npm run dev`, port 3456) and load
    both `/en/media/<url>` and `/fr/media/<url>`. A frontmatter violation shows as a
    500 with the exact reason. Do not report an article as done without this.
 

@@ -38,6 +38,7 @@ export interface MediaDict {
   byInvitation: string;
   website: string;
   industryKicker: string;
+  tagKicker: string;
   themeKicker: string;
   emptyTheme: string;
   backToScope: string;
@@ -98,6 +99,7 @@ const dict: Record<MediaLocale, MediaDict> = {
     byInvitation: "By invitation",
     website: "Website",
     industryKicker: "Industry",
+    tagKicker: "Topic",
     themeKicker: "Theme",
     emptyTheme: "No articles here yet — they're being written.",
     backToScope: "The Scope",
@@ -156,6 +158,7 @@ const dict: Record<MediaLocale, MediaDict> = {
     byInvitation: "Sur invitation",
     website: "Site web",
     industryKicker: "Industrie",
+    tagKicker: "Sujet",
     themeKicker: "Thématique",
     emptyTheme: "Pas encore d'articles ici — ils sont en cours d'écriture.",
     backToScope: "The Scope",

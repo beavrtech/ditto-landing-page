@@ -41,6 +41,7 @@ These override everything else.
 
 1. **Never invent statistics, percentages, scores, dates, client counts, or study findings.** Use a number only if it is verified. Otherwise write `[STAT: verify]` and do not publish until it is resolved.
 2. **Never fabricate URLs, sources, or slugs.** Name an outlet only if the piece links a real URL, otherwise write `[SOURCE: outlet, headline]`. Internal links use real The Scope or trustditto.com paths, otherwise `[INTERNAL LINK: topic]`.
+   **The author's own expertise needs no citation.** What the bylined author knows from doing the work is testimony, written in the first person, and the byline is the attribution. That covers what they saw, were told, tried, or concluded from practice, including a judgment the published sources do not settle. It does not cover figures, study findings, or regulatory requirements: rule 1 still applies, and "in my experience about 40%" is an invented statistic with a byline on it. [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) has the full split.
 3. **No greenwashing, no overpromising.** Never guarantee scores, medals, or audit outcomes. Benefits follow from structured work. Own the imperfections and the road ahead.
 4. **Stay humble about the product.** The Scope articles may mention Ditto where it is genuinely relevant, and when they do they offer the non-product fallback ("a platform like Ditto, or at minimum a well-organized drive"). Never hard-sell. Most articles should not mention Ditto at all.
 5. **Spell out every acronym on first use** (CSR, ESG, QHSE, GHG, KPI, LCA, EMS, QMS, SST, and so on), in both languages.
@@ -69,6 +70,8 @@ Kept on purpose: **showcase** is a core Ditto word and stays.
 | Colon reveal | "The best part: it updates itself." | Rewrite as a plain sentence. |
 | Importance puffery | "marks a pivotal moment for the industry" | Give the concrete consequence instead. |
 | Weasel attribution | "experts agree", "studies show" | Name the source or cut the claim. |
+| Invented consensus | "Ask people where a cheese's footprint comes from and most will point at the truck" | Nobody was asked. Cut the imaginary poll and state the fact. See [Openers](#openers). |
+| Condescending omniscience | "Mapping several hundred producers teaches you one structural fact early" | Say who did the mapping and what it cost them: "I mapped several hundred producers, and learned this the hard way". |
 | Fake-strong verbs | "serves as a centralized hub" | "is". |
 | Synonym cycling | rotating "the regulation" / "the text" / "the directive" | Pick one term and repeat it. |
 | Negative listing | "Not a form. Not a survey. An assessment." | One accurate description. |
@@ -79,6 +82,26 @@ Kept on purpose: **showcase** is a core Ditto word and stays.
 | "Challenges and future outlook" | the section itself | Cut it. |
 
 The one allowed antithesis is the fixed brand line: "compliance is an opportunity, not an obstacle."
+
+### Openers
+
+The first sentence is where a piece most reliably gives itself away as machine-written. The tell is the **invented straw man**: a claim about what "most people" believe, followed by the correction. Nobody was surveyed, the belief is a guess, and the reader is told they were wrong before the article has earned anything.
+
+> Ask people where a cheese's carbon footprint comes from and most will point at the truck that delivered it. It is an understandable guess, and it is wrong by roughly an order of magnitude.
+
+That whole shape is banned: "most people think", "the conventional wisdom says", "you would assume", "contrary to popular belief", and any opener whose second clause is "but actually". Correcting a real, attributable belief is fine, an anecdote in which a named or witnessed person held it is better, an imaginary consensus is not.
+
+**Open on something specific instead: a scene, a place, a number, a date, or an odd concrete detail.** The reader should be somewhere in the first sentence. Study how magazine features do it:
+
+> When Anthony Fauci arrives on Capitol Hill tomorrow to testify before Congress, he will be trailed by a security detail he's paying for himself.
+
+> If Isabel Allende's office needs to be painted, it has to be done by January 8 or put on hold. Every year, that's the day she starts writing.
+
+> In 1943, while the world's brightest physicists split atoms for the Manhattan Project, the American psychologist B.F. Skinner led his own secret government project to win World War II.
+
+The compliance equivalents are not harder, they are just concrete. A number with a thing attached to it: "A 40-kilogram wheel of Comté is 400 liters of milk, and the milk was emitted long before the wheel left the farm." Or the author's own vantage point, if the piece has one: "I have mapped the 58 AOP, AOC and IGP appellations and several hundred producers, and the thing that predicts a cheese's carbon footprint is not on the map." Or the room the work happens in, the document that landed, the question a client actually asked.
+
+Then get to the point immediately. A scene earns one or two sentences, not four paragraphs, and the core answer still belongs in the standfirst and the first paragraph.
 
 ### Fundamentals
 
@@ -107,10 +130,10 @@ The one allowed antithesis is the fixed brand line: "compliance is an opportunit
 1. **Headline.** A statement or a real question, not clickbait. Front-load the subject. It renders in serif at the top of the page, so it can be long enough to say something.
 2. **Standfirst (the `description` frontmatter field).** One to three sentences that state the core answer immediately, keyword front-loaded. It doubles as the meta description and the card dek, so it must read standalone. Keep it under about 155 characters where possible.
 3. **Illustration.** One per article, geometric and flat, in the The Scope palette. Alt text describes the image, not the article.
-4. **`<KeyTakeaways>` near the top.** Three to five bullets a reader could act on without reading further.
+4. **`<KeyTakeaways>` near the top.** Three to five bullets a reader could act on without reading further. One claim per bullet, one or two sentences, and no sources: a figure belongs there, the database or study it came from does not. The body carries the citations.
 5. **Body.** H2 sections, answer-first. H3s and numbered steps where the content is procedural. "Good to know:" asides for the sharp, non-obvious, practical fact.
 6. **`<FAQ>` at the end, only when practitioners genuinely ask those questions.** Answers must be self-contained (they are eligible for structured data, so they get read out of context).
-7. **Close on what to do next**, not on a metaphor. The body carries no CTA: the only standing offer is the newsletter card in the article's side rail, which the page adds for you. Never write a "book a demo" line into an article.
+7. **Close on what to do next**, not on a metaphor, **and give the close its own paragraph.** It is the last thing read and often the only thing remembered, so it does not ride along at the end of a paragraph about something else. One short standalone paragraph, two or three sentences, saying what the reader does with all this. The body carries no CTA: the only standing offer is the newsletter card in the article's side rail, which the page adds for you. Never write a "book a demo" line into an article.
 
 Length follows the format, and the format is set by [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) §5: roughly 600 to 1,200 words for a **reference** piece, 1,200 to 2,200 for a **feature**. These are the ranges the job usually needs, not targets to hit. Padding a reference piece up to feature length is the most reliable slop tell there is.
 
@@ -121,7 +144,7 @@ The shape follows the title, and these are shapes, not templates.
 - **Explainer** ("What is X?"): the title's question becomes the first H2 and is answered in the first paragraph. Foundational to applied: what it is, why it matters to the business, how to measure, which frameworks touch it, how to improve. A comparison table is common.
 - **How-to / steps**: short intro framing the pain and the payoff, then each step as an H2 with a problem, consequence, solution rhythm. A short "Mistakes to avoid" near the end. Concrete and lightly punchy.
 - **Data / research**: every section anchored on a real, attributed figure. Bold the key stat per section. Small tables. Never a figure that is not sourced.
-- **Analysis**: a live debate presented fairly with real named positions on both sides, then consequences, then a reasoned position that is evidenced. Ends with a "Sources consulted" list of real links.
+- **Analysis**: a live debate presented fairly with real named positions on both sides, then consequences, then a reasoned position that is evidenced. Ends with a "Sources" list of real links.
 
 ---
 
@@ -129,7 +152,10 @@ The shape follows the title, and these are shapes, not templates.
 
 Every article ships in English and French in a single file, `content/media/articles/<url>.mdx`, with one `url` serving both languages.
 
-- French is a **true editorial translation, not a literal one**. Sentences may be restructured, examples may be swapped for ones a French reader recognizes, and the register must read as if written in French.
+- **French is written first and finished first**, then translated. It is the source text: most of the readership and most of the authors work in French, and the regulatory vocabulary is French before it is anything else. Settling the argument once, in one language, beats editing the same sentence twice in two.
+- The translation instruction, used as written: *"Translate the following text into English for a professional journalistic audience. Do not translate word-for-word, prioritize natural, idiomatic English that a native English-speaking journalist would actually write."*
+- English is a **true editorial translation, not a literal one**. Sentences may be restructured, examples may be swapped for ones an English-speaking reader recognizes, and the register must read as if written in English. The tell to hunt for is French syntax surviving in English: nominalizations where English would use a verb, "which" chains, and the impersonal "one".
+- The English is **US English** and spells out what a reader outside France would not carry: AOP becomes "PDO (Protected Designation of Origin, AOP in French)", and likewise for AOC, IGP, SST and the rest.
 - The two versions must carry the **same facts, figures, and taxonomy**. That is structural now: `section`, `industries`, `date`, `author` and `illustration` are declared once at the top of the file and cannot diverge. Only the title, the description, the illustration's alt text and the body differ by language.
 - Regulation names stay in their official form (REACH, CSRD, EUDR, ISO 45001). French articles keep French common-noun usage around them.
 - Do not machine-translate and ship. A human reads both.
@@ -148,7 +174,7 @@ The Scope emits structured data from frontmatter and MDX components. Getting the
 
 **FAQ.** `FAQPage` structured data is emitted **only** by the `<FAQ>` MDX component, and only from questions that are visible on the page. Never mark up an answer that is not on-page. Answers must stand alone, must not begin with "As we saw above", and must not be marketing copy. If there are no real questions, omit the FAQ.
 
-**Breadcrumbs.** Generated automatically from `section` (The Scope, level 1, level 2, level 3, article). Consequence: putting an article in the wrong branch produces a wrong breadcrumb and a wrong `about`. Classify carefully.
+**Breadcrumbs.** Generated automatically from `section` (The Scope, level 1, level 2, article). Consequence: putting an article in the wrong branch produces a wrong breadcrumb and a wrong `about`. Classify carefully.
 
 **One home, several shelves.** `section` is where an article lives: one path, driving its breadcrumb, its card kicker and its `about`. `alsoIn` is where else it is worth reading, and only adds it to those listing pages. Use it when a reader of another pillar would genuinely want the piece, not to widen reach. Three secondary placements is the hard limit, and an article that seems to need more is usually two articles.
 

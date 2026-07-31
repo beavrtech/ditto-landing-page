@@ -13,9 +13,10 @@ author: alexis-de-taillac
 illustration: /media/illustrations/reach-2026-checklist.webp
 date: "2026-07-15"
 updated: "2026-08-02"
-section: [supply-chain, reglementations-produit-et-chaine, reach]
+section: [supply-chain, reglementations-produit-et-supply-chain]
 alsoIn:
   - [qhse, environnement-et-excellence-operationnelle]
+tags: [reach]
 industries: [electronique, cosmetiques-beaute]
 draft: false
 
@@ -49,8 +50,9 @@ Anything true of the article regardless of language sits at the top level. It ca
 | `illustration` | yes | Path under `/public`, e.g. `/media/illustrations/<url>.webp`. A generated photograph in the house style; see [ILLUSTRATIONS.md](./ILLUSTRATIONS.md). |
 | `date` | yes | `"YYYY-MM-DD"`, quoted. The true first-publication date. Drives ordering everywhere and `datePublished`. |
 | `updated` | no | `"YYYY-MM-DD"`. Set it when the substance changed, never for a typo. Drives `dateModified` and the "Updated on" line. |
-| `section` | yes | Two or three taxonomy slugs, `[level1, level2]` or `[level1, level2, level3]`. Every theme has level-3 topics. The canonical home: breadcrumb, card kicker, primary `about`. |
-| `alsoIn` | no | Up to three secondary placements, each one to three slugs. Listing only. See [TAXONOMY.md](./TAXONOMY.md). |
+| `section` | yes | Exactly two taxonomy slugs, `[level1, level2]`. The tree stops at level 2. The canonical home: breadcrumb, card kicker, primary `about`. |
+| `tags` | no | Up to five tag slugs: the frameworks, regulations or practices the piece is about (`reach`, `csrd`, `bilan-carbone`). Flat and global, each with its own page. See [TAXONOMY.md](./TAXONOMY.md). |
+| `alsoIn` | no | Up to three secondary placements, each one or two slugs. Listing only. See [TAXONOMY.md](./TAXONOMY.md). |
 | `industries` | no | Slugs from `INDUSTRIES`. Omit or leave empty to mean **all industries**. |
 | `draft` | no | `true` hides the article in production builds. It still renders in `npm run dev`. |
 

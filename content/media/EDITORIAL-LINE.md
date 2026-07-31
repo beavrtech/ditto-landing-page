@@ -75,7 +75,8 @@ The list that actually defines the line.
 - **Pieces whose only reason to exist is a keyword.** Written down deliberately, because
   The Scope is the destination SEO surface and this is the failure mode that comes with it.
 - **Anything we cannot source.** If a fact is not verifiable, the piece runs without it or
-  does not run.
+  does not run. The author's own expertise is the exception, and it is a real one: see
+  [The author is a source](#the-author-is-a-source).
 
 ---
 
@@ -111,14 +112,14 @@ someone else; invited authors sit outside this table entirely.
 | `rse` | `reporting-et-cadres` | `julie-declerck` |
 | `rse` | `climat-et-carbone` | `julie-declerck` |
 | `rse` | `strategie-gouvernance-et-acces-marche` | split by topic, below |
-| `supply-chain` | `reglementations-produit-et-chaine` | `pierre-masse` |
+| `supply-chain` | `reglementations-produit-et-supply-chain` | `pierre-masse` |
 | `supply-chain` | `engagement-et-evaluation-fournisseurs` | `ugo-le-borgne` |
 | `supply-chain` | `achats-responsables` | `ugo-le-borgne` |
 | `supply-chain` | `tracabilite-donnees-et-risques` | `ugo-le-borgne` |
 
-`strategie-gouvernance-et-acces-marche` is the one theme split at topic level:
-`double-materialite` and `politiques` are `julie-declerck`, `pression-donneurs-ordre` is
-`ugo-le-borgne`.
+`strategie-gouvernance-et-acces-marche` is the one theme split by subject rather than
+signed by a single editor: pieces tagged `double-materialite` or `politiques` are
+`julie-declerck`, pieces tagged `pression-donneurs-ordre` are `ugo-le-borgne`.
 
 ### The bar
 
@@ -188,6 +189,42 @@ such on the byline and their profile. The rules:
   photography. The picture is theirs the way the opinion is.
 - Every framework rule still applies: verified figures or none, the refusals list, and no
   guaranteed outcomes. An invitation is a byline, not an exemption.
+
+### The author is a source
+
+What the bylined author knows from doing the work does not need a citation. They are the
+expert, the byline is the attribution, and the piece says so in the first person: "I", "the
+last time I", "in the plants I have walked". A feature exists because of that judgment, so
+demanding a footnote for it is both impossible and beside the point.
+
+**Say "I did", not "one learns".** Experience written in the impersonal voice turns into
+lecturing, and it throws away the only thing the guest byline was for. Name the work, its
+scale, and what it cost.
+
+| Instead of | Write |
+|---|---|
+| "Mapping several hundred producers teaches you one structural fact early" | "I mapped several hundred producers by hand, and learned one structural fact the hard way" |
+| "It becomes clear that suppliers rarely hold this data" | "Every supplier I asked came back empty" |
+| "One quickly realizes the deadline is unrealistic" | "We missed it, and here is what I would do differently" |
+
+The register is a practitioner talking to a peer about work they actually did. Not a
+consultant explaining the obvious, and not a narrator who knows things from nowhere.
+
+This is not a loophole for facts that happen to be inconvenient to source. The line:
+
+- **Testimony, no citation needed.** What the author observed, was told, tried, or concluded
+  from practice. Scenes, reactions in a room, what a client asked for, what usually breaks,
+  where they have landed on a judgment call after doing it for years. Write it as "I".
+- **External claims, cited as ever.** Figures, percentages, study findings, regulatory
+  requirements, dates, anything about a named third party. A first-person frame does not
+  convert an unsourced number into a sourced one: "in my experience about 40% of suppliers"
+  is an invented statistic wearing a byline, and it fails non-negotiable 1 of the tone of
+  voice.
+
+Practically: an author may assert professional judgment plainly, including where the
+published numbers stop short. "The studies do not settle it; on the farms I have visited it
+lands close enough that I stop worrying about the species" is exactly the sentence a feature
+is for. Hedging that into anonymity is the failure mode to avoid, not the safe option.
 
 ---
 

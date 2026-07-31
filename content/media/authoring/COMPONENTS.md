@@ -23,7 +23,13 @@ Three to five bullets a reader could act on without reading further. Goes near t
 
 `title` is optional and defaults to "Key takeaways". **In a French body, always pass `title="À retenir"`** — the default is not translated automatically.
 
-Write takeaways as claims, not topics. "The Candidate List is updated twice a year" earns its place; "Candidate List updates" does not.
+The rules, and they are tight on purpose. This block is the first thing read and often the only thing read:
+
+- **Three to five bullets. Never six.** If a sixth feels necessary, two of them are the same point, or one belongs in the body.
+- **One claim per bullet**, in one or two sentences. A bullet that needs a semicolon to hold two ideas together is two bullets, or one bullet with the weaker idea cut.
+- **No sources, no citations, no database or study names.** "Around 83% of a hard cheese's footprint is milk" belongs here; "83% in the public Agribalyse database, 86% in a published cheddar study" belongs in the body. The takeaway states what is true, the body proves it. A figure is fine, its paperwork is not.
+- **Claims, not topics.** "The Candidate List is updated twice a year" earns its place; "Candidate List updates" does not.
+- Written last, once the piece exists. Takeaways drafted first end up summarizing the outline rather than the article.
 
 ## `<FAQ>`
 
@@ -75,6 +81,21 @@ An inline figure with an optional caption.
 ```
 
 `alt` describes the image for someone who cannot see it. `caption` adds information for everyone. They should not be the same sentence.
+
+Pass `chart` for a data chart. It drops the border and sets the figure in a narrower centered column, the way a newspaper sets one beside its text. Charts are authored at that width and carry their own title and source, so the `caption` only adds a line of reading guidance:
+
+```mdx
+<ArticleImage
+  src="/media/illustrations/cheese-footprint-stages.en.svg"
+  alt="Bar chart of a hard cheese's emissions by life-cycle stage"
+  caption="Transport, the stage everyone points at, is the yellow bar."
+  width={480}
+  height={316}
+  chart
+/>
+```
+
+A chart carries text, so it ships one file per language and each locale body points at its own. [ILLUSTRATIONS.md](./ILLUSTRATIONS.md) has the drawing rules and the canvas.
 
 ## `<YouTube>`
 
