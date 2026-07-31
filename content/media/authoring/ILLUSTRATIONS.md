@@ -3,7 +3,7 @@
 Three different things, with three different rule sets.
 
 - **The hero image** — one per article, referenced by `illustration` in the frontmatter. It is a **photograph**, generated with the OpenAI image API and stored at `public/media/illustrations/<url>.webp`, same name as the article's `url`.
-- **In-body figures** — one or two per article are worth considering, placed with `<ArticleImage>`. These are **flat SVG charts and diagrams** in the The Scope palette; charts ship one file per language. They explain something a photograph cannot.
+- **In-body figures** — **optional**, at most one or two per article, placed with `<ArticleImage>`. These are **flat SVG charts and diagrams** in the The Scope palette; charts ship one file per language. They explain something a photograph cannot, and most articles do without.
 - **Author portraits** — one per author, at `public/media/authors/<slug>.webp`. Always a photograph of the real person. Never an invented face.
 
 ## The hero photograph
@@ -98,7 +98,11 @@ Never generate a portrait from a name and a description. An image model given "T
 
 ## In-body figures
 
-When writing an article, consider one or two in-body figures. Not a quota: a figure must show a relationship the prose cannot (unequal bars, layers, a grid with one cell filled), and if it only decorates, cut it. But an article whose argument is quantitative usually deserves at least one.
+**Optional. Never mandatory.** The hero photograph is the only artwork every article owes; a figure inside the body is something a piece earns, not something it is missing. Most articles ship with none, and that is a normal outcome rather than a gap to fill.
+
+When one is useful, do one or two. Never more, and never one per section.
+
+A figure is useful when it shows a relationship the prose cannot hold: unequal quantities, a shape over time, layers, a grid with one cell filled. It is not useful when it restates a sentence, illustrates a topic, or exists because the article looked plain. The test before drawing anything: *can the reader get this faster from the picture than from the sentence?* If no, cut it and keep the sentence. A well-written paragraph beats a chart of the same fact every time, and an article with no figures has failed nothing.
 
 Common rules for everything placed with `<ArticleImage>`:
 
