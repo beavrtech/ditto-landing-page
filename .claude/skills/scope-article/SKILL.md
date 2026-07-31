@@ -121,12 +121,25 @@ Read an existing article, for example
    describing the photograph rather than the article. ILLUSTRATIONS.md has the
    full contract and worked examples.
 
-8. **Self-check against the checklist** at the end of TONE-OF-VOICE.md, honestly.
+8. **Have a cold reader critique each language, separately.** Once the draft is
+   settled in both languages, spawn one fresh subagent per locale — an agent
+   that has not seen the draft being written. Give each only the article file,
+   its locale, and the editorial contract (EDITORIAL-LINE.md, TONE-OF-VOICE.md,
+   AUTHOR-STYLES.md), and ask it to critique that one language: does every
+   sentence mean something, is any fact stated twice, does anything violate the
+   tone of voice or the author's register. Run the French and English critiques
+   independently — a translation can be faithful to a sentence that does not
+   parse. Then implement the findings yourself, with judgment: fix what is
+   right, drop what is not. Do not skip this step because the draft feels
+   finished; the flaws it catches are precisely the ones the drafting session
+   cannot see.
+
+9. **Self-check against the checklist** at the end of TONE-OF-VOICE.md, honestly.
    The anti-slop rules are the point of that file, not decoration: no banned
    words, no "it's not X, it's Y", no throat-clearing, no unexplained
    significance, no em dashes.
 
-9. **Verify it renders.** Run the dev server (`npm run dev`, port 3456) and load
+10. **Verify it renders.** Run the dev server (`npm run dev`, port 3456) and load
    both `/en/media/<url>` and `/fr/media/<url>`. A frontmatter violation shows as a
    500 with the exact reason. Do not report an article as done without this.
 
