@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { JsonLd } from "@/components/JsonLd";
-import { NORTHSTAR_PUBLISHER_JSONLD } from "@/features/media/lib/jsonld";
+import { SCOPE_PUBLISHER_JSONLD } from "@/features/media/lib/jsonld";
 import { nsInter, nsHedvig } from "@/features/media/fonts";
 import "@/features/media/styles/media.css";
 
@@ -35,7 +35,7 @@ export default function MediaLayoutFr({ children }: { children: React.ReactNode 
   return (
     <html lang="fr" className={`${nsInter.variable} ${nsHedvig.variable}`}>
       <head>
-        <JsonLd data={NORTHSTAR_PUBLISHER_JSONLD} />
+        <JsonLd data={SCOPE_PUBLISHER_JSONLD} />
       </head>
       <body className="ns-body">
         {children}

@@ -92,7 +92,7 @@ const nextConfig: NextConfig = {
     }
     return [
       ...duplicateRedirects,
-      // Northstar lives at /en/media and /fr/media, like every other localized
+      // The Scope lives at /en/media and /fr/media, like every other localized
       // route. The unprefixed form points at the default locale. Temporary for
       // now, so nothing caches a 308 for a section that has not launched.
       {
