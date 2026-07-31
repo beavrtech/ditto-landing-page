@@ -11,19 +11,19 @@ import {
 // Locale-neutral identifiers: they name the publication, they are never
 // fetched. The url properties below point at the default-locale home, which
 // resolves without going through the /media redirect.
-const NORTHSTAR_ID = `${SITE_URL}/media#organization`;
-const NORTHSTAR_SITE_ID = `${SITE_URL}/media#website`;
-const NORTHSTAR_HOME = `${SITE_URL}/en/media`;
+const SCOPE_ID = `${SITE_URL}/media#organization`;
+const SCOPE_SITE_ID = `${SITE_URL}/media#website`;
+const SCOPE_HOME = `${SITE_URL}/en/media`;
 
 /** The Scope is a media published by Ditto — never an independent entity. */
-export const NORTHSTAR_PUBLISHER_JSONLD = {
+export const SCOPE_PUBLISHER_JSONLD = {
   "@context": "https://schema.org",
   "@graph": [
     {
       "@type": "Organization",
-      "@id": NORTHSTAR_ID,
+      "@id": SCOPE_ID,
       name: "The Scope",
-      url: NORTHSTAR_HOME,
+      url: SCOPE_HOME,
       description:
         "The Scope is the QHSE, CSR and supply chain magazine published by Ditto.",
       parentOrganization: {
@@ -35,11 +35,11 @@ export const NORTHSTAR_PUBLISHER_JSONLD = {
     },
     {
       "@type": "WebSite",
-      "@id": NORTHSTAR_SITE_ID,
+      "@id": SCOPE_SITE_ID,
       name: "The Scope",
-      url: NORTHSTAR_HOME,
+      url: SCOPE_HOME,
       inLanguage: ["en", "fr"],
-      publisher: { "@id": NORTHSTAR_ID },
+      publisher: { "@id": SCOPE_ID },
     },
   ],
 };
@@ -115,8 +115,8 @@ export function mediaArticleJsonLd(
     mainEntityOfPage: url,
     url,
     author: authorPersonJsonLd(author, locale),
-    publisher: { "@id": NORTHSTAR_ID },
-    isPartOf: { "@id": NORTHSTAR_SITE_ID },
+    publisher: { "@id": SCOPE_ID },
+    isPartOf: { "@id": SCOPE_SITE_ID },
     about: topics.primary.map((name) => ({ "@type": "Thing", name })),
     keywords: topics.all.join(", "),
     articleSection: pathLabels(article.section, locale),
@@ -148,7 +148,7 @@ export function articleCollectionJsonLd({
     name,
     ...(description ? { description } : {}),
     inLanguage: locale,
-    isPartOf: { "@id": NORTHSTAR_SITE_ID },
+    isPartOf: { "@id": SCOPE_SITE_ID },
     mainEntity: articleItemList(articles, locale, name),
   };
 }
