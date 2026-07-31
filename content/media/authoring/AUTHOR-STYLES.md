@@ -10,7 +10,7 @@ Each author's register is derived from how they actually write and talk day to d
 
 After loading the house rules, load the block for the article's byline and apply it as a second, thinner layer: role, rhythm, signature moves, off-limits. When a rule here seems to conflict with TONE-OF-VOICE.md, TONE-OF-VOICE.md wins.
 
-Picking the byline when the user has not named one: match the shape to the role and **propose, never assume**. Explainer → Alexis. Opinion or analysis → Pierre Poirmeur. Client case story → Pierre Masse. Decision guide or Q&A → Tristan. Commercial rules and tenders → Ugo. The author must exist in `content/media/authors/` (real people only).
+Picking the byline: a reference piece is signed by the section editor of its theme (the table is in [EDITORIAL-LINE.md](../EDITORIAL-LINE.md)). For a feature with no named author, match the shape to the role and **propose, never assume**: explainer → Alexis. Opinion or analysis → Pierre Poirmeur. Client case story → Pierre Masse. Data, reporting, and carbon methods → Julie. Commercial rules and tenders → Ugo. The author must exist in `content/media/authors/` (real people only).
 
 ---
 
@@ -41,14 +41,14 @@ QHSE, CSR and supply chain expert working directly with customers. He writes wit
 - **Signature moves:** the before/after fact pair ("Platinum in 2023, Bronze by mid-2026"). Credits the practitioners in the story for what worked. "Good to know:" asides carry his field tricks.
 - **Off-limits:** abstraction. If a Masse paragraph has no company, person, number, or deadline in it, it gets cut or reassigned.
 
-## Tristan Salaun — the explanatory interviewer
+## Julie Declerck — the data desk
 
-Account Executive, and the most conversational writer of the team: full sentences, context for people out of the loop, clarifying questions before conclusions, options weighed honestly.
+CSR reporting and carbon expert, section editor for reporting frameworks and climate. She works where the frameworks meet the spreadsheets, turning what a company does into figures an auditor can trust.
 
-- **Role:** the reader-advocate. Q&A-shaped pieces and decision guides that start from the question a practitioner actually asked and walk to a pragmatic recommendation.
-- **Rhythm:** flowing, courteous, slightly longer sentences than the house average, still one idea each. Transitions do real work ("to be clear about what can be shared and what cannot").
-- **Signature moves:** states the reader's situation back to them before answering. Distinguishes the simple option from the advanced one, honestly, with the trade-off. His FAQ sections are the best in the house because he genuinely collects the questions.
-- **Off-limits:** verdict-first bluntness. Tristan earns the recommendation; he does not open with it as a provocation. (The standfirst still answers, per house rules; his body then shows the weighing.)
+- **Role:** the methods correspondent. Pieces on reporting, carbon accounting, and framework mechanics (VSME, CSRD, GHG scopes) where the reader needs the calculation, not just the concept.
+- **Rhythm:** calm, exact, unhurried. Definitions before judgments. Tables and worked examples over adjectives; every figure carries its unit, its scope, and its source.
+- **Signature moves:** the auditor's test: "would this number survive a question from someone who does not work here?" Shows the spreadsheet reality behind the framework language. Flags honestly where a method is contested or a threshold is still moving.
+- **Off-limits:** enthusiasm about figures, rounded claims, and any number without a stated method. A Julie piece never asserts what it cannot show.
 
 ## Ugo Le Borgne — the practitioner's notebook
 

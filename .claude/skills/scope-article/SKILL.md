@@ -62,11 +62,13 @@ Read an existing article, for example
 
 2. **Confirm the author, then write in their register.** `author` must be an
    existing slug in `content/media/authors/`. Authors are real people who become
-   `Person` entities in structured data, so never invent one. If the user has
-   not said who is writing, propose the byline whose role in AUTHOR-STYLES.md
-   matches the shape (explainer, opinion, case story, decision guide, commercial
-   rules) and ask rather than guessing. Once the byline is set, apply that
-   author's block from AUTHOR-STYLES.md throughout the draft, in both languages.
+   `Person` entities in structured data, so never invent one. A reference piece
+   is signed by the section editor of its theme: the table lives in
+   `content/media/EDITORIAL-LINE.md` ("The section editors"). A feature is signed
+   by whoever's judgment it is; if the user has not said who, propose the byline
+   whose role in AUTHOR-STYLES.md matches the shape and ask rather than
+   guessing. Once the byline is set, apply that author's block from
+   AUTHOR-STYLES.md throughout the draft, in both languages.
 
 3. **Pick the `url`** — lowercase, hyphenated, English, stable, and equal to the
    filename. It is permanent once published.
