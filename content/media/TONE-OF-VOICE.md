@@ -130,7 +130,7 @@ Then get to the point immediately. A scene earns one or two sentences, not four 
 1. **Headline.** A statement or a real question, not clickbait. Front-load the subject. It renders in serif at the top of the page, so it can be long enough to say something.
 2. **Standfirst (the `description` frontmatter field).** One to three sentences that state the core answer immediately, keyword front-loaded. It doubles as the meta description and the card dek, so it must read standalone. Keep it under about 155 characters where possible.
 3. **Illustration.** One per article, geometric and flat, in the The Scope palette. Alt text describes the image, not the article.
-4. **`<KeyTakeaways>` near the top.** Three to five bullets a reader could act on without reading further.
+4. **`<KeyTakeaways>` near the top.** Three to five bullets a reader could act on without reading further. One claim per bullet, one or two sentences, and no sources: a figure belongs there, the database or study it came from does not. The body carries the citations.
 5. **Body.** H2 sections, answer-first. H3s and numbered steps where the content is procedural. "Good to know:" asides for the sharp, non-obvious, practical fact.
 6. **`<FAQ>` at the end, only when practitioners genuinely ask those questions.** Answers must be self-contained (they are eligible for structured data, so they get read out of context).
 7. **Close on what to do next**, not on a metaphor. The body carries no CTA: the only standing offer is the newsletter card in the article's side rail, which the page adds for you. Never write a "book a demo" line into an article.
