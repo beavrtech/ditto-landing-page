@@ -1,0 +1,153 @@
+---
+url: eudr-dds-traces-walkthrough
+author: pierre-masse
+illustration: /media/illustrations/eudr-dds-traces-walkthrough.webp
+date: "2026-04-17"
+section: [supply-chain, reglementations-produit-et-supply-chain]
+tags: [eudr]
+industries: [distribution]
+
+en:
+  title: "Filing an EUDR due diligence statement in TRACES: the walk-through"
+  description: "Register, file, pass the reference number down the chain, and correct a filed statement: the full path of an EUDR due diligence statement in TRACES."
+  alt: "A worker checking papers beside pallets of unmarked sacks in a warehouse receiving bay"
+fr:
+  title: "Déposer une déclaration de diligence raisonnée EUDR dans TRACES : le parcours complet"
+  description: "Créer les comptes, déposer la déclaration, transmettre le numéro de référence, corriger : le parcours complet d'une DDS EUDR dans TRACES."
+  alt: "Une personne vérifie des documents près de palettes de sacs sans marquage, dans la zone de réception d'un entrepôt"
+---
+
+<!-- locale:en -->
+
+<KeyTakeaways>
+- The EUDR Information System has been closed to new filings and registrations since February 16, 2026, while it is rebuilt for the revised regulation. The Commission has said it will announce the reopening date from mid-April 2026.
+- Filing takes three layers of access: a personal EU Login account, a validated operator role on the platform, and an EORI number if you import or export.
+- A statement becomes usable at the "Available" status. That is when the system issues the reference number you quote in the customs declaration and pass to your customers.
+- The verification number is a security token shared confidentially. Paired with the reference number, it lets a downstream company reference your statement in its own.
+- An "Available" statement can be amended or withdrawn, unless its number has been used at customs, referenced downstream, or the statement is under a check.
+</KeyTakeaways>
+
+Since February 16, 2026, the EUDR Information System has accepted no new statements and no new registrations. The European Commission is updating it to match the regulation as revised in December 2025, the production server stays readable in consultation mode, and the Commission has said it will announce the reopening date from mid-April 2026; as this article goes out, that announcement is still pending. The deadlines have not moved since December: December 30, 2026 for large and mid-sized companies, June 30, 2027 for natural persons and micro and small enterprises. The pause is the right moment to learn the filing circuit, as documented in the Commission's own user guide, published on the [Information System page](https://green-business.ec.europa.eu/deforestation-regulation-implementation/information-system_en).
+
+The EU Deforestation Regulation, Regulation (EU) 2023/1115 (EUDR), as amended by Regulation (EU) 2025/2650, requires a due diligence statement (DDS) before seven commodities and their derived products are placed on the EU market or exported: cattle, cocoa, coffee, oil palm, rubber, soy, and wood. The statement is filed in the EUDR Information System, an instance of TRACES (Trade Control and Expert System), the Commission's trade platform, established under Article 33 of the regulation.
+
+## Three layers of access come before the first statement
+
+The account is built in order. First an EU Login account, the shared front door of the Commission's online services. It must be created in the name of a real person, with their professional email address: the user guide expressly rules out generic company accounts. Second, the operator role on the platform itself: you search for your company in the register and request to be linked to it, or create it if it does not exist yet. The first user of a company is approved automatically and becomes its administrator, the person who then validates colleagues' access requests. Third, the EORI number (Economic Operators Registration and Identification), entered under the operator's identifiers as soon as you import or export.
+
+Operators established outside the EU have one more step: an email to the Commission's support service requesting validation, with the competent authority of the member state that issued the EORI in copy.
+
+Good to know: the platform runs two environments, ACCEPTANCE for training, with no legal value, and PRODUCTION for real filings. An account on one grants no access to the other, so plan on registering twice.
+
+## The statement itself is a fixed set of boxes
+
+The activity comes first: import (release for free circulation), export, domestic production, or trade. Then the products, picked by HS code (Harmonized System), each with a mandatory description and a quantity: net mass in kilograms is required for import and export, and the scientific name is mandatory for wood products. Then the production plots: coordinates drawn in the GeoEditor, the built-in map tool, or imported as a GeoJSON file in the EPSG:4326 format, with the country of production, the area in hectares, and the plot type for each place.
+
+Two optional fields earn attention. The internal reference, a free field, is how you find the statement again before it has an official number; the guide recommends avoiding spaces, which break the search. And the free-text box addressed to the competent authority, useful for flagging anything a check would otherwise have to ask about.
+
+## From draft to reference number, a statement moves through named statuses
+
+At creation the statement is NEW, and the data is lost if you leave without saving. Saved, it becomes DRAFT, with three possible actions: save, submit, delete. Submission is signed in two clicks, "Submit" then "Confirm & Sign", and the statement turns SUBMITTED. The system processes it, then sets it to AVAILABLE and assigns the unique reference number. That number is what goes into the customs declaration, in the supporting-documents section, and what you pass to customers. Six months after becoming AVAILABLE, the statement is automatically ARCHIVED: a technical expiration, the guide specifies, since it remains usable and can still be found through the advanced search. The competent authority can also reject a submission; a REJECTED statement cannot be used at all.
+
+The "Last Changes" panel at the bottom of the page timestamps each step: created on, submitted on, the amendment cutoff date, and the moment the statement became available.
+
+## The reference number travels down the chain, the verification number protects it
+
+An AVAILABLE statement carries two numbers. The reference number is unique and meant to circulate: customs, customers, contracts. The verification number is a security token known only to the declarant and the competent authority. Shared confidentially, the pair is what allows a downstream company to reference your statement inside its own, entered by hand or imported as a CSV file of number pairs when volumes are large. A statement that references upstream statements does not repeat their geolocation: the system reads it from the statement cited. Any part of the product not covered by upstream due diligence still needs its own plots.
+
+The December 2025 revision simplified who files. The statement is now owed exclusively by the operator that first places the product on the EU market. A retailer importing its own-brand coffee is that operator and files. The same retailer reselling national brands files nothing, and instead collects the reference numbers of its suppliers' statements and keeps them for five years. Micro and small primary producers in low-risk countries will file a single simplified declaration instead of a statement per batch.
+
+## Correcting a filed statement is three different moves, depending on its status
+
+While the statement is SUBMITTED, it can be canceled: it disappears from the default search but stays recorded in the system for audit purposes. Once AVAILABLE, two buttons appear. "Amend" edits the content, up to the cutoff date shown in "Last Changes". "Withdraw" retires the statement if it is no longer needed, with three locks: withdrawal is impossible once the number has been used in a customs declaration, once a downstream company has referenced it, and for the duration of a check by the competent authority. To restart from an existing statement rather than a blank form, "Copy As New" creates a duplicate at the NEW status.
+
+Until the system reopens, the useful work is administrative: create the named EU Login accounts, check the EORI, collect GeoJSON files from suppliers, and decide who in the company files and who validates. When it reopens, go through ACCEPTANCE first. A botched training statement costs nothing, while the same mistake in production has to be corrected under the rules above.
+
+<FAQ
+  items={[
+    {
+      question: "What is the difference between the reference number and the verification number of an EUDR due diligence statement?",
+      answer: "The reference number is the unique identifier issued when a statement becomes available. It goes into the customs declaration and is passed to customers. The verification number is a security token known only to the declarant and the competent authority; shared confidentially together with the reference number, it lets a downstream company consult and reference the statement in its own filing."
+    },
+    {
+      question: "Can a due diligence statement be corrected after submission in TRACES?",
+      answer: "Yes, within limits. A statement still in Submitted status can be canceled. Once it is Available, it can be amended until the cutoff date the system displays, or withdrawn. Withdrawal is blocked once the reference number has been used in a customs declaration, once it has been referenced by a downstream company, or while the statement is under a check."
+    },
+    {
+      question: "Does a retailer have to file its own EUDR due diligence statements?",
+      answer: "Only when it is the operator first placing the product on the EU market, for example when it imports own-brand coffee, cocoa, or wood products. When it resells products already placed on the market by someone else, it does not file; it collects the reference numbers of its suppliers' statements and keeps them for five years."
+    },
+    {
+      question: "How long must EUDR due diligence records be kept?",
+      answer: "Five years. Companies must retain their due diligence statements and the reference numbers collected from suppliers for five years, and be able to produce them for the competent authorities."
+    }
+  ]}
+/>
+
+<!-- locale:fr -->
+
+<KeyTakeaways title="À retenir">
+- Le système d'information EUDR n'accepte plus ni dépôt ni inscription depuis le 16 février 2026, le temps d'être aligné sur le règlement révisé. La Commission a indiqué qu'elle annoncerait la date de réouverture à partir de la mi-avril 2026.
+- Le dépôt exige trois niveaux d'accès : un compte EU Login personnel, un rôle « opérateur » validé dans la plateforme, et un numéro EORI si vous importez ou exportez.
+- Une déclaration ne devient utilisable qu'au statut « Available » : c'est là que le système délivre le numéro de référence à reporter en douane et à transmettre à vos clients.
+- Le numéro de vérification se communique de façon confidentielle : associé au numéro de référence, il permet à un acteur aval de référencer votre déclaration dans la sienne.
+- Une déclaration « Available » peut être amendée ou retirée, sauf si son numéro a servi en douane, a été référencé en aval, ou si un contrôle est en cours.
+</KeyTakeaways>
+
+Depuis le 16 février 2026, le système d'information EUDR n'accepte plus ni déclaration ni nouvelle inscription. La Commission européenne le met à niveau pour refléter le règlement révisé en décembre 2025, le serveur de production reste consultable en lecture seule, et la Commission a indiqué qu'elle annoncerait la date de réouverture à partir de la mi-avril 2026 ; au moment où cet article paraît, cette annonce se fait encore attendre. Les échéances, elles, n'ont pas bougé depuis décembre : 30 décembre 2026 pour les grandes et moyennes entreprises, 30 juin 2027 pour les personnes physiques et les micro et petites entreprises. La pause est le bon moment pour apprendre le circuit de dépôt, tel que le documente le guide utilisateur de la Commission, publié sur la [page du système d'information](https://green-business.ec.europa.eu/deforestation-regulation-implementation/information-system_en).
+
+Le règlement (UE) 2023/1115 sur les produits « zéro déforestation », dit EUDR (EU Deforestation Regulation), modifié par le règlement (UE) 2025/2650, exige une déclaration de diligence raisonnée (DDS, pour due diligence statement) avant la mise sur le marché ou l'exportation de sept matières premières et de leurs produits dérivés : bovins, cacao, café, palmier à huile, caoutchouc, soja et bois. La déclaration se dépose dans le système d'information EUDR, une instance de TRACES (Trade Control and Expert System), la plateforme d'échanges de la Commission, prévu par l'article 33 du règlement.
+
+## Trois niveaux d'accès précèdent la première déclaration
+
+Le compte se construit dans l'ordre. D'abord un compte EU Login, la porte d'entrée commune des services en ligne de la Commission. Il se crée au nom d'une personne réelle, avec son adresse professionnelle : le guide utilisateur exclut expressément les comptes génériques d'entreprise. Ensuite, le rôle « opérateur » dans la plateforme elle-même : vous cherchez votre société dans le registre et demandez le rattachement, ou vous la créez si elle n'y figure pas encore. Le premier utilisateur d'une société est validé automatiquement et en devient l'administrateur : c'est lui qui validera ensuite les demandes d'accès de ses collègues. Enfin, le numéro EORI (Economic Operators Registration and Identification), à renseigner dans les identifiants de l'opérateur dès que vous importez ou exportez.
+
+Les opérateurs établis hors de l'UE passent par une étape supplémentaire : un courriel au support de la Commission pour demander la validation, avec en copie l'autorité compétente de l'État membre qui a délivré l'EORI.
+
+Bon à savoir : la plateforme existe en deux environnements, ACCEPTANCE pour s'entraîner, sans valeur juridique, et PRODUCTION pour les dépôts réels. Un compte créé sur l'un n'ouvre aucun accès à l'autre : prévoyez les deux inscriptions.
+
+## La déclaration elle-même est une suite de rubriques fixes
+
+L'activité d'abord : import (mise en libre pratique), export, production nationale ou négoce. Puis les produits, choisis par code SH (système harmonisé), chacun avec une description obligatoire et une quantité : la masse nette en kilogrammes est exigée à l'import et à l'export, et le nom scientifique est obligatoire pour les produits du bois. Puis les parcelles de production : des coordonnées dessinées dans le GeoEditor, l'outil cartographique intégré, ou importées en fichier GeoJSON au format EPSG:4326, avec pour chaque lieu le pays de production, la surface en hectares et le type de parcelle.
+
+Deux champs facultatifs méritent l'attention. La référence interne, libre, sert à retrouver la déclaration tant qu'elle n'a pas de numéro officiel ; le guide recommande d'y éviter les espaces, qui perturbent la recherche. Et le champ de texte libre adressé à l'autorité compétente, utile pour signaler ce qu'un contrôle finirait de toute façon par demander.
+
+## Du brouillon au numéro de référence, la déclaration traverse des statuts nommés
+
+À la création, la déclaration est NEW, et les données sont perdues si vous quittez la page sans enregistrer. Enregistrée, elle devient DRAFT, avec trois actions possibles : enregistrer, soumettre, supprimer. La soumission se signe en deux clics, « Submit » puis « Confirm & Sign », et la déclaration passe SUBMITTED. Le système la traite, puis lui affecte le statut AVAILABLE et le numéro de référence unique. C'est ce numéro qui se reporte dans la déclaration en douane, dans la rubrique des documents d'accompagnement, et qui se transmet aux clients. Six mois après son passage en AVAILABLE, la déclaration devient automatiquement ARCHIVED : une expiration technique, précise le guide, puisqu'elle reste utilisable et se retrouve par la recherche avancée. L'autorité compétente peut aussi rejeter la soumission ; une déclaration REJECTED est inutilisable.
+
+Le panneau « Last Changes », en bas de page, horodate chaque étape : création, soumission, date limite d'amendement, et le moment où la déclaration est devenue disponible.
+
+## Le numéro de référence descend la chaîne, le numéro de vérification le protège
+
+Une déclaration AVAILABLE porte deux numéros. Le numéro de référence, unique, est fait pour circuler : douane, clients, contrats. Le numéro de vérification est un jeton de sécurité connu du seul déclarant et de l'autorité compétente. Communiqués ensemble de façon confidentielle, les deux numéros permettent à un acteur aval de référencer votre déclaration dans la sienne, saisis à la main ou importés en fichier CSV de paires de numéros quand les volumes l'exigent. Une déclaration qui référence des déclarations amont n'a pas à répéter leur géolocalisation : le système la lit dans la déclaration citée. Les parts du produit non couvertes par une diligence amont exigent, elles, toujours leurs propres parcelles.
+
+La révision de décembre 2025 a simplifié qui déclare. La déclaration incombe désormais exclusivement à l'opérateur qui met le produit sur le marché de l'UE en premier. Un distributeur qui importe son café de marque propre est cet opérateur, et déclare. Le même distributeur qui revend des marques nationales ne dépose rien : il collecte les numéros de référence des déclarations de ses fournisseurs et les conserve cinq ans. Les micro et petits producteurs primaires des pays à risque faible déposeront, eux, une déclaration simplifiée unique plutôt qu'une déclaration par lot.
+
+## Corriger une déclaration déposée : trois gestes différents selon son statut
+
+Tant que la déclaration est SUBMITTED, elle peut être annulée : elle disparaît de la recherche par défaut mais reste consignée dans le système, à des fins d'audit. Une fois AVAILABLE, deux boutons apparaissent. « Amend » modifie le contenu, jusqu'à la date limite affichée dans « Last Changes ». « Withdraw » retire la déclaration si elle ne sert plus, avec trois verrous : le retrait est impossible dès que le numéro a été utilisé dans une déclaration en douane, dès qu'un acteur aval l'a référencé, et pendant toute la durée d'un contrôle de l'autorité compétente. Pour repartir d'une déclaration existante plutôt que d'un formulaire vierge, « Copy As New » en crée une copie au statut NEW.
+
+D'ici la réouverture, le travail utile est administratif : créer les comptes EU Login nominatifs, vérifier l'EORI, collecter les fichiers GeoJSON de vos fournisseurs, et décider qui, chez vous, déclare et qui valide. À la réouverture, passez d'abord par l'environnement ACCEPTANCE. Une déclaration d'entraînement ratée ne coûte rien, quand la même erreur en production se corrige selon les règles ci-dessus.
+
+<FAQ
+  title="Questions fréquentes"
+  items={[
+    {
+      question: "Quelle est la différence entre le numéro de référence et le numéro de vérification d'une déclaration de diligence raisonnée EUDR ?",
+      answer: "Le numéro de référence est l'identifiant unique délivré quand la déclaration devient disponible. Il se reporte dans la déclaration en douane et se transmet aux clients. Le numéro de vérification est un jeton de sécurité connu du seul déclarant et de l'autorité compétente ; communiqué de façon confidentielle avec le numéro de référence, il permet à un acteur aval de consulter et de référencer la déclaration dans son propre dépôt."
+    },
+    {
+      question: "Peut-on corriger une déclaration de diligence raisonnée après sa soumission dans TRACES ?",
+      answer: "Oui, dans certaines limites. Une déclaration encore au statut Submitted peut être annulée. Une fois Available, elle peut être amendée jusqu'à la date limite affichée par le système, ou retirée. Le retrait est bloqué dès que le numéro de référence a été utilisé dans une déclaration en douane, dès qu'un acteur aval l'a référencé, ou pendant un contrôle."
+    },
+    {
+      question: "Un distributeur doit-il déposer ses propres déclarations de diligence raisonnée EUDR ?",
+      answer: "Seulement quand il est l'opérateur qui met le produit sur le marché de l'UE en premier, par exemple quand il importe du café, du cacao ou des produits du bois en marque propre. Quand il revend des produits déjà mis sur le marché par un autre, il ne dépose rien : il collecte les numéros de référence des déclarations de ses fournisseurs et les conserve cinq ans."
+    },
+    {
+      question: "Combien de temps faut-il conserver les éléments de diligence raisonnée EUDR ?",
+      answer: "Cinq ans. Les entreprises doivent conserver leurs déclarations de diligence raisonnée et les numéros de référence collectés auprès de leurs fournisseurs pendant cinq ans, et pouvoir les présenter aux autorités compétentes."
+    }
+  ]}
+/>

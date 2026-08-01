@@ -1,0 +1,163 @@
+---
+url: eudr-smallholder-plot-coordinates
+author: pierre-masse
+illustration: /media/illustrations/eudr-smallholder-plot-coordinates.webp
+date: "2026-03-16"
+section: [supply-chain, reglementations-produit-et-supply-chain]
+alsoIn:
+  - [supply-chain, tracabilite-donnees-et-risques]
+tags: [eudr, collecte]
+industries: [distribution, cosmetiques-beaute]
+
+en:
+  title: "Getting plot coordinates from smallholder suppliers: the field problem"
+  description: "EUDR requires geolocation for every production plot. Point or polygon, the 4-hectare rule, cooperatives, and how to verify coordinates before you file them."
+  alt: "A field technician walking the edge of a small coffee plot on a hillside, phone in hand"
+fr:
+  title: "Coordonnées de parcelles EUDR : chez les petits producteurs, la collecte se joue sur le terrain"
+  description: "L'EUDR exige la géolocalisation de chaque parcelle. Point ou polygone, règle des 4 hectares, coopératives : comment obtenir et vérifier ces données."
+  alt: "Un technicien longe la bordure d'une petite parcelle de café à flanc de colline, téléphone en main"
+---
+
+<!-- locale:en -->
+
+<KeyTakeaways>
+- Every production plot must be geolocated: a single point with at least six decimal digits is enough up to 4 hectares, a polygon is mandatory above that.
+- Your suppliers outside the EU carry no EUDR obligation. You, or your importer, file the due diligence statement, built on their data.
+- A mixed batch must list every contributing plot. One unknown origin makes the whole batch unsellable in the EU.
+- A plot deforested after December 31, 2020 disqualifies its production, even if the other 999 plots in the file are clean.
+- Four cheap checks catch most bad files: format, geographic plausibility, volume against area, and 2020 forest cover.
+</KeyTakeaways>
+
+Six decimal digits of latitude and longitude pin a location down to about ten centimeters. That is the minimum precision the EU Deforestation Regulation (EUDR, Regulation (EU) 2023/1115) requires for every plot of land that produced the cocoa, coffee, palm oil, or natural rubber you place on the EU market. The data exists, but it sits at the edge of a two-hectare field, often thousands of kilometers from your procurement team, with a supplier who has never been asked for it.
+
+Article 9 of the regulation requires the due diligence statement to include the geolocation of all plots where the relevant commodities were produced, plus the date or time range of production. Since the revision adopted in December 2025 (Regulation (EU) 2025/2650), the obligations apply from December 30, 2026 for large and medium-sized companies, and from June 30, 2027 for micro and small ones. A collection campaign across several thousand smallholders takes at least one harvest season, so the calendar is tighter than it looks.
+
+## One point below 4 hectares, one polygon above
+
+The format is set by the regulation itself, in its definition of geolocation. Two cases:
+
+- **Plot of 4 hectares or less:** a single latitude and longitude point, with at least six decimal digits, is legally sufficient.
+- **Plot of more than 4 hectares:** a polygon is mandatory, meaning enough latitude and longitude points to describe the perimeter of the plot. The one exception is cattle, where the geolocation of the establishment is enough.
+
+Most smallholder cocoa and coffee plots fall under the 4-hectare threshold, so a point would do. Collect polygons anyway where you can. A point tells you a plot exists somewhere around that spot; a polygon tells you where the plot stops, which is exactly what a forest-cover check needs. The difference in field effort is real (walking the perimeter rather than standing in the middle of the field), but you pay it once.
+
+The EU information system accepts the data as GeoJSON, in WGS84 decimal degrees. Ask for that format from day one. A season's worth of coordinates delivered as screenshots, PDF scans, or a spreadsheet with commas where the decimal points should be is a season lost.
+
+Good to know: six decimal digits is a minimum in the text, not a proof of quality. A coordinate padded with zeros to reach six decimals passes the format check and still points at nothing. Check how the data was captured, not just how it is written.
+
+## An intermediary does not carry the obligation for you
+
+The EUDR binds the company placing the product on the EU market. Since the December 2025 revision, only that first operator files the due diligence statement; downstream companies keep and pass on its reference number. What the regulation never does is bind the smallholder in Côte d'Ivoire or Indonesia. Your supplier's supplier owes you nothing under EUDR. Whatever data reaches you does so because someone contracted for it, paid for it, or collected it in person.
+
+That changes how you work with cooperatives and traders:
+
+1. **Put the data in the contract, per delivery.** A clause requiring "EUDR compliance" is decoration. A clause requiring a GeoJSON file listing every contributing plot, with production dates, attached to each lot, is a specification someone can meet or fail.
+2. **Ask how the batch was assembled.** The statement must list all plots that produced the commodity in the product. A cooperative that pools three hundred members' harvests into one silo must give you three hundred plots, not the coordinates of the silo. And a batch that mixes in volumes from unidentified plots cannot be declared at all, because compliance cannot be demonstrated for what cannot be located.
+3. **Pay attention to who did the mapping.** Some cooperatives have georeferenced their members for certification programs and hold solid registries. Others will subcontract the job in a hurry to whoever owns a smartphone. The first question to ask an intermediary is not "do you have the coordinates" but "who walked the plots, and when".
+
+Good to know: under Article 9 the statement carries the date or time range of production for each plot. Record it at collection time. Reconstructing harvest dates a year later, farmer by farmer, is the single most expensive piece of data to recover.
+
+## Verify before you file: four checks that cost little
+
+The information system checks that your file is well-formed. It does not check that the plots are real. That work is yours, and most of it is cheap:
+
+1. **Format.** Valid GeoJSON, WGS84, six real decimals. Reject files where the same coordinate repeats across dozens of farmers.
+2. **Geographic plausibility.** Plot a sample on a map. Points in the sea, in a town center, or in another country are more common than you would hope. So are polygons from two different suppliers that overlap, which means the same plot is being sold to you twice.
+3. **Volume against area.** Compare the declared tonnage of a lot with the total area behind it. A hillside of smallholder plots has a plausible yield range; a lot that exceeds it by an order of magnitude contains volumes from plots you have not been given.
+4. **Forest cover in 2020.** The [EU Observatory on Deforestation and Forest Degradation](https://forest-observatory.ec.europa.eu/) publishes a global forest cover map for 2020, the regulation's cut-off date, at 10-meter resolution, free to use. It is explicitly non-binding and not exhaustive, but it tells you which plots deserve a closer look before you sign the statement. Under Article 9, deforestation on a single plot after December 31, 2020 disqualifies that plot's production, however clean the rest of the file is.
+
+Start now, with the commodity and origin that carry your biggest volumes. Get the contract clauses in before the next harvest, ask for polygons and production dates from the first delivery, and run the four checks on every file before it goes anywhere near a due diligence statement. Coordinates you have verified once are an asset for every campaign that follows; coordinates you accepted on trust are a liability with a reference number.
+
+<FAQ
+  items={[
+    {
+      question: "Is a single GPS point enough for a 3-hectare cocoa plot?",
+      answer: "Legally, yes. Regulation (EU) 2023/1115 requires a polygon only for plots larger than 4 hectares. Below that, one latitude and longitude point with at least six decimal digits is sufficient. A polygon remains preferable in practice, because it allows the plot's boundaries to be checked against forest cover maps."
+    },
+    {
+      question: "Can a cooperative provide one coordinate for all of its members?",
+      answer: "No. The due diligence statement must include the geolocation of every plot that produced the commodity contained in the product. A cooperative pooling the harvests of its members must provide the coordinates of each member's plots, not the location of its warehouse or collection point."
+    },
+    {
+      question: "What happens if one plot out of a thousand was deforested after 2020?",
+      answer: "Under Article 9 of Regulation (EU) 2023/1115, deforestation on a plot after December 31, 2020 disqualifies the commodities produced on that plot. A batch containing volumes from that plot cannot be placed on the EU market, which is why plots should be screened before batches are assembled, not after."
+    },
+    {
+      question: "When do the EUDR obligations apply?",
+      answer: "Following Regulation (EU) 2025/2650, published in December 2025, the obligations apply from December 30, 2026 for large and medium-sized companies, and from June 30, 2027 for micro and small enterprises."
+    }
+  ]}
+/>
+
+<!-- locale:fr -->
+
+<KeyTakeaways title="À retenir">
+- Chaque parcelle de production doit être géolocalisée : un point à six décimales suffit jusqu'à 4 hectares, un polygone est obligatoire au-delà.
+- Vos fournisseurs hors UE n'ont aucune obligation EUDR. C'est vous, ou votre importateur, qui portez la déclaration de diligence raisonnée, construite avec leurs données.
+- Un lot mélangé doit lister toutes les parcelles contributrices. Une seule origine inconnue rend le lot invendable dans l'UE.
+- Une parcelle déboisée après le 31 décembre 2020 disqualifie sa production, même si les 999 autres parcelles du fichier sont propres.
+- Quatre contrôles peu coûteux écartent l'essentiel des mauvais fichiers : format, vraisemblance géographique, cohérence volume/surface, couvert forestier 2020.
+</KeyTakeaways>
+
+Six décimales de latitude et de longitude, c'est une position à une dizaine de centimètres près. C'est la précision minimale que le règlement européen contre la déforestation (EUDR, pour EU Deforestation Regulation, règlement (UE) 2023/1115) exige pour chaque parcelle ayant produit le cacao, le café, l'huile de palme ou le caoutchouc que vous mettez sur le marché de l'Union. La donnée existe, mais elle se trouve en bordure d'un champ de deux hectares, souvent à des milliers de kilomètres de votre service achats, chez un producteur à qui personne ne l'a encore demandée.
+
+L'article 9 du règlement impose que la déclaration de diligence raisonnée contienne la géolocalisation de toutes les parcelles où les matières premières concernées ont été produites, ainsi que la date ou la période de production. Depuis la révision adoptée en décembre 2025 (règlement (UE) 2025/2650), les obligations s'appliquent au 30 décembre 2026 pour les grandes et moyennes entreprises, et au 30 juin 2027 pour les micro et petites. Une campagne de collecte auprès de plusieurs milliers de petits producteurs prend au moins une saison de récolte : le calendrier est plus serré qu'il n'en a l'air.
+
+## Un point sous 4 hectares, un polygone au-delà
+
+Le format est fixé par le règlement lui-même, dans sa définition de la géolocalisation. Deux cas :
+
+- **Parcelle de 4 hectares ou moins :** un point unique de latitude et de longitude, avec au moins six décimales, suffit juridiquement.
+- **Parcelle de plus de 4 hectares :** le polygone est obligatoire, c'est-à-dire suffisamment de points de latitude et de longitude pour décrire le périmètre de la parcelle. Seule exception, les bovins, pour lesquels la géolocalisation des établissements suffit.
+
+La plupart des parcelles de cacao ou de café en petite production passent sous le seuil des 4 hectares : un point suffirait donc. Collectez tout de même des polygones partout où c'est possible. Un point vous dit qu'une parcelle existe quelque part autour de cette position ; un polygone vous dit où elle s'arrête, ce qui est exactement ce qu'un contrôle de couvert forestier demande. Le surcoût de terrain est réel (parcourir le périmètre plutôt que se poster au milieu du champ), mais vous ne le payez qu'une fois.
+
+Le système d'information européen accepte les données au format GeoJSON, en degrés décimaux WGS84. Exigez ce format dès le premier jour. Une saison de coordonnées livrées en captures d'écran, en scans PDF ou dans un tableur où des virgules remplacent les points décimaux est une saison perdue.
+
+Bon à savoir : les six décimales sont un minimum dans le texte, pas une preuve de qualité. Une coordonnée complétée de zéros pour atteindre six décimales passe le contrôle de format et ne pointe toujours sur rien. Vérifiez comment la donnée a été relevée, pas seulement comment elle est écrite.
+
+## L'intermédiaire ne porte pas l'obligation à votre place
+
+L'EUDR oblige l'entreprise qui met le produit sur le marché de l'Union. Depuis la révision de décembre 2025, seul ce premier opérateur dépose la déclaration de diligence raisonnée ; les entreprises en aval conservent et transmettent son numéro de référence. Ce que le règlement ne fait jamais, c'est obliger le petit producteur en Côte d'Ivoire ou en Indonésie. Le fournisseur de votre fournisseur ne vous doit rien au titre de l'EUDR. Si une donnée vous parvient, c'est parce que quelqu'un l'a contractualisée, payée, ou collectée sur place.
+
+Cela change la façon de travailler avec les coopératives et les négociants :
+
+1. **Mettez la donnée dans le contrat, à la livraison.** Une clause exigeant « la conformité EUDR » est décorative. Une clause exigeant un fichier GeoJSON listant chaque parcelle contributrice, avec les dates de production, joint à chaque lot, est une spécification que l'on peut tenir ou manquer.
+2. **Demandez comment le lot a été assemblé.** La déclaration doit lister toutes les parcelles ayant produit la matière contenue dans le produit. Une coopérative qui mélange les récoltes de trois cents adhérents dans un même silo doit vous fournir trois cents parcelles, pas les coordonnées du silo. Et un lot où entrent des volumes de parcelles non identifiées ne peut pas être déclaré du tout, car on ne démontre pas la conformité de ce qu'on ne sait pas localiser.
+3. **Regardez qui a fait la cartographie.** Certaines coopératives ont géoréférencé leurs adhérents pour des programmes de certification et tiennent des registres solides. D'autres sous-traiteront le travail dans l'urgence au premier détenteur de smartphone venu. La première question à poser à un intermédiaire n'est pas « avez-vous les coordonnées » mais « qui a arpenté les parcelles, et quand ».
+
+Bon à savoir : l'article 9 impose que la déclaration porte la date ou la période de production pour chaque parcelle. Consignez-la au moment de la collecte. Reconstituer des dates de récolte un an après, producteur par producteur, est le travail le plus coûteux de tout le dispositif.
+
+## Vérifier avant de déclarer : quatre contrôles qui coûtent peu
+
+Le système d'information vérifie que votre fichier est bien formé. Il ne vérifie pas que les parcelles sont réelles. Ce travail vous revient, et l'essentiel coûte peu :
+
+1. **Le format.** GeoJSON valide, WGS84, six vraies décimales. Écartez les fichiers où la même coordonnée se répète chez des dizaines de producteurs.
+2. **La vraisemblance géographique.** Affichez un échantillon sur une carte. Des points dans la mer, en centre-ville ou dans le pays voisin sont plus fréquents qu'on ne le croit. Tout comme des polygones de deux fournisseurs différents qui se chevauchent, signe que la même parcelle vous est vendue deux fois.
+3. **La cohérence volume/surface.** Comparez le tonnage déclaré d'un lot avec la surface totale qui le justifie. Un coteau de petites parcelles a une plage de rendement plausible ; un lot qui la dépasse d'un ordre de grandeur contient des volumes venus de parcelles qu'on ne vous a pas données.
+4. **Le couvert forestier en 2020.** L'[Observatoire européen de la déforestation et de la dégradation des forêts](https://forest-observatory.ec.europa.eu/) publie une carte mondiale du couvert forestier en 2020, la date butoir du règlement, à 10 mètres de résolution, en accès libre. Elle est explicitement non contraignante et non exhaustive, mais elle vous dit quelles parcelles méritent un examen avant de signer la déclaration. Au titre de l'article 9, une déforestation sur une seule parcelle après le 31 décembre 2020 disqualifie la production de cette parcelle, aussi propre que soit le reste du fichier.
+
+Commencez maintenant, par la matière première et l'origine qui pèsent le plus dans vos volumes. Faites entrer les clauses au contrat avant la prochaine récolte, exigez polygones et dates de production dès la première livraison, et passez les quatre contrôles sur chaque fichier avant qu'il n'approche une déclaration de diligence raisonnée. Des coordonnées vérifiées une fois sont un actif pour toutes les campagnes suivantes ; des coordonnées acceptées sur parole sont un passif avec un numéro de référence.
+
+<FAQ
+  title="Questions fréquentes"
+  items={[
+    {
+      question: "Un point GPS suffit-il pour une parcelle de cacao de 3 hectares ?",
+      answer: "Juridiquement, oui. Le règlement (UE) 2023/1115 n'impose le polygone qu'aux parcelles de plus de 4 hectares. En dessous, un point de latitude et de longitude avec au moins six décimales suffit. Le polygone reste préférable en pratique, car il permet de confronter les limites de la parcelle aux cartes de couvert forestier."
+    },
+    {
+      question: "Une coopérative peut-elle fournir une seule coordonnée pour tous ses adhérents ?",
+      answer: "Non. La déclaration de diligence raisonnée doit contenir la géolocalisation de chaque parcelle ayant produit la matière première contenue dans le produit. Une coopérative qui regroupe les récoltes de ses adhérents doit fournir les coordonnées des parcelles de chaque adhérent, pas celles de son entrepôt ou de son point de collecte."
+    },
+    {
+      question: "Que se passe-t-il si une parcelle sur mille a été déboisée après 2020 ?",
+      answer: "Au titre de l'article 9 du règlement (UE) 2023/1115, une déforestation sur une parcelle après le 31 décembre 2020 disqualifie les matières premières produites sur cette parcelle. Un lot contenant des volumes issus de cette parcelle ne peut pas être mis sur le marché de l'Union, d'où l'intérêt de filtrer les parcelles avant d'assembler les lots, pas après."
+    },
+    {
+      question: "À partir de quand les obligations EUDR s'appliquent-elles ?",
+      answer: "Depuis le règlement (UE) 2025/2650, publié en décembre 2025, les obligations s'appliquent au 30 décembre 2026 pour les grandes et moyennes entreprises, et au 30 juin 2027 pour les micro et petites entreprises."
+    }
+  ]}
+/>

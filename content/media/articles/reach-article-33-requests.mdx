@@ -1,0 +1,149 @@
+---
+url: reach-article-33-requests
+author: pierre-masse
+illustration: /media/illustrations/reach-article-33-requests.webp
+date: "2026-03-07"
+section: [supply-chain, reglementations-produit-et-supply-chain]
+tags: [reach, preuve]
+industries: [electronique]
+
+en:
+  title: "Answering an Article 33 request without a full material declaration program"
+  description: "REACH Article 33 requires the name of a substance above 0.1%, not a full material breakdown. How to answer in 45 days without a dedicated program."
+  alt: "A person at an office desk leaning over printed pages angled away from the camera, small electronic components in trays beside the keyboard"
+fr:
+  title: "Répondre à une demande article 33 sans programme de déclarations matière"
+  description: "L'article 33 de REACH exige le nom d'une substance au-delà de 0,1 %, pas la composition complète. Comment répondre en 45 jours sans programme dédié."
+  alt: "Une personne penchée sur des pages imprimées à un bureau, des petits composants électroniques dans des bacs à côté du clavier"
+---
+
+<!-- locale:en -->
+
+<KeyTakeaways>
+- Article 33 covers Candidate List substances above 0.1% by weight per article, not the full composition of your product.
+- You owe the information available to you, at minimum the substance name. No certificate, no lab report, no signed attestation.
+- A consumer gets the answer on request, free of charge, within 45 days. A business customer gets it at delivery, without asking.
+- Your own suppliers owe you the same information automatically and at no cost, so the question travels upstream instead of being rebuilt from scratch.
+- Ask for answers in IEC 62474 or IPC-1752A format rather than PDF attestations: they name the substance and the part, and they serve the next request too.
+</KeyTakeaways>
+
+At an electronics board manufacturer I work with, the request landed on a Friday: a forty-tab spreadsheet, full chemical composition demanded part number by part number, fifteen days to comply. The company had no material declaration program, no dedicated software, and nobody whose job this was. It answered on time, because what the law requires is far narrower than what the spreadsheet asked for.
+
+## The obligation is narrow: one list, one threshold, one piece of information
+
+The European REACH regulation (Registration, Evaluation, Authorisation and Restriction of Chemicals, Regulation (EC) No 1907/2006) devotes one article, Article 33, to information on substances in articles. Its perimeter fits in three boundaries. The list: only substances of very high concern (SVHC) on the Candidate List count, 253 entries as of the update of February 4, 2026, and the list grows roughly twice a year. The threshold: 0.1% by weight, calculated per article rather than on the finished product, since the Court of Justice of the European Union ruled so on September 10, 2015 (case C-106/14). The information: the "sufficient information, available to the supplier" to allow safe use, including "as a minimum the name of that substance".
+
+Who asks changes the clock, not the content. A business customer must receive the information at delivery, without asking. A consumer must receive it on request, free of charge, within 45 days.
+
+And if no Candidate List substance exceeds the threshold in any article of the product, Article 33 asks nothing of you. No certificate, no lab report, no full composition, no signed attestation. The forty-tab spreadsheet is a commercial requirement from the buyer, not a regulatory one, and nothing stops you from answering the legal question precisely while negotiating the rest.
+
+Good to know: since January 2021, the same articles must also be notified to the SCIP database of the European Chemicals Agency, and that data is public. An Article 33 answer that contradicts your own SCIP notifications will be noticed.
+
+## Your suppliers already owe you the answer
+
+You do not have to discover what your components contain. Your suppliers owe you that information under the same Article 33, automatically and at no cost, every time they deliver. So your customer's question travels upstream, with three additions that separate a reminder email from an actual answer.
+
+1. **Per part number.** "Does part 2203-A contain any Candidate List substance above 0.1% of the part's own weight? If yes, which one and at what concentration?" A question about a part gets an answer about a part. A question about "your products" gets a slogan.
+2. **With the list version.** Name the Candidate List publication date you are asking against. An answer with no date describes a shorter list than the one you will be held to.
+3. **With your customer's deadline.** The 45 days are yours only if the requester is a consumer. Pass the real date on, minus your own margin.
+
+And keep the perimeter tight. The request concerns one delivered product, not your catalog. Querying only the suppliers of that product's parts is the difference between ten emails and three hundred.
+
+## IEC 62474 and IPC-1752A are the formats your industry already speaks
+
+A PDF attestation stating "REACH compliant" names no substance, no part, and no list version: it does not answer the question, and it will not serve the next one. Electronics has two formats built for this.
+
+**IEC 62474**, the material declaration standard of the International Electrotechnical Commission for the electrotechnical industry, maintains a declarable substance list online: around 200 substances and substance groups, covering among others the REACH Candidate List and RoHS (the EU directive restricting hazardous substances in electronics), each with its reporting threshold, plus an XML exchange schema.
+
+**IPC-1752A**, the materials declaration management standard published by IPC, exchanges the same data as XML files, with two useful levels: Class C, a declaration against a substance list, and Class D, full material disclosure down to homogeneous materials.
+
+Requesting these formats instead of an attestation changes what you collect: one dated, machine-readable record per part, which the large component distributors already produce on demand. The next request becomes a search through your own files.
+
+Answer the request that was made: the parts of the delivered product, a dated Candidate List, the threshold per article, the information you hold. File each supplier answer by part number with its date and list version, and require the XML wherever the supplier can produce it. The material declaration program will have started without anyone deciding to launch it, one request at a time.
+
+<FAQ
+  items={[
+    {
+      question: "Do we have to answer if no Candidate List substance exceeds 0.1% in the product?",
+      answer: "Article 33 imposes no obligation in that case. In practice, answer anyway with an explicit statement naming the Candidate List version and date you checked against, because in practice buyers escalate when they get no answer at all."
+    },
+    {
+      question: "Is the 0.1% threshold calculated on the finished product?",
+      answer: "No. Since the Court of Justice of the European Union's ruling of September 10, 2015 in case C-106/14, the threshold applies to each article incorporated in a complex product, based on that article's own weight."
+    },
+    {
+      question: "Does Article 33 require a test report or a compliance certificate?",
+      answer: "No. The regulation requires sufficient information available to the supplier to allow safe use of the article, including as a minimum the name of the substance. Test reports, certificates, and full composition breakdowns are commercial requests, not legal obligations under Article 33."
+    },
+    {
+      question: "What is an IEC 62474 or IPC-1752A declaration?",
+      answer: "Both are XML-based material declaration formats used in the electronics industry. IEC 62474 provides a maintained list of declarable substances with reporting thresholds and an exchange schema. IPC-1752A defines declaration classes, from a declaration against a substance list (Class C) to full material disclosure (Class D). Both are machine-readable and reusable across customer requests."
+    }
+  ]}
+/>
+
+<!-- locale:fr -->
+
+<KeyTakeaways title="À retenir">
+- L'article 33 porte sur les substances de la liste candidate au-delà de 0,1 % en masse par article, pas sur la composition complète du produit.
+- Vous devez l'information dont vous disposez, au minimum le nom de la substance. Aucun certificat, aucun rapport d'essai, aucune attestation signée.
+- Un consommateur obtient la réponse sur demande, gratuitement, sous 45 jours. Un client professionnel la reçoit à la livraison, sans demander.
+- Vos propres fournisseurs vous doivent la même information, automatiquement et sans frais : la question se transmet vers l'amont au lieu de se reconstruire.
+- Exigez des réponses au format IEC 62474 ou IPC-1752A plutôt que des attestations PDF : elles nomment la substance et la pièce, et elles serviront à la demande suivante.
+</KeyTakeaways>
+
+Chez un fabricant de cartes électroniques que j'accompagne, la demande est arrivée un vendredi : un tableur de quarante onglets, la composition chimique complète exigée référence par référence, quinze jours pour répondre. L'entreprise n'avait ni programme de déclarations matière, ni logiciel dédié, ni personne dont c'était le métier. Elle a répondu dans les temps, parce que ce que le droit exige est bien plus étroit que ce que le tableur demandait.
+
+## L'obligation est étroite : une liste, un seuil, une information
+
+Le règlement européen REACH (enregistrement, évaluation, autorisation et restriction des substances chimiques, règlement (CE) n° 1907/2006) consacre un article, le 33, à l'information sur les substances contenues dans les articles. Son périmètre tient en trois bornes. La liste : seules comptent les substances extrêmement préoccupantes (SVHC) inscrites à la liste candidate, 253 entrées à la mise à jour du 4 février 2026, une liste qui s'allonge environ deux fois par an. Le seuil : 0,1 % en masse, calculé article par article et non sur le produit fini, depuis l'arrêt de la Cour de justice de l'Union européenne du 10 septembre 2015 (affaire C-106/14). L'information : les « informations suffisantes dont il dispose » pour permettre une utilisation sûre, avec « au minimum le nom de la substance ».
+
+Le demandeur change le délai, pas le contenu. Un client professionnel doit recevoir l'information à la livraison, sans la demander. Un consommateur doit la recevoir sur demande, gratuitement, sous 45 jours.
+
+Et si aucune substance de la liste candidate ne dépasse le seuil dans aucun article du produit, l'article 33 ne vous demande rien. Aucun certificat, aucun rapport d'essai, aucune composition complète, aucune attestation signée. Le tableur de quarante onglets est une exigence commerciale de l'acheteur, pas une exigence réglementaire, et rien ne vous empêche de répondre précisément à la question légale tout en négociant le reste.
+
+Bon à savoir : depuis janvier 2021, les mêmes articles doivent aussi être notifiés à la base SCIP de l'Agence européenne des produits chimiques, et ces données sont publiques. Une réponse article 33 qui contredit vos propres notifications SCIP se remarquera.
+
+## Vos fournisseurs vous doivent déjà la réponse
+
+Vous n'avez pas à découvrir ce que contiennent vos composants. Vos fournisseurs vous doivent cette information au titre du même article 33, automatiquement et sans frais, à chaque livraison. La question de votre client se transmet donc vers l'amont, avec trois précisions qui séparent un mail de relance d'une vraie réponse.
+
+1. **Par référence.** « La pièce 2203-A contient-elle une substance de la liste candidate au-delà de 0,1 % de sa propre masse ? Si oui, laquelle et à quelle concentration ? » Une question sur une pièce obtient une réponse sur une pièce. Une question sur « vos produits » obtient un slogan.
+2. **Avec la version de la liste.** Datez la publication de la liste candidate que vous visez. Une réponse sans date décrit une liste plus courte que celle qui vous sera opposée.
+3. **Avec l'échéance du client.** Les 45 jours ne valent que si le demandeur est un consommateur. Transmettez la vraie date, moins votre propre marge.
+
+Et tenez le périmètre serré. La demande porte sur un produit livré, pas sur votre catalogue. Interroger les seuls fournisseurs des pièces de ce produit, c'est la différence entre dix mails et trois cents.
+
+## IEC 62474 et IPC-1752A sont les formats que la filière échange déjà
+
+Une attestation PDF « conforme REACH » ne nomme ni substance, ni référence, ni version de liste : elle ne répond pas à la question, et elle ne servira pas à la suivante. L'électronique dispose de deux formats conçus pour cela.
+
+**IEC 62474**, la norme de déclaration matière de la Commission électrotechnique internationale pour l'industrie électrotechnique, tient à jour en ligne une liste de substances à déclarer : environ 200 substances et groupes de substances, couvrant entre autres la liste candidate REACH et RoHS (la directive européenne limitant les substances dangereuses dans l'électronique), chacune avec son seuil de déclaration, plus un schéma XML d'échange.
+
+**IPC-1752A**, le standard de gestion des déclarations matière publié par l'IPC, échange les mêmes données sous forme de fichiers XML, avec deux niveaux utiles : la classe C, une déclaration par rapport à une liste de substances, et la classe D, la divulgation complète des matières jusqu'aux matériaux homogènes.
+
+Demander ces formats plutôt qu'une attestation change la nature de ce que vous collectez : un enregistrement par pièce, daté, lisible par machine, que les grands distributeurs de composants produisent déjà sur demande. La demande suivante devient une recherche dans vos propres dossiers.
+
+Répondez donc à la demande posée : les pièces du produit livré, une liste candidate datée, le seuil par article, l'information dont vous disposez. Classez chaque réponse fournisseur par référence, avec sa date et sa version de liste, et exigez le XML partout où le fournisseur sait le produire. Le programme de déclarations matière aura commencé sans que personne ne décide de le lancer, une demande à la fois.
+
+<FAQ
+  title="Questions fréquentes"
+  items={[
+    {
+      question: "Devons-nous répondre si aucune substance de la liste candidate ne dépasse 0,1 % dans le produit ?",
+      answer: "L'article 33 n'impose alors aucune obligation. En pratique, répondez quand même par une déclaration explicite nommant la version et la date de la liste candidate vérifiée, car en pratique un acheteur sans réponse relance et fait remonter le sujet."
+    },
+    {
+      question: "Le seuil de 0,1 % se calcule-t-il sur le produit fini ?",
+      answer: "Non. Depuis l'arrêt de la Cour de justice de l'Union européenne du 10 septembre 2015 dans l'affaire C-106/14, le seuil s'applique à chaque article incorporé dans un produit complexe, sur la masse propre de cet article."
+    },
+    {
+      question: "L'article 33 exige-t-il un rapport d'essai ou un certificat de conformité ?",
+      answer: "Non. Le règlement exige les informations suffisantes dont dispose le fournisseur pour permettre une utilisation sûre de l'article, avec au minimum le nom de la substance. Les rapports d'essai, certificats et compositions complètes relèvent de la demande commerciale, pas de l'obligation légale de l'article 33."
+    },
+    {
+      question: "Qu'est-ce qu'une déclaration IEC 62474 ou IPC-1752A ?",
+      answer: "Ce sont deux formats de déclaration matière au format XML utilisés dans l'industrie électronique. IEC 62474 fournit une liste tenue à jour de substances à déclarer avec leurs seuils et un schéma d'échange. IPC-1752A définit des classes de déclaration, de la déclaration par rapport à une liste de substances (classe C) à la divulgation complète des matières (classe D). Les deux sont lisibles par machine et réutilisables d'une demande client à l'autre."
+    }
+  ]}
+/>
