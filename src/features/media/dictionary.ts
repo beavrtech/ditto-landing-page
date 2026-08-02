@@ -5,6 +5,11 @@ import type { MediaLocale } from "./data/taxonomy";
 
 export interface MediaDict {
   tagline: string;
+  betaFlag: string;
+  betaBody: string;
+  betaLink: string;
+  betaFeedback: string;
+  betaCopied: string;
   latest: string;
   themes: string;
   industries: string;
@@ -64,6 +69,12 @@ export interface MediaDict {
 const dict: Record<MediaLocale, MediaDict> = {
   en: {
     tagline: "The QHSE, CSR & Supply Chain magazine",
+    betaFlag: "Beta",
+    betaBody:
+      "The Scope is in beta, and we're publishing new articles every day for the coming month.",
+    betaLink: "Read about us",
+    betaFeedback: "Send us feedback at",
+    betaCopied: "Copied to clipboard",
     latest: "Latest",
     themes: "Themes",
     industries: "Industries",
@@ -123,6 +134,12 @@ const dict: Record<MediaLocale, MediaDict> = {
   },
   fr: {
     tagline: "Le média QHSE, RSE & Supply Chain",
+    betaFlag: "Bêta",
+    betaBody:
+      "The Scope est en bêta, et nous publions de nouveaux articles chaque jour pendant le mois à venir.",
+    betaLink: "Qui sommes-nous",
+    betaFeedback: "Vos retours sont les bienvenus sur",
+    betaCopied: "Copié dans le presse-papiers",
     latest: "À la une",
     themes: "Thématiques",
     industries: "Industries",
