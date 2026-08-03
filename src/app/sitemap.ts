@@ -7,6 +7,8 @@ import {
   getAuthors,
   getCollectionItems,
 } from "../lib/cms";
+import { getAllArticles, articleSections } from "@/features/media/lib/articles";
+import { INDUSTRIES } from "@/features/media/data/taxonomy";
 
 const BASE_URL = "https://www.trustditto.com";
 
@@ -64,18 +66,86 @@ function localizedPair(
   ];
 }
 
+/**
+ * The Scope (/en/media, /fr/media). Every article is written in both
+ * languages under one slug, so each page is a localized pair.
+ *
+ * Only listing pages that actually carry an article are emitted. Every theme,
+ * tag and industry has a page from the day its slug exists — that is what
+ * keeps internal links honest — but submitting the empty ones would be
+ * submitting thin content.
+ */
+async function scopeUrls(): Promise<MetadataRoute.Sitemap> {
+  const articles = await getAllArticles("en");
+  if (!articles.length) return [];
+
+  const urls: MetadataRoute.Sitemap = [];
+
+  const push = (path: string, opts: EntryOptions) =>
+    urls.push(...localizedPair(`/media${path}`, `/media${path}`, opts));
+
+  push("", { changeFrequency: "daily", priority: 0.8 });
+  push("/articles", { changeFrequency: "daily", priority: 0.7 });
+  push("/videos", { changeFrequency: "weekly", priority: 0.5 });
+  push("/about", { changeFrequency: "yearly", priority: 0.3 });
+
+  // A placement reaches its own page and its parents, so a pillar page is
+  // populated by everything filed under any of its themes.
+  const themes = new Set<string>();
+  const tags = new Set<string>();
+  const authors = new Set<string>();
+  let anyAllIndustries = false;
+  const industries = new Set<string>();
+
+  for (const article of articles) {
+    for (const section of articleSections(article)) {
+      for (let depth = 1; depth <= section.length; depth++) {
+        themes.add(section.slice(0, depth).join("/"));
+      }
+    }
+    for (const tag of article.tags) tags.add(tag);
+    authors.add(article.author);
+    if (article.industries.length) {
+      for (const industry of article.industries) industries.add(industry);
+    } else {
+      // An article with no industries applies to all of them, so it fills
+      // every industry page on its own.
+      anyAllIndustries = true;
+    }
+  }
+
+  for (const path of themes) push(`/theme/${path}`, { changeFrequency: "weekly", priority: 0.6 });
+  for (const tag of tags) push(`/tag/${tag}`, { changeFrequency: "weekly", priority: 0.5 });
+  for (const slug of anyAllIndustries ? INDUSTRIES.map((i) => i.slug) : industries) {
+    push(`/industry/${slug}`, { changeFrequency: "weekly", priority: 0.5 });
+  }
+  for (const slug of authors) push(`/authors/${slug}`, { changeFrequency: "monthly", priority: 0.4 });
+
+  for (const article of articles) {
+    push(`/${article.slug}`, {
+      lastModified: new Date(article.updated ?? article.date),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
+  }
+
+  return urls;
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [stories, posts, news, guides, authors, ...collectionResults] =
+  const [stories, posts, news, guides, authors, scope, ...collectionResults] =
     await Promise.all([
       getCustomerStories("en").catch(() => []),
       getBlogPosts("en").catch(() => []),
       getNews("en").catch(() => []),
       getGuides("en").catch(() => []),
       getAuthors().catch(() => []),
+      // A broken article must not cost the site its whole sitemap.
+      scopeUrls().catch(() => []),
       ...FRAMEWORKS.map((fw) => getCollectionItems(fw, "en").catch(() => [])),
     ]);
 
-  const urls: MetadataRoute.Sitemap = [];
+  const urls: MetadataRoute.Sitemap = [...scope];
 
   // Slugs of native collection items — the canonical version of any article
   // that exists as both a collection item and a blog post. Used to keep the

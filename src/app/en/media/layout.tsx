@@ -13,9 +13,6 @@ export const metadata: Metadata = {
   },
   description:
     "The Scope is Ditto's magazine for the people who own QHSE, CSR and supply chain compliance.",
-  // The Scope is not indexed until launch. Remove this block and the two
-  // /media entries in src/app/robots.ts to go live.
-  robots: { index: false, follow: false },
   openGraph: {
     type: "website",
     siteName: "The Scope",
