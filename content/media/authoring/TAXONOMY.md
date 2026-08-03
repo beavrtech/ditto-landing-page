@@ -35,7 +35,7 @@ Tags are **global, not owned by a theme**. That is the whole point of them: a RE
 - **Up to five**, and fewer is better. Tag what the article is genuinely about, not everything it mentions in passing.
 - Each tag gets its own page at `/en/media/tag/<slug>` and `/fr/media/tag/<slug>`, listing every article that carries it.
 - Tags join the **primary `about`** in structured data alongside the section, because the framework is usually the strongest statement of what a piece is about.
-- They render as links at the foot of the article, under the prose.
+- They render as links in two places, both before the reading: in the article head, under the industries line and above the headline, and on the article's card in every listing, under the dek.
 - Omit the field entirely if no named thing applies. That is rare but legitimate.
 
 ## `alsoIn` — where else it is worth reading
