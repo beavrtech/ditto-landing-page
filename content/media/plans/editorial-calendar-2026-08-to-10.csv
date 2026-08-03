@@ -1,0 +1,133 @@
+date,day,property,type,ref,title_or_page,format,owner,signal,rationale
+2026-08-04,Tue,The Scope,New article,15,From a paper DUERP to ISO 45001: the gap is smaller than it looks,Reference,Ugo Le Borgne,qhse / normes-et-systemes-de-management / iso-45001,
+2026-08-04,Tue,The Scope,New article,16,ISO 45001 on a construction site: what an auditor looks at first,Reference,Ugo Le Borgne,qhse / normes-et-systemes-de-management / iso-45001,
+2026-08-05,Wed,The Scope,New article,17,The worker participation clause: what consultation must actually look like,Reference,Tristan Salaün,qhse / normes-et-systemes-de-management / iso-45001,
+2026-08-05,Wed,The Scope,New article,18,"ISO 45001 in a logistics warehouse: forklifts, TMS and the night shift",Reference,Ugo Le Borgne,qhse / normes-et-systemes-de-management / iso-45001,
+2026-08-06,Thu,The Scope,New article,19,"MASE or ISO 45001: choose by client base, not by content",Feature,Ugo Le Borgne,qhse / normes-et-systemes-de-management / iso-45001,
+2026-08-06,Thu,The Scope,New article,20,Contractors under ISO 45001: procurement is a safety clause,Reference,Ugo Le Borgne,qhse / normes-et-systemes-de-management / iso-45001,
+2026-08-07,Fri,The Scope,New article,21,Safety indicators that mean something: beyond the TF and TG,Reference,Tristan Salaün,qhse / normes-et-systemes-de-management / iso-45001,
+2026-08-07,Fri,The Scope,New article,1,"ISO 9001 in 2026 is a market-access credential, not a quality project",Feature,Pierre Poirmeur,qhse / normes-et-systemes-de-management / iso-9001,
+2026-08-10,Mon,The Scope,New article,2,Running ISO 9001 without a quality manager,Reference,Tristan Salaün,qhse / normes-et-systemes-de-management / iso-9001,
+2026-08-10,Mon,The Scope,New article,3,Stage 1 vs stage 2: what happens in each certification audit,Reference,Ugo Le Borgne,qhse / normes-et-systemes-de-management / iso-9001,
+2026-08-11,Tue,The Scope,New article,4,"Risk-based thinking is a clause, not a philosophy: what auditors accept",Reference,Tristan Salaün,qhse / normes-et-systemes-de-management / iso-9001,
+2026-08-11,Tue,The Scope,New article,5,ISO 9001 for a software company: what product conformity means when the product ships weekly,Reference,Tristan Salaün,qhse / normes-et-systemes-de-management / iso-9001,
+2026-08-12,Wed,The Scope,New article,6,The documented information ISO 9001 actually requires: the full list,Reference,Pierre Masse,qhse / normes-et-systemes-de-management / iso-9001,
+2026-08-12,Wed,The Scope,New article,7,"One system, two standards: integrating ISO 9001 and ISO 14001",Reference,Ugo Le Borgne,qhse / normes-et-systemes-de-management / iso-9001,
+2026-08-13,Thu,The Scope,New article,8,Writing a corrective action an auditor accepts,Reference,Tristan Salaün,qhse / normes-et-systemes-de-management / iso-9001,
+2026-08-13,Thu,The Scope,New article,9,The environmental aspects analysis: how deep is deep enough,Reference,Ugo Le Borgne,qhse / normes-et-systemes-de-management / iso-14001,
+2026-08-14,Fri,The Scope,New article,10,ISO 14001 vs EMAS: what the EU scheme adds and who needs it,Reference,Alexis de Taillac,qhse / normes-et-systemes-de-management / iso-14001,
+2026-08-14,Fri,The Scope,New article,11,ISO 14001 on a construction site: aspects that dominate and the ones that don't,Reference,Ugo Le Borgne,qhse / normes-et-systemes-de-management / iso-14001,
+2026-08-17,Mon,The Scope,New article,12,The compliance obligations register: keeping the legal watch alive after certification,Reference,Tristan Salaün,qhse / normes-et-systemes-de-management / iso-14001,
+2026-08-17,Mon,The Scope,New article,13,"ISO 14001 in an electronics plant: chemicals, energy and the aspects register",Reference,Tristan Salaün,qhse / normes-et-systemes-de-management / iso-14001,
+2026-08-18,Tue,The Scope,New article,14,"What an ISO 14001 certificate covers in an EcoVadis assessment, and what it doesn't",Reference,Pierre Masse,qhse / normes-et-systemes-de-management / iso-14001,
+2026-08-18,Tue,The Scope,New article,22,MASE explained to a non-French headquarters,Reference,Ugo Le Borgne,qhse / normes-et-systemes-de-management / mase,
+2026-08-19,Wed,The Scope,New article,23,The MASE 2024 manual: what changed and what to update,Reference,Ugo Le Borgne,qhse / normes-et-systemes-de-management / mase,
+2026-08-19,Wed,The Scope,New article,24,"How MASE scoring works: the audit, the thresholds, the 1-year vs 3-year decision",Reference,Ugo Le Borgne,qhse / normes-et-systemes-de-management / mase,
+2026-08-20,Thu,The Scope,New article,25,Your first MASE year: building the system before the audit,Reference,Ugo Le Borgne,qhse / normes-et-systemes-de-management / mase,
+2026-08-20,Thu,The Scope,New article,26,The causerie sécurité: fifteen minutes that carry the whole system,Reference,Pierre Masse,qhse / normes-et-systemes-de-management / mase,
+2026-08-21,Fri,The Scope,New article,61,Ninety days to the certification audit: the countdown plan,Reference,Ugo Le Borgne,qhse / audits-et-certification / preparation,
+2026-08-21,Fri,The Scope,New article,62,An internal audit program when nobody is a trained auditor,Reference,Tristan Salaün,qhse / audits-et-certification / preparation,
+2026-08-24,Mon,The Scope,New article,63,Organizing the evidence before the auditor asks: the war-room method,Reference,Tristan Salaün,qhse / audits-et-certification / preparation,
+2026-08-24,Mon,The Scope,New article,64,You got a major nonconformity. Now what.,Reference,Ugo Le Borgne,qhse / audits-et-certification / preparation,
+2026-08-25,Tue,The Scope,New article,65,"Choosing a certification body: accreditation, sector codes and the price question",Reference,Ugo Le Borgne,qhse / audits-et-certification / choix-organisme,
+2026-08-25,Tue,The Scope,New article,66,Changing certification body without losing the certificate,Reference,Tristan Salaün,qhse / audits-et-certification / choix-organisme,
+2026-08-26,Wed,The Scope,New article,27,"The DUERP after the 2022 reform: update cadence, retention, who gets access",Reference,Ugo Le Borgne,qhse / sante-securite-et-qvt / prevention,
+2026-08-26,Wed,The Scope,New article,28,"The nine principles of prevention, applied to one real workshop",Reference,Ugo Le Borgne,qhse / sante-securite-et-qvt / prevention,
+2026-08-27,Thu,The Scope,New article,29,"Accident analysis with the causal tree: a method, not a form",Reference,Tristan Salaün,qhse / sante-securite-et-qvt / prevention,
+2026-08-27,Thu,The Scope,New article,30,Chemical risk assessment: from the FDS pile to a ranked action plan,Reference,Tristan Salaün,qhse / sante-securite-et-qvt / prevention,
+2026-08-28,Fri,The Scope,New article,31,Musculoskeletal disorders in logistics: prevention that survives peak season,Reference,Ugo Le Borgne,qhse / sante-securite-et-qvt / prevention,
+2026-08-28,Fri,The Scope,New article,32,The plan de prévention: when the law requires one and what goes in it,Reference,Ugo Le Borgne,qhse / sante-securite-et-qvt / prevention,
+2026-08-31,Mon,The Scope,New article,33,Safety culture is what happens when the QHSE manager is on leave,Reference,Ugo Le Borgne,qhse / sante-securite-et-qvt / culture-securite,
+2026-08-31,Mon,The Scope,New article,34,Getting near-misses reported: the system design problem,Reference,Tristan Salaün,qhse / sante-securite-et-qvt / culture-securite,
+2026-09-01,Tue,The Scope,New article,35,The manager's safety visit: a format that isn't an inspection,Reference,Ugo Le Borgne,qhse / sante-securite-et-qvt / culture-securite,
+2026-09-01,Tue,The Scope,New article,36,The Bradley curve is a sales tool. Use it anyway.,Feature,Ugo Le Borgne,qhse / sante-securite-et-qvt / culture-securite,
+2026-09-02,Wed,The Scope,New article,37,"Human error is a symptom, not a cause",Feature,Ugo Le Borgne,qhse / sante-securite-et-qvt / facteur-humain,
+2026-09-02,Wed,The Scope,New article,38,Shift work and fatigue: what a QHSE manager can actually influence,Reference,Ugo Le Borgne,qhse / sante-securite-et-qvt / facteur-humain,
+2026-09-03,Thu,The Scope,New article,39,Procedure drift: why operators deviate and what that tells you,Reference,Tristan Salaün,qhse / sante-securite-et-qvt / facteur-humain,
+2026-09-03,Thu,The Scope,New article,40,Alarm fatigue and interface design in supervision rooms,Reference,Tristan Salaün,qhse / sante-securite-et-qvt / facteur-humain,
+2026-09-04,Fri,The Scope,New article,41,Is my site an ICPE? Reading the nomenclature without a consultant,Reference,Ugo Le Borgne,qhse / environnement-et-excellence-operationnelle / icpe,
+2026-09-04,Fri,The Scope,New article,42,"Déclaration, enregistrement, autorisation: the three ICPE regimes compared",Reference,Ugo Le Borgne,qhse / environnement-et-excellence-operationnelle / icpe,
+2026-09-07,Mon,The Scope,New article,43,The ICPE inspection: how a visit unfolds and what inspectors ask first,Reference,Ugo Le Borgne,qhse / environnement-et-excellence-operationnelle / icpe,
+2026-09-07,Mon,The Scope,New article,44,Rubrique 1510: the warehouse rules that changed after Lubrizol,Reference,Ugo Le Borgne,qhse / environnement-et-excellence-operationnelle / icpe,
+2026-09-08,Tue,The Scope,New article,45,Closing an ICPE site: the cessation obligations that outlive the activity,Reference,Alexis de Taillac,qhse / environnement-et-excellence-operationnelle / icpe,
+2026-09-08,Tue,The Scope,New article,170,Supplier campaign response rates: what is normal and what moves it,Reference,Pierre Masse,supply-chain / engagement-et-evaluation-fournisseurs / campagnes,
+2026-09-09,Wed,The Scope,New article,171,"Sequencing a first supplier ESG campaign: who to ask, for what, in which order",Reference,Pierre Masse,supply-chain / engagement-et-evaluation-fournisseurs / campagnes,
+2026-09-09,Wed,The Scope,New article,172,Reminders that get answers without burning the relationship,Reference,Pierre Masse,supply-chain / engagement-et-evaluation-fournisseurs / campagnes,
+2026-09-10,Thu,The Scope,New article,173,Campaign for data or campaign for documents: decide before you launch,Reference,Tristan Salaün,supply-chain / engagement-et-evaluation-fournisseurs / campagnes,
+2026-09-10,Thu,The Scope,New article,174,A supplier questionnaire people actually finish,Reference,Pierre Masse,supply-chain / engagement-et-evaluation-fournisseurs / questionnaires,
+2026-09-11,Fri,The Scope,New article,175,"One questionnaire, many frameworks: mapping questions to CSRD, EcoVadis and customer asks",Reference,Tristan Salaün,supply-chain / engagement-et-evaluation-fournisseurs / questionnaires,
+2026-09-11,Fri,The Scope,New article,176,Adopt the sector questionnaire or write your own?,Reference,Pierre Masse,supply-chain / engagement-et-evaluation-fournisseurs / questionnaires,
+2026-09-14,Mon,The Scope,New article,177,Scoring suppliers without false precision,Reference,Tristan Salaün,supply-chain / engagement-et-evaluation-fournisseurs / scoring,
+2026-09-14,Mon,The Scope,New article,178,A risk score and a performance score are two different tools,Reference,Ugo Le Borgne,supply-chain / engagement-et-evaluation-fournisseurs / scoring,
+2026-09-15,Tue,The Scope,New article,179,The supplier scored badly. Now comes the actual work.,Feature,Pierre Masse,supply-chain / engagement-et-evaluation-fournisseurs / scoring,
+2026-09-15,Tue,The Scope,New article,189,"Email, portal or platform: three ways to collect supplier data, priced",Reference,Tristan Salaün,supply-chain / tracabilite-donnees-et-risques / collecte,
+2026-09-16,Wed,The Scope,New article,190,"Validating supplier declarations: trust, but sample",Reference,Tristan Salaün,supply-chain / tracabilite-donnees-et-risques / collecte,
+2026-09-16,Wed,The Scope,New article,191,Collecting from your own sites: the multi-site template that survives January,Reference,Ugo Le Borgne,supply-chain / tracabilite-donnees-et-risques / collecte,
+2026-09-17,Thu,The Scope,New article,192,"Collect once, report everywhere: designing the data model before the tools",Reference,Tristan Salaün,supply-chain / tracabilite-donnees-et-risques / collecte,
+2026-09-17,Thu,The Scope,New article,193,"What counts as evidence: certificates, policies, screenshots and their hierarchy",Reference,Tristan Salaün,supply-chain / tracabilite-donnees-et-risques / preuve,
+2026-09-18,Fri,The Scope,New article,194,Evidence freshness: how long each document type stays valid,Reference,Tristan Salaün,supply-chain / tracabilite-donnees-et-risques / preuve,
+2026-09-18,Fri,The Scope,New article,195,The evidence library: a folder structure that answers audits in minutes,Reference,Tristan Salaün,supply-chain / tracabilite-donnees-et-risques / preuve,
+2026-09-21,Mon,The Scope,New article,196,"Reading a chain-of-custody certificate: FSC, PEFC and what they actually guarantee",Reference,Alexis de Taillac,supply-chain / tracabilite-donnees-et-risques / preuve,
+2026-09-21,Mon,The Scope,New article,197,Supply-chain risk mapping: the country-times-category method,Reference,Ugo Le Borgne,supply-chain / tracabilite-donnees-et-risques / cartographie-des-risques,
+2026-09-22,Tue,The Scope,New article,198,A risk map that would satisfy a vigilance-plan judge,Reference,Alexis de Taillac,supply-chain / tracabilite-donnees-et-risques / cartographie-des-risques,
+2026-09-22,Tue,The Scope,New article,199,Forced-labor screening: the UFLPA and the EU regulation change your sourcing questions,Reference,Alexis de Taillac,supply-chain / tracabilite-donnees-et-risques / cartographie-des-risques,
+2026-09-23,Wed,The Scope,New article,200,A risk map is alive or it is dead: the update triggers,Reference,Ugo Le Borgne,supply-chain / tracabilite-donnees-et-risques / cartographie-des-risques,
+2026-09-23,Wed,The Scope,New article,67,EcoVadis for cosmetics: the criteria that actually apply to you,Reference,Pierre Masse,rse / notations-et-evaluations / ecovadis,
+2026-09-24,Thu,The Scope,New article,68,EcoVadis for electronics manufacturers: where the points hide,Reference,Tristan Salaün,rse / notations-et-evaluations / ecovadis,
+2026-09-24,Thu,The Scope,New article,69,EcoVadis for transport and logistics: carbon is your theme,Reference,Ugo Le Borgne,rse / notations-et-evaluations / ecovadis,
+2026-09-25,Fri,The Scope,New article,70,"EcoVadis for a software company: light footprint, heavy expectations",Reference,Tristan Salaün,rse / notations-et-evaluations / ecovadis,
+2026-09-25,Fri,The Scope,New article,71,The ten documents that move an EcoVadis score,Reference,Pierre Masse,rse / notations-et-evaluations / ecovadis,
+2026-09-28,Mon,The Scope,New article,72,"EcoVadis medals since the 2024 reform: what bronze, silver and gold now mean",Reference,Pierre Masse,rse / notations-et-evaluations / ecovadis,
+2026-09-28,Mon,The Scope,New article,73,Your first EcoVadis assessment in eight weeks,Reference,Pierre Masse,rse / notations-et-evaluations / ecovadis,
+2026-09-29,Tue,The Scope,New article,74,Reassessment strategy: moving up from bronze without hiring anyone,Reference,Pierre Masse,rse / notations-et-evaluations / ecovadis,
+2026-09-29,Tue,The Scope,New article,75,The EcoVadis 360° watch: where those news findings come from,Reference,Pierre Masse,rse / notations-et-evaluations / ecovadis,
+2026-09-30,Wed,The Scope,New article,76,"EcoVadis medals are a procurement signal, not a performance measure",Feature,Pierre Poirmeur,rse / notations-et-evaluations / ecovadis,
+2026-09-30,Wed,The Scope,New article,77,The corrective action plan inside the EcoVadis platform: use it or ignore it?,Reference,Pierre Masse,rse / notations-et-evaluations / ecovadis,
+2026-10-01,Thu,The Scope,New article,78,EcoVadis for industrial equipment makers: the sustainable-procurement theme decides,Reference,Ugo Le Borgne,rse / notations-et-evaluations / ecovadis,
+2026-10-01,Thu,The Scope,New article,85,"Triage for buyer ESG questionnaires: answer, reuse, or decline",Reference,Pierre Masse,rse / notations-et-evaluations / questionnaires-donneurs-ordre,
+2026-10-02,Fri,The Scope,New article,86,The answer library: write each ESG answer once,Reference,Tristan Salaün,rse / notations-et-evaluations / questionnaires-donneurs-ordre,
+2026-10-02,Fri,The Scope,New article,87,It is allowed to say no to a questionnaire,Feature,Pierre Masse,rse / notations-et-evaluations / questionnaires-donneurs-ordre,
+2026-08-04,Tue,Ditto site,"Improve - Tier 1 (traffic, no AI)",T1-1,en/collection/ecovadis/ecovadis-certified-companies-list,,,"458 views/90d, 0 AI retrievals","Add quotable definition block, maintained date, list markup"
+2026-08-05,Wed,Ditto site,Improve - Tier 2 (deepen retrieved),T2-1,fr/collection/ecovadis/documents-questionnaire-ecovadis,,,5 retrievals / 3 citations,Lowest citation rate (0.60) of retrieved set - make answers self-contained
+2026-08-06,Thu,Ditto site,New page,N1,/[locale]/solutions/qhse,,,Solution page,"QHSE gap - 8 prompts, zero pages"
+2026-08-07,Fri,Ditto site,Improve - Tier 4 (hygiene),T4-1,fr/collection/ecovadis/ecovadis-2024,,,Hygiene,Year-stamped slug live in 2026 AND currently retrieved - refresh + redirect
+2026-08-10,Mon,Ditto site,New page,N2,collection/qhse/logiciel-qhse,,,Collection,Comparez les solutions de gestion QHSE
+2026-08-11,Tue,Ditto site,"Improve - Tier 1 (traffic, no AI)",T1-2,en/collection/ecovadis/healthcare-pharma-ecovadis-assessment,,,"314 views/90d, 0 retrievals",Industry-qualified - extend the pattern
+2026-08-12,Wed,Ditto site,Improve - Tier 2 (deepen retrieved),T2-2,fr/collection/csrd/logiciel-csrd,,,4 retrievals / 4 citations,Closest thing to a buyer's guide - expand to full comparison
+2026-08-13,Thu,Ditto site,New page,N3,collection/qhse/qhse-pme-budget,,,Collection,Suivi QHSE budget maitrise PME
+2026-08-14,Fri,Ditto site,Improve - Tier 4 (hygiene),T4-2,entreprise-certifiee-ecovadis vs is-company-ecovadis-certified,,,Hygiene,"Near-duplicate across locales, both retrieved - consolidate"
+2026-08-17,Mon,Ditto site,New page,N4,collection/qhse/audits-qhse-complexes,,,Collection,Outils QHSE pour audits complexes
+2026-08-18,Tue,Ditto site,"Improve - Tier 1 (traffic, no AI)",T1-3,fr/collection/ecovadis/liste-entreprises-certifiees-ecovadis,,,"235 views/90d, 0 retrievals",FR twin of top page - bring to EN parity
+2026-08-19,Wed,Ditto site,Improve - Tier 2 (deepen retrieved),T2-3,fr/frameworks/csrd,,,4 retrievals / 6 citations,Add pricing signals and human-coaching differentiator
+2026-08-20,Thu,Ditto site,New page,N5,collection/qhse/qhse-ia-reporting,,,Collection,IA pour simplifier le reporting QHSE
+2026-08-21,Fri,Ditto site,Improve - Tier 4 (hygiene),T4-3,2 unpublished blog posts (of 55),,,Hygiene,Ship or archive
+2026-08-24,Mon,Ditto site,New page,N6,collection/qhse/qhse-accompagnement-humain,,,Collection,Highest intent: accompagnement humain in 6 of 36 prompts
+2026-08-25,Tue,Ditto site,"Improve - Tier 1 (traffic, no AI)",T1-4,en/resources/blog/csr-governance,,,"216 views/90d, 0 retrievals",Add a what-to-do-this-quarter section
+2026-08-26,Wed,Ditto site,Improve - Tier 2 (deepen retrieved),T2-4,fr/solutions/compliance-questionnaires,,,3 retrievals / 5 citations,"Only page serving 4 prompts - expand, interlink to N11/N12"
+2026-08-27,Thu,Ditto site,New page,N7,/[locale]/solutions/esg-reporting,,,Solution page,"Peec #1 product-page reco, verbatim"
+2026-08-28,Fri,Ditto site,Improve - Tier 4 (hygiene),T4-4,1 blog post under 4000 chars,,,Hygiene,Below 14422-char site average - expand or merge
+2026-08-31,Mon,Ditto site,New page,N8,collection/esg/logiciel-reporting-esg,,,Collection,Meilleurs outils pour simplifier le reporting ESG
+2026-09-01,Tue,Ditto site,"Improve - Tier 1 (traffic, no AI)",T1-5,en/collection/ecovadis/is-company-ecovadis-certified,,,"160 views/90d, 0 retrievals",Overlaps entreprise-certifiee - consolidate or differentiate
+2026-09-02,Wed,Ditto site,Improve - Tier 2 (deepen retrieved),T2-5,en/collection/csrd/csrd-software,,,2 retrievals / 5 citations,"Citation rate 2.5, highest on site - use as model"
+2026-09-03,Thu,Ditto site,New page,N9,collection/esg/reporting-esg-ia-et-conseil,,,Collection,IA + conseil expert
+2026-09-04,Fri,Ditto site,Improve - Tier 4 (hygiene),T4-5,en homepage,,,Hygiene,1 retrieval / 0 citations vs FR 4 retrievals / 11 citations - port FR framing
+2026-09-07,Mon,Ditto site,New page,N10,collection/esg/logiciel-esg-moins-5000-euros,,,Collection,Budget under 5000 EUR + accompagnement
+2026-09-08,Tue,Ditto site,"Improve - Tier 1 (traffic, no AI)",T1-6,en/collection/cdp/carbon-disclosure-project-cdp,,,"85 views/90d, 0 retrievals",CDP is a tracked competitor - own the explainer
+2026-09-09,Wed,Ditto site,Improve - Tier 2 (deepen retrieved),T2-6,fr/collection/ecovadis/ameliorer-score-ecovadis,,,2 retrievals / 4 citations,Matches Peec how-to-act-on-your-score reco
+2026-09-10,Thu,Ditto site,New page,N11,collection/questionnaires/automatiser-questionnaires-fournisseurs,,,Collection,Automatiser questionnaires fournisseurs
+2026-09-11,Fri,Ditto site,Improve - Tier 3 (FR parity),T3-1,FR parity - CSRD platform selection (1 of 2),,,FR/EN parity,"All 36 prompts are FR, top pages are EN"
+2026-09-14,Mon,Ditto site,New page,N12,collection/questionnaires/questionnaires-fournisseurs-budget,,,Collection,"Same, budget-constrained variant"
+2026-09-15,Tue,Ditto site,"Improve - Tier 1 (traffic, no AI)",T1-7,fr/ressources/blog/10-normes-iso-de-durabilite,,,"76 views/90d, 0 retrievals","Strong FR performer, no AI presence"
+2026-09-16,Wed,Ditto site,Improve - Tier 2 (deepen retrieved),T2-7,fr/frameworks/ecovadis,,,2 retrievals / 3 citations,Add transparent-pricing block from N13
+2026-09-17,Thu,Ditto site,New page,N13,/[locale]/pricing,,,Product page,Peec: AI engines look for plans and pricing
+2026-09-18,Fri,Ditto site,Improve - Tier 3 (FR parity),T3-2,FR parity - CSRD platform selection (2 of 2),,,FR/EN parity,"All 36 prompts are FR, top pages are EN"
+2026-09-21,Mon,Ditto site,New page,N14,/[locale]/help,,,Hub,EcoVadis Help Center cited in 8 of 16 recos
+2026-09-22,Tue,Ditto site,"Improve - Tier 1 (traffic, no AI)",T1-8,fr/collection/csrd/esrs-csrd,,,"72 views/90d, 0 retrievals",Feeds the 8 CSRD-platform prompts
+2026-09-23,Wed,Ditto site,Improve - Tier 3 (FR parity),T3-3,FR parity - EcoVadis preparation (1 of 2),,,FR/EN parity,"All 36 prompts are FR, top pages are EN"
+2026-09-24,Thu,Ditto site,New page,N15,help/ecovadis/comprendre-son-questionnaire,,,Help article,Answers the most-cited EcoVadis support article
+2026-09-25,Fri,Ditto site,Improve - Tier 3 (FR parity),T3-4,FR parity - EcoVadis preparation (2 of 2),,,FR/EN parity,"All 36 prompts are FR, top pages are EN"
+2026-09-28,Mon,Ditto site,New page,N16,guides/meilleurs-logiciels-csrd-2026,,,Buyer's guide,Counters greenly.earth and sweep.net
+2026-09-29,Tue,Ditto site,New page,N17,guides/meilleurs-logiciels-esg-2026,,,Buyer's guide,Counters riskpublishing.com and daf-mag.fr
+2026-09-30,Wed,Ditto site,Improve - Tier 3 (FR parity),T3-5,FR parity - ESG reporting (1 of 2),,,FR/EN parity,"All 36 prompts are FR, top pages are EN"
+2026-10-01,Thu,Ditto site,New page,N18,guides/outils-preparation-ecovadis-2026,,,Buyer's guide,Only topic with existing retrieval to build on
+2026-10-02,Fri,Ditto site,Improve - Tier 3 (FR parity),T3-6,FR parity - ESG reporting (2 of 2),,,FR/EN parity,"All 36 prompts are FR, top pages are EN"
