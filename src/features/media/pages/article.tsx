@@ -106,6 +106,24 @@ export function createArticleRoute(locale: MediaLocale) {
                     .join(", ")
                 : copy.allIndustries}
             </p>
+
+            {/* The tags say what the piece is about before it starts, next to
+                the industries line that says who it is for. Both are filing,
+                so they sit together above the headline. */}
+            {tags.length > 0 ? (
+              <nav className="ns-tags is-head" aria-label={copy.tagKicker}>
+                {tags.map((tag) => (
+                  <Link
+                    key={tag.slug}
+                    className="ns-tag"
+                    href={mediaPath(locale, `/tag/${tag.slug}`)}
+                  >
+                    {taxonomyLabel(tag, locale)}
+                  </Link>
+                ))}
+              </nav>
+            ) : null}
+
             <h1 className="ns-article-title">{article.title}</h1>
             <p className="ns-dek">{article.description}</p>
             <div style={{ marginTop: "1.5rem" }}>
@@ -136,20 +154,6 @@ export function createArticleRoute(locale: MediaLocale) {
             <div className="ns-article-main">
               <ArticleTocCollapsible entries={toc} locale={locale} />
               <div className="ns-prose">{body}</div>
-
-              {tags.length > 0 ? (
-                <nav className="ns-tags" aria-label={copy.tagKicker}>
-                  {tags.map((tag) => (
-                    <Link
-                      key={tag.slug}
-                      className="ns-tag"
-                      href={mediaPath(locale, `/tag/${tag.slug}`)}
-                    >
-                      {taxonomyLabel(tag, locale)}
-                    </Link>
-                  ))}
-                </nav>
-              ) : null}
 
               {article.updated ? (
                 <footer className="ns-article-foot">

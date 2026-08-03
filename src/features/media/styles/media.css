@@ -671,6 +671,13 @@
   text-transform: uppercase;
   color: var(--ns-ink-soft);
 }
+/* What the form answers back is a sentence, not a label, so it drops the
+   uppercase treatment the note was written for. */
+.ns-newsletter-note.is-message {
+  font-size: var(--ns-small);
+  letter-spacing: 0;
+  text-transform: none;
+}
 
 @media (max-width: 991px) {
   .ns-newsletter {
@@ -864,13 +871,6 @@
 }
 .ns-breadcrumbs .ns-sep {
   margin: 0 0.5rem;
-}
-
-.ns-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  align-items: center;
 }
 
 /* ---------- article page ---------- */
@@ -1084,14 +1084,23 @@
   margin-top: 0.5rem;
 }
 
-/* Tags sit between the prose and the byline, as apparatus: what the piece is
-   about, in the reader's own words, each one a way out to the other articles
-   on the same framework. */
+/* Tags open the piece rather than close it: what it is about, in the reader's
+   own words, each one a way out to the other articles on the same framework.
+   Two placements, both above the reading itself — the article head and the
+   card that stands in for the article in a listing. */
 .ns-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-top: 2.5rem;
+  align-items: center;
+}
+.ns-tags.is-head {
+  margin-top: 0.75rem;
+}
+/* The card lays its own rhythm out with a column gap, so the row adds none,
+   and the chips shrink to sit under a dek rather than under an article. */
+.ns-tags.is-card .ns-tag {
+  padding: 0.2rem 0.5rem;
 }
 .ns-tag {
   border: var(--ns-rule-soft);

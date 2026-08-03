@@ -11,6 +11,7 @@ import { t, formatDate } from "../dictionary";
 import {
   findTaxonomyPath,
   findIndustry,
+  findTag,
   taxonomyLabel,
   type MediaLocale,
 } from "../data/taxonomy";
@@ -30,6 +31,9 @@ export function ArticleCard({
   const copy = t(locale);
   const chain = findTaxonomyPath(article.section.slice(0, 2));
   const kicker = chain ? chain.map((n) => taxonomyLabel(n, locale)).join(" · ") : "";
+  // The kicker states the section; the tags state the framework, which is
+  // often the thing a reader is actually scanning for.
+  const tags = article.tags.map((slug) => findTag(slug)).filter((tag) => tag !== null);
 
   return (
     <article className="ns-card" hidden={hidden}>
@@ -43,6 +47,17 @@ export function ArticleCard({
         <Link href={mediaPath(locale, `/${article.slug}`)}>{article.title}</Link>
       </h3>
       <p className="ns-card-dek">{article.description}</p>
+      {/* A div rather than a nav: a listing renders dozens of these, and a
+          landmark per card would bury the page's real ones. */}
+      {tags.length > 0 ? (
+        <div className="ns-tags is-card">
+          {tags.map((tag) => (
+            <Link key={tag.slug} className="ns-tag" href={mediaPath(locale, `/tag/${tag.slug}`)}>
+              {taxonomyLabel(tag, locale)}
+            </Link>
+          ))}
+        </div>
+      ) : null}
       <p className="ns-meta">
         {formatDate(article.date, locale)}
         <span className="ns-dot" />

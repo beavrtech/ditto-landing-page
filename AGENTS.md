@@ -20,6 +20,7 @@ This is a Next.js 16 (Turbopack) marketing site for "Ditto" (trustditto.com) wit
 ### Optional env (feature-specific, not needed to render the site)
 - `SUPABASE_SERVICE_ROLE_KEY` + `ADMIN_PASSWORD` — the `/admin` CMS editor (`src/app/admin`).
 - `SLACK_WEBHOOK_URL` — lead notifications; `POST /api/lead` returns `{ok:true}` even without it (Slack step skipped silently).
+- `SLACKBOT_OAUTH_TOKEN` (+ optional `SLACK_SUBSCRIBE_CHANNEL_ID`, default `C0B96EGAV3R`) — The Scope letter sign-ups. `POST /api/subscribe` posts the email, categories and industry to that channel with `chat.postMessage`, and the bot must be a member of it. Set on Preview and Production only, so a local dev server has no token. Slack is the only place a sign-up is recorded, so without one the route answers 503 and both Scope forms tell the reader to try again — it does not pretend to have subscribed them.
 - `NEXT_PUBLIC_POSTHOG_*`, `NEXT_PUBLIC_HUBSPOT_*` — analytics and the HubSpot contact/newsletter forms.
 - `REVALIDATE_SECRET` — shared secret required by `POST /api/revalidate` (Supabase database webhook on `collection_items`, on-demand ISR invalidation of article + framework listing pages so a direct DB edit goes live without waiting on the hour-long ISR window or a redeploy). Without it the route always returns 500; page rendering is unaffected — `/admin` saves already self-revalidate without this via `src/lib/admin-revalidate.ts`.
 

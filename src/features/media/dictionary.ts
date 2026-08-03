@@ -25,7 +25,9 @@ export interface MediaDict {
   newsletterBody: string;
   newsletterPlaceholder: string;
   newsletterCta: string;
-  newsletterSoon: string;
+  newsletterSending: string;
+  newsletterDone: string;
+  newsletterFailed: string;
   newsletterThemes: string;
   newsletterIndustry: string;
   allIndustries: string;
@@ -92,7 +94,9 @@ const dict: Record<MediaLocale, MediaDict> = {
       "One long-form read on QHSE, CSR or supply-chain regulation, once a month. No noise.",
     newsletterPlaceholder: "you@company.com",
     newsletterCta: "Subscribe",
-    newsletterSoon: "Coming soon",
+    newsletterSending: "Subscribing…",
+    newsletterDone: "You're on the list. The first letter lands soon.",
+    newsletterFailed: "That didn't go through. Try again in a moment.",
     newsletterThemes: "What do you want to read about?",
     newsletterIndustry: "Your industry",
     allIndustries: "All industries",
@@ -157,7 +161,9 @@ const dict: Record<MediaLocale, MediaDict> = {
       "Une lecture de fond sur la QHSE, la RSE ou la réglementation supply chain, une fois par mois. Sans bruit.",
     newsletterPlaceholder: "vous@entreprise.com",
     newsletterCta: "S'abonner",
-    newsletterSoon: "Bientôt disponible",
+    newsletterSending: "Inscription…",
+    newsletterDone: "C'est noté. La première lettre arrive bientôt.",
+    newsletterFailed: "L'inscription n'est pas passée. Réessayez dans un instant.",
     newsletterThemes: "Que souhaitez-vous lire ?",
     newsletterIndustry: "Votre industrie",
     allIndustries: "Toutes les industries",
