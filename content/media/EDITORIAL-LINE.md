@@ -251,6 +251,32 @@ Two pages only compete when they answer the same query, not when they share a to
 is EcoVadis" and "EcoVadis for electronics manufacturers" are different searches and both
 can win. Rule 4 is the whole of the anti-cannibalization policy.
 
+### The standard travels with the surface
+
+This document and [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) govern **The Scope**. They are not
+the house style for everything Ditto publishes, and applying them to the blog is a
+misreading that costs the blog the only thing it is for.
+
+**On The Scope**, the restraint is the product. No unverified figure, no selling, no
+guaranteed outcome, and most pieces do not mention Ditto at all. A number without a source
+does not run. That is not timidity, it is what makes a competitor's customer trust the
+framework coverage, and nothing below relaxes it.
+
+**On the Ditto blog**, Ditto is speaking as Ditto about its own product, and it may be
+frankly promotional. Name the features, make the case, compare against the alternative of
+doing it by hand, and close on the product. Figures the business supplies about its own
+product, results, or clients are the business's claims to make: write them as given, and do
+not demand a public citation for a company's own performance data. The writer's job there is
+to ask once whether a number is real and then use it, not to litigate it.
+
+What still binds on the blog, because it is law rather than taste: no invented figures (a
+number nobody gave you stays out, on every surface), no guaranteed scores, medals or audit
+outcomes, no fabricated URLs or sources, no unverified factual claim about a **named third
+party**, and accurate regulatory statements. The mechanics carry over too: no em dashes, US
+English in EN, acronyms spelled out.
+
+Shorthand: on The Scope, a claim needs a source. On the blog, a claim needs an owner.
+
 ---
 
 ## 7. What we are accountable for

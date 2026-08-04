@@ -6,6 +6,8 @@ This document is the source of truth for how The Scope articles are written. It 
 
 What The Scope publishes and why, which pieces belong here rather than on the Ditto blog, and the reference-versus-feature split are in [EDITORIAL-LINE.md](./EDITORIAL-LINE.md). Read it first when the question is whether an article should exist; read this one when the question is how to write it.
 
+**This file governs The Scope, and only The Scope.** The Ditto blog is Ditto speaking as Ditto and is allowed to be frankly promotional, with its own narrower set of hard rules. Do not hold a blog post to the standard below. See [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) §6, "The standard travels with the surface".
+
 ---
 
 ## 1. Mission and audience
@@ -39,11 +41,11 @@ Default register: a sharp, generous expert explaining something to a colleague w
 
 These override everything else.
 
-1. **Never invent statistics, percentages, scores, dates, client counts, or study findings.** Use a number only if it is verified. Otherwise write `[STAT: verify]` and do not publish until it is resolved.
+1. **Never invent statistics, percentages, scores, dates, client counts, or study findings.** Use a number only if it is verified. Otherwise write `[STAT: verify]` and do not publish until it is resolved. On The Scope, verified means publicly sourceable, and a number without a source does not run. On the blog the bar is different: a figure the business supplies about its own product, results, or clients is the business's to assert. Making a number up is forbidden on every surface.
 2. **Never fabricate URLs, sources, or slugs.** Name an outlet only if the piece links a real URL, otherwise write `[SOURCE: outlet, headline]`. Internal links use real The Scope or trustditto.com paths, otherwise `[INTERNAL LINK: topic]`.
    **The author's own expertise needs no citation.** What the bylined author knows from doing the work is testimony, written in the first person, and the byline is the attribution. That covers what they saw, were told, tried, or concluded from practice, including a judgment the published sources do not settle. It does not cover figures, study findings, or regulatory requirements: rule 1 still applies, and "in my experience about 40%" is an invented statistic with a byline on it. [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) has the full split.
 3. **No greenwashing, no overpromising.** Never guarantee scores, medals, or audit outcomes. Benefits follow from structured work. Own the imperfections and the road ahead.
-4. **Stay humble about the product.** The Scope articles may mention Ditto where it is genuinely relevant, and when they do they offer the non-product fallback ("a platform like Ditto, or at minimum a well-organized drive"). Never hard-sell. Most articles should not mention Ditto at all.
+4. **Stay humble about the product.** This one is The Scope's alone: the blog sells, and is supposed to. The Scope articles may mention Ditto where it is genuinely relevant, and when they do they offer the non-product fallback ("a platform like Ditto, or at minimum a well-organized drive"). Never hard-sell. Most articles should not mention Ditto at all.
 5. **Spell out every acronym on first use** (CSR, ESG, QHSE, GHG, KPI, LCA, EMS, QMS, SST, and so on), in both languages.
 6. **Regulatory claims must be accurate and current.** If something recently changed or is contested (CSRD/Omnibus scope, thresholds, data-point counts), say so and present it fairly rather than asserting.
 7. **Cite the version and the date.** Frameworks move. Say which version of a standard, and as of when.
