@@ -11,7 +11,9 @@ export async function GET(
   const config = getTableConfig(tableSlug);
   if (!config) return NextResponse.json({ error: "Unknown table" }, { status: 404 });
 
-  const listKeys = config.listColumns.map((c) => c.key);
+  // Include `sub` keys: they are rendered inside another column's cell, so they
+  // never appear as a column key but still have to be fetched.
+  const listKeys = config.listColumns.flatMap((c) => (c.sub ? [c.key, c.sub] : [c.key]));
   const selectCols = ["id", ...new Set(listKeys)].join(", ");
 
   const { data, error } = await getSupabaseAdmin()

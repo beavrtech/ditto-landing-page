@@ -21,13 +21,35 @@ const COLLECTION_FRAMEWORK_OPTIONS = [
   { value: "qhse", label: "QHSE" },
 ];
 
+export type ListColumn = {
+  key: string;
+  label: string;
+  // Renders this column's value as a second, muted line under the main one —
+  // e.g. a URL beneath a title, so both share one column.
+  sub?: string;
+  // Set the sub line in monospace and allow it to break anywhere. For paths and
+  // URLs; leave off for ordinary words.
+  subMono?: boolean;
+  // CSS width for the column, e.g. "45%". Omit to let the table decide.
+  width?: string;
+  // Wrap instead of truncating at 60 characters. For long prose columns.
+  wrap?: boolean;
+  // Clamp a wrapping column to this many lines and offer a modal with the full
+  // text. Requires `wrap`.
+  clamp?: number;
+};
+
 export type TableConfig = {
   slug: string; // URL slug: "blog-posts"
   table: string; // DB table: "blog_posts"
   displayName: string;
-  listColumns: { key: string; label: string }[];
+  listColumns: ListColumn[];
   orderBy: { column: string; ascending: boolean };
   fields: FieldDef[];
+  // Browse-only: hides "+ New" and Delete, and drops the link into the editor.
+  // The API routes stay writable, so this is a UI affordance rather than a
+  // permission boundary.
+  readOnly?: boolean;
 };
 
 export const TABLES: TableConfig[] = [
@@ -363,6 +385,29 @@ export const TABLES: TableConfig[] = [
       { name: "seo_meta_desc", label: "Meta Description", type: "textarea", locale: true },
       { name: "published", label: "Published", type: "boolean" },
       { name: "archived", label: "Archived", type: "boolean" },
+    ],
+  },
+  {
+    slug: "editorial-calendar",
+    table: "editorial_calendar",
+    displayName: "Editorial Calendar",
+    readOnly: true,
+    listColumns: [
+      { key: "sort_order", label: "#", width: "48px" },
+      { key: "property", label: "Property", sub: "work_type", width: "130px" },
+      { key: "title", label: "Title", sub: "page", subMono: true, width: "26%" },
+      { key: "author", label: "Author", width: "130px" },
+      { key: "notes", label: "Notes", width: "auto", wrap: true, clamp: 4 },
+    ],
+    orderBy: { column: "sort_order", ascending: true },
+    fields: [
+      { name: "sort_order", label: "Order", type: "readonly" },
+      { name: "property", label: "Property", type: "readonly" },
+      { name: "work_type", label: "Type", type: "readonly" },
+      { name: "title", label: "Title", type: "readonly" },
+      { name: "page", label: "Page", type: "readonly" },
+      { name: "author", label: "Author", type: "readonly" },
+      { name: "notes", label: "Notes", type: "readonly" },
     ],
   },
 ];
