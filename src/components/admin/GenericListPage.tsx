@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
   useReactTable,
@@ -225,22 +225,62 @@ function FilterPopover({ column, rows, onClose }: {
   );
 }
 
-function ExpandedCellModal({ title, body, onClose }: {
+function ExpandedCellModal({ title, body, prompt, onSave, onClose }: {
   title: string;
   body: string;
+  prompt: string | null;
+  onSave: (value: string) => Promise<void>;
   onClose: () => void;
 }) {
+  const [value, setValue] = useState(body);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+  const dirty = value !== body;
+
+  // Closing with unsaved edits would lose them silently, so confirm first.
+  const requestClose = useCallback(() => {
+    if (dirty && !confirm("Discard your unsaved changes?")) return;
+    onClose();
+  }, [dirty, onClose]);
+
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") requestClose();
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [onClose]);
+  }, [requestClose]);
+
+  const handleSave = async () => {
+    setSaving(true);
+    setError(null);
+    try {
+      await onSave(value);
+      onClose();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Save failed");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleCopy = async () => {
+    if (!prompt) return;
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Clipboard writes need a secure context; fall back so the prompt is
+      // still reachable over plain http.
+      window.prompt("Copy this prompt:", prompt);
+    }
+  };
 
   return (
     <div
-      onClick={onClose}
+      onClick={requestClose}
       style={{
         position: "fixed", inset: 0, zIndex: 50, background: "rgba(19,14,48,0.45)",
         display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem",
@@ -256,15 +296,67 @@ function ExpandedCellModal({ title, body, onClose }: {
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", padding: "1.25rem 1.5rem", borderBottom: "1px solid #eee" }}>
           <h2 style={{ margin: 0, fontSize: "1rem", fontWeight: 600, lineHeight: 1.4 }}>{title}</h2>
           <button
-            onClick={onClose}
+            onClick={requestClose}
             aria-label="Close"
             style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1.25rem", lineHeight: 1, color: "#666", padding: 0 }}
           >
             &times;
           </button>
         </div>
-        <div style={{ padding: "1.25rem 1.5rem", overflowY: "auto", fontSize: "0.875rem", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
-          {body}
+
+        <div style={{ padding: "1.25rem 1.5rem", overflowY: "auto", flex: 1 }}>
+          <textarea
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            style={{
+              width: "100%", minHeight: "45vh", boxSizing: "border-box",
+              padding: "0.75rem", border: "1px solid #ddd", borderRadius: "6px",
+              fontSize: "0.875rem", lineHeight: 1.6, resize: "vertical",
+              fontFamily: "inherit",
+            }}
+          />
+          {error && (
+            <p style={{ color: "#dc2626", fontSize: "0.8rem", margin: "0.5rem 0 0" }}>{error}</p>
+          )}
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "0.75rem", padding: "1rem 1.5rem", borderTop: "1px solid #eee" }}>
+          {prompt ? (
+            <button
+              onClick={handleCopy}
+              title={prompt}
+              style={{
+                padding: "0.45rem 0.8rem", borderRadius: "6px", cursor: "pointer",
+                fontSize: "0.8rem", fontWeight: 500, whiteSpace: "nowrap",
+                border: `1px solid ${copied ? "#16a34a" : "#ddd"}`,
+                background: copied ? "#dcfce7" : "white",
+                color: copied ? "#166534" : "#130E30",
+              }}
+            >
+              {copied ? "Prompt copied" : "Iterate with AI"}
+            </button>
+          ) : <span />}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <button
+              onClick={requestClose}
+              style={{ background: "none", border: "none", cursor: "pointer", fontSize: "0.8rem", color: "#666" }}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleSave}
+              disabled={saving || !dirty}
+              style={{
+                padding: "0.45rem 1rem", borderRadius: "6px", border: "none",
+                fontSize: "0.8rem", fontWeight: 500,
+                cursor: saving || !dirty ? "default" : "pointer",
+                background: saving || !dirty ? "#c9c7d4" : "#130E30",
+                color: "white",
+              }}
+            >
+              {saving ? "Saving…" : "Save"}
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -282,8 +374,9 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [openFilter, setOpenFilter] = useState<string | null>(null);
-  const [expanded, setExpanded] = useState<{ title: string; body: string } | null>(null);
-  const [copiedId, setCopiedId] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState<
+    { id: string; key: string; title: string; body: string; prompt: string | null } | null
+  >(null);
 
   const fetchRows = async () => {
     const res = await fetch(`/admin/api/tables/${config.slug}`);
@@ -353,7 +446,15 @@ export function GenericListPage({ config }: { config: TableConfig }) {
               </div>
               {overflows && (
                 <button
-                  onClick={() => setExpanded({ title: rowLabel(row.original), body: full })}
+                  onClick={() => setExpanded({
+                    id: row.original.id,
+                    key: col.key,
+                    title: rowLabel(row.original),
+                    body: full,
+                    prompt: config.copyPrompt
+                      ? config.copyPrompt.replace(/\{(\w+)\}/g, (_m, k: string) => String(row.original[k] ?? ""))
+                      : null,
+                  })}
                   style={{
                     marginTop: "0.35rem", padding: 0, background: "none", border: "none",
                     color: "#130E30", cursor: "pointer", fontSize: "0.75rem", fontWeight: 600,
@@ -392,45 +493,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
         );
       },
     })),
-    ...(config.copyPrompt ? [{
-      id: "ai",
-      header: "AI",
-      enableSorting: false,
-      enableColumnFilter: false,
-      cell: ({ row }) => {
-        const prompt = (config.copyPrompt || "").replace(
-          /\{(\w+)\}/g,
-          (_m, key: string) => String(row.original[key] ?? "")
-        );
-        const done = copiedId === row.original.id;
-        return (
-          <button
-            onClick={async () => {
-              try {
-                await navigator.clipboard.writeText(prompt);
-                setCopiedId(row.original.id);
-                setTimeout(() => setCopiedId((cur) => (cur === row.original.id ? null : cur)), 1500);
-              } catch {
-                // Clipboard needs a secure context; surface the prompt so the
-                // row is still usable over plain http.
-                window.prompt("Copy this prompt:", prompt);
-              }
-            }}
-            title={prompt}
-            style={{
-              padding: "0.3rem 0.6rem", borderRadius: "6px", cursor: "pointer",
-              fontSize: "0.75rem", fontWeight: 500, whiteSpace: "nowrap",
-              border: `1px solid ${done ? "#16a34a" : "#ddd"}`,
-              background: done ? "#dcfce7" : "white",
-              color: done ? "#166534" : "#130E30",
-            }}
-          >
-            {done ? "Copied" : "Iterate with AI"}
-          </button>
-        );
-      },
-    } as ColumnDef<Row>] : []),
-    ...(config.readOnly ? [] : [{
+    ...(config.readOnly || config.hideDelete ? [] : [{
       id: "actions",
       header: "Actions",
       enableSorting: false,
@@ -444,9 +507,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
         </button>
       ),
     } as ColumnDef<Row>]),
-    // copiedId is a dependency: without it the memo holds a stale closure and
-    // the button never flips to "Copied".
-  ], [config, copiedId]);
+  ], [config]);
 
   const table = useReactTable({
     data: rows,
@@ -582,6 +643,23 @@ export function GenericListPage({ config }: { config: TableConfig }) {
         <ExpandedCellModal
           title={expanded.title}
           body={expanded.body}
+          prompt={expanded.prompt}
+          onSave={async (value) => {
+            const res = await fetch(`/admin/api/tables/${config.slug}/${expanded.id}`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ [expanded.key]: value }),
+            });
+            if (!res.ok) {
+              const { error } = await res.json().catch(() => ({ error: null }));
+              throw new Error(error || `Save failed (${res.status})`);
+            }
+            // Patch the row in place rather than refetching, so filters and
+            // sorting stay where the user left them.
+            setRows((cur) =>
+              cur.map((r) => (r.id === expanded.id ? { ...r, [expanded.key]: value } : r))
+            );
+          }}
           onClose={() => setExpanded(null)}
         />
       )}

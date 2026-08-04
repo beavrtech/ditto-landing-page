@@ -50,9 +50,11 @@ export type TableConfig = {
   // The API routes stay writable, so this is a UI affordance rather than a
   // permission boundary.
   readOnly?: boolean;
-  // When set, every row gets an "Iterate with AI" button that copies this
-  // template to the clipboard. `{id}` and `{title}` are substituted from the
-  // row; any other column key in braces works too.
+  // Hides the Delete action while leaving the table editable.
+  hideDelete?: boolean;
+  // When set, the expand modal of a clamped column gets an "Iterate with AI"
+  // button that copies this template to the clipboard. `{id}` and `{title}`
+  // are substituted from the row; any other column key in braces works too.
   copyPrompt?: string;
 };
 
@@ -395,6 +397,7 @@ export const TABLES: TableConfig[] = [
     slug: "editorial-calendar",
     table: "editorial_calendar",
     displayName: "Editorial Calendar",
+    hideDelete: true,
     copyPrompt: "Iterate on editorial calendar item {id} ({title}), ",
     listColumns: [
       { key: "sort_order", label: "#", width: "48px" },
