@@ -165,6 +165,42 @@ export function GenericEditForm({
             <label style={{ fontSize: "0.875rem", fontWeight: 500 }}>{field.label}</label>
           </div>
         );
+      case "number":
+        return (
+          <div key={key} style={fieldStyle}>
+            <label style={labelStyle}>{field.label}</label>
+            <input
+              type="number"
+              style={inputStyle}
+              value={val ?? ""}
+              // Coerce here: the input yields a string, and the column is numeric.
+              onChange={(e) => set(key, e.target.value === "" ? null : Number(e.target.value))}
+            />
+          </div>
+        );
+      case "select":
+        return (
+          <div key={key} style={fieldStyle}>
+            <label style={labelStyle}>{field.label}</label>
+            <select
+              style={inputStyle}
+              value={(val as string) ?? ""}
+              onChange={(e) => set(key, e.target.value || null)}
+            >
+              <option value="">—</option>
+              {(field.options || []).map((opt) => (
+                <option key={opt.value} value={opt.value}>{opt.label}</option>
+              ))}
+            </select>
+          </div>
+        );
+      case "readonly":
+        return (
+          <div key={key} style={fieldStyle}>
+            <label style={labelStyle}>{field.label}</label>
+            <div style={{ ...inputStyle, background: "#f7f7f8", color: "#666" }}>{val ?? "—"}</div>
+          </div>
+        );
       default:
         return (
           <div key={key} style={fieldStyle}>

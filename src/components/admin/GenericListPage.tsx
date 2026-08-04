@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
   useReactTable,
@@ -225,22 +225,70 @@ function FilterPopover({ column, rows, onClose }: {
   );
 }
 
-function ExpandedCellModal({ title, body, onClose }: {
+function ExpandedCellModal({ title, titleEditable, body, prompt, onSave, onClose }: {
   title: string;
+  titleEditable: boolean;
   body: string;
+  prompt: string | null;
+  onSave: (next: { title?: string; body?: string }) => Promise<void>;
   onClose: () => void;
 }) {
+  const [titleValue, setTitleValue] = useState(title);
+  const [value, setValue] = useState(body);
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [copied, setCopied] = useState(false);
+  const titleDirty = titleEditable && titleValue !== title;
+  const bodyDirty = value !== body;
+  const dirty = titleDirty || bodyDirty;
+
+  // Closing with unsaved edits would lose them silently, so confirm first.
+  const requestClose = useCallback(() => {
+    if (dirty && !confirm("Discard your unsaved changes?")) return;
+    onClose();
+  }, [dirty, onClose]);
+
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") requestClose();
     };
     document.addEventListener("keydown", onKeyDown);
     return () => document.removeEventListener("keydown", onKeyDown);
-  }, [onClose]);
+  }, [requestClose]);
+
+  const handleSave = async () => {
+    setSaving(true);
+    setError(null);
+    try {
+      // Send only what changed, so an untouched field is never rewritten.
+      await onSave({
+        ...(titleDirty ? { title: titleValue } : {}),
+        ...(bodyDirty ? { body: value } : {}),
+      });
+      onClose();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Save failed");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleCopy = async () => {
+    if (!prompt) return;
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Clipboard writes need a secure context; fall back so the prompt is
+      // still reachable over plain http.
+      window.prompt("Copy this prompt:", prompt);
+    }
+  };
 
   return (
     <div
-      onClick={onClose}
+      onClick={requestClose}
       style={{
         position: "fixed", inset: 0, zIndex: 50, background: "rgba(19,14,48,0.45)",
         display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem",
@@ -254,17 +302,85 @@ function ExpandedCellModal({ title, body, onClose }: {
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", padding: "1.25rem 1.5rem", borderBottom: "1px solid #eee" }}>
-          <h2 style={{ margin: 0, fontSize: "1rem", fontWeight: 600, lineHeight: 1.4 }}>{title}</h2>
+          {titleEditable ? (
+            <input
+              value={titleValue}
+              onChange={(e) => setTitleValue(e.target.value)}
+              aria-label="Title"
+              style={{
+                flex: 1, padding: "0.4rem 0.5rem", border: "1px solid transparent",
+                borderRadius: "6px", fontSize: "1rem", fontWeight: 600, lineHeight: 1.4,
+                fontFamily: "inherit", color: "#130E30", background: "#f7f7f8",
+                boxSizing: "border-box", minWidth: 0,
+              }}
+              onFocus={(e) => { e.target.style.borderColor = "#ddd"; e.target.style.background = "white"; }}
+              onBlur={(e) => { e.target.style.borderColor = "transparent"; e.target.style.background = "#f7f7f8"; }}
+            />
+          ) : (
+            <h2 style={{ margin: 0, fontSize: "1rem", fontWeight: 600, lineHeight: 1.4 }}>{title}</h2>
+          )}
           <button
-            onClick={onClose}
+            onClick={requestClose}
             aria-label="Close"
             style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1.25rem", lineHeight: 1, color: "#666", padding: 0 }}
           >
             &times;
           </button>
         </div>
-        <div style={{ padding: "1.25rem 1.5rem", overflowY: "auto", fontSize: "0.875rem", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
-          {body}
+
+        <div style={{ padding: "1.25rem 1.5rem", overflowY: "auto", flex: 1 }}>
+          <textarea
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            style={{
+              width: "100%", minHeight: "45vh", boxSizing: "border-box",
+              padding: "0.75rem", border: "1px solid #ddd", borderRadius: "6px",
+              fontSize: "0.875rem", lineHeight: 1.6, resize: "vertical",
+              fontFamily: "inherit",
+            }}
+          />
+          {error && (
+            <p style={{ color: "#dc2626", fontSize: "0.8rem", margin: "0.5rem 0 0" }}>{error}</p>
+          )}
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: "0.75rem", padding: "1rem 1.5rem", borderTop: "1px solid #eee" }}>
+          {prompt ? (
+            <button
+              onClick={handleCopy}
+              title={prompt}
+              style={{
+                padding: "0.45rem 0.8rem", borderRadius: "6px", cursor: "pointer",
+                fontSize: "0.8rem", fontWeight: 500, whiteSpace: "nowrap",
+                border: `1px solid ${copied ? "#16a34a" : "#ddd"}`,
+                background: copied ? "#dcfce7" : "white",
+                color: copied ? "#166534" : "#130E30",
+              }}
+            >
+              {copied ? "Prompt copied" : "Iterate with AI"}
+            </button>
+          ) : <span />}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+            <button
+              onClick={requestClose}
+              style={{ background: "none", border: "none", cursor: "pointer", fontSize: "0.8rem", color: "#666" }}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleSave}
+              disabled={saving || !dirty}
+              style={{
+                padding: "0.45rem 1rem", borderRadius: "6px", border: "none",
+                fontSize: "0.8rem", fontWeight: 500,
+                cursor: saving || !dirty ? "default" : "pointer",
+                background: saving || !dirty ? "#c9c7d4" : "#130E30",
+                color: "white",
+              }}
+            >
+              {saving ? "Saving…" : "Save"}
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -282,7 +398,12 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [openFilter, setOpenFilter] = useState<string | null>(null);
-  const [expanded, setExpanded] = useState<{ title: string; body: string } | null>(null);
+  const [expanded, setExpanded] = useState<
+    {
+      id: string; key: string; body: string; prompt: string | null;
+      title: string; titleKey: string | null;
+    } | null
+  >(null);
 
   const fetchRows = async () => {
     const res = await fetch(`/admin/api/tables/${config.slug}`);
@@ -318,8 +439,15 @@ export function GenericListPage({ config }: { config: TableConfig }) {
     return str.length > 60 ? str.slice(0, 60) + "..." : str;
   };
 
-  const rowLabel = (row: Row) =>
-    String(row.title || row.name_en || row.name || row.slug || row.id);
+  // The column a row's label comes from, so the modal can write it back.
+  // Null when we fall through to the id, which is not editable.
+  const rowLabelKey = (row: Row) =>
+    ["title", "name_en", "name", "slug"].find((k) => row[k]) ?? null;
+
+  const rowLabel = (row: Row) => {
+    const key = rowLabelKey(row);
+    return String(key ? row[key] : row.id);
+  };
 
   const columns = useMemo<ColumnDef<Row>[]>(() => [
     ...config.listColumns.map((col, i): ColumnDef<Row> => ({
@@ -352,7 +480,16 @@ export function GenericListPage({ config }: { config: TableConfig }) {
               </div>
               {overflows && (
                 <button
-                  onClick={() => setExpanded({ title: rowLabel(row.original), body: full })}
+                  onClick={() => setExpanded({
+                    id: row.original.id,
+                    key: col.key,
+                    titleKey: rowLabelKey(row.original),
+                    title: rowLabel(row.original),
+                    body: full,
+                    prompt: config.copyPrompt
+                      ? config.copyPrompt.replace(/\{(\w+)\}/g, (_m, k: string) => String(row.original[k] ?? ""))
+                      : null,
+                  })}
                   style={{
                     marginTop: "0.35rem", padding: 0, background: "none", border: "none",
                     color: "#130E30", cursor: "pointer", fontSize: "0.75rem", fontWeight: 600,
@@ -391,7 +528,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
         );
       },
     })),
-    ...(config.readOnly ? [] : [{
+    ...(config.readOnly || config.hideDelete ? [] : [{
       id: "actions",
       header: "Actions",
       enableSorting: false,
@@ -426,7 +563,10 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   // Fixed layout only when the config asks for widths, so tables that declare
   // none keep the browser's auto sizing.
   const hasWidths = config.listColumns.some((c) => c.width);
-  const widthFor = (id: string) => config.listColumns.find((c) => c.key === id)?.width;
+  // Generated columns are not in listColumns, so they carry their own widths.
+  const GENERATED_WIDTHS: Record<string, string> = { ai: "120px", actions: "80px" };
+  const widthFor = (id: string) =>
+    config.listColumns.find((c) => c.key === id)?.width ?? GENERATED_WIDTHS[id];
 
   return (
     <div>
@@ -537,7 +677,28 @@ export function GenericListPage({ config }: { config: TableConfig }) {
       {expanded && (
         <ExpandedCellModal
           title={expanded.title}
+          titleEditable={expanded.titleKey !== null}
           body={expanded.body}
+          prompt={expanded.prompt}
+          onSave={async (next) => {
+            const patch: Record<string, string> = {};
+            if (next.title !== undefined && expanded.titleKey) patch[expanded.titleKey] = next.title;
+            if (next.body !== undefined) patch[expanded.key] = next.body;
+            if (!Object.keys(patch).length) return;
+
+            const res = await fetch(`/admin/api/tables/${config.slug}/${expanded.id}`, {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(patch),
+            });
+            if (!res.ok) {
+              const { error } = await res.json().catch(() => ({ error: null }));
+              throw new Error(error || `Save failed (${res.status})`);
+            }
+            // Patch the row in place rather than refetching, so filters and
+            // sorting stay where the user left them.
+            setRows((cur) => cur.map((r) => (r.id === expanded.id ? { ...r, ...patch } : r)));
+          }}
           onClose={() => setExpanded(null)}
         />
       )}

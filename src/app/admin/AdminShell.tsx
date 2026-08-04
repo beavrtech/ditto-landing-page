@@ -11,6 +11,7 @@ const PLANNING = [
 ];
 
 const TABLES = [
+  { name: "Editorial Calendar", href: "/admin/editorial-calendar" },
   { name: "Blog Posts", href: "/admin/blog-posts" },
   { name: "News", href: "/admin/news" },
   { name: "Guides", href: "/admin/guides" },
