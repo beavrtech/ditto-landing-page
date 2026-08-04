@@ -21,11 +21,23 @@ const COLLECTION_FRAMEWORK_OPTIONS = [
   { value: "qhse", label: "QHSE" },
 ];
 
+export type ListColumn = {
+  key: string;
+  label: string;
+  // Renders this column's value as a second, muted line under the main one —
+  // e.g. a URL beneath a title, so both share one column.
+  sub?: string;
+  // CSS width for the column, e.g. "45%". Omit to let the table decide.
+  width?: string;
+  // Wrap instead of truncating at 60 characters. For long prose columns.
+  wrap?: boolean;
+};
+
 export type TableConfig = {
   slug: string; // URL slug: "blog-posts"
   table: string; // DB table: "blog_posts"
   displayName: string;
-  listColumns: { key: string; label: string }[];
+  listColumns: ListColumn[];
   orderBy: { column: string; ascending: boolean };
   fields: FieldDef[];
   // Browse-only: hides "+ New" and Delete, and drops the link into the editor.
@@ -375,13 +387,11 @@ export const TABLES: TableConfig[] = [
     displayName: "Editorial Calendar",
     readOnly: true,
     listColumns: [
-      { key: "sort_order", label: "#" },
-      { key: "property", label: "Property" },
-      { key: "title", label: "Title" },
-      { key: "page", label: "Page" },
-      { key: "author", label: "Author" },
-      { key: "status", label: "Status" },
-      { key: "notes", label: "Notes" },
+      { key: "sort_order", label: "#", width: "48px" },
+      { key: "property", label: "Property", width: "110px" },
+      { key: "title", label: "Title", sub: "page", width: "26%" },
+      { key: "author", label: "Author", width: "130px" },
+      { key: "notes", label: "Notes", width: "auto", wrap: true },
     ],
     orderBy: { column: "sort_order", ascending: true },
     fields: [
@@ -390,7 +400,6 @@ export const TABLES: TableConfig[] = [
       { name: "title", label: "Title", type: "readonly" },
       { name: "page", label: "Page", type: "readonly" },
       { name: "author", label: "Author", type: "readonly" },
-      { name: "status", label: "Status", type: "readonly" },
       { name: "notes", label: "Notes", type: "readonly" },
     ],
   },

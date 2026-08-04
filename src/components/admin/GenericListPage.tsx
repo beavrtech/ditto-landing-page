@@ -251,7 +251,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
     fetchRows();
   };
 
-  const formatCell = (row: Row, key: string) => {
+  const formatCell = (row: Row, key: string, wrap = false) => {
     const val = row[key];
     if (val === null || val === undefined) return "—";
     if (typeof val === "boolean") {
@@ -266,6 +266,8 @@ export function GenericListPage({ config }: { config: TableConfig }) {
     }
     if (isDateKey(key)) return cellText(val, key);
     const str = String(val);
+    // Wrapping columns show the whole value, preserving newlines.
+    if (wrap) return <span style={{ whiteSpace: "pre-wrap" }}>{str}</span>;
     return str.length > 60 ? str.slice(0, 60) + "..." : str;
   };
 
@@ -278,16 +280,29 @@ export function GenericListPage({ config }: { config: TableConfig }) {
       sortUndefined: "last",
       cell: ({ row }) => {
         const raw = row.original[col.key];
-        // Cells are truncated to 60 chars, so expose the full value on hover.
+        // Non-wrapping cells truncate at 60 chars, so expose the full value on hover.
         const full = raw === null || raw === undefined ? undefined : String(raw);
-        return i === 0 && !config.readOnly ? (
+        const subVal = col.sub ? row.original[col.sub] : undefined;
+        const main = i === 0 && !config.readOnly ? (
           <Link href={`/admin/${config.slug}/${row.original.id}`} style={{ color: "#130E30", textDecoration: "none", fontWeight: 500 }}>
-            {formatCell(row.original, col.key)}
+            {formatCell(row.original, col.key, col.wrap)}
           </Link>
         ) : (
-          <span title={full} style={{ color: col.key === "slug" ? "#666" : undefined, fontFamily: col.key === "slug" ? "monospace" : undefined, fontSize: col.key === "slug" ? "0.8rem" : undefined }}>
-            {formatCell(row.original, col.key)}
+          <span title={col.wrap ? undefined : full} style={{ color: col.key === "slug" ? "#666" : undefined, fontFamily: col.key === "slug" ? "monospace" : undefined, fontSize: col.key === "slug" ? "0.8rem" : undefined }}>
+            {formatCell(row.original, col.key, col.wrap)}
           </span>
+        );
+        if (subVal === null || subVal === undefined || subVal === "") return main;
+        return (
+          <div>
+            <div>{main}</div>
+            <div
+              title={String(subVal)}
+              style={{ marginTop: "0.2rem", color: "#888", fontFamily: "monospace", fontSize: "0.75rem", wordBreak: "break-all" }}
+            >
+              {String(subVal)}
+            </div>
+          </div>
         );
       },
     })),
@@ -323,6 +338,10 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   if (loading) return <p>Loading...</p>;
 
   const visibleRows = table.getRowModel().rows;
+  // Fixed layout only when the config asks for widths, so tables that declare
+  // none keep the browser's auto sizing.
+  const hasWidths = config.listColumns.some((c) => c.width);
+  const widthFor = (id: string) => config.listColumns.find((c) => c.key === id)?.width;
 
   return (
     <div>
@@ -346,7 +365,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
         )}
         </div>
       </div>
-      <table style={{ width: "100%", borderCollapse: "collapse", background: "white", borderRadius: "8px", overflow: "visible", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>
+      <table style={{ width: "100%", borderCollapse: "collapse", background: "white", borderRadius: "8px", overflow: "visible", boxShadow: "0 1px 3px rgba(0,0,0,0.1)", tableLayout: hasWidths ? "fixed" : "auto" }}>
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id} style={{ background: "#f9fafb", borderBottom: "1px solid #eee" }}>
@@ -361,6 +380,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
                       padding: "0.65rem 1rem", textAlign: isActions ? "right" : "left", fontSize: "0.75rem",
                       fontWeight: 600, color: "#666", textTransform: "uppercase",
                       position: "relative", whiteSpace: "nowrap",
+                      width: widthFor(header.column.id),
                     }}
                   >
                     <span style={{ display: "inline-flex", alignItems: "center", gap: "0.35rem" }}>
@@ -412,6 +432,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
                   style={{
                     padding: "0.75rem 1rem", fontSize: "0.875rem",
                     textAlign: cell.column.id === "actions" ? "right" : "left",
+                    verticalAlign: "top",
                   }}
                 >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
