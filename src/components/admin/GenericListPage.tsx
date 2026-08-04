@@ -225,6 +225,52 @@ function FilterPopover({ column, rows, onClose }: {
   );
 }
 
+function ExpandedCellModal({ title, body, onClose }: {
+  title: string;
+  body: string;
+  onClose: () => void;
+}) {
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [onClose]);
+
+  return (
+    <div
+      onClick={onClose}
+      style={{
+        position: "fixed", inset: 0, zIndex: 50, background: "rgba(19,14,48,0.45)",
+        display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem",
+      }}
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          background: "white", borderRadius: "10px", boxShadow: "0 8px 40px rgba(0,0,0,0.25)",
+          width: "min(720px, 100%)", maxHeight: "80vh", display: "flex", flexDirection: "column",
+        }}
+      >
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", padding: "1.25rem 1.5rem", borderBottom: "1px solid #eee" }}>
+          <h2 style={{ margin: 0, fontSize: "1rem", fontWeight: 600, lineHeight: 1.4 }}>{title}</h2>
+          <button
+            onClick={onClose}
+            aria-label="Close"
+            style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1.25rem", lineHeight: 1, color: "#666", padding: 0 }}
+          >
+            &times;
+          </button>
+        </div>
+        <div style={{ padding: "1.25rem 1.5rem", overflowY: "auto", fontSize: "0.875rem", lineHeight: 1.6, whiteSpace: "pre-wrap" }}>
+          {body}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function GenericListPage({ config }: { config: TableConfig }) {
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
@@ -236,6 +282,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
   const [openFilter, setOpenFilter] = useState<string | null>(null);
+  const [expanded, setExpanded] = useState<{ title: string; body: string } | null>(null);
 
   const fetchRows = async () => {
     const res = await fetch(`/admin/api/tables/${config.slug}`);
@@ -271,6 +318,9 @@ export function GenericListPage({ config }: { config: TableConfig }) {
     return str.length > 60 ? str.slice(0, 60) + "..." : str;
   };
 
+  const rowLabel = (row: Row) =>
+    String(row.title || row.name_en || row.name || row.slug || row.id);
+
   const columns = useMemo<ColumnDef<Row>[]>(() => [
     ...config.listColumns.map((col, i): ColumnDef<Row> => ({
       accessorKey: col.key,
@@ -283,6 +333,37 @@ export function GenericListPage({ config }: { config: TableConfig }) {
         // Non-wrapping cells truncate at 60 chars, so expose the full value on hover.
         const full = raw === null || raw === undefined ? undefined : String(raw);
         const subVal = col.sub ? row.original[col.sub] : undefined;
+
+        if (col.clamp && full) {
+          // Approximate whether the text overflows the clamp rather than
+          // measuring the DOM: either it has more lines than the clamp allows,
+          // or it is long enough that it certainly wraps past them.
+          const overflows =
+            full.split("\n").length > col.clamp || full.length > col.clamp * 55;
+          return (
+            <div>
+              <div
+                style={{
+                  display: "-webkit-box", WebkitLineClamp: col.clamp, WebkitBoxOrient: "vertical",
+                  overflow: "hidden", whiteSpace: "pre-wrap", lineHeight: 1.5,
+                }}
+              >
+                {full}
+              </div>
+              {overflows && (
+                <button
+                  onClick={() => setExpanded({ title: rowLabel(row.original), body: full })}
+                  style={{
+                    marginTop: "0.35rem", padding: 0, background: "none", border: "none",
+                    color: "#130E30", cursor: "pointer", fontSize: "0.75rem", fontWeight: 600,
+                  }}
+                >
+                  Show more
+                </button>
+              )}
+            </div>
+          );
+        }
         const main = i === 0 && !config.readOnly ? (
           <Link href={`/admin/${config.slug}/${row.original.id}`} style={{ color: "#130E30", textDecoration: "none", fontWeight: 500 }}>
             {formatCell(row.original, col.key, col.wrap)}
@@ -449,6 +530,13 @@ export function GenericListPage({ config }: { config: TableConfig }) {
           )}
         </tbody>
       </table>
+      {expanded && (
+        <ExpandedCellModal
+          title={expanded.title}
+          body={expanded.body}
+          onClose={() => setExpanded(null)}
+        />
+      )}
     </div>
   );
 }

@@ -31,6 +31,9 @@ export type ListColumn = {
   width?: string;
   // Wrap instead of truncating at 60 characters. For long prose columns.
   wrap?: boolean;
+  // Clamp a wrapping column to this many lines and offer a modal with the full
+  // text. Requires `wrap`.
+  clamp?: number;
 };
 
 export type TableConfig = {
@@ -391,7 +394,7 @@ export const TABLES: TableConfig[] = [
       { key: "property", label: "Property", width: "110px" },
       { key: "title", label: "Title", sub: "page", width: "26%" },
       { key: "author", label: "Author", width: "130px" },
-      { key: "notes", label: "Notes", width: "auto", wrap: true },
+      { key: "notes", label: "Notes", width: "auto", wrap: true, clamp: 4 },
     ],
     orderBy: { column: "sort_order", ascending: true },
     fields: [
