@@ -27,6 +27,9 @@ export type ListColumn = {
   // Renders this column's value as a second, muted line under the main one —
   // e.g. a URL beneath a title, so both share one column.
   sub?: string;
+  // Set the sub line in monospace and allow it to break anywhere. For paths and
+  // URLs; leave off for ordinary words.
+  subMono?: boolean;
   // CSS width for the column, e.g. "45%". Omit to let the table decide.
   width?: string;
   // Wrap instead of truncating at 60 characters. For long prose columns.
@@ -391,8 +394,8 @@ export const TABLES: TableConfig[] = [
     readOnly: true,
     listColumns: [
       { key: "sort_order", label: "#", width: "48px" },
-      { key: "property", label: "Property", width: "110px" },
-      { key: "title", label: "Title", sub: "page", width: "26%" },
+      { key: "property", label: "Property", sub: "work_type", width: "130px" },
+      { key: "title", label: "Title", sub: "page", subMono: true, width: "26%" },
       { key: "author", label: "Author", width: "130px" },
       { key: "notes", label: "Notes", width: "auto", wrap: true, clamp: 4 },
     ],
@@ -400,6 +403,7 @@ export const TABLES: TableConfig[] = [
     fields: [
       { name: "sort_order", label: "Order", type: "readonly" },
       { name: "property", label: "Property", type: "readonly" },
+      { name: "work_type", label: "Type", type: "readonly" },
       { name: "title", label: "Title", type: "readonly" },
       { name: "page", label: "Page", type: "readonly" },
       { name: "author", label: "Author", type: "readonly" },

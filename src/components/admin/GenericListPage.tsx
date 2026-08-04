@@ -379,7 +379,11 @@ export function GenericListPage({ config }: { config: TableConfig }) {
             <div>{main}</div>
             <div
               title={String(subVal)}
-              style={{ marginTop: "0.2rem", color: "#888", fontFamily: "monospace", fontSize: "0.75rem", wordBreak: "break-all" }}
+              style={{
+                marginTop: "0.2rem", color: "#888", fontSize: "0.75rem",
+                fontFamily: col.subMono ? "monospace" : undefined,
+                wordBreak: col.subMono ? "break-all" : undefined,
+              }}
             >
               {String(subVal)}
             </div>
