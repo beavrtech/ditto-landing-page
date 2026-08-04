@@ -28,6 +28,10 @@ export type TableConfig = {
   listColumns: { key: string; label: string }[];
   orderBy: { column: string; ascending: boolean };
   fields: FieldDef[];
+  // Browse-only: hides "+ New" and Delete, and drops the link into the editor.
+  // The API routes stay writable, so this is a UI affordance rather than a
+  // permission boundary.
+  readOnly?: boolean;
 };
 
 export const TABLES: TableConfig[] = [
@@ -363,6 +367,31 @@ export const TABLES: TableConfig[] = [
       { name: "seo_meta_desc", label: "Meta Description", type: "textarea", locale: true },
       { name: "published", label: "Published", type: "boolean" },
       { name: "archived", label: "Archived", type: "boolean" },
+    ],
+  },
+  {
+    slug: "editorial-calendar",
+    table: "editorial_calendar",
+    displayName: "Editorial Calendar",
+    readOnly: true,
+    listColumns: [
+      { key: "sort_order", label: "#" },
+      { key: "property", label: "Property" },
+      { key: "title", label: "Title" },
+      { key: "page", label: "Page" },
+      { key: "author", label: "Author" },
+      { key: "status", label: "Status" },
+      { key: "notes", label: "Notes" },
+    ],
+    orderBy: { column: "sort_order", ascending: true },
+    fields: [
+      { name: "sort_order", label: "Order", type: "readonly" },
+      { name: "property", label: "Property", type: "readonly" },
+      { name: "title", label: "Title", type: "readonly" },
+      { name: "page", label: "Page", type: "readonly" },
+      { name: "author", label: "Author", type: "readonly" },
+      { name: "status", label: "Status", type: "readonly" },
+      { name: "notes", label: "Notes", type: "readonly" },
     ],
   },
 ];

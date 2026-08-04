@@ -276,18 +276,22 @@ export function GenericListPage({ config }: { config: TableConfig }) {
       header: col.label,
       filterFn: columnFilterFn,
       sortUndefined: "last",
-      cell: ({ row }) =>
-        i === 0 ? (
+      cell: ({ row }) => {
+        const raw = row.original[col.key];
+        // Cells are truncated to 60 chars, so expose the full value on hover.
+        const full = raw === null || raw === undefined ? undefined : String(raw);
+        return i === 0 && !config.readOnly ? (
           <Link href={`/admin/${config.slug}/${row.original.id}`} style={{ color: "#130E30", textDecoration: "none", fontWeight: 500 }}>
             {formatCell(row.original, col.key)}
           </Link>
         ) : (
-          <span style={{ color: col.key === "slug" ? "#666" : undefined, fontFamily: col.key === "slug" ? "monospace" : undefined, fontSize: col.key === "slug" ? "0.8rem" : undefined }}>
+          <span title={full} style={{ color: col.key === "slug" ? "#666" : undefined, fontFamily: col.key === "slug" ? "monospace" : undefined, fontSize: col.key === "slug" ? "0.8rem" : undefined }}>
             {formatCell(row.original, col.key)}
           </span>
-        ),
+        );
+      },
     })),
-    {
+    ...(config.readOnly ? [] : [{
       id: "actions",
       header: "Actions",
       enableSorting: false,
@@ -300,7 +304,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
           Delete
         </button>
       ),
-    },
+    } as ColumnDef<Row>]),
   ], [config]);
 
   const table = useReactTable({
@@ -332,12 +336,14 @@ export function GenericListPage({ config }: { config: TableConfig }) {
             onChange={(e) => setGlobalFilter(e.target.value)}
             style={{ padding: "0.5rem 0.75rem", border: "1px solid #ddd", borderRadius: "6px", fontSize: "0.875rem", width: "220px" }}
           />
-        <Link
-          href={`/admin/${config.slug}/new`}
-          style={{ padding: "0.5rem 1rem", background: "#130E30", color: "white", borderRadius: "6px", textDecoration: "none", fontSize: "0.875rem" }}
-        >
-          + New
-        </Link>
+        {!config.readOnly && (
+          <Link
+            href={`/admin/${config.slug}/new`}
+            style={{ padding: "0.5rem 1rem", background: "#130E30", color: "white", borderRadius: "6px", textDecoration: "none", fontSize: "0.875rem" }}
+          >
+            + New
+          </Link>
+        )}
         </div>
       </div>
       <table style={{ width: "100%", borderCollapse: "collapse", background: "white", borderRadius: "8px", overflow: "visible", boxShadow: "0 1px 3px rgba(0,0,0,0.1)" }}>

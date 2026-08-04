@@ -24,7 +24,15 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (sessionStorage.getItem("admin_authed") === "1") setAuthed(true);
+    // localStorage rather than sessionStorage so the login survives closing the
+    // tab: bookmarking a deep link like /admin/editorial-calendar then opens
+    // straight onto that page instead of the password gate.
+    if (
+      localStorage.getItem("admin_authed") === "1" ||
+      sessionStorage.getItem("admin_authed") === "1"
+    ) {
+      setAuthed(true);
+    }
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -35,7 +43,7 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
       body: JSON.stringify({ password }),
     });
     if (res.ok) {
-      sessionStorage.setItem("admin_authed", "1");
+      localStorage.setItem("admin_authed", "1");
       setAuthed(true);
       setError(false);
     } else {
