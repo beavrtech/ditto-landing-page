@@ -4,6 +4,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+// What is coming, as opposed to what is published. Read-only, and kept in its
+// own group so it does not read as another editable content table.
+const PLANNING = [
+  { name: "Editorial Calendar", href: "/admin/editorial-calendar" },
+];
+
 const TABLES = [
   { name: "Blog Posts", href: "/admin/blog-posts" },
   { name: "News", href: "/admin/news" },
@@ -75,6 +81,25 @@ function PasswordGate({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+function NavLink({ name, href, isActive }: { name: string; href: string; isActive: boolean }) {
+  return (
+    <Link
+      href={href}
+      style={{
+        display: "block",
+        padding: "0.5rem 1.5rem",
+        color: isActive ? "white" : "rgba(255,255,255,0.6)",
+        textDecoration: "none",
+        fontSize: "0.875rem",
+        background: isActive ? "rgba(255,255,255,0.1)" : "transparent",
+        borderLeft: isActive ? "3px solid white" : "3px solid transparent",
+      }}
+    >
+      {name}
+    </Link>
+  );
+}
+
 export default function AdminShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
@@ -88,27 +113,31 @@ export default function AdminShell({ children }: { children: React.ReactNode }) 
               Ditto Admin
             </Link>
           </div>
-          <div style={{ padding: "1rem 0" }}>
-            {TABLES.map((table) => {
-              const isActive = pathname.startsWith(table.href);
-              return (
-                <Link
-                  key={table.href}
-                  href={table.href}
-                  style={{
-                    display: "block",
-                    padding: "0.5rem 1.5rem",
-                    color: isActive ? "white" : "rgba(255,255,255,0.6)",
-                    textDecoration: "none",
-                    fontSize: "0.875rem",
-                    background: isActive ? "rgba(255,255,255,0.1)" : "transparent",
-                    borderLeft: isActive ? "3px solid white" : "3px solid transparent",
-                  }}
-                >
-                  {table.name}
-                </Link>
-              );
-            })}
+          <div style={{ padding: "1rem 0 0" }}>
+            {PLANNING.map((table) => (
+              <NavLink
+                key={table.href}
+                name={table.name}
+                href={table.href}
+                isActive={pathname.startsWith(table.href)}
+              />
+            ))}
+          </div>
+          <div
+            style={{
+              margin: "1rem 1.5rem",
+              borderTop: "1px solid rgba(255,255,255,0.1)",
+            }}
+          />
+          <div style={{ padding: "0 0 1rem" }}>
+            {TABLES.map((table) => (
+              <NavLink
+                key={table.href}
+                name={table.name}
+                href={table.href}
+                isActive={pathname.startsWith(table.href)}
+              />
+            ))}
           </div>
         </nav>
         {/* Main content */}
