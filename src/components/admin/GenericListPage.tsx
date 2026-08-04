@@ -225,18 +225,22 @@ function FilterPopover({ column, rows, onClose }: {
   );
 }
 
-function ExpandedCellModal({ title, body, prompt, onSave, onClose }: {
+function ExpandedCellModal({ title, titleEditable, body, prompt, onSave, onClose }: {
   title: string;
+  titleEditable: boolean;
   body: string;
   prompt: string | null;
-  onSave: (value: string) => Promise<void>;
+  onSave: (next: { title?: string; body?: string }) => Promise<void>;
   onClose: () => void;
 }) {
+  const [titleValue, setTitleValue] = useState(title);
   const [value, setValue] = useState(body);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
-  const dirty = value !== body;
+  const titleDirty = titleEditable && titleValue !== title;
+  const bodyDirty = value !== body;
+  const dirty = titleDirty || bodyDirty;
 
   // Closing with unsaved edits would lose them silently, so confirm first.
   const requestClose = useCallback(() => {
@@ -256,7 +260,11 @@ function ExpandedCellModal({ title, body, prompt, onSave, onClose }: {
     setSaving(true);
     setError(null);
     try {
-      await onSave(value);
+      // Send only what changed, so an untouched field is never rewritten.
+      await onSave({
+        ...(titleDirty ? { title: titleValue } : {}),
+        ...(bodyDirty ? { body: value } : {}),
+      });
       onClose();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Save failed");
@@ -294,7 +302,23 @@ function ExpandedCellModal({ title, body, prompt, onSave, onClose }: {
         }}
       >
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", padding: "1.25rem 1.5rem", borderBottom: "1px solid #eee" }}>
-          <h2 style={{ margin: 0, fontSize: "1rem", fontWeight: 600, lineHeight: 1.4 }}>{title}</h2>
+          {titleEditable ? (
+            <input
+              value={titleValue}
+              onChange={(e) => setTitleValue(e.target.value)}
+              aria-label="Title"
+              style={{
+                flex: 1, padding: "0.4rem 0.5rem", border: "1px solid transparent",
+                borderRadius: "6px", fontSize: "1rem", fontWeight: 600, lineHeight: 1.4,
+                fontFamily: "inherit", color: "#130E30", background: "#f7f7f8",
+                boxSizing: "border-box", minWidth: 0,
+              }}
+              onFocus={(e) => { e.target.style.borderColor = "#ddd"; e.target.style.background = "white"; }}
+              onBlur={(e) => { e.target.style.borderColor = "transparent"; e.target.style.background = "#f7f7f8"; }}
+            />
+          ) : (
+            <h2 style={{ margin: 0, fontSize: "1rem", fontWeight: 600, lineHeight: 1.4 }}>{title}</h2>
+          )}
           <button
             onClick={requestClose}
             aria-label="Close"
@@ -375,7 +399,10 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   const [globalFilter, setGlobalFilter] = useState("");
   const [openFilter, setOpenFilter] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<
-    { id: string; key: string; title: string; body: string; prompt: string | null } | null
+    {
+      id: string; key: string; body: string; prompt: string | null;
+      title: string; titleKey: string | null;
+    } | null
   >(null);
 
   const fetchRows = async () => {
@@ -412,8 +439,15 @@ export function GenericListPage({ config }: { config: TableConfig }) {
     return str.length > 60 ? str.slice(0, 60) + "..." : str;
   };
 
-  const rowLabel = (row: Row) =>
-    String(row.title || row.name_en || row.name || row.slug || row.id);
+  // The column a row's label comes from, so the modal can write it back.
+  // Null when we fall through to the id, which is not editable.
+  const rowLabelKey = (row: Row) =>
+    ["title", "name_en", "name", "slug"].find((k) => row[k]) ?? null;
+
+  const rowLabel = (row: Row) => {
+    const key = rowLabelKey(row);
+    return String(key ? row[key] : row.id);
+  };
 
   const columns = useMemo<ColumnDef<Row>[]>(() => [
     ...config.listColumns.map((col, i): ColumnDef<Row> => ({
@@ -449,6 +483,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
                   onClick={() => setExpanded({
                     id: row.original.id,
                     key: col.key,
+                    titleKey: rowLabelKey(row.original),
                     title: rowLabel(row.original),
                     body: full,
                     prompt: config.copyPrompt
@@ -642,13 +677,19 @@ export function GenericListPage({ config }: { config: TableConfig }) {
       {expanded && (
         <ExpandedCellModal
           title={expanded.title}
+          titleEditable={expanded.titleKey !== null}
           body={expanded.body}
           prompt={expanded.prompt}
-          onSave={async (value) => {
+          onSave={async (next) => {
+            const patch: Record<string, string> = {};
+            if (next.title !== undefined && expanded.titleKey) patch[expanded.titleKey] = next.title;
+            if (next.body !== undefined) patch[expanded.key] = next.body;
+            if (!Object.keys(patch).length) return;
+
             const res = await fetch(`/admin/api/tables/${config.slug}/${expanded.id}`, {
               method: "PUT",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ [expanded.key]: value }),
+              body: JSON.stringify(patch),
             });
             if (!res.ok) {
               const { error } = await res.json().catch(() => ({ error: null }));
@@ -656,9 +697,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
             }
             // Patch the row in place rather than refetching, so filters and
             // sorting stay where the user left them.
-            setRows((cur) =>
-              cur.map((r) => (r.id === expanded.id ? { ...r, [expanded.key]: value } : r))
-            );
+            setRows((cur) => cur.map((r) => (r.id === expanded.id ? { ...r, ...patch } : r)));
           }}
           onClose={() => setExpanded(null)}
         />
