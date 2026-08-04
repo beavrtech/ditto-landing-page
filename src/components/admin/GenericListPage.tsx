@@ -283,6 +283,7 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   const [globalFilter, setGlobalFilter] = useState("");
   const [openFilter, setOpenFilter] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<{ title: string; body: string } | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   const fetchRows = async () => {
     const res = await fetch(`/admin/api/tables/${config.slug}`);
@@ -391,6 +392,44 @@ export function GenericListPage({ config }: { config: TableConfig }) {
         );
       },
     })),
+    ...(config.copyPrompt ? [{
+      id: "ai",
+      header: "AI",
+      enableSorting: false,
+      enableColumnFilter: false,
+      cell: ({ row }) => {
+        const prompt = (config.copyPrompt || "").replace(
+          /\{(\w+)\}/g,
+          (_m, key: string) => String(row.original[key] ?? "")
+        );
+        const done = copiedId === row.original.id;
+        return (
+          <button
+            onClick={async () => {
+              try {
+                await navigator.clipboard.writeText(prompt);
+                setCopiedId(row.original.id);
+                setTimeout(() => setCopiedId((cur) => (cur === row.original.id ? null : cur)), 1500);
+              } catch {
+                // Clipboard needs a secure context; surface the prompt so the
+                // row is still usable over plain http.
+                window.prompt("Copy this prompt:", prompt);
+              }
+            }}
+            title={prompt}
+            style={{
+              padding: "0.3rem 0.6rem", borderRadius: "6px", cursor: "pointer",
+              fontSize: "0.75rem", fontWeight: 500, whiteSpace: "nowrap",
+              border: `1px solid ${done ? "#16a34a" : "#ddd"}`,
+              background: done ? "#dcfce7" : "white",
+              color: done ? "#166534" : "#130E30",
+            }}
+          >
+            {done ? "Copied" : "Iterate with AI"}
+          </button>
+        );
+      },
+    } as ColumnDef<Row>] : []),
     ...(config.readOnly ? [] : [{
       id: "actions",
       header: "Actions",
@@ -405,7 +444,9 @@ export function GenericListPage({ config }: { config: TableConfig }) {
         </button>
       ),
     } as ColumnDef<Row>]),
-  ], [config]);
+    // copiedId is a dependency: without it the memo holds a stale closure and
+    // the button never flips to "Copied".
+  ], [config, copiedId]);
 
   const table = useReactTable({
     data: rows,
@@ -426,7 +467,10 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   // Fixed layout only when the config asks for widths, so tables that declare
   // none keep the browser's auto sizing.
   const hasWidths = config.listColumns.some((c) => c.width);
-  const widthFor = (id: string) => config.listColumns.find((c) => c.key === id)?.width;
+  // Generated columns are not in listColumns, so they carry their own widths.
+  const GENERATED_WIDTHS: Record<string, string> = { ai: "120px", actions: "80px" };
+  const widthFor = (id: string) =>
+    config.listColumns.find((c) => c.key === id)?.width ?? GENERATED_WIDTHS[id];
 
   return (
     <div>

@@ -1,4 +1,4 @@
-export type FieldType = "text" | "textarea" | "richtext" | "date" | "boolean" | "select" | "multiselect" | "readonly" | "image";
+export type FieldType = "text" | "textarea" | "richtext" | "date" | "boolean" | "number" | "select" | "multiselect" | "readonly" | "image";
 
 export type FieldDef = {
   name: string;
@@ -50,6 +50,10 @@ export type TableConfig = {
   // The API routes stay writable, so this is a UI affordance rather than a
   // permission boundary.
   readOnly?: boolean;
+  // When set, every row gets an "Iterate with AI" button that copies this
+  // template to the clipboard. `{id}` and `{title}` are substituted from the
+  // row; any other column key in braces works too.
+  copyPrompt?: string;
 };
 
 export const TABLES: TableConfig[] = [
@@ -391,7 +395,7 @@ export const TABLES: TableConfig[] = [
     slug: "editorial-calendar",
     table: "editorial_calendar",
     displayName: "Editorial Calendar",
-    readOnly: true,
+    copyPrompt: "Iterate on editorial calendar item {id} ({title}), ",
     listColumns: [
       { key: "sort_order", label: "#", width: "48px" },
       { key: "property", label: "Property", sub: "work_type", width: "130px" },
@@ -401,13 +405,30 @@ export const TABLES: TableConfig[] = [
     ],
     orderBy: { column: "sort_order", ascending: true },
     fields: [
-      { name: "sort_order", label: "Order", type: "readonly" },
-      { name: "property", label: "Property", type: "readonly" },
-      { name: "work_type", label: "Type", type: "readonly" },
-      { name: "title", label: "Title", type: "readonly" },
-      { name: "page", label: "Page", type: "readonly" },
-      { name: "author", label: "Author", type: "readonly" },
-      { name: "notes", label: "Notes", type: "readonly" },
+      { name: "sort_order", label: "Order", type: "number", required: true },
+      {
+        name: "property",
+        label: "Property",
+        type: "select",
+        required: true,
+        options: [
+          { value: "the_scope", label: "The Scope" },
+          { value: "ditto_site", label: "Ditto site" },
+        ],
+      },
+      {
+        name: "work_type",
+        label: "Type",
+        type: "select",
+        options: [
+          { value: "New", label: "New" },
+          { value: "Improvement", label: "Improvement" },
+        ],
+      },
+      { name: "title", label: "Title", type: "text", required: true },
+      { name: "page", label: "Page", type: "text" },
+      { name: "author", label: "Author", type: "text" },
+      { name: "notes", label: "Notes", type: "textarea" },
     ],
   },
 ];

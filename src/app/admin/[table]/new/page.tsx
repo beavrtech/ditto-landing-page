@@ -13,7 +13,7 @@ export default function NewItemPage() {
   // Build empty object from field config
   const empty: Record<string, any> = {};
   const emptyValue = (type: string) =>
-    type === "boolean" ? false : type === "multiselect" ? [] : "";
+    type === "boolean" ? false : type === "multiselect" ? [] : type === "number" ? null : "";
   for (const field of config.fields) {
     if (field.locale) {
       empty[`${field.name}_en`] = emptyValue(field.type);
