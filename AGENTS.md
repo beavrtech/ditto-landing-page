@@ -12,6 +12,9 @@ This is a Next.js 16 (Turbopack) marketing site for "Ditto" (trustditto.com) wit
 ### On task completion
 - Always send the preview URL back to Slack when a task is done.
 
+### When someone corrects an article
+Whenever the user makes a manual correction to an article draft (blog or The Scope), or gives a suggestion about how an article should read, treat it as a candidate **general rule**, not just a one-off edit. Apply the fix, then **ask the user whether to generalize it** by writing it into the relevant standing instruction so it holds for every future article — the `scope-article` or `ditto-blog-optimisation` skill, the editorial docs under `content/media/`, or this file. Do not fold it in silently and do not skip the ask.
+
 ### Required env to run anything
 `src/lib/supabase.ts` calls `createClient()` at module load, so **every page that imports `lib/cms` crashes with a 500 ("supabaseUrl is required") unless `NEXT_PUBLIC_SUPABASE_URL` is set**. Create a gitignored `.env.local` (not committed, not in fresh VMs) with at minimum:
 - `NEXT_PUBLIC_SUPABASE_URL` — the project URL is public: `https://xrbgrzbifkchbjimewvu.supabase.co` (also hardcoded in `next.config.ts`).
