@@ -106,11 +106,14 @@ other. Give each branch only its own angle, its own sources, and its own skill.
   3. **Cold-read the draft against `content/media/WRITING-CRAFT.md`** before
      handing it over, in both languages. The `ditto-blog-optimisation` skill
      lives outside this repo and does not carry these craft rules, so the blog
-     gets its coherence-and-clarity pass here: no hollow assertions, no object
-     drift, flagged figure reuse (§A), the sentence-level fixes (§B), and the
-     reviewer protocol (minimum effective edit, preserve the writer's voice,
-     name-quote-fix rather than rewrite). Fix what is right, keep the blog's
-     promotional register.
+     gets its coherence-and-clarity and anti-slop pass here: no hollow
+     assertions, no object drift, flagged figure reuse (§A), the sentence-level
+     fixes (§B), the banned-word and banned-pattern list and the Openers rule
+     (§C — these are universal, not Scope-specific, so a promotional opener
+     still cannot use the "most people think, but actually" straw-man shape),
+     and the reviewer protocol (minimum effective edit, preserve the writer's
+     voice, name-quote-fix rather than rewrite). Fix what is right, keep the
+     blog's promotional register.
 
 - **The Scope branch → produces the article `.mdx`.**
   1. **Load the `scope-article` skill** and follow it end to end. It is the
@@ -128,9 +131,18 @@ about a named third party, accurate regulatory statements, no em dashes, US
 English in EN, acronyms spelled out (`EDITORIAL-LINE.md` §6). Both branches also
 keep the **cross-surface craft rules** in `content/media/WRITING-CRAFT.md`:
 logical coherence (no hollow assertions, no object drift, flag reused figures),
-the sentence-level fixes, and the reviewer protocol. Those rules are about logic
-and clarity, not register, so they hold on the promotional blog exactly as they
-do on the restrained Scope.
+the sentence-level fixes, the anti-slop vocabulary and patterns (banned words,
+banned rhetorical patterns, the Openers rule — §C), and the reviewer protocol.
+Those rules are about logic, clarity and not reading as machine-written, not
+register, so they hold on the promotional blog exactly as they do on the
+restrained Scope. In particular: the blog draft's opening sentence is subject
+to the same Openers rule as a Scope article — no "it's not X, it's Y" binary
+contrast, no invented-consensus straw man, no throat-clearing. Open on
+something concrete instead. That same "it's not X, it's Y" binary-contrast
+shape (WRITING-CRAFT.md §C2, "Binary contrast" and "Negative listing") is not
+confined to the opener — it creeps into headings and body sentences just as
+easily, so watch for it there too while drafting, not only when the cold read
+catches it.
 
 ### 4. Reconvene and deliver
 

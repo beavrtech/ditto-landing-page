@@ -31,14 +31,17 @@ change.
    it reads.
 2. `content/media/TONE-OF-VOICE.md` — **the editorial contract**: audience, voice,
    non-negotiables (no invented statistics, no fabricated sources, no
-   greenwashing, no guaranteed outcomes), the banned-word and banned-pattern
-   lists, mechanics (no em dashes, US English in EN), bilingual rules, and the
-   structured-data entity conventions.
+   greenwashing, no guaranteed outcomes), Scope-specific fundamentals, mechanics
+   (no em dashes, US English in EN), bilingual rules, and the structured-data
+   entity conventions. The banned-word and banned-pattern lists and the Openers
+   rule are universal, not Scope-specific, and now live in `WRITING-CRAFT.md`
+   §C (see next).
 3. `content/media/WRITING-CRAFT.md` — the **cross-surface craft rules**: logical
-   coherence (no hollow assertions, no object drift, flag reused figures),
-   the sentence-level fixes, and the reviewer protocol. These apply to the Ditto
-   blog too, so they live in their own file; TONE-OF-VOICE adds The Scope's
-   register on top.
+   coherence (no hollow assertions, no object drift, flag reused figures), the
+   sentence-level fixes, the anti-slop vocabulary and patterns (banned words,
+   banned rhetorical patterns, the Openers rule), and the reviewer protocol.
+   These apply to the Ditto blog too, so they live in their own file;
+   TONE-OF-VOICE adds The Scope's register on top.
 4. `content/media/authoring/FILE-FORMAT.md` — the exact frontmatter contract and
    the locale-marker body format.
 5. `content/media/authoring/TAXONOMY.md` — how to choose `section`, `tags`,
@@ -91,7 +94,11 @@ Read an existing article, for example
    readership and most of the authors work in it, and the regulatory vocabulary
    is French before it is anything else. Finish it before translating, structure,
    edit and self-check included. Translating a draft you have not settled means
-   editing the same sentence twice in two languages.
+   editing the same sentence twice in two languages. While drafting, watch for
+   the negation-contrast construction ("ce n'est pas X, c'est Y" / "it's not X,
+   it's Y", WRITING-CRAFT.md §C2) creeping into headings and body sentences too,
+   not only the opening line — it is banned everywhere in the piece, not just
+   there.
 
 6. **Then translate it into English**, working from the finished French with this
    instruction:
@@ -132,8 +139,9 @@ Read an existing article, for example
    its locale, and the editorial contract (EDITORIAL-LINE.md, TONE-OF-VOICE.md,
    WRITING-CRAFT.md, AUTHOR-STYLES.md), and ask it to critique that one language:
    does every sentence mean something (WRITING-CRAFT §A: no hollow assertion, no
-   object drift, no unflagged reuse), is any fact stated twice, does anything
-   violate the tone of voice or the author's register. The reviewer follows the
+   object drift, no unflagged reuse), does it use a banned word or pattern or open
+   on an invented straw man (WRITING-CRAFT §C), is any fact stated twice, does
+   anything violate the tone of voice or the author's register. The reviewer follows the
    protocol in WRITING-CRAFT.md ("For the reviewer"): minimum effective edit,
    preserve the author's voice, and for each issue name the pattern, quote the
    line and give one short fix rather than rewriting the draft. Run the French and English critiques
@@ -143,10 +151,10 @@ Read an existing article, for example
    finished; the flaws it catches are precisely the ones the drafting session
    cannot see.
 
-9. **Self-check against the checklist** at the end of TONE-OF-VOICE.md, honestly.
-   The anti-slop rules are the point of that file, not decoration: no banned
-   words, no "it's not X, it's Y", no throat-clearing, no unexplained
-   significance, no em dashes.
+9. **Self-check against the checklist** at the end of TONE-OF-VOICE.md, honestly,
+   and against WRITING-CRAFT.md §C. The anti-slop rules are the point of both
+   files, not decoration: no banned words, no "it's not X, it's Y", no
+   throat-clearing, no unexplained significance, no em dashes.
 
 10. **Verify it renders.** Run the dev server (`npm run dev`, port 3456) and load
    both `/en/media/<url>` and `/fr/media/<url>`. A frontmatter violation shows as a

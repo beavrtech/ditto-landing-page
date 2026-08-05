@@ -48,7 +48,7 @@ These are in the prompt, but the model does not always obey. Check the result ag
 
 - **No text.** No signage, labels, screens, packaging copy, numbers. Image models garble lettering, it cannot be translated, and it is unreadable at card size.
 - **No logos or brand marks**, real or invented, and nothing identifiable as a specific real company, product or person.
-- **No conceptual props, and no stock-photo behaviour.** No handshakes, lightbulbs, scales of justice, chess pieces, globes, green leaves standing in for sustainability; no high-fives, no smiling at a laptop, no gesturing at a chart. These are the visual equivalent of the banned words in [TONE-OF-VOICE.md](../TONE-OF-VOICE.md), and they fail for the same reason.
+- **No conceptual props, and no stock-photo behaviour.** No handshakes, lightbulbs, scales of justice, chess pieces, globes, green leaves standing in for sustainability; no high-fives, no smiling at a laptop, no gesturing at a chart. These are the visual equivalent of the banned words in [WRITING-CRAFT.md](../WRITING-CRAFT.md) §C, and they fail for the same reason.
 - **Nothing that implies an outcome** the article does not support: no certificate being awarded, no checkmark, no trophy.
 
 ### Framing

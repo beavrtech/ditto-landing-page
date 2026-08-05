@@ -4,11 +4,11 @@ The Scope is Ditto's media. It is not the Ditto blog with a new coat of paint: i
 
 This document is the source of truth for how The Scope articles are written. It merges three things: Ditto's brand voice, Ditto's resource-writing rules, and a hard anti-AI-slop standard. When two rules collide, the guardrails in "Non-negotiables" win.
 
-The cross-surface writing-craft rules, the ones about logical coherence and sentence-level clarity that apply to the Ditto blog just as much as to The Scope, live in [WRITING-CRAFT.md](./WRITING-CRAFT.md). Read it alongside this file: it carries the craft, this file adds The Scope's register and guardrails on top.
+The cross-surface writing-craft rules — logical coherence, sentence-level clarity, and the anti-slop vocabulary and patterns (banned words, banned rhetorical patterns, the Openers rule) — apply to the Ditto blog just as much as to The Scope, and live in [WRITING-CRAFT.md](./WRITING-CRAFT.md). Read it alongside this file: it carries the craft and the anti-slop rules, this file adds The Scope's register and guardrails on top.
 
 What The Scope publishes and why, which pieces belong here rather than on the Ditto blog, and the reference-versus-feature split are in [EDITORIAL-LINE.md](./EDITORIAL-LINE.md). Read it first when the question is whether an article should exist; read this one when the question is how to write it.
 
-**This file governs The Scope, and only The Scope.** The Ditto blog is Ditto speaking as Ditto and is allowed to be frankly promotional, with its own narrower set of hard rules. Do not hold a blog post to the standard below. See [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) §6, "The standard travels with the surface".
+**This file governs The Scope, and only The Scope.** The Ditto blog is Ditto speaking as Ditto and is allowed to be frankly promotional, with its own narrower set of hard rules. Do not hold a blog post to the Scope-specific standard below: its voice mix, its source bar, its restraint on CTAs and Ditto mentions. The universal anti-slop rules this file used to carry in full — banned AI-tell words, banned rhetorical patterns, and the Openers rule — are not about register, so they now live in [WRITING-CRAFT.md](./WRITING-CRAFT.md) §C and bind on the blog exactly as they do here. See [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) §6, "The standard travels with the surface".
 
 ---
 
@@ -56,58 +56,11 @@ These override everything else.
 
 ## 4. Anti-slop standard
 
-Compliance content that reads as machine-written undercuts the trust the whole thing depends on. Every The Scope article is edited against the patterns below.
+Compliance content that reads as machine-written undercuts the trust the whole thing depends on. Every The Scope article is edited against the checks below.
 
-### Banned words and phrases
+**The banned words, the banned rhetorical patterns, and the Openers rule are universal, not Scope-specific: they apply to the Ditto blog exactly as they do here, because a promotional piece can still refuse to sound machine-written.** They live in [WRITING-CRAFT.md](./WRITING-CRAFT.md) §C, alongside the three logical-coherence failures — hollow assertion, object drift, unflagged reuse — in §A (a sentence that points at a claim instead of stating it, a sentence whose verb acts on a different thing than the one it named, and a figure reused with no signal that it is a callback). Read both §A and §C before writing on either surface; they survive a surface read and only a slow read catches them.
 
-pivotal, vibrant, underscore, highlight (as a verb), tapestry, landscape (in the abstract sense), testament, foster, enhance, delve, garner, crucial, valuable, interplay, intricate, align with, resonate with, encompasses, groundbreaking, renowned, nestled, in the heart of, evolving landscape, indelible mark, deeply rooted, serves as, stands as, marking a pivotal moment, reflecting broader trends, contributing to the field, setting the stage for, in summary, in conclusion, overall, leverage (as a verb), streamline, robust, paradigm shift, transformative.
-
-Kept on purpose: **showcase** is a core Ditto word and stays.
-
-### Banned patterns
-
-| Pattern | What it looks like | Fix |
-|---|---|---|
-| Binary contrast | "It's not a checklist. It's a mindset." | Say the thing once, directly. |
-| Throat-clearing opener | "Here's the thing about REACH..." | Lead with the point. |
-| Faux-insight setup | "What nobody tells you about CSRD..." | Just tell them. |
-| Colon reveal | "The best part: it updates itself." | Rewrite as a plain sentence. |
-| Importance puffery | "marks a pivotal moment for the industry" | Give the concrete consequence instead. |
-| Weasel attribution | "experts agree", "studies show" | Name the source or cut the claim. |
-| Invented consensus | "Ask people where a cheese's footprint comes from and most will point at the truck" | Nobody was asked. Cut the imaginary poll and state the fact. See [Openers](#openers). |
-| Condescending omniscience | "Mapping several hundred producers teaches you one structural fact early" | Say who did the mapping and what it cost them: "I mapped several hundred producers, and learned this the hard way". |
-| Fake-strong verbs | "serves as a centralized hub" | "is". |
-| Synonym cycling | rotating "the regulation" / "the text" / "the directive" | Pick one term and repeat it. |
-| Negative listing | "Not a form. Not a survey. An assessment." | One accurate description. |
-| Dramatic fragmentation | "That's it. That's the whole rule." | Complete sentences. |
-| Trailing "-ing" significance | "...emphasizing the importance of traceability" | Delete, or state the specific consequence. |
-| Fake-profound kicker | closing on a cute metaphor | Close on what the reader should do. |
-| Unexplained significance | any "this matters because" with no specific reason | Give the reason or cut the sentence. |
-| "Challenges and future outlook" | the section itself | Cut it. |
-
-The one allowed antithesis is the fixed brand line: "compliance is an opportunity, not an obstacle."
-
-Three more failures are logic, not style, and are caught on every surface: a sentence that points at a claim instead of stating it (**hollow assertion**), a sentence whose verb acts on a different thing than the one it named (**object drift**), and a figure reused with no signal that it is a callback (**unflagged reuse**). They survive a surface read and only a slow read catches them. The rule and the before/after for each are in [WRITING-CRAFT.md](./WRITING-CRAFT.md) §A.
-
-### Openers
-
-The first sentence is where a piece most reliably gives itself away as machine-written. The tell is the **invented straw man**: a claim about what "most people" believe, followed by the correction. Nobody was surveyed, the belief is a guess, and the reader is told they were wrong before the article has earned anything.
-
-> Ask people where a cheese's carbon footprint comes from and most will point at the truck that delivered it. It is an understandable guess, and it is wrong by roughly an order of magnitude.
-
-That whole shape is banned: "most people think", "the conventional wisdom says", "you would assume", "contrary to popular belief", and any opener whose second clause is "but actually". Correcting a real, attributable belief is fine, an anecdote in which a named or witnessed person held it is better, an imaginary consensus is not.
-
-**Open on something specific instead: a scene, a place, a number, a date, or an odd concrete detail.** The reader should be somewhere in the first sentence. Study how magazine features do it:
-
-> When Anthony Fauci arrives on Capitol Hill tomorrow to testify before Congress, he will be trailed by a security detail he's paying for himself.
-
-> If Isabel Allende's office needs to be painted, it has to be done by January 8 or put on hold. Every year, that's the day she starts writing.
-
-> In 1943, while the world's brightest physicists split atoms for the Manhattan Project, the American psychologist B.F. Skinner led his own secret government project to win World War II.
-
-The compliance equivalents are not harder, they are just concrete. A number with a thing attached to it: "A 40-kilogram wheel of Comté is 400 liters of milk, and the milk was emitted long before the wheel left the farm." Or the author's own vantage point, if the piece has one: "I have mapped the 58 AOP, AOC and IGP appellations and several hundred producers, and the thing that predicts a cheese's carbon footprint is not on the map." Or the room the work happens in, the document that landed, the question a client actually asked.
-
-Then get to the point immediately. A scene earns one or two sentences, not four paragraphs, and the core answer still belongs in the standfirst and the first paragraph.
+What follows below is The Scope's own addition on top of those universal rules: fundamentals and mechanics specific to this surface's restrained register.
 
 ### Fundamentals
 
@@ -194,7 +147,7 @@ The Scope emits structured data from frontmatter and MDX components. Getting the
 - [ ] No guaranteed outcomes, no greenwashing, no fear framing.
 - [ ] Acronyms defined on first use, in both languages.
 - [ ] No em dashes. US spelling in EN.
-- [ ] No banned AI-tell word or pattern survived the edit.
+- [ ] No banned AI-tell word or pattern survived the edit, and the opener is not an invented straw man ([WRITING-CRAFT.md](./WRITING-CRAFT.md) §C).
 - [ ] Every sentence states its claim, its verb acts on the object it names, and reused figures are flagged as callbacks ([WRITING-CRAFT.md](./WRITING-CRAFT.md) §A).
 - [ ] One vivid turn of phrase at most; the rest is plain.
 - [ ] `<KeyTakeaways>` are genuinely actionable; `<FAQ>` answers stand alone (or the FAQ is absent).

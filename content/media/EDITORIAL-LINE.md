@@ -273,7 +273,11 @@ What still binds on the blog, because it is law rather than taste: no invented f
 number nobody gave you stays out, on every surface), no guaranteed scores, medals or audit
 outcomes, no fabricated URLs or sources, no unverified factual claim about a **named third
 party**, and accurate regulatory statements. The mechanics carry over too: no em dashes, US
-English in EN, acronyms spelled out.
+English in EN, acronyms spelled out. So does the anti-slop vocabulary and pattern list in
+[WRITING-CRAFT.md](./WRITING-CRAFT.md) §C (banned words, banned rhetorical patterns, the
+Openers rule): a promotional piece is still not allowed to sound machine-written, so a blog
+opener cannot use the "it's not X, it's Y" binary contrast or the invented-consensus straw
+man any more than a Scope article can.
 
 Shorthand: on The Scope, a claim needs a source. On the blog, a claim needs an owner.
 
