@@ -34,20 +34,25 @@ change.
    greenwashing, no guaranteed outcomes), the banned-word and banned-pattern
    lists, mechanics (no em dashes, US English in EN), bilingual rules, and the
    structured-data entity conventions.
-3. `content/media/authoring/FILE-FORMAT.md` — the exact frontmatter contract and
+3. `content/media/WRITING-CRAFT.md` — the **cross-surface craft rules**: logical
+   coherence (no hollow assertions, no object drift, flag reused figures),
+   the sentence-level fixes, and the reviewer protocol. These apply to the Ditto
+   blog too, so they live in their own file; TONE-OF-VOICE adds The Scope's
+   register on top.
+4. `content/media/authoring/FILE-FORMAT.md` — the exact frontmatter contract and
    the locale-marker body format.
-4. `content/media/authoring/TAXONOMY.md` — how to choose `section`, `tags`,
+5. `content/media/authoring/TAXONOMY.md` — how to choose `section`, `tags`,
    `alsoIn` and `industries`. The tree is two levels deep and the named
    frameworks are tags, which is recent: do not copy the filing of an article
    you remember.
-5. `content/media/authoring/COMPONENTS.md` — the MDX components available and the
+6. `content/media/authoring/COMPONENTS.md` — the MDX components available and the
    rules for each, particularly `<FAQ>`.
-6. `content/media/authoring/SEO-AEO.md` — what the code emits and what the writer
+7. `content/media/authoring/SEO-AEO.md` — what the code emits and what the writer
    controls.
-7. `content/media/authoring/ILLUSTRATIONS.md` — the house photography style and
+8. `content/media/authoring/ILLUSTRATIONS.md` — the house photography style and
    the generator. Read it before making any artwork; the hero image is a
    generated photograph, not the flat SVG the older articles carry.
-8. `content/media/authoring/AUTHOR-STYLES.md` — the per-author byline registers:
+9. `content/media/authoring/AUTHOR-STYLES.md` — the per-author byline registers:
    each author's journalistic role, rhythm, signature moves and off-limits. A
    thin layer applied on top of the tone of voice, which always wins on
    conflict.
@@ -125,9 +130,13 @@ Read an existing article, for example
    settled in both languages, spawn one fresh subagent per locale — an agent
    that has not seen the draft being written. Give each only the article file,
    its locale, and the editorial contract (EDITORIAL-LINE.md, TONE-OF-VOICE.md,
-   AUTHOR-STYLES.md), and ask it to critique that one language: does every
-   sentence mean something, is any fact stated twice, does anything violate the
-   tone of voice or the author's register. Run the French and English critiques
+   WRITING-CRAFT.md, AUTHOR-STYLES.md), and ask it to critique that one language:
+   does every sentence mean something (WRITING-CRAFT §A: no hollow assertion, no
+   object drift, no unflagged reuse), is any fact stated twice, does anything
+   violate the tone of voice or the author's register. The reviewer follows the
+   protocol in WRITING-CRAFT.md ("For the reviewer"): minimum effective edit,
+   preserve the author's voice, and for each issue name the pattern, quote the
+   line and give one short fix rather than rewriting the draft. Run the French and English critiques
    independently — a translation can be faithful to a sentence that does not
    parse. Then implement the findings yourself, with judgment: fix what is
    right, drop what is not. Do not skip this step because the draft feels

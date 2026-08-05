@@ -4,6 +4,8 @@ The Scope is Ditto's media. It is not the Ditto blog with a new coat of paint: i
 
 This document is the source of truth for how The Scope articles are written. It merges three things: Ditto's brand voice, Ditto's resource-writing rules, and a hard anti-AI-slop standard. When two rules collide, the guardrails in "Non-negotiables" win.
 
+The cross-surface writing-craft rules, the ones about logical coherence and sentence-level clarity that apply to the Ditto blog just as much as to The Scope, live in [WRITING-CRAFT.md](./WRITING-CRAFT.md). Read it alongside this file: it carries the craft, this file adds The Scope's register and guardrails on top.
+
 What The Scope publishes and why, which pieces belong here rather than on the Ditto blog, and the reference-versus-feature split are in [EDITORIAL-LINE.md](./EDITORIAL-LINE.md). Read it first when the question is whether an article should exist; read this one when the question is how to write it.
 
 **This file governs The Scope, and only The Scope.** The Ditto blog is Ditto speaking as Ditto and is allowed to be frankly promotional, with its own narrower set of hard rules. Do not hold a blog post to the standard below. See [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) §6, "The standard travels with the surface".
@@ -84,6 +86,8 @@ Kept on purpose: **showcase** is a core Ditto word and stays.
 | "Challenges and future outlook" | the section itself | Cut it. |
 
 The one allowed antithesis is the fixed brand line: "compliance is an opportunity, not an obstacle."
+
+Three more failures are logic, not style, and are caught on every surface: a sentence that points at a claim instead of stating it (**hollow assertion**), a sentence whose verb acts on a different thing than the one it named (**object drift**), and a figure reused with no signal that it is a callback (**unflagged reuse**). They survive a surface read and only a slow read catches them. The rule and the before/after for each are in [WRITING-CRAFT.md](./WRITING-CRAFT.md) §A.
 
 ### Openers
 
@@ -191,6 +195,7 @@ The Scope emits structured data from frontmatter and MDX components. Getting the
 - [ ] Acronyms defined on first use, in both languages.
 - [ ] No em dashes. US spelling in EN.
 - [ ] No banned AI-tell word or pattern survived the edit.
+- [ ] Every sentence states its claim, its verb acts on the object it names, and reused figures are flagged as callbacks ([WRITING-CRAFT.md](./WRITING-CRAFT.md) §A).
 - [ ] One vivid turn of phrase at most; the rest is plain.
 - [ ] `<KeyTakeaways>` are genuinely actionable; `<FAQ>` answers stand alone (or the FAQ is absent).
 - [ ] Both `<!-- locale:en -->` and `<!-- locale:fr -->` bodies say the same things, with no section left untranslated.

@@ -103,6 +103,14 @@ other. Give each branch only its own angle, its own sources, and its own skill.
      the idiomatic US-English translation. Validate the FR with the user before
      translating, exactly as that skill requires. Deliver the FR and EN files it
      produces.
+  3. **Cold-read the draft against `content/media/WRITING-CRAFT.md`** before
+     handing it over, in both languages. The `ditto-blog-optimisation` skill
+     lives outside this repo and does not carry these craft rules, so the blog
+     gets its coherence-and-clarity pass here: no hollow assertions, no object
+     drift, flagged figure reuse (§A), the sentence-level fixes (§B), and the
+     reviewer protocol (minimum effective edit, preserve the writer's voice,
+     name-quote-fix rather than rewrite). Fix what is right, keep the blog's
+     promotional register.
 
 - **The Scope branch → produces the article `.mdx`.**
   1. **Load the `scope-article` skill** and follow it end to end. It is the
@@ -117,7 +125,12 @@ other. Give each branch only its own angle, its own sources, and its own skill.
 Both branches keep the shared law: no invented figures, no guaranteed
 scores/medals/audit outcomes, no fabricated sources or URLs, no unverified claim
 about a named third party, accurate regulatory statements, no em dashes, US
-English in EN, acronyms spelled out (`EDITORIAL-LINE.md` §6).
+English in EN, acronyms spelled out (`EDITORIAL-LINE.md` §6). Both branches also
+keep the **cross-surface craft rules** in `content/media/WRITING-CRAFT.md`:
+logical coherence (no hollow assertions, no object drift, flag reused figures),
+the sentence-level fixes, and the reviewer protocol. Those rules are about logic
+and clarity, not register, so they hold on the promotional blog exactly as they
+do on the restrained Scope.
 
 ### 4. Reconvene and deliver
 
