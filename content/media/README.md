@@ -7,8 +7,8 @@ Read [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) to decide whether a piece belongs 
 | Document | Covers |
 |---|---|
 | [EDITORIAL-LINE.md](./EDITORIAL-LINE.md) | What The Scope publishes and refuses, the reference/feature split, The Scope vs the Ditto blog |
-| [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) | Voice, non-negotiables, the anti-slop standard, mechanics |
-| [WRITING-CRAFT.md](./WRITING-CRAFT.md) | Cross-surface craft: logical coherence, sentence-level fixes, the reviewer protocol (applies to the Ditto blog too) |
+| [TONE-OF-VOICE.md](./TONE-OF-VOICE.md) | Voice, non-negotiables, Scope-specific anti-slop fundamentals and mechanics |
+| [WRITING-CRAFT.md](./WRITING-CRAFT.md) | Cross-surface craft: logical coherence, sentence-level fixes, the anti-slop vocabulary and patterns (banned words, banned patterns, Openers), the reviewer protocol (applies to the Ditto blog too) |
 | [authoring/FILE-FORMAT.md](./authoring/FILE-FORMAT.md) | The frontmatter contract, the locale markers, every validation error |
 | [authoring/TAXONOMY.md](./authoring/TAXONOMY.md) | Choosing `section`, `alsoIn` and `industries` |
 | [authoring/COMPONENTS.md](./authoring/COMPONENTS.md) | The MDX components and the rules for each |

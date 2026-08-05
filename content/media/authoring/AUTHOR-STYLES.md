@@ -1,6 +1,6 @@
 # The Scope — per-author byline styles
 
-The Scope is one masthead with several correspondents, not five blogs sharing a URL. Every article obeys [TONE-OF-VOICE.md](../TONE-OF-VOICE.md) in full: the non-negotiables, the anti-slop standard, the mechanics, the anatomy. Nothing in this file overrides any of it.
+The Scope is one masthead with several correspondents, not five blogs sharing a URL. Every article obeys [TONE-OF-VOICE.md](../TONE-OF-VOICE.md) in full — the non-negotiables, the register, the mechanics, the anatomy — plus the cross-surface anti-slop vocabulary and patterns in [WRITING-CRAFT.md](../WRITING-CRAFT.md) §C. Nothing in this file overrides any of it.
 
 What varies by author is the **journalistic role**: the vantage point the piece is reported from, the sentence rhythm, and one or two signature moves. The test: a regular reader should be able to guess the byline from the body copy, and an editor should not be able to tell the article apart from the house style checklist.
 
