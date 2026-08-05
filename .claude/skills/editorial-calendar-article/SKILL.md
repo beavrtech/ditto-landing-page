@@ -138,7 +138,11 @@ register, so they hold on the promotional blog exactly as they do on the
 restrained Scope. In particular: the blog draft's opening sentence is subject
 to the same Openers rule as a Scope article — no "it's not X, it's Y" binary
 contrast, no invented-consensus straw man, no throat-clearing. Open on
-something concrete instead.
+something concrete instead. That same "it's not X, it's Y" binary-contrast
+shape (WRITING-CRAFT.md §C2, "Binary contrast" and "Negative listing") is not
+confined to the opener — it creeps into headings and body sentences just as
+easily, so watch for it there too while drafting, not only when the cold read
+catches it.
 
 ### 4. Reconvene and deliver
 

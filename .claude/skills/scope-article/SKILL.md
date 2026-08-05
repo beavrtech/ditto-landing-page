@@ -94,7 +94,11 @@ Read an existing article, for example
    readership and most of the authors work in it, and the regulatory vocabulary
    is French before it is anything else. Finish it before translating, structure,
    edit and self-check included. Translating a draft you have not settled means
-   editing the same sentence twice in two languages.
+   editing the same sentence twice in two languages. While drafting, watch for
+   the negation-contrast construction ("ce n'est pas X, c'est Y" / "it's not X,
+   it's Y", WRITING-CRAFT.md §C2) creeping into headings and body sentences too,
+   not only the opening line — it is banned everywhere in the piece, not just
+   there.
 
 6. **Then translate it into English**, working from the finished French with this
    instruction:
