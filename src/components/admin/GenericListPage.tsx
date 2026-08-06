@@ -23,11 +23,20 @@ type DateRange = { from?: string; to?: string };
 const isDateKey = (key: string) =>
   key.includes("date") || key === "publish_date";
 
+// Colors + display labels for the editorial_calendar `status` enum. Falls
+// back to the raw value if a new status is added to the DB before here.
+const STATUS_STYLES: Record<string, { bg: string; color: string; label: string }> = {
+  ready_for_drafting: { bg: "#f3f4f6", color: "#374151", label: "Ready for drafting" },
+  drafted: { bg: "#dbeafe", color: "#1e40af", label: "Drafted" },
+  published: { bg: "#dcfce7", color: "#166534", label: "Published" },
+};
+
 const cellText = (val: unknown, key: string): string => {
   if (val === null || val === undefined) return "";
   if (typeof val === "boolean") {
     return key === "published" ? (val ? "Published" : "Draft") : val ? "Yes" : "No";
   }
+  if (key === "status") return STATUS_STYLES[val as string]?.label ?? String(val);
   if (isDateKey(key)) return new Date(val as string).toLocaleDateString("fr-FR");
   return String(val);
 };
@@ -387,6 +396,49 @@ function ExpandedCellModal({ title, titleEditable, body, prompt, onSave, onClose
   );
 }
 
+// Pill-shaped show/hide switch for `config.statusFilter`. No toggle/switch
+// control exists elsewhere in the admin section yet, so this one is kept
+// small and local rather than introducing a new shared component.
+function StatusFilterToggle({ show, hiddenLabel, hiddenCount, onChange }: {
+  show: boolean;
+  hiddenLabel: string;
+  hiddenCount: number;
+  onChange: (next: boolean) => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={() => onChange(!show)}
+      aria-pressed={show}
+      title={show ? `Hide ${hiddenLabel.toLowerCase()} items` : `Show ${hiddenLabel.toLowerCase()} items`}
+      style={{
+        display: "inline-flex", alignItems: "center", gap: "0.5rem",
+        padding: "0.4rem 0.7rem", border: "1px solid #ddd", borderRadius: "999px",
+        background: "white", cursor: "pointer", fontSize: "0.8rem", color: "#333",
+        whiteSpace: "nowrap",
+      }}
+    >
+      <span
+        aria-hidden="true"
+        style={{
+          position: "relative", width: "30px", height: "16px", borderRadius: "999px",
+          background: show ? "#130E30" : "#ddd", transition: "background 0.15s", flexShrink: 0,
+        }}
+      >
+        <span
+          style={{
+            position: "absolute", top: "2px", left: show ? "16px" : "2px",
+            width: "12px", height: "12px", borderRadius: "50%", background: "white",
+            transition: "left 0.15s", boxShadow: "0 1px 2px rgba(0,0,0,0.25)",
+          }}
+        />
+      </span>
+      Show {hiddenLabel.toLowerCase()}
+      {hiddenCount > 0 ? ` (${hiddenCount})` : ""}
+    </button>
+  );
+}
+
 export function GenericListPage({ config }: { config: TableConfig }) {
   const [rows, setRows] = useState<Row[]>([]);
   const [loading, setLoading] = useState(true);
@@ -397,6 +449,9 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   );
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [globalFilter, setGlobalFilter] = useState("");
+  // Hidden by default: rows matching `config.statusFilter.hiddenValue` (e.g.
+  // published editorial calendar items) stay out of view until toggled on.
+  const [showHiddenStatus, setShowHiddenStatus] = useState(false);
   const [openFilter, setOpenFilter] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<
     {
@@ -429,6 +484,17 @@ export function GenericListPage({ config }: { config: TableConfig }) {
           background: val ? "#dcfce7" : "#fef3c7", color: val ? "#166534" : "#92400e",
         }}>
           {cellText(val, key)}
+        </span>
+      );
+    }
+    if (key === "status") {
+      const style = STATUS_STYLES[val as string];
+      return (
+        <span style={{
+          display: "inline-block", padding: "2px 8px", borderRadius: "12px", fontSize: "0.75rem", fontWeight: 500,
+          background: style?.bg ?? "#f3f4f6", color: style?.color ?? "#374151",
+        }}>
+          {style?.label ?? String(val)}
         </span>
       );
     }
@@ -544,8 +610,17 @@ export function GenericListPage({ config }: { config: TableConfig }) {
     } as ColumnDef<Row>]),
   ], [config]);
 
+  // Filtering, not deletion: hidden rows stay in `rows` and simply drop out
+  // of what's handed to the table when the toggle is off.
+  const hiddenStatusCount = config.statusFilter
+    ? rows.filter((r) => r[config.statusFilter!.column] === config.statusFilter!.hiddenValue).length
+    : 0;
+  const displayRows = config.statusFilter && !showHiddenStatus
+    ? rows.filter((r) => r[config.statusFilter!.column] !== config.statusFilter!.hiddenValue)
+    : rows;
+
   const table = useReactTable({
-    data: rows,
+    data: displayRows,
     columns,
     state: { sorting, columnFilters, globalFilter },
     onSortingChange: setSorting,
@@ -573,6 +648,14 @@ export function GenericListPage({ config }: { config: TableConfig }) {
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.5rem" }}>
         <h1 style={{ fontSize: "1.5rem", fontWeight: 600, margin: 0 }}>{config.displayName} ({visibleRows.length})</h1>
         <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+          {config.statusFilter && (
+            <StatusFilterToggle
+              show={showHiddenStatus}
+              hiddenLabel={config.statusFilter.hiddenLabel}
+              hiddenCount={hiddenStatusCount}
+              onChange={setShowHiddenStatus}
+            />
+          )}
           <input
             type="text"
             placeholder="Search..."

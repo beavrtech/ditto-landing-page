@@ -56,6 +56,10 @@ export type TableConfig = {
   // button that copies this template to the clipboard. `{id}` and `{title}`
   // are substituted from the row; any other column key in braces works too.
   copyPrompt?: string;
+  // When set, rows whose `column` equals `hiddenValue` are hidden from the
+  // list view by default. A toggle in the header lets the admin reveal them
+  // again; it only affects what's displayed, never the underlying data.
+  statusFilter?: { column: string; hiddenValue: string; hiddenLabel: string };
 };
 
 export const TABLES: TableConfig[] = [
@@ -399,11 +403,13 @@ export const TABLES: TableConfig[] = [
     displayName: "Editorial Calendar",
     hideDelete: true,
     copyPrompt: "Iterate on editorial calendar item {id} ({title}), ",
+    statusFilter: { column: "status", hiddenValue: "published", hiddenLabel: "Published" },
     listColumns: [
       { key: "sort_order", label: "#", width: "48px" },
       { key: "property", label: "Property", sub: "work_type", width: "130px" },
       { key: "title", label: "Title", sub: "page", subMono: true, width: "26%" },
       { key: "author", label: "Author", width: "130px" },
+      { key: "status", label: "Status", width: "150px" },
       { key: "notes", label: "Notes", width: "auto", wrap: true, clamp: 4 },
     ],
     orderBy: { column: "sort_order", ascending: true },
@@ -431,6 +437,16 @@ export const TABLES: TableConfig[] = [
       { name: "title", label: "Title", type: "text", required: true },
       { name: "page", label: "Page", type: "text" },
       { name: "author", label: "Author", type: "text" },
+      {
+        name: "status",
+        label: "Status",
+        type: "select",
+        options: [
+          { value: "ready_for_drafting", label: "Ready for drafting" },
+          { value: "drafted", label: "Drafted" },
+          { value: "published", label: "Published" },
+        ],
+      },
       { name: "notes", label: "Notes", type: "textarea" },
     ],
   },
