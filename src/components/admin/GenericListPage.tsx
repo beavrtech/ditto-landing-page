@@ -611,13 +611,23 @@ export function GenericListPage({ config }: { config: TableConfig }) {
   ], [config]);
 
   // Filtering, not deletion: hidden rows stay in `rows` and simply drop out
-  // of what's handed to the table when the toggle is off.
-  const hiddenStatusCount = config.statusFilter
-    ? rows.filter((r) => r[config.statusFilter!.column] === config.statusFilter!.hiddenValue).length
-    : 0;
-  const displayRows = config.statusFilter && !showHiddenStatus
-    ? rows.filter((r) => r[config.statusFilter!.column] !== config.statusFilter!.hiddenValue)
-    : rows;
+  // of what's handed to the table when the toggle is off. Memoised because
+  // react-table resets its internal state whenever `data` changes identity,
+  // and a fresh array on every render turns that into an endless re-render.
+  const hiddenStatusCount = useMemo(
+    () =>
+      config.statusFilter
+        ? rows.filter((r) => r[config.statusFilter!.column] === config.statusFilter!.hiddenValue).length
+        : 0,
+    [config, rows]
+  );
+  const displayRows = useMemo(
+    () =>
+      config.statusFilter && !showHiddenStatus
+        ? rows.filter((r) => r[config.statusFilter!.column] !== config.statusFilter!.hiddenValue)
+        : rows,
+    [config, rows, showHiddenStatus]
+  );
 
   const table = useReactTable({
     data: displayRows,
