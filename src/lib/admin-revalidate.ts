@@ -9,6 +9,11 @@ export type CollectionItemRow = {
   also_appears_in?: string[] | null;
 };
 
+export type BlogPostRow = {
+  slug?: string | null;
+  slug_fr?: string | null;
+};
+
 /**
  * Collection article pages are ISR (`revalidate = 3600` in
  * app/[locale]/collection/[framework]/[slug]/page.tsx) with no on-demand
@@ -74,4 +79,22 @@ export async function revalidateCollectionItemChange(
     revalidateCollectionItem(record),
     revalidateCollectionItem(oldRecord),
   ]);
+}
+
+export function revalidateBlogPost(
+  row: BlogPostRow | null | undefined
+): void {
+  if (!row?.slug) return;
+  revalidatePath(`/en/resources/blog/${row.slug}`);
+  revalidatePath(`/fr/ressources/blog/${row.slug_fr || row.slug}`);
+  revalidatePath("/en/resources/blog");
+  revalidatePath("/fr/ressources/blog");
+}
+
+export function revalidateBlogPostChange(
+  record: BlogPostRow | null | undefined,
+  oldRecord: BlogPostRow | null | undefined
+): void {
+  revalidateBlogPost(record);
+  revalidateBlogPost(oldRecord);
 }

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidateCollectionItemChange, type CollectionItemRow } from "../../../lib/admin-revalidate";
+import { revalidateCollectionItemChange, revalidateBlogPostChange, type CollectionItemRow, type BlogPostRow } from "../../../lib/admin-revalidate";
 
 /**
  * On-demand revalidation webhook for `collection_items`.
@@ -51,8 +51,8 @@ export async function POST(req: NextRequest) {
   let payload: {
     type?: string;
     table?: string;
-    record?: CollectionItemRow | null;
-    old_record?: CollectionItemRow | null;
+    record?: (CollectionItemRow & BlogPostRow) | null;
+    old_record?: (CollectionItemRow & BlogPostRow) | null;
   };
   try {
     payload = await req.json();
@@ -60,19 +60,17 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
   }
 
-  // Ignore webhooks for other tables (harmless no-op) instead of 400ing —
-  // Supabase retries on non-2xx, and a misdirected/duplicate webhook
-  // shouldn't page anyone.
-  if (payload.table && payload.table !== "collection_items") {
+  const supportedTables = ["collection_items", "blog_posts"];
+  if (payload.table && !supportedTables.includes(payload.table)) {
     return NextResponse.json({ revalidated: false, reason: "ignored table", table: payload.table });
   }
 
-  await revalidateCollectionItemChange(payload.record, payload.old_record).catch(() => {
-    // Best effort — the affected pages still refresh on their own within
-    // the hour via the route's `revalidate = 3600`, so a transient failure
-    // here (e.g. a `frameworks` lookup hiccup) must not surface as an error
-    // Supabase will retry indefinitely.
-  });
+  if (!payload.table || payload.table === "collection_items") {
+    await revalidateCollectionItemChange(payload.record, payload.old_record).catch(() => {});
+  }
+  if (payload.table === "blog_posts") {
+    revalidateBlogPostChange(payload.record, payload.old_record);
+  }
 
   return NextResponse.json({ revalidated: true, type: payload.type, now: Date.now() });
 }
