@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
@@ -14,6 +15,7 @@ import { SectionCtaPill } from "../../../../components/SectionCtaPillI18n";
 import { SectionTestimonials } from "../../../../components/TestimonialsServer";
 import { SectionCta } from "../../../../../devlink/sections/SectionCta";
 import { Button } from "../../../../../devlink/elements/Button";
+import { collectionPath } from "../../../../lib/localized-paths";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -45,6 +47,25 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
+  // Internal maillage into the EcoVadis article cluster
+  // (/[locale]/collection/ecovadis/...).
+  const assessmentArticleHref = collectionPath(
+    "ecovadis",
+    locale,
+    locale === "fr" ? "ecovadis-cest-quoi" : "what-is-the-ecovadis-assessment"
+  );
+  const medalArticleHref = collectionPath(
+    "ecovadis",
+    locale,
+    locale === "fr" ? "medailles-ecovadis" : "ecovadis-medals"
+  );
+
+  const link = (href: string) => (chunks: ReactNode) => (
+    <a href={href} style={{ textDecoration: "underline" }}>
+      {chunks}
+    </a>
+  );
+
   return (
     <div className="page-wrapper">
       <main className="main-wrapper">
@@ -62,7 +83,9 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
         <SectionHero
           variant="Base"
           title={t("frameworksEcovadis.hero.title")}
-          paragraph={t("frameworksEcovadis.hero.subtitle")}
+          paragraph={t.rich("frameworksEcovadis.hero.subtitle", {
+            assessment: link(assessmentArticleHref),
+          })}
           image="/images/ecovadis-hero.svg"
           paddingBottom="Small (3rem)"
           buttonsVisibility={true}
@@ -91,7 +114,9 @@ export default async function FrameworksEcovadisPage({ params }: { params: Promi
           card1Card1Number={t("frameworksEcovadis.numbers.card1Number")}
           card1Card1Text={t("frameworksEcovadis.numbers.card1Text")}
           card2Card2Number={t("frameworksEcovadis.numbers.card2Number")}
-          card2Card2Text={t("frameworksEcovadis.numbers.card2Text")}
+          card2Card2Text={t.rich("frameworksEcovadis.numbers.card2Text", {
+            medal: link(medalArticleHref),
+          })}
           card3Card3Number={t("frameworksEcovadis.numbers.card3Number")}
           card3Card3Text={t("frameworksEcovadis.numbers.card3Text")}
         />

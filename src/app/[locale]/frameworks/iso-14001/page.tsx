@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
@@ -13,6 +14,7 @@ import { SectionCtaPill } from "../../../../components/SectionCtaPillI18n";
 import { SectionTestimonials } from "../../../../components/TestimonialsServer";
 import { SectionCta } from "../../../../../devlink/sections/SectionCta";
 import { Button } from "../../../../../devlink/elements/Button";
+import { localizedHref } from "../../../../lib/localized-paths";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -44,6 +46,16 @@ export default async function FrameworksIso14001Page({ params }: { params: Promi
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
+  // Internal maillage into the ISO 14001 blog article.
+  const isoArticleSlug = locale === "fr" ? "norme-iso-14001" : "iso-14001-standard";
+  const isoArticleHref = localizedHref(`/resources/blog/${isoArticleSlug}`, locale);
+
+  const link = (href: string) => (chunks: ReactNode) => (
+    <a href={href} style={{ textDecoration: "underline" }}>
+      {chunks}
+    </a>
+  );
+
   return (
     <div className="page-wrapper">
       <main className="main-wrapper">
@@ -61,7 +73,9 @@ export default async function FrameworksIso14001Page({ params }: { params: Promi
         <SectionHero
           variant="Base"
           title={t("frameworksIso14001.hero.title")}
-          paragraph={t("frameworksIso14001.hero.subtitle")}
+          paragraph={t.rich("frameworksIso14001.hero.subtitle", {
+            iso: link(isoArticleHref),
+          })}
           image="/images/ecovadis-hero_4.avif"
           paddingBottom="Small (3rem)"
           buttonsVisibility={true}

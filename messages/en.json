@@ -737,7 +737,7 @@
     "breadcrumb": "EcoVadis",
     "hero": {
       "title": "EcoVadis made easy",
-      "subtitle": "Ditto helps you structure your CSR approach and complete the EcoVadis assessment with ease, so you get the medal you deserve each year.",
+      "subtitle": "Ditto helps you structure your CSR approach and complete the <assessment>EcoVadis assessment</assessment> with ease, so you get the medal you deserve each year.",
       "cta": "Get started"
     },
     "numbers": {
@@ -745,7 +745,7 @@
       "card1Number": "500+",
       "card1Text": "customers supported on their sustainability journey with our proprietary methodology",
       "card2Number": "100%",
-      "card2Text": "of customers who prepared for EcoVadis with Ditto were awarded a medal",
+      "card2Text": "of customers who prepared for EcoVadis with Ditto were <medal>awarded a medal</medal>",
       "card3Number": "15+",
       "card3Text": "average point increase on EcoVadis score for Ditto customers in the first year of collaboration"
     },
@@ -845,7 +845,7 @@
     },
     "approach": {
       "title": "Our approach to the CDP assessment",
-      "subtitle": "We've broken down the CDP into a simple, actionable process. Our AI-supported methodology follows four key steps, and our team of experts will guide you all the way through."
+      "subtitle": "We've broken down the <cdp>CDP</cdp> into a simple, actionable process. Our AI-supported methodology follows four key steps, and our team of experts will guide you all the way through."
     },
     "step1": {
       "label": "Step 1",
@@ -887,7 +887,7 @@
     "breadcrumb": "CSRD / VSME",
     "hero": {
       "title": "AI-powered platform for CSRD and VSME compliance",
-      "subtitle": "Ditto helps you prepare a complete, compliant sustainability report under CSRD /VSME by combining embedded expertise, AI, and smart templates. So you can move fast, stay structured, and publish on time.",
+      "subtitle": "Ditto helps you prepare a complete, compliant sustainability report under <csrd>CSRD</csrd> /<vsme>VSME</vsme> by combining embedded expertise, AI, and smart templates. So you can move fast, stay structured, and publish on time.",
       "cta": "Get started"
     },
     "approach": {
@@ -934,7 +934,7 @@
     "breadcrumb": "ISO 14001",
     "hero": {
       "title": "ISO 14001 compliance made simple",
-      "subtitle": "Ditto provides you with the tools to build and maintain a strong Environmental Management System (EMS) and meet ISO 14001 requirements—faster, and without the usual stress.",
+      "subtitle": "Ditto provides you with the tools to build and maintain a strong Environmental Management System (EMS) and meet <iso>ISO 14001 requirements</iso>—faster, and without the usual stress.",
       "cta": "Get started"
     },
     "approach": {

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
@@ -13,6 +14,7 @@ import { SectionCtaPill } from "../../../../components/SectionCtaPillI18n";
 import { SectionTestimonials } from "../../../../components/TestimonialsServer";
 import { SectionCta } from "../../../../../devlink/sections/SectionCta";
 import { Button } from "../../../../../devlink/elements/Button";
+import { collectionPath } from "../../../../lib/localized-paths";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -43,6 +45,15 @@ export default async function FrameworksCdpPage({ params }: { params: Promise<{ 
   setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
+
+  // Internal maillage into the CDP collection article.
+  const cdpArticleHref = collectionPath("cdp", locale, "carbon-disclosure-project-cdp");
+
+  const link = (href: string) => (chunks: ReactNode) => (
+    <a href={href} style={{ textDecoration: "underline" }}>
+      {chunks}
+    </a>
+  );
 
   return (
     <div className="page-wrapper">
@@ -82,7 +93,9 @@ export default async function FrameworksCdpPage({ params }: { params: Promise<{ 
         {/* 4. Approach header */}
         <SectionFeaturesHeader
           title={t("frameworksCdp.approach.title")}
-          text={t("frameworksCdp.approach.subtitle")}
+          text={t.rich("frameworksCdp.approach.subtitle", {
+            cdp: link(cdpArticleHref),
+          })}
         />
 
         {/* 5. Feature Step 1 */}

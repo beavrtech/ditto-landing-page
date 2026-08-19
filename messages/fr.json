@@ -671,7 +671,7 @@
     "breadcrumb": "EcoVadis",
     "hero": {
       "title": "EcoVadis en toute simplicité",
-      "subtitle": "Ditto vous accompagne sur chaque étape de votre évaluation EcoVadis. Structurez vos données, répondez efficacement, et progressez d'année en année.",
+      "subtitle": "Ditto vous accompagne sur chaque étape de votre <assessment>évaluation EcoVadis</assessment>. Structurez vos données, répondez efficacement, et progressez d'année en année.",
       "cta": "Commencer"
     },
     "numbers": {
@@ -679,7 +679,7 @@
       "card1Number": "500+",
       "card1Text": "entreprises accompagnées dans leur évaluation EcoVadis, partout en Europe",
       "card2Number": "100 %",
-      "card2Text": "des clients que nous accompagnons obtiennent une médaille",
+      "card2Text": "des clients que nous accompagnons <medal>obtiennent une médaille</medal>",
       "card3Number": "+16",
       "card3Text": "points en moyenne d'augmentation du score la première année de collaboration avec Ditto"
     },
@@ -779,7 +779,7 @@
     },
     "approach": {
       "title": "Notre approche de l'évaluation CDP",
-      "subtitle": "Nous avons découpé le processus CDP en étapes simples et guidées. Notre approche allie méthode et clarté pour vous aider à structurer vos réponses et identifier les bonnes preuves tout en s'adaptant à vos données et à votre organisation."
+      "subtitle": "Nous avons découpé le <cdp>processus CDP</cdp> en étapes simples et guidées. Notre approche allie méthode et clarté pour vous aider à structurer vos réponses et identifier les bonnes preuves tout en s'adaptant à vos données et à votre organisation."
     },
     "step1": {
       "label": "Étape 1",
@@ -821,7 +821,7 @@
     "breadcrumb": "CSRD / VSME",
     "hero": {
       "title": "Conformité CSRD et VSME assistée par l'IA",
-      "subtitle": "Ditto vous aide à produire des rapports CSRD conformes, complets et auditables, plus facilement. En combinant expertise, IA et données centralisées, vous pouvez avancer étape par étape, avec une structure claire.",
+      "subtitle": "Ditto vous aide à produire des rapports <csrd>CSRD</csrd> et <vsme>VSME</vsme> conformes, complets et auditables, plus facilement. En combinant expertise, IA et données centralisées, vous pouvez avancer étape par étape, avec une structure claire.",
       "cta": "Commencer"
     },
     "approach": {
@@ -868,7 +868,7 @@
     "breadcrumb": "ISO 14001",
     "hero": {
       "title": "La conformité ISO 14001, simplifiée",
-      "subtitle": "Ditto vous aide à mettre en place et maintenir un système de management environnemental conforme à la norme ISO 14001. Une plateforme unique pour structurer vos démarches, gagner du temps et réussir vos audits dès la première fois.",
+      "subtitle": "Ditto vous aide à mettre en place et maintenir un système de management environnemental conforme à la <iso>norme ISO 14001</iso>. Une plateforme unique pour structurer vos démarches, gagner du temps et réussir vos audits dès la première fois.",
       "cta": "Commencer"
     },
     "approach": {
