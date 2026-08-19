@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
@@ -13,6 +14,7 @@ import { SectionCtaPill } from "../../../../components/SectionCtaPillI18n";
 import { SectionTestimonials } from "../../../../components/TestimonialsServer";
 import { SectionCta } from "../../../../../devlink/sections/SectionCta";
 import { Button } from "../../../../../devlink/elements/Button";
+import { collectionPath } from "../../../../lib/localized-paths";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -44,6 +46,24 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
+  // Internal maillage into the CSRD and VSME collection articles.
+  const csrdArticleHref = collectionPath(
+    "csrd",
+    locale,
+    locale === "fr" ? "directive-europeenne-csrd" : "csrd-european-directive"
+  );
+  const vsmeArticleHref = collectionPath(
+    "vsme",
+    locale,
+    locale === "fr" ? "vsme-standard-reporting-durabilite-pme" : "vsme-standard-sustainability-reporting-smes"
+  );
+
+  const link = (href: string) => (chunks: ReactNode) => (
+    <a href={href} style={{ textDecoration: "underline" }}>
+      {chunks}
+    </a>
+  );
+
   return (
     <div className="page-wrapper">
       <main className="main-wrapper">
@@ -61,7 +81,10 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
         <SectionHero
           variant="Base"
           title={t("frameworksCsrd.hero.title")}
-          paragraph={t("frameworksCsrd.hero.subtitle")}
+          paragraph={t.rich("frameworksCsrd.hero.subtitle", {
+            csrd: link(csrdArticleHref),
+            vsme: link(vsmeArticleHref),
+          })}
           image="/images/ecovadis-hero_1.svg"
           paddingBottom="Small (3rem)"
           buttonsVisibility={true}
