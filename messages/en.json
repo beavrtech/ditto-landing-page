@@ -840,12 +840,12 @@
     "breadcrumb": "CDP",
     "hero": {
       "title": "Maximize your CDP score with less efforts",
-      "subtitle": "Ditto helps you structure your climate data and streamline your CDP response by combining embedded expertise with AI, so you can boost your score and demonstrate real progress.",
+      "subtitle": "Ditto helps you structure your climate data and streamline your <cdp>CDP response</cdp> by combining embedded expertise with AI, so you can boost your score and demonstrate real progress.",
       "cta": "Get started"
     },
     "approach": {
       "title": "Our approach to the CDP assessment",
-      "subtitle": "We've broken down the <cdp>CDP</cdp> into a simple, actionable process. Our AI-supported methodology follows four key steps, and our team of experts will guide you all the way through."
+      "subtitle": "We've broken down the CDP into a simple, actionable process. Our AI-supported methodology follows four key steps, and our team of experts will guide you all the way through."
     },
     "step1": {
       "label": "Step 1",
