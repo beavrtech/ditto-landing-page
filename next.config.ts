@@ -133,6 +133,74 @@ const nextConfig: NextConfig = {
         destination: "/en/collection/csrd/csrd-impact-materiality",
         permanent: true,
       },
+      // FR twins of the EcoVadis/CSRD blog↔collection duplicates above.
+      // These 12 slugs are covered by `duplicateRedirects` too once a fresh
+      // build/deploy picks up their current CMS state, but that CMS data
+      // (collection_items rows) only went live Aug 19-25 — recent enough
+      // that GSC still shows both /fr/ressources/blog/... and
+      // /fr/collection/... indexed in parallel. Hardcoded here so the
+      // redirect is guaranteed regardless of build timing, same as the
+      // vsme/csrd special cases above.
+      {
+        source: "/fr/ressources/blog/ecovadis-cest-quoi",
+        destination: "/fr/collection/ecovadis/ecovadis-cest-quoi",
+        permanent: true,
+      },
+      {
+        source: "/fr/ressources/blog/ecovadis-2024",
+        destination: "/fr/collection/ecovadis/ecovadis-2024",
+        permanent: true,
+      },
+      {
+        source: "/fr/ressources/blog/ecovadis-2025",
+        destination: "/fr/collection/ecovadis/ecovadis-2025",
+        permanent: true,
+      },
+      {
+        source: "/fr/ressources/blog/ecovadis-csrd",
+        destination: "/fr/collection/ecovadis/ecovadis-csrd",
+        permanent: true,
+      },
+      {
+        source: "/fr/ressources/blog/score-ecovadis",
+        destination: "/fr/collection/ecovadis/score-ecovadis",
+        permanent: true,
+      },
+      {
+        source: "/fr/ressources/blog/consultants-ecovadis",
+        destination: "/fr/collection/ecovadis/consultants-ecovadis",
+        permanent: true,
+      },
+      {
+        source: "/fr/ressources/blog/medailles-ecovadis",
+        destination: "/fr/collection/ecovadis/medailles-ecovadis",
+        permanent: true,
+      },
+      {
+        source: "/fr/ressources/blog/medaille-ecovadis-platinum",
+        destination: "/fr/collection/ecovadis/medaille-ecovadis-platinum",
+        permanent: true,
+      },
+      {
+        source: "/fr/ressources/blog/medaille-ecovadis-gold",
+        destination: "/fr/collection/ecovadis/medaille-ecovadis-gold",
+        permanent: true,
+      },
+      {
+        source: "/fr/ressources/blog/medaille-ecovadis-silver",
+        destination: "/fr/collection/ecovadis/medaille-ecovadis-silver",
+        permanent: true,
+      },
+      {
+        source: "/fr/ressources/blog/medaille-ecovadis-bronze",
+        destination: "/fr/collection/ecovadis/medaille-ecovadis-bronze",
+        permanent: true,
+      },
+      {
+        source: "/fr/ressources/blog/directive-europeenne-csrd",
+        destination: "/fr/collection/csrd/directive-europeenne-csrd",
+        permanent: true,
+      },
       {
         source: "/en/get-started",
         destination: "/en/demo",
