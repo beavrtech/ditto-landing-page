@@ -220,11 +220,37 @@ export async function ExploreArticlesSection({
     getCollectionItems(framework, locale as "en" | "fr"),
     getCategoryTranslations(),
   ]);
+  const allItems = items || [];
+
+  // A cross-listed comparison article (a "guest" item, brought in via
+  // `also_appears_in` from another collection) keeps the `categorie` it was
+  // given on its home collection, e.g. an EcoVadis comparison article is
+  // stored as "EcoVadis compared to other frameworks" even when it also
+  // appears on the CSRD collection page. Grouping guests by that raw,
+  // origin-framework-flavored string used to spawn a one-item orphan section
+  // per origin framework instead of landing in *this* collection's own
+  // "compare with other frameworks" section. Detect that class of category
+  // by name and re-key guest items onto the viewed framework's native
+  // comparatifs category so they merge into it instead.
+  const isComparatifsCategory = (name: string) => /other frameworks/i.test(name);
+  const nativeComparatifsCategory = allItems.find(
+    (item) =>
+      (!item.home_framework_slug || item.home_framework_slug === framework) &&
+      isComparatifsCategory(item.categorie || "")
+  )?.categorie;
+  const configComparatifsCategory = config.categories.find((c) =>
+    isComparatifsCategory(c.name)
+  )?.name;
 
   // Group items by category
   const grouped: Record<string, any[]> = {};
-  for (const item of items || []) {
-    const cat = item.categorie || "Resources";
+  for (const item of allItems) {
+    const ownCategory = item.categorie || "Resources";
+    const isGuest = item.home_framework_slug && item.home_framework_slug !== framework;
+    const cat =
+      isGuest && isComparatifsCategory(ownCategory)
+        ? nativeComparatifsCategory || configComparatifsCategory || ownCategory
+        : ownCategory;
     if (!grouped[cat]) grouped[cat] = [];
     grouped[cat].push(item);
   }
