@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import createNextIntlPlugin from "next-intl/plugin";
+import { duplicateArticleRedirects } from "./src/config/duplicate-article-redirects";
 
 const withNextIntl = createNextIntlPlugin();
 
@@ -49,49 +50,8 @@ const nextConfig: NextConfig = {
   // Legacy URL structure (pre-migration) → current localized routes.
   // These run before the i18n middleware.
   async redirects() {
-    // Blog posts that duplicate a collection item 308 to the collection
-    // version (single canonical URL per article). Computed from the CMS at
-    // build / server start.
-    const duplicateRedirects: { source: string; destination: string; permanent: boolean }[] = [];
-    try {
-      const base = process.env.NEXT_PUBLIC_SUPABASE_URL;
-      const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-      if (base && key) {
-        const headers = { apikey: key, Authorization: `Bearer ${key}` };
-        const [items, posts] = await Promise.all([
-          fetch(`${base}/rest/v1/collection_items?select=slug,slug_fr,framework:frameworks(slug)&published=eq.true&archived=eq.false&limit=1000`, { headers }).then((r) => r.json()),
-          fetch(`${base}/rest/v1/blog_posts?select=slug,slug_fr&published=eq.true&limit=1000`, { headers }).then((r) => r.json()),
-        ]);
-        const collectionBySlug = new Map(
-          (items as { slug: string; slug_fr: string | null; framework: { slug: string } | null }[])
-            .filter((i) => i.framework?.slug)
-            .map((i) => [i.slug, i])
-        );
-        // Every framework — carbon included — lives under
-        // /[locale]/collection/[framework].
-        const collectionUrl = (locale: string, framework: string, slug: string) =>
-          `/${locale}/collection/${framework}/${slug}`;
-        for (const post of posts as { slug: string; slug_fr: string | null }[]) {
-          const twin = collectionBySlug.get(post.slug);
-          if (!twin) continue;
-          const framework = twin.framework!.slug;
-          duplicateRedirects.push({
-            source: `/en/resources/blog/${post.slug}`,
-            destination: collectionUrl("en", framework, twin.slug),
-            permanent: true,
-          });
-          duplicateRedirects.push({
-            source: `/fr/ressources/blog/${post.slug_fr || post.slug}`,
-            destination: collectionUrl("fr", framework, twin.slug_fr || twin.slug),
-            permanent: true,
-          });
-        }
-      }
-    } catch {
-      // CMS unreachable at config time — page-level redirects still cover this
-    }
     return [
-      ...duplicateRedirects,
+      ...duplicateArticleRedirects,
       // The Scope lives at /en/media and /fr/media, like every other localized
       // route. The unprefixed form points at the default locale. Temporary for
       // now, so nothing caches a 308 for a section that has not launched.

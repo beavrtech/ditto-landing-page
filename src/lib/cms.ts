@@ -1,4 +1,5 @@
 import { supabase } from "./supabase";
+import { duplicateArticles } from "../config/duplicate-article-redirects";
 
 type Locale = "en" | "fr";
 
@@ -298,27 +299,19 @@ export async function getCustomerStoryBySlug(slug: string, locale: Locale) {
 // ============================================================
 
 /**
- * Map of published collection-item EN slug -> { slug, slug_fr, framework }.
- * Used to detect blog posts that duplicate a collection item so the blog URL
- * can redirect to the canonical collection version at
- * /collection/[framework]/[slug].
+ * Map of migrated blog article EN slug -> its canonical collection article.
+ * The migration list is source-controlled so routing and canonical links do
+ * not change when the CMS is temporarily unavailable.
  */
 export async function getCollectionSlugMap(): Promise<
   Map<string, { slug: string; slug_fr: string | null; framework: string }>
 > {
-  const { data, error } = await supabase
-    .from("collection_items")
-    .select("slug, slug_fr, framework:frameworks(slug)")
-    .eq("published", true)
-    .eq("archived", false);
-  if (error) throw error;
-  const map = new Map<string, { slug: string; slug_fr: string | null; framework: string }>();
-  for (const item of (data || []) as any[]) {
-    const framework = item.framework?.slug;
-    if (!framework) continue;
-    map.set(item.slug, { slug: item.slug, slug_fr: item.slug_fr, framework });
-  }
-  return map;
+  return new Map(
+    duplicateArticles.map(({ framework, en, fr }) => [
+      en,
+      { slug: en, slug_fr: fr, framework },
+    ])
+  );
 }
 
 /**
