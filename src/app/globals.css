@@ -1152,7 +1152,11 @@ a {
   display: none;
 }
 
-/* Shared desktop panel */
+/* Shared desktop panel. `top` is set inline by MegaNav from the navbar's
+   measured bottom edge (see dropdownTop in MegaNav.tsx) — the navbar's real
+   height varies with the announcement bar above it and its sticky-pinned vs.
+   natural-flow position, so this static value is only the pre-hydration
+   fallback and is overridden as soon as JS can measure the real layout. */
 .meganav_dropdown {
   position: fixed;
   left: 0;

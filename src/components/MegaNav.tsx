@@ -267,8 +267,17 @@ export function MegaNav({
   const [open, setOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [heights, setHeights] = useState<Record<string, number>>({});
+  // Viewport-relative bottom edge of the sticky navbar (.navbar1), so the
+  // fixed-position dropdown opens flush below it instead of at a hardcoded
+  // offset. The navbar's own rendered height isn't constant: the
+  // announcement bar above it makes the navbar's bottom edge land further
+  // down until the page scrolls past it (sticky pins the navbar at the
+  // viewport top from then on), so a static CSS `top` drifts out of sync and
+  // lets the panel open over the navbar's own button row.
+  const [dropdownTop, setDropdownTop] = useState<number | null>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const layerRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   // Track viewport so hover (desktop) vs tap (mobile) behavior can diverge.
   useEffect(() => {
@@ -309,6 +318,26 @@ export function MegaNav({
     }
     return () => ro.disconnect();
   }, [menus.length]);
+
+  // Track the navbar's real bottom edge (see dropdownTop above).
+  useLayoutEffect(() => {
+    const nav = dropdownRef.current?.closest(".navbar1") as HTMLElement | null;
+    if (!nav) return;
+    const updateDropdownTop = () => setDropdownTop(nav.getBoundingClientRect().bottom);
+    updateDropdownTop();
+    window.addEventListener("scroll", updateDropdownTop, { passive: true });
+    window.addEventListener("resize", updateDropdownTop);
+    let ro: ResizeObserver | undefined;
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(updateDropdownTop);
+      ro.observe(nav);
+    }
+    return () => {
+      window.removeEventListener("scroll", updateDropdownTop);
+      window.removeEventListener("resize", updateDropdownTop);
+      ro?.disconnect();
+    };
+  }, []);
 
   const clearClose = () => {
     if (closeTimer.current) {
@@ -394,7 +423,11 @@ export function MegaNav({
       })}
 
       {/* Shared desktop panel: morphs height + cross-fades between menus. */}
-      <div className={`meganav_dropdown${open ? " is-open" : ""}`}>
+      <div
+        ref={dropdownRef}
+        className={`meganav_dropdown${open ? " is-open" : ""}`}
+        style={dropdownTop != null ? { top: `${dropdownTop}px` } : undefined}
+      >
         <div
           className={"meganav_panel"}
           style={panelHeight ? { height: `${panelHeight}px` } : undefined}
