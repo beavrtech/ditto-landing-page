@@ -129,8 +129,8 @@ export function SocialProofBand() {
         <div className="spb_badges_stats">
           <div className="spb_badges">
             <Image
-              src="/images/ecovadis-medal-2026.svg"
-              alt="EcoVadis Platinum — Top 1% Sustainability Rating"
+              src="/images/cdp-accredited-provider-2026.png"
+              alt="CDP Accredited Provider 2026"
               width={96}
               height={96}
               className="spb_badge"
