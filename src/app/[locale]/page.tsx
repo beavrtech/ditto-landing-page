@@ -20,6 +20,7 @@ import { FrameworkChooser } from "../../components/FrameworkChooser";
 import { JsonLd, WEBSITE_JSONLD } from "../../components/JsonLd";
 import { StickyLogoBarClient } from "../../components/StickyLogoBarClient";
 import { HeroAnimation } from "../../components/HeroAnimation";
+import { SocialProofBand } from "../../components/SocialProofBand";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -91,6 +92,9 @@ export default async function HomePage({
             </div>
           </section>
         </div>
+
+        {/* 1b. Social proof band — badges, stats, logo grid, customer-stories link */}
+        <SocialProofBand logos={homepageCustomers.slice(0, 12)} />
 
         {/* 2. Product demo — looping hero animation — above customer credentials */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
