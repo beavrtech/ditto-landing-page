@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../components/NavbarServer";
-import { NewsletterForm } from "../../components/NewsletterFormI18n";
 import { ElementSocialproofTrustpilot } from "../../../devlink/elements/ElementSocialproofTrustpilot";
-import { Background } from "../../../devlink/Background";
 import { SectionCustomerLogos, getHomepageCustomerLogos } from "../../components/CustomerLogosServer";
 import { SectionCompliantCarousel } from "../../components/SectionCompliantCarouselInit";
 import { SectionPillIllus } from "../../../devlink/sections/SectionPillIllus";
@@ -16,10 +14,9 @@ import { SectionCta } from "../../../devlink/sections/SectionCta";
 import { Footer } from "../../components/FooterServer";
 import { DEVLINK_SCOPE_CLASS } from "../../../devlink/devlinkScope";
 import { ExpertiseCarousel } from "../../components/ExpertiseCarousel";
-import { FrameworkChooser } from "../../components/FrameworkChooser";
 import { JsonLd, WEBSITE_JSONLD } from "../../components/JsonLd";
 import { StickyLogoBarClient } from "../../components/StickyLogoBarClient";
-import { HeroAnimation } from "../../components/HeroAnimation";
+import { HeroBeadsCarousel } from "../../components/HeroBeadsCarousel";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -65,47 +62,34 @@ export default async function HomePage({
       <main className="main-wrapper">
         <Navbar />
 
-        {/* 1. Hero — title, subtitle, email CTA, framework grid */}
-        <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
-          <section className="hero_section home-hero">
-            <div className="padding-global">
-              <div className="container-80rem">
-                <div className="home-hero_inner">
-                  <div className="home-hero_text">
-                    <h1 className="heading-size-3rem">
-                      {t.rich("hero.title", { br: () => <br /> })}
-                    </h1>
-                    <p className="text-size-1x375rem home-hero_subtitle">
-                      {t("hero.subtitle")}
-                    </p>
-                  </div>
-                  <div className="home-hero_cta">
-                    <NewsletterForm />
-                  </div>
-                  <FrameworkChooser locale={locale} />
-                </div>
-              </div>
-            </div>
-            <div className="layer-4">
-              <Background color="Primary" />
-            </div>
-          </section>
-        </div>
+        {/* 1. Hero — yellow copy panel + tan animated framework carousel */}
+        <HeroBeadsCarousel
+          copy={{
+            eyebrow: t("hero.eyebrow"),
+            headline: [t("hero.headline1"), t("hero.headline2"), t("hero.headline3")],
+            subhead: t("hero.subhead"),
+            ctaLabel: t("hero.cta"),
+            ctaNote: t("hero.ctaNote"),
+            coachName: t("hero.coachName"),
+            coachMessages: [
+              t("hero.coach.ecovadis"),
+              t("hero.coach.cdp"),
+              t("hero.coach.iso"),
+              t("hero.coach.vsme"),
+              t("hero.coach.carbon"),
+            ],
+            frameworkNames: [
+              t("hero.frameworks.ecovadis"),
+              t("hero.frameworks.cdp"),
+              t("hero.frameworks.iso"),
+              t("hero.frameworks.vsme"),
+              t("hero.frameworks.carbon"),
+            ],
+            demoHref: `${prefix}/demo`,
+          }}
+        />
 
-        {/* 2. Product demo — looping hero animation — above customer credentials */}
-        <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
-          <section className="home-product_section">
-            <div className="padding-global">
-              <div className="container-80rem">
-                <div className="home-product_animation">
-                  <HeroAnimation />
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-
-        {/* 3. Logo strip + social proof */}
+        {/* 2. Logo strip + social proof */}
         <div id="logostrip-anchor">
           <SectionCustomerLogos locale={locale} afterContent={<ElementSocialproofTrustpilot />} />
         </div>

@@ -87,10 +87,28 @@
     "href": "https://tally.so/r/EkaP5A?utm_source=site&utm_medium=banner"
   },
   "hero": {
-    "title": "Votre plateforme conformité & durabilité,<br></br>et l'expert qui la pilote avec vous.",
-    "subtitle": "Sécurisez l'accès au marché, signez plus de contrats et réduisez vos risques, tout en allégeant vos coûts de conformité.",
-    "cta": "Réserver une démo",
-    "trustpilot": "4.6/5 on Trustpilot"
+    "eyebrow": "Conformité & durabilité, accompagnées",
+    "headline1": "Votre travail, vos preuves.",
+    "headline2": "Vérifiées par votre coach.",
+    "headline3": "Réutilisées pour chaque référentiel.",
+    "subhead": "Une seule base de preuves pour EcoVadis, CDP, VSME, ISO 14001 et votre bilan carbone. Vous ne répondez plus deux fois à la même question.",
+    "cta": "Discutons",
+    "ctaNote": "30 minutes. Aucune préparation nécessaire.",
+    "coachName": "Ines · votre coach RSE",
+    "coach": {
+      "ecovadis": "La politique existe déjà. Ce qui manque, c'est le reporting sur cette politique, et les résultats comptent pour un tiers de votre score.",
+      "cdp": "Pas encore de Scope 3 ? Cela seul vous maintient au niveau B. Même une estimation basée sur les dépenses compte. Commençons par là.",
+      "iso": "Commencez par le registre des obligations légales. C'est la première chose qu'un auditeur consulte.",
+      "vsme": "Le module de base suffit pour l'instant. Le module complet n'est utile que si une banque ou un grand client le demande, et nous le verrons venir.",
+      "carbon": "Les chiffres basés sur les dépenses suffisent pour une première année. L'année prochaine, nous remplacerons vos dix plus gros fournisseurs par des données réelles."
+    },
+    "frameworks": {
+      "ecovadis": "EcoVadis",
+      "cdp": "CDP",
+      "iso": "ISO 14001",
+      "vsme": "VSME",
+      "carbon": "Bilan carbone"
+    }
   },
   "frameworkChooser": {
     "heading": "J'ai besoin d'aide pour :",
