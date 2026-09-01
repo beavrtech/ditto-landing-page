@@ -3,9 +3,8 @@ import Image from "next/image";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../components/NavbarServer";
 import { NewsletterForm } from "../../components/NewsletterFormI18n";
-import { ElementSocialproofTrustpilot } from "../../../devlink/elements/ElementSocialproofTrustpilot";
 import { Background } from "../../../devlink/Background";
-import { SectionCustomerLogos, getHomepageCustomerLogos } from "../../components/CustomerLogosServer";
+import { getHomepageCustomerLogos } from "../../components/CustomerLogosServer";
 import { SectionCompliantCarousel } from "../../components/SectionCompliantCarouselInit";
 import { SectionPillIllus } from "../../../devlink/sections/SectionPillIllus";
 import { SectionFeaturesHeader } from "../../../devlink/sections/SectionFeaturesHeader";
@@ -94,7 +93,7 @@ export default async function HomePage({
         </div>
 
         {/* 1b. Social proof band — badges, stats, logo grid, customer-stories link */}
-        <SocialProofBand logos={homepageCustomers.slice(0, 12)} />
+        <SocialProofBand />
 
         {/* 2. Product demo — looping hero animation — above customer credentials */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
@@ -107,11 +106,6 @@ export default async function HomePage({
               </div>
             </div>
           </section>
-        </div>
-
-        {/* 3. Logo strip + social proof */}
-        <div id="logostrip-anchor">
-          <SectionCustomerLogos locale={locale} afterContent={<ElementSocialproofTrustpilot />} />
         </div>
 
         {/* 2c. Testimonials (moved up, right below the clients + product) */}

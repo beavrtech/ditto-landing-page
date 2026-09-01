@@ -13,10 +13,29 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
-import type { CustomerLogo } from "../lib/customer-logos";
 import { localizedHref } from "../lib/localized-paths";
 
 type Breakpoint = "desktop" | "narrow" | "phone";
+
+/**
+ * Fixed draft list of 12 logos for the band — intentionally NOT wired to the
+ * live customer DB (unlike the homepage logo strip), so it won't drift as
+ * that list changes. Update by hand if the roster changes.
+ */
+const SOCIAL_PROOF_LOGOS: { name: string; logoUrl: string }[] = [
+  { name: "WAAT", logoUrl: "/customer-logos/waat.png" },
+  { name: "Mobsuccess", logoUrl: "/customer-logos/mobsuccess.png" },
+  { name: "Stanco", logoUrl: "/customer-logos/stanco.png" },
+  { name: "Adenes", logoUrl: "/customer-logos/adenes.png" },
+  { name: "Aico", logoUrl: "/customer-logos/aico.png" },
+  { name: "Émile Maurin", logoUrl: "/customer-logos/maurin.png" },
+  { name: "Niedax", logoUrl: "/customer-logos/niedax.png" },
+  { name: "Superga Beauty", logoUrl: "/customer-logos/superga-beauty.png" },
+  { name: "ECS Group", logoUrl: "/customer-logos/ecs-group.png" },
+  { name: "Yesss Electrique", logoUrl: "/customer-logos/yesss-electrique.png" },
+  { name: "France TV Publicité", logoUrl: "/customer-logos/france-tv.png" },
+  { name: "Malt", logoUrl: "/customer-logos/malt.png" },
+];
 
 /** phone < 720px, narrow < 1024px, desktop otherwise. */
 function useSocialProofBreakpoint(): Breakpoint {
@@ -61,7 +80,7 @@ function chunk<T>(items: T[], size: number): T[][] {
 }
 
 const SOCIAL_PROOF_BAND_CSS = `
-.spb { background: #FFFFFF; border-top: 1px solid #D9DDBC; padding: 24px clamp(24px, 3vw, 48px); }
+.spb { background: #FFFFFF; border-top: 1px solid #D9DDBC; border-bottom: 1px solid #D9DDBC; padding: 24px clamp(24px, 3vw, 48px); }
 .spb_inner { max-width: 1344px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; }
 .spb[data-bp="desktop"] .spb_inner { justify-content: flex-start; gap: clamp(20px, 2.6vw, 40px); }
 .spb[data-bp="narrow"] .spb_inner, .spb[data-bp="phone"] .spb_inner { justify-content: center; gap: 28px; }
@@ -81,8 +100,8 @@ const SOCIAL_PROOF_BAND_CSS = `
 .spb_logos { display: flex; flex-direction: column; gap: 18px; flex: 1 1 auto; }
 .spb[data-bp="desktop"] .spb_logos { flex-basis: 0%; min-width: 420px; }
 .spb[data-bp="narrow"] .spb_logos, .spb[data-bp="phone"] .spb_logos { flex-basis: 100%; min-width: 240px; }
-.spb_logos-row { display: flex; justify-content: center; gap: clamp(16px, 2.2vw, 32px); }
-.spb_logo { flex: 1 1 0; min-width: 0; max-width: 150px; height: 34px; object-fit: contain; }
+.spb_logos-row { display: flex; justify-content: center; gap: clamp(20px, 2.6vw, 40px); }
+.spb_logo { flex: 1 1 0; min-width: 0; max-width: 135px; height: 30.6px; object-fit: contain; }
 
 .spb_link { display: inline-flex; align-items: center; gap: 6px; height: 48px; white-space: nowrap; font-family: var(--font-inter), Inter, Arial, sans-serif; font-size: 15px; color: var(--_colors-•-primitives---neutral--neutral-navy, #130E30); text-decoration: none; }
 .spb_link:hover { text-decoration: underline; }
@@ -90,12 +109,12 @@ const SOCIAL_PROOF_BAND_CSS = `
 .spb[data-bp="narrow"] .spb_link, .spb[data-bp="phone"] .spb_link { width: 100%; justify-content: center; }
 `;
 
-export function SocialProofBand({ logos }: { logos: CustomerLogo[] }) {
+export function SocialProofBand() {
   const t = useTranslations("socialProofBand");
   const locale = useLocale();
   const breakpoint = useSocialProofBreakpoint();
   const logosPerRow = breakpoint === "desktop" ? 6 : 4;
-  const logoRows = chunk(logos, logosPerRow);
+  const logoRows = chunk(SOCIAL_PROOF_LOGOS, logosPerRow);
 
   return (
     <section className="spb" data-bp={breakpoint}>
@@ -139,7 +158,7 @@ export function SocialProofBand({ logos }: { logos: CustomerLogo[] }) {
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
                   key={logo.name}
-                  src={logo.logo_url}
+                  src={logo.logoUrl}
                   alt={logo.name}
                   className="spb_logo"
                   loading="lazy"
