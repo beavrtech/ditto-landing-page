@@ -98,9 +98,10 @@ const SOCIAL_PROOF_BAND_CSS = `
 .spb_stat-label { font-family: var(--font-inter), Inter, Arial, sans-serif; font-size: 14px; letter-spacing: -0.01em; color: #6B6880; display: inline-flex; align-items: center; gap: 5px; margin-top: 2px; }
 
 .spb_logos { display: flex; flex-direction: column; gap: 18px; flex: 1 1 auto; }
-.spb[data-bp="desktop"] .spb_logos { flex-basis: 0%; min-width: 420px; }
+.spb[data-bp="desktop"] .spb_logos { flex-basis: 0%; min-width: 420px; gap: 30px; }
 .spb[data-bp="narrow"] .spb_logos, .spb[data-bp="phone"] .spb_logos { flex-basis: 100%; min-width: 240px; }
 .spb_logos-row { display: flex; justify-content: center; gap: clamp(20px, 2.6vw, 40px); }
+.spb[data-bp="narrow"] .spb_logos-row, .spb[data-bp="phone"] .spb_logos-row { justify-content: space-between; }
 .spb_logo { flex: 1 1 0; min-width: 0; max-width: 135px; height: 30.6px; object-fit: contain; }
 
 .spb_link { display: inline-flex; align-items: center; gap: 6px; height: 48px; white-space: nowrap; font-family: var(--font-inter), Inter, Arial, sans-serif; font-size: 15px; color: var(--_colors-•-primitives---neutral--neutral-navy, #130E30); text-decoration: none; }
