@@ -4,13 +4,12 @@
  * @file SocialProofBand — trust band shown right after the homepage hero.
  *
  * Layout is driven by the MEASURED viewport width (see useSocialProofBreakpoint
- * below), not CSS media queries, per design spec: badges/stats stack into a
- * column and the logo grid becomes a 6-per-row 2-row block on desktop, then
- * both switch to side-by-side / 4-per-row 3-row on narrower viewports.
+ * below), not CSS media queries, per design spec: stats stack into a column
+ * and the logo grid becomes a 6-per-row 2-row block on desktop, then both
+ * switch to side-by-side / 4-per-row 3-row on narrower viewports.
  */
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { localizedHref } from "../lib/localized-paths";
@@ -85,19 +84,9 @@ const SOCIAL_PROOF_BAND_CSS = `
 .spb[data-bp="desktop"] .spb_inner { justify-content: flex-start; gap: clamp(20px, 2.6vw, 40px); }
 .spb[data-bp="narrow"] .spb_inner, .spb[data-bp="phone"] .spb_inner { justify-content: center; gap: 28px; }
 
-.spb_badges_stats { display: contents; }
-.spb[data-bp="phone"] .spb_badges_stats { display: flex; align-items: center; flex: none; gap: clamp(6px, 3vw, 16px); }
-
-.spb_badges { display: flex; flex: none; }
-.spb[data-bp="desktop"] .spb_badges { flex-direction: column; gap: 18px; }
-.spb[data-bp="narrow"] .spb_badges { flex-direction: row; gap: 28px; }
-.spb[data-bp="phone"] .spb_badges { display: contents; }
-.spb_badge { height: 56px; width: auto; flex: none; }
-
 .spb_stats { display: flex; flex: none; }
 .spb[data-bp="desktop"] .spb_stats { flex-direction: column; gap: 18px; align-items: flex-start; }
-.spb[data-bp="narrow"] .spb_stats { flex-direction: row; gap: 28px; align-items: center; justify-content: center; }
-.spb[data-bp="phone"] .spb_stats { display: contents; }
+.spb[data-bp="narrow"] .spb_stats, .spb[data-bp="phone"] .spb_stats { flex-direction: row; gap: 28px; align-items: center; justify-content: center; }
 .spb_stat { display: flex; flex-direction: column; }
 .spb_stat-number { font-family: var(--font-hedvig), "Hedvig Letters Serif", Georgia, serif; font-size: 34px; line-height: 1; color: var(--_colors-•-primitives---neutral--neutral-navy, #130E30); }
 .spb_stat-label { font-family: var(--font-inter), Inter, Arial, sans-serif; font-size: 14px; letter-spacing: -0.01em; color: #6B6880; display: inline-flex; align-items: center; gap: 5px; margin-top: 2px; }
@@ -126,36 +115,17 @@ export function SocialProofBand() {
     <section className="spb" data-bp={breakpoint}>
       <style dangerouslySetInnerHTML={{ __html: SOCIAL_PROOF_BAND_CSS }} />
       <div className="spb_inner">
-        <div className="spb_badges_stats">
-          <div className="spb_badges">
-            <Image
-              src="/images/cdp-accredited-provider-2026.png"
-              alt="CDP Accredited Provider 2026"
-              width={96}
-              height={96}
-              className="spb_badge"
-            />
-            <Image
-              src="/images/ecovadis-partner-2026.svg"
-              alt="EcoVadis Accredited Consulting Partner"
-              width={96}
-              height={96}
-              className="spb_badge"
-            />
+        <div className="spb_stats">
+          <div className="spb_stat">
+            <span className="spb_stat-number">500+</span>
+            <span className="spb_stat-label">{t("companies")}</span>
           </div>
-
-          <div className="spb_stats">
-            <div className="spb_stat">
-              <span className="spb_stat-number">500+</span>
-              <span className="spb_stat-label">{t("companies")}</span>
-            </div>
-            <div className="spb_stat">
-              <span className="spb_stat-number">4.6/5</span>
-              <span className="spb_stat-label">
-                {t("trustpilot")}
-                <TrustpilotStar />
-              </span>
-            </div>
+          <div className="spb_stat">
+            <span className="spb_stat-number">4.6/5</span>
+            <span className="spb_stat-label">
+              {t("trustpilot")}
+              <TrustpilotStar />
+            </span>
           </div>
         </div>
 
