@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getSupabaseAdmin } from "../../../../../../lib/supabase-admin";
 import { getTableConfig } from "../../../../../../lib/admin-tables";
-import { revalidateCollectionItem } from "../../../../../../lib/admin-revalidate";
+import { revalidateCollectionItem, revalidateBlogPost } from "../../../../../../lib/admin-revalidate";
 
 export async function GET(
   _req: NextRequest,
@@ -49,6 +49,9 @@ export async function PUT(
   // hit it again after the window elapses.
   if (config.table === "collection_items") {
     await revalidateCollectionItem(data).catch(() => {});
+  }
+  if (config.table === "blog_posts") {
+    revalidateBlogPost(data);
   }
 
   return NextResponse.json(data);
