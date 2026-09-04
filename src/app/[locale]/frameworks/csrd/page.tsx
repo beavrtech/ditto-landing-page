@@ -46,17 +46,14 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
   const t = await getTranslations();
   const prefix = `/${locale}`;
 
-  // Internal maillage into the CSRD and VSME collection articles.
+  // Internal maillage into the CSRD collection article, and a deliberate
+  // cross-link from the chapô over to the dedicated VSME framework page.
   const csrdArticleHref = collectionPath(
     "csrd",
     locale,
     locale === "fr" ? "directive-europeenne-csrd" : "csrd-european-directive"
   );
-  const vsmeArticleHref = collectionPath(
-    "vsme",
-    locale,
-    locale === "fr" ? "vsme-standard-reporting-durabilite-pme" : "vsme-standard-sustainability-reporting-smes"
-  );
+  const vsmePageHref = `${prefix}/frameworks/vsme`;
 
   const link = (href: string) => (chunks: ReactNode) => (
     <a href={href} style={{ textDecoration: "underline" }}>
@@ -83,7 +80,7 @@ export default async function FrameworksCsrdPage({ params }: { params: Promise<{
           title={t("frameworksCsrd.hero.title")}
           paragraph={t.rich("frameworksCsrd.hero.subtitle", {
             csrd: link(csrdArticleHref),
-            vsme: link(vsmeArticleHref),
+            vsme: link(vsmePageHref),
           })}
           image="/images/ecovadis-hero_1.svg"
           paddingBottom="Small (3rem)"

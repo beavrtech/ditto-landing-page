@@ -31,7 +31,8 @@
     "ecovadis": "EcoVadis",
     "iso14001": "ISO 14001",
     "cdp": "CDP",
-    "csrd": "CSRD / VSME",
+    "csrd": "CSRD",
+    "vsme": "VSME",
     "otherFrameworks": "Other frameworks",
     "managementSystem": "Management system",
     "complianceQuestionnaires": "Compliance questionnaires",
@@ -887,17 +888,17 @@
     "breadcrumb": "CSRD",
     "hero": {
       "title": "AI-powered platform for CSRD compliance",
-      "subtitle": "Ditto helps you prepare a complete, compliant sustainability report under <csrd>CSRD</csrd> /<vsme>VSME</vsme> by combining embedded expertise, AI, and smart templates. So you can move fast, stay structured, and publish on time.",
+      "subtitle": "Ditto helps you prepare a complete, compliant sustainability report under <csrd>CSRD</csrd> by combining embedded expertise, AI, and smart templates. So you can move fast, stay structured, and publish on time. Also supporting SME suppliers on <vsme>VSME</vsme>?",
       "cta": "Get started"
     },
     "approach": {
-      "title": "Our approach to CSRD / VSME compliance",
+      "title": "Our approach to CSRD compliance",
       "subtitle": "We make CSRD manageable: with Ditto, you'll work through each requirement step by step, using clear guidance, smart templates, and expert coaching to get the job done."
     },
     "step1": {
       "label": "Step 1",
       "title": "Map your data and identify your gaps",
-      "description": "Start by scanning your current data coverage against CSRD or VSME requirements. We'll help you identify what's missing and prioritize what to collect next. This includes policies, metrics, risk data, and upstream/downstream insights."
+      "description": "Start by scanning your current data coverage against CSRD requirements. We'll help you identify what's missing and prioritize what to collect next. This includes policies, metrics, risk data, and upstream/downstream insights."
     },
     "step2": {
       "label": "Step 2",
@@ -926,7 +927,7 @@
     },
     "cta": {
       "title": "Ready to get compliant? Ditto.",
-      "subtitle": "Move faster, avoid blind spots, and build a credible CSRD or VSME report from day one.",
+      "subtitle": "Move faster, avoid blind spots, and build a credible CSRD report from day one.",
       "button": "Get started"
     }
   },

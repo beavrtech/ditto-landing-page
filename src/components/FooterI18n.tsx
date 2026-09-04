@@ -334,6 +334,16 @@ export function FooterClient({ blogPosts: serverBlogPosts, customerStories: serv
                     button={false}
                     className={"link-size-1rem"}
                     options={{
+                      href: `${prefix}/frameworks/vsme`,
+                    }}
+                  >
+                    {"VSME"}
+                  </Link>
+                  <Link
+                    block={""}
+                    button={false}
+                    className={"link-size-1rem"}
+                    options={{
                       href: `${prefix}/frameworks/iso-14001`,
                     }}
                   >

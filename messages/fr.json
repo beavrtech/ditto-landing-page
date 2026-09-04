@@ -31,7 +31,8 @@
     "ecovadis": "EcoVadis",
     "iso14001": "ISO 14001",
     "cdp": "CDP",
-    "csrd": "CSRD / VSME",
+    "csrd": "CSRD",
+    "vsme": "VSME",
     "otherFrameworks": "Autres référentiels",
     "managementSystem": "Système de management",
     "complianceQuestionnaires": "Questionnaires automatisés",
@@ -821,17 +822,17 @@
     "breadcrumb": "CSRD",
     "hero": {
       "title": "Conformité CSRD assistée par l'IA",
-      "subtitle": "Ditto vous aide à produire des rapports <csrd>CSRD</csrd> et <vsme>VSME</vsme> conformes, complets et auditables, plus facilement. En combinant expertise, IA et données centralisées, vous pouvez avancer étape par étape, avec une structure claire.",
+      "subtitle": "Ditto vous aide à produire des rapports <csrd>CSRD</csrd> conformes, complets et auditables, plus facilement. En combinant expertise, IA et données centralisées, vous pouvez avancer étape par étape, avec une structure claire. Vous accompagnez aussi vos fournisseurs PME sur le <vsme>VSME</vsme> ?",
       "cta": "Commencer"
     },
     "approach": {
-      "title": "Notre approche de la conformité CSRD/VSME",
+      "title": "Notre approche de la conformité CSRD",
       "subtitle": "Nous rendons la conformité CSRD simple et accessible, étape par étape. Grâce à des recommandations claires, des outils puissants et l'expertise intégrée de Ditto, vous avancez sereinement vers la ligne d'arrivée."
     },
     "step1": {
       "label": "Étape 1",
       "title": "Cartographiez vos données et identifiez les écarts",
-      "description": "Commencez par visualiser votre couverture actuelle face aux exigences de la CSRD / VSME. Grâce à l'IA, Ditto identifie les données manquantes et vous montre où concentrer vos efforts."
+      "description": "Commencez par visualiser votre couverture actuelle face aux exigences de la CSRD. Grâce à l'IA, Ditto identifie les données manquantes et vous montre où concentrer vos efforts."
     },
     "step2": {
       "label": "Étape 2",
@@ -855,12 +856,12 @@
     },
     "testimonials": {
       "title": "Ditto fonctionne pour toutes sortes d'équipes",
-      "subtitle": "Que ce soit votre première expérience avec la CSRD / le VSME ou que vous soyez déjà familiarisé avec les exigences réglementaires, Ditto s'adapte à votre contexte.",
+      "subtitle": "Que ce soit votre première expérience avec la CSRD ou que vous soyez déjà familiarisé avec les exigences réglementaires, Ditto s'adapte à votre contexte.",
       "cta": "En savoir plus"
     },
     "cta": {
       "title": "Prêt à vous mettre en conformité ? Ditto.",
-      "subtitle": "Créez un rapport CSRD ou VSME conforme, clair et crédible avec un copilote intelligent à vos côtés, à chaque étape.",
+      "subtitle": "Créez un rapport CSRD conforme, clair et crédible avec un copilote intelligent à vos côtés, à chaque étape.",
       "button": "Commencer"
     }
   },
