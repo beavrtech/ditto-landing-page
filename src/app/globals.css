@@ -1106,6 +1106,21 @@ a {
   column-gap: 0 !important;
 }
 
+/* Keep the language switcher (globe icon) above the mega-menu panel
+   (.meganav_dropdown, z-index: 50 below). Webflow's base `.w-dropdown`/`.w-nav`
+   rules that would normally give this element its stacking priority (z-index
+   900/1000) live behind an `@scope` at-rule inside devlink-bundle.css and are
+   not guaranteed to apply everywhere that renders the site — without them
+   `.navbar_language-dropdown` falls back to `position: static; z-index: auto`
+   and the fixed, explicitly z-indexed mega-menu panel paints over it (bug:
+   globe rendered underneath/overlapping the open mega-menu). Declared here,
+   independently of the devlink bundle, so it can't be shadowed either way.
+   !important because devlink-bundle.css loads after this file in the cascade. */
+.navbar_language-dropdown {
+  position: relative !important;
+  z-index: 60 !important;
+}
+
 .meganav_item {
   display: flex;
   align-items: center;
