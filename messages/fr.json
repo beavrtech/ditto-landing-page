@@ -774,12 +774,12 @@
     "breadcrumb": "CDP",
     "hero": {
       "title": "Améliorez votre score CDP, sans complexité",
-      "subtitle": "Ditto combine expertise humaine et intelligence artificielle pour structurer vos données, centraliser vos preuves et optimiser vos réponses. Gagnez du temps et progressez plus vite, sans rien laisser au hasard.",
+      "subtitle": "Ditto combine expertise humaine et intelligence artificielle pour structurer vos données, centraliser vos preuves et optimiser vos réponses au <cdp>questionnaire CDP</cdp>. Gagnez du temps et progressez plus vite, sans rien laisser au hasard.",
       "cta": "Commencer"
     },
     "approach": {
       "title": "Notre approche de l'évaluation CDP",
-      "subtitle": "Nous avons découpé le <cdp>processus CDP</cdp> en étapes simples et guidées. Notre approche allie méthode et clarté pour vous aider à structurer vos réponses et identifier les bonnes preuves tout en s'adaptant à vos données et à votre organisation."
+      "subtitle": "Nous avons découpé le processus CDP en étapes simples et guidées. Notre approche allie méthode et clarté pour vous aider à structurer vos réponses et identifier les bonnes preuves tout en s'adaptant à vos données et à votre organisation."
     },
     "step1": {
       "label": "Étape 1",
