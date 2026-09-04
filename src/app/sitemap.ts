@@ -25,6 +25,7 @@ const STATIC_PAGES: { en: string; fr: string; changeFrequency: MetadataRoute.Sit
   { en: "/frameworks/csrd", fr: "/frameworks/csrd", changeFrequency: "monthly", priority: 0.8 },
   { en: "/frameworks/cdp", fr: "/frameworks/cdp", changeFrequency: "monthly", priority: 0.8 },
   { en: "/frameworks/iso-14001", fr: "/frameworks/iso-14001", changeFrequency: "monthly", priority: 0.8 },
+  { en: "/frameworks/vsme", fr: "/frameworks/vsme", changeFrequency: "monthly", priority: 0.8 },
   { en: "/solutions/management-system", fr: "/solutions/management-system", changeFrequency: "monthly", priority: 0.8 },
   { en: "/solutions/compliance-questionnaires", fr: "/solutions/compliance-questionnaires", changeFrequency: "monthly", priority: 0.8 },
   { en: "/solutions/ai-solutions", fr: "/solutions/ai-solutions", changeFrequency: "monthly", priority: 0.8 },
