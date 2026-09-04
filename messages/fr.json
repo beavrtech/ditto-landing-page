@@ -31,7 +31,8 @@
     "ecovadis": "EcoVadis",
     "iso14001": "ISO 14001",
     "cdp": "CDP",
-    "csrd": "CSRD / VSME",
+    "csrd": "CSRD",
+    "vsme": "VSME",
     "otherFrameworks": "Autres référentiels",
     "managementSystem": "Système de management",
     "complianceQuestionnaires": "Questionnaires automatisés",
@@ -818,20 +819,20 @@
     }
   },
   "frameworksCsrd": {
-    "breadcrumb": "CSRD / VSME",
+    "breadcrumb": "CSRD",
     "hero": {
-      "title": "Conformité CSRD et VSME assistée par l'IA",
-      "subtitle": "Ditto vous aide à produire des rapports <csrd>CSRD</csrd> et <vsme>VSME</vsme> conformes, complets et auditables, plus facilement. En combinant expertise, IA et données centralisées, vous pouvez avancer étape par étape, avec une structure claire.",
+      "title": "Conformité CSRD assistée par l'IA",
+      "subtitle": "Ditto vous aide à produire des rapports <csrd>CSRD</csrd> conformes, complets et auditables, plus facilement. En combinant expertise, IA et données centralisées, vous pouvez avancer étape par étape, avec une structure claire. Vous accompagnez aussi vos fournisseurs PME sur le <vsme>VSME</vsme> ?",
       "cta": "Commencer"
     },
     "approach": {
-      "title": "Notre approche de la conformité CSRD/VSME",
+      "title": "Notre approche de la conformité CSRD",
       "subtitle": "Nous rendons la conformité CSRD simple et accessible, étape par étape. Grâce à des recommandations claires, des outils puissants et l'expertise intégrée de Ditto, vous avancez sereinement vers la ligne d'arrivée."
     },
     "step1": {
       "label": "Étape 1",
       "title": "Cartographiez vos données et identifiez les écarts",
-      "description": "Commencez par visualiser votre couverture actuelle face aux exigences de la CSRD / VSME. Grâce à l'IA, Ditto identifie les données manquantes et vous montre où concentrer vos efforts."
+      "description": "Commencez par visualiser votre couverture actuelle face aux exigences de la CSRD. Grâce à l'IA, Ditto identifie les données manquantes et vous montre où concentrer vos efforts."
     },
     "step2": {
       "label": "Étape 2",
@@ -855,12 +856,12 @@
     },
     "testimonials": {
       "title": "Ditto fonctionne pour toutes sortes d'équipes",
-      "subtitle": "Que ce soit votre première expérience avec la CSRD / le VSME ou que vous soyez déjà familiarisé avec les exigences réglementaires, Ditto s'adapte à votre contexte.",
+      "subtitle": "Que ce soit votre première expérience avec la CSRD ou que vous soyez déjà familiarisé avec les exigences réglementaires, Ditto s'adapte à votre contexte.",
       "cta": "En savoir plus"
     },
     "cta": {
       "title": "Prêt à vous mettre en conformité ? Ditto.",
-      "subtitle": "Créez un rapport CSRD ou VSME conforme, clair et crédible avec un copilote intelligent à vos côtés, à chaque étape.",
+      "subtitle": "Créez un rapport CSRD conforme, clair et crédible avec un copilote intelligent à vos côtés, à chaque étape.",
       "button": "Commencer"
     }
   },
@@ -908,6 +909,62 @@
     "cta": {
       "title": "Prêt à être certifié ISO 14001 ? Ditto.",
       "subtitle": "Mettez en place un système de management solide, couvrez toutes les exigences et passez vos audits en toute sérénité.",
+      "button": "Commencer"
+    }
+  },
+  "frameworksVsme": {
+    "breadcrumb": "VSME",
+    "hero": {
+      "title": "VSME en toute simplicité",
+      "subtitle": "Ditto vous aide à structurer votre reporting VSME sans lourdeur administrative : centralisez vos données ESG, répondez aux demandes de reporting RSE de vos clients et partenaires, et transformez une contrainte en avantage commercial.",
+      "cta": "Commencer"
+    },
+    "numbers": {
+      "title": "Ditto et le VSME en chiffres",
+      "card1Number": "100%",
+      "card1Text": "des clients accompagnés sur la VSME gagnent 25 points sur le reporting EcoVadis",
+      "card2Number": "1 à 4 semaines",
+      "card2Text": "pour finaliser un rapport VSME, selon votre niveau de préparation",
+      "card3Number": "56",
+      "card3Text": "indicateurs répartis en 11 blocs thématiques"
+    },
+    "approach": {
+      "title": "Notre approche du reporting VSME",
+      "subtitle": "Nous avons structuré le VSME en étapes claires, pour vous aider à centraliser vos données ESG et publier un rapport complet, sans complexité inutile."
+    },
+    "step1": {
+      "label": "Étape 1",
+      "title": "Cartographiez vos données existantes",
+      "description": "Identifiez ce que vous avez déjà (bilan carbone, politiques RH, données fournisseurs) et ce qui manque au regard des 11 blocs du VSME. <mgmt>Découvrez comment Ditto centralise vos données</mgmt>."
+    },
+    "step2": {
+      "label": "Étape 2",
+      "title": "Structurez selon les 56 indicateurs VSME",
+      "description": "Organisez vos données ESG dans le format attendu par vos clients et partenaires, sans réinventer un cadre maison.",
+      "button": "Parler à un expert"
+    },
+    "step3": {
+      "label": "Étape 3",
+      "title": "Répondez aux demandes de reporting RSE de vos clients et partenaires",
+      "description": "Le VSME est un cadre reconnu pour <questionnaires>répondre en un clic aux demandes de données ESG</questionnaires> de vos clients et partenaires, et il compte aussi pour votre propre progression sur EcoVadis : 100% des clients accompagnés gagnent 25 points sur le reporting EcoVadis."
+    },
+    "step4": {
+      "label": "Étape 4",
+      "title": "Progressez à votre rythme",
+      "description": "Le VSME reste volontaire : avancez par étapes, sans la charge d'un audit externe obligatoire, et valorisez ces données sur vos autres démarches RSE (EcoVadis, CSRD si vous passez les seuils).",
+      "button": "Prendre rendez-vous"
+    },
+    "carousel": {
+      "title": "Réutilisez vos données pour tous vos enjeux RSE et conformité"
+    },
+    "testimonials": {
+      "title": "Ditto fonctionne pour toutes sortes d'équipes",
+      "subtitle": "Que ce soit votre première expérience avec le VSME ou que vous répondiez déjà aux demandes ESG de vos clients et partenaires, Ditto s'adapte à votre contexte.",
+      "cta": "En savoir plus"
+    },
+    "cta": {
+      "title": "Prêt à structurer votre reporting VSME ? Ditto.",
+      "subtitle": "Créez un rapport VSME clair, complet et valorisable auprès de vos clients et partenaires, avec un copilote intelligent à vos côtés, à chaque étape.",
       "button": "Commencer"
     }
   },
@@ -1028,8 +1085,8 @@
       "description": "Préparez facilement votre évaluation EcoVadis et décrochez la médaille que vous méritez."
     },
     "frameworksCsrd": {
-      "title": "Conformité CSRD et VSME assistée par l'IA",
-      "description": "Simplifiez votre reporting CSRD ou VSME grâce à l'IA, des données structurées et l'expertise Ditto."
+      "title": "Conformité CSRD assistée par l'IA",
+      "description": "Simplifiez votre reporting CSRD grâce à l'IA, des données structurées et l'expertise Ditto."
     },
     "frameworksCarbon": {
       "title": "Répondez aux attentes carbone de vos clients, sans complexité",
@@ -1042,6 +1099,10 @@
     "frameworksIso14001": {
       "title": "La conformité ISO 14001, simplifiée",
       "description": "Préparez votre certification ISO 14001 sans stress grâce à l'IA et aux experts Ditto."
+    },
+    "frameworksVsme": {
+      "title": "VSME en toute simplicité",
+      "description": "Structurez votre reporting VSME avec Ditto : centralisez vos données ESG, répondez aux demandes RSE de vos clients et gagnez des points EcoVadis."
     },
     "frameworksIndex": {
       "title": "Référentiels",

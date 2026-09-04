@@ -314,6 +314,7 @@ export function NavbarClient({
             { label: t("ecovadis"), href: localizedHref("/frameworks/ecovadis", locale) },
             { label: t("cdp"), href: localizedHref("/frameworks/cdp", locale) },
             { label: t("csrd"), href: localizedHref("/frameworks/csrd", locale) },
+            { label: t("vsme"), href: localizedHref("/frameworks/vsme", locale) },
             { label: t("carbon"), href: localizedHref("/frameworks/carbon", locale) },
             { label: t("iso14001"), href: localizedHref("/frameworks/iso-14001", locale) },
             { label: t("allFrameworks"), href: localizedHref("/frameworks", locale) },

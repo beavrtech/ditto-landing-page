@@ -10,6 +10,7 @@ export const routing = defineRouting({
     "/frameworks/cdp": "/frameworks/cdp",
     "/frameworks/csrd": "/frameworks/csrd",
     "/frameworks/iso-14001": "/frameworks/iso-14001",
+    "/frameworks/vsme": "/frameworks/vsme",
     "/solutions/management-system": "/solutions/management-system",
     "/solutions/compliance-questionnaires": "/solutions/compliance-questionnaires",
     "/solutions/ai-solutions": "/solutions/ai-solutions",

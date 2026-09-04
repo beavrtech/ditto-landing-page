@@ -31,7 +31,8 @@
     "ecovadis": "EcoVadis",
     "iso14001": "ISO 14001",
     "cdp": "CDP",
-    "csrd": "CSRD / VSME",
+    "csrd": "CSRD",
+    "vsme": "VSME",
     "otherFrameworks": "Other frameworks",
     "managementSystem": "Management system",
     "complianceQuestionnaires": "Compliance questionnaires",
@@ -884,20 +885,20 @@
     }
   },
   "frameworksCsrd": {
-    "breadcrumb": "CSRD / VSME",
+    "breadcrumb": "CSRD",
     "hero": {
-      "title": "AI-powered platform for CSRD and VSME compliance",
-      "subtitle": "Ditto helps you prepare a complete, compliant sustainability report under <csrd>CSRD</csrd> /<vsme>VSME</vsme> by combining embedded expertise, AI, and smart templates. So you can move fast, stay structured, and publish on time.",
+      "title": "AI-powered platform for CSRD compliance",
+      "subtitle": "Ditto helps you prepare a complete, compliant sustainability report under <csrd>CSRD</csrd> by combining embedded expertise, AI, and smart templates. So you can move fast, stay structured, and publish on time. Also supporting SME suppliers on <vsme>VSME</vsme>?",
       "cta": "Get started"
     },
     "approach": {
-      "title": "Our approach to CSRD / VSME compliance",
+      "title": "Our approach to CSRD compliance",
       "subtitle": "We make CSRD manageable: with Ditto, you'll work through each requirement step by step, using clear guidance, smart templates, and expert coaching to get the job done."
     },
     "step1": {
       "label": "Step 1",
       "title": "Map your data and identify your gaps",
-      "description": "Start by scanning your current data coverage against CSRD or VSME requirements. We'll help you identify what's missing and prioritize what to collect next. This includes policies, metrics, risk data, and upstream/downstream insights."
+      "description": "Start by scanning your current data coverage against CSRD requirements. We'll help you identify what's missing and prioritize what to collect next. This includes policies, metrics, risk data, and upstream/downstream insights."
     },
     "step2": {
       "label": "Step 2",
@@ -926,7 +927,7 @@
     },
     "cta": {
       "title": "Ready to get compliant? Ditto.",
-      "subtitle": "Move faster, avoid blind spots, and build a credible CSRD or VSME report from day one.",
+      "subtitle": "Move faster, avoid blind spots, and build a credible CSRD report from day one.",
       "button": "Get started"
     }
   },
@@ -974,6 +975,62 @@
     "cta": {
       "title": "Ready to get ISO compliant? Ditto.",
       "subtitle": "Build a strong EMS, close compliance gaps, and stay audit-ready.",
+      "button": "Get started"
+    }
+  },
+  "frameworksVsme": {
+    "breadcrumb": "VSME",
+    "hero": {
+      "title": "VSME made simple",
+      "subtitle": "Ditto helps you structure your VSME reporting without administrative overload: centralize your ESG data, respond to your clients' and partners' CSR reporting requests, and turn a compliance ask into a commercial advantage.",
+      "cta": "Get started"
+    },
+    "numbers": {
+      "title": "Ditto and VSME by the numbers",
+      "card1Number": "100%",
+      "card1Text": "of clients supported on VSME gain 25 points on EcoVadis reporting",
+      "card2Number": "1 to 4 weeks",
+      "card2Text": "to complete a VSME report, depending on your starting point",
+      "card3Number": "56",
+      "card3Text": "indicators across 11 thematic blocks"
+    },
+    "approach": {
+      "title": "Our approach to VSME reporting",
+      "subtitle": "We've broken VSME down into clear steps, helping you centralize your ESG data and publish a complete report without unnecessary complexity."
+    },
+    "step1": {
+      "label": "Step 1",
+      "title": "Map your existing data",
+      "description": "Identify what you already have (carbon footprint, HR policies, supplier data) and what's missing against the VSME's 11 thematic blocks. <mgmt>See how Ditto centralizes your data</mgmt>."
+    },
+    "step2": {
+      "label": "Step 2",
+      "title": "Structure it against the 56 VSME indicators",
+      "description": "Organize your ESG data in the format your clients and partners expect, without building a bespoke framework from scratch.",
+      "button": "Talk to an expert"
+    },
+    "step3": {
+      "label": "Step 3",
+      "title": "Respond to your clients' and partners' CSR reporting requests",
+      "description": "VSME is a recognized framework for <questionnaires>answering ESG data requests from clients and partners in one click</questionnaires>, and it also counts toward your own EcoVadis progress: 100% of clients supported gain 25 points on EcoVadis reporting."
+    },
+    "step4": {
+      "label": "Step 4",
+      "title": "Move at your own pace",
+      "description": "VSME stays voluntary: progress step by step, without the burden of a mandatory external audit, and put that same data to work across your other CSR initiatives (EcoVadis, CSRD if you cross the thresholds).",
+      "button": "Book a demo"
+    },
+    "carousel": {
+      "title": "Reuse your data for all of your CSR and compliance needs"
+    },
+    "testimonials": {
+      "title": "Ditto works for all kinds of teams",
+      "subtitle": "Whether this is your first time with VSME or you're already responding to clients' and partners' ESG requests, Ditto adapts to your context.",
+      "cta": "Read More"
+    },
+    "cta": {
+      "title": "Ready to structure your VSME reporting? Ditto.",
+      "subtitle": "Create a clear, complete VSME report your clients and partners can rely on, with a smart copilot by your side every step of the way.",
       "button": "Get started"
     }
   },
@@ -1028,8 +1085,8 @@
       "description": "Ditto helps you structure your CSR approach and complete the EcoVadis assessment with ease, so you get the medal you deserve each year."
     },
     "frameworksCsrd": {
-      "title": "AI-powered platform for CSRD and VSME compliance",
-      "description": "Reporting under CSRD or VSME? Ditto helps you navigate disclosures, structure data, and publish faster with built-in AI and expert guidance."
+      "title": "AI-powered platform for CSRD compliance",
+      "description": "Reporting under CSRD? Ditto helps you navigate disclosures, structure data, and publish faster with built-in AI and expert guidance."
     },
     "frameworksCarbon": {
       "title": "Answer your clients' carbon requests, without the complexity",
@@ -1042,6 +1099,10 @@
     "frameworksIso14001": {
       "title": "ISO 14001 compliance in no time, without the stress",
       "description": "Prepare for ISO 14001 certification without stress. Ditto helps you structure your EMS, close gaps, and pass audits faster with AI and expert support."
+    },
+    "frameworksVsme": {
+      "title": "VSME made simple",
+      "description": "Structure your VSME reporting with Ditto: centralize your ESG data, respond to clients' CSR requests, and gain EcoVadis points."
     },
     "frameworksIndex": {
       "title": "Frameworks",
