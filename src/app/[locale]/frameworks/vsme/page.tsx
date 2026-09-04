@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
@@ -44,6 +45,12 @@ export default async function FrameworksVsmePage({ params }: { params: Promise<{
   setRequestLocale(locale);
   const t = await getTranslations();
   const prefix = `/${locale}`;
+
+  const link = (href: string) => (chunks: ReactNode) => (
+    <a href={href} style={{ textDecoration: "underline" }}>
+      {chunks}
+    </a>
+  );
 
   return (
     <div className="page-wrapper">
@@ -102,7 +109,9 @@ export default async function FrameworksVsmePage({ params }: { params: Promise<{
           variant="Layout • Base"
           labelLabelText={t("frameworksVsme.step1.label")}
           title={t("frameworksVsme.step1.title")}
-          paragraph={t("frameworksVsme.step1.description")}
+          paragraph={t.rich("frameworksVsme.step1.description", {
+            mgmt: link(`${prefix}/solutions/management-system`),
+          })}
           image="/images/management-feature-2_2.avif"
           buttonButtonVisibility={false}
         />
@@ -124,7 +133,9 @@ export default async function FrameworksVsmePage({ params }: { params: Promise<{
           variant="Layout • Base"
           labelLabelText={t("frameworksVsme.step3.label")}
           title={t("frameworksVsme.step3.title")}
-          paragraph={t("frameworksVsme.step3.description")}
+          paragraph={t.rich("frameworksVsme.step3.description", {
+            questionnaires: link(`${prefix}/solutions/compliance-questionnaires`),
+          })}
           image="/images/management-feature-3.svg"
           buttonButtonVisibility={false}
         />

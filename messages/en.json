@@ -989,8 +989,8 @@
       "title": "Ditto and VSME by the numbers",
       "card1Number": "100%",
       "card1Text": "of clients supported on VSME gain 25 points on EcoVadis reporting",
-      "card2Number": "< 3 weeks",
-      "card2Text": "to complete a VSME report",
+      "card2Number": "VSME report completed in 1 to 4 weeks,",
+      "card2Text": "depending on your starting point",
       "card3Number": "56",
       "card3Text": "indicators across 11 thematic blocks"
     },
@@ -1001,7 +1001,7 @@
     "step1": {
       "label": "Step 1",
       "title": "Map your existing data",
-      "description": "Identify what you already have (carbon footprint, HR policies, supplier data) and what's missing against the VSME's 11 thematic blocks."
+      "description": "Identify what you already have (carbon footprint, HR policies, supplier data) and what's missing against the VSME's 11 thematic blocks. <mgmt>See how Ditto centralizes your data</mgmt>."
     },
     "step2": {
       "label": "Step 2",
@@ -1012,7 +1012,7 @@
     "step3": {
       "label": "Step 3",
       "title": "Respond to your clients' and partners' CSR reporting requests",
-      "description": "VSME is a recognized framework for answering ESG data requests from clients and partners in one click, and it also counts toward your own EcoVadis progress: 100% of clients supported gain 25 points on EcoVadis reporting."
+      "description": "VSME is a recognized framework for <questionnaires>answering ESG data requests from clients and partners in one click</questionnaires>, and it also counts toward your own EcoVadis progress: 100% of clients supported gain 25 points on EcoVadis reporting."
     },
     "step4": {
       "label": "Step 4",
