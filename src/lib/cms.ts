@@ -12,6 +12,23 @@ function localized<T extends Record<string, any>>(
   return item[`${field}_${locale}`] || item[`${field}_en`] || "";
 }
 
+// Some older fields predate the `${field}_en`/`${field}_fr` convention: the
+// base column (no suffix) holds the value shown historically, and only a
+// `${field}_fr` override was added later — there is no `${field}_en`
+// counterpart to fall back to. Falls back to the base column when the FR
+// value is missing, null, or whitespace-only.
+function localizedWithBaseFallback<T extends Record<string, any>>(
+  item: T,
+  field: string,
+  locale: Locale
+): string {
+  if (locale === "fr") {
+    const frValue = item[`${field}_fr`];
+    if (typeof frValue === "string" && frValue.trim()) return frValue;
+  }
+  return item[field] || "";
+}
+
 // ============================================================
 // AUTHORS
 // ============================================================
@@ -289,6 +306,7 @@ export async function getCustomerStoryBySlug(slug: string, locale: Locale) {
     quote: localized(data, "quote", locale),
     quote_2: localized(data, "quote_2", locale),
     quote_3: localized(data, "quote_3", locale),
+    quote_author_role: localizedWithBaseFallback(data, "quote_author_role", locale),
     frameworks:
       data.customer_story_frameworks?.map((csf: any) => csf.framework) || [],
   };
