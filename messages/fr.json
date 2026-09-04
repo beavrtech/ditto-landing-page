@@ -138,6 +138,11 @@
     "title": "Rejoignez plus de 500 entreprises qui assurent leur conformité avec Ditto",
     "caseStudy": "Cas client"
   },
+  "socialProofBand": {
+    "companies": "entreprises",
+    "trustpilot": "sur Trustpilot",
+    "allCustomerStories": "Tous les témoignages"
+  },
   "frameworks": {
     "title": "Assurez votre conformité RSE quatre fois plus rapidement",
     "csrd": {
