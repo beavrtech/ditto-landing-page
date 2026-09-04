@@ -87,10 +87,28 @@
     "href": "https://tally.so/r/vGW6bA?utm_source=site&utm_medium=banner"
   },
   "hero": {
-    "title": "Your compliance & sustainability platform,<br></br>and the expert who runs it with you.",
-    "subtitle": "Protect market access, win more deals and reduce risk while lowering compliance costs.",
-    "cta": "Book a demo",
-    "trustpilot": "4.6/5 on Trustpilot"
+    "eyebrow": "Compliance & sustainability, coached",
+    "headline1": "Your work, your evidence.",
+    "headline2": "Checked by your coach.",
+    "headline3": "Reused for every framework.",
+    "subhead": "One evidence base for EcoVadis, CDP, VSME, ISO 14001, and your carbon footprint. So you stop answering the same questions twice.",
+    "cta": "Let's talk",
+    "ctaNote": "30 minutes. No preparation needed.",
+    "coachName": "Ines · your CSR coach",
+    "coach": {
+      "ecovadis": "The policy's already there. What's missing is the reporting on it, and results are a third of your score.",
+      "cdp": "No Scope 3 yet? That alone keeps you at B. Even a spend-based estimate counts. Let's start there.",
+      "iso": "Start with the legal register. It's the first thing an auditor opens.",
+      "vsme": "The Basic Module covers you for now. Comprehensive is only for when a bank or a big customer asks, and we'll see it coming.",
+      "carbon": "Spend-based numbers are fine for a first year. Next year we swap your ten biggest suppliers for real data."
+    },
+    "frameworks": {
+      "ecovadis": "EcoVadis",
+      "cdp": "CDP",
+      "iso": "ISO 14001",
+      "vsme": "VSME",
+      "carbon": "Carbon footprint"
+    }
   },
   "frameworkChooser": {
     "heading": "I need help with:",
