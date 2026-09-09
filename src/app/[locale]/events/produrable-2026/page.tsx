@@ -4,10 +4,12 @@ import { Navbar } from "../../../../components/NavbarServer";
 import { Footer } from "../../../../components/FooterServer";
 import { Breadcrumbs } from "../../../../components/BreadcrumbsWithSchema";
 import { localizedHref } from "../../../../lib/localized-paths";
-import { SectionHero2 } from "../../../../../devlink/sections/SectionHero2";
 import { SectionFeaturesHeader } from "../../../../../devlink/sections/SectionFeaturesHeader";
 import { SectionCta } from "../../../../../devlink/sections/SectionCta";
 import { Label } from "../../../../../devlink/elements/Label";
+import { Button } from "../../../../../devlink/elements/Button";
+import { Padding } from "../../../../../devlink/Padding";
+import { Background } from "../../../../../devlink/Background";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../devlink/devlinkScope";
 
 // Canonical (English) path for this page. Localized via the pathnames map in
@@ -67,103 +69,123 @@ export default async function ProdurablePage({
           item3Item3Visibility={false}
         />
 
-        {/* 2. Hero */}
-        <SectionHero2
-          title={t("produrable.hero.title")}
-          loremIpsum={
-            <>
-              {t("produrable.hero.dateLocation")}
-              <br />
-              {t("produrable.hero.stand")}
-            </>
-          }
-        />
+        {/* 2. Hero — title, date/location, stand, and the stand-meeting CTA.
+            Built from the same classes as the generated SectionHero2 (hero2_section /
+            container-48rem / header), but without its decorative illustration strip:
+            that graphic is a fixed-width SVG with no responsive rule to stretch it,
+            so at this container width it renders cut off rather than edge-to-edge —
+            dropped rather than shipped clipped. */}
+        <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
+          <section className="hero2_section">
+            <div className="padding-global">
+              <Padding space="Small (3rem)" />
+              <div className="container-48rem">
+                <div className="header">
+                  <h1 className="heading-size-4rem">{t("produrable.hero.title")}</h1>
+                  <div className="spacer-1x5rem spacer-mob-1rem" />
+                  <p className="text-size-1x375rem text-wrap-balance">
+                    {t("produrable.hero.dateLocation")}
+                    <br />
+                    {t("produrable.hero.stand")}
+                  </p>
+                  <div className="spacer-1x5rem spacer-mob-1rem" />
+                  <div className="button-group">
+                    <Button
+                      text={t("produrable.ctaBlock.button")}
+                      link={{ href: demoHref }}
+                      variant="Primary"
+                    />
+                  </div>
+                </div>
+              </div>
+              <Padding space="Small (3rem)" />
+            </div>
+            <div className="layer-4">
+              <Background color="Primary" />
+            </div>
+          </section>
+        </div>
 
-        {/* 3. CTA — book a meeting on our stand */}
-        <SectionCta
-          title={t("produrable.ctaBlock.title")}
-          paragraph={t("produrable.ctaBlock.paragraph")}
-          buttonText={t("produrable.ctaBlock.button")}
-          buttonLink={{ href: demoHref }}
-        />
-
-        {/* 4. Workshops header */}
+        {/* 3. Workshops header */}
         <SectionFeaturesHeader
           title={t("produrable.workshops.title")}
           textVisibility={false}
         />
 
-        {/* 5. Workshop cards */}
+        {/* 4. Workshops — full-width text, not boxed into card components, so the
+            long descriptions get room to breathe at the page's own typographic
+            scale rather than a compact card's. */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
           <section className="generic_section">
             <div className="padding-global">
-              <div data-wf--padding--space="small-3rem" className="spacer-component" />
+              <Padding space="Small (3rem)" />
               <div className="container-64rem">
                 {/* Workshop 1 */}
-                <div className="frameworks_list_card">
-                  <Label label={t("produrable.workshops.card1.meta")} />
-                  <div className="spacer-1x5rem" />
-                  <h3 className="heading-size-2rem">{t("produrable.workshops.card1.title")}</h3>
-                  <div className="spacer-0x75rem" />
-                  <p className="text-size-1rem text-color-neutral">{t("produrable.workshops.card1.speakers")}</p>
-                  <div className="spacer-1x5rem" />
-                  <p className="text-size-1x375rem">{t("produrable.workshops.card1.intro")}</p>
-                  <div className="spacer-1x5rem" />
-                  <p className="text-size-1x375rem">▪︎ {t("produrable.workshops.card1.bullet1")}</p>
-                  <p className="text-size-1x375rem">▪︎ {t("produrable.workshops.card1.bullet2")}</p>
-                  <p className="text-size-1x375rem">▪︎ {t("produrable.workshops.card1.bullet3")}</p>
-                  <div className="spacer-1x5rem" />
-                  <p className="text-size-1x375rem">{t("produrable.workshops.card1.outro")}</p>
-                </div>
+                <Label label={t("produrable.workshops.card1.meta")} />
+                <div className="spacer-1x5rem" />
+                <h3 className="heading-size-3rem">{t("produrable.workshops.card1.title")}</h3>
+                <div className="spacer-0x75rem" />
+                <p className="text-size-1rem text-color-neutral">{t("produrable.workshops.card1.speakers")}</p>
+                <div className="spacer-1x5rem" />
+                <p className="text-size-1x375rem">{t("produrable.workshops.card1.intro")}</p>
+                <div className="spacer-0x75rem" />
+                <p className="text-size-1x375rem">▪︎ {t("produrable.workshops.card1.bullet1")}</p>
+                <div className="spacer-0x75rem" />
+                <p className="text-size-1x375rem">▪︎ {t("produrable.workshops.card1.bullet2")}</p>
+                <div className="spacer-0x75rem" />
+                <p className="text-size-1x375rem">▪︎ {t("produrable.workshops.card1.bullet3")}</p>
+                <div className="spacer-1x5rem" />
+                <p className="text-size-1x375rem">{t("produrable.workshops.card1.outro")}</p>
 
-                <div className="spacer-3rem" />
+                <div className="spacer-6rem" />
 
                 {/* Workshop 2 */}
-                <div className="frameworks_list_card">
-                  <Label label={t("produrable.workshops.card2.meta")} />
-                  <div className="spacer-1x5rem" />
-                  <h3 className="heading-size-2rem">{t("produrable.workshops.card2.title")}</h3>
-                  <div className="spacer-0x75rem" />
-                  <p className="text-size-1rem text-color-neutral">{t("produrable.workshops.card2.speakers")}</p>
-                  <div className="spacer-1x5rem" />
-                  <p className="text-size-1x375rem">{t("produrable.workshops.card2.intro")}</p>
-                  <div className="spacer-1x5rem" />
-                  <p className="text-size-1x375rem">▪︎ {t("produrable.workshops.card2.bullet1")}</p>
-                  <p className="text-size-1x375rem">▪︎ {t("produrable.workshops.card2.bullet2")}</p>
-                  <p className="text-size-1x375rem">▪︎ {t("produrable.workshops.card2.bullet3")}</p>
-                  <div className="spacer-1x5rem" />
-                  <p className="text-size-1x375rem">{t("produrable.workshops.card2.outro")}</p>
-                </div>
+                <Label label={t("produrable.workshops.card2.meta")} />
+                <div className="spacer-1x5rem" />
+                <h3 className="heading-size-3rem">{t("produrable.workshops.card2.title")}</h3>
+                <div className="spacer-0x75rem" />
+                <p className="text-size-1rem text-color-neutral">{t("produrable.workshops.card2.speakers")}</p>
+                <div className="spacer-1x5rem" />
+                <p className="text-size-1x375rem">{t("produrable.workshops.card2.intro")}</p>
+                <div className="spacer-0x75rem" />
+                <p className="text-size-1x375rem">▪︎ {t("produrable.workshops.card2.bullet1")}</p>
+                <div className="spacer-0x75rem" />
+                <p className="text-size-1x375rem">▪︎ {t("produrable.workshops.card2.bullet2")}</p>
+                <div className="spacer-0x75rem" />
+                <p className="text-size-1x375rem">▪︎ {t("produrable.workshops.card2.bullet3")}</p>
+                <div className="spacer-1x5rem" />
+                <p className="text-size-1x375rem">{t("produrable.workshops.card2.outro")}</p>
               </div>
-              <div data-wf--padding--space="small-3rem" className="spacer-component" />
+              <Padding space="Small (3rem)" />
             </div>
             <div className="layer-4">
-              <div data-wf--background--color="secondary" className="background" />
+              <Background color="Secondary" />
             </div>
           </section>
         </div>
 
-        {/* 6. Barometer teaser */}
+        {/* 5. Barometer teaser — a plain centered header, not a boxed callout,
+            at the same generous scale as the rest of the page. */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
           <section className="generic_section">
             <div className="padding-global">
-              <div data-wf--padding--space="small-3rem" className="spacer-component" />
-              <div className="container-64rem">
-                <div className="frameworks_category_header">
+              <Padding space="Medium (6rem)" />
+              <div className="container-55rem">
+                <div className="header">
                   <Label label={t("produrable.barometer.label")} />
-                  <div className="spacer-0x75rem" />
-                  <p className="text-size-1x375rem">{t("produrable.barometer.text")}</p>
+                  <div className="spacer-1x5rem" />
+                  <p className="heading-size-2rem text-wrap-balance">{t("produrable.barometer.text")}</p>
                 </div>
               </div>
-              <div data-wf--padding--space="small-3rem" className="spacer-component" />
+              <Padding space="Medium (6rem)" />
             </div>
             <div className="layer-4">
-              <div data-wf--background--color="primary" className="background" />
+              <Background color="Primary" />
             </div>
           </section>
         </div>
 
-        {/* 7. Final CTA — same stand-meeting CTA as the hero */}
+        {/* 6. Final CTA — same stand-meeting CTA as the hero */}
         <SectionCta
           title={t("produrable.ctaBlock.title")}
           paragraph={t("produrable.ctaBlock.paragraph")}
