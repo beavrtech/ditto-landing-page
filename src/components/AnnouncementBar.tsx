@@ -24,12 +24,7 @@ export function AnnouncementBar() {
   return (
     <div className="announcement-bar" role="region" aria-label={t("tag")}>
       <div className="announcement-bar_inner">
-        <a
-          className="announcement-bar_link"
-          href={t("href")}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a className="announcement-bar_link" href={t("href")}>
           <span className="announcement-bar_tag">{t("tag")}</span>
           <span className="announcement-bar_text">
             {t("message")}{" "}

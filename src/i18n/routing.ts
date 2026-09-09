@@ -65,6 +65,10 @@ export const routing = defineRouting({
       fr: "/ressources/events",
     },
     "/demo": "/demo",
+    "/events/produrable-2026": {
+      en: "/events/produrable-2026",
+      fr: "/evenements/produrable-2026",
+    },
     "/legal/terms-and-conditions": {
       en: "/legal/terms-and-conditions",
       fr: "/legal/conditions-generales-dutilisation",
