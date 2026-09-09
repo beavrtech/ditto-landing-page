@@ -317,18 +317,41 @@ export async function getCustomerStoryBySlug(slug: string, locale: Locale) {
 // ============================================================
 
 /**
- * Map of migrated blog article EN slug -> its canonical collection article.
- * The migration list is source-controlled so routing and canonical links do
- * not change when the CMS is temporarily unavailable.
+ * Map of migrated blog article slug (EN or FR) -> its canonical collection
+ * article. Keyed by both slugs because the hand-typed `en` field in
+ * duplicate-article-redirects.ts can drift from the live blog_posts.slug for
+ * articles that needed a translated/restructured EN slug, while the `fr`
+ * field stays accurate — see {@link getCollectionTwin}. The migration list is
+ * source-controlled so routing and canonical links do not change when the
+ * CMS is temporarily unavailable.
  */
 export async function getCollectionSlugMap(): Promise<
   Map<string, { slug: string; slug_fr: string | null; framework: string }>
 > {
-  return new Map(
-    duplicateArticles.map(({ framework, en, fr }) => [
-      en,
-      { slug: en, slug_fr: fr, framework },
-    ])
+  const map = new Map<string, { slug: string; slug_fr: string | null; framework: string }>();
+  for (const { framework, en, fr } of duplicateArticles) {
+    const twin = { slug: en, slug_fr: fr, framework };
+    map.set(en, twin);
+    if (fr) map.set(fr, twin);
+  }
+  return map;
+}
+
+/**
+ * Looks up a post's collection twin from a {@link getCollectionSlugMap} map,
+ * matching on either its EN or FR slug. Do not replace this with a plain
+ * `map.get(post.slug)` — that only catches the EN slug, which can be stale
+ * for migrated articles (see {@link getCollectionSlugMap}); the FR slug has
+ * proven reliable, so it must stay in as a fallback.
+ */
+export function getCollectionTwin(
+  map: Map<string, { slug: string; slug_fr: string | null; framework: string }>,
+  post: { slug: string; slug_fr?: string | null }
+): { slug: string; slug_fr: string | null; framework: string } | null {
+  return (
+    map.get(post.slug) ||
+    (post.slug_fr ? map.get(post.slug_fr) : undefined) ||
+    null
   );
 }
 
@@ -337,11 +360,11 @@ export async function getCollectionSlugMap(): Promise<
  * can target the canonical collection URL instead of the blog URL (which
  * redirects). See {@link getCollectionSlugMap} and `articleHref`.
  */
-export async function withCollectionTwins<T extends { slug: string }>(
+export async function withCollectionTwins<T extends { slug: string; slug_fr?: string | null }>(
   posts: T[]
 ): Promise<(T & { collectionTwin: { slug: string; slug_fr: string | null; framework: string } | null })[]> {
   const map = await getCollectionSlugMap().catch(() => new Map());
-  return (posts || []).map((p) => ({ ...p, collectionTwin: map.get(p.slug) || null }));
+  return (posts || []).map((p) => ({ ...p, collectionTwin: getCollectionTwin(map, p) }));
 }
 
 export async function getBlogPosts(locale: Locale, limit?: number) {
