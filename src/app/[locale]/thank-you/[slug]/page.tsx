@@ -166,8 +166,8 @@ export default async function ThankYouGuidePage({
             <div className="padding-global">
               <div className="spacer-component" data-wf--padding--space="small-3rem" />
               <div className="container-64rem">
-                <div className="post-hero_component" style={{ textAlign: "center" }}>
-                  <div className="post-hero_content" style={{ alignItems: "center" }}>
+                <div className="post-hero_component" style={{ textAlign: "center", justifyContent: "center" }}>
+                  <div className="post-hero_content">
                     <h1 className="heading-size-3rem">{t("thankYouGuide.heading")}</h1>
                     <div className="spacer-0x75rem" />
                     <p className="text-size-1x375rem text-color-neutral">
@@ -194,7 +194,13 @@ export default async function ThankYouGuidePage({
                   <div className="spacer-1x5rem" />
                   <div className="thank-you_related-grid">
                     {relatedGuides.map((guide) => (
-                      <GuideCard key={guide.slug} guide={guide} locale={locale} />
+                      // GuideCard renders a Fragment (card + trailing spacer meant for
+                      // stacked sidebar lists) — without this wrapper both of its root
+                      // nodes become direct grid children, doubling the item count and
+                      // pushing the two cards into column 1 instead of side by side.
+                      <div key={guide.slug} className="thank-you_related-grid_item">
+                        <GuideCard guide={guide} locale={locale} />
+                      </div>
                     ))}
                   </div>
                 </div>
