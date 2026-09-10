@@ -9,7 +9,7 @@ import {
   Truck,
   ShoppingBag,
   Monitor,
-  Sparkles,
+  Flower2,
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
@@ -61,7 +61,7 @@ const ICONS: Record<string, LucideIcon> = {
   truck: Truck,
   "shopping-bag": ShoppingBag,
   monitor: Monitor,
-  sparkles: Sparkles,
+  "flower-2": Flower2,
 };
 
 const CHEVRON =
@@ -234,7 +234,14 @@ function MegaContent({
       </div>
 
       {featured ? (
-        <FeaturedBlock title={featured.title} variant={featured.kind === "article" ? "fixed" : "fill"}>
+        <FeaturedBlock
+          title={featured.title}
+          // "fixed" pins the block to the same 20rem width as the Resources
+          // article card, so the Product/Solution quote cards line up with
+          // it instead of stretching to fill the panel. Only the (currently
+          // unused) promo card still grows to fill the remaining width.
+          variant={featured.kind === "promo" ? "fill" : "fixed"}
+        >
           {featured.kind === "promo" ? (
             <PromoCard promo={featured.promo} />
           ) : featured.kind === "quote" ? (
