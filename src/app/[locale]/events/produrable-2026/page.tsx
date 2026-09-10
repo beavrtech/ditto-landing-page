@@ -6,6 +6,7 @@ import { Breadcrumbs } from "../../../../components/BreadcrumbsWithSchema";
 import { localizedHref } from "../../../../lib/localized-paths";
 import { SectionFeaturesHeader } from "../../../../../devlink/sections/SectionFeaturesHeader";
 import { SectionCta } from "../../../../../devlink/sections/SectionCta";
+import Heading from "../../../../../devlink/modules/Basic/components/Heading";
 import { Label } from "../../../../../devlink/elements/Label";
 import { Button } from "../../../../../devlink/elements/Button";
 import { Padding } from "../../../../../devlink/Padding";
@@ -137,7 +138,7 @@ export default async function ProdurablePage({
                 <div className="spacer-1x5rem" />
                 <p className="text-size-1x375rem">{t("produrable.workshops.card1.outro")}</p>
 
-                <div className="spacer-6rem" />
+                <Padding space="Medium (6rem)" />
 
                 {/* Workshop 2 */}
                 <Label label={t("produrable.workshops.card2.meta")} />
@@ -159,28 +160,35 @@ export default async function ProdurablePage({
               <Padding space="Small (3rem)" />
             </div>
             <div className="layer-4">
-              <Background color="Secondary" />
+              <Background color="Primary" />
             </div>
           </section>
         </div>
 
         {/* 5. Barometer teaser — a plain centered header, not a boxed callout,
-            at the same generous scale as the rest of the page. */}
+            at the same generous scale as the rest of the page. This is the
+            page's one deliberate accent: the rest of the page sits on the
+            same default Background "Primary" surface as the rest of the
+            site, and this section alone switches to the existing
+            Background "Yellow" brand-accent variant so it's the one that
+            pops. */}
         <div className={DEVLINK_SCOPE_CLASS} style={{ display: "contents" }}>
           <section className="generic_section">
             <div className="padding-global">
               <Padding space="Medium (6rem)" />
               <div className="container-55rem">
                 <div className="header">
-                  <Label label={t("produrable.barometer.label")} />
+                  <Heading className="heading-size-2rem text-wrap-balance" tag="h2">
+                    {t("produrable.barometer.label")}
+                  </Heading>
                   <div className="spacer-1x5rem" />
-                  <p className="heading-size-2rem text-wrap-balance">{t("produrable.barometer.text")}</p>
+                  <p className="text-size-1x375rem text-wrap-balance">{t("produrable.barometer.text")}</p>
                 </div>
               </div>
               <Padding space="Medium (6rem)" />
             </div>
             <div className="layer-4">
-              <Background color="Primary" />
+              <Background color="Yellow" />
             </div>
           </section>
         </div>
