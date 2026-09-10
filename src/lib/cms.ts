@@ -572,6 +572,55 @@ export async function getGuideBySlug(slug: string, locale: Locale) {
   };
 }
 
+/**
+ * "Related guides" for the thank-you page's "Go further" cards: other guides
+ * on the same theme/framework as `guide` (matched via guides.tag_id, the same
+ * field that groups guides by topic everywhere else in the CMS), most recent
+ * first. If the guide's theme doesn't have enough other guides yet, the
+ * remaining slots are filled with the most recent other published guides
+ * overall so the block always has content to show.
+ */
+export async function getRelatedGuides(
+  guide: { id: string; tag_id: string | null },
+  locale: Locale,
+  limit = 2
+) {
+  const selectCols = "*, tag:frameworks!guides_tag_id_fkey(*)";
+  const rows: any[] = [];
+
+  if (guide.tag_id) {
+    const { data } = await supabase
+      .from("guides")
+      .select(selectCols)
+      .eq("tag_id", guide.tag_id)
+      .eq("published", true)
+      .eq("archived", false)
+      .neq("id", guide.id)
+      .order("date", { ascending: false })
+      .limit(limit);
+    if (data) rows.push(...data);
+  }
+
+  if (rows.length < limit) {
+    const excludeIds = [guide.id, ...rows.map((g) => g.id)];
+    const { data } = await supabase
+      .from("guides")
+      .select(selectCols)
+      .eq("published", true)
+      .eq("archived", false)
+      .not("id", "in", `(${excludeIds.join(",")})`)
+      .order("date", { ascending: false })
+      .limit(limit - rows.length);
+    if (data) rows.push(...data);
+  }
+
+  return rows.slice(0, limit).map((row) => ({
+    ...row,
+    name: localized(row, "name", locale),
+    description: localized(row, "description", locale),
+  }));
+}
+
 // ============================================================
 // EVENTS
 // ============================================================

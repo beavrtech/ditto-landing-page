@@ -1146,6 +1146,10 @@
       "title": "Resources & Guides",
       "description": "Get actionable CSR and compliance resources with Ditto guides. Learn best practices, use checklists, and gain valuable insights from experts."
     },
+    "thankYouGuide": {
+      "title": "Thank you – {guide} | Ditto",
+      "description": "Your guide, {guide}, is on its way. Discover other Ditto resources to keep moving forward on your CSR program."
+    },
     "getStarted": {
       "title": "Book a Ditto demo",
       "description": "See Ditto live. Book a 30-minute call to walk through your frameworks and the fastest path to audit-ready, with a CSR and compliance expert."
@@ -1221,6 +1225,20 @@
     "barometer": {
       "label": "AI × CSR Barometer",
       "text": "The first results of our AI × CSR barometer will be unveiled live during the workshop “AI: likely productivity gains, certain environmental impacts,” on Tuesday, September 30 at 1:00 PM, room 241."
+    }
+  },
+  "thankYouGuide": {
+    "breadcrumb": "Thank you",
+    "label": "Guide requested",
+    "heading": "Thank you!",
+    "emailNote": "Your guide, {guide}, is on its way to your inbox. It can take a few minutes to arrive — check your spam folder if you don't see it.",
+    "goFurther": {
+      "heading": "Go further"
+    },
+    "softCta": {
+      "heading": "Want to go further on {framework}?",
+      "body": "Discover how Ditto can help you succeed on {framework}.",
+      "button": "Discover how Ditto can help"
     }
   }
 }

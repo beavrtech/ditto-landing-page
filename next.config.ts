@@ -47,6 +47,21 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Thank-you pages use a single hyphenated URL segment per the product spec
+  // (e.g. /en/thank-you-ecovadis-guide), but the canonical app-router folder
+  // is a real nested dynamic segment (/[locale]/thank-you/[slug]) — app-router
+  // dynamic segments cannot mix static prefix text with a bracketed param
+  // (verified empirically: Next.js's compiled route-regex drops the prefix
+  // entirely, matching any second segment). This rewrite bridges the two
+  // without changing the visible URL.
+  async rewrites() {
+    return [
+      {
+        source: "/:locale/thank-you-:slug",
+        destination: "/:locale/thank-you/:slug",
+      },
+    ];
+  },
   // Legacy URL structure (pre-migration) → current localized routes.
   // These run before the i18n middleware.
   async redirects() {
