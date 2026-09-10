@@ -1229,7 +1229,6 @@
   },
   "thankYouGuide": {
     "breadcrumb": "Thank you",
-    "label": "Guide requested",
     "heading": "Thank you!",
     "emailNote": "Your guide, {guide}, is on its way to your inbox. It can take a few minutes to arrive — check your spam folder if you don't see it.",
     "goFurther": {

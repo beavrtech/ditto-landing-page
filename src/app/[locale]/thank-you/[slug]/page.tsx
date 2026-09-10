@@ -62,6 +62,16 @@ const RELATED_GRID_CSS = `
   background-color: var(--_colors-•-primitives---brand--yellow, #FFE228);
 }
 .thank-you_soft-cta_content { max-width: 40rem; }
+@media screen and (max-width: 767px) {
+  .thank-you_soft-cta { padding: 1.75rem; }
+  .thank-you_soft-cta .button {
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+    white-space: normal;
+    text-align: center;
+  }
+}
 `;
 
 export async function generateMetadata({
@@ -158,8 +168,6 @@ export default async function ThankYouGuidePage({
               <div className="container-64rem">
                 <div className="post-hero_component" style={{ textAlign: "center" }}>
                   <div className="post-hero_content" style={{ alignItems: "center" }}>
-                    <p className="label">{t("thankYouGuide.label")}</p>
-                    <div className="spacer-1x5rem" />
                     <h1 className="heading-size-3rem">{t("thankYouGuide.heading")}</h1>
                     <div className="spacer-0x75rem" />
                     <p className="text-size-1x375rem text-color-neutral">
@@ -211,7 +219,8 @@ export default async function ThankYouGuidePage({
                       </p>
                     </div>
                     <Button
-                      text={t("thankYouGuide.softCta.button")}
+                      arrow={false}
+                      text={`${t("thankYouGuide.softCta.button")} →`}
                       link={{ href: softCtaHref }}
                     />
                   </div>
