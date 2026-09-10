@@ -1643,12 +1643,10 @@ a {
 }
 
 .announcement-bar_link {
-  display: inline-flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
+  display: block;
+  width: 100%;
   min-width: 0;
+  text-align: center;
   text-decoration: none;
   color: inherit;
 }
@@ -1659,9 +1657,10 @@ a {
 }
 
 .announcement-bar_tag {
-  flex-shrink: 0;
   display: inline-flex;
   align-items: center;
+  vertical-align: middle;
+  margin-right: 0.5rem;
   border-radius: 999px;
   padding: 0.125rem 0.625rem;
   background: var(--_colors-•-semantic---button-primary--surface, #130e30);
@@ -1674,6 +1673,7 @@ a {
 }
 
 .announcement-bar_text {
+  display: inline;
   font-size: 0.875rem;
   font-weight: 500;
   line-height: 1.4;
