@@ -83,9 +83,9 @@
     "industryTransportationLogistics": "Transportation & Logistics"
   },
   "announcementBar": {
-    "tag": "BAROMÈTRE",
-    "message": "L'IA en RSE : participez à notre étude annuelle ! 5 min pour donner votre avis",
-    "href": "https://tally.so/r/EkaP5A?utm_source=site&utm_medium=banner"
+    "tag": "ÉVÉNEMENT",
+    "message": "L'équipe Ditto sera présente au salon Produrable les 30 sept & 1er oct ! Découvrez nos ateliers",
+    "href": "/fr/evenements/produrable-2026"
   },
   "hero": {
     "title": "Votre plateforme conformité & durabilité,<br></br>et l'expert qui la pilote avec vous.",
@@ -1177,6 +1177,50 @@
     "legalNotices": {
       "title": "Mentions légales",
       "description": "Retrouvez toutes les informations légales de Ditto : éditeur, hébergeur, propriété intellectuelle et conditions d'utilisation du site."
+    },
+    "produrable": {
+      "title": "Ditto à Produrable 2026 | 30 sept & 1er oct, Palais des Congrès",
+      "description": "Retrouvez Ditto au salon Produrable 2026, stand 3/65. Découvrez nos ateliers RSE x IA et RSE x évaluations, et prenez RDV sur notre stand."
+    }
+  },
+  "produrable": {
+    "breadcrumb": "Produrable 2026",
+    "hero": {
+      "title": "Ditto à Produrable 2026",
+      "dateLocation": "30 septembre & 1er octobre – Palais des Congrès, Paris",
+      "stand": "Stand 3/65, village Gouvernance Stratégie Finance"
+    },
+    "ctaBlock": {
+      "title": "Rejoignez-nous sur notre stand",
+      "paragraph": "Nos équipes seront ravies de vous accueillir sur notre stand pour échanger sur vos enjeux RSE et IA.",
+      "button": "Prendre RDV sur notre stand"
+    },
+    "workshops": {
+      "title": "Nos ateliers",
+      "card1": {
+        "meta": "Mardi 30 septembre, 13h00–13h45, salle 241",
+        "title": "IA : gains de productivité probables, impacts environnementaux certains. Comment vivre avec cette contradiction en tant que responsable RSE en 2026 ?",
+        "speakers": "Pierre Poirmeur (Ditto, Co-fondateur & CEO), Florence Jean (Redion, Directrice RSE France & Groupe), Frédérique Tribondeau (Pluxee France, Directrice RSE), Léa Tridon (Tessi, Cheffe de projets RSE Groupe)",
+        "intro": "Les responsables RSE sont souvent les premiers à mesurer l'impact environnemental de l'IA. Et pourtant, ils l'utilisent. Comment vivent-ils cette contradiction ? Ditto dévoile en avant-première les résultats de son baromètre IA × RSE, mené auprès de plus de 100 professionnels RSE, et ouvre le débat autour des grandes tendances qui en ressortent. Au programme :",
+        "bullet1": "Les paradoxes IA × RSE révélés par l'étude",
+        "bullet2": "Les usages réels de l'IA dans les équipes RSE aujourd'hui",
+        "bullet3": "Nos recommandations pour avancer sur le sujet",
+        "outro": "Rejoignez-nous pour un débat ouvert, ancré dans les données et les expériences du terrain."
+      },
+      "card2": {
+        "meta": "Jeudi 1er octobre, 14h15–15h00, salle 343",
+        "title": "EcoVadis, CDP, CSRD : quel est le sens de toutes ces évaluations ?",
+        "speakers": "Ugo Le Borgne (Ditto, Head of Revenue)",
+        "intro": "Imparfaites, partielles, parfois jugées arbitraires, les évaluations RSE ont leurs limites, et tout le monde le sait. Mais bien utilisées, elles peuvent aussi devenir un véritable levier pour structurer sa démarche et bâtir un plan d'action concret. Au programme de cet atelier :",
+        "bullet1": "Faire d'EcoVadis, CDP et CSRD une porte d'entrée vers une démarche RSE structurée",
+        "bullet2": "Obtenir un score qui reflète vraiment ce que vous faites sur le terrain",
+        "bullet3": "Piloter ces évaluations dans la durée sans y passer sa vie",
+        "outro": "Repartez avec les bases de votre feuille de route RSE : quelles évaluations prioriser, dans quel ordre, et comment les transformer en moteur de progression concret plutôt qu'en exercice annuel. Un temps d'échange sera prévu pour vos questions et cas concrets."
+      }
+    },
+    "barometer": {
+      "label": "Baromètre IA × RSE",
+      "text": "Les premiers résultats de notre baromètre IA × RSE seront dévoilés en direct lors de l'atelier « IA : gains de productivité probables, impacts environnementaux certains », mardi 30 septembre à 13h00, salle 241."
     }
   }
 }

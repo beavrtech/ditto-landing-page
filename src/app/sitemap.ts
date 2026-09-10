@@ -34,6 +34,7 @@ const STATIC_PAGES: { en: string; fr: string; changeFrequency: MetadataRoute.Sit
   { en: "/manifesto", fr: "/manifesto", changeFrequency: "yearly", priority: 0.4 },
   { en: "/careers", fr: "/careers", changeFrequency: "monthly", priority: 0.5 },
   { en: "/press", fr: "/press", changeFrequency: "weekly", priority: 0.5 },
+  { en: "/events/produrable-2026", fr: "/evenements/produrable-2026", changeFrequency: "weekly", priority: 0.6 },
   { en: "/collection/ecovadis", fr: "/collection/ecovadis", changeFrequency: "monthly", priority: 0.7 },
   { en: "/collection/cdp", fr: "/collection/cdp", changeFrequency: "monthly", priority: 0.7 },
   { en: "/legal/terms-and-conditions", fr: "/legal/conditions-generales-dutilisation", changeFrequency: "yearly", priority: 0.2 },
