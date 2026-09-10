@@ -226,7 +226,12 @@ export default async function GuideDetailPage({
                   <div className="guide_sidebar">
                     <div className="guide_form guide-form-card">
                       {item.form ? (
-                        <GuideFormEmbed html={item.form} guideSlug={item.slug} />
+                        <GuideFormEmbed
+                          html={item.form}
+                          guideSlug={item.slug}
+                          redirectSlug={locale === "fr" ? item.slug_fr || item.slug : item.slug}
+                          locale={locale}
+                        />
                       ) : item.banner_url ? (
                         <Image src={item.banner_url} alt={item.banner_alt_desc || ""} width={648} height={400} className="media-full-size" style={{ objectFit: "cover", borderRadius: "1rem" }} />
                       ) : null}

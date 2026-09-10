@@ -37,8 +37,24 @@ function extractHubSpotConfig(html: string) {
  * Renders a HubSpot form by extracting portalId/formId/region from the CMS
  * embed HTML and loading the SDK programmatically — the same pattern used by
  * the contact page (SectionContactSidebarI18n).
+ *
+ * `redirectSlug` + `locale` build the guide's dedicated thank-you page URL
+ * (/{locale}/thank-you-{redirectSlug}) and pass it as HubSpot's own
+ * `redirectUrl` form option, so submission always lands there — regardless
+ * of any generic redirect configured on the HubSpot form/portal itself
+ * (previously /resources for every guide).
  */
-export default function GuideFormEmbed({ html, guideSlug }: { html: string; guideSlug?: string }) {
+export default function GuideFormEmbed({
+  html,
+  guideSlug,
+  redirectSlug,
+  locale,
+}: {
+  html: string;
+  guideSlug?: string;
+  redirectSlug?: string;
+  locale?: string;
+}) {
   const config = useMemo(() => extractHubSpotConfig(html), [html]);
   const posthog = usePostHog();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -51,6 +67,11 @@ export default function GuideFormEmbed({ html, guideSlug }: { html: string; guid
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const win = window as unknown as Record<string, any>;
 
+    const redirectUrl =
+      redirectSlug && locale
+        ? `https://www.trustditto.com/${locale}/thank-you-${redirectSlug}`
+        : undefined;
+
     function tryCreate() {
       if (formCreated.current || !containerRef.current) return;
       if (!win.hbspt) return;
@@ -60,6 +81,7 @@ export default function GuideFormEmbed({ html, guideSlug }: { html: string; guid
         formId,
         region,
         target: `#guide-hs-form-${formId}`,
+        ...(redirectUrl && { redirectUrl }),
       });
       formCreated.current = true;
     }
@@ -77,7 +99,7 @@ export default function GuideFormEmbed({ html, guideSlug }: { html: string; guid
     }, 200);
 
     return () => clearInterval(interval);
-  }, [config]);
+  }, [config, redirectSlug, locale]);
 
   // Track HubSpot form submissions in PostHog: identify the lead by email and
   // capture both a generic form_submitted event and a guide_downloaded event

@@ -1146,6 +1146,10 @@
       "title": "Guides et rapports",
       "description": "Obtenez des ressources détaillées sur la RSE et la conformité grâce aux guides Ditto. Découvrez les meilleures pratiques et les conseils d'experts."
     },
+    "thankYouGuide": {
+      "title": "Merci – {guide} | Ditto",
+      "description": "Votre guide, {guide}, arrive dans votre boîte mail. Découvrez d'autres ressources Ditto pour avancer sur votre démarche RSE."
+    },
     "getStarted": {
       "title": "Réservez une démo Ditto",
       "description": "Découvrez Ditto en direct. Réservez 30 minutes pour passer en revue vos référentiels et le chemin le plus court vers un dossier prêt pour l'audit, avec un expert RSE et conformité."
@@ -1221,6 +1225,19 @@
     "barometer": {
       "label": "Baromètre IA × RSE",
       "text": "Les premiers résultats de notre baromètre IA × RSE seront dévoilés en direct lors de l'atelier « IA : gains de productivité probables, impacts environnementaux certains », mardi 30 septembre à 13h00, salle 241."
+    }
+  },
+  "thankYouGuide": {
+    "breadcrumb": "Merci",
+    "heading": "Merci !",
+    "emailNote": "Votre guide, {guide}, arrive dans votre boîte mail. Cela peut prendre quelques minutes — pensez à vérifier vos spams si vous ne le voyez pas.",
+    "goFurther": {
+      "heading": "Aller plus loin"
+    },
+    "softCta": {
+      "heading": "Envie d'aller plus loin sur {framework} ?",
+      "body": "Découvrez comment Ditto peut vous aider à réussir sur {framework}.",
+      "button": "Découvrir comment Ditto peut vous aider"
     }
   }
 }
