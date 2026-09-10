@@ -441,6 +441,15 @@ a {
 .home-hero_cta {
   display: flex;
   justify-content: center;
+  /* .home-hero_inner uses align-items: center (flex column), so without an
+     explicit stretch this row shrinks to its content's max-content width
+     instead of the container's. The email input + nowrap CTA button (see
+     the .button nowrap rule below) can't shrink below their combined
+     content width, so on narrow viewports the un-stretched row rendered
+     wider than the viewport and got clipped on both sides. Stretching lets
+     the mobile width:100% rules on .newsletter_form_wrapper etc. (below)
+     actually take effect against the real, viewport-bound container width. */
+  align-self: stretch;
 }
 
 /* Flat 2×3 framework grid */
@@ -527,6 +536,27 @@ a {
 @media (max-width: 575px) {
   .framework-grid_row {
     flex-direction: column;
+  }
+}
+
+/* Homepage hero email-capture CTA — on narrow phones the email input and
+   the "Discutons de votre projet" / "Book a Free Strategy Call" button
+   (forced to a single line, see the .button nowrap rule further down)
+   don't both fit on one row. Stack them instead of letting them clip.
+   Scoped under .home-hero_cta so the shared .newsletter_* classes (used
+   only by this hero form) aren't affected anywhere else. */
+@media (max-width: 480px) {
+  .home-hero_cta .newsletter_input_wrapper {
+    flex-direction: column;
+    border-radius: var(--radius--radius-large);
+  }
+
+  .home-hero_cta .newsletter_input {
+    width: 100%;
+  }
+
+  .home-hero_cta .button {
+    width: 100%;
   }
 }
 
