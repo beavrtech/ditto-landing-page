@@ -72,7 +72,9 @@ export default async function FrameworksCdpPage({ params }: { params: Promise<{ 
         <SectionHero
           variant="Base"
           title={t("frameworksCdp.hero.title")}
-          paragraph={t("frameworksCdp.hero.subtitle")}
+          paragraph={t.rich("frameworksCdp.hero.subtitle", {
+            cdp: link(cdpArticleHref),
+          })}
           image="/images/cdp-hero.avif"
           paddingBottom="Small (3rem)"
           buttonsVisibility={true}
@@ -93,9 +95,7 @@ export default async function FrameworksCdpPage({ params }: { params: Promise<{ 
         {/* 4. Approach header */}
         <SectionFeaturesHeader
           title={t("frameworksCdp.approach.title")}
-          text={t.rich("frameworksCdp.approach.subtitle", {
-            cdp: link(cdpArticleHref),
-          })}
+          text={t("frameworksCdp.approach.subtitle")}
         />
 
         {/* 5. Feature Step 1 */}
