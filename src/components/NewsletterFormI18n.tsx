@@ -33,31 +33,43 @@ export function NewsletterForm({}: NewsletterFormProps) {
   function handleSubmit(e?: React.FormEvent) {
     e?.preventDefault();
     const input = inputRef.current;
-    const email = input?.value.trim() ?? "";
-    if (!email || !input?.checkValidity()) {
-      input?.reportValidity();
-      return;
+    // On mobile the email input is hidden (see the .home-hero_cta rules in
+    // globals.css — only the CTA button shows there); offsetParent is null
+    // for a display:none field. Don't hold the click behind a required
+    // field the visitor can neither see nor fill in — just go to /demo.
+    const emailFieldVisible = !!input && input.offsetParent !== null;
+    if (emailFieldVisible) {
+      const email = input.value.trim();
+      if (!email || !input.checkValidity()) {
+        input.reportValidity();
+        return;
+      }
     }
     if (submitting) return;
     setSubmitting(true);
 
-    try {
-      localStorage.setItem("userEmail", email);
-    } catch {}
+    const email = emailFieldVisible ? input!.value.trim() : "";
+    if (email) {
+      try {
+        localStorage.setItem("userEmail", email);
+      } catch {}
+    }
 
     try {
       posthog.capture("lead_submitted", { placement: "hero", page: window.location.pathname });
     } catch {}
 
     // Fire-and-forget Slack notification; keepalive survives the navigation
-    try {
-      fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, page: window.location.pathname }),
-        keepalive: true,
-      }).catch(() => {});
-    } catch {}
+    if (email) {
+      try {
+        fetch("/api/lead", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, page: window.location.pathname }),
+          keepalive: true,
+        }).catch(() => {});
+      } catch {}
+    }
 
     router.push(localizedHref("/demo", locale));
   }

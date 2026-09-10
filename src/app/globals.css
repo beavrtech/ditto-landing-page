@@ -542,17 +542,27 @@ a {
 /* Homepage hero email-capture CTA — on narrow phones the email input and
    the "Discutons de votre projet" / "Book a Free Strategy Call" button
    (forced to a single line, see the .button nowrap rule further down)
-   don't both fit on one row. Stack them instead of letting them clip.
+   don't both fit on one row, and a stacked input-above-button layout was
+   tried and rejected (reads poorly on mobile). Per product feedback: on
+   mobile, show only the CTA button — the email input is desktop-only —
+   and the button still opens the same /demo flow on click.
    Scoped under .home-hero_cta so the shared .newsletter_* classes (used
-   only by this hero form) aren't affected anywhere else. */
+   only by this hero form) and the button elsewhere (e.g. the navbar's
+   own "Discutons de votre projet" CTA) aren't affected anywhere else. */
 @media (max-width: 480px) {
   .home-hero_cta .newsletter_input_wrapper {
-    flex-direction: column;
-    border-radius: var(--radius--radius-large);
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .home-hero_cta .newsletter_input_wrapper::after {
+    /* Suppress the devlink border overlay (see GlobalStyles.tsx) now that
+       the wrapper is just a transparent pass-through around the button. */
+    display: none;
   }
 
   .home-hero_cta .newsletter_input {
-    width: 100%;
+    display: none;
   }
 
   .home-hero_cta .button {
