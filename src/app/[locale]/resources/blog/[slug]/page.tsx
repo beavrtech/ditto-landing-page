@@ -7,7 +7,7 @@ import { Footer } from "../../../../../components/FooterServer";
 import { Breadcrumbs } from "../../../../../components/BreadcrumbsWithSchema";
 import { SectionCta } from "../../../../../../devlink/sections/SectionCta";
 import { DEVLINK_SCOPE_CLASS } from "../../../../../../devlink/devlinkScope";
-import { getBlogPostBySlug, getBlogPosts, getGuideByFrameworkId, getFeaturedGuide, getCollectionSlugMap } from "../../../../../lib/cms";
+import { getBlogPostBySlug, getBlogPosts, getGuideByFrameworkId, getFeaturedGuide, getCollectionSlugMap, getCollectionTwin } from "../../../../../lib/cms";
 import { ArticleSidebar, injectHeadingIds } from "../../../../../components/ArticleSidebar";
 import { localizedHref } from "../../../../../lib/localized-paths";
 import { transformRichText } from "../../../../../lib/rich-text";
@@ -28,7 +28,7 @@ export async function generateMetadata({
 
   // Posts duplicating a collection item canonicalize to the collection version
   // (single canonical URL per article); the page itself 308s there too.
-  const collectionTwin = (await getCollectionSlugMap().catch(() => new Map())).get(item.slug);
+  const collectionTwin = getCollectionTwin(await getCollectionSlugMap().catch(() => new Map()), item);
   const enUrl = collectionTwin
     ? `https://www.trustditto.com/en/collection/${collectionTwin.framework}/${collectionTwin.slug}`
     : `https://www.trustditto.com/en/resources/blog/${enSlug}`;
@@ -67,7 +67,7 @@ export async function generateStaticParams() {
   for (const post of posts || []) {
     // Skip posts duplicating a collection item — those URLs 308 to the
     // collection version at request time and must not be prerendered as pages.
-    if (collectionSlugs.has(post.slug)) continue;
+    if (getCollectionTwin(collectionSlugs, post)) continue;
     params.push({ locale: "en", slug: post.slug });
     if (post.slug_fr) params.push({ locale: "fr", slug: post.slug_fr });
   }
@@ -91,7 +91,7 @@ export default async function BlogPostPage({
 
   // Posts duplicating a collection item permanently redirect to the collection
   // version (single canonical URL per article).
-  const collectionTwin = (await getCollectionSlugMap().catch(() => new Map())).get(item.slug);
+  const collectionTwin = getCollectionTwin(await getCollectionSlugMap().catch(() => new Map()), item);
   if (collectionTwin) {
     permanentRedirect(
       locale === "fr"
