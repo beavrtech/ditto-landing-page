@@ -441,6 +441,15 @@ a {
 .home-hero_cta {
   display: flex;
   justify-content: center;
+  /* .home-hero_inner uses align-items: center (flex column), so without an
+     explicit stretch this row shrinks to its content's max-content width
+     instead of the container's. The email input + nowrap CTA button (see
+     the .button nowrap rule below) can't shrink below their combined
+     content width, so on narrow viewports the un-stretched row rendered
+     wider than the viewport and got clipped on both sides. Stretching lets
+     the mobile width:100% rules on .newsletter_form_wrapper etc. (below)
+     actually take effect against the real, viewport-bound container width. */
+  align-self: stretch;
 }
 
 /* Flat 2×3 framework grid */
@@ -527,6 +536,37 @@ a {
 @media (max-width: 575px) {
   .framework-grid_row {
     flex-direction: column;
+  }
+}
+
+/* Homepage hero email-capture CTA — on narrow phones the email input and
+   the "Discutons de votre projet" / "Book a Free Strategy Call" button
+   (forced to a single line, see the .button nowrap rule further down)
+   don't both fit on one row, and a stacked input-above-button layout was
+   tried and rejected (reads poorly on mobile). Per product feedback: on
+   mobile, show only the CTA button — the email input is desktop-only —
+   and the button still opens the same /demo flow on click.
+   Scoped under .home-hero_cta so the shared .newsletter_* classes (used
+   only by this hero form) and the button elsewhere (e.g. the navbar's
+   own "Discutons de votre projet" CTA) aren't affected anywhere else. */
+@media (max-width: 480px) {
+  .home-hero_cta .newsletter_input_wrapper {
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .home-hero_cta .newsletter_input_wrapper::after {
+    /* Suppress the devlink border overlay (see GlobalStyles.tsx) now that
+       the wrapper is just a transparent pass-through around the button. */
+    display: none;
+  }
+
+  .home-hero_cta .newsletter_input {
+    display: none;
+  }
+
+  .home-hero_cta .button {
+    width: 100%;
   }
 }
 
